@@ -24,11 +24,8 @@ static NSString* const LKSQLFloatType   =   @"float_double_decimal";
 static NSString* const LKSQLIntType     =   @"int_char_short_long";
 static NSString* const LKSQLBlobType    =   @"";
 
-// 属性名 当列名
 static NSString* const LKSQLInherit          =   @"LKDBInherit";
-//
 static NSString* const LKSQLBinding          =   @"LKDBBinding";
-// 用户自定义类型,外键
 static NSString* const LKSQLUserCalculate    =   @"LKDBUserCalculate";
 
 //Object-c type converted to SQLite type  把Object-c 类型 转换为sqlite 类型
@@ -79,9 +76,10 @@ extern inline NSString* LKSQLTypeFromObjcType(NSString *objcType);
 
 @interface LKModelInfos : NSObject
 
--(id)initWithKeyMapping:(NSDictionary*)keyMapping propertyNames:(NSArray*)propertyNames propertyType:(NSArray*)propertyType;
+-(id)initWithKeyMapping:(NSDictionary*)keyMapping propertyNames:(NSArray*)propertyNames propertyType:(NSArray*)propertyType primaryKeys:(NSArray*)primaryKeys;
 
-@property(readonly,nonatomic)int count;
+@property(readonly,nonatomic)NSUInteger count;
+@property(readonly,nonatomic)NSArray* primaryKeys;
 
 -(LKDBProperty*)objectWithIndex:(int)index;
 -(LKDBProperty*)objectWithPropertyName:(NSString*)propertyName;

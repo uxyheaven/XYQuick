@@ -18,6 +18,7 @@
 
 // overwrite in your models, return # table name #
 +(NSString*)getTableName;
++(BOOL)getAutoUpdateSqlColume;
 
 // overwrite in your models, set colume attribute
 +(void)columeAttributeWithProperty:(LKDBProperty*)property;
@@ -30,6 +31,9 @@
  */
 +(NSString*)getPrimaryKey;
 
+//return multi primary key    返回联合主键
++(NSArray*) getPrimaryKeyUnionArray;
+
 @property int rowid;
 
 /**
@@ -40,6 +44,7 @@
 +(NSString*)getDBImagePathWithName:(NSString*)filename;
 +(NSString*)getDBDataPathWithName:(NSString*)filename;
 @end
+
 
 
 #pragma mark- 表数据操作
@@ -62,11 +67,13 @@
 -(void)userSetValueForModel:(LKDBProperty*)property value:(id)value;
 
 
-
 //lkdbhelper use
 -(id)modelGetValue:(LKDBProperty*)property;
 -(void)modelSetValue:(LKDBProperty*)property value:(id)value;
--(id)getPrimaryValue;
+
+-(id)singlePrimaryKeyValue;
+-(BOOL)singlePrimaryKeyValueIsEmpty;
+-(LKDBProperty*)singlePrimaryKeyProperty;
 @end
 
 @interface NSObject (LKModel)
@@ -89,5 +96,6 @@
  *	@brief log all property 	打印所有的属性名称和数据
  */
 -(NSString*)printAllPropertys;
+-(NSString*)printAllPropertysIsContainParent:(BOOL)containParent;
 
 @end

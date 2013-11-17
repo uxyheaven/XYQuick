@@ -84,7 +84,8 @@
     [self.view addSubview:tempBtn];
     
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    tempBtn.frame = CGRectMake(0, 160, 80, 60);
+    tempBtn.backgroundColor = [UIColor redColor];
+    tempBtn.frame = CGRectMake(10, 160, 100, 60);
     [tempBtn setTitle:@"muhud" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickBtnMuhud:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:tempBtn];
@@ -115,7 +116,26 @@
     [[XYTimer sharedInstance] pauseTimer];
 }
 - (IBAction)clickBtnMuhud:(id)sender {
-
+    
+    UIButton* btn=(UIButton*) sender;
+	
+	[UIView animateWithDuration:0.15 animations:^{
+        [btn setTransform:CGAffineTransformMakeScale(.5, .5)];
+    } completion:^(BOOL finished){
+        [UIView animateWithDuration:0.2 animations:^{
+            [btn setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
+        } completion:^(BOOL finished){
+            [UIView animateWithDuration:0.15 animations:^{
+                [btn setTransform:CGAffineTransformMakeScale(.8, .8)];
+            } completion:^(BOOL finished){
+                [UIView animateWithDuration:.1 animations:^{
+                    [btn setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
+                }];
+            }];
+        }];
+    }
+     
+	 ];
 }
 - (IBAction)clickAVSpeech:(id)sender {
     if (IOS7_OR_LATER) {

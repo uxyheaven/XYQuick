@@ -23,12 +23,21 @@ static char LKModelBase_Key_RowID;
 #pragma mark Tabel Structure Function 表结构
 +(NSString *)getTableName
 {
-    return nil;
+    return NSStringFromClass(self);
+}
++(BOOL)getAutoUpdateSqlColume
+{
+    return YES;
 }
 +(NSString *)getPrimaryKey
 {
+    return @"rowid";
+}
++(NSArray *)getPrimaryKeyUnionArray
+{
     return nil;
 }
+
 +(void)columeAttributeWithProperty:(LKDBProperty *)property
 {
     //overwrite
@@ -59,10 +68,10 @@ static char LKModelBase_Key_RowID;
 -(id)modelGetValue:(LKDBProperty *)property
 {
     id value = [self valueForKey:property.propertyName];
-    id returnValue = nil;
+    id returnValue = value;
     if(value == nil)
     {
-        returnValue = @"";
+        return nil;
     }
     else if([value isKindOfClass:[NSString class]])
     {
@@ -79,7 +88,7 @@ static char LKModelBase_Key_RowID;
     else if([value isKindOfClass:[UIColor class]])
     {
         UIColor* color = value;
-        float r,g,b,a;
+        CGFloat r,g,b,a;
         [color getRed:&r green:&g blue:&b alpha:&a];
         returnValue = [NSString stringWithFormat:@"%.3f,%.3f,%.3f,%.3f",r,g,b,a];
     }
@@ -120,8 +129,6 @@ static char LKModelBase_Key_RowID;
         
         returnValue = filename;
     }
-    if(returnValue == nil)
-        returnValue = @"";
     
     return returnValue;
 }
@@ -132,6 +139,10 @@ static char LKModelBase_Key_RowID;
     if([columeType isEqualToString:@"NSString"])
     {
         
+    }
+    else if([columeType isEqualToString:@"NSNumber"])
+    {
+        modelValue = [NSNumber numberWithDouble:[value doubleValue]];
     }
     else if([LKSQLFloatType rangeOfString:columeType].location != NSNotFound)
     {
@@ -204,18 +215,68 @@ static char LKModelBase_Key_RowID;
 -(void)userSetValueForModel:(LKDBProperty *)property value:(id)value{}
 -(id)userGetValueForModel:(LKDBProperty *)property
 {
-    return @"";
+    return nil;
 }
 
--(id)getPrimaryValue
+
+//主键值 是否为空
+-(BOOL)singlePrimaryKeyValueIsEmpty
 {
-    NSString* primarykey = [self.class getPrimaryKey];
-    LKModelInfos* infos = [self.class getModelInfos];
-    LKDBProperty* property = [infos objectWithSqlColumeName:primarykey];
-    
-    if(primarykey&&property)
+    LKDBProperty* property = [self singlePrimaryKeyProperty];
+    if(property)
     {
-        return [self modelGetValue:property];
+        id pkvalue = [self singlePrimaryKeyValue];
+        if([property.sqlColumeType isEqualToString:LKSQLInt])
+        {
+            if([pkvalue isKindOfClass:[NSString class]])
+            {
+                if([LKDBUtils checkStringIsEmpty:pkvalue])
+                    return YES;
+                
+                if([pkvalue intValue] == 0)
+                    return YES;
+                
+                return NO;
+            }
+            if([pkvalue isKindOfClass:[NSNumber class]])
+            {
+                if([pkvalue intValue] == 0)
+                    return YES;
+                else
+                    return NO;
+            }
+            return YES;
+        }
+        else
+        {
+            return (pkvalue == nil);
+        }
+    }
+    return NO;
+}
+-(LKDBProperty *)singlePrimaryKeyProperty
+{
+    LKModelInfos* infos = [self.class getModelInfos];
+    if(infos.primaryKeys.count == 1)
+    {
+        NSString* name = [infos.primaryKeys objectAtIndex:0];
+        return [infos objectWithSqlColumeName:name];
+    }
+    return nil;
+}
+-(id)singlePrimaryKeyValue
+{
+    LKDBProperty* property = [self singlePrimaryKeyProperty];
+    if(property)
+    {
+        if([property.type isEqualToString:LKSQLUserCalculate])
+        {
+            return [self userGetValueForModel:property];
+        }
+        else
+        {
+            return [self modelGetValue:property];
+        }
     }
     return nil;
 }
@@ -240,8 +301,18 @@ static char LKModelBase_Key_RowID;
             NSDictionary* keymapping = [self getTableMapping];
             [self getSelfPropertys:pronames protypes:protypes];
             
-            infos = [[LKModelInfos alloc]initWithKeyMapping:keymapping propertyNames:pronames propertyType:protypes];
+            NSArray* pkArray = [self getPrimaryKeyUnionArray];
+            if(pkArray.count == 0)
+            {
+                pkArray = nil;
+                NSString* pk = [self getPrimaryKey];
+                if([LKDBUtils checkStringIsEmpty:pk] == NO)
+                {
+                    pkArray = [NSArray arrayWithObject:pk];
+                }
+            }
             
+            infos = [[LKModelInfos alloc]initWithKeyMapping:keymapping propertyNames:pronames propertyType:protypes primaryKeys:pkArray];
             [oncePropertyDic setObject:infos forKey:NSStringFromClass(self)];
         }
     }
@@ -265,7 +336,7 @@ static char LKModelBase_Key_RowID;
     for (i = 0; i < outCount; i++) {
         objc_property_t property = properties[i];
         NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
-
+        
         //取消rowid 的插入 //子类 已重载的属性 取消插入
         if([propertyName isEqualToString:@"rowid"] ||
            [pronames indexOfObject:propertyName] != NSNotFound)
@@ -298,7 +369,7 @@ static char LKModelBase_Key_RowID;
         else
         {
             propertyType = [propertyType lowercaseString];
-            if ([propertyType hasPrefix:@"ti"])
+            if ([propertyType hasPrefix:@"ti"] || [propertyType hasPrefix:@"tq"] || [propertyType hasPrefix:@"tb"])
             {
                 [protypes addObject:@"int"];
             }
@@ -335,22 +406,35 @@ static char LKModelBase_Key_RowID;
 #pragma mark - log all property
 -(NSString*)printAllPropertys
 {
+    return [self printAllPropertysIsContainParent:NO];
+}
+-(NSString *)printAllPropertysIsContainParent:(BOOL)containParent
+{
 #ifdef DEBUG
-    NSMutableString* sb = [NSMutableString stringWithFormat:@"<%@> \n", [self class]];
+    Class clazz = [self class];
+    NSMutableString* sb = [NSMutableString stringWithFormat:@"\n <%@> :\n", NSStringFromClass(clazz)];
+    [sb appendFormat:@"rowid : %d\n",self.rowid];
+    [self mutableString:sb appendPropertyStringWithClass:clazz containParent:containParent];
+    NSLog(@"%@",sb);
+    return sb;
+#else
+    return @"";
+#endif
+}
+-(void)mutableString:(NSMutableString*)sb appendPropertyStringWithClass:(Class)clazz containParent:(BOOL)containParent
+{
     unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
-    [sb appendFormat:@" %@ : %@ \n",@"rowid",[self valueForKey:@"rowid"]];
+    objc_property_t *properties = class_copyPropertyList(clazz, &outCount);
     for (i = 0; i < outCount; i++) {
         objc_property_t property = properties[i];
         NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
         [sb appendFormat:@" %@ : %@ \n",propertyName,[self valueForKey:propertyName]];
     }
     free(properties);
-    NSLog(@"%@",sb);
-    return sb;
-#else
-    return @"";
-#endif
+    if(containParent)
+    {
+        [self mutableString:sb appendPropertyStringWithClass:self.superclass containParent:containParent];
+    }
 }
 
 @end

@@ -48,8 +48,6 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 * 无 ARC: -fno-objc-arc
 * 参考了 [BeeFramework](https://github.com/gavinkwoe/BeeFramework/blob/master/document)
 
-### Utilities
-
 #### CocosDenshion 
 * cocos2d音频管理
 * 增加了播放音效循环的方法
@@ -70,7 +68,7 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 * 基于FMDB
 * sqlite 数据库全自动操作
 
-### UI
+---
 #### RTLabel
 * arc 
 * 富文本标签
