@@ -18,10 +18,12 @@
 @property (nonatomic, retain) NetworkEngine *networkEngine3;
 
 @property (retain, nonatomic) IBOutlet UIProgressView *progressDownload;
+@property (retain, nonatomic) IBOutlet UILabel *labPregress;
 
 - (IBAction)clickGet:(id)sender;
 - (IBAction)clickPost:(id)sender;
 - (IBAction)clickDownload:(id)sender;
 - (IBAction)clickStopDownload:(id)sender;
+- (IBAction)clickPauseDownload:(id)sender;
 
 @end

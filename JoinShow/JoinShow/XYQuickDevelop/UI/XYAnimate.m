@@ -7,7 +7,6 @@
 //
 
 #import "XYAnimate.h"
-#import "XYExtension.h"
 
 @implementation XYAnimate
 
@@ -145,7 +144,9 @@
     [super dealloc];
 }
 -(void) addStep:(XYAnimateStep *)aStep{
-    [(NSMutableArray *)_steps pushHead:aStep];
+    if (aStep) {
+		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
+	}
 }
 
 - (void) setDelay:(NSTimeInterval)delay {
@@ -209,7 +210,9 @@
     return self;
 }
 -(void) addStep:(XYAnimateStep *)aStep{
-    [(NSMutableArray *)_steps pushHead:aStep];
+    if (aStep) {
+		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
+	}
 }
 - (void)dealloc
 {

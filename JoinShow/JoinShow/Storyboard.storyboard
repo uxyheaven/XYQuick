@@ -77,7 +77,7 @@
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="Je5-Bd-1bE">
-                                <rect key="frame" x="20" y="166" width="150" height="4"/>
+                                <rect key="frame" x="20" y="166" width="227" height="4"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IpS-jw-U4V">
                                 <rect key="frame" x="20" y="110" width="91" height="30"/>
@@ -89,19 +89,37 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VB5-wG-BvX">
-                                <rect key="frame" x="134" y="110" width="139" height="30"/>
-                                <state key="normal" title="stop download">
+                                <rect key="frame" x="202" y="110" width="68" height="30"/>
+                                <state key="normal" title="stop ">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="clickStopDownload:" destination="8ud-g3-1KC" eventType="touchUpInside" id="0s5-A7-4Cu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xLW-LB-F4S">
+                                <rect key="frame" x="127" y="110" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="pause">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickPauseDownload:" destination="8ud-g3-1KC" eventType="touchUpInside" id="6T9-Ry-epP"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aX2-3C-de2">
+                                <rect key="frame" x="255" y="157" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="9bq-Sh-Gae"/>
                     <connections>
+                        <outlet property="labPregress" destination="aX2-3C-de2" id="hKF-xx-fiY"/>
                         <outlet property="progressDownload" destination="Je5-Bd-1bE" id="Vgz-V7-Xdj"/>
                     </connections>
                 </viewController>

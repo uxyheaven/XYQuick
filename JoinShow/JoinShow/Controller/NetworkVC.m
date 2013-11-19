@@ -52,6 +52,7 @@
     self.networkEngine2 = nil;
     self.networkEngine3 = nil;
     [_progressDownload release];
+    [_labPregress release];
     [super dealloc];
 }
 - (void)didReceiveMemoryWarning
@@ -99,27 +100,39 @@
 }
 
 - (IBAction)clickDownload:(id)sender {
-    NSString *locPath = [XYCommon dataFilePath:@"DownloadedFile.pdf" ofType:filePathOption_documents];
+    NSString *locPath = [XYCommon dataFilePath:@"2.1.dmg" ofType:filePathOption_documents];
     
-     id down = [self.networkEngine3 downLoadForm:@"http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURLRequest_Class/NSURLRequest_Class.pdf" toFile:locPath];
+     id down = [self.networkEngine3 downLoadForm:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg" toFile:locPath params:nil rewriteFile:NO];
     
-    [self.networkEngine3 addDownload:down progress:^(double progress) {
-        NSLogD(@"%.2f", progress*100.0);
-        _progressDownload.progress = progress;
-    } succeed:^(MKNetworkOperation *operation) {
-        _progressDownload.progress = 0;
-        SHOWMSG(nil, @"Download succeed", @"ok");
-    } failed:^(MKNetworkOperation *errorOp, NSError *err) {
-         NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
-        SHOWMSG(nil, @"Download failed",  @"ok");
-    }];
+    [self.networkEngine3 addDownload:down
+                    breakpointResume:YES
+                            progress:^(double progress) {
+                                NSLogD(@"%.2f", progress*100.0);
+                                _progressDownload.progress = progress;
+                                _labPregress.text = [NSString stringWithFormat:@"%.1f", progress * 100];
+                            }
+                             succeed:^(MKNetworkOperation *operation) {
+                                 _progressDownload.progress = 0;
+                                 SHOWMSG(nil, @"Download succeed", @"ok");
+                             } failed:^(MKNetworkOperation *errorOp, NSError *err) {
+                                 NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+                                 SHOWMSG(nil, @"Download failed",  @"ok");
+                             }];
 }
 
 - (IBAction)clickStopDownload:(id)sender {
-    // 取消所有该主机的队列
- //  [self.networkEngine3 cancelAllOperations];
-    // 取消 请求
-    [self.networkEngine3 cancelOperationsContainingURLString:@"http://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURLRequest_Class/NSURLRequest_Class.pdf"];
+    // 删除缓存文件
+    NSString *str = [XYCommon dataFilePath:@"2.1.dmg.temp" ofType:filePathOption_tmp];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:str]) {
+        [fileManager removeItemAtPath:str error:nil];
+    }
+    [self.networkEngine3 cancelDownloadWithString:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"];
+}
+
+- (IBAction)clickPauseDownload:(id)sender {
+    // 暂停时 直接取消请求
+    [self.networkEngine3 cancelDownloadWithString:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"];
 }
 #else
 - (void)viewDidLoad
@@ -136,6 +149,8 @@
 - (IBAction)clickDownload:(id)sender {
 }
 - (IBAction)clickStopDownload:(id)sender {
+}
+- (IBAction)clickPauseDownload:(id)sender {
 }
 #endif
 @end

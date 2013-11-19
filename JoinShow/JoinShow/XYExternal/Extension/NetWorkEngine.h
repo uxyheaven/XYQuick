@@ -35,15 +35,15 @@
  
 // get
 -(MKNetworkOperation *) addGetRequestWithPath:(NSString *)path
-                       params:(NSMutableDictionary *)params
-                      succeed:(void (^)(MKNetworkOperation *operation))blockS
-                       failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
+                                       params:(NSMutableDictionary *)params
+                                      succeed:(void (^)(MKNetworkOperation *operation))blockS
+                                       failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
 // post
 #pragma mark -todo, post
 -(MKNetworkOperation *) addPostRequestWithPath:(NSString *)path
-                        params:(NSMutableDictionary *)params
-                       succeed:(void (^)(MKNetworkOperation *operation))blockS
-                        failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
+                                        params:(NSMutableDictionary *)params
+                                       succeed:(void (^)(MKNetworkOperation *operation))blockS
+                                        failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
 
 // upload
 // files @{fileName:filePath}
@@ -52,27 +52,50 @@
                                          files:(NSMutableDictionary *)files
                                        succeed:(void (^)(MKNetworkOperation *operation))blockS
                                         failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
+// cancel
+-(void) cancelRequestWithStr:(NSString*)string;
 
-// download
--(MKNetworkOperation *) downLoadForm:(NSString *)remoteURL toFile:(NSString*)filePath;
+////////////////////////        download        ////////////////////////
+#pragma mark - download
+// 下载请单独实例化改类
+-(MKNetworkOperation *) downLoadForm:(NSString *)remoteURL
+                              toFile:(NSString*)filePath
+                              params:(NSMutableDictionary *)params
+                         rewriteFile:(BOOL)isRewrite;
+
 -(void) addDownload:(MKNetworkOperation *)op
+   breakpointResume:(BOOL)paramResume
            progress:(void(^)(double progress))blockP
             succeed:(void (^)(MKNetworkOperation *operation))blockS
              failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
 
-// cancel
--(void) cancelOperationsContainingURLString:(NSString*)string;
+-(void) cancelAllDownloads;
+-(void) cancelDownloadWithString:(NSString *)string;
+-(NSArray *) allDownloads;
+-(MKNetworkOperation *) getADownloadWithString:(NSString *)string;
 
-// 子类需要重新
-+(NSString *) generateAccessTokenWithObject:(id)anObject;
+// 子类需要重新写, 暂时废弃
+//+(NSString *) generateAccessTokenWithObject:(id)anObject;
 
 #pragma mark- todo ,数量控制
 // 定义队列最大并发数量, 默认为wifi下 6, 2g/3g下 2
 //@property (nonatomic, assign) int maxOperationCount;
 
+//////////////////        Image        ////////////////////
+#pragma mark- Image
 // 设置图片缓存引擎
 #define XY_initWebImageCache [NetworkEngine setWebImageEngine:nil];
 // if engine == nil, used MKNetworkEngine.
 +(void) setWebImageEngine:(MKNetworkEngine *)engine;
+
+@end
+
+//////////////////        MKNetworkOperation (XY)        ////////////////////
+#pragma mark -  MKNetworkOperation (XY)
+@interface MKNetworkOperation (XY)
+
+// 属性列表
+@property (nonatomic, copy) NSString *toFile;
+@property (nonatomic, copy) NSString *tempFile;
 
 @end
