@@ -114,7 +114,7 @@ DUMMY_CLASS(NSObject_XY);
     
     
      NSTimeInterval (^aBlockTime)(void) = objc_getAssociatedObject(self, NSObject_key_afterDelay);
-    NSTimeInterval t;
+    NSTimeInterval t = 0;
     if (aBlockTime) {
         t = aBlockTime();
     }

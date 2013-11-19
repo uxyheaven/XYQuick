@@ -1,9 +1,9 @@
 //  Created by Heaven on 13-5-16.
 //
-
 #import "XYPrecompile.h"
 #import "XYFoundation.h"
 
+#pragma mark- 待优化
 // 帧间隔
 #define XYSpriteView_aniFrames 12
 // 图片资起始编号

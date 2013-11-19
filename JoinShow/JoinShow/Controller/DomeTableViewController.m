@@ -39,6 +39,7 @@
     if (self) {
         self.list = @[@{@"title": @"Test", @"className": @"TestVC"},
                       @{@"title": @"Frame Animation", @"className": @"AnimationVC"},
+                      @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
                       @{@"title": @"Something", @"className": @"MessVC"},
                       @{@"title": @"Network", @"className": @"NetworkVC"},
                       @{@"title": @"Json", @"className": @"JsonVC"},

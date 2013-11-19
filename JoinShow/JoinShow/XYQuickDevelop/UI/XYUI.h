@@ -17,6 +17,9 @@
 #import "XYSpriteView.h"
 #import "XYSpriteManager.h"
 
+// 普通动画
+#import "XYAnimate.h"
+
 // 视差
 #import "XYParallaxManager.h"
 

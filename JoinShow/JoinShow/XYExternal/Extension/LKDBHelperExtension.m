@@ -52,7 +52,7 @@
 
 -(void) saveAllToDB
 {
-    [self.class insertToDB:self];
+  //  [self.class insertToDB:self];
     if (self.count > 0) {
         NSObject *anObject = [self objectAtIndex:0];
         LKDBHelper* globalHelper = [LKDBHelper getUsingLKDBHelper];

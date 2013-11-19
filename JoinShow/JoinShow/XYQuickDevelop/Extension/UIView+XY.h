@@ -11,9 +11,10 @@
 
 #define UIView_animation_instant 0.15
 
+#import "XYUI.h"
 #import "XYFoundation.h"
 #import "XYPrecompile.h"
-#import "XYUI.h"
+
 
 @interface UIView (XY)
 

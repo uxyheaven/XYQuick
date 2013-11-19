@@ -80,6 +80,7 @@
     [anObject loadFromDB];
     NSString *str = [anObject YYJSONString];
     SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
+    [anObject release];
 }
 
 

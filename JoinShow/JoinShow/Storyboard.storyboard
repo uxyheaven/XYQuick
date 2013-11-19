@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zz8-6Z-mRL">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Dome Table View Controller - Develop Dome-->
@@ -43,6 +43,7 @@
                         <segue destination="ZTH-ee-hnD" kind="push" identifier="KeyboardVC" id="Rhr-u7-csw"/>
                         <segue destination="0Pa-ZT-TIb" kind="push" identifier="BusinessVC" id="gss-4w-s0b"/>
                         <segue destination="XeS-xo-I34" kind="push" identifier="PopupViewVC" id="LMO-SS-vve"/>
+                        <segue destination="cuq-el-HrQ" kind="push" identifier="AnimationVC2" id="WTo-h4-Ykh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6q-Q2-YJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,6 +551,21 @@ CGFuaW1hdGlvbg
             </objects>
             <point key="canvasLocation" x="330" y="-1718"/>
         </scene>
+        <!--AnimationVC2-->
+        <scene sceneID="ps2-aR-axb">
+            <objects>
+                <viewController id="cuq-el-HrQ" customClass="AnimationVC2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rDl-S6-Z8a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XcB-wo-yyp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xus-wT-mvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="-1749"/>
+        </scene>
         <!--MessVC-->
         <scene sceneID="kZH-Uf-CJx">
             <objects>
@@ -595,7 +611,7 @@ CGFuaW1hdGlvbg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1O-bA-MFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="-1739"/>
+            <point key="canvasLocation" x="1642" y="-1749"/>
         </scene>
         <!--View Controller - Setting-->
         <scene sceneID="x2f-Va-FIc">
@@ -625,7 +641,7 @@ CGFuaW1hdGlvbg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ps3-4y-gXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970" y="-1727"/>
+            <point key="canvasLocation" x="860" y="-1749"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="paa-7x-nlN">

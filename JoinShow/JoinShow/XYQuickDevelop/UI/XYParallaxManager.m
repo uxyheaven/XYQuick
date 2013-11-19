@@ -124,8 +124,7 @@ DEF_SINGLETON(XYParallaxManager)
         [_views addObject:aView];
         [_intensitys addObject:@(i)];
     }else{
-        NSNumber *num = [_intensitys objectAtIndex:index];
-        num = @(i);
+        [_intensitys replaceObjectAtIndex:index withObject:@(i)];
     }
 }
 -(void) removeView:(id)aView{
