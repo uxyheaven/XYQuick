@@ -122,11 +122,7 @@
 
 - (IBAction)clickStopDownload:(id)sender {
     // 删除缓存文件
-    NSString *str = [XYCommon dataFilePath:@"2.1.dmg.temp" ofType:filePathOption_tmp];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:str]) {
-        [fileManager removeItemAtPath:str error:nil];
-    }
+    [self.networkEngine3 clearAllTempDownload];
     [self.networkEngine3 cancelDownloadWithString:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"];
 }
 

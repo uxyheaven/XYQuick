@@ -103,12 +103,23 @@
         self.downloadArray = [NSMutableArray arrayWithCapacity:4];
     }
     // 获得临时文件的路径
-    NSString  *tempDoucment = NSTemporaryDirectory();
+    NSString *tempDoucment = NSTemporaryDirectory();
+    NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
+    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:tempFilePath isDirectory:NULL] )
+    {
+        BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:tempFilePath
+                                             withIntermediateDirectories:YES
+                                                              attributes:nil
+                                                                   error:nil];
+        if ( NO == ret ) {
+            NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, tempFilePath);
+            return nil;
+        }
+    }
+    
     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"/"];
     NSRange lastCharRange = [filePath rangeOfCharacterFromSet:charSet options:NSBackwardsSearch];
-    NSString *tempFilePath = [NSString stringWithFormat:@"%@%@.temp",
-                              tempDoucment,
-                              [filePath substringFromIndex:lastCharRange.location + 1]];
+    tempFilePath = [NSString stringWithFormat:@"%@/%@.temp", tempFilePath, [filePath substringFromIndex:lastCharRange.location + 1]];
     
     // 获得临时文件的路径
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -194,7 +205,7 @@
         }];
         
         [op addCompletionHandler:^(MKNetworkOperation *operation) {
-            NSFileManager *fileManager = [[NSFileManager alloc] init];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
             NSError *error = nil;
             
             NSString *filePath = op.toFile;
@@ -225,7 +236,7 @@
 }
 
 
-- (void)cancelDownloadWithString:(NSString *)string
+-(void) cancelDownloadWithString:(NSString *)string
 {
     MKNetworkOperation *op = [self getADownloadWithString:string];
     if (op) {
@@ -234,14 +245,18 @@
     }
 }
 
-- (void)cancelAllDownloads
+-(void) cancelAllDownloads
 {
     for (MKNetworkOperation *tempOP in self.downloadArray) {
         [tempOP cancel];
     }
     [self.downloadArray removeAllObjects];
 }
-
+-(void) clearAllTempDownload{
+    NSString *tempDoucment = NSTemporaryDirectory();
+    NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
+    [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
+}
 - (NSArray *)allDownloads
 {
     return self.downloadArray;

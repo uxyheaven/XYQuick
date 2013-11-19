@@ -58,6 +58,7 @@
 ////////////////////////        download        ////////////////////////
 #pragma mark - download
 // 下载请单独实例化改类
+@property (nonatomic, copy) NSString *tempFilePath;
 -(MKNetworkOperation *) downLoadForm:(NSString *)remoteURL
                               toFile:(NSString*)filePath
                               params:(NSMutableDictionary *)params
@@ -73,6 +74,7 @@
 -(void) cancelDownloadWithString:(NSString *)string;
 -(NSArray *) allDownloads;
 -(MKNetworkOperation *) getADownloadWithString:(NSString *)string;
+-(void) clearAllTempDownload;
 
 // 子类需要重新写, 暂时废弃
 //+(NSString *) generateAccessTokenWithObject:(id)anObject;
