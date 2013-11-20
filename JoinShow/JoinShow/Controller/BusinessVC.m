@@ -60,6 +60,7 @@
 - (void)dealloc
 {
     NSLogDD;
+    self.networkEngine = nil;
     [super dealloc];
 }
 - (void)didReceiveMemoryWarning
@@ -101,16 +102,17 @@
     UILabel *label = (UILabel *)[self.view viewWithTag:1 + 10000];
     label.textColor = [UIColor redColor];
     __block id myself =self;
-    MKNetworkOperation *mk = [self.networkEngine get:@"api/nodes.json" params:nil succeed:^(MKNetworkOperation *op) {
+    HttpRequest *mk = [self.networkEngine get:@"api/nodes.json"];
+    [mk succeed:^(MKNetworkOperation *op) {
         UILabel *label = (UILabel *)[self.view viewWithTag:2 + 10000];
         label.textColor = [UIColor redColor];
         
         if([op isCachedResponse]) {
-             NSLog(@"Data from cache %@", [op responseString]);
+            NSLog(@"Data from cache %@", [op responseString]);
             [myself parseData:[op responseString] isCachedResponse:YES];
         }
         else {
-              NSLog(@"Data from server %@", [op responseString]);
+            NSLog(@"Data from server %@", [op responseString]);
             [myself parseData:[op responseString] isCachedResponse:NO];
         }
     } failed:^(MKNetworkOperation *op, NSError *err) {
@@ -120,7 +122,7 @@
         // SHOWMBProgressHUD(@"Message", str, nil, NO, 3);
         [self loadFromDBProcess];
     }];
-
+    
     [self.networkEngine submit:mk];
 }
 -(void) parseData:(NSString *)str isCachedResponse:(BOOL)isCachedResponse{

@@ -22,30 +22,29 @@ typedef enum {
     requestHelper_put,
     requestHelper_del,
 } HTTPMethod;
-
+typedef MKNetworkOperation HttpRequest;
 @property (nonatomic, assign) BOOL freezable;
 @property (nonatomic, assign) BOOL forceReload;
 //
 +(id) defaultSettings;
 
--(MKNetworkOperation *) get:(NSString *)path
-                     params:(id)anObject
-                    succeed:(void (^)(MKNetworkOperation *op))blockS
-                     failed:(void (^)(MKNetworkOperation *op, NSError *err))blockF;
+-(HttpRequest *) get:(NSString *)path;
+-(HttpRequest *) get:(NSString *)path
+              params:(id)anObject;
+
+-(HttpRequest *) post:(NSString *)path
+               params:(id)anObject;
 
 
--(MKNetworkOperation *) post:(NSString *)path
-                      params:(id)anObject
-                       files:(NSMutableDictionary *)files
-                     succeed:(void (^)(MKNetworkOperation *op))blockS
-                      failed:(void (^)(MKNetworkOperation *op, NSError *err))blockF;
+-(HttpRequest *) post:(NSString *)path
+               params:(id)anObject
+                files:(NSMutableDictionary *)files;
 
--(MKNetworkOperation *) request:(NSString *)path
-                         params:(id)anObject
-                          files:(NSMutableDictionary *)files
-                         method:(HTTPMethod)httpMethod
-                        succeed:(void (^)(MKNetworkOperation *op))blockS
-                         failed:(void (^)(MKNetworkOperation *op, NSError *err))blockF;
+
+-(HttpRequest *) request:(NSString *)path
+                  params:(id)anObject
+                   files:(NSMutableDictionary *)files
+                  method:(HTTPMethod)httpMethod;
 // cancel
 -(void) cancelRequestWithString:(NSString*)string;
 
@@ -55,7 +54,7 @@ typedef enum {
 #define XY_initWebImageCache [NetworkEngine webImageSetup];
 +(void) webImageSetup;
 
--(id) submit:(MKNetworkOperation *)op;
+-(id) submit:(HttpRequest *)op;
 @end
 
 
@@ -96,5 +95,7 @@ typedef enum {
 @property (nonatomic, copy) NSString *toFile;
 @property (nonatomic, copy) NSString *tempFile;
 
+-(id) succeed:(void (^)(HttpRequest *op))blockS
+       failed:(void (^)(HttpRequest *op, NSError* err))blockF;
 //-(void) submit;
 @end

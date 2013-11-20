@@ -41,12 +41,32 @@
     [super dealloc];
 }
 
--(MKNetworkOperation *) request:(NSString *)path
-                         params:(id)anObject
-                          files:(NSMutableDictionary *)files
-                         method:(HTTPMethod)httpMethod
-                        succeed:(void (^)(MKNetworkOperation *op))blockS
-                         failed:(void (^)(MKNetworkOperation *op, NSError *err))blockF{
+
+-(HttpRequest *) get:(NSString *)path{
+    return [self get:path params:nil];
+}
+-(HttpRequest *) get:(NSString *)path
+              params:(id)anObject{
+    return [self request:path params:anObject files:nil method:requestHelper_get];
+}
+
+-(HttpRequest *) post:(NSString *)path
+               params:(id)anObject{
+    return [self post:path params:anObject files:nil];
+}
+
+
+-(HttpRequest *) post:(NSString *)path
+               params:(id)anObject
+                files:(NSMutableDictionary *)files{
+    return [self request:path params:anObject files:files method:requestHelper_post];
+}
+
+
+-(HttpRequest *) request:(NSString *)path
+                  params:(id)anObject
+                   files:(NSMutableDictionary *)files
+                  method:(HTTPMethod)httpMethod{
     NSDictionary *dic = nil;
     if (anObject) {
         if (anObject && [anObject isKindOfClass:[NSDictionary class]]) {
@@ -71,57 +91,8 @@
         return nil;
     }
     MKNetworkOperation *tempOp = [self operationWithPath:path params:dic httpMethod:strHttpMethod];
-    [tempOp addCompletionHandler:^(MKNetworkOperation *op) {
-        if (blockS) blockS(op);
-    }errorHandler:^(MKNetworkOperation *op, NSError *err) {
-        if (blockF) blockF(op, err);
-    }];
-    
-    if (httpMethod == requestHelper_post) {
-        [tempOp setFreezable:_freezable];
-    }
-    
-    if (files) {
-        [files enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [tempOp addFile:obj forKey:key];
-        }];
-    }
-    
     return tempOp;
 }
--(MKNetworkOperation *) get:(NSString *)path
-                     params:(id)anObject
-                    succeed:(void (^)(MKNetworkOperation *op))blockS
-                     failed:(void (^)(MKNetworkOperation *op, NSError *err))blockF{
-    
-   return [self request:path params:anObject files:nil method:requestHelper_get succeed:blockS failed:blockF];
-}
-
--(MKNetworkOperation *) post:(NSString *)path
-                      params:(id)anObject
-                       files:(NSMutableDictionary *)files
-                     succeed:(void (^)(MKNetworkOperation *op))blockS
-                      failed:(void (^)(MKNetworkOperation *op, NSError *err))blockF{
-    return [self request:path params:anObject files:files method:requestHelper_post succeed:blockS failed:blockF];
-}
--(MKNetworkOperation *) addGetRequestWithPath:(NSString *)path
-                                       params:(NSMutableDictionary *)params
-                                      succeed:(void (^)(MKNetworkOperation *operation))blockS
-                                       failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF{
-    
-    MKNetworkOperation *op = [self operationWithPath:path params:params httpMethod:@"GET" ssl:NO];
-    [op addCompletionHandler:^(MKNetworkOperation *operation) {
-        if (blockS) blockS(operation);
-    }errorHandler:^(MKNetworkOperation *errorOp, NSError *err) {
-        if (blockF) blockF(errorOp, err);
-    }];
-    
-    // 先读缓存,然后发请求,blockS响应2次
-   // [self enqueueOperation:op forceReload:YES];
-    
-    return op;
-}
-
 
 -(void) cancelRequestWithString:(NSString*)string{
     [RequestHelper cancelOperationsContainingURLString:string];
@@ -409,6 +380,11 @@
     }
 }
  */
+-(id) succeed:(void (^)(HttpRequest *op))blockS
+       failed:(void (^)(HttpRequest *op, NSError* err))blockF{
+    [self addCompletionHandler:blockS errorHandler:blockF];
+    return self;
+}
 @end
 
 /*
