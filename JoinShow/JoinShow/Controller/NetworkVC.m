@@ -13,6 +13,7 @@
 #import "XYQuickDevelop.h"
 #endif
 #import "XYExternal.h"
+#import "DownloadRequest.h"
 
 @interface NetworkVC ()
 
@@ -32,10 +33,10 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-                _networkEngine = [[NetworkEngine alloc] initWithHostName:@"www.webxml.com.cn/" customHeaderFields:nil];
+        self.networkEngine = [RequestHelper defaultSettings];
         [_networkEngine useCache];
         
-        _networkEngine3 = [[NetworkEngine alloc] initWithHostName:@"developer.apple.com" customHeaderFields:nil];
+        self.networkEngine3 = [DownloadRequest defaultSettings];
         [_networkEngine3 useCache];
     }
     return  self;
@@ -63,61 +64,52 @@
 
 - (IBAction)clickGet:(id)sender {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"theCityName": @"深圳"}];
-    
-    [self.networkEngine
-     addGetRequestWithPath:@"WeatherWebservice.asmx/getWeatherbyCityName"
-     params:dic
-     succeed:^(MKNetworkOperation *operation) {
-         if([operation isCachedResponse]) {
-             NSLog(@"Data from cache %@", [operation responseString]);
-         }
-         else {
-             NSLog(@"Data from server %@", @"a");
-         }
-     }
-     failed:^(MKNetworkOperation *errorOp, NSError *err) {
+    MKNetworkOperation *op = [self.networkEngine get:@"WeatherWebservice.asmx/getWeatherbyCityName" params:dic succeed:^(MKNetworkOperation *op) {
+        if([op isCachedResponse]) {
+            NSLog(@"Data from cache %@", [op responseString]);
+        }
+        else {
+            NSLog(@"Data from server %@", @"a");
+        }
+    } failed:^(MKNetworkOperation *op, NSError *err) {
          NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
-     }];
+    }];
+    
+    [self.networkEngine submit:op];
 }
 
 - (IBAction)clickPost:(id)sender {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"theCityName": @"深圳"}];
+    MKNetworkOperation *op = [self.networkEngine get:@"/WebServices/WeatherWebservice.asmx/getWeatherbyCityName" params:dic succeed:^(MKNetworkOperation *op) {
+            NSLog(@"Data from cache %@", [op responseString]);
+    } failed:^(MKNetworkOperation *op, NSError *err) {
+        NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+    }];
     
-    [self.networkEngine
-     addPostRequestWithPath:@"/WebServices/WeatherWebservice.asmx/getWeatherbyCityName"
-     params:dic
-     succeed:^(MKNetworkOperation *operation) {
-         if([operation isCachedResponse]) {
-             NSLog(@"Data from cache %@", [operation responseString]);
-         }
-         else {
-             NSLog(@"Data from server %@", [operation responseString]);
-         }
-     }
-     failed:^(MKNetworkOperation *errorOp, NSError *err) {
-         NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
-     }];
+    [self.networkEngine submit:op];
 }
 
 - (IBAction)clickDownload:(id)sender {
     NSString *locPath = [XYCommon dataFilePath:@"2.1.dmg" ofType:filePathOption_documents];
     
-     id down = [self.networkEngine3 downLoadForm:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg" toFile:locPath params:nil rewriteFile:NO];
+    id down = [self.networkEngine3 downLoad:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"
+                                         to:locPath
+                                     params:nil
+                                rewriteFile:NO
+                           breakpointResume:YES
+                                   progress:^(double progress) {
+                                       NSLogD(@"%.2f", progress*100.0);
+                                       _progressDownload.progress = progress;
+                                       _labPregress.text = [NSString stringWithFormat:@"%.1f", progress * 100];
+                                   } succeed:^(MKNetworkOperation *operation) {
+                                       _progressDownload.progress = 0;
+                                       SHOWMSG(nil, @"Download succeed", @"ok");
+                                   } failed:^(MKNetworkOperation *errorOp, NSError *err) {
+                                       NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+                                       SHOWMSG(nil, @"Download failed",  @"ok");
+                                   }];
     
-    [self.networkEngine3 addDownload:down
-                    breakpointResume:YES
-                            progress:^(double progress) {
-                                NSLogD(@"%.2f", progress*100.0);
-                                _progressDownload.progress = progress;
-                                _labPregress.text = [NSString stringWithFormat:@"%.1f", progress * 100];
-                            }
-                             succeed:^(MKNetworkOperation *operation) {
-                                 _progressDownload.progress = 0;
-                                 SHOWMSG(nil, @"Download succeed", @"ok");
-                             } failed:^(MKNetworkOperation *errorOp, NSError *err) {
-                                 NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
-                                 SHOWMSG(nil, @"Download failed",  @"ok");
-                             }];
+    [self.networkEngine3 submit:down];
 }
 
 - (IBAction)clickStopDownload:(id)sender {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57163942183CEB7800A60102 /* DownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 57163941183CEB7800A60102 /* DownloadRequest.m */; };
 		571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA3217C6FB55007CB842 /* AppDelegate.m */; };
 		571CBA5517C6FCC0007CB842 /* DomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA4917C6FCC0007CB842 /* DomeTableViewController.m */; };
 		571CBA5717C6FCC0007CB842 /* BookInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA4E17C6FCC0007CB842 /* BookInfo.m */; };
@@ -302,7 +303,7 @@
 		57FC192E17DEBF8F00B5E6F9 /* DataLiteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */; };
 		57FC26A418053155007AA3BC /* ParallaxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC26A318053155007AA3BC /* ParallaxVC.m */; };
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
-		57FFF3C41818B2D700977CB5 /* NetWorkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* NetWorkEngine.m */; };
+		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
 /* End PBXBuildFile section */
 
@@ -317,6 +318,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57163940183CEB7800A60102 /* DownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadRequest.h; sourceTree = "<group>"; };
+		57163941183CEB7800A60102 /* DownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRequest.m; sourceTree = "<group>"; };
 		571CBA3117C6FB55007CB842 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		571CBA3217C6FB55007CB842 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		571CBA4817C6FCC0007CB842 /* DomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeTableViewController.h; sourceTree = "<group>"; };
@@ -711,8 +714,8 @@
 		57FC26A218053155007AA3BC /* ParallaxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxVC.h; sourceTree = "<group>"; };
 		57FC26A318053155007AA3BC /* ParallaxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxVC.m; sourceTree = "<group>"; };
 		57FFF3BF1818B2D700977CB5 /* UmengManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UmengManager.m; sourceTree = "<group>"; };
-		57FFF3C01818B2D700977CB5 /* NetWorkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEngine.m; sourceTree = "<group>"; };
-		57FFF3C11818B2D700977CB5 /* NetWorkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEngine.h; sourceTree = "<group>"; };
+		57FFF3C01818B2D700977CB5 /* RequestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestHelper.m; sourceTree = "<group>"; };
+		57FFF3C11818B2D700977CB5 /* RequestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestHelper.h; sourceTree = "<group>"; };
 		57FFF3C21818B2D700977CB5 /* UmengManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UmengManager.h; sourceTree = "<group>"; };
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
@@ -794,6 +797,8 @@
 			children = (
 				572E7CD8183862230018179D /* LKTestModels.h */,
 				572E7CD9183862230018179D /* LKTestModels.m */,
+				57163940183CEB7800A60102 /* DownloadRequest.h */,
+				57163941183CEB7800A60102 /* DownloadRequest.m */,
 				57F134DB17DC39F200C5DCDC /* Shot.h */,
 				57F134DE17DC39F200C5DCDC /* Shot.m */,
 				57F134DC17DC39F200C5DCDC /* Player.m */,
@@ -1414,8 +1419,8 @@
 				57FFF3C51818B35900977CB5 /* ExternalExtension.h */,
 				57FFF3C21818B2D700977CB5 /* UmengManager.h */,
 				57FFF3BF1818B2D700977CB5 /* UmengManager.m */,
-				57FFF3C11818B2D700977CB5 /* NetWorkEngine.h */,
-				57FFF3C01818B2D700977CB5 /* NetWorkEngine.m */,
+				57FFF3C11818B2D700977CB5 /* RequestHelper.h */,
+				57FFF3C01818B2D700977CB5 /* RequestHelper.m */,
 				57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */,
 				57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */,
 				57D4FF4518221A4400E10954 /* LKDBHelperExtension.h */,
@@ -1741,6 +1746,7 @@
 				57DB87E7183349A60015CC5A /* XYObserve.m in Sources */,
 				578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */,
 				57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */,
+				57163942183CEB7800A60102 /* DownloadRequest.m in Sources */,
 				572E7CDA183862230018179D /* LKTestModels.m in Sources */,
 				572E7CD4183860A80018179D /* NSObject+LKModel.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
@@ -1772,7 +1778,7 @@
 				57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				57F134DF17DC39F200C5DCDC /* Player.m in Sources */,
-				57FFF3C41818B2D700977CB5 /* NetWorkEngine.m in Sources */,
+				57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */,
 				57FC26A418053155007AA3BC /* ParallaxVC.m in Sources */,
 				572E7CB718385C690018179D /* MKNetworkOperation.m in Sources */,
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,

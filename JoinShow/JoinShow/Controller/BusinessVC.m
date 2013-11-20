@@ -8,19 +8,27 @@
 
 #import "BusinessVC.h"
 
-#if (1 == __XYQuick_Framework__)
-#import <XYQuick/XYQuickDevelop.h>
-#else
-#import "XYQuickDevelop.h"
-#endif
+
 
 #import "XYExternal.h"
 
 #import "RubyChinaNodeEntity.h"
 
+
+@implementation BusinessVCRequest
++(id) defaultSettings{
+    // 参考
+    BusinessVCRequest *eg = [[[BusinessVCRequest alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+    eg.freezable = YES;
+    eg.forceReload = YES;
+    return eg;
+}
+@end
+
+
 @interface BusinessVC ()
 // get
-@property (nonatomic, retain) NetworkEngine *networkEngine;
+@property (nonatomic, retain) RequestHelper *networkEngine;
 @property (nonatomic, retain) NSArray *model;
 
 @end
@@ -38,7 +46,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _networkEngine = [[NetworkEngine alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:nil];
+        self.networkEngine = [BusinessVCRequest defaultSettings];
         [_networkEngine useCache];
     }
     return  self;
@@ -93,30 +101,27 @@
     UILabel *label = (UILabel *)[self.view viewWithTag:1 + 10000];
     label.textColor = [UIColor redColor];
     __block id myself =self;
-    
-    [self.networkEngine
-     addGetRequestWithPath:@"api/nodes.json"
-     params:nil
-     succeed:^(MKNetworkOperation *operation) {
-         UILabel *label = (UILabel *)[self.view viewWithTag:2 + 10000];
-         label.textColor = [UIColor redColor];
-         
-         if([operation isCachedResponse]) {
-            // NSLog(@"Data from cache %@", [operation responseString]);
-             [myself parseData:[operation responseString] isCachedResponse:YES];
-         }
-         else {
-           //  NSLog(@"Data from server %@", [operation responseString]);
-             [myself parseData:[operation responseString] isCachedResponse:NO];
-         }
-     }
-     failed:^(MKNetworkOperation *errorOp, NSError *err) {
-         NSString *str = [NSString stringWithFormat:@"MKNetwork request error : %@", [err localizedDescription]];
-         NSLogD(@"%@", str);
-         
+    MKNetworkOperation *mk = [self.networkEngine get:@"api/nodes.json" params:nil succeed:^(MKNetworkOperation *op) {
+        UILabel *label = (UILabel *)[self.view viewWithTag:2 + 10000];
+        label.textColor = [UIColor redColor];
+        
+        if([op isCachedResponse]) {
+             NSLog(@"Data from cache %@", [op responseString]);
+            [myself parseData:[op responseString] isCachedResponse:YES];
+        }
+        else {
+              NSLog(@"Data from server %@", [op responseString]);
+            [myself parseData:[op responseString] isCachedResponse:NO];
+        }
+    } failed:^(MKNetworkOperation *op, NSError *err) {
+        NSString *str = [NSString stringWithFormat:@"MKNetwork request error : %@", [err localizedDescription]];
+        NSLogD(@"%@", str);
+        
         // SHOWMBProgressHUD(@"Message", str, nil, NO, 3);
-         [self loadFromDBProcess];
-     }];
+        [self loadFromDBProcess];
+    }];
+
+    [self.networkEngine submit:mk];
 }
 -(void) parseData:(NSString *)str isCachedResponse:(BOOL)isCachedResponse{
     UILabel *label = (UILabel *)[self.view viewWithTag:3 + 10000];

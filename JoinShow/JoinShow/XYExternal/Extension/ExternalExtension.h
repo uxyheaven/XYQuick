@@ -14,6 +14,6 @@
 #endif
 
 #import "UmengManager.h"
-#import "NetworkEngine.h"
+#import "RequestHelper.h"
 #import "XYCommon+Extension.h"
 #import "LKDBHelperExtension.h"

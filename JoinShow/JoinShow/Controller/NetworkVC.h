@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-@class NetworkEngine;
+@class RequestHelper;
+@class DownloadRequest;
 @interface NetworkVC : UIViewController
 
 // get
-@property (nonatomic, retain) NetworkEngine *networkEngine;
+@property (nonatomic, retain) RequestHelper *networkEngine;
 // post
-@property (nonatomic, retain) NetworkEngine *networkEngine2;
+@property (nonatomic, retain) RequestHelper *networkEngine2;
 // download
-@property (nonatomic, retain) NetworkEngine *networkEngine3;
+@property (nonatomic, retain) DownloadRequest *networkEngine3;
 
 @property (retain, nonatomic) IBOutlet UIProgressView *progressDownload;
 @property (retain, nonatomic) IBOutlet UILabel *labPregress;
