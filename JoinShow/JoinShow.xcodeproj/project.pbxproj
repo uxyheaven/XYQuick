@@ -259,6 +259,8 @@
 		57B3FFF6177AD9BC00775FC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B3FFF5177AD9BC00775FC9 /* main.m */; };
 		57B3FFFC177AD9BC00775FC9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFB177AD9BC00775FC9 /* Default.png */; };
 		57B3FFFE177AD9BC00775FC9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFD177AD9BC00775FC9 /* Default@2x.png */; };
+		57B4EAE6183CC0A6007EB467 /* POViewFrameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4EAE3183CC0A6007EB467 /* POViewFrameBuilder.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		57B4EAE7183CC0A6007EB467 /* UIView+POViewFrameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4EAE5183CC0A6007EB467 /* UIView+POViewFrameBuilder.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57BE89B917AA525200FCD864 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89B817AA525200FCD864 /* AVFoundation.framework */; };
 		57BE89BB17AA52E700FCD864 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BA17AA52E700FCD864 /* AudioToolbox.framework */; };
 		57BE89BD17AA531200FCD864 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BC17AA531100FCD864 /* OpenAL.framework */; };
@@ -622,6 +624,11 @@
 		57B3FFFB177AD9BC00775FC9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		57B3FFFD177AD9BC00775FC9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		57B4EAE1183CC0A6007EB467 /* POGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POGeometry.h; sourceTree = "<group>"; };
+		57B4EAE2183CC0A6007EB467 /* POViewFrameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POViewFrameBuilder.h; sourceTree = "<group>"; };
+		57B4EAE3183CC0A6007EB467 /* POViewFrameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POViewFrameBuilder.m; sourceTree = "<group>"; };
+		57B4EAE4183CC0A6007EB467 /* UIView+POViewFrameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+POViewFrameBuilder.h"; sourceTree = "<group>"; };
+		57B4EAE5183CC0A6007EB467 /* UIView+POViewFrameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+POViewFrameBuilder.m"; sourceTree = "<group>"; };
 		57BE89B817AA525200FCD864 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		57BE89BA17AA52E700FCD864 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		57BE89BC17AA531100FCD864 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1164,6 +1171,7 @@
 		5742C18717F7BF3C00065083 /* XYExternal */ = {
 			isa = PBXGroup;
 			children = (
+				57B4EAE0183CC0A6007EB467 /* POViewFrameBuilder */,
 				572E7CC2183860A80018179D /* LKDBHelper */,
 				57FFF3BE1818B29F00977CB5 /* Extension */,
 				572E7CBE18385F9D0018179D /* YYJSON */,
@@ -1278,6 +1286,18 @@
 				57901EBA17E6C26E00B8E8FF /* remark */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57B4EAE0183CC0A6007EB467 /* POViewFrameBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				57B4EAE1183CC0A6007EB467 /* POGeometry.h */,
+				57B4EAE2183CC0A6007EB467 /* POViewFrameBuilder.h */,
+				57B4EAE3183CC0A6007EB467 /* POViewFrameBuilder.m */,
+				57B4EAE4183CC0A6007EB467 /* UIView+POViewFrameBuilder.h */,
+				57B4EAE5183CC0A6007EB467 /* UIView+POViewFrameBuilder.m */,
+			);
+			path = POViewFrameBuilder;
 			sourceTree = "<group>";
 		};
 		57D5B88417B8ABBB009212F7 /* AppDelegate */ = {
@@ -1791,7 +1811,9 @@
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
 				572E7C9E18385C690018179D /* CDAudioManager.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
+				57B4EAE6183CC0A6007EB467 /* POViewFrameBuilder.m in Sources */,
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
+				57B4EAE7183CC0A6007EB467 /* UIView+POViewFrameBuilder.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

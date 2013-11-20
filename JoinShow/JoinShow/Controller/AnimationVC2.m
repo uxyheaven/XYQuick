@@ -119,35 +119,33 @@
     view.tag = 300001;
     [self.view addSubview:view];
     __block UIView *safeView = view;
-    XYAnimateParallelStep *steps = [[[XYAnimateParallelStep alloc] init] autorelease];
+    XYAnimateParallelStep *steps = [XYAnimateParallelStep animate];
     XYAnimateStep *step = [XYAnimateStep duration:1 animate:^{
         safeView.center = CGPointMake(safeView.center.x, safeView.center.y + 100);
     }];
-    [steps addStep:step];
-    step = [XYAnimateStep duration:3 animate:^{
+    XYAnimateStep *step2 = [XYAnimateStep duration:3 animate:^{
         safeView.backgroundColor = [UIColor blueColor];
     }];
-    [steps addStep:step];
     
-    XYAnimateSerialStep *steps2 = [[[XYAnimateSerialStep alloc] init] autorelease];
-    step = [XYAnimateStep duration:1.5 animate:^{
+    
+    XYAnimateSerialStep *steps2 = [XYAnimateSerialStep animate];
+    XYAnimateStep *step3 = [XYAnimateStep duration:1.5 animate:^{
         safeView.transform = CGAffineTransformMakeScale(.5, .5);
     }];
-    [steps2 addStep:step];
-    step = [XYAnimateStep duration:1.2 animate:^{
+    XYAnimateStep *step4 = [XYAnimateStep duration:1.2 animate:^{
         safeView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
-    [steps2 addStep:step];
-    step = [XYAnimateStep duration:1.5 animate:^{
+    XYAnimateStep *step5 = [XYAnimateStep duration:1.5 animate:^{
         safeView.transform = CGAffineTransformMakeScale(.8, .8);
     }];
-    [steps2 addStep:step];
-    step = [XYAnimateStep duration:1 animate:^{
+    
+  
+    XYAnimateStep *step6 = [XYAnimateStep duration:1 animate:^{
         safeView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
-    [steps2 addStep:step];
     
-    [steps addStep:steps2];
+    [[[steps2 addStep:step3] addStep:step4] addStep:step5];
+    [[[[steps addStep:step] addStep:step2] addStep:steps2] addStep:step6];
     
     [steps run];
 }

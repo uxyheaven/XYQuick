@@ -134,7 +134,6 @@
             }];
         }];
     }
-     
 	 ];
 }
 - (IBAction)clickAVSpeech:(id)sender {

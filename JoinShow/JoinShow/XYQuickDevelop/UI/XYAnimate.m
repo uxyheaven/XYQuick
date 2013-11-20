@@ -129,6 +129,9 @@
 @end
 #pragma mark - XYAnimateSerialStep
 @implementation XYAnimateSerialStep
++(id) animate{
+    return [[[self alloc] init] autorelease];
+}
 - (id)init
 {
     self = [super init];
@@ -143,10 +146,11 @@
     [_steps release];
     [super dealloc];
 }
--(void) addStep:(XYAnimateStep *)aStep{
+-(id) addStep:(XYAnimateStep *)aStep{
     if (aStep) {
 		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
 	}
+    return self;
 }
 
 - (void) setDelay:(NSTimeInterval)delay {
@@ -201,6 +205,9 @@
 
 #pragma mark - XYAnimateParallelStep
 @implementation XYAnimateParallelStep
++(id) animate{
+    return [[[self alloc] init] autorelease];
+}
 - (id)init
 {
     self = [super init];
@@ -209,10 +216,11 @@
     }
     return self;
 }
--(void) addStep:(XYAnimateStep *)aStep{
+-(id) addStep:(XYAnimateStep *)aStep{
     if (aStep) {
 		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
 	}
+    return self;
 }
 - (void)dealloc
 {

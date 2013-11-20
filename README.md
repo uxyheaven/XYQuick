@@ -79,3 +79,7 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 #### SVPullToRefresh
 * arc
 * 上拉刷新下拉加载
+
+#### POViewFrameBuilder
+* arc
+* 自动布局
