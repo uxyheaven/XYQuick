@@ -28,7 +28,6 @@
 #define __OPEN_Statistics__         (0)
 
 #define __USED_MBProgressHUD__      (1)
-#define __USED_RTLabel__            (0)
 #define __USED_SVPullToRefresh__    (1)
 #define __USED_POViewFrameBuilder__ (1)
 

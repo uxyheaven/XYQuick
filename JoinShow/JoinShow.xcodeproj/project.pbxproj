@@ -222,7 +222,6 @@
 		572E7CB718385C690018179D /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C8B18385C690018179D /* MKNetworkOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572E7CB818385C690018179D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C8E18385C690018179D /* Reachability.m */; };
 		572E7CB918385C690018179D /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9118385C690018179D /* OpenUDID.m */; };
-		572E7CBA18385C690018179D /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9418385C690018179D /* RTLabel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9818385C690018179D /* UIScrollView+SVInfiniteScrolling.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572E7CBC18385C690018179D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9A18385C690018179D /* UIScrollView+SVPullToRefresh.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CC018385F9D0018179D /* YYJSONHelper.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -564,8 +563,6 @@
 		572E7C8E18385C690018179D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		572E7C9018385C690018179D /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		572E7C9118385C690018179D /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
-		572E7C9318385C690018179D /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
-		572E7C9418385C690018179D /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		572E7C9618385C690018179D /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		572E7C9718385C690018179D /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		572E7C9818385C690018179D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
@@ -1124,15 +1121,6 @@
 			path = OpenUDID;
 			sourceTree = "<group>";
 		};
-		572E7C9218385C690018179D /* RTLabel */ = {
-			isa = PBXGroup;
-			children = (
-				572E7C9318385C690018179D /* RTLabel.h */,
-				572E7C9418385C690018179D /* RTLabel.m */,
-			);
-			path = RTLabel;
-			sourceTree = "<group>";
-		};
 		572E7C9518385C690018179D /* SVPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1185,7 +1173,6 @@
 				572E7C7418385C690018179D /* MBProgressHUD */,
 				572E7C7718385C690018179D /* MKNetworkKit */,
 				572E7C8F18385C690018179D /* OpenUDID */,
-				572E7C9218385C690018179D /* RTLabel */,
 				572E7C9518385C690018179D /* SVPullToRefresh */,
 				5742C1F017F7BF3C00065083 /* XYExternal.h */,
 				57DB86B0183339560015CC5A /* XYExternalPrecompile.h */,
@@ -1754,7 +1741,6 @@
 				571CBA5717C6FCC0007CB842 /* BookInfo.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
-				572E7CBA18385C690018179D /* RTLabel.m in Sources */,
 				57DB87EF183349A60015CC5A /* XYParallaxManager.m in Sources */,
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,

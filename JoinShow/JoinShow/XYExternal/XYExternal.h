@@ -47,6 +47,7 @@
 #import "SimpleAudioEngine.h"
 #endif
 
+// UDID
 #if (1 == __USED_OpenUDID__)
 #import "OpenUDID.h"
 #endif
@@ -58,12 +59,6 @@
 // 状态指示器
 #if (1 == __USED_MBProgressHUD__)
 #import "MBProgressHUD.h"
-#endif
-
-
-// 富文本
-#if (1 == __USED_RTLabel__)
-#import "RTLabel.h"
 #endif
 
 // 上拉刷新 下拉加载

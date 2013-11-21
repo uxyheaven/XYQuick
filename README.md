@@ -69,10 +69,6 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 * sqlite 数据库全自动操作
 
 ---
-#### RTLabel
-* arc 
-* 富文本标签
-
 #### MBProgressHUD
 * 进度指示器
 
