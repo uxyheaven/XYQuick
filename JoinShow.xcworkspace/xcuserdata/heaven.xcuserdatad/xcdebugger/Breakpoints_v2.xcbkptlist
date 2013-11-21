@@ -2338,12 +2338,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "406653956.170597"
+            timestampString = "406691241.022993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
-            landmarkName = "-cancelDownloadWithString:"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "-cancelAllDownloads"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2354,12 +2354,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "406653956.170597"
+            timestampString = "406691241.022993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
-            landmarkName = "-getADownloadWithString:"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
+            landmarkName = "-submit:"
             landmarkType = "5">
             <Locations>
                <Location

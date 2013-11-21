@@ -35,26 +35,19 @@ typedef MKNetworkOperation HttpRequest;
 -(HttpRequest *) post:(NSString *)path
                params:(id)anObject;
 
-
--(HttpRequest *) post:(NSString *)path
-               params:(id)anObject
-                files:(NSMutableDictionary *)files;
-
-
 -(HttpRequest *) request:(NSString *)path
                   params:(id)anObject
-                   files:(NSMutableDictionary *)files
                   method:(HTTPMethod)httpMethod;
 // cancel
 -(void) cancelRequestWithString:(NSString*)string;
+
+-(id) submit:(HttpRequest *)op;
 
 //////////////////        Image        ////////////////////
 #pragma mark- Image
 // 设置图片缓存引擎
 #define XY_initWebImageCache [NetworkEngine webImageSetup];
 +(void) webImageSetup;
-
--(id) submit:(HttpRequest *)op;
 @end
 
 
@@ -91,11 +84,10 @@ typedef MKNetworkOperation HttpRequest;
 #pragma mark -  MKNetworkOperation (XY)
 @interface MKNetworkOperation (XY)
 
-// 属性列表
 @property (nonatomic, copy) NSString *toFile;
-@property (nonatomic, copy) NSString *tempFile;
 
+-(id) uploadFiles:(NSDictionary *)name_path;
 -(id) succeed:(void (^)(HttpRequest *op))blockS
        failed:(void (^)(HttpRequest *op, NSError* err))blockF;
-//-(void) submit;
+-(id) submitInQueue:(RequestHelper *)requests;
 @end

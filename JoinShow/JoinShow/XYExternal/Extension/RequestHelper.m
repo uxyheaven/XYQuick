@@ -47,34 +47,17 @@
 }
 -(HttpRequest *) get:(NSString *)path
               params:(id)anObject{
-    return [self request:path params:anObject files:nil method:requestHelper_get];
+    return [self request:path params:anObject method:requestHelper_get];
 }
 
 -(HttpRequest *) post:(NSString *)path
                params:(id)anObject{
-    return [self post:path params:anObject files:nil];
+    return [self request:path params:anObject method:requestHelper_post];
 }
-
-
--(HttpRequest *) post:(NSString *)path
-               params:(id)anObject
-                files:(NSMutableDictionary *)files{
-    return [self request:path params:anObject files:files method:requestHelper_post];
-}
-
 
 -(HttpRequest *) request:(NSString *)path
                   params:(id)anObject
-                   files:(NSMutableDictionary *)files
                   method:(HTTPMethod)httpMethod{
-    NSDictionary *dic = nil;
-    if (anObject) {
-        if (anObject && [anObject isKindOfClass:[NSDictionary class]]) {
-            dic = anObject;
-        }else{
-            dic = [anObject YYJSONDictionary];
-        }
-    }
     
     NSString *strHttpMethod = nil;
     
@@ -90,6 +73,16 @@
     if (strHttpMethod == nil) {
         return nil;
     }
+    
+    NSDictionary *dic = nil;
+    if (anObject) {
+        if ([anObject isKindOfClass:[NSDictionary class]]) {
+            dic = anObject;
+        }else{
+            dic = [anObject YYJSONDictionary];
+        }
+    }
+
     MKNetworkOperation *tempOp = [self operationWithPath:path params:dic httpMethod:strHttpMethod];
     return tempOp;
 }
@@ -223,7 +216,6 @@
         
         
         op.toFile = filePath;
-        op.tempFile = tempFilePath;
         
         // 如果已经存在下载文件 operation返回nil,否则把operation放入下载队列当中
         BOOL existDownload = NO;
@@ -255,7 +247,6 @@
                 NSError *error = nil;
                 
                 NSString *filePath = op.toFile;
-                NSString *tempFilePath = op.tempFile;
                 
                 // 下载完成以后 先删除之前的文件 然后mv新的文件
                 if ([fileManager fileExistsAtPath:filePath]) {
@@ -348,7 +339,6 @@
 @implementation MKNetworkOperation (XY)
 
 @dynamic toFile;
-@dynamic tempFile;
 
 -(NSString *) toFile{
     return objc_getAssociatedObject(self, MKNetworkOperation_XY_toFile);
@@ -362,24 +352,32 @@
 -(void) setTempFile:(NSString *)tempFile{
     objc_setAssociatedObject(self, MKNetworkOperation_XY_tempFile, tempFile, OBJC_ASSOCIATION_COPY);
 }
-/*
+
 // if forceReload == YES, 先读缓存,然后发请求,blockS响应2次, 只支持GET
--(void) submit{
+-(id) submitInQueue:(MKNetworkEngine *)requests{
     NSString *str = self.toFile;
-    if (str) {
+    if (str && [requests isKindOfClass:[DownloadHelper class]]) {
         // 下载请求
-        [[RequestHelper sharedInstance] enqueueOperation:self];
-        [[RequestHelper sharedInstance].downloadArray addObject:self];
-    }else{
+        [requests enqueueOperation:self];
+        [((DownloadHelper *)requests).downloadArray addObject:self];
+    }else if (str == nil)
+    {
         // 非下载请求
-        if ([self.HTTPMethod isEqualToString:@"GET"]) {
-            [[RequestHelper sharedInstance] enqueueOperation:self forceReload:[RequestHelper sharedInstance].forceReload];
-        }else{
-            [[RequestHelper sharedInstance] enqueueOperation:self forceReload:NO];
-        }
+        [requests enqueueOperation:self forceReload:NO];
     }
+    
+    return self;
 }
- */
+
+-(id) uploadFiles:(NSDictionary *)name_path{
+    if (name_path) {
+        [name_path enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [self addFile:obj forKey:key];
+        }];
+    }
+    
+    return self;
+}
 -(id) succeed:(void (^)(HttpRequest *op))blockS
        failed:(void (^)(HttpRequest *op, NSError* err))blockF{
     [self addCompletionHandler:blockS errorHandler:blockF];
