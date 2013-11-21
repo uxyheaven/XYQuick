@@ -46,7 +46,7 @@ typedef MKNetworkOperation HttpRequest;
 //////////////////        Image        ////////////////////
 #pragma mark- Image
 // 设置图片缓存引擎
-#define XY_initWebImageCache [NetworkEngine webImageSetup];
+#define XY_setupWebImageCache [RequestHelper webImageSetup];
 +(void) webImageSetup;
 @end
 
