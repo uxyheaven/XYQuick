@@ -21,6 +21,7 @@
 // 去掉空格和换行
 -(NSString *) trim;
 
+-(BOOL) isNormal;
 -(BOOL) isUserName;
 -(BOOL) isPassword;
 -(BOOL) isEmail;

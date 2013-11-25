@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
+#define NetworkVC_downloadLink @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V3.0.0.dmg"
+
 #import <UIKit/UIKit.h>
 @class RequestHelper;
 @class DownloadRequest;

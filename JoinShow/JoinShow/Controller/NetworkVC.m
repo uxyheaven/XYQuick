@@ -92,9 +92,9 @@
 }
 
 - (IBAction)clickDownload:(id)sender {
-    NSString *locPath = [XYCommon dataFilePath:@"2.1.dmg" ofType:filePathOption_documents];
+    NSString *locPath = [XYCommon dataFilePath:@"3.0.dmg" ofType:filePathOption_documents];
     
-    id down = [self.networkEngine3 downLoad:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"
+    id down = [self.networkEngine3 downLoad:NetworkVC_downloadLink
                                          to:locPath
                                      params:nil
                                 rewriteFile:NO
@@ -117,12 +117,12 @@
 - (IBAction)clickStopDownload:(id)sender {
     // 删除缓存文件
     [self.networkEngine3 clearAllTempDownload];
-    [self.networkEngine3 cancelDownloadWithString:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"];
+    [self.networkEngine3 cancelDownloadWithString:NetworkVC_downloadLink];
 }
 
 - (IBAction)clickPauseDownload:(id)sender {
     // 暂停时 直接取消请求
-    [self.networkEngine3 cancelDownloadWithString:@"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V2.1.0.dmg"];
+    [self.networkEngine3 cancelDownloadWithString:NetworkVC_downloadLink];
 }
 #else
 - (void)viewDidLoad

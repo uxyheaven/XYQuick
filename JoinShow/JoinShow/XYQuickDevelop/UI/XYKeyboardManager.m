@@ -434,6 +434,10 @@ DEF_SINGLETON(XYKeyboardManager)
     
     //Setting toolbar to textFieldPhoneNumber keyboard.
     [self setInputAccessoryView:toolbar];
+    
+    if (previousAction == nil || nextAction == nil) {
+        [self setEnablePrevious:(previousAction != nil) next:(nextAction != nil)];
+    }
 }
 
 -(void) setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled
@@ -507,6 +511,10 @@ DEF_SINGLETON(XYKeyboardManager)
     
     //Setting toolbar to textFieldPhoneNumber keyboard.
     [self setInputAccessoryView:toolbar];
+    
+    if (previousAction == nil || nextAction == nil) {
+        [self setEnablePrevious:(previousAction != nil) next:(nextAction != nil)];
+    }
 }
 
 -(void) setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled

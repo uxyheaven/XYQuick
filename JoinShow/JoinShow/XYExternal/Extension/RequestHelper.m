@@ -200,8 +200,7 @@
         if ([fileManager fileExistsAtPath:tempFilePath]) {
             NSError *error = nil;
             unsigned long long fileSize = [[fileManager attributesOfItemAtPath:tempFilePath
-                                                                         error:&error]
-                                           fileSize];
+                                                                         error:&error] fileSize];
             if (error) {
                 NSLogD(@"get %@ fileSize failed!\nError:%@", tempFilePath, error);
             }
@@ -235,9 +234,6 @@
             // 下载文件已经存在
             NSLogD(@"download done");
         } else {
-          //  [self enqueueOperation:op];
-         //   [self.downloadArray addObject:op];
-            
             [op onDownloadProgressChanged:^(double progress) {
                 if (blockP) blockP(progress);
             }];
@@ -294,7 +290,7 @@
     }
     [self.downloadArray removeAllObjects];
 }
--(void) clearAllTempDownload{
+-(void) clearAllTempFile{
     NSString *tempDoucment = NSTemporaryDirectory();
     NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
     [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];

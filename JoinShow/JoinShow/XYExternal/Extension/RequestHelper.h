@@ -48,6 +48,9 @@ typedef MKNetworkOperation HttpRequest;
 // 设置图片缓存引擎
 #define XY_setupWebImageCache [RequestHelper webImageSetup];
 +(void) webImageSetup;
+
+// 子类需要重新写, 暂时废弃
+//+(NSString *) generateAccessTokenWithObject:(id)anObject;
 @end
 
 
@@ -69,11 +72,10 @@ typedef MKNetworkOperation HttpRequest;
 -(void) cancelDownloadWithString:(NSString *)string;
 -(NSArray *) allDownloads;
 -(MKNetworkOperation *) getADownloadWithString:(NSString *)string;
--(void) clearAllTempDownload;
+-(void) clearAllTempFile;
 
 -(id) submit:(MKNetworkOperation *)op;
-// 子类需要重新写, 暂时废弃
-//+(NSString *) generateAccessTokenWithObject:(id)anObject;
+
 
 #pragma mark- todo ,数量控制
 // 定义队列最大并发数量, 默认为wifi下 6, 2g/3g下 2
