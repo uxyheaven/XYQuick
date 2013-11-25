@@ -14,6 +14,9 @@
 #import "XYExternalPrecompile.h"
 #import "MKNetworkEngine.h"
 
+//////////////////        MKNetworkOperation (XY)        ////////////////////
+typedef MKNetworkOperation HttpRequest;
+
 @interface RequestHelper : MKNetworkEngine
 
 typedef enum {
@@ -22,7 +25,7 @@ typedef enum {
     requestHelper_put,
     requestHelper_del,
 } HTTPMethod;
-typedef MKNetworkOperation HttpRequest;
+
 @property (nonatomic, assign) BOOL freezable;
 @property (nonatomic, assign) BOOL forceReload;
 //
@@ -53,43 +56,60 @@ typedef MKNetworkOperation HttpRequest;
 //+(NSString *) generateAccessTokenWithObject:(id)anObject;
 @end
 
-
-#pragma mark - download
-@interface DownloadHelper : MKNetworkEngine
-+(id) defaultSettings;
-
-// @property (nonatomic, copy) NSString *tempFilePath;
--(MKNetworkOperation *) downLoad:(NSString *)remoteURL
-                              to:(NSString*)filePath
-                          params:(id)anObject
-                     rewriteFile:(BOOL)isRewrite
-                breakpointResume:(BOOL)paramResume
-                        progress:(void(^)(double progress))blockP
-                         succeed:(void (^)(MKNetworkOperation *operation))blockS
-                          failed:(void (^)(MKNetworkOperation *errorOp, NSError* err))blockF;
-
--(void) cancelAllDownloads;
--(void) cancelDownloadWithString:(NSString *)string;
--(NSArray *) allDownloads;
--(MKNetworkOperation *) getADownloadWithString:(NSString *)string;
--(void) clearAllTempFile;
-
--(id) submit:(MKNetworkOperation *)op;
-
-
-#pragma mark- todo ,数量控制
-// 定义队列最大并发数量, 默认为wifi下 6, 2g/3g下 2
-//@property (nonatomic, assign) int maxOperationCount;
-@end
-
-//////////////////        MKNetworkOperation (XY)        ////////////////////
 #pragma mark -  MKNetworkOperation (XY)
 @interface MKNetworkOperation (XY)
-
-@property (nonatomic, copy) NSString *toFile;
 
 -(id) uploadFiles:(NSDictionary *)name_path;
 -(id) succeed:(void (^)(HttpRequest *op))blockS
        failed:(void (^)(HttpRequest *op, NSError* err))blockF;
 -(id) submitInQueue:(RequestHelper *)requests;
 @end
+
+#pragma mark - download
+@class DownloadHelper;
+@class Downloader;
+
+@interface Downloader : HttpRequest
+
+@property (nonatomic, copy) NSString *toFile;
+
+-(id) submitInQueue:(DownloadHelper *)requests;
+-(id) progress:(void(^)(double progress))blockP;
+-(id) succeed:(void (^)(HttpRequest *op))blockS
+       failed:(void (^)(HttpRequest *op, NSError* err))blockF;
+@end
+
+@interface DownloadHelper : MKNetworkEngine
++(id) defaultSettings;
+
+// 下载前,请先执行此方法;
+-(void) setup;
+
+-(Downloader *) downLoad:(NSString *)remoteURL
+                      to:(NSString*)filePath
+                  params:(id)anObject
+        breakpointResume:(BOOL)isResume;
+
+-(void) cancelAllDownloads;
+-(void) cancelDownloadWithString:(NSString *)string;
+-(NSArray *) allDownloads;
+-(Downloader *) getADownloadWithString:(NSString *)string;
+-(void) clearAllTempFile;
+
+-(id) submit:(Downloader *)op;
+
+#pragma mark- todo ,数量控制
+// 定义队列最大并发数量, 默认为wifi下 6, 2g/3g下 2
+//@property (nonatomic, assign) int maxOperationCount;
+@end
+
+
+
+
+
+
+
+
+
+
+

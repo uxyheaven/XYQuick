@@ -31,6 +31,9 @@
 #import "XYPrecompile.h"
 #import "XYFoundation.h"
 
+#define XYKeyboardManager_DefaultDistance 10.0
+
+
 @interface XYKeyboardManager : NSObject
 
 XY_SINGLETON(XYKeyboardManager)
@@ -39,7 +42,7 @@ XY_SINGLETON(XYKeyboardManager)
 @property(nonatomic, assign) BOOL isEnabled;
 
 //Enable keyboard manager.
--(void) enableKeyboardManger;    /*default enabled*/
+-(void) enableKeyboardManager;    /*default enabled*/
 
 //Desable keyboard manager.
 -(void) disableKeyboardManager;

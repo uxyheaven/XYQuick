@@ -28,7 +28,7 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 
 第三方库的扩在同目录的Extension里,如
 
-* NetWorkEngine 网络通讯类.
+* RequestHelper 网络通讯类.
 
 ---
 

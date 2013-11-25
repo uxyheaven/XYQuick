@@ -76,7 +76,7 @@ DEF_SINGLETON(XYKeyboardManager)
 {
     if (self = [super init])
     {
-        _keyboardDistanceFromTextField = 10.0;
+        _keyboardDistanceFromTextField = XYKeyboardManager_DefaultDistance;
         _isEnabled = NO;
         animationDuration = 0.25;
     }
@@ -87,7 +87,7 @@ DEF_SINGLETON(XYKeyboardManager)
     //Setting keyboard distance.
     self.keyboardDistanceFromTextField = MAX(distance, 0);
 }
--(void) enableKeyboardManger
+-(void) enableKeyboardManager
 {
     //registering for notifications if it is not enable already.
     if (self.isEnabled == NO)

@@ -37,6 +37,7 @@
         [_networkEngine useCache];
         
         self.networkEngine3 = [DownloadRequest defaultSettings];
+        [_networkEngine3 setup];
         [_networkEngine3 useCache];
     }
     return  self;
@@ -94,29 +95,30 @@
 - (IBAction)clickDownload:(id)sender {
     NSString *locPath = [XYCommon dataFilePath:@"3.0.dmg" ofType:filePathOption_documents];
     
-    id down = [self.networkEngine3 downLoad:NetworkVC_downloadLink
-                                         to:locPath
-                                     params:nil
-                                rewriteFile:NO
-                           breakpointResume:YES
-                                   progress:^(double progress) {
-                                       NSLogD(@"%.2f", progress*100.0);
-                                       _progressDownload.progress = progress;
-                                       _labPregress.text = [NSString stringWithFormat:@"%.1f", progress * 100];
-                                   } succeed:^(MKNetworkOperation *operation) {
-                                       _progressDownload.progress = 0;
-                                       SHOWMSG(nil, @"Download succeed", @"ok");
-                                   } failed:^(MKNetworkOperation *errorOp, NSError *err) {
-                                       NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
-                                       SHOWMSG(nil, @"Download failed",  @"ok");
-                                   }];
+    Downloader *down = [self.networkEngine3 downLoad:NetworkVC_downloadLink
+                                                  to:locPath
+                                              params:nil
+                                    breakpointResume:YES];
+    
+    [down progress:^(double progress) {
+        NSLogD(@"%.2f", progress*100.0);
+        _progressDownload.progress = progress;
+        _labPregress.text = [NSString stringWithFormat:@"%.1f", progress * 100];
+    }];
+    [down succeed:^(HttpRequest *op) {
+        _progressDownload.progress = 0;
+        SHOWMSG(nil, @"Download succeed", @"ok");
+    } failed:^(HttpRequest *op, NSError *err) {
+        NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+        SHOWMSG(nil, @"Download failed",  @"ok");
+    }];
     
     [self.networkEngine3 submit:down];
 }
 
 - (IBAction)clickStopDownload:(id)sender {
     // 删除缓存文件
-    [self.networkEngine3 clearAllTempDownload];
+    [self.networkEngine3 clearAllTempFile];
     [self.networkEngine3 cancelDownloadWithString:NetworkVC_downloadLink];
 }
 
