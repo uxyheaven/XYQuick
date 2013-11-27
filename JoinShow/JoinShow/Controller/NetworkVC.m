@@ -118,7 +118,7 @@
 
 - (IBAction)clickStopDownload:(id)sender {
     // 删除缓存文件
-    [self.networkEngine3 clearAllTempFile];
+    [self.networkEngine3 emptyTempFile];
     [self.networkEngine3 cancelDownloadWithString:NetworkVC_downloadLink];
 }
 

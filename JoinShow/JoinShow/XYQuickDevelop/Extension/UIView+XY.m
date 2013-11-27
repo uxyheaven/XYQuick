@@ -8,12 +8,10 @@
 
 #import "UIView+XY.h"
 DUMMY_CLASS(UIView_XY);
-
-@implementation UIView (XY)
-
 #undef	UIView_key_tapBlock
 #define UIView_key_tapBlock	"UIView.tapBlock"
 
+@implementation UIView (XY)
 
 // objc_setAssociatedObject 对象在dealloc会自动释放
 -(void) UIView_dealloc{
@@ -179,4 +177,13 @@ DUMMY_CLASS(UIView_XY);
 -(void) dismissPopup{
     [[XYPopupViewManager sharedInstance] dismissPopup];
 }
+
+-(void) setRotate:(float)f{
+    self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * f);
+}
+
 @end
+
+
+
+

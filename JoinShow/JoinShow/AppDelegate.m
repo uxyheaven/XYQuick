@@ -28,8 +28,6 @@
     [self.window makeKeyAndVisible];
     */
     
-    // 开启键盘偏移
-   // [IQKeyBoardManager installKeyboardManager];
 #pragma mark - some test
   //  NSLogD(@"start");
   //  NSLogDD;

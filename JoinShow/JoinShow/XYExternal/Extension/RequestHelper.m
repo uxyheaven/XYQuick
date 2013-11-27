@@ -385,7 +385,7 @@
     }
     [self.downloadArray removeAllObjects];
 }
--(void) clearAllTempFile{
+-(void) emptyTempFile{
     NSString *tempDoucment = NSTemporaryDirectory();
     NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
     [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];

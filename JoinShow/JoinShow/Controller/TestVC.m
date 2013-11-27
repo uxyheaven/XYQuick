@@ -81,6 +81,7 @@
     [tempBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
     [tempBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [tempBtn setTitleEdgeInsets:UIEdgeInsetsMake(50,00,00,00)];
+    [tempBtn setRotate:0.5];
     [self.view addSubview:tempBtn];
     
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];

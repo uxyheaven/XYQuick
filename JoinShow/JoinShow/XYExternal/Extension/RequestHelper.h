@@ -92,9 +92,11 @@ typedef enum {
 
 -(void) cancelAllDownloads;
 -(void) cancelDownloadWithString:(NSString *)string;
+
 -(NSArray *) allDownloads;
 -(Downloader *) getADownloadWithString:(NSString *)string;
--(void) clearAllTempFile;
+
+-(void) emptyTempFile;
 
 -(id) submit:(Downloader *)op;
 

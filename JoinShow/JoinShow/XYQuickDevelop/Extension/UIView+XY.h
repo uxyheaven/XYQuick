@@ -53,4 +53,17 @@
 
 // 视图差效果
 #pragma mark -todo 考虑到底写不写到这
+
+// 旋转 1:顺时针180度
+-(void) setRotate:(float)f;
+
 @end
+
+
+
+
+
+
+
+
+
