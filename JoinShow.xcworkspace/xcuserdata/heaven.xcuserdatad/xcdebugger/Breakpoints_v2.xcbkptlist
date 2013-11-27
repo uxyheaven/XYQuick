@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/UIView+XY.m"
-            timestampString = "406022816.518866"
+            timestampString = "407261127.442567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-addTapGestureWithTarget:action:"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/UIView+XY.m"
-            timestampString = "406017199.498429"
+            timestampString = "407261127.442567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "-UIView_dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -470,11 +470,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/UIView+XY.m"
-            timestampString = "406022816.518866"
+            timestampString = "407261127.442567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "@implementation UIView(XY)"
             landmarkType = "3">
          </BreakpointContent>
@@ -1535,12 +1535,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
-            timestampString = "406001906.113711"
+            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewHelper.m"
+            timestampString = "407260161.646116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-dismissPopup"
             landmarkType = "5">
          </BreakpointContent>
@@ -1755,28 +1755,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
-            timestampString = "406001906.113711"
+            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewHelper.m"
+            timestampString = "407260161.646116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-popupView:type:dismissBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
-            timestampString = "406002075.71769"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "-dismissPopup"
             landmarkType = "5">
          </BreakpointContent>
@@ -1835,7 +1819,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
+            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewHelper.m"
             timestampString = "406001919.659107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1881,7 +1865,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
+            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewHelper.m"
             timestampString = "406001926.760432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1897,7 +1881,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
+            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewHelper.m"
             timestampString = "406001928.259409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1957,12 +1941,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewManager.m"
-            timestampString = "406002150.611303"
+            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYPopupViewHelper.m"
+            timestampString = "407260161.646116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-dismissPopup"
             landmarkType = "5">
          </BreakpointContent>
@@ -1974,11 +1958,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/UIView+XY.m"
-            timestampString = "406018809.659866"
+            timestampString = "407261127.442567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "-UIView_dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -1990,11 +1974,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/UIView+XY.m"
-            timestampString = "406022807.233729"
+            timestampString = "407261127.442567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "+load"
             landmarkType = "5">
          </BreakpointContent>

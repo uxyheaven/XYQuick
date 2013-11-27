@@ -186,7 +186,7 @@
 #pragma mark - pretty-print
 
 - (NSString*) description {
-	NSMutableString* sequenceBody = [[NSMutableString alloc] initWithCapacity:100*[self.steps count]];
+	NSMutableString *sequenceBody = [NSMutableString stringWithCapacity:100 * [self.steps count]];
 	for (XYAnimateStep *step in self.steps) {
 		[sequenceBody appendString:[step description]];
 	}
@@ -276,7 +276,7 @@
 #pragma mark - pretty-print
 
 - (NSString*) description {
-	NSMutableString* programBody = [[NSMutableString alloc] initWithCapacity:100*[self.steps count]];
+	NSMutableString* programBody = [NSMutableString stringWithCapacity:100 * [self.steps count]];
 	for (XYAnimateStep *step in self.steps) {
 		[programBody appendString:[step description]];
 	}

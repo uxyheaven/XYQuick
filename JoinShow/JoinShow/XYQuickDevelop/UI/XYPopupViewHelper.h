@@ -15,9 +15,9 @@ typedef enum {
     filePathOption_blur,
 } PopupViewBGType;
 
-@interface XYPopupViewManager : NSObject
+@interface XYPopupViewHelper : NSObject
 
-XY_SINGLETON(XYPopupViewManager)
+XY_SINGLETON(XYPopupViewHelper)
 
 @property (nonatomic, retain) UIColor       *colorLump;
 @property (nonatomic, assign) float         colorLumpAlpha;
@@ -28,8 +28,24 @@ XY_SINGLETON(XYPopupViewManager)
 
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
+touchOutsideHidden:(BOOL)hidden
+     dismissBlock:(void(^)(UIView *aView))dismissBlock;
+
+-(void) popupView:(UIView* )aView
+             type:(PopupViewBGType)aType
      dismissBlock:(void(^)(UIView *aView))dismissBlock;
 
 -(void) dismissPopup;
 
+@end
+
+#pragma mark -UIView
+@interface UIView (XYPopupViewHelper)
+// 弹出
+-(void) popupWithtype:(PopupViewBGType)aType
+   touchOutsideHidden:(BOOL)hidden
+         dismissBlock:(void(^)(UIView *aView))dismissBlock;
+-(void) popupWithtype:(PopupViewBGType)aType
+         dismissBlock:(void(^)(UIView *aView))dismissBlock;
+-(void) dismissPopup;
 @end

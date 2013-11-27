@@ -27,4 +27,4 @@
 #import "XYKeyboardManager.h"
 
 // 弹出窗口
-#import "XYPopupViewManager.h"
+#import "XYPopupViewHelper.h"

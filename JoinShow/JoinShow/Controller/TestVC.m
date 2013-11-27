@@ -34,7 +34,7 @@
 -(id) initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.array = [NSMutableArray alloc];
+        self.array = [NSMutableArray array];
         _testKVO = 0;
     }
     return self;

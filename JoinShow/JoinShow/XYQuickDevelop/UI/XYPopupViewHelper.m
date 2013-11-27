@@ -1,14 +1,14 @@
 //
-//  PopViewManager.m
+//  PopViewHelper.m
 //  JoinShow
 //
 //  Created by Heaven on 13-11-1.
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "XYPopupViewManager.h"
+#import "XYPopupViewHelper.h"
 #import "XYExtension.h"
-@interface XYPopupViewManager ()
+@interface XYPopupViewHelper ()
 
 @property (nonatomic, assign) UIView    *popupVIew;
 @property (nonatomic, copy) void (^dismissBlock)(UIView *aView);
@@ -20,9 +20,9 @@
 
 @end
 
-@implementation XYPopupViewManager
+@implementation XYPopupViewHelper
 
-DEF_SINGLETON(XYPopupViewManager)
+DEF_SINGLETON(XYPopupViewHelper)
 
 - (id)init
 {
@@ -53,26 +53,29 @@ DEF_SINGLETON(XYPopupViewManager)
     }
     return self;
 }
-
--(void) popupView:(UIView* )aView type:(PopupViewBGType)aType dismissBlock:(void(^)(UIView *aView))aBlock{
+-(void) popupView:(UIView* )aView
+             type:(PopupViewBGType)aType
+touchOutsideHidden:(BOOL)hidden
+     dismissBlock:(void(^)(UIView *aView))dismissBlock{
     if (aView == nil) {
         return;
     }
     if (_popupVIew != nil) {
         [self dismissPopup];
     }
-    self.dismissBlock = aBlock;
+    self.dismissBlock = dismissBlock;
     
     UIViewController *vc = [XYCommon topMostController];
     
     _popupViewBGType = aType;
+    id target = hidden ? self : nil;
     // 添加背景
     if (_popupViewBGType == PopupViewOption_none) {
-        [vc.view addShadeWithTarget:self action:@selector(dismissPopup) color:[UIColor clearColor] alpha:1];
+        [vc.view addShadeWithTarget:target action:@selector(dismissPopup) color:[UIColor clearColor] alpha:1];
     }else if (_popupViewBGType == PopupViewOption_colorLump) {
-        [vc.view addShadeWithTarget:self action:@selector(dismissPopup) color:self.colorLump alpha:self.colorLumpAlpha];
+        [vc.view addShadeWithTarget:target action:@selector(dismissPopup) color:self.colorLump alpha:self.colorLumpAlpha];
     }else if(_popupViewBGType == filePathOption_blur) {
-        [vc.view addBlurWithTarget:self action:@selector(dismissPopup)];
+        [vc.view addBlurWithTarget:target action:@selector(dismissPopup) level:self.blurLevel];
     }
     
     self.popupVIew = aView;
@@ -81,7 +84,11 @@ DEF_SINGLETON(XYPopupViewManager)
     if (self.showAnimation) {
         self.showAnimation(_popupVIew);
     }
+
 }
+-(void) popupView:(UIView* )aView type:(PopupViewBGType)aType dismissBlock:(void(^)(UIView *aView))dismissBlock{
+    [self popupView:aView type:aType touchOutsideHidden:YES dismissBlock:dismissBlock];
+    }
 -(void) dismissPopup{
     UIViewController *vc = [XYCommon topMostController];
 
@@ -105,4 +112,22 @@ DEF_SINGLETON(XYPopupViewManager)
 -(void) setDismissAnimationBlock:(void(^)(UIView *aView))aBlock{
     self.dismissAnimation = aBlock;
 }
+@end
+
+#pragma mark -UIView
+@implementation UIView (XYPopupViewHelper)
+
+-(void) popupWithtype:(PopupViewBGType)aType
+   touchOutsideHidden:(BOOL)hidden
+         dismissBlock:(void(^)(UIView *aView))dismissBlock{
+    [[XYPopupViewHelper sharedInstance] popupView:self type:aType  touchOutsideHidden:hidden dismissBlock:dismissBlock];
+}
+-(void) popupWithtype:(PopupViewBGType)aType
+         dismissBlock:(void(^)(UIView *aView))dismissBlock{
+    [self popupWithtype:aType touchOutsideHidden:YES dismissBlock:dismissBlock];
+}
+-(void) dismissPopup{
+    [[XYPopupViewHelper sharedInstance] dismissPopup];
+}
+
 @end

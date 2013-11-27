@@ -7,6 +7,7 @@
 //
 
 #import "UIView+XY.h"
+#import "UIImage+XY.h"
 DUMMY_CLASS(UIView_XY);
 #undef	UIView_key_tapBlock
 #define UIView_key_tapBlock	"UIView.tapBlock"
@@ -117,7 +118,7 @@ DUMMY_CLASS(UIView_XY);
     [tmpView addTapGestureWithTarget:target action:action];
 }
 -(void) addBlurWithTarget:(id)target action:(SEL)action{
-    [self addBlurWithTarget:target action:action level:[XYPopupViewManager sharedInstance].blurLevel];
+    [self addBlurWithTarget:target action:action level:5];
 }
 
 -(void) addBlurWithBlock:(void(^)(void))aBlock level:(int)lv{
@@ -127,7 +128,6 @@ DUMMY_CLASS(UIView_XY);
     tmpView.layer.contents = (id)img.CGImage;
     [self addSubview:tmpView];
     
-    
     if (aBlock) {
         [tmpView addTapGestureWithBlock:^{
             aBlock();
@@ -135,7 +135,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 -(void) addBlurWithBlock:(void(^)(void))aBlock{
-    [self addBlurWithBlock:aBlock level:[XYPopupViewManager sharedInstance].blurLevel];
+    [self addBlurWithBlock:aBlock level:[XYPopupViewHelper sharedInstance].blurLevel];
 }
 
 /////////////////////////////////////////////////////////////
@@ -168,14 +168,6 @@ DUMMY_CLASS(UIView_XY);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
-}
-
--(void) popupWithtype:(PopupViewBGType)aType
-         dismissBlock:(void(^)(UIView *aView))dismissBlock{
-    [[XYPopupViewManager sharedInstance] popupView:self type:aType dismissBlock:dismissBlock];
-}
--(void) dismissPopup{
-    [[XYPopupViewManager sharedInstance] dismissPopup];
 }
 
 -(void) setRotate:(float)f{

@@ -46,11 +46,6 @@
 // 截屏
 -(UIImage *) snapshot;
 
-// 弹出
--(void) popupWithtype:(PopupViewBGType)aType
-         dismissBlock:(void(^)(UIView *aView))dismissBlock;
--(void) dismissPopup;
-
 // 视图差效果
 #pragma mark -todo 考虑到底写不写到这
 

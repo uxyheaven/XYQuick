@@ -85,7 +85,7 @@
     UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 200, 100, 100)] autorelease];
     view.backgroundColor = [UIColor redColor];
     
-    [[XYPopupViewManager sharedInstance] setShowAnimationBlock:^(UIView *aView) {
+    [[XYPopupViewHelper sharedInstance] setShowAnimationBlock:^(UIView *aView) {
         CGPoint point = aView.center;
         aView.center = CGPointMake(aView.center.x, -aView.bounds.size.height * .5);
         [UIView animateWithDuration:.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
