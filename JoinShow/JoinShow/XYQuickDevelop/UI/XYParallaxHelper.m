@@ -1,14 +1,14 @@
 //
-//  ParallaxManager.m
+//  ParallaxHelper.m
 //  JoinShow
 //
 //  Created by Heaven on 13-10-9.
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "XYParallaxManager.h"
+#import "XYParallaxHelper.h"
 
-@interface XYParallaxManager (){
+@interface XYParallaxHelper (){
     CMMotionManager *_motion;
     int orientation1;
     int orientation2;
@@ -24,9 +24,9 @@
 
 @end
 
-@implementation XYParallaxManager
+@implementation XYParallaxHelper
 
-DEF_SINGLETON(XYParallaxManager)
+DEF_SINGLETON(XYParallaxHelper)
 
 - (id)init
 {
@@ -34,7 +34,7 @@ DEF_SINGLETON(XYParallaxManager)
     if (self) {
         self.views = [NSMutableArray arrayWithCapacity:15];
         self.intensitys = [NSMutableArray arrayWithCapacity:15];
-        _updateInterval = ParallaxManager_updateInterval;
+        _updateInterval = ParallaxHelper_updateInterval;
     }
     return self;
 }
@@ -58,8 +58,8 @@ DEF_SINGLETON(XYParallaxManager)
             self.lastAttitude = _motion.deviceMotion.attitude;
             self.curAttitude = _motion.deviceMotion.attitude;
             [self resetDeviceOrientation];
-            [[XYTimer sharedInstance] startTimer:ParallaxManager_timer interval:_updateInterval];
-            [[XYTimer sharedInstance] setTimer:ParallaxManager_timer delegate:self];
+            [[XYTimer sharedInstance] startTimer:ParallaxHelper_timer interval:_updateInterval];
+            [[XYTimer sharedInstance] setTimer:ParallaxHelper_timer delegate:self];
         }else{
             SHOWMSG(@"Message", @"Can't use deviceMotionAvailable.", @"cancel");
             [self stop];
@@ -74,7 +74,7 @@ DEF_SINGLETON(XYParallaxManager)
         [_motion stopDeviceMotionUpdates];
         [_motion release];
         _motion = nil;
-        [[XYTimer sharedInstance] stopTimer:ParallaxManager_timer];
+        [[XYTimer sharedInstance] stopTimer:ParallaxHelper_timer];
         
         [_views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             UIView *view = obj;

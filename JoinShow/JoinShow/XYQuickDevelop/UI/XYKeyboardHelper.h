@@ -1,7 +1,7 @@
 //
-//  XYKeyboardManager.h
+//  XYKeyboardHelper.h
 // 
-//  Copy from IQKeyboardManager
+//  Copy from IQKeyboardHelper
 //
 //  Created by Heaven on 13-10-29.
 //  Copyright (c) 2013年 Heaven. All rights reserved.
@@ -31,21 +31,21 @@
 #import "XYPrecompile.h"
 #import "XYFoundation.h"
 
-#define XYKeyboardManager_DefaultDistance 10.0
+#define XYKeyboardHelper_DefaultDistance 10.0
 
 
-@interface XYKeyboardManager : NSObject
+@interface XYKeyboardHelper : NSObject
 
-XY_SINGLETON(XYKeyboardManager)
+XY_SINGLETON(XYKeyboardHelper)
 
 @property(nonatomic, assign) CGFloat keyboardDistanceFromTextField; // can't be less than zero. Default is 10.0
 @property(nonatomic, assign) BOOL isEnabled;
 
-//Enable keyboard manager.
--(void) enableKeyboardManager;    /*default enabled*/
+//Enable keyboard Helper.
+-(void) enableKeyboardHelper;    /*default enabled*/
 
-//Desable keyboard manager.
--(void) disableKeyboardManager;
+//Desable keyboard Helper.
+-(void) disableKeyboardHelper;
 
 @end
 

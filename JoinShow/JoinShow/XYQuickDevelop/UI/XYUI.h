@@ -15,16 +15,16 @@
 
 // 帧动画
 #import "XYSpriteView.h"
-#import "XYSpriteManager.h"
+#import "XYSpriteHelper.h"
 
 // 普通动画
 #import "XYAnimate.h"
 
 // 视差
-#import "XYParallaxManager.h"
+#import "XYParallaxHelper.h"
 
 // Keyboard偏移通用解决方案
-#import "XYKeyboardManager.h"
+#import "XYKeyboardHelper.h"
 
 // 弹出窗口
 #import "XYPopupViewHelper.h"

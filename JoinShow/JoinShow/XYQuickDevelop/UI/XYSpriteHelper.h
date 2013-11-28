@@ -1,22 +1,22 @@
 //
-//  SpriteManager.h
+//  SpriteHelper.h
 //
 //  Created by Heaven on 13-5-15.
 //
 //
 
-#define XYSpriteManager_interval      1.0/12.0
-#define XYSpriteManager_timer         @"XYSprite"
+#define XYSpriteHelper_interval      1.0/12.0
+#define XYSpriteHelper_timer         @"XYSprite"
 
 
 #import "XYPrecompile.h"
 #import "XYUI.h"
 #import "XYFoundation.h"
 
-@interface XYSpriteManager : NSObject<XYTimerDelegate>{
+@interface XYSpriteHelper : NSObject<XYTimerDelegate>{
 }
 
-XY_SINGLETON(XYSpriteManager)
+XY_SINGLETON(XYSpriteHelper)
 
 // 采用统一的定时器来刷新 sprite
 @property (nonatomic, readonly) NSTimer                   *timer;

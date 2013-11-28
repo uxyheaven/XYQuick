@@ -1,5 +1,5 @@
 //
-//  XYKeyboardManager.m
+//  XYKeyboardHelper.m
 //  JoinShow
 //
 //  Created by Heaven on 13-10-29.
@@ -47,9 +47,9 @@
  \-----------------------------------------------------------------------------------------------------------/
  */
 
-#import "XYKeyboardManager.h"
+#import "XYKeyboardHelper.h"
 
-@interface XYKeyboardManager (){
+@interface XYKeyboardHelper (){
     //Boolean to maintain keyboard is showing or it is hide. To solve rootViewController.view.frame calculations;
     BOOL isKeyboardShowing;
     
@@ -68,15 +68,15 @@
 
 @end
 
-@implementation XYKeyboardManager
+@implementation XYKeyboardHelper
 
-DEF_SINGLETON(XYKeyboardManager)
+DEF_SINGLETON(XYKeyboardHelper)
 
 -(id) init
 {
     if (self = [super init])
     {
-        _keyboardDistanceFromTextField = XYKeyboardManager_DefaultDistance;
+        _keyboardDistanceFromTextField = XYKeyboardHelper_DefaultDistance;
         _isEnabled = NO;
         animationDuration = 0.25;
     }
@@ -87,7 +87,7 @@ DEF_SINGLETON(XYKeyboardManager)
     //Setting keyboard distance.
     self.keyboardDistanceFromTextField = MAX(distance, 0);
 }
--(void) enableKeyboardManager
+-(void) enableKeyboardHelper
 {
     //registering for notifications if it is not enable already.
     if (self.isEnabled == NO)
@@ -104,22 +104,22 @@ DEF_SINGLETON(XYKeyboardManager)
         /*Registering for textView notification*/
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewdDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:nil];
-        NSLogD(@"Keyboard Manager enabled");
+        NSLogD(@"Keyboard Helper enabled");
     }
     else
     {
-        NSLogD(@"Keyboard Manager already enabled");
+        NSLogD(@"Keyboard Helper already enabled");
     }
 }
 
--(void) disableKeyboardManager
+-(void) disableKeyboardHelper
 {
     //Unregister for all notifications if it is enabled.
     if (self.isEnabled == YES)
     {
         self.isEnabled = NO;
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-        NSLogD(@"Keyboard Manager disabled");
+        NSLogD(@"Keyboard Helper disabled");
     }
     else
     {

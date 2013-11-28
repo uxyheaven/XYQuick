@@ -58,11 +58,11 @@
 }
 
 - (IBAction)clickEnable:(id)sender {
-    [[XYKeyboardManager sharedInstance] enableKeyboardManger];
+    [[XYKeyboardHelper sharedInstance] enableKeyboardHelper];
 }
 
 - (IBAction)clickDisable:(id)sender {
-    [[XYKeyboardManager sharedInstance] disableKeyboardManager];
+    [[XYKeyboardHelper sharedInstance] disableKeyboardHelper];
 }
 
 - (IBAction)clickPop:(id)sender {

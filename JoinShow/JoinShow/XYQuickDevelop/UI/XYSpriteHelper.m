@@ -3,15 +3,15 @@
 //
 
 
-#import "XYSpriteManager.h"
+#import "XYSpriteHelper.h"
 
 
 
-@implementation XYSpriteManager{
+@implementation XYSpriteHelper{
     
 }
 
-DEF_SINGLETON(XYSpriteManager);
+DEF_SINGLETON(XYSpriteHelper);
 
 -(id)init{
     self = [super init];
@@ -27,14 +27,14 @@ DEF_SINGLETON(XYSpriteManager);
 }
 
 -(void)startTimer{
-    [[XYTimer sharedInstance] startTimer:XYSpriteManager_timer interval:_interval];
-    [[XYTimer sharedInstance] setTimer:XYSpriteManager_timer delegate:self];
+    [[XYTimer sharedInstance] startTimer:XYSpriteHelper_timer interval:_interval];
+    [[XYTimer sharedInstance] setTimer:XYSpriteHelper_timer delegate:self];
 }
 -(void) pauseTimer{
-    [[XYTimer sharedInstance] pauseTimer:XYSpriteManager_timer];
+    [[XYTimer sharedInstance] pauseTimer:XYSpriteHelper_timer];
 }
 -(void)stopTimer{
-    [[XYTimer sharedInstance] stopTimer:XYSpriteManager_timer];
+    [[XYTimer sharedInstance] stopTimer:XYSpriteHelper_timer];
 }
 
 -(void)clearAllSprites{

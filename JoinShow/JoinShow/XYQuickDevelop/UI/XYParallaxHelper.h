@@ -1,5 +1,5 @@
 //
-//  ParallaxManager.h
+//  ParallaxHelper.h
 //  JoinShow
 //
 //  Created by Heaven on 13-10-9.
@@ -10,12 +10,12 @@
 #import "XYPrecompile.h"
 #import "XYFoundation.h"
 
-#define ParallaxManager_updateInterval 0.05
-#define ParallaxManager_timer @"Parallax"
+#define ParallaxHelper_updateInterval 0.05
+#define ParallaxHelper_timer @"Parallax"
 
-@interface XYParallaxManager : NSObject
+@interface XYParallaxHelper : NSObject
 
-XY_SINGLETON(XYParallaxManager)
+XY_SINGLETON(XYParallaxHelper)
 
 // 设备信息刷新间隔
 @property (nonatomic, assign) NSTimeInterval updateInterval;

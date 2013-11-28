@@ -284,10 +284,10 @@
 		57DB87EA183349A60015CC5A /* XYThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C4183349A60015CC5A /* XYThread.m */; };
 		57DB87EB183349A60015CC5A /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C6183349A60015CC5A /* XYTimer.m */; };
 		57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CA183349A60015CC5A /* AutoSizeView.m */; };
-		57DB87EE183349A60015CC5A /* XYKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CE183349A60015CC5A /* XYKeyboardManager.m */; };
-		57DB87EF183349A60015CC5A /* XYParallaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D0183349A60015CC5A /* XYParallaxManager.m */; };
+		57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */; };
+		57DB87EF183349A60015CC5A /* XYParallaxHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D0183349A60015CC5A /* XYParallaxHelper.m */; };
 		57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */; };
-		57DB87F1183349A60015CC5A /* XYSpriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D4183349A60015CC5A /* XYSpriteManager.m */; };
+		57DB87F1183349A60015CC5A /* XYSpriteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D4183349A60015CC5A /* XYSpriteHelper.m */; };
 		57DB87F2183349A60015CC5A /* XYSpriteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D6183349A60015CC5A /* XYSpriteView.m */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57E852E217B224E500C664F4 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E852E117B224E500C664F4 /* json2.json */; };
@@ -676,14 +676,14 @@
 		57DB87C6183349A60015CC5A /* XYTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTimer.m; sourceTree = "<group>"; };
 		57DB87C9183349A60015CC5A /* AutoSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSizeView.h; sourceTree = "<group>"; };
 		57DB87CA183349A60015CC5A /* AutoSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSizeView.m; sourceTree = "<group>"; };
-		57DB87CD183349A60015CC5A /* XYKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKeyboardManager.h; sourceTree = "<group>"; };
-		57DB87CE183349A60015CC5A /* XYKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYKeyboardManager.m; sourceTree = "<group>"; };
-		57DB87CF183349A60015CC5A /* XYParallaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYParallaxManager.h; sourceTree = "<group>"; };
-		57DB87D0183349A60015CC5A /* XYParallaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYParallaxManager.m; sourceTree = "<group>"; };
+		57DB87CD183349A60015CC5A /* XYKeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKeyboardHelper.h; sourceTree = "<group>"; };
+		57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYKeyboardHelper.m; sourceTree = "<group>"; };
+		57DB87CF183349A60015CC5A /* XYParallaxHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYParallaxHelper.h; sourceTree = "<group>"; };
+		57DB87D0183349A60015CC5A /* XYParallaxHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYParallaxHelper.m; sourceTree = "<group>"; };
 		57DB87D1183349A60015CC5A /* XYPopupViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPopupViewHelper.h; sourceTree = "<group>"; };
 		57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPopupViewHelper.m; sourceTree = "<group>"; };
-		57DB87D3183349A60015CC5A /* XYSpriteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSpriteManager.h; sourceTree = "<group>"; };
-		57DB87D4183349A60015CC5A /* XYSpriteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSpriteManager.m; sourceTree = "<group>"; };
+		57DB87D3183349A60015CC5A /* XYSpriteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSpriteHelper.h; sourceTree = "<group>"; };
+		57DB87D4183349A60015CC5A /* XYSpriteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSpriteHelper.m; sourceTree = "<group>"; };
 		57DB87D5183349A60015CC5A /* XYSpriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSpriteView.h; sourceTree = "<group>"; };
 		57DB87D6183349A60015CC5A /* XYSpriteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSpriteView.m; sourceTree = "<group>"; };
 		57DB87D7183349A60015CC5A /* XYUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUI.h; sourceTree = "<group>"; };
@@ -1366,14 +1366,14 @@
 			isa = PBXGroup;
 			children = (
 				57DB87C8183349A60015CC5A /* AutoSizeView */,
-				57DB87CD183349A60015CC5A /* XYKeyboardManager.h */,
-				57DB87CE183349A60015CC5A /* XYKeyboardManager.m */,
-				57DB87CF183349A60015CC5A /* XYParallaxManager.h */,
-				57DB87D0183349A60015CC5A /* XYParallaxManager.m */,
+				57DB87CD183349A60015CC5A /* XYKeyboardHelper.h */,
+				57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */,
+				57DB87CF183349A60015CC5A /* XYParallaxHelper.h */,
+				57DB87D0183349A60015CC5A /* XYParallaxHelper.m */,
 				57DB87D1183349A60015CC5A /* XYPopupViewHelper.h */,
 				57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */,
-				57DB87D3183349A60015CC5A /* XYSpriteManager.h */,
-				57DB87D4183349A60015CC5A /* XYSpriteManager.m */,
+				57DB87D3183349A60015CC5A /* XYSpriteHelper.h */,
+				57DB87D4183349A60015CC5A /* XYSpriteHelper.m */,
 				57DB87D5183349A60015CC5A /* XYSpriteView.h */,
 				57DB87D6183349A60015CC5A /* XYSpriteView.m */,
 				5771FF2D183A162900B24FE5 /* XYAnimate.h */,
@@ -1719,7 +1719,7 @@
 				57B3FFF6177AD9BC00775FC9 /* main.m in Sources */,
 				57DB87E1183349A60015CC5A /* UIAlertView+XY.m in Sources */,
 				57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */,
-				57DB87EE183349A60015CC5A /* XYKeyboardManager.m in Sources */,
+				57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */,
 				57DB87EA183349A60015CC5A /* XYThread.m in Sources */,
 				572E7CB418385C690018179D /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				57DB87E7183349A60015CC5A /* XYObserve.m in Sources */,
@@ -1733,7 +1733,7 @@
 				571CBA5717C6FCC0007CB842 /* BookInfo.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
-				57DB87EF183349A60015CC5A /* XYParallaxManager.m in Sources */,
+				57DB87EF183349A60015CC5A /* XYParallaxHelper.m in Sources */,
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,
 				572E7CA218385C690018179D /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
@@ -1751,7 +1751,7 @@
 				572E7CA118385C690018179D /* SimpleAudioEngine.m in Sources */,
 				57DB87F2183349A60015CC5A /* XYSpriteView.m in Sources */,
 				57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */,
-				57DB87F1183349A60015CC5A /* XYSpriteManager.m in Sources */,
+				57DB87F1183349A60015CC5A /* XYSpriteHelper.m in Sources */,
 				5722182817DB365B003504E8 /* NetworkVC.m in Sources */,
 				57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,

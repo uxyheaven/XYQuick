@@ -30,7 +30,7 @@
 }
 - (void)dealloc
 {
-     [[XYParallaxManager sharedInstance] stop];
+     [[XYParallaxHelper sharedInstance] stop];
     [super dealloc];
 }
 - (void)viewDidLoad
@@ -43,7 +43,7 @@
     tempLabel.textColor = [UIColor whiteColor];
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
-    [[XYParallaxManager sharedInstance] setView:tempLabel intensity:10];
+    [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:10];
     [tempLabel release];
     
     tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 150, 100, 30)];
@@ -51,7 +51,7 @@
     tempLabel.textColor = [UIColor whiteColor];
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
-    [[XYParallaxManager sharedInstance] setView:tempLabel intensity:20];
+    [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:20];
     [tempLabel release];
     
     tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 100, 30)];
@@ -59,7 +59,7 @@
     tempLabel.textColor = [UIColor whiteColor];
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
-    [[XYParallaxManager sharedInstance] setView:tempLabel intensity:30];
+    [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:30];
     [tempLabel release];
     
     tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 250, 100, 30)];
@@ -67,13 +67,13 @@
     tempLabel.textColor = [UIColor whiteColor];
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
-    [[XYParallaxManager sharedInstance] setView:tempLabel intensity:40];
+    [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:40];
     [tempLabel release];
     
     [self.view setBg:@"bg.jpg"];
-    [[XYParallaxManager sharedInstance] setView:self.view intensity:-10];
+    [[XYParallaxHelper sharedInstance] setView:self.view intensity:-10];
     
-    [[XYParallaxManager sharedInstance] start];
+    [[XYParallaxHelper sharedInstance] start];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,6 +83,6 @@
 }
 #pragma mark - 设备方向改变
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [[XYParallaxManager sharedInstance] resetDeviceOrientation];
+    [[XYParallaxHelper sharedInstance] resetDeviceOrientation];
 }
 @end

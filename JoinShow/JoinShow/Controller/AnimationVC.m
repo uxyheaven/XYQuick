@@ -32,7 +32,7 @@
 - (void)dealloc
 {
     NSLogDD;
-    [[XYSpriteManager sharedInstance] clearAllSprites];
+    [[XYSpriteHelper sharedInstance] clearAllSprites];
     [super dealloc];
 }
 - (void)viewDidLoad
@@ -56,20 +56,20 @@
     [tmpSprite formatImg:@"p31b%0.4d.png" count:180 repeatCount:0];
     [tmpSprite showImgWithIndex:0];
     tmpSprite.delegate = self;
-    [[XYSpriteManager sharedInstance].sprites setObject:tmpSprite forKey:@"a"];
+    [[XYSpriteHelper sharedInstance].sprites setObject:tmpSprite forKey:@"a"];
     [self.view addSubview:tmpSprite];
     [tmpSprite release];
     
-    [[XYSpriteManager sharedInstance] startAllSprites];
+    [[XYSpriteHelper sharedInstance] startAllSprites];
 
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[XYSpriteManager sharedInstance] startTimer];
+    [[XYSpriteHelper sharedInstance] startTimer];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [[XYSpriteManager sharedInstance] stopTimer];
+    [[XYSpriteHelper sharedInstance] stopTimer];
 }
 - (void)didReceiveMemoryWarning
 {
