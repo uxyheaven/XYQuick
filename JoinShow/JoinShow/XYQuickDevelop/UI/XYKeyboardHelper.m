@@ -118,6 +118,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     if (self.isEnabled == YES)
     {
         self.isEnabled = NO;
+        self.keyboardDistanceFromTextField = XYKeyboardHelper_DefaultDistance;
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         NSLogD(@"Keyboard Helper disabled");
     }
