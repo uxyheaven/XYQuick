@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Dome Table View Controller - Develop Dome-->
+        <!--Demo Table View Controller - Develop Dome-->
         <scene sceneID="De9-gi-eRs">
             <objects>
-                <tableViewController id="VON-WD-2Cb" customClass="DomeTableViewController" sceneMemberID="viewController">
+                <tableViewController id="VON-WD-2Cb" customClass="DemoTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="YWy-3L-fal">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
