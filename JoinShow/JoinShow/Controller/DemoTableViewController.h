@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DomeTableViewController : UITableViewController
+@interface DemoTableViewController : UITableViewController
 
 @property (nonatomic, retain) NSArray       *list;
 

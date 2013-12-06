@@ -9,7 +9,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/Controller/DomeTableViewController.m"
+            filePath = "JoinShow/JoinShow/Controller/DemoTableViewController.m"
             timestampString = "406519491.911701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -25,7 +25,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/Controller/DomeTableViewController.m"
+            filePath = "JoinShow/JoinShow/Controller/DemoTableViewController.m"
             timestampString = "406014558.817592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -41,7 +41,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/Controller/DomeTableViewController.m"
+            filePath = "JoinShow/JoinShow/Controller/DemoTableViewController.m"
             timestampString = "406014558.817592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -1344,7 +1344,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/LKDBHelperExtension.m"
@@ -1990,7 +1990,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/BusinessVC.m"
-            timestampString = "406654080.450819"
+            timestampString = "407412742.69345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
@@ -2428,7 +2428,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/BusinessVC.m"
@@ -2533,6 +2533,68 @@
             endingLineNumber = "35"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JoinShow/JoinShow/Controller/BusinessVC.m"
+            timestampString = "407400273.031207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "-start"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JoinShow/JoinShow/Controller/BusinessVC.m"
+            timestampString = "407400278.988566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-httpGET"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BusinessVC httpGET]"
+                  moduleName = "JoinShow"
+                  urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/BusinessVC.m"
+                  timestampString = "407400278.990476"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BusinessVC httpGET]"
+                  moduleName = "JoinShow"
+                  urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/BusinessVC.m"
+                  timestampString = "407400278.990798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "550">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

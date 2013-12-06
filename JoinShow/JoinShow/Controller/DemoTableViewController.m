@@ -6,17 +6,17 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "DomeTableViewController.h"
+#import "DemoTableViewController.h"
 #if (1 == __XYQuick_Framework__)
 #import <XYQuick/XYQuickDevelop.h>
 #else
 #import "XYQuickDevelop.h"
 #endif
-@interface DomeTableViewController ()
+@interface DemoTableViewController ()
 
 @end
 
-@implementation DomeTableViewController
+@implementation DemoTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

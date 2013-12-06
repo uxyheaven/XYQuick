@@ -11,7 +11,7 @@
 		570C3A801845C6700077D010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7F1845C6700077D010 /* CoreGraphics.framework */; };
 		57163942183CEB7800A60102 /* DownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 57163941183CEB7800A60102 /* DownloadRequest.m */; };
 		571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA3217C6FB55007CB842 /* AppDelegate.m */; };
-		571CBA5517C6FCC0007CB842 /* DomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA4917C6FCC0007CB842 /* DomeTableViewController.m */; };
+		571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA4917C6FCC0007CB842 /* DemoTableViewController.m */; };
 		571CBA5717C6FCC0007CB842 /* BookInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA4E17C6FCC0007CB842 /* BookInfo.m */; };
 		571CBA5817C6FCC0007CB842 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA4F17C6FCC0007CB842 /* Storyboard.storyboard */; };
 		571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5217C6FCC0007CB842 /* Test2View.m */; };
@@ -322,8 +322,8 @@
 		57163941183CEB7800A60102 /* DownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRequest.m; sourceTree = "<group>"; };
 		571CBA3117C6FB55007CB842 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		571CBA3217C6FB55007CB842 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		571CBA4817C6FCC0007CB842 /* DomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeTableViewController.h; sourceTree = "<group>"; };
-		571CBA4917C6FCC0007CB842 /* DomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomeTableViewController.m; sourceTree = "<group>"; };
+		571CBA4817C6FCC0007CB842 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
+		571CBA4917C6FCC0007CB842 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
 		571CBA4D17C6FCC0007CB842 /* BookInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookInfo.h; sourceTree = "<group>"; };
 		571CBA4E17C6FCC0007CB842 /* BookInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookInfo.m; sourceTree = "<group>"; };
 		571CBA4F17C6FCC0007CB842 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -754,8 +754,8 @@
 		571CBA4717C6FCC0007CB842 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				571CBA4817C6FCC0007CB842 /* DomeTableViewController.h */,
-				571CBA4917C6FCC0007CB842 /* DomeTableViewController.m */,
+				571CBA4817C6FCC0007CB842 /* DemoTableViewController.h */,
+				571CBA4917C6FCC0007CB842 /* DemoTableViewController.m */,
 				57383F3917D2F5F20001079C /* TestVC.h */,
 				57383F3A17D2F5F20001079C /* TestVC.m */,
 				571CBA5B17C7000A007CB842 /* AnimationVC.h */,
@@ -1734,7 +1734,7 @@
 				572E7CDA183862230018179D /* LKTestModels.m in Sources */,
 				572E7CD4183860A80018179D /* NSObject+LKModel.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
-				571CBA5517C6FCC0007CB842 /* DomeTableViewController.m in Sources */,
+				571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */,
 				571CBA5717C6FCC0007CB842 /* BookInfo.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,

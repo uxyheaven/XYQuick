@@ -103,7 +103,7 @@
     label.textColor = [UIColor redColor];
     __block id myself =self;
     HttpRequest *mk = [self.networkEngine get:@"api/nodes.json"];
-    [mk succeed:^(MKNetworkOperation *op) {
+    [mk succeed:^(HttpRequest *op) {
         UILabel *label = (UILabel *)[self.view viewWithTag:2 + 10000];
         label.textColor = [UIColor redColor];
         
@@ -115,7 +115,7 @@
             NSLog(@"Data from server %@", [op responseString]);
             [myself parseData:[op responseString] isCachedResponse:NO];
         }
-    } failed:^(MKNetworkOperation *op, NSError *err) {
+    } failed:^(HttpRequest *op, NSError *err) {
         NSString *str = [NSString stringWithFormat:@"MKNetwork request error : %@", [err localizedDescription]];
         NSLogD(@"%@", str);
         
