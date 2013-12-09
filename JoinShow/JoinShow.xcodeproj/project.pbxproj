@@ -237,6 +237,7 @@
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A0BA7182379B800CA8D9D /* PopupViewVC.m */; };
+		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
 		57808335181A1088000F349B /* headportrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57808334181A1088000F349B /* headportrait.jpg */; };
 		57808338181A11A6000F349B /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57808337181A11A6000F349B /* ImageVC.m */; };
@@ -595,6 +596,8 @@
 		57548401181F4629008F9355 /* KeyboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardVC.m; sourceTree = "<group>"; };
 		576A0BA6182379B800CA8D9D /* PopupViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupViewVC.h; sourceTree = "<group>"; };
 		576A0BA7182379B800CA8D9D /* PopupViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewVC.m; sourceTree = "<group>"; };
+		576E87CE1855D23F00C7A724 /* XYDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDebug.h; sourceTree = "<group>"; };
+		576E87CF1855D23F00C7A724 /* XYDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDebug.m; sourceTree = "<group>"; };
 		5771FF2D183A162900B24FE5 /* XYAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAnimate.h; sourceTree = "<group>"; };
 		5771FF2E183A162900B24FE5 /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
 		57808334181A1088000F349B /* headportrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headportrait.jpg; sourceTree = "<group>"; };
@@ -1190,6 +1193,15 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		576E87CD1855D20F00C7A724 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				576E87CE1855D23F00C7A724 /* XYDebug.h */,
+				576E87CF1855D23F00C7A724 /* XYDebug.m */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		57B30013177AD9BC00775FC9 /* JoinShowTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1303,6 +1315,7 @@
 		57DB879D183349A60015CC5A /* XYQuickDevelop */ = {
 			isa = PBXGroup;
 			children = (
+				576E87CD1855D20F00C7A724 /* Debug */,
 				57DB879E183349A60015CC5A /* Extension */,
 				57DB87B6183349A60015CC5A /* Foundation */,
 				57DB87C7183349A60015CC5A /* UI */,
@@ -1759,6 +1772,7 @@
 				57DB87F1183349A60015CC5A /* XYSpriteHelper.m in Sources */,
 				5722182817DB365B003504E8 /* NetworkVC.m in Sources */,
 				572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */,
+				576E87D01855D23F00C7A724 /* XYDebug.m in Sources */,
 				57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				57F134DF17DC39F200C5DCDC /* Player.m in Sources */,

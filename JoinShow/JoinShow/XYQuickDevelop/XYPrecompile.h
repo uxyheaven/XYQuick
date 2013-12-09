@@ -16,6 +16,9 @@
 #define __XY_PERFORMANCE__          (1)
 
 #define __XYDEBUG__                 (1)
+#define __XYDEBUG__showborder__     (1)
+
+
 #define __TimeOut__ON__             (0)
 #define __TimeOut__date__           @"2015-3-10 00:00:00"
 
@@ -35,6 +38,6 @@
 #import <AVFoundation/AVSpeechSynthesis.h>
 
 #import "XYCommonDefine.h"
-
+#import "XYDebug.h"
 
 #endif

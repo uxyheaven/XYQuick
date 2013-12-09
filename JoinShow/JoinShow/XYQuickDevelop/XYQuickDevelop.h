@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 Heaven. All rights reserved.
 //
 
+// 调试
+#import "XYDebug.h"
 // 预编译
 #import "XYPrecompile.h"
 // 基础类
