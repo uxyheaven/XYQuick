@@ -36,7 +36,7 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 * 拷贝XYQuickDevelop到项目里
 * 根据需要拷贝XYExternal到项目里
 * 在XYExternalPrecompile.h关闭不需要的第三方库
-* 更具说明设置文件 -fobjc-arc 或 -fno-objc-arc
+* 根据说明设置文件 -fobjc-arc 或 -fno-objc-arc
 * 添加本库以及第三方需要的framework
 * 在需要用的文件或者pch里 `#import "XYQuickDevelop.h", #import "XYExternal.h"`
 
@@ -46,6 +46,7 @@ XYPopupViewManager 弹出View,支持背景暗色和模糊效果
 ### External 使用的第三方库
 * 开启ARC: -fobjc-arc
 * 无 ARC: -fno-objc-arc
+* XYQuickDevelop 和 XYExternal/Extension 下面的文件都是MRC
 * 参考了 [BeeFramework](https://github.com/gavinkwoe/BeeFramework/blob/master/document)
 
 #### CocosDenshion 
