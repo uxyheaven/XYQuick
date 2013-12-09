@@ -110,11 +110,19 @@ DUMMY_CLASS(UIView_XY);
 
 // 增加毛玻璃背景
 -(void) addBlurWithTarget:(id)target action:(SEL)action level:(int)lv{
-    UIView *tmpView = [[[UIView alloc] initWithFrame:self.frame] autorelease];
+    UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
     tmpView.tag = UIView_shadeTag;
-    UIImage *img = [[self snapshot] stackBlur:lv];
-    tmpView.layer.contents = (id)img.CGImage;
     [self addSubview:tmpView];
+    tmpView.alpha = 0;
+  //  BACKGROUND_BEGIN
+    UIImage *img = [[self snapshot] stackBlur:lv];
+ //   FOREGROUND_BEGIN
+    tmpView.layer.contents = (id)img.CGImage;
+    [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        tmpView.alpha = 1;
+    } completion:nil];
+ //   FOREGROUND_COMMIT
+ //   BACKGROUND_COMMIT
     [tmpView addTapGestureWithTarget:target action:action];
 }
 -(void) addBlurWithTarget:(id)target action:(SEL)action{

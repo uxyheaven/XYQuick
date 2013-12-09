@@ -14,7 +14,6 @@
 #import "XYCommonDefine.h"
 #import "XYCommon.h"
 #import "XYThread.h"
-#import "XYPerformance.h"
 #import "XYTimer.h"
 #import "XYDataLite.h"
 #import "XYSystemInfo.h"

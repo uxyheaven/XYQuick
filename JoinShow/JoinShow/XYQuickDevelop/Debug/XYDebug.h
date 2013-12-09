@@ -24,6 +24,8 @@
 #endif
 
 
+#import "XYPerformance.h"
+
 @interface UIWindow(XYDebug)
 
 + (void)hook;
@@ -37,6 +39,7 @@
 @end
 
 #pragma mark - BorderView
+// uiview点击时 加边框
 @interface BorderView : UIView
 - (void)startAnimation;
 @end

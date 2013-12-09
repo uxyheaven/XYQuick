@@ -20,17 +20,20 @@
  * original 原方法
  * replacement 劫持后的方法
  */
-static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
+static Method XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
     Method a = class_getInstanceMethod(c, original);
     Method b = class_getInstanceMethod(c, replacement);
     if (class_addMethod(c, original, method_getImplementation(b), method_getTypeEncoding(b)))
     {
         class_replaceMethod(c, replacement, method_getImplementation(a), method_getTypeEncoding(a));
+        return b;   // 返回劫持前的方法
     }
     else
     {
         method_exchangeImplementations(a, b);
+        return b;   // 返回劫持前的方法
     }
+    return a;   // 返回劫持前的方法
 }
 
 /********************************           Common          *****************/

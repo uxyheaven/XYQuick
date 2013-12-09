@@ -28,14 +28,8 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 	static BOOL __swizzled = NO;
 	if ( NO == __swizzled )
 	{
-        Method method;
-		IMP implement;
-        
-		method = class_getInstanceMethod( [UIWindow class], @selector(sendEvent:) );
-		__sendEvent = (void *)method_getImplementation( method );
-		
-		implement = class_getMethodImplementation( [UIWindow class], @selector(mySendEvent:) );
-		method_setImplementation( method, implement );
+        Method method = XY_swizzleInstanceMethod([UIWindow class], @selector(sendEvent:), @selector(mySendEvent:));
+        __sendEvent = (void *)method_getImplementation( method );
         
         __swizzled = YES;
 	}

@@ -12,12 +12,11 @@
 // 打包
 #define __XYQuick_Framework__       (0)
 
-// 性能测试
-#define __XY_PERFORMANCE__          (1)
-
+// 调试
 #define __XYDEBUG__                 (1)
 #define __XYDEBUG__showborder__     (1)
-
+// 性能测试
+#define __XY_PERFORMANCE__          (1)
 
 #define __TimeOut__ON__             (0)
 #define __TimeOut__date__           @"2015-3-10 00:00:00"

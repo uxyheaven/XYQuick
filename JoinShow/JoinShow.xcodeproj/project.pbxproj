@@ -238,6 +238,7 @@
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A0BA7182379B800CA8D9D /* PopupViewVC.m */; };
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
+		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
 		57808335181A1088000F349B /* headportrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57808334181A1088000F349B /* headportrait.jpg */; };
 		57808338181A11A6000F349B /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57808337181A11A6000F349B /* ImageVC.m */; };
@@ -281,7 +282,6 @@
 		57DB87E5183349A60015CC5A /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B8183349A60015CC5A /* XYCommon.m */; };
 		57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87BB183349A60015CC5A /* XYDataLite.m */; };
 		57DB87E7183349A60015CC5A /* XYObserve.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87BE183349A60015CC5A /* XYObserve.m */; };
-		57DB87E8183349A60015CC5A /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C0183349A60015CC5A /* XYPerformance.m */; };
 		57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C2183349A60015CC5A /* XYSystemInfo.m */; };
 		57DB87EA183349A60015CC5A /* XYThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C4183349A60015CC5A /* XYThread.m */; };
 		57DB87EB183349A60015CC5A /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C6183349A60015CC5A /* XYTimer.m */; };
@@ -598,6 +598,8 @@
 		576A0BA7182379B800CA8D9D /* PopupViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewVC.m; sourceTree = "<group>"; };
 		576E87CE1855D23F00C7A724 /* XYDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDebug.h; sourceTree = "<group>"; };
 		576E87CF1855D23F00C7A724 /* XYDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDebug.m; sourceTree = "<group>"; };
+		576E87D11855E77200C7A724 /* XYPerformance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPerformance.h; sourceTree = "<group>"; };
+		576E87D21855E77200C7A724 /* XYPerformance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPerformance.m; sourceTree = "<group>"; };
 		5771FF2D183A162900B24FE5 /* XYAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAnimate.h; sourceTree = "<group>"; };
 		5771FF2E183A162900B24FE5 /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
 		57808334181A1088000F349B /* headportrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headportrait.jpg; sourceTree = "<group>"; };
@@ -672,8 +674,6 @@
 		57DB87BC183349A60015CC5A /* XYFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFoundation.h; sourceTree = "<group>"; };
 		57DB87BD183349A60015CC5A /* XYObserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserve.h; sourceTree = "<group>"; };
 		57DB87BE183349A60015CC5A /* XYObserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObserve.m; sourceTree = "<group>"; };
-		57DB87BF183349A60015CC5A /* XYPerformance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPerformance.h; sourceTree = "<group>"; };
-		57DB87C0183349A60015CC5A /* XYPerformance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPerformance.m; sourceTree = "<group>"; };
 		57DB87C1183349A60015CC5A /* XYSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSystemInfo.h; sourceTree = "<group>"; };
 		57DB87C2183349A60015CC5A /* XYSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSystemInfo.m; sourceTree = "<group>"; };
 		57DB87C3183349A60015CC5A /* XYThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYThread.h; sourceTree = "<group>"; };
@@ -1198,6 +1198,8 @@
 			children = (
 				576E87CE1855D23F00C7A724 /* XYDebug.h */,
 				576E87CF1855D23F00C7A724 /* XYDebug.m */,
+				576E87D11855E77200C7A724 /* XYPerformance.h */,
+				576E87D21855E77200C7A724 /* XYPerformance.m */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -1368,8 +1370,6 @@
 				57DB87BC183349A60015CC5A /* XYFoundation.h */,
 				57DB87BD183349A60015CC5A /* XYObserve.h */,
 				57DB87BE183349A60015CC5A /* XYObserve.m */,
-				57DB87BF183349A60015CC5A /* XYPerformance.h */,
-				57DB87C0183349A60015CC5A /* XYPerformance.m */,
 				57DB87C1183349A60015CC5A /* XYSystemInfo.h */,
 				57DB87C2183349A60015CC5A /* XYSystemInfo.m */,
 				57DB87C3183349A60015CC5A /* XYThread.h */,
@@ -1782,7 +1782,6 @@
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				57DB87DD183349A60015CC5A /* NSNumber+XY.m in Sources */,
 				572E7CD2183860A80018179D /* LKDBUtils.m in Sources */,
-				57DB87E8183349A60015CC5A /* XYPerformance.m in Sources */,
 				572E7CA618385C690018179D /* FMDatabaseQueue.m in Sources */,
 				572E7CA518385C690018179D /* FMDatabasePool.m in Sources */,
 				572E7CA318385C690018179D /* FMDatabase.m in Sources */,
@@ -1819,6 +1818,7 @@
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
 				57B4EAE7183CC0A6007EB467 /* UIView+POViewFrameBuilder.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
+				576E87D31855E77200C7A724 /* XYPerformance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
