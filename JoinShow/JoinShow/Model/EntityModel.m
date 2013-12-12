@@ -54,11 +54,11 @@ DEF_SINGLETON(EntityModel)
         NSString *str = [op responseString];
         if([op isCachedResponse]) {
             NSLogD(@"cache");
-            
+            /*
              [mySelf.data removeAllObjects];
              NSArray *array = [str toModels:mySelf.dataClass];
              [mySelf.data addObjectsFromArray:array];
-             
+             */
             Delegate(entityModelRefreshFromServerSucceed:, mySelf);
         }
         else {
