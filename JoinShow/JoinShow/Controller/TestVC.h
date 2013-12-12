@@ -26,6 +26,7 @@
 - (IBAction)clickBtn2:(id)sender;
 - (IBAction)clickAVSpeech:(id)sender;
 - (IBAction)clickOnce:(id)sender;
+- (IBAction)clickOnce2:(id)sender;
 
 @property (nonatomic, retain) XYObserve *testKVOObserve;
 

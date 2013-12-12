@@ -13,7 +13,7 @@
 @implementation XYDataLite
 //DEF_SINGLETON(DataLite)
 
-DEF_DataLite_object(StrTest, YES, nil, nil)
+//DEF_DataLite_object(StrTest, YES, nil, nil)
 
 #pragma mark - todo 多类型判断
 
@@ -49,43 +49,7 @@ DEF_DataLite_object(StrTest, YES, nil, nil)
         return nil;
     }
 }
-/*
-+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject{
-    id tempObject = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    if (tempObject) {
-        return tempObject;
-    }else{
-        return defaultObject;
-    }
-}
-+(id) readObjectForKey:(NSString *)key defaultObjectPath:(NSString *)aPath{
-    id tempObject = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    if (tempObject) {
-        return tempObject;
-    }else{
-        if (aPath == nil) return nil;
-        
-        NSString *str = [XYCommon dataFilePath:aPath ofType:filePathOption_app];
-        id defaultObject = nil;
-        
-        if ((defaultObject = [NSDictionary dictionaryWithContentsOfFile:str]))
-        {
-            
-        }else if ((defaultObject = [NSArray arrayWithContentsOfFile:aPath]))
-        {
-            
-        }else if ((defaultObject = [NSString stringWithContentsOfFile:aPath encoding:NSUTF8StringEncoding error:nil]))
-        {
-            
-        }else if ((defaultObject = [NSData dataWithContentsOfFile:aPath]))
-        {
-            
-        }
-        
-        return defaultObject;
-    }
-}
-*/
+
 +(void) writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync{
     if (anObject == nil) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
@@ -99,4 +63,8 @@ DEF_DataLite_object(StrTest, YES, nil, nil)
 +(void) synchronize{
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+//-(id) __name{ \
+//    NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], NSStringify( __name )];
+//    return [XYDataLite readObjectForKey:NSStringify( __name ) defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
+//}
 @end

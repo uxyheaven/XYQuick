@@ -15,7 +15,11 @@
 #else
 #import "XYQuickDevelop.h"
 #endif
+
 #import "XYExternal.h"
+
+#import "Test1Model.h"
+#import "Test2Model.h"
 
 @interface TestVC ()
 
@@ -86,18 +90,20 @@
     
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.backgroundColor = [UIColor redColor];
-    tempBtn.frame = CGRectMake(10, 160, 100, 60);
+    tempBtn.frame = CGRectMake(10, 260, 100, 60);
     [tempBtn setTitle:@"muhud" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickBtnMuhud:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:tempBtn];
-    
+    /*
     UITextView *tempText = [[[UITextView alloc] initWithFrame:CGRectMake(10, 250, self.view.bounds.size.width - 20, 40)] autorelease];
     tempText.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     tempText.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:tempText];
-    
+    */
     //////////////////// test KVO ///////////////////////
     self.testKVOObserve = [XYObserve observerWithObject:self keyPath:@"testKVO" target:self selector:@selector(testKVOChanged:)];
+    
+    /////////////////// TestModel   ////////////
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,12 +156,25 @@
         NSLogD(@"2")
         SHOWMBProgressHUD(@"only show on IOS7", nil, nil, NO, 2)
     }
+    
 }
 
 - (IBAction)clickOnce:(id)sender {
-    XY_ONCE_BEGIN
+    XY_ONCE_BEGIN(a)
     SHOWMBProgressHUD(@"only show once", nil, nil, NO, 2)
     XY_ONCE_END
+    
+    Test1Model *model1 = [Test1Model sharedInstance];
+    NSLogD(@"%@", model1);
+}
+
+- (IBAction)clickOnce2:(id)sender {
+    XY_ONCE_BEGIN(b)
+    SHOWMBProgressHUD(@"only show once2", nil, nil, NO, 2)
+    XY_ONCE_END
+    
+    Test2Model *model2 = [Test2Model sharedManager2];
+    NSLogD(@"%@", model2);
 }
 
 

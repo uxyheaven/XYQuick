@@ -33,7 +33,7 @@ static Method XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
         method_exchangeImplementations(a, b);
         return b;   // 返回劫持前的方法
     }
-    return a;   // 返回劫持前的方法
+    return nil;   //
 }
 
 /********************************           Common          *****************/

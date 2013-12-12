@@ -9,9 +9,7 @@
 // 轻量形数据持久化, 基于NSUserDefaults
 // 如果最后用的是DEF_DataLite_object, 记得在程序进入后台,退出时调用 XY_DataLite_synchronize
 
-
-#define NSStringifyWithoutExpandingMacros(x) @#x
-#define NSStringify(x) NSStringifyWithoutExpandingMacros(x)
+#import "XYCommonDefine.h"
 
 // 同步数据到硬盘
 #define XY_DataLite_synchronize [XYDataLite synchronize];
@@ -25,22 +23,17 @@
 -(void) set##__name:(id)anObject; \
 -(id) __name;
 
-/*
-#define DEF_setMethod( __name, __synchronize) \
--(void) set##__name:(id)anObject{ \
-[DataLite writeObject:anObject forKey:NSStringify( __name ) synchronize:__synchronize]; \
-}
-*/
 // __synchronize 自动存
 // 注意:__defaultObject不要使用bool
 // 用__defaultPath时不要用NSNumber, NSString NSData 识别问题
 // 2个只能用一个
 #define DEF_DataLite_object( __name , __synchronize, __defaultObject, __defaultPath) \
 -(void) set##__name:(id)anObject{ \
-[XYDataLite writeObject:anObject forKey:NSStringify( __name ) synchronize:__synchronize]; \
+[XYDataLite writeObject:anObject forKey:NSStringify( __func__##__name ) synchronize:__synchronize]; \
 } \
 -(id) __name{ \
-    return [XYDataLite readObjectForKey:NSStringify( __name ) defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
+NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], NSStringify( __name )]; \
+return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
 }
 
 #import "XYPrecompile.h"
@@ -48,7 +41,7 @@
 
 @interface XYDataLite : NSObject
 //XY_SINGLETON(DataLite)
-XY_DataLite_string(StrTest)
+//XY_DataLite_string(StrTest)
 
 // dont support bool
 +(id) readObjectForKey:(NSString *)key;
@@ -58,7 +51,6 @@ XY_DataLite_string(StrTest)
 // dont support bool
 //+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject;
 //+(id) readObjectForKey:(NSString *)key defaultObjectPath:(NSString *)aPath;
-
 
 
 // if bSync == YES, run [[NSUserDefaults standardUserDefaults] synchronize]

@@ -22,16 +22,16 @@
 { \
 static dispatch_once_t once; \
 static __class * __singleton__; \
-dispatch_once( &once, ^{ __singleton__ = [[__class alloc] init]; } ); \
+dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
 return __singleton__; \
 }
 
 /**************************************************************/
 // 执行一次
 #undef	XY_ONCE_BEGIN
-#define XY_ONCE_BEGIN \
-static dispatch_once_t once; \
-dispatch_once( &once , ^{
+#define XY_ONCE_BEGIN( __name ) \
+static dispatch_once_t once_##__name; \
+dispatch_once( &once_##__name , ^{
 
 #undef	XY_ONCE_END
 #define XY_ONCE_END		});
@@ -50,6 +50,10 @@ dispatch_once( &once , ^{
 #pragma mark -todo
 //typedef void (^BasicBlock)(void);
 
+/**************************************************************/
+// 宏定义字符串 转NSString, NSStringify( __name )
+#define NSStringifyWithoutExpandingMacros(x) @#x
+#define NSStringify(x) NSStringifyWithoutExpandingMacros(x)
 
 /**************************************************************/
 // delegate 委托
