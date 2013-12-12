@@ -43,7 +43,7 @@
 
 #pragma mark - 子类重载下面的方法
 // 单例
-// DEF_SINGLETON( subclass name )
+DEF_SINGLETON(EntityModel)
 
 // net
 // 刷新

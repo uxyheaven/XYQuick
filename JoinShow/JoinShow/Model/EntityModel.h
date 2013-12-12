@@ -12,7 +12,7 @@
 @class RequestHelper;
 @protocol EntityModelDelegate;
 @interface EntityModel : NSObject{
-    @public id <EntityModelDelegate> delegate;
+    @public id <EntityModelDelegate> _delegate;
 }
 // 单例
 XY_SINGLETON(EntityModel)
