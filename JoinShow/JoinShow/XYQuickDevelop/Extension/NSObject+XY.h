@@ -38,4 +38,21 @@
 // 属性列表
 @property (nonatomic, readonly) NSArray                *attributeList;
 
+
+////////////////////////  Conversion  ////////////////////////
+- (NSInteger)asInteger;
+- (float)asFloat;
+- (BOOL)asBool;
+
+- (NSNumber *)asNSNumber;
+- (NSString *)asNSString;
+- (NSDate *)asNSDate;
+- (NSData *)asNSData;	// TODO
+- (NSArray *)asNSArray;
+//- (NSArray *)asNSArrayWithClass:(Class)clazz;
+- (NSMutableArray *)asNSMutableArray;
+- (NSMutableArray *)asNSMutableArrayWithClass:(Class)clazz;
+- (NSDictionary *)asNSDictionary;
+- (NSMutableDictionary *)asNSMutableDictionary;
+
 @end

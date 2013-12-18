@@ -103,7 +103,7 @@
 
 #pragma mark- Image
 +(void) webImageSetup{
-    [UIImageView setDefaultEngine:[[[RequestHelper alloc] init] autorelease]];
+    [UIImageView setDefaultEngine:[[[MKNetworkEngine alloc] init] autorelease]];
 }
 
 +(NSString *) generateAccessTokenWithObject:(id)anObject{
