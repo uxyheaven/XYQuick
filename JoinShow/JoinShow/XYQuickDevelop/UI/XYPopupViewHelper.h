@@ -12,7 +12,7 @@
 typedef enum {
     PopupViewOption_none = 1, 
     PopupViewOption_colorLump,
-    filePathOption_blur,
+    PopupViewOption_blur
 } PopupViewBGType;
 
 @interface XYPopupViewHelper : NSObject

@@ -33,8 +33,8 @@ DEF_SINGLETON(XYPopupViewHelper)
         self.blurLevel = 10;
         self.showAnimation = ^(UIView *aView){
             aView.alpha = 0.2;
-            aView.transform = CGAffineTransformMakeScale(0.77, 0.77);
-            [UIView animateWithDuration:.1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            aView.transform = CGAffineTransformMakeScale(1.3, 1.3);
+            [UIView animateWithDuration:.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 aView.alpha = 1;
                 aView.transform = CGAffineTransformIdentity;
             } completion:nil];
@@ -43,7 +43,7 @@ DEF_SINGLETON(XYPopupViewHelper)
         self.dismissAnimation = ^(UIView *aView){
             [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     aView.alpha = .2;
-                    aView.transform = CGAffineTransformMakeScale(1.2, 1.2);
+                    aView.transform = CGAffineTransformMakeScale(0.7, 0.7);
             } completion:^(BOOL finished) {
                 if (finished) {
                     [aView removeFromSuperview];
@@ -74,7 +74,7 @@ touchOutsideHidden:(BOOL)hidden
         [vc.view addShadeWithTarget:target action:@selector(dismissPopup) color:[UIColor clearColor] alpha:1];
     }else if (_popupViewBGType == PopupViewOption_colorLump) {
         [vc.view addShadeWithTarget:target action:@selector(dismissPopup) color:self.colorLump alpha:self.colorLumpAlpha];
-    }else if(_popupViewBGType == filePathOption_blur) {
+    }else if(_popupViewBGType == PopupViewOption_blur) {
         [vc.view addBlurWithTarget:target action:@selector(dismissPopup) level:self.blurLevel];
     }
     

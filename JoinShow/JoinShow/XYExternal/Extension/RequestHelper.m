@@ -92,7 +92,7 @@
         }
     }
 
-    MKNetworkOperation *tempOp = [self operationWithPath:path params:dic httpMethod:strHttpMethod];
+    HttpRequest *tempOp = [self operationWithPath:path params:dic httpMethod:strHttpMethod];
     return tempOp;
 }
 
@@ -103,7 +103,7 @@
 
 #pragma mark- Image
 +(void) webImageSetup{
-    [UIImageView setDefaultEngine:[[[MKNetworkEngine alloc] init] autorelease]];
+    [UIImageView setDefaultEngine:[[[RequestHelper alloc] init] autorelease]];
 }
 
 +(NSString *) generateAccessTokenWithObject:(id)anObject{
@@ -115,7 +115,7 @@
     return str1;
 }
 
--(id) submit:(MKNetworkOperation *)op{
+-(id) submit:(HttpRequest *)op{
     if (op != nil) {
         if ([op.HTTPMethod isEqualToString:@"GET"]) {
             [self enqueueOperation:op forceReload:self.forceReload];
@@ -131,7 +131,7 @@
 @implementation MKNetworkOperation (XY)
 
 // if forceReload == YES, 先读缓存,然后发请求,blockS响应2次, 只支持GET
--(id) submitInQueue:(MKNetworkEngine *)requests{
+-(id) submitInQueue:(RequestHelper *)requests{
     // 非下载请求
     [requests enqueueOperation:self forceReload:NO];
     return self;
@@ -217,7 +217,7 @@
         if (blockS) blockS(operation);
         [self.downloadHelper.downloadArray removeObject:self];
         
-    }errorHandler:^(MKNetworkOperation *errorOp, NSError *err) {
+    }errorHandler:^(HttpRequest *errorOp, NSError *err) {
         if (blockF) blockF(errorOp, err);
     }];
     
@@ -343,7 +343,7 @@
         
         // 如果已经存在下载文件 operation返回nil,否则把operation放入下载队列当中
         BOOL existDownload = NO;
-        for (MKNetworkOperation *tempOP in self.downloadArray) {
+        for (HttpRequest *tempOP in self.downloadArray) {
             if ([tempOP.url isEqualToString:op.url]) {
                 existDownload = YES;
                 break;
@@ -380,7 +380,7 @@
 
 -(void) cancelAllDownloads
 {
-    for (MKNetworkOperation *tempOP in self.downloadArray) {
+    for (HttpRequest *tempOP in self.downloadArray) {
         [tempOP cancel];
     }
     [self.downloadArray removeAllObjects];

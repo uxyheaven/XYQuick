@@ -76,7 +76,7 @@
     UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
     view.backgroundColor = [UIColor redColor];
     
-    [view popupWithtype:filePathOption_blur dismissBlock:^(UIView *aView) {
+    [view popupWithtype:PopupViewOption_blur dismissBlock:^(UIView *aView) {
         NSLogD(@"a");
     }];
 }
@@ -92,7 +92,7 @@
             aView.center = point;
         } completion:nil];
     }];
-    [view popupWithtype:filePathOption_blur dismissBlock:nil];
+    [view popupWithtype:PopupViewOption_blur dismissBlock:nil];
 }
 
 - (IBAction)clickAlertView:(id)sender {

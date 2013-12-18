@@ -7,29 +7,16 @@
 //
 
 #import "BusinessVC.h"
-
-
+#import "EntityModel.h"
 
 #import "XYExternal.h"
 
 #import "RubyChinaNodeEntity.h"
 
-
-@implementation BusinessVCRequest
-+(id) defaultSettings{
-    // 参考
-    BusinessVCRequest *eg = [[[BusinessVCRequest alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
-    eg.freezable = YES;
-    eg.forceReload = YES;
-    return eg;
-}
-@end
-
-
 @interface BusinessVC ()
 // get
-@property (nonatomic, retain) RequestHelper *networkEngine;
 @property (nonatomic, retain) NSArray *model;
+@property (nonatomic, assign) EntityModel *entityModel;
 
 @end
 
@@ -46,8 +33,6 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.networkEngine = [BusinessVCRequest defaultSettings];
-        [_networkEngine useCache];
     }
     return  self;
 }
@@ -55,12 +40,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.entityModel = [EntityModel sharedInstance];
     
 }
 - (void)dealloc
 {
     NSLogDD;
-    self.networkEngine = nil;
+    self.entityModel = nil;
     [super dealloc];
 }
 - (void)didReceiveMemoryWarning
@@ -102,8 +88,8 @@
     UILabel *label = (UILabel *)[self.view viewWithTag:1 + 10000];
     label.textColor = [UIColor redColor];
     __block id myself =self;
-    HttpRequest *mk = [self.networkEngine get:@"api/nodes.json"];
-    [mk succeed:^(HttpRequest *op) {
+    HttpRequest *request = [self.entityModel.requestHelper get:@"api/nodes.json"];
+    [request succeed:^(HttpRequest *op) {
         UILabel *label = (UILabel *)[self.view viewWithTag:2 + 10000];
         label.textColor = [UIColor redColor];
         
@@ -123,7 +109,7 @@
         [self loadFromDBProcess];
     }];
     
-    [self.networkEngine submit:mk];
+    [self.entityModel.requestHelper submit:request];
 }
 -(void) parseData:(NSString *)str isCachedResponse:(BOOL)isCachedResponse{
     UILabel *label = (UILabel *)[self.view viewWithTag:3 + 10000];

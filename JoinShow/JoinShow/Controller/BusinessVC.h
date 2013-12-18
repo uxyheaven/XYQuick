@@ -13,10 +13,6 @@
 #import "XYQuickDevelop.h"
 #endif
 
-@interface BusinessVCRequest : RequestHelper
-
-@end
-
 @interface BusinessVC : UIViewController
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickLoad:(id)sender;
