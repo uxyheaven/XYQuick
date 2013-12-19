@@ -80,7 +80,7 @@ typedef enum {
 @end
 
 @interface DownloadHelper : MKNetworkEngine
-+(id) defaultSettings;
++(id) defaultSettings;      // 参考
 
 // 下载前,请先执行此方法;
 -(void) setup;

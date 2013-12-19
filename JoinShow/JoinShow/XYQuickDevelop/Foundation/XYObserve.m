@@ -51,6 +51,7 @@
 -(void) dealloc
 {
     NSLogDD
+    self.keyPath = nil;
     id strongObservedObject = self.observedObject;
     if (strongObservedObject) {
         [strongObservedObject removeObserver:self forKeyPath:self.keyPath];
@@ -58,3 +59,45 @@
     [super dealloc];
 }
 @end
+
+@implementation XYObserveHelper
+
+DEF_SINGLETON(XYObserveHelper)
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _observers = [[NSMutableDictionary alloc] initWithCapacity:16];
+    }
+    return self;
+}
+
+@end
+
+@implementation NSObject (XYObserveHelper)
+
+-(void) observeWithObject:(id)object keyPath:(NSString*)keyPath selector:(SEL)selector observeKey:(NSString *)key{
+    [self observeWithObject:object keyPath:keyPath target:self selector:selector observeKey:key];
+}
+-(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector observeKey:(NSString *)key{
+    XYObserve *ob = [XYObserve observerWithObject:object keyPath:keyPath target:target selector:selector];
+  //  NSString *key = [NSString stringWithFormat:@"%@_%@_%@", NSStringFromClass([object class]), keyPath, NSStringFromClass([object class])];
+    
+    [[XYObserveHelper sharedInstance].observers setObject:ob forKey:key];
+}
+-(void) removeObserverWithKey:(NSString *)key{
+    [[XYObserveHelper sharedInstance].observers removeObjectForKey:key];
+}
+-(void) removeAllObserver{
+    [[XYObserveHelper sharedInstance].observers removeAllObjects];
+}
+@end
+
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            

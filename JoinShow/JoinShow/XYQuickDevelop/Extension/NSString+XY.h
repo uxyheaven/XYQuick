@@ -50,7 +50,7 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 -(NSString *) URLEncoding;
 -(NSString *) URLDecoding;
 
-// 去掉空格和换行
+// 去掉首尾的空格和换行
 -(NSString *) trim;
 // 去掉首尾的 " '
 -(NSString *) unwrap;

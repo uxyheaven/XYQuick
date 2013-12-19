@@ -237,7 +237,7 @@
 @implementation DownloadHelper
 +(id) defaultSettings{
     // 参考
-    DownloadHelper *eg = [[[DownloadHelper alloc] initWithHostName:@"testbed1.mknetworkkit.com" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+    DownloadHelper *eg = [[[DownloadHelper alloc] initWithHostName:nil] autorelease];
     [eg setup];
     
     return eg;

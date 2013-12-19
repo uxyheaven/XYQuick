@@ -74,7 +74,7 @@
             NSLog(@"Data from server %@", @"a");
         }
     } failed:^(MKNetworkOperation *op, NSError *err) {
-        NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+        NSLog(@"Request error : %@", [err localizedDescription]);
     }];
     
     [self.networkEngine submit:op];
@@ -86,7 +86,7 @@
     [op succeed:^(MKNetworkOperation *op) {
         NSLog(@"Data from cache %@", [op responseString]);
     } failed:^(MKNetworkOperation *op, NSError *err) {
-        NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+        NSLog(@"Request error : %@", [err localizedDescription]);
     }];
     
     [self.networkEngine submit:op];
@@ -109,7 +109,7 @@
         _progressDownload.progress = 0;
         SHOWMSG(nil, @"Download succeed", @"ok");
     } failed:^(HttpRequest *op, NSError *err) {
-        NSLog(@"MKNetwork request error : %@", [err localizedDescription]);
+        NSLog(@"Request error : %@", [err localizedDescription]);
         SHOWMSG(nil, @"Download failed",  @"ok");
     }];
     

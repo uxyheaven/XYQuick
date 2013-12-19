@@ -10,7 +10,7 @@
 
 @implementation LKTest
 
-//在类 初始化的时候
+// 在类 初始化的时候
 +(void)initialize
 {
     //remove unwant property
@@ -32,7 +32,7 @@
 {
     LKErrorLog(@"will insert : %@",NSStringFromClass(self));
 }
-//已经插入数据库
+// 已经插入数据库
 +(void)dbDidInserted:(NSObject *)entity result:(BOOL)result
 {
     LKErrorLog(@"did insert : %@",NSStringFromClass(self));
@@ -64,7 +64,7 @@
     }
 }
 
-//列属性
+// 列属性
 +(void)columeAttributeWithProperty:(LKDBProperty *)property
 {
     if([property.sqlColumeName isEqualToString:@"MyAge"])
@@ -80,7 +80,7 @@
     }
 }
 
-//手动 绑定sql列
+// 手动 绑定sql列
 +(NSDictionary *)getTableMapping
 {
     //return nil
@@ -97,26 +97,27 @@
              @"error":LKSQLInherit
              };
 }
-//主键
+// 主键
 +(NSString *)getPrimaryKey
 {
     return @"name";
 }
+// 联合主键
 +(NSArray *)getPrimaryKeyUnionArray
 {
     return @[@"name",@"MyAge"];
 }
-//表名
+// 表名
 +(NSString *)getTableName
 {
     return @"LKTestTable";
 }
-//表版本
+// 表版本
 +(int)getTableVersion
 {
     return 3;
 }
-//升级
+// 升级
 +(LKTableUpdateType)tableUpdateForOldVersion:(int)oldVersion newVersion:(int)newVersion
 {
     switch (oldVersion) {

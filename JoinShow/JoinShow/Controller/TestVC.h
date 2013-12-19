@@ -21,13 +21,12 @@
 @property (nonatomic, retain) NSMutableArray *array;
 
 @property (nonatomic, assign) int testKVO;
+@property (nonatomic, retain) NSMutableArray *testArrayKVO;
 
 - (IBAction)clickBtn1:(id)sender;
 - (IBAction)clickBtn2:(id)sender;
 - (IBAction)clickAVSpeech:(id)sender;
 - (IBAction)clickOnce:(id)sender;
 - (IBAction)clickOnce2:(id)sender;
-
-@property (nonatomic, retain) XYObserve *testKVOObserve;
 
 @end

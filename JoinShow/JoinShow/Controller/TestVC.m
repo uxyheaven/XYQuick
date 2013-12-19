@@ -40,6 +40,7 @@
     if (self) {
         self.array = [NSMutableArray array];
         _testKVO = 0;
+        self.testArrayKVO = [NSMutableArray array];
     }
     return self;
 }
@@ -48,8 +49,9 @@
     NSLogDD
     [XYTimer sharedInstance].delegate = nil;
     self.array = nil;
-    self.testKVOObserve = nil;
-    
+    self.testArrayKVO = nil;
+    [self removeObserverWithKey:@"test_testKVO"];
+    [self removeObserverWithKey:@"test_testArrayKVO"];
     [super dealloc];
 }
 /*
@@ -101,7 +103,8 @@
     [self.view addSubview:tempText];
     */
     //////////////////// test KVO ///////////////////////
-    self.testKVOObserve = [XYObserve observerWithObject:self keyPath:@"testKVO" target:self selector:@selector(testKVOChanged:)];
+    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged:) observeKey:@"test_testKVO"];
+    [self observeWithObject:self keyPath:@"testArrayKVO" selector:@selector(testArrayKVOChanged:) observeKey:@"test_testArrayKVO"];
     
     /////////////////// TestModel   ////////////
 }
@@ -116,7 +119,13 @@
     [[XYTimer sharedInstance] startTimerWithInterval:2];
     [XYTimer sharedInstance].delegate = self;
      */
+    // kvo
     self.testKVO = self.testKVO + 1;
+    
+    // 观察array
+    [self willChangeValueForKey:@"testArrayKVO"];
+    [self.testArrayKVO addObject:@"a"];
+    [self didChangeValueForKey:@"testArrayKVO"];
 }
 
 - (IBAction)clickBtn2:(id)sender {
@@ -163,18 +172,12 @@
     XY_ONCE_BEGIN(a)
     SHOWMBProgressHUD(@"only show once", nil, nil, NO, 2)
     XY_ONCE_END
-    
-    Test1Model *model1 = [Test1Model sharedInstance];
-    NSLogD(@"%@", model1);
 }
 
 - (IBAction)clickOnce2:(id)sender {
     XY_ONCE_BEGIN(b)
     SHOWMBProgressHUD(@"only show once2", nil, nil, NO, 2)
     XY_ONCE_END
-    
-    Test2Model *model2 = [Test2Model sharedManager2];
-    NSLogD(@"%@", model2);
 }
 
 
@@ -224,6 +227,11 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
 -(void) testKVOChanged:(id)value{
     NSLogD(@"vlaue:%@", value);
 }
+-(void) testArrayKVOChanged:(id)value{
+    NSLogD(@"vlaue:%@", value);
+}
+
+
 #pragma mark - XYTimerDelegate
 -(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
     _testKVO++;

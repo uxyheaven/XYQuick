@@ -7,11 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "XYPrecompile.h"
 @interface XYObserve : NSObject
 
 +(instancetype) observerWithObject:(id)object keyPath:(NSString *)keyPath target:(id)target selector:(SEL)selector;
 
 -(id) initWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector;
 
+@end
+
+@interface XYObserveHelper : NSObject
+
+XY_SINGLETON(XYObserveHelper);
+
+@property (nonatomic, retain, readonly) NSMutableDictionary *observers;
+
+@end
+
+@interface NSObject (XYObserveHelper)
+-(void) observeWithObject:(id)object keyPath:(NSString*)keyPath selector:(SEL)selector observeKey:(NSString *)key;
+-(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector observeKey:(NSString *)key;
+
+-(void) removeObserverWithKey:(NSString *)key;
+-(void) removeAllObserver;
 @end

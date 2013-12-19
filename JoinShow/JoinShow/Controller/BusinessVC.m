@@ -61,10 +61,8 @@
         label.textColor = [UIColor blueColor];
     }
     
-   [self performSelector:@selector(start) withObject:nil afterDelay:1];
-    
-    
-    }
+    [self performSelector:@selector(start) withObject:nil afterDelay:1];
+}
 
 - (IBAction)clickLoad:(id)sender {
     UITextField *textField = (UITextField *)[self.view viewWithTag:11000];
@@ -102,7 +100,7 @@
             [myself parseData:[op responseString] isCachedResponse:NO];
         }
     } failed:^(HttpRequest *op, NSError *err) {
-        NSString *str = [NSString stringWithFormat:@"MKNetwork request error : %@", [err localizedDescription]];
+        NSString *str = [NSString stringWithFormat:@"Request error : %@", [err localizedDescription]];
         NSLogD(@"%@", str);
         
         // SHOWMBProgressHUD(@"Message", str, nil, NO, 3);
