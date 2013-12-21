@@ -50,8 +50,7 @@
     [XYTimer sharedInstance].delegate = nil;
     self.array = nil;
     self.testArrayKVO = nil;
-    [self removeObserverWithKey:@"test_testKVO"];
-    [self removeObserverWithKey:@"test_testArrayKVO"];
+    [self removeAllObserver];
     [super dealloc];
 }
 /*

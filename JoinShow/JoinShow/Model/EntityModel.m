@@ -33,6 +33,7 @@
 {
     NSLogDD
     self.data = nil;
+    self.result = nil;
     self.delegate = nil;
     [self.requestHelper cancelAllOperations];
     self.requestHelper = nil;

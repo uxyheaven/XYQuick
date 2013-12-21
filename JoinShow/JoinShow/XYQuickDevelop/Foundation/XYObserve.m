@@ -9,6 +9,8 @@
 #import "XYObserve.h"
 #import "XYPrecompile.h"
 
+static NSMutableDictionary *XY_OBSERVERS = nil;
+
 @interface XYObserve ()
 @property (nonatomic, assign) id target;
 @property (nonatomic) SEL selector;
@@ -17,6 +19,10 @@
 @end
 
 @implementation XYObserve
+
++(void)load{
+    XY_OBSERVERS = [[NSMutableDictionary alloc] initWithCapacity:8];
+}
 
 +(instancetype) observerWithObject:(id)object
                            keyPath:(NSString *)keyPath
@@ -50,29 +56,14 @@
 
 -(void) dealloc
 {
-    NSLogDD
-    self.keyPath = nil;
+  //  NSLogDD
     id strongObservedObject = self.observedObject;
     if (strongObservedObject) {
         [strongObservedObject removeObserver:self forKeyPath:self.keyPath];
     }
+    self.keyPath = nil;
     [super dealloc];
 }
-@end
-
-@implementation XYObserveHelper
-
-DEF_SINGLETON(XYObserveHelper)
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _observers = [[NSMutableDictionary alloc] initWithCapacity:16];
-    }
-    return self;
-}
-
 @end
 
 @implementation NSObject (XYObserveHelper)
@@ -83,14 +74,17 @@ DEF_SINGLETON(XYObserveHelper)
 -(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector observeKey:(NSString *)key{
     XYObserve *ob = [XYObserve observerWithObject:object keyPath:keyPath target:target selector:selector];
   //  NSString *key = [NSString stringWithFormat:@"%@_%@_%@", NSStringFromClass([object class]), keyPath, NSStringFromClass([object class])];
-    
-    [[XYObserveHelper sharedInstance].observers setObject:ob forKey:key];
+    if (key && ob) {
+        [XY_OBSERVERS setObject:ob forKey:key];
+    }
 }
 -(void) removeObserverWithKey:(NSString *)key{
-    [[XYObserveHelper sharedInstance].observers removeObjectForKey:key];
+    if (key) {
+        [XY_OBSERVERS removeObjectForKey:key];
+    }
 }
 -(void) removeAllObserver{
-    [[XYObserveHelper sharedInstance].observers removeAllObjects];
+    [XY_OBSERVERS removeAllObjects];
 }
 @end
 
