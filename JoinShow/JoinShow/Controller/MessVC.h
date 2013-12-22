@@ -12,5 +12,6 @@
 - (IBAction)clickBtnShade:(id)sender;
 - (IBAction)clickBtnBlockAlertView:(id)sender;
 - (IBAction)clickBtnBlockActionSheet:(id)sender;
+- (IBAction)clickBtnSHOWMBProgressHUDIndeterminate:(id)sender;
 
 @end

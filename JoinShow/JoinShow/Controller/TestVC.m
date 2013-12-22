@@ -103,9 +103,8 @@
     */
     //////////////////// test KVO ///////////////////////
     [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged:) observeKey:@"test_testKVO"];
+    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged2:) observeKey:@"test_testKVO2"];
     [self observeWithObject:self keyPath:@"testArrayKVO" selector:@selector(testArrayKVOChanged:) observeKey:@"test_testArrayKVO"];
-    
-    /////////////////// TestModel   ////////////
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,6 +223,9 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
 }
 */
 -(void) testKVOChanged:(id)value{
+    NSLogD(@"vlaue:%@", value);
+}
+-(void) testKVOChanged2:(id)value{
     NSLogD(@"vlaue:%@", value);
 }
 -(void) testArrayKVOChanged:(id)value{

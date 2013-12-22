@@ -73,7 +73,7 @@ static NSMutableDictionary *XY_OBSERVERS = nil;
 }
 -(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector observeKey:(NSString *)key{
     XYObserve *ob = [XYObserve observerWithObject:object keyPath:keyPath target:target selector:selector];
-  //  NSString *key = [NSString stringWithFormat:@"%@_%@_%@", NSStringFromClass([object class]), keyPath, NSStringFromClass([object class])];
+
     if (key && ob) {
         [XY_OBSERVERS setObject:ob forKey:key];
     }

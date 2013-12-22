@@ -69,45 +69,79 @@
 
 /***************************************************************/
 #if (1 == __USED_MBProgressHUD__)
+static MBProgressHUD *HUD = nil;
++(void) hiddenMBProgressHUD{
+    [HUD hide:YES];
+}
+
 +(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d{
     UIViewController *vc = [self topMostController];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
+    if (nil == HUD) {
+        HUD = [[MBProgressHUD alloc] initWithView:vc.view];
+    }
+    
+    [vc.view addSubview:HUD];
     
     if (aImg)
     {
         UIImageView *img = [[UIImageView alloc] initWithImage:aImg];
-        hud.customView = img;
-        hud.mode = MBProgressHUDModeCustomView;
-        
+        HUD.customView = img;
+        HUD.mode = MBProgressHUDModeCustomView;
         [img release];
-    }else{
-        hud.mode = MBProgressHUDModeText;
+    }
+    if (aTitle || aMsg) {
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = aTitle;
+        HUD.detailsLabelText = aMsg;
     }
     
-    hud.labelText = aTitle;
-    hud.detailsLabelText = aMsg;
-    hud.removeFromSuperViewOnHide = YES;
-    hud.dimBackground = dimBG;
-    [hud show:YES];
-    [hud hide:YES afterDelay:d];
+    HUD.removeFromSuperViewOnHide = YES;
+    HUD.dimBackground = dimBG;
+    [HUD show:YES];
     
-    return hud;
+    if (d > 0) {
+        [HUD hide:YES afterDelay:d];
+    }
+    
+    return HUD;
 }
+
++(MBProgressHUD *) showMBProgressHUDModeIndeterminateTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG{
+    UIViewController *vc = [self topMostController];
+    if (nil == HUD) {
+        HUD = [[MBProgressHUD alloc] initWithView:vc.view];
+    }
+    [vc.view addSubview:HUD];
+    
+    HUD.labelText = aTitle;
+    HUD.detailsLabelText = aMsg;
+    HUD.removeFromSuperViewOnHide = YES;
+    HUD.dimBackground = dimBG;
+    [HUD show:YES];
+    
+    return HUD;
+}
+
 +(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG executeBlock:(void(^)(MBProgressHUD *hud))blockE finishBlock:(void(^)(void))blockF{
     UIViewController *vc = [self topMostController];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
-    hud.labelText = aTitle;
-    hud.detailsLabelText = aMsg;
-    hud.removeFromSuperViewOnHide = YES;
-    hud.dimBackground = dimBG;
-    [hud showAnimated:YES whileExecutingBlock:^{
-		blockE(hud);
+    if (nil == HUD) {
+        HUD = [[MBProgressHUD alloc] initWithView:vc.view];
+    }
+    
+    [vc.view addSubview:HUD];
+    
+    HUD.labelText = aTitle;
+    HUD.detailsLabelText = aMsg;
+    HUD.removeFromSuperViewOnHide = YES;
+    HUD.dimBackground = dimBG;
+    [HUD showAnimated:YES whileExecutingBlock:^{
+		blockE(HUD);
 	} completionBlock:^{
 		//[hud hide:YES];
         blockF();
 	}];
     
-    return hud;
+    return HUD;
 }
 #endif
 

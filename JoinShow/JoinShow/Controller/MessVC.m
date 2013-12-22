@@ -70,6 +70,16 @@
     }];
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
+
+- (IBAction)clickBtnSHOWMBProgressHUDIndeterminate:(id)sender {
+    SHOWMBProgressHUDIndeterminate(@"title", @"message", NO)
+    BACKGROUND_BEGIN
+    sleep(3);
+    FOREGROUND_BEGIN
+    HIDDENMBProgressHUD
+    FOREGROUND_COMMIT
+    BACKGROUND_COMMIT
+}
 -(void) closeShade{
     [self.view removeShade];
 }

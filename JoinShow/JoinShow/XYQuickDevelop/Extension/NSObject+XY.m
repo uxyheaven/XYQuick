@@ -60,7 +60,7 @@ DUMMY_CLASS(NSObject_XY);
     }
 }
 */
-////////////////////////  perform  ////////////////////////
+#pragma mark - perform
 -(void) performSelector:(SEL)aSelector  target:(id)target  mark:(id)mark afterDelay:(NSTimeInterval(^)(void))aBlockTime loop:(BOOL)loop isRunNow:(BOOL)now{
     if (!aBlockTime) return;
     
@@ -134,7 +134,8 @@ DUMMY_CLASS(NSObject_XY);
     objc_setAssociatedObject(self, NSObject_key_object, nil, OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, NSObject_key_loop, nil, OBJC_ASSOCIATION_ASSIGN);
 }
-////////////////////////  NSNotificationCenter  ////////////////////////
+
+#pragma mark - NSNotificationCenter
 -(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source{
     if (aMsg == nil || aSel == nil) return;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:aSel name:aMsg object:source];
@@ -152,7 +153,7 @@ DUMMY_CLASS(NSObject_XY);
     [[NSNotificationCenter defaultCenter] postNotificationName:aMsg object:object userInfo:nil];
 }
 
-////////////////////////  property  ////////////////////////
+#pragma mark - property
 -(NSArray *) attributeList{
     NSUInteger			propertyCount = 0;
     objc_property_t     *properties = class_copyPropertyList( [self class], &propertyCount );
@@ -170,7 +171,7 @@ DUMMY_CLASS(NSObject_XY);
     return array;
 }
 
-////////////////////////  Conversion  ////////////////////////
+#pragma mark - Conversion
 - (NSInteger)asInteger
 {
 	return [[self asNSNumber] integerValue];
@@ -348,7 +349,7 @@ DUMMY_CLASS(NSObject_XY);
 	
 	return nil;
 }
-
+/*
 - (NSMutableArray *)asNSMutableArrayWithClass:(Class)clazz
 {
 	NSArray * array = [self asNSArrayWithClass:clazz];
@@ -357,7 +358,7 @@ DUMMY_CLASS(NSObject_XY);
     
 	return [NSMutableArray arrayWithArray:array];
 }
-
+*/
 - (NSDictionary *)asNSDictionary
 {
 	if ( [self isKindOfClass:[NSDictionary class]] )
@@ -382,4 +383,25 @@ DUMMY_CLASS(NSObject_XY);
 	return [NSMutableDictionary dictionaryWithDictionary:dict];
 }
 
+#pragma mark - message box
+-(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION{
+    UIAlertView *alter = [[[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:aCancel otherButtonTitles:nil] autorelease];
+    
+    va_list args;
+    va_start(args, otherTitles);
+    if (otherTitles)
+    {
+        [alter addButtonWithTitle:otherTitles];
+        NSString *otherString;
+        while ((otherString = va_arg(args, NSString *)))
+        {
+            [alter addButtonWithTitle:otherString];
+        }
+    }
+    va_end(args);
+    
+    if (isShow) [alter show];
+    
+    return alter;
+}
 @end

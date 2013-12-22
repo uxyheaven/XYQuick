@@ -5,7 +5,7 @@
 //  Created by Heaven on 13-11-6.
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
-
+// kvo 的封装
 #import <Foundation/Foundation.h>
 #import "XYPrecompile.h"
 @interface XYObserve : NSObject
