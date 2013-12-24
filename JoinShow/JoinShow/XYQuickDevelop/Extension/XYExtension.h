@@ -19,6 +19,7 @@
 #import "NSData+XY.h"
 #import "NSDate+XY.h"
 
+#import "UIControl+XY.h"
 #import "UIView+XY.h"
 #import "UIImage+XY.h"
 #import "UIAlertView+XY.h"

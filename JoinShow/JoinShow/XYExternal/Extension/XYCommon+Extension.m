@@ -113,6 +113,7 @@ static MBProgressHUD *HUD = nil;
     }
     [vc.view addSubview:HUD];
     
+    HUD.mode = MBProgressHUDModeIndeterminate;
     HUD.labelText = aTitle;
     HUD.detailsLabelText = aMsg;
     HUD.removeFromSuperViewOnHide = YES;

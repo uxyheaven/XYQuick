@@ -197,6 +197,7 @@
 		571CBBC517C702D1007CB842 /* p31b0179.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBB1117C702D1007CB842 /* p31b0179.png */; };
 		571CBBC617C702D1007CB842 /* p31b0180.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBB1217C702D1007CB842 /* p31b0180.png */; };
 		5722182817DB365B003504E8 /* NetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5722182717DB365B003504E8 /* NetworkVC.m */; };
+		57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57245D5E18696F5900736D5D /* UIControl+XY.m */; };
 		57293C7B1824C42F007BF087 /* bg_trends.png in Resources */ = {isa = PBXBuildFile; fileRef = 57293C7A1824C42F007BF087 /* bg_trends.png */; };
 		572E7C9E18385C690018179D /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C5018385C690018179D /* CDAudioManager.m */; };
 		572E7C9F18385C690018179D /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C5318385C690018179D /* CDOpenALSupport.m */; };
@@ -231,7 +232,6 @@
 		572E7CD7183860E60018179D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CD6183860E60018179D /* MBProgressHUD.m */; };
 		572E7CDA183862230018179D /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CD9183862230018179D /* LKTestModels.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EEF4918473CA700FE1301 /* UILabel+XY.m */; };
-		57383F3817D2EF8B0001079C /* MessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3717D2EF8B0001079C /* MessVC.m */; };
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
@@ -516,6 +516,8 @@
 		571CBB1217C702D1007CB842 /* p31b0180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p31b0180.png; sourceTree = "<group>"; };
 		5722182617DB365B003504E8 /* NetworkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkVC.h; sourceTree = "<group>"; };
 		5722182717DB365B003504E8 /* NetworkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkVC.m; sourceTree = "<group>"; };
+		57245D5D18696F5900736D5D /* UIControl+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+XY.h"; sourceTree = "<group>"; };
+		57245D5E18696F5900736D5D /* UIControl+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+XY.m"; sourceTree = "<group>"; };
 		57293C7A1824C42F007BF087 /* bg_trends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_trends.png; sourceTree = "<group>"; };
 		572E7C4F18385C690018179D /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		572E7C5018385C690018179D /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
@@ -586,8 +588,6 @@
 		572E7CD9183862230018179D /* LKTestModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTestModels.m; sourceTree = "<group>"; };
 		572EEF4818473CA700FE1301 /* UILabel+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+XY.h"; sourceTree = "<group>"; };
 		572EEF4918473CA700FE1301 /* UILabel+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+XY.m"; sourceTree = "<group>"; };
-		57383F3617D2EF8B0001079C /* MessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessVC.h; sourceTree = "<group>"; };
-		57383F3717D2EF8B0001079C /* MessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessVC.m; sourceTree = "<group>"; };
 		57383F3917D2F5F20001079C /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		57383F3A17D2F5F20001079C /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		5738D27F1845C5E800837DB7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -771,8 +771,6 @@
 				571CBA5C17C7000A007CB842 /* AnimationVC.m */,
 				578FBFE1183AFA8B0083A952 /* AnimationVC2.h */,
 				578FBFE2183AFA8B0083A952 /* AnimationVC2.m */,
-				57383F3617D2EF8B0001079C /* MessVC.h */,
-				57383F3717D2EF8B0001079C /* MessVC.m */,
 				5722182617DB365B003504E8 /* NetworkVC.h */,
 				5722182717DB365B003504E8 /* NetworkVC.m */,
 				57F134D817DC393600C5DCDC /* JsonVC.h */,
@@ -1352,6 +1350,8 @@
 				57DB87A8183349A60015CC5A /* NSObject+XY.m */,
 				57DB87A9183349A60015CC5A /* NSString+XY.h */,
 				57DB87AA183349A60015CC5A /* NSString+XY.m */,
+				57245D5D18696F5900736D5D /* UIControl+XY.h */,
+				57245D5E18696F5900736D5D /* UIControl+XY.m */,
 				57DB87AB183349A60015CC5A /* UIActionSheet+XY.h */,
 				57DB87AC183349A60015CC5A /* UIActionSheet+XY.m */,
 				57DB87AD183349A60015CC5A /* UIAlertView+XY.h */,
@@ -1748,6 +1748,7 @@
 				57DB87E1183349A60015CC5A /* UIAlertView+XY.m in Sources */,
 				57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */,
 				57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */,
+				57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */,
 				57DB87EA183349A60015CC5A /* XYThread.m in Sources */,
 				572E7CB418385C690018179D /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				57DB87E7183349A60015CC5A /* XYObserve.m in Sources */,
@@ -1765,7 +1766,6 @@
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,
 				572E7CA218385C690018179D /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
-				57383F3817D2EF8B0001079C /* MessVC.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
 				572E7CD1183860A80018179D /* LKDBHelper.m in Sources */,
 				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,

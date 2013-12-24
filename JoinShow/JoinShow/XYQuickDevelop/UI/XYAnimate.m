@@ -147,7 +147,7 @@
     [super dealloc];
 }
 -(id) addStep:(XYAnimateStep *)aStep{
-    if (aStep) {
+    if (aStep && self != aStep) {
 		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
 	}
     return self;
@@ -217,7 +217,7 @@
     return self;
 }
 -(id) addStep:(XYAnimateStep *)aStep{
-    if (aStep) {
+    if (aStep && self != aStep) {
 		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
 	}
     return self;
