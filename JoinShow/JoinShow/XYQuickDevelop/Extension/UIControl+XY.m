@@ -12,11 +12,66 @@
 #undef	UIControl_key_events
 #define UIControl_key_events	"UIControl.events"
 
+static NSDictionary *XY_DicControlEventString = nil;
+static NSDictionary *XY_DicControlStringEvent = nil;
+
+DUMMY_CLASS(UIControl_XY);
+
 @implementation UIControl (XY)
 
++ (void) load{
+    XY_DicControlEventString = [@{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
+                              @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
+                              @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
+                              @(UIControlEventTouchDragOutside): @"UIControlEventTouchDragOutside",
+                              @(UIControlEventTouchDragEnter): @"UIControlEventTouchDragEnter",
+                              @(UIControlEventTouchDragExit): @"UIControlEventTouchDragExit",
+                              @(UIControlEventTouchUpInside): @"UIControlEventTouchUpInside",
+                              @(UIControlEventTouchUpOutside): @"UIControlEventTouchUpOutside",
+                              @(UIControlEventTouchCancel): @"UIControlEventTouchCancel",
+                              @(UIControlEventValueChanged): @"UIControlEventValueChanged",
+                              @(UIControlEventEditingDidBegin): @"UIControlEventEditingDidBegin",
+                              @(UIControlEventEditingChanged): @"UIControlEventEditingChanged",
+                              @(UIControlEventEditingDidEnd): @"UIControlEventEditingDidEnd",
+                              @(UIControlEventEditingDidEndOnExit): @"UIControlEventEditingDidEndOnExit",
+                              @(UIControlEventAllTouchEvents): @"UIControlEventAllTouchEvents",
+                              @(UIControlEventAllEditingEvents): @"UIControlEventAllEditingEvents",
+                              @(UIControlEventApplicationReserved): @"UIControlEventApplicationReserved",
+                              @(UIControlEventSystemReserved): @"UIControlEventSystemReserved",
+                              @(UIControlEventAllEvents): @"UIControlEventAllEvents"
+                              } retain];
+    
+    XY_DicControlStringEvent = [@{@"UIControlEventTouchDown": @(UIControlEventTouchDown),
+                                 @"UIControlEventTouchDownRepeat": @(UIControlEventTouchDownRepeat),
+                                 @"UIControlEventTouchDragInside": @(UIControlEventTouchDragInside),
+                                 @"UIControlEventTouchDragOutside": @(UIControlEventTouchDragOutside),
+                                 @"UIControlEventTouchDragEnter": @(UIControlEventTouchDragEnter),
+                                 @"UIControlEventTouchDragExit": @(UIControlEventTouchDragExit),
+                                 @"UIControlEventTouchUpInside": @(UIControlEventTouchUpInside),
+                                 @"UIControlEventTouchUpOutside": @(UIControlEventTouchUpOutside),
+                                 @"UIControlEventTouchCancel": @(UIControlEventTouchCancel),
+                                 @"UIControlEventValueChanged": @(UIControlEventValueChanged),
+                                 @"UIControlEventEditingDidBegin": @(UIControlEventEditingDidBegin),
+                                 @"UIControlEventEditingChanged": @(UIControlEventEditingChanged),
+                                 @"UIControlEventEditingDidEnd": @(UIControlEventEditingDidEnd),
+                                 @"UIControlEventEditingDidEndOnExit": @(UIControlEventEditingDidEndOnExit),
+                                 @"UIControlEventAllTouchEvents": @(UIControlEventAllTouchEvents),
+                                 @"UIControlEventAllEditingEvents": @(UIControlEventAllEditingEvents),
+                                 @"UIControlEventApplicationReserved": @(UIControlEventApplicationReserved),
+                                 @"UIControlEventSystemReserved": @(UIControlEventSystemReserved),
+                                 @"UIControlEventAllEvents": @(UIControlEventAllEvents)
+                                 }  retain];
+}
 - (void)dealloc
 {
-    objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_ASSIGN);
+    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
+    if (opreations) {
+        [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [self removeHandlerForEvent:[UIControl eventWithName:key]];
+        }];
+        objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_ASSIGN);
+    }
+    
     [super dealloc];
 }
 - (void)removeHandlerForEvent:(UIControlEvents)event
@@ -85,54 +140,11 @@
 }
 +(NSString *)eventName:(UIControlEvents)event
 {
-    switch (event) {
-        case UIControlEventTouchDown:          return @"UIControlEventTouchDown";
-        case UIControlEventTouchDownRepeat:    return @"UIControlEventTouchDownRepeat";
-        case UIControlEventTouchDragInside:    return @"UIControlEventTouchDragInside";
-        case UIControlEventTouchDragOutside:   return @"UIControlEventTouchDragOutside";
-        case UIControlEventTouchDragEnter:     return @"UIControlEventTouchDragEnter";
-        case UIControlEventTouchDragExit:      return @"UIControlEventTouchDragExit";
-        case UIControlEventTouchUpInside:      return @"UIControlEventTouchUpInside";
-        case UIControlEventTouchUpOutside:     return @"UIControlEventTouchUpOutside";
-        case UIControlEventTouchCancel:        return @"UIControlEventTouchCancel";
-        case UIControlEventValueChanged:       return @"UIControlEventValueChanged";
-        case UIControlEventEditingDidBegin:    return @"UIControlEventEditingDidBegin";
-        case UIControlEventEditingChanged:     return @"UIControlEventEditingChanged";
-        case UIControlEventEditingDidEnd:      return @"UIControlEventEditingDidEnd";
-        case UIControlEventEditingDidEndOnExit:return @"UIControlEventEditingDidEndOnExit";
-        case UIControlEventAllTouchEvents:     return @"UIControlEventAllTouchEvents";
-        case UIControlEventAllEditingEvents:   return @"UIControlEventAllEditingEvents";
-        case UIControlEventApplicationReserved:return @"UIControlEventApplicationReserved";
-        case UIControlEventSystemReserved:     return @"UIControlEventSystemReserved";
-        case UIControlEventAllEvents:          return @"UIControlEventAllEvents";
-        default:
-            return @"description";
-    }
-    return @"description";
+    return [XY_DicControlEventString objectForKey:@(event)];
 }
 +(UIControlEvents)eventWithName:(NSString *)name
 {
-    if([name isEqualToString:@"UIControlEventTouchDown"])           return UIControlEventTouchDown;
-    if([name isEqualToString:@"UIControlEventTouchDownRepeat"])     return UIControlEventTouchDownRepeat;
-    if([name isEqualToString:@"UIControlEventTouchDragInside"])     return UIControlEventTouchDragInside;
-    if([name isEqualToString:@"UIControlEventTouchDragOutside"])    return UIControlEventTouchDragOutside;
-    if([name isEqualToString:@"UIControlEventTouchDragEnter"])      return UIControlEventTouchDragEnter;
-    if([name isEqualToString:@"UIControlEventTouchDragExit"])       return UIControlEventTouchDragExit;
-    if([name isEqualToString:@"UIControlEventTouchUpInside"])       return UIControlEventTouchUpInside;
-    if([name isEqualToString:@"UIControlEventTouchUpOutside"])      return UIControlEventTouchUpOutside;
-    if([name isEqualToString:@"UIControlEventTouchCancel"])         return UIControlEventTouchCancel;
-    if([name isEqualToString:@"UIControlEventTouchDown"])           return UIControlEventTouchDown;
-    if([name isEqualToString:@"UIControlEventValueChanged"])        return UIControlEventValueChanged;
-    if([name isEqualToString:@"UIControlEventEditingDidBegin"])     return UIControlEventEditingDidBegin;
-    if([name isEqualToString:@"UIControlEventEditingChanged"])      return UIControlEventEditingChanged;
-    if([name isEqualToString:@"UIControlEventEditingDidEnd"])       return UIControlEventEditingDidEnd;
-    if([name isEqualToString:@"UIControlEventEditingDidEndOnExit"]) return UIControlEventEditingDidEndOnExit;
-    if([name isEqualToString:@"UIControlEventAllTouchEvents"])      return UIControlEventAllTouchEvents;
-    if([name isEqualToString:@"UIControlEventAllEditingEvents"])    return UIControlEventAllEditingEvents;
-    if([name isEqualToString:@"UIControlEventApplicationReserved"]) return UIControlEventApplicationReserved;
-    if([name isEqualToString:@"UIControlEventSystemReserved"])      return UIControlEventSystemReserved;
-    if([name isEqualToString:@"UIControlEventAllEvents"])           return UIControlEventAllEvents;
-    return UIControlEventAllEvents;
+    return [[XY_DicControlStringEvent objectForKey:name] integerValue];
 }
 
 @end

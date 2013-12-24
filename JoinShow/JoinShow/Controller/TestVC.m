@@ -76,7 +76,7 @@ if (1) { \
 	// Do any additional setup after loading the view.
     [[XYTimer sharedInstance] startTimerWithInterval:2];
     UIScrollView *scroll = [[[UIScrollView alloc] initWithFrame:CGRectMake(10, 66 , Screen_WIDTH - 20, Screen_HEIGHT - 86)] autorelease];
-    scroll.contentSize = CGSizeMake(Screen_WIDTH - 60, 2000);
+    //scroll.contentSize = CGSizeMake(Screen_WIDTH - 60, 2000);
     scroll.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     [self.view addSubview:scroll];
     int btnOffsetY = 20;
@@ -197,6 +197,19 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
    
+    // Block UIButton
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"Block UIButton" forState:UIControlStateNormal];
+    [tempBtn handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+        NSLogD(@"Block UIButton")
+    }];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    
+    scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
 #pragma mark - others
     //////////////////// test KVO ///////////////////////
     [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged:) observeKey:@"test_testKVO"];
@@ -206,6 +219,9 @@ if (1) { \
     NSString *str2 = MultiPlatform(@"xib");
     NSLogD(@"%@", str2);
 
+#pragma mark - next
+    NSString *str3 = [NSString stringWithFormat:@"%p", self];
+    NSLog(@"%@", str3);
 }
 
 - (void)didReceiveMemoryWarning
@@ -232,7 +248,7 @@ if (1) { \
 }
 - (IBAction)clickBtnMuhud:(id)sender {
     UIButton* btn=(UIButton*) sender;
-    
+    float f = 0.5;
     XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
     XYAnimateStep *step1 = [XYAnimateStep duration:0.15 animate:^{
         btn.transform = CGAffineTransformMakeScale(.5, .5);
