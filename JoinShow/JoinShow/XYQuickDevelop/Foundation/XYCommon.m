@@ -372,7 +372,7 @@
 +(void) openURL:(NSURL *)url{
     NSURL *tmpURL = url;
     if ([url isKindOfClass:[NSString class]]) {
-        tmpURL = [NSURL URLWithString:url];
+        tmpURL = [NSURL URLWithString:(NSString *)url];
     }
     [[UIApplication sharedApplication ] openURL:tmpURL];
 }
@@ -445,8 +445,8 @@
 
 /***************************************************************/
 +(BOOL) compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion{
-    NSArray*oldV = [oldVersion componentsSeparatedByString:@"."];
-    NSArray*newV = [newVersion componentsSeparatedByString:@"."];
+    NSArray *oldV = [oldVersion componentsSeparatedByString:@"."];
+    NSArray *newV = [newVersion componentsSeparatedByString:@"."];
     
     if (oldV.count == newV.count) {
         for (NSInteger i = 0; i < oldV.count; i++) {

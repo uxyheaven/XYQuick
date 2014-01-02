@@ -83,7 +83,7 @@ DUMMY_CLASS(UIControl_XY);
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     [opreations removeObjectForKey:methodName];
     [self removeTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
@@ -98,7 +98,7 @@ DUMMY_CLASS(UIControl_XY);
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     [opreations setObject:[[block copy] autorelease] forKey:methodName];
     

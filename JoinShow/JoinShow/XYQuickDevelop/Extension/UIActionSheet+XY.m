@@ -27,27 +27,27 @@ DUMMY_CLASS(UIActionSheet_XY);
 @implementation UIActionSheet (XY)
 -(void) handlerClickedButton:(void (^)(UIActionSheet *actionSheet, NSInteger btnIndex))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerCancel:(void (^)(UIActionSheet *actionSheet))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerWillPresent:(void (^)(UIActionSheet *actionSheet))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerDidPresent:(void (^)(UIActionSheet *actionSheet))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerWillDismiss:(void (^)(UIActionSheet *actionSheet))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerDidDismiss:(void (^)(UIActionSheet *actionSheet, NSInteger btnIndex))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 #pragma mark - UIActionSheetDelegate
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{

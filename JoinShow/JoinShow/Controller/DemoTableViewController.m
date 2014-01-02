@@ -106,7 +106,7 @@
     // Configure the cell...
     NSDictionary *dic = [self.list objectAtIndex:indexPath.row];
     cell.textLabel.text = [dic objectForKey:@"title"];
-    
+   // cell.rowHeight = 44;
     return cell;
 }
 
@@ -150,7 +150,23 @@
 */
 
 #pragma mark - Table view delegate
-
+// ios7 下执行2次?
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    /*
+    CGFloat height = 44;
+    tableView.delegate = nil;
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell)
+    {
+        height = cell.rowHeight;
+    }
+    tableView.delegate = self;
+    return height;
+     */
+    NSLogD(@"%@", indexPath);
+    float f = [UITableViewCell heightForRowWithData:@"test"];
+    return f;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.

@@ -30,32 +30,32 @@ DUMMY_CLASS(UIAlertView_XY);
 
 -(void) handlerClickedButton:(void (^)(UIAlertView *alertView, NSInteger btnIndex))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_clicked, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerCancel:(void (^)(UIAlertView *alertView))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_cancel, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerWillPresent:(void (^)(UIAlertView *alertView))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 -(void) handlerDidPresent:(void (^)(UIAlertView *alertView))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerWillDismiss:(void (^)(UIAlertView *alertView, NSInteger btnIndex))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerDidDismiss:(void (^)(UIAlertView *alertView, NSInteger btnIndex))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 -(void) handlerShouldEnableFirstOtherButton:(BOOL (^)(UIAlertView *alertView))aBlock{
     self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_shouldEnableFirstOtherButton, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIAlertView_key_shouldEnableFirstOtherButton, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 #pragma mark - UIAlertViewDelegate

@@ -23,6 +23,16 @@
 #define NSLogDD
 #endif
 
+#define aaaaa LL(aaaaa)
+//#define XY_DEBUG( __tag )  #if (1 != __tag )
+
+
+#if (1 != __tag )
+
+#else
+
+#endif
+
 
 #import "XYPerformance.h"
 

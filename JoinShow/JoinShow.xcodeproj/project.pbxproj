@@ -243,6 +243,7 @@
 		57808338181A11A6000F349B /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57808337181A11A6000F349B /* ImageVC.m */; };
 		5789228E1859A3040005CC27 /* Test1Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789228D1859A3040005CC27 /* Test1Model.m */; };
 		578922911859A3120005CC27 /* Test2Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 578922901859A3120005CC27 /* Test2Model.m */; };
+		578D14CF187536690071448C /* UITableViewCell+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D14CE187536690071448C /* UITableViewCell+XY.m */; };
 		578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 578FBFE2183AFA8B0083A952 /* AnimationVC2.m */; };
 		57901EBB17E6C26E00B8E8FF /* remark in Resources */ = {isa = PBXBuildFile; fileRef = 57901EBA17E6C26E00B8E8FF /* remark */; };
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
@@ -609,6 +610,8 @@
 		5789228D1859A3040005CC27 /* Test1Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test1Model.m; sourceTree = "<group>"; };
 		5789228F1859A3120005CC27 /* Test2Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2Model.h; sourceTree = "<group>"; };
 		578922901859A3120005CC27 /* Test2Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2Model.m; sourceTree = "<group>"; };
+		578D14CD187536690071448C /* UITableViewCell+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+XY.h"; sourceTree = "<group>"; };
+		578D14CE187536690071448C /* UITableViewCell+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+XY.m"; sourceTree = "<group>"; };
 		578FBFE1183AFA8B0083A952 /* AnimationVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationVC2.h; sourceTree = "<group>"; };
 		578FBFE2183AFA8B0083A952 /* AnimationVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationVC2.m; sourceTree = "<group>"; };
 		57901EBA17E6C26E00B8E8FF /* remark */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = remark; sourceTree = "<group>"; };
@@ -1364,6 +1367,8 @@
 				57DB87B4183349A60015CC5A /* UIView+XY.m */,
 				572EEF4818473CA700FE1301 /* UILabel+XY.h */,
 				572EEF4918473CA700FE1301 /* UILabel+XY.m */,
+				578D14CD187536690071448C /* UITableViewCell+XY.h */,
+				578D14CE187536690071448C /* UITableViewCell+XY.m */,
 				57DB87B5183349A60015CC5A /* XYExtension.h */,
 			);
 			path = Extension;
@@ -1820,6 +1825,7 @@
 				57DB87DC183349A60015CC5A /* NSDate+XY.m in Sources */,
 				572E7CA418385C690018179D /* FMDatabaseAdditions.m in Sources */,
 				57DB87DB183349A60015CC5A /* NSData+XY.m in Sources */,
+				578D14CF187536690071448C /* UITableViewCell+XY.m in Sources */,
 				572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */,
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
 				57DB87DE183349A60015CC5A /* NSObject+XY.m in Sources */,

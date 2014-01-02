@@ -29,10 +29,12 @@ XY_SINGLETON(XYPopupViewHelper)
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
 touchOutsideHidden:(BOOL)hidden
+     succeedBlock:(void(^)(UIView *aView))succeedBlock
      dismissBlock:(void(^)(UIView *aView))dismissBlock;
 
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
+     succeedBlock:(void(^)(UIView *aView))succeedBlock
      dismissBlock:(void(^)(UIView *aView))dismissBlock;
 
 -(void) dismissPopup;
@@ -44,8 +46,12 @@ touchOutsideHidden:(BOOL)hidden
 // 弹出
 -(void) popupWithtype:(PopupViewBGType)aType
    touchOutsideHidden:(BOOL)hidden
+         succeedBlock:(void(^)(UIView *aView))succeedBlock
          dismissBlock:(void(^)(UIView *aView))dismissBlock;
+
 -(void) popupWithtype:(PopupViewBGType)aType
+         succeedBlock:(void(^)(UIView *aView))succeedBlock
          dismissBlock:(void(^)(UIView *aView))dismissBlock;
+
 -(void) dismissPopup;
 @end

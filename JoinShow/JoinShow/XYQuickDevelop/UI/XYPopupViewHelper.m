@@ -56,6 +56,7 @@ DEF_SINGLETON(XYPopupViewHelper)
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
 touchOutsideHidden:(BOOL)hidden
+succeedBlock:(void(^)(UIView *aView))succeedBlock
      dismissBlock:(void(^)(UIView *aView))dismissBlock{
     if (aView == nil) {
         return;
@@ -81,13 +82,17 @@ touchOutsideHidden:(BOOL)hidden
     self.popupVIew = aView;
     [vc.view addSubview:_popupVIew];
     
+    if (succeedBlock) {
+        succeedBlock(_popupVIew);
+    }
+    
     if (self.showAnimation) {
         self.showAnimation(_popupVIew);
     }
 
 }
--(void) popupView:(UIView* )aView type:(PopupViewBGType)aType dismissBlock:(void(^)(UIView *aView))dismissBlock{
-    [self popupView:aView type:aType touchOutsideHidden:YES dismissBlock:dismissBlock];
+-(void) popupView:(UIView* )aView type:(PopupViewBGType)aType succeedBlock:(void(^)(UIView *aView))succeedBlock dismissBlock:(void(^)(UIView *aView))dismissBlock{
+    [self popupView:aView type:aType touchOutsideHidden:YES succeedBlock:succeedBlock dismissBlock:dismissBlock];
     }
 -(void) dismissPopup{
     UIViewController *vc = [XYCommon topMostController];
@@ -119,12 +124,14 @@ touchOutsideHidden:(BOOL)hidden
 
 -(void) popupWithtype:(PopupViewBGType)aType
    touchOutsideHidden:(BOOL)hidden
+succeedBlock:(void(^)(UIView *aView))succeedBlock
          dismissBlock:(void(^)(UIView *aView))dismissBlock{
-    [[XYPopupViewHelper sharedInstance] popupView:self type:aType  touchOutsideHidden:hidden dismissBlock:dismissBlock];
+    [[XYPopupViewHelper sharedInstance] popupView:self type:aType touchOutsideHidden:hidden succeedBlock:succeedBlock dismissBlock:dismissBlock];
 }
 -(void) popupWithtype:(PopupViewBGType)aType
+succeedBlock:(void(^)(UIView *aView))succeedBlock
          dismissBlock:(void(^)(UIView *aView))dismissBlock{
-    [self popupWithtype:aType touchOutsideHidden:YES dismissBlock:dismissBlock];
+    [self popupWithtype:aType touchOutsideHidden:YES  succeedBlock:succeedBlock dismissBlock:dismissBlock];
 }
 -(void) dismissPopup{
     [[XYPopupViewHelper sharedInstance] dismissPopup];

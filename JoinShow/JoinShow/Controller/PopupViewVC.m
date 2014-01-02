@@ -62,21 +62,21 @@
     UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
     view.backgroundColor = [UIColor redColor];
     
-    [view popupWithtype:PopupViewOption_none dismissBlock:nil];
+    [view popupWithtype:PopupViewOption_none succeedBlock:nil dismissBlock:nil];
 }
 
 - (IBAction)clickDark:(id)sender {
     UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
     view.backgroundColor = [UIColor redColor];
     
-    [view popupWithtype:PopupViewOption_colorLump  dismissBlock:nil];
+    [view popupWithtype:PopupViewOption_colorLump succeedBlock:nil dismissBlock:nil];
 }
 
 - (IBAction)clickBlur:(id)sender {
     UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
     view.backgroundColor = [UIColor redColor];
     
-    [view popupWithtype:PopupViewOption_blur dismissBlock:^(UIView *aView) {
+    [view popupWithtype:PopupViewOption_blur succeedBlock:nil dismissBlock:^(UIView *aView) {
         NSLogD(@"a");
     }];
 }
@@ -92,7 +92,7 @@
             aView.center = point;
         } completion:nil];
     }];
-    [view popupWithtype:PopupViewOption_blur dismissBlock:nil];
+    [view popupWithtype:PopupViewOption_blur succeedBlock:nil dismissBlock:nil];
 }
 
 - (IBAction)clickAlertView:(id)sender {

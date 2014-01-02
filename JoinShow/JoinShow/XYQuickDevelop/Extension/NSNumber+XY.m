@@ -8,6 +8,7 @@
 
 #import "NSNumber+XY.h"
 #import "XYPrecompile.h"
+#import "NSDate+XY.h"
 
 DUMMY_CLASS(NSNumber_XY);
 

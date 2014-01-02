@@ -13,12 +13,6 @@
 //@property (nonatomic, assign) BOOL isHookDealloc;
 
 #pragma mark - perform
-// 目前只支持添加一个随机时间执行
--(void) performSelector:(SEL)aSelector target:(id)target mark:(id)mark afterDelay:(NSTimeInterval(^)(void))aBlockTime loop:(BOOL)loop isRunNow:(BOOL)now;
-
--(void) performBlock:(void(^)(void))aBlock mark:(id)mark afterDelay:(NSTimeInterval(^)(void))aBlockTime loop:(BOOL)loop isRunNow:(BOOL)now;
-//-(void) removePerformWithMark:(NSString *)mark;
--(void) removePerformRandomDelay;
 
 #pragma mark - NSNotificationCenter
 // source : 表示接收哪个发送者的通知，如果第为nil,接收所有发送者的通知
@@ -55,4 +49,34 @@
 #pragma mark - message box
 -(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
+#pragma mark- Object
+@property (nonatomic, retain) id                tempObject;
+
+// send object
+// handle block with default identifier is @"sendObject".
+-(void) receiveObject:(void(^)(id object))aBlock;
+-(void) sendObject:(id)anObject;
+
+//tag can't be nil
+-(void) receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier;
+-(void) sendObject:(id)anObject withIdentifier:(NSString *)identifier;
+
+#pragma mark- block
+// handle block with default identifier is @"EventBlock".
+-(void) handlerDefaultEventWithBlock:(id)aBlock;
+-(id) blockForDefaultEvent;
+
+// 设置一个block作为回调
+-(void) handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
+-(id) blockForEventWithIdentifier:(NSString *)identifier;
+
 @end
+
+
+
+
+
+
+
+
+

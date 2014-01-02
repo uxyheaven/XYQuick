@@ -57,7 +57,7 @@ DUMMY_CLASS(UIView_XY);
     [self addGestureRecognizer:tap];
     [tap release];
     
-    objc_setAssociatedObject(self, UIView_key_tapBlock, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIView_key_tapBlock, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
   //  XY_swizzleInstanceMethod([self class], @selector(dealloc), @selector(UIView_dealloc));
 }
 -(void)actionTap{
