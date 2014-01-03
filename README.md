@@ -12,15 +12,17 @@ XYDataLite 轻量形数据持久化, 基于NSUserDefaults
 XYObserve KVO的简单封装
 
 ---
-XYSpriteView 帧动画精灵类.
-
-XYSpriteHelper 精灵管理类.
-
 XYParallaxHelper 实现类似ios7 视图差效果.
 
 XYKeyboardHelper 弹出键盘时,移动所编辑的控件的通用解决方案
 
 XYPopupViewHelper 弹出View,支持背景暗色和模糊效果
+
+XYSpriteView 帧动画精灵类
+
+XYSpriteHelper 精灵管理类
+
+XYAnimate UIView动画的封装
 
 
 #### XYExternal
@@ -39,6 +41,7 @@ XYPopupViewHelper 弹出View,支持背景暗色和模糊效果
 * 根据说明设置文件 -fobjc-arc 或 -fno-objc-arc
 * 添加本库以及第三方需要的framework
 * 在需要用的文件或者pch里 `#import "XYQuickDevelop.h", #import "XYExternal.h"`
+* 在 `XYPrecompile.h ,XYExternalPrecompile.h` 开启或者关闭需要的编译选项
 
 
 
