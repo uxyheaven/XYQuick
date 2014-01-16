@@ -20,6 +20,7 @@
 
 #import "Test1Model.h"
 #import "Test2Model.h"
+#import "GirlEntity.h"
 
 
 #define MultiPlatform( __xib ) \
@@ -208,6 +209,34 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"new girl" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickNewGirl:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"view bind data" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickViewBindData:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    TestView *testView = [[[TestView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)] autorelease];
+    _testView = testView;
+    [scroll addSubview:testView];
+     btnOffsetY += 220;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"change view data" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickChangeViewData:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
 #pragma mark - others
@@ -222,6 +251,20 @@ if (1) { \
 #pragma mark - next
     NSString *str3 = [NSString stringWithFormat:@"%p", self];
     NSLog(@"%@", str3);
+    
+   // PRINT_CALLSTACK(64);
+    /*
+    DEF_WEAKSELF
+    [weakSelf setArray:nil];
+    [weakSelf array];
+     */
+#pragma mark - next
+    NSString *strLen = @"a";
+    NSLogD(@"%d", [strLen getLength]);
+    strLen = @"啊a";
+    NSLogD(@"%d", [strLen getLength]);
+    strLen = @"你好,世界.";
+    NSLogD(@"%d", [strLen getLength]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -236,6 +279,9 @@ if (1) { \
      */
     // kvo
     self.testKVO = self.testKVO + 1;
+    
+    id j = [self valueForKeyPath:@"testKVO"];
+    NSLog(@"%@", j);
     
     // 观察array
     [self willChangeValueForKey:@"testArrayKVO"];
@@ -324,6 +370,80 @@ if (1) { \
     FOREGROUND_COMMIT
     BACKGROUND_COMMIT
 }
+-(void) clickNewGirl:(id)sender{
+    NSMutableDictionary *me = [NSMutableDictionary dictionary];
+    // 从 GirlEntity类 创建一个妹子
+    GirlEntity *girl1 = [[[GirlEntity alloc] init] autorelease];
+    girl1.name = @"妹子1";
+    [me setObject:girl1 forKey:@"girlFriend"];
+    
+    // 创建一个NSObject对象, 然后添加属性,把他设置成妹子
+    NSObject *girl2 = [[[NSObject alloc] init] autorelease];
+    objc_setAssociatedObject(girl2, "name", @"妹子2", OBJC_ASSOCIATION_COPY);
+    [me setObject:girl2 forKey:@"girlFriend2"];
+    
+    // 动态创建一个妹子类,然后创建一个妹子
+    const char *className = "Girl3";
+    Class kclass = objc_getClass(className);
+    if (!kclass)
+    {
+        Class superClass = [NSObject class];
+        kclass = objc_allocateClassPair(superClass, className, 0);
+    }
+    
+    NSUInteger size;
+    NSUInteger alignment;
+    NSGetSizeAndAlignment("*", &size, &alignment);
+    class_addIvar(kclass, "name", size, alignment, "*");
+    
+    // 注册到运行时环境
+    objc_registerClassPair(kclass);
+    
+    id girl3 = [[[kclass alloc] init] autorelease];
+    object_setInstanceVariable(girl3, "name", "妹子3");
+    
+    [me setObject:girl3 forKey:@"girlFriend3"];
+    
+    // 挖墙角
+    GirlEntity *girl4 = [[[GirlEntity alloc] init] autorelease];
+    girl4.name = @"女神";
+    
+    SEL original = @selector(talk);
+    SEL replacement = @selector(talk2);
+    
+    Method a = class_getInstanceMethod([GirlEntity class], original);
+    Method b = class_getInstanceMethod([self class], replacement);
+    if (class_addMethod([GirlEntity class], original, method_getImplementation(b), method_getTypeEncoding(b)))
+    {
+        class_replaceMethod([GirlEntity class], replacement, method_getImplementation(a), method_getTypeEncoding(a));
+    }
+    else
+    {
+        method_exchangeImplementations(a, b);
+    }
+    
+    [girl4 talk];
+    
+    
+    NSLogD(@"%@", me);
+}
+-(void) talk2{
+    NSString *name = [self valueForKey:@"name"];
+    if ([name isEqualToString:@"女神"]) {
+        // do 你懂的
+        NSLog(@"%s", __FUNCTION__);
+    }
+}
+
+-(void) clickViewBindData:(id)sender{
+    
+    NSDictionary *dic = @{@"label1": @(self.testKVO), @"img1": @"headportrait.jpg"};
+    [_testView bindDataWithDic:dic];
+}
+-(void) clickChangeViewData:(id)sender{
+    
+}
+
 /////////////////////////// 备注 ///////////////////////////////
 /*
 void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {

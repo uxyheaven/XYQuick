@@ -46,11 +46,14 @@
 // 截屏
 -(UIImage *) snapshot;
 
-// 视图差效果
-#pragma mark -todo 考虑到底写不写到这
-
 // 旋转 1:顺时针180度
 -(void) setRotate:(float)f;
+
+
+-(void) bindDataWithDic:(NSDictionary *)dic;
+
+// 子类需要重新此方法
+//+(void) setupDataBind:(NSMutableDictionary *)dic;
 
 @end
 

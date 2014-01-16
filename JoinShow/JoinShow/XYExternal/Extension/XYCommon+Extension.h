@@ -36,6 +36,8 @@
 #define HIDDENMBProgressHUD [XYCommon hiddenMBProgressHUD];
 +(void) hiddenMBProgressHUD;
 
++(MBProgressHUD *) MBProgressHUD;
+
 #define SHOWMBProgressHUD(aTitle, aMsg, aImg, aDimBG, aDelay) [XYCommon showMBProgressHUDTitle:aTitle msg:aMsg image:aImg dimBG:aDimBG delay:aDelay];
 +(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d;
 

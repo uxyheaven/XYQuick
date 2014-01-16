@@ -667,6 +667,21 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
+-(int) getLength{
+    int strLength = 0;
+    char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
+    for (int i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++) {
+        if (*p) {
+            p++;
+            strLength++;
+        }
+        else {
+            p++;
+        }
+    }
+    return strLength;
+}
+
 @end
 
 #pragma mark -

@@ -9,6 +9,10 @@
 #import "XYDebug.h"
 #import "XYFoundation.h"
 
+#undef	MAX_CALLSTACK_DEPTH
+#define MAX_CALLSTACK_DEPTH	(64)
+
+
 static void (*__sendEvent)( id, SEL, UIEvent * );
 
 @interface UIWindow(XYDebugPrivate)
@@ -72,6 +76,64 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 
 @implementation XYDebug
 
++ (void)printCallstack:(NSUInteger)depth
+{
+	NSArray * callstack = [self callstack:depth];
+	if ( callstack && callstack.count )
+	{
+		NSLog(@"%@", callstack);
+	}
+}
++ (NSArray *)callstack:(NSUInteger)depth
+{
+	NSMutableArray * array = [[NSMutableArray alloc] init];
+	
+	void * stacks[MAX_CALLSTACK_DEPTH] = { 0 };
+    
+	depth = backtrace( stacks, (int)((depth > MAX_CALLSTACK_DEPTH) ? MAX_CALLSTACK_DEPTH : depth) );
+	if ( depth )
+	{
+		char ** symbols = backtrace_symbols( stacks, (int)depth );
+		if ( symbols )
+		{
+			for ( int i = 0; i < depth; ++i )
+			{
+				NSString * symbol = [NSString stringWithUTF8String:(const char *)symbols[i]];
+				if ( 0 == [symbol length] )
+					continue;
+                
+				NSRange range1 = [symbol rangeOfString:@"["];
+				NSRange range2 = [symbol rangeOfString:@"]"];
+                
+				if ( range1.length > 0 && range2.length > 0 )
+				{
+					NSRange range3;
+					range3.location = range1.location;
+					range3.length = range2.location + range2.length - range1.location;
+					[array addObject:[symbol substringWithRange:range3]];
+				}
+				else
+				{
+					[array addObject:symbol];
+				}
+			}
+            
+			free( symbols );
+		}
+	}
+	
+	return [array autorelease];
+}
++(void) breakPoint
+{
+#if __XY_DEVELOPMENT__
+#if defined(__ppc__)
+	asm("trap");
+#elif defined(__i386__)
+	asm("int3");
+#endif	// #elif defined(__i386__)
+#endif	// #if __BEE_DEVELOPMENT__
+}
 @end
 
 

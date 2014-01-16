@@ -86,9 +86,9 @@ typedef enum {
 
 
 typedef enum {
-    markOption_middle = 1,
-    markOption_front,
-    markOption_back,
+    MarkOption_middle = 1,
+    MarkOption_front,
+    MarkOption_back,
 } MarkOption;
 /**
  * 返回字符串的位置的方法
@@ -100,8 +100,8 @@ typedef enum {
  * strMark 需要查找的字符串的标记
  * strStart 起始标记
  * strEnd 结束标记
- * operation 模式. markOption_middle mark在Start和end中间,当Start=mark时,返回 Start和end中间的Range
- *                markOption_front: mark在Start和end前面   markOption_back: mark在Start和end后面
+ * operation 模式. MarkOption_middle mark在Start和end中间,当Start=mark时,返回 Start和end中间的Range
+ *                MarkOption_front: mark在Start和end前面   MarkOption_back: mark在Start和end后面
  * block 每一个字符串都执行该block
  */
 +(NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
@@ -110,7 +110,7 @@ typedef enum {
 
 
 
-#define kLastLocation -1
+#define XYCommon_lastLocation -1
 /**
  * 返回没有属性的xml中指定节点的值的方法
  * api parameters 说明
@@ -118,7 +118,7 @@ typedef enum {
  * str xml字符串
  * akey 节点名
  * location 起始位置
- * operation 模式. kLastLocation 从上次结束的位置开始查找,提高效率
+ * operation 模式. XYCommon_lastLocation 从上次结束的位置开始查找,提高效率
  */
 +(NSString *) getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location;
 

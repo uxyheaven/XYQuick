@@ -8,6 +8,8 @@
 
 #import "UIView+XY.h"
 #import "UIImage+XY.h"
+#import "NSObject+XY.h"
+
 DUMMY_CLASS(UIView_XY);
 #undef	UIView_key_tapBlock
 #define UIView_key_tapBlock	"UIView.tapBlock"
@@ -182,6 +184,35 @@ DUMMY_CLASS(UIView_XY);
     self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * f);
 }
 
+-(void) bindDataWithDic:(NSDictionary *)dic{
+    if (dic) {
+        [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            id tempObj = [self valueForKeyPath:key];
+            if ([tempObj isKindOfClass:[UILabel class]])
+            {
+                NSString *str = [obj asNSString];
+                [tempObj setText:str];
+                
+            }else if([tempObj isKindOfClass:[UIImageView class]])
+            {
+                if ([obj isKindOfClass:[UIImage class]]) {
+                    [tempObj setValue:obj forKey:@"image"];
+                } else if ([obj isKindOfClass:[NSString class]]){
+                    UIImage *tempImg = [UIImage imageWithString:obj];
+                    [tempObj setValue:tempImg forKey:@"image"];
+                }
+            }else if (1)
+            {
+                [self setValue:obj forKeyPath:key];
+            }
+            
+        }];
+    }
+}
+// 子类需要重新此方法
+-(void) setupDataBind:(NSMutableDictionary *)dic{
+    
+}
 @end
 
 

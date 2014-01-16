@@ -19,6 +19,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UILabel *tempLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)] autorelease];
+        tempLabel.backgroundColor = [UIColor redColor];
+        tempLabel.textColor = [UIColor whiteColor];
+        tempLabel.text = @"-1";
+        _label1 = tempLabel;
+        [self addSubview:tempLabel];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 0, 50, 50)];
+        _img1 = imgView;
+        [self addSubview:imgView];
     }
     return self;
 }

@@ -163,7 +163,7 @@
     tableView.delegate = self;
     return height;
      */
-    NSLogD(@"%@", indexPath);
+    //NSLogD(@"%@", indexPath);
     float f = [UITableViewCell heightForRowWithData:@"test"];
     return f;
 }

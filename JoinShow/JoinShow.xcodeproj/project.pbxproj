@@ -235,6 +235,7 @@
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
+		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A0BA7182379B800CA8D9D /* PopupViewVC.m */; };
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
 		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
@@ -595,6 +596,8 @@
 		5742C1F017F7BF3C00065083 /* XYExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternal.h; sourceTree = "<group>"; };
 		57548400181F4629008F9355 /* KeyboardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardVC.h; sourceTree = "<group>"; };
 		57548401181F4629008F9355 /* KeyboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardVC.m; sourceTree = "<group>"; };
+		575694841883D9C4004C2C74 /* GirlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GirlEntity.h; sourceTree = "<group>"; };
+		575694851883D9C4004C2C74 /* GirlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GirlEntity.m; sourceTree = "<group>"; };
 		576A0BA6182379B800CA8D9D /* PopupViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupViewVC.h; sourceTree = "<group>"; };
 		576A0BA7182379B800CA8D9D /* PopupViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewVC.m; sourceTree = "<group>"; };
 		576E87CE1855D23F00C7A724 /* XYDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDebug.h; sourceTree = "<group>"; };
@@ -805,6 +808,8 @@
 				5789228D1859A3040005CC27 /* Test1Model.m */,
 				5789228F1859A3120005CC27 /* Test2Model.h */,
 				578922901859A3120005CC27 /* Test2Model.m */,
+				575694841883D9C4004C2C74 /* GirlEntity.h */,
+				575694851883D9C4004C2C74 /* GirlEntity.m */,
 				572E7CD8183862230018179D /* LKTestModels.h */,
 				572E7CD9183862230018179D /* LKTestModels.m */,
 				57163940183CEB7800A60102 /* DownloadRequest.h */,
@@ -1822,6 +1827,7 @@
 				5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */,
 				57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */,
 				57548402181F4629008F9355 /* KeyboardVC.m in Sources */,
+				575694861883D9C4004C2C74 /* GirlEntity.m in Sources */,
 				57DB87DC183349A60015CC5A /* NSDate+XY.m in Sources */,
 				572E7CA418385C690018179D /* FMDatabaseAdditions.m in Sources */,
 				57DB87DB183349A60015CC5A /* NSData+XY.m in Sources */,

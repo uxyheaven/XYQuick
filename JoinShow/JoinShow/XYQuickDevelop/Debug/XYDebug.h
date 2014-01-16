@@ -6,12 +6,13 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //  Copy from bee Framework http://www.bee-framework.com
 
+//#import "XYPrecompile.h"
+
 // debug模式下的nslog
 
 /*
  * 说明 仅在debug下才显示nslog
  */
-
 #if (1 == __XYDEBUG__)
 #undef	NSLogD
 #undef	NSLogDD
@@ -23,16 +24,18 @@
 #define NSLogDD
 #endif
 
-#define aaaaa LL(aaaaa)
-//#define XY_DEBUG( __tag )  #if (1 != __tag )
 
+#undef	PRINT_CALLSTACK
+#define PRINT_CALLSTACK( __n )	[XYDebug printCallstack:__n];
+// 断点
+#undef	BREAK_POINT
+#define BREAK_POINT()			[XYDebug breakPoint];
 
-#if (1 != __tag )
+#undef	BREAK_POINT_IF
+#define BREAK_POINT_IF( __x )	if ( __x ) { [XYDebug breakPoint]; }
 
-#else
-
-#endif
-
+#undef	BB
+#define BB						[XYDebug breakPoint];
 
 #import "XYPerformance.h"
 
@@ -45,6 +48,11 @@
 #import <Foundation/Foundation.h>
 
 @interface XYDebug : NSObject
+
++(NSArray *) callstack:(NSUInteger)depth;
+
++(void) printCallstack:(NSUInteger)depth;
++(void) breakPoint;
 
 @end
 

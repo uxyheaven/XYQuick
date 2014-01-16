@@ -20,6 +20,8 @@
 // used: imageWithContentsOfFile
 +(UIImage *) imageWithFile:(NSString *)path;
 
++(UIImage *) imageWithString:(NSString *)str;
+
 // 压缩转换
 -(UIImage *) transprent;
 

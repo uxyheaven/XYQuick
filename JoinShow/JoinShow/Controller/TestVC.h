@@ -13,7 +13,10 @@
 #else
 #import "XYQuickDevelop.h"
 #endif
+
 @class XYObserve;
+@class TestView;
+
 @interface TestVC : UIViewController <XYTimerDelegate>{
     int offset;
     
@@ -22,6 +25,8 @@
 
 @property (nonatomic, assign) int testKVO;
 @property (nonatomic, retain) NSMutableArray *testArrayKVO;
+
+@property (nonatomic, retain) TestView *testView;
 
 - (IBAction)clickBtn1:(id)sender;
 - (IBAction)clickBtn2:(id)sender;

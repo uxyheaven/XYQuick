@@ -37,4 +37,8 @@
     
     return 44;
 }
+
+-(void) layoutSubviewsWithDic:(NSMutableDictionary *)dic{
+    
+}
 @end

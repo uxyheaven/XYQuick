@@ -18,6 +18,8 @@
 // 性能测试
 #define __XY_PERFORMANCE__          (1)
 
+#define __XY_DEVELOPMENT__          (1)
+
 #define __TimeOut__ON__             (0)
 #define __TimeOut__date__           @"2015-3-10 00:00:00"
 
@@ -25,6 +27,7 @@
 #import <UIKit/UIKit.h>
 #import <mach/mach.h>
 #import <mach/mach_host.h>
+#import <execinfo.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import <CommonCrypto/CommonDigest.h>

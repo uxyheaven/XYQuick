@@ -135,17 +135,17 @@
     rangeMark = [str rangeOfString:strMark options:NSLiteralSearch range:rangeMark];
     if(rangeMark.length == 0) return rangeMark;
     switch (operation) {
-        case markOption_middle:
+        case MarkOption_middle:
             rangeMarkA.location = iStart;
             rangeMarkA.length = rangeMark.location + rangeMark.length - iStart;
             option = NSBackwardsSearch;
             break;
-        case markOption_front:
+        case MarkOption_front:
             rangeMarkA.location = rangeMark.location;
             rangeMarkA.length = str.length - rangeMark.location;
             option = NSLiteralSearch;
             break;
-        case markOption_back:
+        case MarkOption_back:
             rangeMarkA.location = iStart;
             rangeMarkA.length = rangeMark.location + rangeMark.length - iStart;
             option = NSBackwardsSearch;
@@ -157,15 +157,15 @@
     
     NSRange rangeMarkB = NSMakeRange(0, 0);
     switch (operation) {
-        case markOption_middle:
+        case MarkOption_middle:
             rangeMarkB.length = str.length - rangeMark.location;
             rangeMarkB.location = rangeMark.location;
             break;
-        case markOption_front:
+        case MarkOption_front:
             rangeMarkB.length = str.length - rangeMarkA.location - rangeMarkA.length;
             rangeMarkB.location = rangeMarkA.location + rangeMarkA.length;
             break;
-        case markOption_back:
+        case MarkOption_back:
             rangeMarkB.length = rangeMark.location - rangeMarkA.location -rangeMarkA.length;
             rangeMarkB.location = rangeMarkA.location + rangeMarkA.length;
         default:
@@ -211,16 +211,16 @@
     NSString *str1 = [NSString stringWithFormat:@"<%@>", akey];
     NSString *str2 = [NSString stringWithFormat:@"</%@>", akey];
     static int i = 0;
-    if (kLastLocation == location) {
+    if (XYCommon_lastLocation == location) {
         //   NSLogD(@"%s,%d", __FUNCTION__, str.length - akey.length*2);
         if (i> (str.length - akey.length*2)) i = 0;
     }else i = location;
     
-    NSRange range = [XYCommon rangeOfString:str pointStart:i start:str1 end:str2 mark:str1 operation:markOption_middle];
+    NSRange range = [XYCommon rangeOfString:str pointStart:i start:str1 end:str2 mark:str1 operation:MarkOption_middle];
 #pragma mark- 待优化
     if (0 == range.length) {
         i = 0;
-        range = [XYCommon rangeOfString:str pointStart:i start:str1 end:str2 mark:str1 operation:markOption_middle];
+        range = [XYCommon rangeOfString:str pointStart:i start:str1 end:str2 mark:str1 operation:MarkOption_middle];
     }
     
     if (0 == range.length) return nil;

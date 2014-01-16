@@ -73,9 +73,16 @@ static MBProgressHUD *HUD = nil;
 +(void) hiddenMBProgressHUD{
     [HUD hide:YES];
 }
-
++(MBProgressHUD *) MBProgressHUD{
+    return HUD;
+}
 +(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d{
     UIViewController *vc = [self topMostController];
+    
+    if (vc == nil) {
+        return nil;
+    }
+    
     if (nil == HUD) {
         HUD = [[MBProgressHUD alloc] initWithView:vc.view];
     }
@@ -108,6 +115,11 @@ static MBProgressHUD *HUD = nil;
 
 +(MBProgressHUD *) showMBProgressHUDModeIndeterminateTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG{
     UIViewController *vc = [self topMostController];
+    
+    if (vc == nil) {
+        return nil;
+    }
+    
     if (nil == HUD) {
         HUD = [[MBProgressHUD alloc] initWithView:vc.view];
     }
@@ -125,6 +137,11 @@ static MBProgressHUD *HUD = nil;
 
 +(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG executeBlock:(void(^)(MBProgressHUD *hud))blockE finishBlock:(void(^)(void))blockF{
     UIViewController *vc = [self topMostController];
+    
+    if (vc == nil) {
+        return nil;
+    }
+    
     if (nil == HUD) {
         HUD = [[MBProgressHUD alloc] initWithView:vc.view];
     }
