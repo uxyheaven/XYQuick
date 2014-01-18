@@ -681,7 +681,11 @@ DUMMY_CLASS(NSString_XY);
     }
     return strLength;
 }
-
+-(int) getLength2{
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSData *data = [self dataUsingEncoding:enc];
+    return [data length];
+}
 @end
 
 #pragma mark -

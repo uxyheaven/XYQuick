@@ -94,7 +94,7 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 // 中英文混排，获取字符串长度
 -(int) getLength;
-
+-(int) getLength2;
 @end
 
 

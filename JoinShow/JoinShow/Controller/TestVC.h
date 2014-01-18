@@ -16,7 +16,7 @@
 
 @class XYObserve;
 @class TestView;
-
+@class GirlEntity;
 @interface TestVC : UIViewController <XYTimerDelegate>{
     int offset;
     
@@ -25,6 +25,8 @@
 
 @property (nonatomic, assign) int testKVO;
 @property (nonatomic, retain) NSMutableArray *testArrayKVO;
+
+@property (nonatomic, retain) GirlEntity *myGirl;
 
 @property (nonatomic, retain) TestView *testView;
 

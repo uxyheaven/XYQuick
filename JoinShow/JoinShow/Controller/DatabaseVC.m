@@ -85,7 +85,7 @@
     [LKDBHelper clearTableData:[LKTest class]];
     
     
-    LKTestForeign* foreign = [[[LKTestForeign alloc] init] autorelease];
+    LKTestForeign* foreign = [[LKTestForeign alloc]init];
     foreign.address = @":asdasdasdsadasdsdas";
     foreign.postcode  = 123341;
     foreign.addid = 213214;
@@ -100,24 +100,33 @@
     
     test.isGirl = YES;
     test.like = 'I';
-    test.img = [UIImage imageNamed:@"p31b0001.png"];
+    test.img = [UIImage imageNamed:@"41.png"];
     test.date = [NSDate date];
     test.color = [UIColor orangeColor];
     test.error = @"nil";
     
+    test.score = [[NSDate date] timeIntervalSince1970];
+    addText(@"%f",test.score);
     //异步 插入第一条 数据   Insert the first
     [globalHelper insertToDB:test];
     
+    //多主键 的插入成功
+    test.age = 17;
+    [globalHelper insertToDB:test];
+    
+    //事物  transaction
     [globalHelper executeDB:^(FMDatabase *db) {
         
         [db beginTransaction];
         
         test.name = @"1";
         [globalHelper insertToDB:test];
+        
         test.name = @"2";
         [globalHelper insertToDB:test];
         
-        test.name = @"3";
+        //重复主键   duplicate primary key
+        test.name = @"1";
         test.rowid = 0;     //no new object,should set rowid:0
         BOOL insertSucceed = [globalHelper insertWhenNotExists:test];
         
@@ -135,21 +144,24 @@
     sleep(1);
     
     
-    //改个 主键 插入第2条数据   update primary colume value  Insert the second
+    //改个 主键 插入第2条数据   update primary column value  Insert the second
     test.name = @"li si";
     [globalHelper insertToDB:test callback:^(BOOL isInsert) {
         addText(@"asynchronization insert complete: %@",isInsert>0?@"YES":@"NO");
     }];
     
-    
-    
     //查询   search
     addText(@"同步搜索    sync search");
     
     NSMutableArray* arraySync = [LKTest searchWithWhere:nil orderBy:nil offset:0 count:100];
-    for (NSObject* obj in arraySync) {
+    for (id obj in arraySync) {
         addText(@"%@",[obj printAllPropertys]);
     }
+    
+    //查询 单个 列   search single column
+    addText(@"只获取name那列的值   search with column 'name' results");
+    NSArray* nameArray = [LKTest searchColumn:@"name" where:nil orderBy:nil offset:0 count:0];
+    addText(@"%@",[nameArray componentsJoinedByString:@","]);
     
     addText(@"休息2秒 开始  为了说明 是异步插入的\n"
             "rest for 2 seconds to start is asynchronous inserted to illustrate");
@@ -206,8 +218,9 @@
         addText(@"扩展:  删除已不再数据库中保存的 图片记录 \n expansion: Delete the picture is no longer stored in the database record");
         //目前 已合并到LKDBHelper 中  就先写出来 给大家参考下
         
-        [LKDBHelper clearNoneImage:[LKTest class] columes:[NSArray arrayWithObjects:@"img",nil]];
+        [LKDBHelper clearNoneImage:[LKTest class] columns:[NSArray arrayWithObjects:@"img",nil]];
     }];
 }
+
 
 @end

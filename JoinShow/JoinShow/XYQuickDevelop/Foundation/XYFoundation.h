@@ -18,3 +18,10 @@
 #import "XYDataLite.h"
 #import "XYSystemInfo.h"
 #import "XYObserve.h"
+
+// 缓存
+#import "XYCacheProtocol.h"
+#import "XYMemoryCache.h"
+
+// 沙箱
+#import "XYSandbox.h"

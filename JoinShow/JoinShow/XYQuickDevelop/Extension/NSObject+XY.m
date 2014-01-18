@@ -46,7 +46,12 @@ DUMMY_CLASS(NSObject_XY);
 #pragma mark - NSNotificationCenter
 -(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source{
     if (aMsg == nil || aSel == nil) return;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:aSel name:aMsg object:source];
+    [self unregisterMessage:aMsg];
+    
+    if ([self respondsToSelector:aSel]){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:aSel name:aMsg object:nil];
+        return;
+    }
   //  [self hookDealloc];
 }
 -(void) unregisterMessage:(NSString*)aMsg{

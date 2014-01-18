@@ -29,7 +29,10 @@
 @property(strong,nonatomic) NSDate* date;
 
 @property(copy,nonatomic)NSString* error;
-@property(copy,nonatomic)UIColor* color;
+@property(strong,nonatomic)UIColor* color;
+
+//new add
+@property double score;
 @end
 
 

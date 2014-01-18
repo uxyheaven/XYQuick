@@ -16,6 +16,7 @@
 #import "XYQuickDevelop.h"
 #endif
 
+#import <Social/SocialDefines.h>
 #import "XYExternal.h"
 
 #import "Test1Model.h"
@@ -61,6 +62,7 @@ if (1) { \
     [XYTimer sharedInstance].delegate = nil;
     self.array = nil;
     self.testArrayKVO = nil;
+    self.myGirl = nil;
     [self removeAllObserver];
     [super dealloc];
 }
@@ -238,6 +240,14 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"send message" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickSendMessage:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
 #pragma mark - others
     //////////////////// test KVO ///////////////////////
@@ -260,17 +270,27 @@ if (1) { \
      */
 #pragma mark - next
     NSString *strLen = @"a";
-    NSLogD(@"%d", [strLen getLength]);
+    NSLogD(@"%d", [strLen getLength2]);
     strLen = @"啊a";
-    NSLogD(@"%d", [strLen getLength]);
+    NSLogD(@"%d", [strLen getLength2]);
     strLen = @"你好,世界.";
-    NSLogD(@"%d", [strLen getLength]);
+    NSLogD(@"%d", [strLen getLength2]);
+    
+#pragma mark - next
+    GirlEntity *tempGirl = [[GirlEntity alloc] init];
+    self.myGirl = tempGirl;
+    [tempGirl release];
+    
+    [self observeWithObject:self keyPath:@"myGirl.name" selector:@selector(expChanged:) observeKey:@"TestVC_myGirl"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void) expChanged:(id)value{
+    NSLogD(@"vlaue:%@", value);
 }
 - (IBAction)clickBtn1:(id)sender {
     /*
@@ -279,7 +299,7 @@ if (1) { \
      */
     // kvo
     self.testKVO = self.testKVO + 1;
-    
+    self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
     id j = [self valueForKeyPath:@"testKVO"];
     NSLog(@"%@", j);
     
@@ -444,6 +464,17 @@ if (1) { \
     
 }
 
+-(void) clickSendMessage:(id)sender{
+    /*
+    MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init]; autorelease];
+    controller.recipients = [NSArray arrayWithObject:@"15988888888"];
+    controller.body = @"请直接将此条认证短信发送给我们，以完成手机安全绑定。(9qzkd27953ma)";
+    controller.messageComposeDelegate = self;
+    
+    [self presentModalViewController:controller animated:YES];
+    //        [[[[controller viewControllers] lastObject] navigationItem] setTitle:@"SomethingElse"];//修改短信界面标题
+     */
+}
 /////////////////////////// 备注 ///////////////////////////////
 /*
 void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {
