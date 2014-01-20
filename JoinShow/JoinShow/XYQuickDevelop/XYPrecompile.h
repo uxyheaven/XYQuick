@@ -14,6 +14,7 @@
 
 // 调试
 #define __XYDEBUG__                 (1)
+// 点击区域红色边框
 #define __XYDEBUG__showborder__     (1)
 // 性能测试
 #define __XY_PERFORMANCE__          (1)

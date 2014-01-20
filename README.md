@@ -11,6 +11,12 @@ XYDataLite 轻量形数据持久化, 基于NSUserDefaults
 
 XYObserve KVO的简单封装
 
+XYSandbox 沙箱路径
+
+XYMemoryCache 内存缓存类
+
+XYFileCache 文件缓存类
+
 ---
 XYParallaxHelper 实现类似ios7 视图差效果.
 
