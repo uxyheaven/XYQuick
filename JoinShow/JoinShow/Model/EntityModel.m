@@ -21,12 +21,22 @@
 {
     self = [super init];
     if (self) {
-        self.requestHelper = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
-        [self.requestHelper useCache];
-        self.requestHelper.freezable = YES;
-        self.requestHelper.forceReload = YES;
     }
     return self;
+}
++(id) modelWithClass:(Class)aClass{
+    EntityModel *aModel = [[[EntityModel alloc] init] autorelease];
+    aModel.dataClass = aClass;
+    aModel.dbHelper = [[aClass class] getUsingLKDBHelper];
+    //      [dbHelper dropAllTable];
+    [aModel.dbHelper createTableWithModelClass:[aClass class]];
+    
+    aModel.requestHelper = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+    [aModel.requestHelper useCache];
+    aModel.requestHelper.freezable = YES;
+    aModel.requestHelper.forceReload = YES;
+    
+    return aModel;
 }
 
 - (void)dealloc
@@ -37,12 +47,10 @@
     self.delegate = nil;
     [self.requestHelper cancelAllOperations];
     self.requestHelper = nil;
+    self.dbHelper = nil;
     [super dealloc];
 }
 
 #pragma mark - 子类重载下面的方法
-// 单例
-DEF_SINGLETON(EntityModel)
-
 
 @end

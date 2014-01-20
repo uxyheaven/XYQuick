@@ -194,7 +194,7 @@ typedef enum {
 + (UIViewController *) topMostController;
 
 
-#define SHOWMSG(title, msg, cancel) [XYCommon showAlertViewTitle:title message:msg cancelButtonTitle:cancel]
+#define SHOWMSG(title, msg, cancel) [XYCommon showAlertViewTitle:title message:msg cancelButtonTitle:cancel];
 /**
  * 显示UIAlertView
  * api parameters 说明

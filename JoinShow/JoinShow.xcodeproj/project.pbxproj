@@ -1515,6 +1515,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Heaven;
+				TargetAttributes = {
+					57B3FFE5177AD9BC00775FC9 = {
+						DevelopmentTeam = J9JJ28EMZ9;
+					};
+				};
 			};
 			buildConfigurationList = 57B3FFE1177AD9BC00775FC9 /* Build configuration list for PBXProject "JoinShow" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1963,6 +1968,7 @@
 		57B3001F177AD9BC00775FC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "/Users/heaven/Desktop/IOS\\ CODE/MyClass/XYQuickDevelop/JoinShow";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JoinShow/JoinShow-Prefix.pch";
@@ -1971,6 +1977,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C06A3439-FA73-4612-AB4C-1316404F1020";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1979,6 +1986,7 @@
 		57B30020177AD9BC00775FC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "/Users/heaven/Desktop/IOS\\ CODE/MyClass/XYQuickDevelop/JoinShow";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JoinShow/JoinShow-Prefix.pch";
@@ -1987,6 +1995,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C06A3439-FA73-4612-AB4C-1316404F1020";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

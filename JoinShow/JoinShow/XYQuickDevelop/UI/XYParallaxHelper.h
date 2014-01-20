@@ -24,7 +24,7 @@ XY_SINGLETON(XYParallaxHelper)
 -(void) stop;
 
 // when device orientation change, run it.
--(void) resetDeviceOrientation;
+//-(void) resetDeviceOrientation;
 
 -(void) setView:(id)aView intensity:(float)i;
 -(void) removeView:(id)aView;

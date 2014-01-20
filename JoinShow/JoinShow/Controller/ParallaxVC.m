@@ -30,6 +30,7 @@
 }
 - (void)dealloc
 {
+    NSLogDD
      [[XYParallaxHelper sharedInstance] stop];
     [super dealloc];
 }
@@ -82,7 +83,4 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - 设备方向改变
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [[XYParallaxHelper sharedInstance] resetDeviceOrientation];
-}
 @end
