@@ -36,6 +36,8 @@ DEF_SINGLETON(XYObjectCache)
 		_fileCache = [[XYFileCache alloc] init];
 		_fileCache.cachePath = [NSString stringWithFormat:@"%@/ObjectCache/", [XYSandbox libCachePath]];
 		_fileCache.cacheUser = @"";
+        
+        _fileTimeLimit = 7 * 24 * 60 * 60;
 	}
 	return self;
 }
@@ -80,7 +82,7 @@ DEF_SINGLETON(XYObjectCache)
 	return [self.memoryCache hasObjectForKey:cacheKey];
 }
 
--(id) objectForURL:(NSString *)url
+-(id) fileObjectForURL:(NSString *)url
 {
   //  PERF_ENTER
 	
@@ -88,20 +90,27 @@ DEF_SINGLETON(XYObjectCache)
 	id anObject = nil;
     
 	NSString * fullPath = [self.fileCache fileNameForKey:cacheKey];
+
 	if ( fullPath )
 	{
-        if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
-            anObject = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
-        } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
-            anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
-        } else if ([self.objectClass isSubclassOfClass:[NSString class]]){
-            anObject = [[[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil] autorelease];
-        } else if (1){
-            anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
+        NSTimeInterval time = [[[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:nil] fileModificationDate] timeIntervalSinceNow];
+        
+        if (time + self.fileTimeLimit > 0) {
+            if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
+                anObject = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
+            } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
+                anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
+            } else if ([self.objectClass isSubclassOfClass:[NSString class]]){
+                anObject = [[[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil] autorelease];
+            } else if (1){
+                anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
+            }
+        }else{
+            [self.fileCache removeObjectForKey:cacheKey];
         }
-    
+
 		id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
-		if ( nil == cachedObject && anObject != cachedObject )
+		if ( nil == cachedObject && anObject != nil )
 		{
 			[self.memoryCache setObject:anObject forKey:cacheKey];
 		}
@@ -112,7 +121,7 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(id) fileObjectForURL:(NSString *)url
+-(id) memoryObjectForURL:(NSString *)url
 {
   //  PERF_ENTER
 	
@@ -132,7 +141,7 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(id) memoryObjectForURL:(NSString *)string
+-(id) objectForURL:(NSString *)string
 {
 	id anObject = [self memoryObjectForURL:string];
 	if ( nil == anObject )
@@ -148,7 +157,7 @@ DEF_SINGLETON(XYObjectCache)
 	
 	NSString * cacheKey = [string MD5];
 	id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
-	if ( nil == cachedObject && anObject != cachedObject )
+	if ( nil == cachedObject && anObject != nil )
 	{
 		[self.memoryCache setObject:anObject forKey:cacheKey];
 	}

@@ -251,7 +251,7 @@ if (1) { \
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.backgroundColor = [UIColor lightGrayColor];
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
-    [tempBtn setTitle:@"string cache" forState:UIControlStateNormal];
+    [tempBtn setTitle:@"cache" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickStringCache:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
@@ -496,7 +496,7 @@ if (1) { \
         str = [str stringByAppendingString:@"1"];
     }
 
-    if ( 1 ) {
+    if ( 0 ) {
         // 异步
         FOREGROUND_BEGIN
         [cache saveToMemory:str forURL:key];
@@ -508,8 +508,8 @@ if (1) { \
     }
     else {
         // 同步
-        [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
-        [cache saveToMemory:str forURL:key];
+      //  [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
+     //   [cache saveToMemory:str forURL:key];
     }
     
     NSLogD(@"%@", str);

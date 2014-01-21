@@ -14,6 +14,7 @@
 XY_SINGLETON(XYObjectCache)
 
 @property (nonatomic, assign, readonly) Class objectClass;
+@property (nonatomic, assign) NSTimeInterval fileTimeLimit; // 默认1周
 
 -(void) registerObjectClass:(Class)aClass;
 
