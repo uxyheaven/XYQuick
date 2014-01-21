@@ -110,7 +110,7 @@ DEF_SINGLETON(XYObjectCache)
         }
 
 		id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
-		if ( nil == cachedObject && anObject != nil )
+		if ( nil == cachedObject || anObject != cachedObject )
 		{
 			[self.memoryCache setObject:anObject forKey:cacheKey];
 		}
@@ -157,7 +157,7 @@ DEF_SINGLETON(XYObjectCache)
 	
 	NSString * cacheKey = [string MD5];
 	id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
-	if ( nil == cachedObject && anObject != nil )
+	if ( nil == cachedObject || anObject != cachedObject )
 	{
 		[self.memoryCache setObject:anObject forKey:cacheKey];
 	}

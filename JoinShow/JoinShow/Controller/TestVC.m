@@ -508,8 +508,8 @@ if (1) { \
     }
     else {
         // 同步
-      //  [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
-     //   [cache saveToMemory:str forURL:key];
+        [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
+        [cache saveToMemory:str forURL:key];
     }
     
     NSLogD(@"%@", str);
