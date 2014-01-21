@@ -13,18 +13,6 @@
 #undef	DEFAULT_MAX_COUNT
 #define DEFAULT_MAX_COUNT	(48)
 
-/*
-@interface  XYMemoryCache ()
-
-BOOL					_clearWhenMemoryLow;
-NSUInteger				_maxCacheCount;
-NSUInteger				_cachedCount;
-NSMutableArray *		_cacheKeys;
-NSMutableDictionary *	_cacheObjs;
-
-@end*/
-
-
 @implementation XYMemoryCache
 
 DEF_SINGLETON( XYMemoryCache );

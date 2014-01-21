@@ -13,15 +13,24 @@
 
 #import "XYCommonDefine.h"
 #import "XYCommon.h"
+
+// GCD
 #import "XYThread.h"
+
+// 定时器
 #import "XYTimer.h"
+
+// 轻量级数据持久化
 #import "XYDataLite.h"
+
+// 系统信息
 #import "XYSystemInfo.h"
+
+// kvo
 #import "XYObserve.h"
 
 // 缓存
-#import "XYCacheProtocol.h"
-#import "XYMemoryCache.h"
+#import "XYCache.h"
 
 // 沙箱
 #import "XYSandbox.h"

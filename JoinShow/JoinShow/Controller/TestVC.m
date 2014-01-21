@@ -248,6 +248,14 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"string cache" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickStringCache:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
 #pragma mark - others
     //////////////////// test KVO ///////////////////////
@@ -475,6 +483,38 @@ if (1) { \
     //        [[[[controller viewControllers] lastObject] navigationItem] setTitle:@"SomethingElse"];//修改短信界面标题
      */
 }
+-(void) clickStringCache:(id)sender{
+    XYObjectCache *cache = [XYObjectCache sharedInstance];
+    [cache registerObjectClass:[NSString class]];
+    NSString *key = @"1";
+    
+    NSString *str = nil;
+    if (![cache hasCachedForURL:key]) {
+        str = @"hello world";
+    }else{
+        str = [cache objectForURL:key];
+        str = [str stringByAppendingString:@"1"];
+    }
+
+    if ( 1 ) {
+        // 异步
+        FOREGROUND_BEGIN
+        [cache saveToMemory:str forURL:key];
+        
+        BACKGROUND_BEGIN
+        [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
+        BACKGROUND_COMMIT
+        FOREGROUND_COMMIT
+    }
+    else {
+        // 同步
+        [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
+        [cache saveToMemory:str forURL:key];
+    }
+    
+    NSLogD(@"%@", str);
+}
+
 /////////////////////////// 备注 ///////////////////////////////
 /*
 void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {

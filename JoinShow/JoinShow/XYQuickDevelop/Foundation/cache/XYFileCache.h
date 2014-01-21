@@ -9,7 +9,7 @@
 #import "XYPrecompile.h"
 #import "XYCacheProtocol.h"
 
-@interface XYFileCache : NSObject
+@interface XYFileCache : NSObject <XYCacheProtocol>
 
 @property (nonatomic, retain) NSString *	cachePath;
 @property (nonatomic, retain) NSString *	cacheUser;
