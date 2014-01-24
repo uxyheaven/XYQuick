@@ -484,16 +484,21 @@ if (1) { \
      */
 }
 -(void) clickStringCache:(id)sender{
+    static int iKey = 0;
+    
     XYObjectCache *cache = [XYObjectCache sharedInstance];
     [cache registerObjectClass:[NSString class]];
-    NSString *key = @"1";
+    NSString *key = [NSString stringWithFormat:@"%d", iKey];
     
     NSString *str = nil;
     if (![cache hasCachedForURL:key]) {
         str = @"hello world";
     }else{
         str = [cache objectForURL:key];
+        NSLogD(@"%@", str);
         str = [str stringByAppendingString:@"1"];
+        iKey++;
+        key = [NSString stringWithFormat:@"%d", iKey];
     }
 
     if ( 0 ) {

@@ -13,9 +13,7 @@ XYObserve KVO的简单封装
 
 XYSandbox 沙箱路径
 
-XYMemoryCache 内存缓存类
-
-XYFileCache 文件缓存类
+XYObjectCache 对象缓存类
 
 ---
 XYParallaxHelper 实现类似ios7 视图差效果.

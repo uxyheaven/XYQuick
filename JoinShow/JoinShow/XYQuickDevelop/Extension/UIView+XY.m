@@ -110,6 +110,10 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
+-(UIView *) shadeView{
+    return [self viewWithTag:UIView_shadeTag];
+}
+
 // 增加毛玻璃背景
 -(void) addBlurWithTarget:(id)target action:(SEL)action level:(int)lv{
     UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];

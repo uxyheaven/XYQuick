@@ -37,7 +37,7 @@ DEF_SINGLETON(XYObjectCache)
 		_fileCache.cachePath = [NSString stringWithFormat:@"%@/ObjectCache/", [XYSandbox libCachePath]];
 		_fileCache.cacheUser = @"";
         
-        _fileTimeLimit = 7 * 24 * 60 * 60;
+        _fileExpires = 7 * 24 * 60 * 60;
 	}
 	return self;
 }
@@ -95,7 +95,7 @@ DEF_SINGLETON(XYObjectCache)
 	{
         NSTimeInterval time = [[[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:nil] fileModificationDate] timeIntervalSinceNow];
         
-        if (time + self.fileTimeLimit > 0) {
+        if (time + self.fileExpires > 0) {
             if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
                 anObject = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
             } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
@@ -110,7 +110,7 @@ DEF_SINGLETON(XYObjectCache)
         }
 
 		id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
-		if ( nil == cachedObject || anObject != cachedObject )
+		if ( nil == cachedObject && anObject != cachedObject )
 		{
 			[self.memoryCache setObject:anObject forKey:cacheKey];
 		}
@@ -157,7 +157,7 @@ DEF_SINGLETON(XYObjectCache)
 	
 	NSString * cacheKey = [string MD5];
 	id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
-	if ( nil == cachedObject || anObject != cachedObject )
+	if ( nil == cachedObject && anObject != cachedObject )
 	{
 		[self.memoryCache setObject:anObject forKey:cacheKey];
 	}

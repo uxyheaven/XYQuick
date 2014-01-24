@@ -239,6 +239,8 @@
 		5789228E1859A3040005CC27 /* Test1Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789228D1859A3040005CC27 /* Test1Model.m */; };
 		578922911859A3120005CC27 /* Test2Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 578922901859A3120005CC27 /* Test2Model.m */; };
 		578D14CF187536690071448C /* UITableViewCell+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D14CE187536690071448C /* UITableViewCell+XY.m */; };
+		578D81CF188E4E1700E0058E /* XYUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D81CE188E4E1700E0058E /* XYUserDefaults.m */; };
+		578D81D2188E4E8900E0058E /* XYKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D81D1188E4E8900E0058E /* XYKeychain.m */; };
 		578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 578FBFE2183AFA8B0083A952 /* AnimationVC2.m */; };
 		57901EBB17E6C26E00B8E8FF /* remark in Resources */ = {isa = PBXBuildFile; fileRef = 57901EBA17E6C26E00B8E8FF /* remark */; };
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
@@ -608,6 +610,10 @@
 		578922901859A3120005CC27 /* Test2Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2Model.m; sourceTree = "<group>"; };
 		578D14CD187536690071448C /* UITableViewCell+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+XY.h"; sourceTree = "<group>"; };
 		578D14CE187536690071448C /* UITableViewCell+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+XY.m"; sourceTree = "<group>"; };
+		578D81CD188E4E1700E0058E /* XYUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUserDefaults.h; sourceTree = "<group>"; };
+		578D81CE188E4E1700E0058E /* XYUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUserDefaults.m; sourceTree = "<group>"; };
+		578D81D0188E4E8900E0058E /* XYKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKeychain.h; sourceTree = "<group>"; };
+		578D81D1188E4E8900E0058E /* XYKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYKeychain.m; sourceTree = "<group>"; };
 		578FBFE1183AFA8B0083A952 /* AnimationVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationVC2.h; sourceTree = "<group>"; };
 		578FBFE2183AFA8B0083A952 /* AnimationVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationVC2.m; sourceTree = "<group>"; };
 		57901EBA17E6C26E00B8E8FF /* remark */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = remark; sourceTree = "<group>"; };
@@ -1463,6 +1469,10 @@
 				57DF0375188E1AA1002422D4 /* XYMemoryCache.m */,
 				57DF037B188E1CFF002422D4 /* XYObjectCache.h */,
 				57DF037C188E1CFF002422D4 /* XYObjectCache.m */,
+				578D81CD188E4E1700E0058E /* XYUserDefaults.h */,
+				578D81CE188E4E1700E0058E /* XYUserDefaults.m */,
+				578D81D0188E4E8900E0058E /* XYKeychain.h */,
+				578D81D1188E4E8900E0058E /* XYKeychain.m */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -1808,10 +1818,12 @@
 				572E7CB418385C690018179D /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */,
 				57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */,
+				578D81D2188E4E8900E0058E /* XYKeychain.m in Sources */,
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
 				57163942183CEB7800A60102 /* DownloadRequest.m in Sources */,
 				57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
+				578D81CF188E4E1700E0058E /* XYUserDefaults.m in Sources */,
 				571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,

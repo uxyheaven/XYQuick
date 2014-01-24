@@ -17,6 +17,8 @@
     @public id <EntityModelDelegate> _delegate;
 }
 
+XY_SINGLETON(EntityModel)
+
 @property (nonatomic, retain) id data;                                          // 数据
 @property (nonatomic, assign) Class dataClass;                                  // 数据类型
 @property (nonatomic, retain) id result;                                        // 临时数据

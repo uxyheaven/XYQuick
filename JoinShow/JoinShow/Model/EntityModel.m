@@ -17,10 +17,17 @@
 
 @synthesize delegate = _delegate;
 
+DEF_SINGLETON(EntityModel)
+
 - (id)init
 {
     self = [super init];
     if (self) {
+        self.dbHelper = [[self class] getUsingLKDBHelper];
+        self.requestHelper = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+        [self.requestHelper useCache];
+        self.requestHelper.freezable = YES;
+        self.requestHelper.forceReload = YES;
     }
     return self;
 }

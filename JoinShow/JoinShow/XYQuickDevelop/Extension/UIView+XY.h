@@ -34,7 +34,7 @@
 -(void) addBlurWithBlock:(void(^)(void))aBlock level:(int)lv;
 
 -(void) removeShade;
-
+-(UIView *) shadeView;
 
 // 设置背景
 -(void) setBg:(NSString *)str;
