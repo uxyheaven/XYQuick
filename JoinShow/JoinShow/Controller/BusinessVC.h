@@ -13,7 +13,9 @@
 #import "XYQuickDevelop.h"
 #endif
 
-@interface BusinessVC : UIViewController
+#import "EntityModel.h"
+
+@interface BusinessVC : UIViewController <EntityModelDelegate>
 - (IBAction)clickStart:(id)sender;
 - (IBAction)clickLoad:(id)sender;
 

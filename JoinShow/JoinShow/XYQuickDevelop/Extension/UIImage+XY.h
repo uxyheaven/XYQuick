@@ -66,4 +66,7 @@ typedef enum {
 
 // 高斯模糊
 -(UIImage*) stackBlur:(NSUInteger)radius;
+
+// 修复方向
+-(UIImage *) fixOrientation;
 @end

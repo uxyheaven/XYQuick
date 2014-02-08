@@ -41,6 +41,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.entityModel = [EntityModel sharedInstance];
+    self.entityModel.delegate = self;
     
 }
 - (void)dealloc
@@ -143,5 +144,14 @@
     self.model = [NSArray loadFromDBWithClass:[RubyChinaNodeEntity class]];
     
     [self performSelector:@selector(refreshUI) withObject:nil afterDelay:1];
+}
+
+#pragma mark -EntityModelDelegate
+-(RequestHelper *) entityModelSetupRequestHelper:(id)model{
+    RequestHelper *request = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+    [request useCache];
+    request.freezable = YES;
+    request.forceReload = YES;
+    return request;
 }
 @end

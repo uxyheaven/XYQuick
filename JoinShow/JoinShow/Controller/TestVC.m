@@ -276,6 +276,9 @@ if (1) { \
     [weakSelf setArray:nil];
     [weakSelf array];
      */
+   // NSMutableString *str4 = @"a";
+    NSString *str5 = @"a".APPEND(@"%@%@", @"b", @"c");
+    NSLogD(@"%@", str5);
 #pragma mark - next
     NSString *strLen = @"a";
     NSLogD(@"%d", [strLen getLength2]);
@@ -322,7 +325,6 @@ if (1) { \
 }
 - (IBAction)clickBtnMuhud:(id)sender {
     UIButton* btn=(UIButton*) sender;
-    float f = 0.5;
     XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
     XYAnimateStep *step1 = [XYAnimateStep duration:0.15 animate:^{
         btn.transform = CGAffineTransformMakeScale(.5, .5);

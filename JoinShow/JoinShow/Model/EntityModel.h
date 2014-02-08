@@ -22,6 +22,8 @@ XY_SINGLETON(EntityModel)
 @property (nonatomic, retain) id data;                                          // 数据
 @property (nonatomic, assign) Class dataClass;                                  // 数据类型
 @property (nonatomic, retain) id result;                                        // 临时数据
+@property (nonatomic, retain) NSMutableArray *array;                            // array
+@property (nonatomic, retain) NSMutableDictionary *dic;                         // dic
 
 @property (nonatomic, assign) int tag;                                          // 标签
 @property (nonatomic, assign) id <EntityModelDelegate> delegate;
@@ -44,6 +46,8 @@ XY_SINGLETON(EntityModel)
 #pragma mark - EntityModelDelegate
 @protocol EntityModelDelegate <NSObject>
 
+// 可选实现
+@optional
 // net
 -(void) entityModelLoadFromServerSucceed:(EntityModel *)em;
 -(void) entityModelLoadFromServerFailed:(EntityModel *)em error:(NSError *)err;
@@ -51,5 +55,11 @@ XY_SINGLETON(EntityModel)
 // Database
 -(void) entityModelLoadFromDatabaseSucceed:(EntityModel *)em;
 -(void) entityModelLoadFromDatabaseFailed:(EntityModel *)em error:(NSError *)err;
+
+// 设置网络请求helper
+-(RequestHelper *) entityModelSetupRequestHelper:(id)model;
+
+// 设置数据库helper
+-(LKDBHelper *) entityModelSetupDBHelper:(id)model;
 
 @end

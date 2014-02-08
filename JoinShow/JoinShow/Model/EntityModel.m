@@ -24,32 +24,61 @@ DEF_SINGLETON(EntityModel)
     self = [super init];
     if (self) {
         self.dbHelper = [[self class] getUsingLKDBHelper];
+        /*
         self.requestHelper = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
         [self.requestHelper useCache];
         self.requestHelper.freezable = YES;
         self.requestHelper.forceReload = YES;
+        */
+        
+        self.array = [NSMutableArray array];
+        self.dic = [NSMutableDictionary dictionary];
     }
     return self;
 }
 +(id) modelWithClass:(Class)aClass{
-    EntityModel *aModel = [[[EntityModel alloc] init] autorelease];
+    EntityModel *aModel = [[[[self class] alloc] init] autorelease];
+    
     aModel.dataClass = aClass;
     aModel.dbHelper = [[aClass class] getUsingLKDBHelper];
     //      [dbHelper dropAllTable];
     [aModel.dbHelper createTableWithModelClass:[aClass class]];
-    
+    /*
     aModel.requestHelper = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
     [aModel.requestHelper useCache];
     aModel.requestHelper.freezable = YES;
     aModel.requestHelper.forceReload = YES;
+    */
     
     return aModel;
+}
+
+-(RequestHelper *) requestHelper{
+    if (nil == _requestHelper) {
+        if (_delegate && [_delegate respondsToSelector:@selector(entityModelSetupRequestHelper:)]) {
+            self.requestHelper = [_delegate entityModelSetupRequestHelper:self];
+        }
+    }
+    
+    return _requestHelper;
+}
+
+-(LKDBHelper *) dbHelper{
+    if (nil == _dbHelper) {
+        if (_delegate && [_delegate respondsToSelector:@selector(entityModelSetupRequestHelper:)]) {
+            self.dbHelper = [_delegate entityModelSetupDBHelper:self];
+        }
+    }
+    
+    return _dbHelper;
 }
 
 - (void)dealloc
 {
     NSLogDD
     self.data = nil;
+    self.array = nil;
+    self.dic = nil;
     self.result = nil;
     self.delegate = nil;
     [self.requestHelper cancelAllOperations];
