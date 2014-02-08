@@ -95,6 +95,10 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 // 中英文混排，获取字符串长度
 -(int) getLength;
 -(int) getLength2;
+
+// Unicode格式的字符串编码转成中文的方法(如\u7E8C)转换成中文,unicode编码以\u开头
+-(NSString *) replaceUnicode;
+
 @end
 
 

@@ -276,8 +276,8 @@ if (1) { \
     [weakSelf setArray:nil];
     [weakSelf array];
      */
-   // NSMutableString *str4 = @"a";
-    NSString *str5 = @"a".APPEND(@"%@%@", @"b", @"c");
+    NSMutableString *str4 = [NSMutableString string];
+    NSString *str5 = str4.APPEND(@"%@%@", @"c", @"b");
     NSLogD(@"%@", str5);
 #pragma mark - next
     NSString *strLen = @"a";
