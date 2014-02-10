@@ -8,6 +8,7 @@
 
 #import "NSObject+XY.h"
 #import "XYPrecompile.h"
+#import "XYFoundation.h"
 //#import "XYExtension.h"
 
 #undef	NSObject_key_performSelector
@@ -31,16 +32,48 @@
 #define NSObject_key_EventBlockDic	"NSObject.eventBlockDic"
 
 
-#undef	NSObject_isHookDealloc
-#define NSObject_isHookDealloc	"NSObject.isHookDealloc"
-
 DUMMY_CLASS(NSObject_XY);
+
+static void (*__dealloc)( id, SEL);
+
+@interface NSObject(XYPrivate)
+-(void) myDealloc;
+@end
 
 @implementation NSObject (XY)
 
 @dynamic attributeList;
 @dynamic tempObject;
 
++(void)load{
+#if (1 == __XY_HOOK_DEALLOC__)
+    [NSObject hookDealloc];
+#endif
+}
+#pragma mark - hook
++(void) hookDealloc{
+    static BOOL __swizzled = NO;
+	if ( NO == __swizzled )
+	{
+        Method method = XY_swizzleInstanceMethod([NSObject class], @selector(dealloc), @selector(myDealloc));
+        __dealloc = (void *)method_getImplementation( method );
+        
+        __swizzled = YES;
+	}
+}
+-(void) myDealloc{
+   
+    if ([self respondsToSelector:@selector(delegate)]) {
+        [self performSelector:@selector(setDelegate:) withObject:nil];
+    }
+   // [[NSNotificationCenter defaultCenter] removeObserver:self];
+   // [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    // [self removeAllObserver];
+    
+    if ( __dealloc ){
+        __dealloc( self, _cmd );
+    }
+}
 #pragma mark - perform
 
 #pragma mark - NSNotificationCenter

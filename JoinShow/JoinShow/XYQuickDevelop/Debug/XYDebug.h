@@ -41,7 +41,7 @@
 
 @interface UIWindow(XYDebug)
 
-+ (void)hook;
++ (void)hookSendEvent;
 
 @end
 

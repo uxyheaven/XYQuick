@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (XY)
-#pragma mark -todo 拆分参数
-//@property (nonatomic, assign) BOOL isHookDealloc;
+#pragma mark -hook
++(void) hookDealloc;
 
 #pragma mark - perform
 

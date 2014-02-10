@@ -22,11 +22,11 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 @implementation UIWindow(XYDebug)
 +(void) load{
 #if (1 == __XYDEBUG__showborder__)
-    [UIWindow hook];
+    [UIWindow hookSendEvent];
 #endif
 }
 
-+(void) hook
++(void) hookSendEvent
 {
 #if (1 == __XYDEBUG__showborder__)
 	static BOOL __swizzled = NO;

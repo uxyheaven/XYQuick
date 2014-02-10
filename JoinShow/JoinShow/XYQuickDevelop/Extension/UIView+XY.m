@@ -178,9 +178,15 @@ DUMMY_CLASS(UIView_XY);
 
 -(UIImage *) snapshot{
     UIGraphicsBeginImageContext(self.bounds.size);
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    if (IOS7_OR_LATER) {
+        // 这个方法比ios6下的快15倍
+        [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
+    }else{
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return image;
 }
 
