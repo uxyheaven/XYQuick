@@ -701,6 +701,10 @@ DUMMY_CLASS(NSString_XY);
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
 }
 
+-(void) erasure{
+    char *string = (char *)CFStringGetCStringPtr((CFStringRef)self, CFStringGetSystemEncoding());
+    memset(string, 0, [self length]);
+}
 @end
 
 #pragma mark -

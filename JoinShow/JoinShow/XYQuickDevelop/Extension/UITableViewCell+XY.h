@@ -10,8 +10,6 @@
 
 @interface UITableViewCell (XY)
 
-//@property (nonatomic, assign) float                rowHeight;       // cell高度
-
 // 子类需要重新此方法
 +(CGFloat) heightForRowWithData:(id)aData;
 

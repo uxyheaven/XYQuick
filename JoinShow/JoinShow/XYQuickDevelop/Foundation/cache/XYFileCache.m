@@ -24,6 +24,8 @@ DEF_SINGLETON( XYFileCache );
 		self.cacheUser = @"";
 
 		self.cachePath = [NSString stringWithFormat:@"%@/%@/Cache/", [XYSandbox libCachePath], [XYSystemInfo appVersion]];
+        
+       self.maxCacheAge = XYFileCache_fileExpires;
 	}
 	return self;
 }
@@ -40,7 +42,7 @@ DEF_SINGLETON( XYFileCache );
 
 - (NSString *)fileNameForKey:(NSString *)key
 {
-	NSString * pathName = nil;
+	NSString *pathName = nil;
 	if ( self.cacheUser && [self.cacheUser length] )
 	{
 		pathName = [self.cachePath stringByAppendingFormat:@"%@/", self.cacheUser];
@@ -58,9 +60,23 @@ DEF_SINGLETON( XYFileCache );
 														error:NULL];
 	}
     
-	return [pathName stringByAppendingString:key];
+    pathName = [pathName stringByAppendingString:key];
+    
+    NSTimeInterval time = [[[[NSFileManager defaultManager] attributesOfItemAtPath:pathName error:nil] fileModificationDate] timeIntervalSinceNow];
+    
+    if (time + self.maxCacheAge < 0)
+    {
+        pathName = nil;
+        [[NSFileManager defaultManager] removeItemAtPath:pathName error:nil];
+    }
+    
+	return pathName;
 }
 
+-(void) removeOverdueFiles{
+
+}
+#pragma mark - XYCacheProtocol
 - (BOOL)hasObjectForKey:(id)key
 {
 	return [[NSFileManager defaultManager] fileExistsAtPath:[self fileNameForKey:key]];

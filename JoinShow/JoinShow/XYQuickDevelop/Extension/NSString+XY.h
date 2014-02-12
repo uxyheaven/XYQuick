@@ -99,6 +99,12 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 // Unicode格式的字符串编码转成中文的方法(如\u7E8C)转换成中文,unicode编码以\u开头
 -(NSString *) replaceUnicode;
 
+/**
+ * 擦除保存的值, 建议敏感信息在不用的是调用此方法擦除.
+ * 如果是这样 _text = @"information"的 被分配到data区的无法擦除
+ */
+-(void) erasure;
+
 @end
 
 

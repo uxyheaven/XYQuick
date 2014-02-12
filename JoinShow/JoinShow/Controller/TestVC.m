@@ -63,6 +63,7 @@ if (1) { \
     self.array = nil;
     self.testArrayKVO = nil;
     self.myGirl = nil;
+    self.text = nil;
     [self removeAllObserver];
     [super dealloc];
 }
@@ -271,14 +272,10 @@ if (1) { \
     NSLog(@"%@", str3);
     
    // PRINT_CALLSTACK(64);
-    /*
-    DEF_WEAKSELF
-    [weakSelf setArray:nil];
-    [weakSelf array];
-     */
-    NSMutableString *str4 = [NSMutableString string];
-    NSString *str5 = str4.APPEND(@"%@%@", @"c", @"b");
-    NSLogD(@"%@", str5);
+
+    //NSString *str4 = [NSString stringWithFormat:@"%@", @"a"];
+   // NSString *str5 = str4.APPEND(@"%@%@", @"c", @"b");
+   // NSLogD(@"%@", str5);
 #pragma mark - next
     NSString *strLen = @"a";
     NSLogD(@"%d", [strLen getLength2]);
@@ -293,6 +290,15 @@ if (1) { \
     [tempGirl release];
     
     [self observeWithObject:self keyPath:@"myGirl.name" selector:@selector(expChanged:) observeKey:@"TestVC_myGirl"];
+    
+#pragma mark - next
+    self.array = [NSMutableArray arrayWithArray:@[@"a"]];
+    NSMutableArray *array2 = self->_array;
+    NSLogD(@"%@", array2);
+    
+    NSString *str = [NSString stringWithFormat:@"a"];
+    [str erasure];
+    NSLogD(@"%@", str);
 }
 
 - (void)didReceiveMemoryWarning

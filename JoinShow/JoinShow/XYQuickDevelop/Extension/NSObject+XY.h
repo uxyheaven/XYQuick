@@ -29,6 +29,7 @@
 // 属性列表
 @property (nonatomic, readonly) NSArray                *attributeList;
 
+@property (nonatomic, assign) int                cellHeight;       // cell高度
 
 #pragma mark - Conversion
 -(NSInteger) asInteger;

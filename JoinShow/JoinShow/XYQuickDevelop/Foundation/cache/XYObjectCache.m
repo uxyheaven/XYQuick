@@ -36,8 +36,6 @@ DEF_SINGLETON(XYObjectCache)
 		_fileCache = [[XYFileCache alloc] init];
 		_fileCache.cachePath = [NSString stringWithFormat:@"%@/ObjectCache/", [XYSandbox libCachePath]];
 		_fileCache.cacheUser = @"";
-        
-        _fileExpires = 7 * 24 * 60 * 60;
 	}
 	return self;
 }
@@ -93,28 +91,23 @@ DEF_SINGLETON(XYObjectCache)
 
 	if ( fullPath )
 	{
-        NSTimeInterval time = [[[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:nil] fileModificationDate] timeIntervalSinceNow];
-        
-        if (time + self.fileExpires > 0) {
-            if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
-                anObject = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
-            } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
-                anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
-            } else if ([self.objectClass isSubclassOfClass:[NSString class]]){
-                anObject = [[[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil] autorelease];
-            } else if (1){
-                anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
-            }
-        }else{
-            [self.fileCache removeObjectForKey:cacheKey];
+        if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
+            anObject = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
+        } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
+            anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
+        } else if ([self.objectClass isSubclassOfClass:[NSString class]]){
+            anObject = [[[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil] autorelease];
+        } else if (1){
+            anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
         }
-
+        
 		id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
 		if ( nil == cachedObject && anObject != cachedObject )
 		{
 			[self.memoryCache setObject:anObject forKey:cacheKey];
 		}
 	}
+
     
   //  PERF_LEAVE
 	

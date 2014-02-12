@@ -50,6 +50,8 @@ DEF_SINGLETON( XYMemoryCache );
     [super dealloc];
 }
 
+#pragma mark - XYCacheProtocol
+
 - (BOOL)hasObjectForKey:(id)key
 {
 	return [_cacheObjs objectForKey:key] ? YES : NO;

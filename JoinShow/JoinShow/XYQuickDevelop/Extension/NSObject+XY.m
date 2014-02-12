@@ -31,6 +31,9 @@
 #undef	NSObject_key_EventBlockDic
 #define NSObject_key_EventBlockDic	"NSObject.eventBlockDic"
 
+#undef	UITableViewCell_key_rowHeight
+#define UITableViewCell_key_rowHeight	"UITableViewCell.rowHeight"
+
 
 DUMMY_CLASS(NSObject_XY);
 
@@ -44,6 +47,7 @@ static void (*__dealloc)( id, SEL);
 
 @dynamic attributeList;
 @dynamic tempObject;
+@dynamic cellHeight;
 
 +(void)load{
 #if (1 == __XY_HOOK_DEALLOC__)
@@ -75,6 +79,18 @@ static void (*__dealloc)( id, SEL);
     }
 }
 #pragma mark - perform
+-(int) cellHeight{
+    NSNumber *number = objc_getAssociatedObject(self, UITableViewCell_key_rowHeight);
+    if (number == nil) {
+        return -1;
+    }
+    
+    return [number intValue];
+}
+
+-(void) setCellHeight:(int)aHeight{
+    objc_setAssociatedObject(self, UITableViewCell_key_rowHeight, @(aHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 #pragma mark - NSNotificationCenter
 -(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source{

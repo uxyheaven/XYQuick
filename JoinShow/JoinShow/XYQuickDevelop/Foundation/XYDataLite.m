@@ -60,6 +60,10 @@
         [[self class] synchronize];
     }
 }
++(void) registerDefaults:(NSDictionary *)dic{
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 +(void) synchronize{
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

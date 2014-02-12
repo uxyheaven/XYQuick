@@ -23,10 +23,13 @@
 -(void) set##__name:(id)anObject; \
 -(id) __name;
 
-// __synchronize 自动存
-// 注意:__defaultObject不要使用bool
-// 用__defaultPath时不要用NSNumber, NSString NSData 识别问题
-// 2个只能用一个
+/**
+ __synchronize 自动存
+ * 注意:__defaultObject不要使用bool
+ * 用__defaultPath时不要用NSNumber, NSString NSData 识别问题
+ * 2个只能用一个
+ * 建议在 applicationDidFinishLaunching: 中调用[XYDataLite registerDefaults:dic]设置默认值
+ */
 #define DEF_DataLite_object( __name , __synchronize, __defaultObject, __defaultPath) \
 -(void) set##__name:(id)anObject{ \
 [XYDataLite writeObject:anObject forKey:NSStringify( __func__##__name ) synchronize:__synchronize]; \
@@ -55,6 +58,10 @@ return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObj
 
 // if bSync == YES, run [[NSUserDefaults standardUserDefaults] synchronize]
 +(void) writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync;
+
+
+// 设置默认的值
++(void) registerDefaults:(NSDictionary *)dic;
 
 +(void) synchronize;
 @end
