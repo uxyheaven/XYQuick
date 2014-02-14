@@ -115,7 +115,7 @@ if (1) { \
     NSMutableArray *array2 = self->_array;
     NSLogD(@"%@", array2);
     
-    NSString *str = [NSString stringWithFormat:@"a"];
+    NSString *str = [NSString stringWithFormat:@"%d", 123123];
     [str erasure];
     NSLogD(@"%@", str);
 

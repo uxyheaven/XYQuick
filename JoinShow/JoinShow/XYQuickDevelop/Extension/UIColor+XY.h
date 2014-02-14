@@ -32,4 +32,8 @@
  @return    NSArray
  */
 -(NSArray *) rgbaArray;
+
 @end
+
+
+
