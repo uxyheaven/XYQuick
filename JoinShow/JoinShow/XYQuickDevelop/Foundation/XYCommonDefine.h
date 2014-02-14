@@ -102,7 +102,24 @@ DUMMY_CLASS(UIColor+YYAdd)
 #define DEF_WEAKSELF     __block typeof(id) weakSelf = self;
 
 /**************************************************************/
-#pragma mark- 以下待筛选
+static __inline__ CGRect CGRectFromCGSize( CGSize size ) {
+    return CGRectMake( 0, 0, size.width, size.height );
+};
+
+static __inline__ CGRect CGRectMakeWithCenterAndSize( CGPoint center, CGSize size ) {
+    return CGRectMake( center.x - size.width * 0.5, center.y - size.height * 0.5, size.width, size.height );
+};
+
+static __inline__ CGRect CGRectMakeWithOriginAndSize( CGPoint origin, CGSize size ) {
+    return CGRectMake( origin.x, origin.y, size.width, size.height );
+};
+
+static __inline__ CGPoint CGRectCenter( CGRect rect ) {
+    return CGPointMake( CGRectGetMidX( rect ), CGRectGetMidY( rect ) );
+};
+
+
+#pragma mark -end
 /**************************************************************/
 // 版本
 /*
@@ -121,6 +138,14 @@ DUMMY_CLASS(UIColor+YYAdd)
  */
 
 /**************************************************************/
+
+
+
+
+
+
+/**************************************************************/
+
 /*
 #define NavigationBar_HEIGHT 44
 

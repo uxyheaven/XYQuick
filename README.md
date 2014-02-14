@@ -83,7 +83,3 @@ XYAnimate UIView动画的封装
 #### SVPullToRefresh
 * arc
 * 上拉刷新下拉加载
-
-#### POViewFrameBuilder
-* arc
-* 自动布局

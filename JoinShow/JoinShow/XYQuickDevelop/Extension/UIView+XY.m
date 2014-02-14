@@ -223,8 +223,30 @@ DUMMY_CLASS(UIView_XY);
 -(void) setupDataBind:(NSMutableDictionary *)dic{
     
 }
+
+
+
+
+#pragma mark - animation
+-(void) crossfadeWithDuration:(NSTimeInterval)duration
+{
+    //jump through a few hoops to avoid QuartzCore framework dependency
+    CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
+    [animation setValue:@"kCATransitionFade" forKey:@"type"];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    animation.duration = duration;
+    [self.layer addAnimation:animation forKey:nil];
+}
+
+-(void) crossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion
+{
+    [self crossfadeWithDuration:duration];
+    if (completion)
+    {
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_after(time, dispatch_get_main_queue(), completion);
+    }
+}
 @end
-
-
 
 

@@ -66,11 +66,6 @@
 #import "SVPullToRefresh.h"
 #endif
 
-//  自动布局
-#if (1 == __USED_POViewFrameBuilder__)
-#import "UIView+POViewFrameBuilder.h"
-#endif
-
 ///////////////////////////////////////////////////////////////
 // 导入第三方外部扩展
 #import "ExternalExtension.h"

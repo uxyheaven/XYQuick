@@ -234,6 +234,7 @@
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
 		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
+		577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */; };
 		57808335181A1088000F349B /* headportrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57808334181A1088000F349B /* headportrait.jpg */; };
 		57808338181A11A6000F349B /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57808337181A11A6000F349B /* ImageVC.m */; };
 		5789228E1859A3040005CC27 /* Test1Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789228D1859A3040005CC27 /* Test1Model.m */; };
@@ -269,8 +270,6 @@
 		57B3FFF6177AD9BC00775FC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B3FFF5177AD9BC00775FC9 /* main.m */; };
 		57B3FFFC177AD9BC00775FC9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFB177AD9BC00775FC9 /* Default.png */; };
 		57B3FFFE177AD9BC00775FC9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFD177AD9BC00775FC9 /* Default@2x.png */; };
-		57B4EAE6183CC0A6007EB467 /* POViewFrameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4EAE3183CC0A6007EB467 /* POViewFrameBuilder.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		57B4EAE7183CC0A6007EB467 /* UIView+POViewFrameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4EAE5183CC0A6007EB467 /* UIView+POViewFrameBuilder.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57BE89B917AA525200FCD864 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89B817AA525200FCD864 /* AVFoundation.framework */; };
 		57BE89BD17AA531200FCD864 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BC17AA531100FCD864 /* OpenAL.framework */; };
 		57C94E7B188B325600CCAAED /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C94E7A188B325600CCAAED /* LKTestModels.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -286,7 +285,6 @@
 		57DB87E0183349A60015CC5A /* UIActionSheet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87AC183349A60015CC5A /* UIActionSheet+XY.m */; };
 		57DB87E1183349A60015CC5A /* UIAlertView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87AE183349A60015CC5A /* UIAlertView+XY.m */; };
 		57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B0183349A60015CC5A /* UIImage+XY.m */; };
-		57DB87E3183349A60015CC5A /* UIView+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B2183349A60015CC5A /* UIView+Test.m */; };
 		57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B4183349A60015CC5A /* UIView+XY.m */; };
 		57DB87E5183349A60015CC5A /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B8183349A60015CC5A /* XYCommon.m */; };
 		57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87BB183349A60015CC5A /* XYDataLite.m */; };
@@ -601,6 +599,8 @@
 		576E87D21855E77200C7A724 /* XYPerformance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPerformance.m; sourceTree = "<group>"; };
 		5771FF2D183A162900B24FE5 /* XYAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAnimate.h; sourceTree = "<group>"; };
 		5771FF2E183A162900B24FE5 /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
+		577CF80518ADE6A200421CC2 /* UIView+XY_coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XY_coordinate.h"; sourceTree = "<group>"; };
+		577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XY_coordinate.m"; sourceTree = "<group>"; };
 		57808334181A1088000F349B /* headportrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headportrait.jpg; sourceTree = "<group>"; };
 		57808336181A11A6000F349B /* ImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageVC.h; sourceTree = "<group>"; };
 		57808337181A11A6000F349B /* ImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageVC.m; sourceTree = "<group>"; };
@@ -656,11 +656,6 @@
 		57B3FFFB177AD9BC00775FC9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		57B3FFFD177AD9BC00775FC9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		57B4EAE1183CC0A6007EB467 /* POGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POGeometry.h; sourceTree = "<group>"; };
-		57B4EAE2183CC0A6007EB467 /* POViewFrameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POViewFrameBuilder.h; sourceTree = "<group>"; };
-		57B4EAE3183CC0A6007EB467 /* POViewFrameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POViewFrameBuilder.m; sourceTree = "<group>"; };
-		57B4EAE4183CC0A6007EB467 /* UIView+POViewFrameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+POViewFrameBuilder.h"; sourceTree = "<group>"; };
-		57B4EAE5183CC0A6007EB467 /* UIView+POViewFrameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+POViewFrameBuilder.m"; sourceTree = "<group>"; };
 		57BE89B817AA525200FCD864 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		57BE89BC17AA531100FCD864 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		57C94E79188B325600CCAAED /* LKTestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTestModels.h; sourceTree = "<group>"; };
@@ -690,8 +685,6 @@
 		57DB87AE183349A60015CC5A /* UIAlertView+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+XY.m"; sourceTree = "<group>"; };
 		57DB87AF183349A60015CC5A /* UIImage+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XY.h"; sourceTree = "<group>"; };
 		57DB87B0183349A60015CC5A /* UIImage+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XY.m"; sourceTree = "<group>"; };
-		57DB87B1183349A60015CC5A /* UIView+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Test.h"; sourceTree = "<group>"; };
-		57DB87B2183349A60015CC5A /* UIView+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Test.m"; sourceTree = "<group>"; };
 		57DB87B3183349A60015CC5A /* UIView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XY.h"; sourceTree = "<group>"; };
 		57DB87B4183349A60015CC5A /* UIView+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XY.m"; sourceTree = "<group>"; };
 		57DB87B5183349A60015CC5A /* XYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExtension.h; sourceTree = "<group>"; };
@@ -1203,7 +1196,6 @@
 		5742C18717F7BF3C00065083 /* XYExternal */ = {
 			isa = PBXGroup;
 			children = (
-				57B4EAE0183CC0A6007EB467 /* POViewFrameBuilder */,
 				572E7CC2183860A80018179D /* LKDBHelper */,
 				57FFF3BE1818B29F00977CB5 /* Extension */,
 				572E7CBE18385F9D0018179D /* YYJSON */,
@@ -1328,18 +1320,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		57B4EAE0183CC0A6007EB467 /* POViewFrameBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				57B4EAE1183CC0A6007EB467 /* POGeometry.h */,
-				57B4EAE2183CC0A6007EB467 /* POViewFrameBuilder.h */,
-				57B4EAE3183CC0A6007EB467 /* POViewFrameBuilder.m */,
-				57B4EAE4183CC0A6007EB467 /* UIView+POViewFrameBuilder.h */,
-				57B4EAE5183CC0A6007EB467 /* UIView+POViewFrameBuilder.m */,
-			);
-			path = POViewFrameBuilder;
-			sourceTree = "<group>";
-		};
 		57D5B88417B8ABBB009212F7 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1369,6 +1349,7 @@
 		57DB879E183349A60015CC5A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				57DB87B5183349A60015CC5A /* XYExtension.h */,
 				57DB879F183349A60015CC5A /* NSArray+XY.h */,
 				57DB87A0183349A60015CC5A /* NSArray+XY.mm */,
 				57DB87A1183349A60015CC5A /* NSData+XY.h */,
@@ -1389,15 +1370,14 @@
 				57DB87AE183349A60015CC5A /* UIAlertView+XY.m */,
 				57DB87AF183349A60015CC5A /* UIImage+XY.h */,
 				57DB87B0183349A60015CC5A /* UIImage+XY.m */,
-				57DB87B1183349A60015CC5A /* UIView+Test.h */,
-				57DB87B2183349A60015CC5A /* UIView+Test.m */,
 				57DB87B3183349A60015CC5A /* UIView+XY.h */,
 				57DB87B4183349A60015CC5A /* UIView+XY.m */,
+				577CF80518ADE6A200421CC2 /* UIView+XY_coordinate.h */,
+				577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */,
 				572EEF4818473CA700FE1301 /* UILabel+XY.h */,
 				572EEF4918473CA700FE1301 /* UILabel+XY.m */,
 				578D14CD187536690071448C /* UITableViewCell+XY.h */,
 				578D14CE187536690071448C /* UITableViewCell+XY.m */,
-				57DB87B5183349A60015CC5A /* XYExtension.h */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1865,7 +1845,6 @@
 				572E7CA618385C690018179D /* FMDatabaseQueue.m in Sources */,
 				572E7CA518385C690018179D /* FMDatabasePool.m in Sources */,
 				572E7CA318385C690018179D /* FMDatabase.m in Sources */,
-				57DB87E3183349A60015CC5A /* UIView+Test.m in Sources */,
 				572E7C9F18385C690018179D /* CDOpenALSupport.m in Sources */,
 				572E7CD7183860E60018179D /* MBProgressHUD.m in Sources */,
 				572E7CA718385C690018179D /* FMResultSet.m in Sources */,
@@ -1897,9 +1876,8 @@
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
 				572E7C9E18385C690018179D /* CDAudioManager.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
-				57B4EAE6183CC0A6007EB467 /* POViewFrameBuilder.m in Sources */,
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
-				57B4EAE7183CC0A6007EB467 /* UIView+POViewFrameBuilder.m in Sources */,
+				577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
 				576E87D31855E77200C7A724 /* XYPerformance.m in Sources */,
 			);

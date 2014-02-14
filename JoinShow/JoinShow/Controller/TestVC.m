@@ -9,6 +9,7 @@
 #import "TestVC.h"
 //#import "UIView+Test.h"
 #import "TestView.h"
+#import "Test2View.h"
 
 #if (1 == __XYQuick_Framework__)
 #import <XYQuick/XYQuickDevelop.h>
@@ -73,7 +74,52 @@ if (1) { \
 
 }
 */
+-(void) someTest{
+#pragma mark - others
+    //////////////////// test KVO ///////////////////////
+    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged:) observeKey:@"test_testKVO"];
+    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged2:) observeKey:@"test_testKVO2"];
+    [self observeWithObject:self keyPath:@"testArrayKVO" selector:@selector(testArrayKVOChanged:) observeKey:@"test_testArrayKVO"];
+    
+    NSString *str2 = MultiPlatform(@"xib");
+    NSLogD(@"%@", str2);
+    
+#pragma mark - next
+    NSString *str3 = [NSString stringWithFormat:@"%p", self];
+    NSLog(@"%@", str3);
+    
+    // PRINT_CALLSTACK(64);
+    
+    NSMutableString *str4 = [NSMutableString string];
+    NSString *str5 = str4.APPEND(@"%@%@", @"c", @"b");
+    NSLogD(@"%@", str5);
+    
+    
+#pragma mark - next
+    NSString *strLen = @"a";
+    NSLogD(@"%d", [strLen getLength2]);
+    strLen = @"啊a";
+    NSLogD(@"%d", [strLen getLength2]);
+    strLen = @"你好,世界.";
+    NSLogD(@"%d", [strLen getLength2]);
+    
+#pragma mark - next
+    GirlEntity *tempGirl = [[GirlEntity alloc] init];
+    self.myGirl = tempGirl;
+    [tempGirl release];
+    
+    [self observeWithObject:self keyPath:@"myGirl.name" selector:@selector(expChanged:) observeKey:@"TestVC_myGirl"];
+    
+#pragma mark - next
+    self.array = [NSMutableArray arrayWithArray:@[@"a"]];
+    NSMutableArray *array2 = self->_array;
+    NSLogD(@"%@", array2);
+    
+    NSString *str = [NSString stringWithFormat:@"a"];
+    [str erasure];
+    NSLogD(@"%@", str);
 
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -228,7 +274,7 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-    TestView *testView = [[[TestView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)] autorelease];
+    TestView *testView = [[[Test2View alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)] autorelease];
     _testView = testView;
     [scroll addSubview:testView];
      btnOffsetY += 220;
@@ -257,48 +303,27 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"emoji" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickEmoji:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"Crossfade" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickCrossfade:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    
+    
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
-#pragma mark - others
-    //////////////////// test KVO ///////////////////////
-    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged:) observeKey:@"test_testKVO"];
-    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged2:) observeKey:@"test_testKVO2"];
-    [self observeWithObject:self keyPath:@"testArrayKVO" selector:@selector(testArrayKVOChanged:) observeKey:@"test_testArrayKVO"];
     
-    NSString *str2 = MultiPlatform(@"xib");
-    NSLogD(@"%@", str2);
-
-#pragma mark - next
-    NSString *str3 = [NSString stringWithFormat:@"%p", self];
-    NSLog(@"%@", str3);
-    
-   // PRINT_CALLSTACK(64);
-
-    //NSString *str4 = [NSString stringWithFormat:@"%@", @"a"];
-   // NSString *str5 = str4.APPEND(@"%@%@", @"c", @"b");
-   // NSLogD(@"%@", str5);
-#pragma mark - next
-    NSString *strLen = @"a";
-    NSLogD(@"%d", [strLen getLength2]);
-    strLen = @"啊a";
-    NSLogD(@"%d", [strLen getLength2]);
-    strLen = @"你好,世界.";
-    NSLogD(@"%d", [strLen getLength2]);
-    
-#pragma mark - next
-    GirlEntity *tempGirl = [[GirlEntity alloc] init];
-    self.myGirl = tempGirl;
-    [tempGirl release];
-    
-    [self observeWithObject:self keyPath:@"myGirl.name" selector:@selector(expChanged:) observeKey:@"TestVC_myGirl"];
-    
-#pragma mark - next
-    self.array = [NSMutableArray arrayWithArray:@[@"a"]];
-    NSMutableArray *array2 = self->_array;
-    NSLogD(@"%@", array2);
-    
-    NSString *str = [NSString stringWithFormat:@"a"];
-    [str erasure];
-    NSLogD(@"%@", str);
+    [self someTest];
 }
 
 - (void)didReceiveMemoryWarning
@@ -527,7 +552,20 @@ if (1) { \
     
     NSLogD(@"%@", str);
 }
+-(void) clickEmoji:(id)sender{
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)] autorelease];
+    
+    label.text = @"\U0000e42a\U0000e525\U0000e41c";
+    
+    [label popupWithtype:PopupViewOption_none touchOutsideHidden:YES succeedBlock:nil dismissBlock:nil];
+    [label.po_frameBuilder centerInSuperview];
+}
 
+-(void) clickCrossfade:(id)sender{
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
+    [btn crossfadeWithDuration:5];
+}
 /////////////////////////// 备注 ///////////////////////////////
 /*
 void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {

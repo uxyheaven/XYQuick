@@ -13,4 +13,6 @@
 @property (nonatomic, retain) UILabel *label1;
 @property (nonatomic, retain) UIImageView *img1;
 
+-(void) test;
+
 @end

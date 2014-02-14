@@ -47,4 +47,7 @@
     [super dealloc];
 }
 
+-(void) test{
+    NSLogD(@"%@", [self class]);
+}
 @end

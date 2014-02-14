@@ -78,5 +78,6 @@
 +(BOOL) isScreenSize:(CGSize)size;
 
 //////////////////////////////
+// 返回本机ip地址
 +(NSString *) localHost;
 @end

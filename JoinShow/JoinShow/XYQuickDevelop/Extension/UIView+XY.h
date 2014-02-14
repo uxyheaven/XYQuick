@@ -55,10 +55,12 @@
 // 子类需要重新此方法
 //+(void) setupDataBind:(NSMutableDictionary *)dic;
 
+#pragma mark - animation
+// 淡出
+-(void) crossfadeWithDuration:(NSTimeInterval)duration;
+-(void) crossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+
 @end
-
-
-
 
 
 

@@ -21,6 +21,7 @@
 
 #import "UIControl+XY.h"
 #import "UIView+XY.h"
+#import "UIView+XY_coordinate.h"
 #import "UIImage+XY.h"
 #import "UIAlertView+XY.h"
 #import "UIActionSheet+XY.h"

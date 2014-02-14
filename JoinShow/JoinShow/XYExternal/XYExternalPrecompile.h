@@ -29,7 +29,6 @@
 
 #define __USED_MBProgressHUD__      (1)
 #define __USED_SVPullToRefresh__    (1)
-#define __USED_POViewFrameBuilder__ (1)
 
 #if (1 == __USED_Statistics__)
 #define UMENG
