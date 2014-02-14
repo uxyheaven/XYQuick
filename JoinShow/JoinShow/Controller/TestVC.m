@@ -319,7 +319,21 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"Cube" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickCube:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+#pragma mark -btn end
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"OglFlip" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickOglFlip:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
     
@@ -565,6 +579,18 @@ if (1) { \
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn crossfadeWithDuration:5];
+}
+
+-(void) clickCube:(id)sender{
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
+    [btn cubeWithDuration:5 direction:kCATransitionFromRight];
+}
+
+-(void) clickOglFlip:(id)sender{
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
+    [btn oglFlipWithDuration:5 direction:kCATransitionFromTop];
 }
 /////////////////////////// 备注 ///////////////////////////////
 /*

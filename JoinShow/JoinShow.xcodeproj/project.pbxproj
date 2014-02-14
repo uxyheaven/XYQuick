@@ -235,6 +235,7 @@
 		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
 		577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */; };
+		577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80918AE0BD700421CC2 /* UIColor+XY.m */; };
 		57808335181A1088000F349B /* headportrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57808334181A1088000F349B /* headportrait.jpg */; };
 		57808338181A11A6000F349B /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57808337181A11A6000F349B /* ImageVC.m */; };
 		5789228E1859A3040005CC27 /* Test1Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5789228D1859A3040005CC27 /* Test1Model.m */; };
@@ -601,6 +602,8 @@
 		5771FF2E183A162900B24FE5 /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
 		577CF80518ADE6A200421CC2 /* UIView+XY_coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XY_coordinate.h"; sourceTree = "<group>"; };
 		577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XY_coordinate.m"; sourceTree = "<group>"; };
+		577CF80818AE0BD700421CC2 /* UIColor+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+XY.h"; sourceTree = "<group>"; };
+		577CF80918AE0BD700421CC2 /* UIColor+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+XY.m"; sourceTree = "<group>"; };
 		57808334181A1088000F349B /* headportrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headportrait.jpg; sourceTree = "<group>"; };
 		57808336181A11A6000F349B /* ImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageVC.h; sourceTree = "<group>"; };
 		57808337181A11A6000F349B /* ImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageVC.m; sourceTree = "<group>"; };
@@ -1362,6 +1365,8 @@
 				57DB87A8183349A60015CC5A /* NSObject+XY.m */,
 				57DB87A9183349A60015CC5A /* NSString+XY.h */,
 				57DB87AA183349A60015CC5A /* NSString+XY.m */,
+				577CF80818AE0BD700421CC2 /* UIColor+XY.h */,
+				577CF80918AE0BD700421CC2 /* UIColor+XY.m */,
 				57245D5D18696F5900736D5D /* UIControl+XY.h */,
 				57245D5E18696F5900736D5D /* UIControl+XY.m */,
 				57DB87AB183349A60015CC5A /* UIActionSheet+XY.h */,
@@ -1832,6 +1837,7 @@
 				572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */,
 				57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */,
 				576E87D01855D23F00C7A724 /* XYDebug.m in Sources */,
+				577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */,
 				57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				57AD6330188B31DD00271C06 /* NSObject+LKDBHelper.m in Sources */,

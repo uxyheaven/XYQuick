@@ -247,6 +247,42 @@ DUMMY_CLASS(UIView_XY);
         dispatch_after(time, dispatch_get_main_queue(), completion);
     }
 }
+
+-(void) cubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
+    CATransition *transtion = [CATransition animation];
+    transtion.duration = duration;
+    [transtion setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [transtion setType:@"cube"];
+    [transtion setSubtype:direction];
+    [self.layer addAnimation:transtion forKey:@"transtionKey"];
+}
+
+-(void) cubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
+    [self cubeWithDuration:duration direction:direction completion:completion];
+    if (completion)
+    {
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_after(time, dispatch_get_main_queue(), completion);
+    }
+}
+
+-(void) oglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
+    CATransition *transtion = [CATransition animation];
+    transtion.duration = duration;
+    [transtion setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [transtion setType:@"oglFlip"];
+    [transtion setSubtype:direction];
+    [self.layer addAnimation:transtion forKey:@"transtionKey"];
+}
+
+-(void) oglFlipWithDuration:(NSTimeInterval)duration  direction:(NSString *)direction completion:(void (^)(void))completion{
+    [self oglFlipWithDuration:duration direction:direction completion:completion];
+    if (completion)
+    {
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_after(time, dispatch_get_main_queue(), completion);
+    }
+}
 @end
 
 

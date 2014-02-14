@@ -19,6 +19,7 @@
 #import "NSData+XY.h"
 #import "NSDate+XY.h"
 
+#import "UIColor+XY.h"
 #import "UIControl+XY.h"
 #import "UIView+XY.h"
 #import "UIView+XY_coordinate.h"

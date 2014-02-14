@@ -56,9 +56,21 @@
 //+(void) setupDataBind:(NSMutableDictionary *)dic;
 
 #pragma mark - animation
-// 淡出
+// 淡入淡出
 -(void) crossfadeWithDuration:(NSTimeInterval)duration;
 -(void) crossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+
+/** 立方体翻转
+ *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
+ */
+-(void) cubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+-(void) cubeWithDuration:(NSTimeInterval)duration  direction:(NSString *)direction completion:(void (^)(void))completion;
+
+/** 翻转
+ *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
+ */
+-(void) oglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+-(void) oglFlipWithDuration:(NSTimeInterval)duration  direction:(NSString *)direction completion:(void (^)(void))completion;
 
 @end
 
