@@ -66,12 +66,15 @@ static void (*__dealloc)( id, SEL);
 	}
 }
 -(void) myDealloc{
-   
-    if ([self respondsToSelector:@selector(delegate)]) {
-        [self performSelector:@selector(setDelegate:) withObject:nil];
-    }
-   // [[NSNotificationCenter defaultCenter] removeObserver:self];
-   // [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        if ([self respondsToSelector:@selector(delegate)]
+            && (![self isKindOfClass:[CAAnimation class]])) {
+            //  [self performSelector:@selector(setDelegate:) withObject:nil];
+            objc_msgSend(self, @selector(setDelegate:), nil);
+        }
+    
+    // [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // 无用
+    // [NSObject cancelPreviousPerformRequestsWithTarget:self];
     // [self removeAllObserver];
     
     if ( __dealloc ){

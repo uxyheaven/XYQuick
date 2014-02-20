@@ -228,7 +228,7 @@ DUMMY_CLASS(UIView_XY);
 
 
 #pragma mark - animation
--(void) crossfadeWithDuration:(NSTimeInterval)duration
+-(void) animationCrossfadeWithDuration:(NSTimeInterval)duration
 {
     //jump through a few hoops to avoid QuartzCore framework dependency
     CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
@@ -238,9 +238,9 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:animation forKey:nil];
 }
 
--(void) crossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion
+-(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion
 {
-    [self crossfadeWithDuration:duration];
+    [self animationCrossfadeWithDuration:duration];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -248,7 +248,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
--(void) cubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
+-(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
     CATransition *transtion = [CATransition animation];
     transtion.duration = duration;
     [transtion setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
@@ -257,8 +257,8 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
--(void) cubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
-    [self cubeWithDuration:duration direction:direction completion:completion];
+-(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
+    [self animationCubeWithDuration:duration direction:direction completion:completion];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -266,7 +266,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
--(void) oglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
+-(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
     CATransition *transtion = [CATransition animation];
     transtion.duration = duration;
     [transtion setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
@@ -275,8 +275,26 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
--(void) oglFlipWithDuration:(NSTimeInterval)duration  direction:(NSString *)direction completion:(void (^)(void))completion{
-    [self oglFlipWithDuration:duration direction:direction completion:completion];
+-(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
+    [self animationOglFlipWithDuration:duration direction:direction completion:completion];
+    if (completion)
+    {
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
+        dispatch_after(time, dispatch_get_main_queue(), completion);
+    }
+}
+
+-(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction{
+    CATransition *transtion = [CATransition animation];
+    transtion.duration = duration;
+    [transtion setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [transtion setType:kCATransitionMoveIn];
+    [transtion setSubtype:direction];
+    [self.layer addAnimation:transtion forKey:@"transtionKey"];
+}
+
+-(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
+    [self animationMoveInWithDuration:duration direction:direction completion:completion];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));

@@ -15,8 +15,13 @@
 
 #import "EntityModel.h"
 
-@interface BusinessVC : UIViewController <EntityModelDelegate>
+@interface BusinessVC : BaseViewController <EntityModelDelegate>
+
+@property (nonatomic, retain) UIButton *btnLoad;
+@property (nonatomic, retain) UIButton *btnStart;
+
 - (IBAction)clickStart:(id)sender;
+
 - (IBAction)clickLoad:(id)sender;
 
 @end

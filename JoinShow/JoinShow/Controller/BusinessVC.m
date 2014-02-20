@@ -36,26 +36,56 @@
     }
     return  self;
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    self.entityModel = [EntityModel sharedInstance];
-    self.entityModel.delegate = self;
-    
-}
-- (void)dealloc
-{
-    NSLogDD;
-    self.entityModel = nil;
-    [super dealloc];
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(void) createFields
+{
+    self.entityModel = [EntityModel sharedInstance];
+    self.entityModel.delegate = self;
+}
+
+-(void) destroyFields
+{
+    self.entityModel = nil;
+}
+
+-(void) createViews {
+    _btnStart = (UIButton *)[self.view viewWithTag:11000];
+    
+    _btnLoad = (UIButton *)[self.view viewWithTag:11001];
+}
+
+-(void) destroyViews
+{
+    
+}
+
+-(void) createEvents
+{
+    [_btnStart addTarget: self action: @selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnLoad addTarget: self action: @selector(clickLoad:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void) destroyEvents
+{
+    
+}
+
+// 如果页面加载过程需要调用MobileAPI，则写在这个地方。
+-(void) loadData
+{
+    
+}
+
+
+#pragma mark - rewrite
+
+#pragma mark - event
 - (IBAction)clickStart:(id)sender {
     for (int i = 0; i < 6; i++) {
         UILabel *label = (UILabel *)[self.view viewWithTag:i + 10000];
@@ -146,6 +176,7 @@
     [self performSelector:@selector(refreshUI) withObject:nil afterDelay:1];
 }
 
+#pragma mark - delegate
 #pragma mark -EntityModelDelegate
 -(RequestHelper *) entityModelSetupRequestHelper:(id)model{
     RequestHelper *request = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
@@ -154,4 +185,6 @@
     request.forceReload = YES;
     return request;
 }
+
+#pragma mark - private
 @end

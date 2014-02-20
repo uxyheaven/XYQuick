@@ -15,6 +15,9 @@
 // 基础类
 #import "XYFoundation.h"
 
+// 基类
+#import "BaseClass.h"
+
 // 类别
 #import "XYExtension.h"
 

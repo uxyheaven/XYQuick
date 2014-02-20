@@ -57,20 +57,26 @@
 
 #pragma mark - animation
 // 淡入淡出
--(void) crossfadeWithDuration:(NSTimeInterval)duration;
--(void) crossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+-(void) animationCrossfadeWithDuration:(NSTimeInterval)duration;
+-(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
 /** 立方体翻转
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
--(void) cubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) cubeWithDuration:(NSTimeInterval)duration  direction:(NSString *)direction completion:(void (^)(void))completion;
+-(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+-(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
 
 /** 翻转
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
--(void) oglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) oglFlipWithDuration:(NSTimeInterval)duration  direction:(NSString *)direction completion:(void (^)(void))completion;
+-(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+-(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
+
+/** 覆盖
+ *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
+ */
+-(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+-(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
 
 @end
 

@@ -68,12 +68,7 @@ if (1) { \
     [self removeAllObserver];
     [super dealloc];
 }
-/*
-- (void)loadView
-{
 
-}
-*/
 -(void) someTest{
 #pragma mark - others
     //////////////////// test KVO ///////////////////////
@@ -567,9 +562,9 @@ if (1) { \
     NSLogD(@"%@", str);
 }
 -(void) clickEmoji:(id)sender{
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)] autorelease];
-    
-    label.text = @"\U0000e42a\U0000e525\U0000e41c";
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 80)] autorelease];
+   // label.font = [UIFont fontWithName:@"AppleColorEmoji" size:12.0];
+    label.text = @"This is a smiley \ue415 face";
     
     [label popupWithtype:PopupViewOption_none touchOutsideHidden:YES succeedBlock:nil dismissBlock:nil];
     [label.po_frameBuilder centerInSuperview];
@@ -578,19 +573,19 @@ if (1) { \
 -(void) clickCrossfade:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
-    [btn crossfadeWithDuration:5];
+    [btn animationCrossfadeWithDuration:5];
 }
 
 -(void) clickCube:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
-    [btn cubeWithDuration:5 direction:kCATransitionFromRight];
+    [btn animationCubeWithDuration:5 direction:kCATransitionFromRight];
 }
 
 -(void) clickOglFlip:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
-    [btn oglFlipWithDuration:5 direction:kCATransitionFromTop];
+    [btn animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
 }
 /////////////////////////// 备注 ///////////////////////////////
 /*

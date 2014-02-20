@@ -22,7 +22,7 @@
 #define __XY_DEVELOPMENT__          (1)
 
 // hook dealloc,在释放前设置delegate = nil,等
-// 待测试
+// 有bug待测试
 #define __XY_HOOK_DEALLOC__         (0)
 
 #define __TimeOut__ON__             (0)
