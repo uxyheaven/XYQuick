@@ -45,16 +45,23 @@
 
 -(void) createFields
 {
+    [super createFields];
+    
     self.entityModel = [EntityModel sharedInstance];
     self.entityModel.delegate = self;
 }
 
 -(void) destroyFields
 {
+    [super destroyFields];
+    
     self.entityModel = nil;
 }
 
--(void) createViews {
+-(void) createViews
+{
+    [super createViews];
+    
     _btnStart = (UIButton *)[self.view viewWithTag:11000];
     
     _btnLoad = (UIButton *)[self.view viewWithTag:11001];
@@ -62,24 +69,26 @@
 
 -(void) destroyViews
 {
-    
+    [super destroyViews];
 }
 
 -(void) createEvents
 {
+    [super createEvents];
+    
     [_btnStart addTarget: self action: @selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
     [_btnLoad addTarget: self action: @selector(clickLoad:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) destroyEvents
 {
-    
+    [super destroyEvents];
 }
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
 -(void) loadData
 {
-    
+    [super loadData];
 }
 
 

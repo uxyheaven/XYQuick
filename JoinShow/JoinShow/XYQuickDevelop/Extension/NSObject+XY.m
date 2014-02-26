@@ -82,18 +82,7 @@ static void (*__dealloc)( id, SEL);
     }
 }
 #pragma mark - perform
--(int) cellHeight{
-    NSNumber *number = objc_getAssociatedObject(self, UITableViewCell_key_rowHeight);
-    if (number == nil) {
-        return -1;
-    }
-    
-    return [number intValue];
-}
 
--(void) setCellHeight:(int)aHeight{
-    objc_setAssociatedObject(self, UITableViewCell_key_rowHeight, @(aHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 
 #pragma mark - NSNotificationCenter
 -(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source{
@@ -134,6 +123,18 @@ static void (*__dealloc)( id, SEL);
     }
     free( properties );
     return array;
+}
+-(int) cellHeight{
+    NSNumber *number = objc_getAssociatedObject(self, UITableViewCell_key_rowHeight);
+    if (number == nil) {
+        return -1;
+    }
+    
+    return [number intValue];
+}
+
+-(void) setCellHeight:(int)aHeight{
+    objc_setAssociatedObject(self, UITableViewCell_key_rowHeight, @(aHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Conversion

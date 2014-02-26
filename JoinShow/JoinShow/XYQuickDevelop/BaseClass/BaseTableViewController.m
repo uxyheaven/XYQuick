@@ -46,6 +46,8 @@
 
 - (void)dealloc
 {
+    NSLogD(@"Class:%@ ", [self class]);
+    
     [self destroyEvents];
     [self destroyViews];
     [self destroyFields];
@@ -53,51 +55,57 @@
     [super dealloc];
 }
 
--(void) createFields
-{
-    
-}
-
--(void) destroyFields
-{
-    
-}
-
--(void) createViews {
-    
-}
-
--(void) destroyViews
-{
-    
-}
-
--(void) createEvents
-{
-    
-}
-
--(void) destroyEvents
-{
-    
-}
-
--(void) loadData
-{
-    
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void) createFields
+{
+    // [super createFields];
+}
+
+-(void) destroyFields
+{
+    // [super destroyFields];
+}
+
+-(void) createViews {
+    // [super createViews];
+}
+
+-(void) destroyViews
+{
+    // [super destroyViews];
+}
+
+-(void) createEvents
+{
+    // [super createEvents];
+}
+
+-(void) destroyEvents
+{
+    // [super destroyEvents];
+}
+
+-(void) loadData
+{
+    // [super loadData];
+}
+
 #pragma mark - rewrite
+// 额外的重写的父类的方法
 
 #pragma mark - event
+// 事件
 
-#pragma mark - delegate
+#pragma mark - interface
+// 对外的接口,委托,协议都写在这
 
 #pragma mark - private
+// 私有方法
+
 
 @end

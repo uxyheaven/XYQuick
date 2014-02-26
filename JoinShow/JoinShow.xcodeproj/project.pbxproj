@@ -226,6 +226,7 @@
 		572E7CD7183860E60018179D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CD6183860E60018179D /* MBProgressHUD.m */; };
 		572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EEF4918473CA700FE1301 /* UILabel+XY.m */; };
 		5730EC03188E015E00299121 /* XYObserve.m in Sources */ = {isa = PBXBuildFile; fileRef = 5730EC02188E015E00299121 /* XYObserve.m */; };
+		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
@@ -586,6 +587,8 @@
 		572EEF4918473CA700FE1301 /* UILabel+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+XY.m"; sourceTree = "<group>"; };
 		5730EC01188E015E00299121 /* XYObserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserve.h; sourceTree = "<group>"; };
 		5730EC02188E015E00299121 /* XYObserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObserve.m; sourceTree = "<group>"; };
+		5737618518BB586E004E7D46 /* PaintCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintCodeView.h; sourceTree = "<group>"; };
+		5737618618BB586E004E7D46 /* PaintCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintCodeView.m; sourceTree = "<group>"; };
 		57383F3917D2F5F20001079C /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		57383F3A17D2F5F20001079C /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		5738D27F1845C5E800837DB7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -859,6 +862,8 @@
 				571CBA5217C6FCC0007CB842 /* Test2View.m */,
 				571CBA5317C6FCC0007CB842 /* TestView.h */,
 				571CBA5417C6FCC0007CB842 /* TestView.m */,
+				5737618518BB586E004E7D46 /* PaintCodeView.h */,
+				5737618618BB586E004E7D46 /* PaintCodeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1837,6 +1842,7 @@
 				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,
 				572E7CA218385C690018179D /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				57D4451818B5B579006C597A /* BaseTableViewController.m in Sources */,
+				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
 				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,

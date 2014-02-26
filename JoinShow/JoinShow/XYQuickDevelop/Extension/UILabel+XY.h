@@ -19,7 +19,9 @@ typedef enum {
 // UILabelResizeType_constantHeight 高度不变
 -(void) resize:(UILabelResizeType)type;
 
+// 返回估计的尺寸
 -(CGSize) estimateUISizeByHeight:(CGFloat)height;
 -(CGSize) estimateUISizeByWidth:(CGFloat)width;
+
 
 @end

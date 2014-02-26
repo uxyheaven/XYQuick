@@ -10,6 +10,7 @@
 //#import "UIView+Test.h"
 #import "TestView.h"
 #import "Test2View.h"
+#import "PaintCodeView.h"
 
 #if (1 == __XYQuick_Framework__)
 #import <XYQuick/XYQuickDevelop.h>
@@ -269,7 +270,7 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-    TestView *testView = [[[Test2View alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)] autorelease];
+    TestView *testView = [[[PaintCodeView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)] autorelease];
     _testView = testView;
     [scroll addSubview:testView];
      btnOffsetY += 220;

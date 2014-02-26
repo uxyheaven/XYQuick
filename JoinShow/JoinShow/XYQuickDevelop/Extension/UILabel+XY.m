@@ -17,7 +17,7 @@
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height);
     }else if (type == UILabelResizeType_constantWidth) {
         size = [self estimateUISizeByWidth:self.bounds.size.width];
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, size.height);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height);
     }
 }
 

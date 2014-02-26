@@ -6,8 +6,7 @@
 //  Copyright (c) 2013年 Bao. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "XYPrecompile.h"
 
 @interface BaseViewController : UIViewController
 
@@ -45,12 +44,12 @@
 -(void) destroyFields;
 
 // 创建/销毁页面内控件的地方。
--(void) createEvents;
--(void) destroyEvents;
-
-// 创建/销毁页面内事件、通知的地方。
 -(void) createViews;
 -(void) destroyViews;
+
+// 创建/销毁页面内事件、通知的地方。
+-(void) createEvents;
+-(void) destroyEvents;
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
 -(void) loadData;
