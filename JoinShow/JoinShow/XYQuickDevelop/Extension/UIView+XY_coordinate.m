@@ -357,16 +357,16 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
             
             switch (direction) {
                 case POViewFrameBuilderDirectionRight:
-                    [[[self alloc] initWithView:view] alignRightOfView:previousView offset:spacing];
+                    [[[self class] frameBuilderForView:view] alignRightOfView:previousView offset:spacing];
                     break;
                 case POViewFrameBuilderDirectionLeft:
-                    [[[self alloc] initWithView:view] alignLeftOfView:previousView offset:spacing];
+                    [[[self class] frameBuilderForView:view] alignLeftOfView:previousView offset:spacing];
                     break;
                 case POViewFrameBuilderDirectionUp:
-                    [[[self alloc] initWithView:view] alignToTopOfView:previousView offset:spacing];
+                    [[[self class] frameBuilderForView:view] alignToTopOfView:previousView offset:spacing];
                     break;
                 case POViewFrameBuilderDirectionDown:
-                    [[[self alloc] initWithView:view] alignToBottomOfView:previousView offset:spacing];
+                    [[[self class] frameBuilderForView:view] alignToBottomOfView:previousView offset:spacing];
                     break;
                 default:
                     break;
