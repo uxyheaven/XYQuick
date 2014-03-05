@@ -63,4 +63,8 @@
 @end
 
 
+@interface NSObject (XYDebug)
+
+
+@end
 

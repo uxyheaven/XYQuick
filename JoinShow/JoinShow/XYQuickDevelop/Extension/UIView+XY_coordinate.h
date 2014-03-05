@@ -90,8 +90,27 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 @end
 
 
-@interface UIView (XY_coordinate)
+@interface UIView (XY_frameBuilder)
 
 -(POViewFrameBuilder *) po_frameBuilder;
 
 @end
+
+
+@interface UIView (XY_positioning)
+
+@property (nonatomic, assign) CGFloat   x;
+@property (nonatomic, assign) CGFloat   y;
+@property (nonatomic, assign) CGFloat   width;
+@property (nonatomic, assign) CGFloat   height;
+@property (nonatomic, assign) CGPoint   origin;
+@property (nonatomic, assign) CGSize    size;
+@property (nonatomic, assign) CGFloat   bottom;
+@property (nonatomic, assign) CGFloat   right;
+@property (nonatomic, assign) CGFloat   centerX;
+@property (nonatomic, assign) CGFloat   centerY;
+@property (nonatomic, strong, readonly) UIView *lastSubviewOnX;
+@property (nonatomic, strong, readonly) UIView *lastSubviewOnY;
+
+@end
+

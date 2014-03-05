@@ -21,6 +21,19 @@ DUMMY_CLASS(NSDate_XY);
 @dynamic second;
 @dynamic weekday;
 
+#pragma mark - private
++ (NSCalendar *)AZ_currentCalendar {
+    NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+    NSCalendar *currentCalendar = [dictionary objectForKey:@"AZ_currentCalendar"];
+    if (currentCalendar == nil) {
+        currentCalendar = [NSCalendar currentCalendar];
+        [dictionary setObject:currentCalendar forKey:@"AZ_currentCalendar"];
+    }
+    return currentCalendar;
+}
+
+#pragma mark -
+
 - (NSInteger)year
 {
 	return [[NSCalendar currentCalendar] components:NSYearCalendarUnit
@@ -140,6 +153,26 @@ DUMMY_CLASS(NSDate_XY);
 + (NSDate *)now
 {
 	return [NSDate date];
+}
+
+-(NSDate *) dateAfterDay:(int)day{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    // Get the weekday component of the current date
+    // NSDateComponents *weekdayComponents = [calendar components:NSWeekdayCalendarUnit fromDate:self];
+    NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
+    // to get the end of week for a particular date, add (7 - weekday) days
+    [componentsToAdd setDay:day];
+    NSDate *dateAfterDay = [calendar dateByAddingComponents:componentsToAdd toDate:self options:0];
+    [componentsToAdd release];
+    
+    return dateAfterDay;
+}
+
+- (NSInteger) distanceInDaysToDate:(NSDate *)aDate{
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *dateComponents = [calendar
+                                        components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
+    return [dateComponents day];
 }
 
 @end

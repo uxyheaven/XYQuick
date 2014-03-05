@@ -334,6 +334,25 @@ if (1) { \
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
     
     [self someTest];
+    
+  /*
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:4000000];
+    PERF_ENTER
+    for (int i = 0; i <1000000; i++) {
+        [array addObject:@"a"];
+    }
+    PERF_LEAVE
+    PERF_ENTER
+    for (int i = 0; i < 100000; i++) {
+        [array addObject:@"a"];
+    }
+    PERF_LEAVE
+    PERF_ENTER
+    for (int i = 0; i < 100000; i++) {
+        [array insertObject:@"a" atIndex:1000000 + 000000 + i - 100];
+    }
+    PERF_LEAVE
+   */
 }
 
 - (void)didReceiveMemoryWarning

@@ -87,11 +87,18 @@
 -(void) createEvents
 {
     // [super createEvents];
+    // 保存当前状态
+    if ([self respondsToSelector:@selector(saveCurrentState)]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCurrentState) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    }
+    
 }
 
 -(void) destroyEvents
 {
     // [super destroyEvents];
+    // 移除此对象所有观察的消息
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) loadData

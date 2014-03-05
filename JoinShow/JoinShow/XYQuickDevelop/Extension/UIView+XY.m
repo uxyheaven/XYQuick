@@ -159,7 +159,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 /////////////////////////////////////////////////////////////
--(UIActivityIndicatorView *) addActivityIndicatorView{
+-(UIActivityIndicatorView *) activityIndicatorViewShow{
     UIActivityIndicatorView *aView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     aView.center = CGPointMake(self.bounds.size.width * .5, self.bounds.size.height * .5);
     aView.tag = UIView_activityIndicatorViewTag;
@@ -168,7 +168,7 @@ DUMMY_CLASS(UIView_XY);
     
     return aView;
 }
--(void) removeActivityIndicatorView{
+-(void) activityIndicatorViewHidden{
     UIActivityIndicatorView *aView = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
     if (aView) {
         [aView stopAnimating];
@@ -300,6 +300,17 @@ DUMMY_CLASS(UIView_XY);
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
         dispatch_after(time, dispatch_get_main_queue(), completion);
     }
+}
+
+-(void) animationShake{
+    CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    //设置抖动幅度
+    shake.fromValue = [NSNumber numberWithFloat:-0.1];
+    shake.toValue = [NSNumber numberWithFloat:+0.1];
+    shake.duration = 0.06;
+    shake.autoreverses = YES; //是否重复
+    shake.repeatCount = 3;
+    [self.layer addAnimation:shake forKey:@"XYShake"];
 }
 @end
 

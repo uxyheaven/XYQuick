@@ -90,10 +90,9 @@ static void (*__dealloc)( id, SEL);
     [self unregisterMessage:aMsg];
     
     if ([self respondsToSelector:aSel]){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:aSel name:aMsg object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:aSel name:aMsg object:source];
         return;
     }
-  //  [self hookDealloc];
 }
 -(void) unregisterMessage:(NSString*)aMsg{
     if (aMsg == nil) return;
@@ -102,9 +101,9 @@ static void (*__dealloc)( id, SEL);
 -(void) unregisterAllMessage{
    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
--(void) sendMessage:(NSString *)aMsg withObject:(NSObject *)object{
+-(void) sendMessage:(NSString *)aMsg userInfo:(NSDictionary *)userInfo{
     if (aMsg == nil) return;
-    [[NSNotificationCenter defaultCenter] postNotificationName:aMsg object:object userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:aMsg object:self userInfo:userInfo];
 }
 
 #pragma mark - property

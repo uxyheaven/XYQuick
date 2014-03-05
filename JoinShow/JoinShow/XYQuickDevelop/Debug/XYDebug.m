@@ -187,7 +187,31 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 
 @end
 
+@implementation NSObject (XYDebug)
+/* // 消息转发
+// 将选择器转发给一个真正实现了该消息的对象, invocation 保存原始的选择器和被请求的参数
+- (void)forwardInvocation:(NSInvocation *)invocation
+{
+    SEL selector = [invocation selector];
+    
+    if ([self.carInfo respondsToSelector:selector])
+    {
+        [invocation invokeWithTarget:self.carInfo];
+    }
+}
 
+// 为另一个类实现的消息创建一个有效的方法签名
+- (NSMethodSignature*)methodSignatureForSelector:(SEL)selector
+{
+    NSMethodSignature* signature = [super methodSignatureForSelector:selector];
+    
+    if (!signature)
+        signature = [self.carInfo methodSignatureForSelector:selector];
+    
+    return signature;
+}
+*/
+@end
 
 
 

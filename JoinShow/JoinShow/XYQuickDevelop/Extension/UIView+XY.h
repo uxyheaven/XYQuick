@@ -40,8 +40,8 @@
 -(void) setBg:(NSString *)str;
 
 // 活动指示器
--(UIActivityIndicatorView *) addActivityIndicatorView;
--(void) removeActivityIndicatorView;
+-(UIActivityIndicatorView *) activityIndicatorViewShow;
+-(void) activityIndicatorViewHidden;
 
 // 截屏
 -(UIImage *) snapshot;
@@ -77,6 +77,9 @@
  */
 -(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
 -(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
+
+// 抖动
+-(void) animationShake;
 
 @end
 

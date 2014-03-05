@@ -48,13 +48,10 @@ XY_SINGLETON(EntityModel)
 
 // 可选实现
 @optional
-// net
--(void) entityModelLoadFromServerSucceed:(EntityModel *)em;
--(void) entityModelLoadFromServerFailed:(EntityModel *)em error:(NSError *)err;
+// 用 tag 来区别哪的数据
+-(void) entityModelLoadSucceed:(EntityModel *)em tag:(int)tag;
+-(void) entityModelLoadFailed:(EntityModel *)em error:(NSError *)err sender:(int)tag;
 
-// Database
--(void) entityModelLoadFromDatabaseSucceed:(EntityModel *)em;
--(void) entityModelLoadFromDatabaseFailed:(EntityModel *)em error:(NSError *)err;
 
 // 设置网络请求helper
 -(RequestHelper *) entityModelSetupRequestHelper:(id)model;
