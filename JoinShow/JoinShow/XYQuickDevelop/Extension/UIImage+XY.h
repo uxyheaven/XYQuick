@@ -69,4 +69,8 @@ typedef enum {
 
 // 修复方向
 -(UIImage *) fixOrientation;
+
+// 改变图片颜色, Gradient带灰度
+-(UIImage *) imageWithTintColor:(UIColor *)tintColor;
+-(UIImage *) imageWithGradientTintColor:(UIColor *)tintColor;
 @end

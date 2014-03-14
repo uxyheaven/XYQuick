@@ -62,7 +62,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 15;
+    return 16;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,7 +136,7 @@
     switch (i) {
         case 0:
         {
-            [dic setObject:@"normal" forKey:@"title"];
+            [dic setObject:@"original" forKey:@"title"];
             UIImage *tempImg = self.originImg;
             [dic setObject:tempImg forKey:@"img"];
             break;
@@ -223,6 +223,27 @@
         {
             [dic setObject:@"stackBlur:10" forKey:@"title"];
             UIImage *tempImg = [self.originImg stackBlur:10];
+            [dic setObject:tempImg forKey:@"img"];
+            break;
+        }
+        case 13:
+        {
+            [dic setObject:@"original" forKey:@"title"];
+            UIImage *tempImg = LoadImage_cache(@"image.png");
+            [dic setObject:tempImg forKey:@"img"];
+            break;
+        }
+        case 14:
+        {
+            [dic setObject:@"Tint : orangeColor" forKey:@"title"];
+            UIImage *tempImg = [LoadImage_cache(@"image.png") imageWithTintColor:[UIColor orangeColor]];
+            [dic setObject:tempImg forKey:@"img"];
+            break;
+        }
+        case 15:
+        {
+            [dic setObject:@"GradientTint : orangeColor" forKey:@"title"];
+            UIImage *tempImg = [LoadImage_cache(@"image.png") imageWithGradientTintColor:[UIColor orangeColor]];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }

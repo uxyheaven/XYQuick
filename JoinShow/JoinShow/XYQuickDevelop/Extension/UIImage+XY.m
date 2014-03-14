@@ -730,4 +730,76 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return img;
 }
 
+- (UIImage *)imageTintedWithColor:(UIColor *)color
+{
+	// This method is designed for use with template images, i.e. solid-coloured mask-like images.
+	return [self imageTintedWithColor:color fraction:0.0]; // default to a fully tinted mask of the image.
+}
+
+
+- (UIImage *)imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction
+{
+	if (color) {
+		// Construct new image the same size as this one.
+		UIImage *image;
+		
+		if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
+			UIGraphicsBeginImageContextWithOptions([self size], NO, 0.f); // 0.f for scale means "scale for device's main screen".
+		} else {
+			UIGraphicsBeginImageContext([self size]);
+		}
+		CGRect rect = CGRectZero;
+		rect.size = [self size];
+		
+		// Composite tint color at its own opacity.
+		[color set];
+		UIRectFill(rect);
+		
+		// Mask tint color-swatch to this image's opaque mask.
+		// We want behaviour like NSCompositeDestinationIn on Mac OS X.
+		[self drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.0];
+		
+		// Finally, composite this image over the tinted mask at desired opacity.
+		if (fraction > 0.0) {
+			// We want behaviour like NSCompositeSourceOver on Mac OS X.
+			[self drawInRect:rect blendMode:kCGBlendModeSourceAtop alpha:fraction];
+		}
+		image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		return image;
+	}
+	
+	return self;
+}
+- (UIImage *) imageWithTintColor:(UIColor *)tintColor
+{
+    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
+}
+
+- (UIImage *) imageWithGradientTintColor:(UIColor *)tintColor
+{
+    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
+}
+
+- (UIImage *) imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
+{
+    //We want to keep alpha, set opaque to NO; Use 0.0f for scale to use the scale factor of the device’s main screen.
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    [tintColor setFill];
+    CGRect bounds = CGRectMake(0, 0, self.size.width, self.size.height);
+    UIRectFill(bounds);
+    
+    //Draw the tinted image in context
+    [self drawInRect:bounds blendMode:blendMode alpha:1.0f];
+    
+    if (blendMode != kCGBlendModeDestinationIn) {
+        [self drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+    }
+    
+    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return tintedImage;
+}
 @end

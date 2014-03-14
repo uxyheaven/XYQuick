@@ -363,6 +363,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (void)done {
+	[NSObject cancelPreviousPerformRequestsWithTarget:self];
 	isFinished = YES;
 	self.alpha = 0.0f;
 	if (removeFromSuperViewOnHide) {
@@ -698,7 +699,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		detailsLabel.textColor = self.detailsLabelColor;
 	} else if ([keyPath isEqualToString:@"progress"]) {
 		if ([indicator respondsToSelector:@selector(setProgress:)]) {
-			[(id)indicator setProgress:progress];
+			[(id)indicator setValue:@(progress) forKey:@"progress"];
 		}
 		return;
 	}

@@ -28,3 +28,4 @@
 #import "UIActionSheet+XY.h"
 #import "UILabel+XY.h"
 #import "UITableViewCell+XY.h"
+#import "UIWebView+XY.h"

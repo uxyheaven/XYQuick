@@ -223,7 +223,6 @@
 		572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9818385C690018179D /* UIScrollView+SVInfiniteScrolling.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572E7CBC18385C690018179D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9A18385C690018179D /* UIScrollView+SVPullToRefresh.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CC018385F9D0018179D /* YYJSONHelper.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		572E7CD7183860E60018179D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CD6183860E60018179D /* MBProgressHUD.m */; };
 		572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EEF4918473CA700FE1301 /* UILabel+XY.m */; };
 		5730EC03188E015E00299121 /* XYObserve.m in Sources */ = {isa = PBXBuildFile; fileRef = 5730EC02188E015E00299121 /* XYObserve.m */; };
 		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
@@ -260,6 +259,7 @@
 		57AD632F188B31DD00271C06 /* LKDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD6327188B31DD00271C06 /* LKDBUtils.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57AD6330188B31DD00271C06 /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD6329188B31DD00271C06 /* NSObject+LKDBHelper.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57AD6331188B31DD00271C06 /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD632B188B31DD00271C06 /* NSObject+LKModel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		57AE2ED418D2AA8C009F0481 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE2ED318D2AA8C009F0481 /* image.png */; };
 		57B30000177AD9BC00775FC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */; };
 		57B3000E177AD9BC00775FC9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */; };
 		57B3000F177AD9BC00775FC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3FFE9177AD9BC00775FC9 /* UIKit.framework */; };
@@ -309,6 +309,8 @@
 		57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134D917DC393600C5DCDC /* JsonVC.m */; };
 		57F134DF17DC39F200C5DCDC /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134DC17DC39F200C5DCDC /* Player.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57F134E017DC39F200C5DCDC /* Shot.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134DE17DC39F200C5DCDC /* Shot.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */; };
+		57F439CE18C6C1FF00DAFFD8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F439CD18C6C1FF00DAFFD8 /* MBProgressHUD.m */; };
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
 		57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */; };
@@ -582,7 +584,6 @@
 		572E7CBF18385F9D0018179D /* YYJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYJSONHelper.h; sourceTree = "<group>"; };
 		572E7CC018385F9D0018179D /* YYJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYJSONHelper.m; sourceTree = "<group>"; };
 		572E7CD5183860E60018179D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		572E7CD6183860E60018179D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		572EEF4818473CA700FE1301 /* UILabel+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+XY.h"; sourceTree = "<group>"; };
 		572EEF4918473CA700FE1301 /* UILabel+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+XY.m"; sourceTree = "<group>"; };
 		5730EC01188E015E00299121 /* XYObserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserve.h; sourceTree = "<group>"; };
@@ -648,6 +649,7 @@
 		57AD6329188B31DD00271C06 /* NSObject+LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKDBHelper.m"; sourceTree = "<group>"; };
 		57AD632A188B31DD00271C06 /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
 		57AD632B188B31DD00271C06 /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
+		57AE2ED318D2AA8C009F0481 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoinShowTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		57B30015177AD9BC00775FC9 /* JoinShowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoinShowTests-Info.plist"; sourceTree = "<group>"; };
@@ -745,6 +747,9 @@
 		57F134DC17DC39F200C5DCDC /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		57F134DD17DC39F200C5DCDC /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		57F134DE17DC39F200C5DCDC /* Shot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shot.m; sourceTree = "<group>"; };
+		57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+XY.h"; sourceTree = "<group>"; };
+		57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+XY.m"; sourceTree = "<group>"; };
+		57F439CD18C6C1FF00DAFFD8 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseVC.h; sourceTree = "<group>"; };
 		57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseVC.m; sourceTree = "<group>"; };
@@ -1110,7 +1115,7 @@
 			isa = PBXGroup;
 			children = (
 				572E7CD5183860E60018179D /* MBProgressHUD.h */,
-				572E7CD6183860E60018179D /* MBProgressHUD.m */,
+				57F439CD18C6C1FF00DAFFD8 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -1232,6 +1237,7 @@
 				57293C7A1824C42F007BF087 /* bg_trends.png */,
 				57A2FE5D18063D5A002460EC /* bg.jpg */,
 				57808334181A1088000F349B /* headportrait.jpg */,
+				57AE2ED318D2AA8C009F0481 /* image.png */,
 				57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */,
 				57E852E117B224E500C664F4 /* json2.json */,
 				571CBA5E17C702D0007CB842 /* p31b */,
@@ -1408,6 +1414,8 @@
 				572EEF4918473CA700FE1301 /* UILabel+XY.m */,
 				578D14CD187536690071448C /* UITableViewCell+XY.h */,
 				578D14CE187536690071448C /* UITableViewCell+XY.m */,
+				57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */,
+				57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1720,6 +1728,7 @@
 				571CBB8D17C702D1007CB842 /* p31b0123.png in Resources */,
 				571CBB8E17C702D1007CB842 /* p31b0124.png in Resources */,
 				571CBB8F17C702D1007CB842 /* p31b0125.png in Resources */,
+				57AE2ED418D2AA8C009F0481 /* image.png in Resources */,
 				571CBB9017C702D1007CB842 /* p31b0126.png in Resources */,
 				571CBB9117C702D1007CB842 /* p31b0127.png in Resources */,
 				571CBB9217C702D1007CB842 /* p31b0128.png in Resources */,
@@ -1851,6 +1860,7 @@
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
 				57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */,
 				572E7CB918385C690018179D /* OpenUDID.m in Sources */,
+				57F439CE18C6C1FF00DAFFD8 /* MBProgressHUD.m in Sources */,
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
 				57AD632F188B31DD00271C06 /* LKDBUtils.m in Sources */,
 				57AD6331188B31DD00271C06 /* NSObject+LKModel.m in Sources */,
@@ -1880,7 +1890,6 @@
 				572E7CA518385C690018179D /* FMDatabasePool.m in Sources */,
 				572E7CA318385C690018179D /* FMDatabase.m in Sources */,
 				572E7C9F18385C690018179D /* CDOpenALSupport.m in Sources */,
-				572E7CD7183860E60018179D /* MBProgressHUD.m in Sources */,
 				572E7CA718385C690018179D /* FMResultSet.m in Sources */,
 				572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */,
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
@@ -1908,6 +1917,7 @@
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
 				57DB87DE183349A60015CC5A /* NSObject+XY.m in Sources */,
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
+				57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */,
 				572E7C9E18385C690018179D /* CDAudioManager.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
