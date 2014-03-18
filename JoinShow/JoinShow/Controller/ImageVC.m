@@ -62,7 +62,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 16;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,8 +185,8 @@
         }
         case 7:
         {
-            [dic setObject:@"getSubImage(0, 0, 40, 40)" forKey:@"title"];
-            UIImage *tempImg = [self.originImg getSubImage:CGRectMake(0, 0, 40, 40)];
+            [dic setObject:@"imageInRect(0, 0, 40, 40)" forKey:@"title"];
+            UIImage *tempImg = [self.originImg imageInRect:CGRectMake(0, 0, 40, 40)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
@@ -244,6 +244,13 @@
         {
             [dic setObject:@"GradientTint : orangeColor" forKey:@"title"];
             UIImage *tempImg = [LoadImage_cache(@"image.png") imageWithGradientTintColor:[UIColor orangeColor]];
+            [dic setObject:tempImg forKey:@"img"];
+            break;
+        }
+        case 16:
+        {
+            [dic setObject:@"imageFromString : round" forKey:@"title"];
+            UIImage *tempImg = [UIImage imageFromString:@"headportrait.jpg round"];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }

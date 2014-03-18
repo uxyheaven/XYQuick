@@ -9,6 +9,8 @@
 
 #import "UIImage+XY.h"
 #import "XYPrecompile.h"
+#import "NSString+XY.h"
+#import "XYSystemInfo.h"
 
 DUMMY_CLASS(UIImage_XY);
 
@@ -114,21 +116,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
         }
     }
     return nil;
-}
-//截取部分图像
--(UIImage*) getSubImage:(CGRect)rect
-{
-    CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
-    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
-    
-    UIGraphicsBeginImageContext(smallBounds.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, smallBounds, subImageRef);
-    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
-    UIGraphicsEndImageContext();
-    CGImageRelease(subImageRef);
-    
-    return smallImage;
 }
 
 //等比例缩放
@@ -276,6 +263,56 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return [self resizableImageWithCapInsets:capInsets];
 }
 
+- (UIImage *)rotate:(CGFloat)angle
+{
+	UIImage *	result = nil;
+	CGSize		imageSize = self.size;
+	CGSize		canvasSize = CGSizeZero;
+	
+	angle = fmodf( angle, 360 );
+    
+	if ( 90 == angle || 270 == angle )
+	{
+		canvasSize.width = self.size.height;
+		canvasSize.height = self.size.width;
+	}
+	else if ( 0 == angle || 180 == angle )
+	{
+		canvasSize.width = self.size.width;
+		canvasSize.height = self.size.height;
+	}
+    
+    UIGraphicsBeginImageContext( canvasSize );
+	
+    CGContextRef bitmap = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM( bitmap, canvasSize.width / 2, canvasSize.height / 2 );
+    CGContextRotateCTM( bitmap, M_PI / 180 * angle );
+    
+    CGContextScaleCTM( bitmap, 1.0, -1.0 );
+    CGContextDrawImage( bitmap, CGRectMake( -(imageSize.width / 2), -(imageSize.height / 2), imageSize.width, imageSize.height), self.CGImage );
+    
+	result = UIGraphicsGetImageFromCurrentImageContext();
+	
+    UIGraphicsEndImageContext();
+	
+    return result;
+}
+
+- (UIImage *)rotateCW90
+{
+	return [self rotate:270];
+}
+
+- (UIImage *)rotateCW180
+{
+	return [self rotate:180];
+}
+
+- (UIImage *)rotateCW270
+{
+	return [self rotate:90];
+}
+
 - (UIImage *)grayscale
 {
 	CGSize size = self.size;
@@ -295,10 +332,172 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	return image;
 }
 
+- (UIImage *)crop:(CGRect)rect
+{
+    CGImageRef imageRef = self.CGImage;
+    CGImageRef newImageRef = CGImageCreateWithImageInRect(imageRef, rect);
+	
+    UIGraphicsBeginImageContext(rect.size);
+	
+    CGContextRef context = UIGraphicsGetCurrentContext();
+	
+    CGContextDrawImage(context, rect, newImageRef);
+	
+    UIImage * image = [UIImage imageWithCGImage:newImageRef];
+	
+    UIGraphicsEndImageContext();
+	
+    CGImageRelease(newImageRef);
+	
+    return image;
+}
+
+- (UIImage *)imageInRect:(CGRect)rect
+{
+	return [self crop:rect];
+}
+
 - (UIColor *)patternColor
 {
 	return [UIColor colorWithPatternImage:self];
 }
+
++ (UIImage *)merge:(NSArray *)images
+{
+	UIImage * image = nil;
+	
+	for ( UIImage * otherImage in images )
+	{
+		if ( nil == image )
+		{
+			image = otherImage;
+		}
+		else
+		{
+			image = [image merge:otherImage];
+		}
+	}
+	
+	return image;
+}
++ (UIImage *)imageFromString:(NSString *)name
+{
+	return [self imageFromString:name atPath:nil];
+}
+
++ (UIImage *)imageFromString:(NSString *)name atPath:(NSString *)path
+{
+	NSArray *	array = [name componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	NSString *	imageName = [array objectAtIndex:0];
+    
+	imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
+	imageName = imageName.unwrap.trim;
+    
+	if ( [imageName hasPrefix:@"url("] && [imageName hasSuffix:@")"] )
+	{
+		NSRange range = NSMakeRange( 4, imageName.length - 5 );
+		imageName = [imageName substringWithRange:range].trim;
+	}
+    
+	UIImage * image = nil;
+	
+	if ( nil == image && imageName )
+	{
+		if ( path )
+		{
+			NSString * fullPath = [NSString stringWithFormat:@"%@/%@", path, imageName];
+            
+			if ( [[NSFileManager defaultManager] fileExistsAtPath:fullPath] )
+			{
+				image = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
+			}
+		}
+		
+		if ( nil == image )
+		{
+			image = [UIImage imageNamed:imageName];
+		}
+	}
+	
+	if ( nil == image )
+	{
+		return nil;
+	}
+    
+	BOOL grayed = NO;
+	BOOL rounded = NO;
+	BOOL streched = NO;
+	
+	if ( array.count > 1 )
+	{
+		for ( NSString * attr in [array subarrayWithRange:NSMakeRange(1, array.count - 1)] )
+		{
+			attr = attr.trim.unwrap;
+			
+			if ( NSOrderedSame == [attr compare:@"stretch" options:NSCaseInsensitiveSearch] ||
+				NSOrderedSame == [attr compare:@"stretched" options:NSCaseInsensitiveSearch] )
+			{
+				streched = YES;
+			}
+			else if ( NSOrderedSame == [attr compare:@"round" options:NSCaseInsensitiveSearch] ||
+					 NSOrderedSame == [attr compare:@"rounded" options:NSCaseInsensitiveSearch] )
+			{
+				rounded = YES;
+			}
+			else if ( NSOrderedSame == [attr compare:@"gray" options:NSCaseInsensitiveSearch] ||
+					 NSOrderedSame == [attr compare:@"grayed" options:NSCaseInsensitiveSearch] ||
+					 NSOrderedSame == [attr compare:@"grayScale" options:NSCaseInsensitiveSearch] ||
+					 NSOrderedSame == [attr compare:@"gray-scale" options:NSCaseInsensitiveSearch] )
+			{
+				grayed = YES;
+			}
+		}
+	}
+	
+	if ( image )
+	{
+		if ( rounded )
+		{
+			image = image.rounded;
+		}
+        
+		if ( grayed )
+		{
+			image = image.grayscale;
+		}
+        
+		if ( streched )
+		{
+			image = image.stretched;
+		}
+	}
+    
+	return image;
+}
+
++ (UIImage *)imageFromString:(NSString *)name stretched:(UIEdgeInsets)capInsets
+{
+	UIImage * image = [self imageFromString:name];
+	if ( nil == image )
+		return nil;
+    
+	return [image resizableImageWithCapInsets:capInsets];
+}
+
++ (UIImage *)imageFromVideo:(NSURL *)videoURL atTime:(CMTime)time scale:(CGFloat)scale
+{
+	AVURLAsset * asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    AVAssetImageGenerator * generater = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    generater.appliesPreferredTrackTransform = YES;
+	generater.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+	generater.maximumSize = [UIScreen mainScreen].bounds.size;
+    NSError * error = nil;
+    CGImageRef image = [generater copyCGImageAtTime:time actualTime:NULL error:&error];
+    UIImage * thumb = [[UIImage alloc] initWithCGImage:image scale:scale orientation:UIImageOrientationUp];
+    CGImageRelease(image);
+    return thumb;
+}
+
 - (UIImage *)merge:(UIImage *)image
 {
 	CGSize canvasSize;

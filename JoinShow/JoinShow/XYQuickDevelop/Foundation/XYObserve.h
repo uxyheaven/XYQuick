@@ -24,7 +24,12 @@
 
 @property (nonatomic, readonly, retain) NSMutableDictionary *observers;
 
+// default: selector = @selector(propertyChanged:), key = property, target = self
+-(void) observeWithObject:(id)object property:(NSString*)property;
+
+// default: target = self
 -(void) observeWithObject:(id)object keyPath:(NSString*)keyPath selector:(SEL)selector observeKey:(NSString *)key;
+
 -(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector observeKey:(NSString *)key;
 
 -(void) removeObserverWithKey:(NSString *)key;

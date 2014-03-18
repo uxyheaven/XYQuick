@@ -73,28 +73,29 @@
 -(id) observers{
     id object = objc_getAssociatedObject(self, NSObject_observers);
     
+    if (nil == object) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
+        objc_setAssociatedObject(self, NSObject_observers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return dic;
+    }
+    
     return object;
 }
-/*
--(void) setObservers:(id)anObject{
-    objc_setAssociatedObject(self, NSObject_observers, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+-(void) observeWithObject:(id)object property:(NSString*)property{
+    NSString *key = property;
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@Changed:", property]);
+    [self observeWithObject:object keyPath:property target:self selector:aSel observeKey:key];
 }
-*/
 -(void) observeWithObject:(id)object keyPath:(NSString*)keyPath selector:(SEL)selector observeKey:(NSString *)key{
     [self observeWithObject:object keyPath:keyPath target:self selector:selector observeKey:key];
 }
 -(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector observeKey:(NSString *)key{
+    NSAssert([target respondsToSelector:selector], @"selector 必须存在");
+    
     XYObserve *ob = [XYObserve observerWithObject:object keyPath:keyPath target:target selector:selector];
-/*
-    if (key == nil || [key isEqualToString:@""]) {
-        key = [NSString stringWithFormat:@"%p_%@", object, keyPath];
-    }
- */
+
     if (key && ob) {
-        if (nil == self.observers) {
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
-            objc_setAssociatedObject(self, NSObject_observers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        }
         [self.observers setObject:ob forKey:key];
     }
 }

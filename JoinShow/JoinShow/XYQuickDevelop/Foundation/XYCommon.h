@@ -177,6 +177,8 @@ typedef enum {
  * api parameters 说明
  */
 +(NSString *) UUID;
+// 没有"-"
++(NSString *) UUIDWithoutMinus;
 
 /**
  * 用打开一个URL

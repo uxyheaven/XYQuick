@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMedia/CoreMedia.h>
 /**************************************************************/
 // UIImage
 #define LoadImage_cache(_pointer) [UIImage image:_pointer]
@@ -37,15 +38,38 @@
 // 灰度
 -(UIImage *) grayscale;
 
-//截取部分图像
--(UIImage*) getSubImage:(CGRect)rect;
+// 旋转
+-(UIImage *) rotate:(CGFloat)angle;
+-(UIImage *) rotateCW90;
+-(UIImage *) rotateCW180;
+-(UIImage *) rotateCW270;
+
 //等比例缩放
 -(UIImage*) scaleToSize:(CGSize)size;
 
+// 创建并返回使用指定的图像中的颜色对象。
 -(UIColor *) patternColor;
 
+// 截取部分图像
+-(UIImage *) crop:(CGRect)rect;
+-(UIImage *) imageInRect:(CGRect)rect;
+
+/** 从string返回图片
+ * path:图片路径, stretched:拉伸
+ * 文件名特殊修饰可加特殊修饰: @"image.png round"
+ * stretch:拉伸, round:圆形, gray:灰度
+*/
++ (UIImage *)imageFromString:(NSString *)name;
++ (UIImage *)imageFromString:(NSString *)name atPath:(NSString *)path;
++ (UIImage *)imageFromString:(NSString *)name stretched:(UIEdgeInsets)capInsets;
+// 从视频截取图片
++ (UIImage *)imageFromVideo:(NSURL *)videoURL atTime:(CMTime)time scale:(CGFloat)scale;
+
+
 // 叠加合并
++(UIImage *) merge:(NSArray *)images;
 -(UIImage *) merge:(UIImage *)image;
+
 
 // 圆角
 typedef enum {

@@ -368,6 +368,12 @@
     CFRelease(uuidString);
     return [result autorelease];
 }
+
++(NSString *) UUIDWithoutMinus{
+    NSString *str = [self UUID];
+    str = [str stringByReplacingOccurrencesOfString :@"-" withString:@""];
+    return str;
+}
 /***************************************************************/
 +(void) openURL:(NSURL *)url{
     NSURL *tmpURL = url;
