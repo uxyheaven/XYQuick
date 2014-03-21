@@ -208,7 +208,7 @@ DUMMY_CLASS(UIView_XY);
                 if ([obj isKindOfClass:[UIImage class]]) {
                     [tempObj setValue:obj forKey:@"image"];
                 } else if ([obj isKindOfClass:[NSString class]]){
-                    UIImage *tempImg = [UIImage imageWithString:obj];
+                    UIImage *tempImg = [UIImage imageFromString:obj];
                     [tempObj setValue:tempImg forKey:@"image"];
                 }
             }else if (1)

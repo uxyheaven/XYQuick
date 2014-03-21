@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 Bao. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "XYBaseViewController.h"
 
-@implementation BaseViewController
+@implementation XYBaseViewController
 
 - (id) init {
     self = [super init];
@@ -60,11 +60,6 @@
     [super dealloc];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 -(void) createFields
 {
   // [super createFields];
@@ -73,6 +68,8 @@
 -(void) destroyFields
 {
     // [super destroyFields];
+    self.children = nil;
+    self.curChild = nil;
 }
 
 -(void) createViews {
@@ -106,6 +103,25 @@
     // [super loadData];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    self.children = nil;
+}
+
+-(NSMutableDictionary *) children{
+    if (_children == nil) {
+        self.children = [NSMutableDictionary dictionaryWithCapacity:6];
+    }
+    
+    return _children;
+}
 #pragma mark - rewrite
 // 额外的重写的父类的方法
 

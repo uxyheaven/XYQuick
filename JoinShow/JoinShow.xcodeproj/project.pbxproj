@@ -275,8 +275,8 @@
 		57BE89B917AA525200FCD864 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89B817AA525200FCD864 /* AVFoundation.framework */; };
 		57BE89BD17AA531200FCD864 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BC17AA531100FCD864 /* OpenAL.framework */; };
 		57C94E7B188B325600CCAAED /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C94E7A188B325600CCAAED /* LKTestModels.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		57D4451518B59A12006C597A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451418B59A12006C597A /* BaseViewController.m */; };
-		57D4451818B5B579006C597A /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451718B5B579006C597A /* BaseTableViewController.m */; };
+		57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451418B59A12006C597A /* XYBaseViewController.m */; };
+		57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451718B5B579006C597A /* XYBaseTableViewController.m */; };
 		57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF4618221A4400E10954 /* LKDBHelperExtension.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF491822275400E10954 /* BusinessVC.m */; };
 		57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */; };
@@ -670,11 +670,11 @@
 		57BE89BC17AA531100FCD864 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		57C94E79188B325600CCAAED /* LKTestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTestModels.h; sourceTree = "<group>"; };
 		57C94E7A188B325600CCAAED /* LKTestModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTestModels.m; sourceTree = "<group>"; };
-		57D4451318B59A12006C597A /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		57D4451418B59A12006C597A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		57D4451618B5B579006C597A /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
-		57D4451718B5B579006C597A /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		57D4451918B5C573006C597A /* BaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseClass.h; sourceTree = "<group>"; };
+		57D4451318B59A12006C597A /* XYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseViewController.h; sourceTree = "<group>"; };
+		57D4451418B59A12006C597A /* XYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseViewController.m; sourceTree = "<group>"; };
+		57D4451618B5B579006C597A /* XYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseTableViewController.h; sourceTree = "<group>"; };
+		57D4451718B5B579006C597A /* XYBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseTableViewController.m; sourceTree = "<group>"; };
+		57D4451918B5C573006C597A /* XYBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseClass.h; sourceTree = "<group>"; };
 		57D4FF4518221A4400E10954 /* LKDBHelperExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelperExtension.h; sourceTree = "<group>"; };
 		57D4FF4618221A4400E10954 /* LKDBHelperExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBHelperExtension.m; sourceTree = "<group>"; };
 		57D4FF481822275400E10954 /* BusinessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessVC.h; sourceTree = "<group>"; };
@@ -1344,11 +1344,11 @@
 		57D4451218B59A04006C597A /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
-				57D4451918B5C573006C597A /* BaseClass.h */,
-				57D4451318B59A12006C597A /* BaseViewController.h */,
-				57D4451418B59A12006C597A /* BaseViewController.m */,
-				57D4451618B5B579006C597A /* BaseTableViewController.h */,
-				57D4451718B5B579006C597A /* BaseTableViewController.m */,
+				57D4451918B5C573006C597A /* XYBaseClass.h */,
+				57D4451318B59A12006C597A /* XYBaseViewController.h */,
+				57D4451418B59A12006C597A /* XYBaseViewController.m */,
+				57D4451618B5B579006C597A /* XYBaseTableViewController.h */,
+				57D4451718B5B579006C597A /* XYBaseTableViewController.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1850,7 +1850,7 @@
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,
 				572E7CA218385C690018179D /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
-				57D4451818B5B579006C597A /* BaseTableViewController.m in Sources */,
+				57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
 				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,
@@ -1885,7 +1885,7 @@
 				572E7CB718385C690018179D /* MKNetworkOperation.m in Sources */,
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				57DB87DD183349A60015CC5A /* NSNumber+XY.m in Sources */,
-				57D4451518B59A12006C597A /* BaseViewController.m in Sources */,
+				57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */,
 				572E7CA618385C690018179D /* FMDatabaseQueue.m in Sources */,
 				572E7CA518385C690018179D /* FMDatabasePool.m in Sources */,
 				572E7CA318385C690018179D /* FMDatabase.m in Sources */,

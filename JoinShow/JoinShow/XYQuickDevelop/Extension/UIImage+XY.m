@@ -105,19 +105,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return img;
 }
 
-+(UIImage *) imageWithString:(NSString *)str{
-    UIImage *tempImg = [UIImage image:str];
-    if (tempImg) {
-        return tempImg;
-    }else{
-        tempImg = [UIImage imageWithFile:str];
-        if (tempImg) {
-            return tempImg;
-        }
-    }
-    return nil;
-}
-
 //等比例缩放
 -(UIImage *) scaleToSize:(CGSize)size
 {

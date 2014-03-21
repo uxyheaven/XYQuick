@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "XYBaseTableViewController.h"
 
-@interface BaseTableViewController ()
+@interface XYBaseTableViewController ()
 
 @end
 
-@implementation BaseTableViewController
+@implementation XYBaseTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,12 +55,6 @@
     [super dealloc];
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 -(void) createFields
 {
     // [super createFields];
@@ -69,6 +63,8 @@
 -(void) destroyFields
 {
     // [super destroyFields];
+    self.children = nil;
+    self.curChild = nil;
 }
 
 -(void) createViews {
@@ -95,6 +91,25 @@
     // [super loadData];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    self.children = nil;
+}
+
+-(NSMutableDictionary *) children{
+    if (_children == nil) {
+        self.children = [NSMutableDictionary dictionaryWithCapacity:6];
+    }
+    
+    return _children;
+}
 #pragma mark - rewrite
 // 额外的重写的父类的方法
 

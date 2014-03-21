@@ -8,8 +8,12 @@
 
 #import "XYPrecompile.h"
 
-@interface BaseTableViewController : UITableViewController
+@interface XYBaseTableViewController : UITableViewController
 
+@property (nonatomic, retain) NSMutableDictionary   *children;       // 子视图控制器
+@property (nonatomic, assign) UIViewController      *curChild;        // 当前的子视图控制器
+
+#pragma mark -  生命周期
 /**
  生命周期
  loadView

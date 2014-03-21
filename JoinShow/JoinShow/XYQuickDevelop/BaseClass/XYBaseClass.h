@@ -9,8 +9,8 @@
 #ifndef JoinShow_BaseClass_h
 #define JoinShow_BaseClass_h
 
-#import "BaseViewController.h"
-#import "BaseTableViewController.h"
+#import "XYBaseViewController.h"
+#import "XYBaseTableViewController.h"
 
 
 #endif

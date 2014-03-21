@@ -49,7 +49,7 @@
 // 旋转 1:顺时针180度
 -(void) setRotate:(float)f;
 
-
+#pragma mark -todo
 -(void) bindDataWithDic:(NSDictionary *)dic;
 
 // 子类需要重新此方法

@@ -179,7 +179,7 @@
         case 6:
         {
             [dic setObject:@"grayscale" forKey:@"title"];
-            UIImage *tempImg = [self.originImg grayscale];
+            UIImage *tempImg = [LoadImage_cache(@"image.png") grayscale];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
@@ -250,7 +250,7 @@
         case 16:
         {
             [dic setObject:@"imageFromString : round" forKey:@"title"];
-            UIImage *tempImg = [UIImage imageFromString:@"headportrait.jpg round"];
+            UIImage *tempImg = [UIImage imageFromString:@"image.png round"];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }

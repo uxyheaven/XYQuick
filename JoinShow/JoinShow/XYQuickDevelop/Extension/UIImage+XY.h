@@ -21,8 +21,6 @@
 // used: imageWithContentsOfFile
 +(UIImage *) imageWithFile:(NSString *)path;
 
-+(UIImage *) imageWithString:(NSString *)str;
-
 // 压缩转换
 -(UIImage *) transprent;
 
@@ -59,11 +57,11 @@
  * 文件名特殊修饰可加特殊修饰: @"image.png round"
  * stretch:拉伸, round:圆形, gray:灰度
 */
-+ (UIImage *)imageFromString:(NSString *)name;
-+ (UIImage *)imageFromString:(NSString *)name atPath:(NSString *)path;
-+ (UIImage *)imageFromString:(NSString *)name stretched:(UIEdgeInsets)capInsets;
++(UIImage *) imageFromString:(NSString *)name;
++(UIImage *) imageFromString:(NSString *)name atPath:(NSString *)path;
++(UIImage *) imageFromString:(NSString *)name stretched:(UIEdgeInsets)capInsets;
 // 从视频截取图片
-+ (UIImage *)imageFromVideo:(NSURL *)videoURL atTime:(CMTime)time scale:(CGFloat)scale;
++(UIImage *) imageFromVideo:(NSURL *)videoURL atTime:(CMTime)time scale:(CGFloat)scale;
 
 
 // 叠加合并

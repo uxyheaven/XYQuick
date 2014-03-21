@@ -5,6 +5,7 @@
 //  Created by Heaven on 14-1-21.
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
+//  Copy from bee Framework
 
 #import "XYPrecompile.h"
 
