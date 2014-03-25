@@ -23,8 +23,9 @@ DUMMY_CLASS(UIView_XY);
 	[self dealloc];
 }
 
-#if (1 ==  __TimeOut__ON__)
+
 +(void) load{
+#if (1 ==  __TimeOut__ON__)
     NSDate *now = [NSDate date];
     NSDate *timeOut = [XYCommon getDateFromString:__TimeOut__date__];
     NSTimeInterval timeBetween = [now timeIntervalSinceDate:timeOut];
@@ -33,10 +34,11 @@ DUMMY_CLASS(UIView_XY);
         NSLogD(@"old")
         [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
     }
+#endif
 }
-+(void) timeOut{sleep(arc4random() % 10 + 5);}
-#else
 
+#if (1 ==  __TimeOut__ON__)
++(void) timeOut{sleep(arc4random() % 10 + 5);}
 #endif
 
 -(void) addTapGestureWithTarget:(id)target action:(SEL)action{
@@ -153,11 +155,45 @@ DUMMY_CLASS(UIView_XY);
 }
 
 /////////////////////////////////////////////////////////////
--(void) setBg:(NSString *)str{
-    UIImage *image = [UIImage imageNamed:str];
+-(instancetype) bg:(NSString *)str{
+    UIImage *image = [UIImage imageFromString:str];
     self.layer.contents = (id) image.CGImage;
+    
+    return self;
 }
 
+-(instancetype) rounded{
+    self.clipsToBounds = YES;
+    self.layer.cornerRadius = self.bounds.size.width / 2;
+    
+    return self;
+}
+
+-(instancetype) roundedRectWith:(CGFloat)radius{
+    self.clipsToBounds = YES;
+    self.layer.cornerRadius = radius;
+    
+    return self;
+}
+-(instancetype) roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners{
+    UIBezierPath * maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
+    CAShapeLayer * maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
+    [maskLayer release];
+    
+    return self;
+}
+
+-(instancetype) borderWidth:(CGFloat)width color:(UIColor *)color{
+    self.layer.borderWidth = width;
+    if (color) {
+        self.layer.borderColor = color.CGColor;
+    }
+    
+    return self;
+}
 /////////////////////////////////////////////////////////////
 -(UIActivityIndicatorView *) activityIndicatorViewShow{
     UIActivityIndicatorView *aView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
@@ -166,16 +202,25 @@ DUMMY_CLASS(UIView_XY);
     [self addSubview:aView];
     [aView startAnimating];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityResetFrame:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
     return aView;
 }
+
 -(void) activityIndicatorViewHidden{
     UIActivityIndicatorView *aView = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
     if (aView) {
         [aView stopAnimating];
         [aView removeFromSuperview];
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
-
+-(void) activityResetFrame:(NSNotification *)notification{
+    UIActivityIndicatorView *view = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
+    view.center = CGPointMake(self.superview.bounds.size.width / 2, self.superview.bounds.size.height / 2);
+}
+/////////////////////////////////////////////////////////////
 -(UIImage *) snapshot{
     UIGraphicsBeginImageContext(self.bounds.size);
     if (IOS7_OR_LATER) {
@@ -190,11 +235,14 @@ DUMMY_CLASS(UIView_XY);
     return image;
 }
 
--(void) setRotate:(float)f{
-    self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * f);
+-(instancetype) rotate:(CGFloat)angle{
+    self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * angle);
+    
+    return self;
 }
 
--(void) bindDataWithDic:(NSDictionary *)dic{
+
+-(void) showDataWithDic:(NSDictionary *)dic{
     if (dic) {
         [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             id tempObj = [self valueForKeyPath:key];

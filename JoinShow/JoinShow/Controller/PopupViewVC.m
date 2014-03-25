@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.view setBg:@"bg.jpg"];
+    [self.view bg:@"bg.jpg"];
    // [self registerObserver];
 }
 - (void)dealloc

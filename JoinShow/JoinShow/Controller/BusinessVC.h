@@ -15,7 +15,7 @@
 
 #import "EntityModel.h"
 
-@interface BusinessVC : BaseViewController <EntityModelDelegate>
+@interface BusinessVC : XYBaseViewController <EntityModelDelegate>
 
 @property (nonatomic, retain) UIButton *btnLoad;
 @property (nonatomic, retain) UIButton *btnStart;

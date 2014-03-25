@@ -37,7 +37,19 @@
 -(UIView *) shadeView;
 
 // 设置背景
--(void) setBg:(NSString *)str;
+-(instancetype) bg:(NSString *)str;
+
+// 旋转 1.0:顺时针180度
+-(instancetype) rotate:(CGFloat)angle;
+
+// 圆形
+-(instancetype) rounded;
+// 圆角矩形, corners:一个矩形的四个角。
+-(instancetype) roundedRectWith:(CGFloat)radius;
+-(instancetype) roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners;
+
+// 边框大小,颜色
+-(instancetype) borderWidth:(CGFloat)width color:(UIColor *)color;
 
 // 活动指示器
 -(UIActivityIndicatorView *) activityIndicatorViewShow;
@@ -46,11 +58,8 @@
 // 截屏
 -(UIImage *) snapshot;
 
-// 旋转 1:顺时针180度
--(void) setRotate:(float)f;
-
 #pragma mark -todo
--(void) bindDataWithDic:(NSDictionary *)dic;
+-(void) showDataWithDic:(NSDictionary *)dic;
 
 // 子类需要重新此方法
 //+(void) setupDataBind:(NSMutableDictionary *)dic;

@@ -71,7 +71,7 @@
     [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:40];
     [tempLabel release];
     
-    [self.view setBg:@"bg.jpg"];
+    [self.view bg:@"bg.jpg"];
     [[XYParallaxHelper sharedInstance] setView:self.view intensity:-10];
     
     [[XYParallaxHelper sharedInstance] start];
