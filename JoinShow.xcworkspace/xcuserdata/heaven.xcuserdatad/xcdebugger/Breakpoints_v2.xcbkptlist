@@ -550,11 +550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "458"
-            endingLineNumber = "458"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "-clickBtnSHOWMBProgressHUDIndeterminate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -708,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "467"
-            endingLineNumber = "467"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
             landmarkName = "-clickNewGirl:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1420,11 +1420,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "704"
-            endingLineNumber = "704">
+            startingLineNumber = "711"
+            endingLineNumber = "711">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1434,11 +1434,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "-clickOnce:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1450,11 +1450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "-clickAVSpeech:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1482,11 +1482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "705"
-            endingLineNumber = "705">
+            startingLineNumber = "712"
+            endingLineNumber = "712">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1496,11 +1496,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "692"
-            endingLineNumber = "692">
+            startingLineNumber = "699"
+            endingLineNumber = "699">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1526,11 +1526,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
             landmarkName = "-clickBtnSHOWMBProgressHUDIndeterminate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1542,11 +1542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "697"
-            endingLineNumber = "697">
+            startingLineNumber = "704"
+            endingLineNumber = "704">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2594,11 +2594,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
             landmarkName = "-clickOnce2:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2706,11 +2706,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "-clickAVSpeech:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2738,11 +2738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
             landmarkName = "-clickBtnMuhud:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2834,11 +2834,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "@implementation TestVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -3010,11 +3010,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "-clickSendMessage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3026,11 +3026,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "-clickStringCache:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3058,11 +3058,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "534"
-            endingLineNumber = "534"
+            startingLineNumber = "541"
+            endingLineNumber = "541"
             landmarkName = "-clickChangeViewData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3184,11 +3184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "-clickBtnMuhud:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3296,11 +3296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "584"
-            endingLineNumber = "584"
+            startingLineNumber = "591"
+            endingLineNumber = "591"
             landmarkName = "-clickStringCache:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3328,11 +3328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
             landmarkName = "@implementation TestVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -3360,11 +3360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "589"
-            endingLineNumber = "589"
+            startingLineNumber = "596"
+            endingLineNumber = "596"
             landmarkName = "-clickEmoji:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3392,11 +3392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "608"
-            endingLineNumber = "608"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
             landmarkName = "-clickOglFlip:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3566,11 +3566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
             landmarkName = "-clickBtnMuhud:"
             landmarkType = "5">
             <Locations>
@@ -3581,11 +3581,11 @@
                   symbolName = "-[TestVC clickBtnMuhud:]"
                   moduleName = "JoinShow"
                   urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/TestVC.m"
-                  timestampString = "417420736.575947"
+                  timestampString = "417541309.504465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "390"
-                  endingLineNumber = "390"
+                  startingLineNumber = "397"
+                  endingLineNumber = "397"
                   offsetFromSymbolStart = "293">
                </Location>
                <Location
@@ -3595,11 +3595,11 @@
                   symbolName = "__24-[TestVC clickBtnMuhud:]_block_invoke"
                   moduleName = "JoinShow"
                   urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/TestVC.m"
-                  timestampString = "417420736.576132"
+                  timestampString = "417541309.50483"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "390"
-                  endingLineNumber = "390"
+                  startingLineNumber = "397"
+                  endingLineNumber = "397"
                   offsetFromSymbolStart = "27">
                </Location>
             </Locations>
@@ -3692,11 +3692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/TestVC.m"
-            timestampString = "416808667.492625"
+            timestampString = "417541309.09672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "626"
-            endingLineNumber = "626"
+            startingLineNumber = "633"
+            endingLineNumber = "633"
             landmarkName = "@implementation TestVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -3837,6 +3837,38 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JoinShow/JoinShow/Controller/TestVC.m"
+            timestampString = "417452793.170137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-someTest"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JoinShow/JoinShow/Controller/TestVC.m"
+            timestampString = "417540493.314853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

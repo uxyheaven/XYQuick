@@ -96,6 +96,7 @@ DUMMY_CLASS(UIColor+YYAdd)
 /**************************************************************/
 // block 安全self
 #define DEF_WEAKSELF     __block typeof(id) weakSelf = self;
+#define DEF_WEAKSELF_( CLASSNAME )     __block typeof( CLASSNAME *) weakSelf = self;
 
 /**************************************************************/
 static __inline__ CGRect CGRectFromCGSize( CGSize size ) {

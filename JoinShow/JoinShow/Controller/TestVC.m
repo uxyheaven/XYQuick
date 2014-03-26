@@ -137,7 +137,7 @@ if (1) { \
     [tempBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
     [tempBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [tempBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 00, 00, 00)];
-    [tempBtn setRotate:0.5];
+    [tempBtn rotate:0.5];
     [scroll addSubview:tempBtn];
     btnOffsetY += 120;
     
@@ -334,8 +334,6 @@ if (1) { \
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
     
-    [self someTest];
-    
   /*
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:4000000];
     PERF_ENTER
@@ -529,7 +527,7 @@ if (1) { \
 -(void) clickViewBindData:(id)sender{
     
     NSDictionary *dic = @{@"label1": @(self.testKVO), @"img1": @"headportrait.jpg"};
-    [_testView bindDataWithDic:dic];
+    [_testView showDataWithDic:dic];
 }
 -(void) clickChangeViewData:(id)sender{
     
