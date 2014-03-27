@@ -82,6 +82,9 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 -(BOOL)isUrl;
 -(BOOL)isIPAddress;
 
+// 包含一个字符和数字
+-(BOOL)isHasCharacterAndNumber;
+
 -(NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset;
 -(NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset endOffset:(NSUInteger *)endOffset;
 
@@ -93,8 +96,8 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 +(NSString *)fromResource:(NSString *)resName;
 
 // 中英文混排，获取字符串长度
--(int) getLength;
--(int) getLength2;
+-(NSInteger) getLength;
+-(NSInteger) getLength2;
 
 // Unicode格式的字符串编码转成中文的方法(如\u7E8C)转换成中文,unicode编码以\u开头
 -(NSString *) replaceUnicode;

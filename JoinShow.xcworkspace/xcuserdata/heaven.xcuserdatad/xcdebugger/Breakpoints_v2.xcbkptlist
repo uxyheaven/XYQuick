@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYSpriteView.m"
-            timestampString = "400431433.429726"
+            timestampString = "417592266.609446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-updateTimer:"
             landmarkType = "5">
          </BreakpointContent>
@@ -300,22 +300,6 @@
             startingLineNumber = "61"
             endingLineNumber = "61"
             landmarkName = "-clickTestData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYSpriteView.m"
-            timestampString = "400431433.429726"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-updateTimer:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -555,7 +539,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "465"
             endingLineNumber = "465"
-            landmarkName = "-clickBtnSHOWMBProgressHUDIndeterminate:"
+            landmarkName = "-clickNewGirl:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1439,7 +1423,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "429"
             endingLineNumber = "429"
-            landmarkName = "-clickOnce:"
+            landmarkName = "-clickOnce2:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1455,7 +1439,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "422"
             endingLineNumber = "422"
-            landmarkName = "-clickAVSpeech:"
+            landmarkName = "-clickOnce:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1531,7 +1515,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "466"
             endingLineNumber = "466"
-            landmarkName = "-clickBtnSHOWMBProgressHUDIndeterminate:"
+            landmarkName = "-clickNewGirl:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2599,7 +2583,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "437"
             endingLineNumber = "437"
-            landmarkName = "-clickOnce2:"
+            landmarkName = "-clickBtnBlockAlertView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2711,7 +2695,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "421"
             endingLineNumber = "421"
-            landmarkName = "-clickAVSpeech:"
+            landmarkName = "-clickOnce:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2743,7 +2727,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "411"
             endingLineNumber = "411"
-            landmarkName = "-clickBtnMuhud:"
+            landmarkName = "-clickAVSpeech:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2839,8 +2823,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "390"
             endingLineNumber = "390"
-            landmarkName = "@implementation TestVC"
-            landmarkType = "3">
+            landmarkName = "-clickBtnMuhud:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3015,7 +2999,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "553"
             endingLineNumber = "553"
-            landmarkName = "-clickSendMessage:"
+            landmarkName = "-clickStringCache:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3063,7 +3047,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "541"
             endingLineNumber = "541"
-            landmarkName = "-clickChangeViewData:"
+            landmarkName = "-clickSendMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3189,7 +3173,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "406"
             endingLineNumber = "406"
-            landmarkName = "-clickBtnMuhud:"
+            landmarkName = "-clickAVSpeech:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3301,8 +3285,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "591"
             endingLineNumber = "591"
-            landmarkName = "-clickStringCache:"
-            landmarkType = "5">
+            landmarkName = "@implementation TestVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3333,8 +3317,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "600"
             endingLineNumber = "600"
-            landmarkName = "@implementation TestVC"
-            landmarkType = "3">
+            landmarkName = "-clickCube:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3365,7 +3349,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "596"
             endingLineNumber = "596"
-            landmarkName = "-clickEmoji:"
+            landmarkName = "-clickCrossfade:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3397,8 +3381,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "615"
             endingLineNumber = "615"
-            landmarkName = "-clickOglFlip:"
-            landmarkType = "5">
+            landmarkName = "@implementation TestVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3472,11 +3456,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/NSString+XY.m"
-            timestampString = "413881661.824762"
+            timestampString = "417592266.609446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710">
+            startingLineNumber = "709"
+            endingLineNumber = "709"
+            landmarkName = "-replaceUnicode"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3581,26 +3567,26 @@
                   symbolName = "-[TestVC clickBtnMuhud:]"
                   moduleName = "JoinShow"
                   urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/TestVC.m"
-                  timestampString = "417541309.504465"
+                  timestampString = "417592267.726495"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "397"
                   endingLineNumber = "397"
-                  offsetFromSymbolStart = "293">
+                  offsetFromSymbolStart = "665">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__24-[TestVC clickBtnMuhud:]_block_invoke"
+                  symbolName = "__24-[TestVC clickBtnMuhud:]_block_invoke286"
                   moduleName = "JoinShow"
                   urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/TestVC.m"
-                  timestampString = "417541309.50483"
+                  timestampString = "417592267.726857"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "397"
                   endingLineNumber = "397"
-                  offsetFromSymbolStart = "27">
+                  offsetFromSymbolStart = "34">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -3612,13 +3598,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/Extension/NSString+XY.m"
-            timestampString = "413881661.824762"
+            timestampString = "417592266.609446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "725"
-            endingLineNumber = "725"
-            landmarkName = "-APPEND"
-            landmarkType = "5">
+            startingLineNumber = "724"
+            endingLineNumber = "724"
+            landmarkName = "LINE"
+            landmarkType = "19">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

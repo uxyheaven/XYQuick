@@ -3,39 +3,26 @@
 
 #import "XYSpriteView.h"
 
-@implementation XYSpriteView
-/*
--(id)init{
-    self = [super init];
-    if (self) {
-        _imageNameArray = [[NSMutableArray alloc] init];
-        
-        fromIndex = -0;
-        toIndex = 0;
-        _repeatCount = 1;
-        _duration = 0;
-        _interval = 0;
-        _delay = 0;
-        isDelayed = NO;
-        
-        _isTransformLR = NO;
-        _isTransformUD = NO;
-        _isReverseOrder = NO;
-        _isAutoPlay = NO;
-        _isPlayAudio = NO;
-        
-        state = SpriteStateUndefine;
-        
-       // self.userInteractionEnabled = YES;
-    }
-    return self;
+@interface XYSpriteView (){
+    struct {
+        unsigned int spriteFinished : 1;
+        unsigned int spriteWillStart : 1;
+        unsigned int spriteDidStop : 1;
+        unsigned int spritePlaying_onIndex : 1;
+    } _delegateFlags;
 }
- */
+
+@end
+
+@implementation XYSpriteView
 
 -(void)dealloc{
     NSLogD(@"%s", __FUNCTION__);
+    self.model = nil;
+    self.delegate = nil;
     self.aniPath = nil;
-    [_imageNameArray release];
+    self.imageNameArray = nil;
+    
     [super dealloc];
 }
 - (id)initWithFrame:(CGRect)frame
@@ -65,10 +52,21 @@
     }
     return self;
 }
-
+-(void) setDelegate:(id<XYSpriteDelegate>)delegate{
+    _delegate = delegate;
+    if (_delegate != nil) {
+        _delegateFlags.spriteFinished = [delegate respondsToSelector:@selector(spriteFinished:)];
+        _delegateFlags.spriteWillStart = [delegate respondsToSelector:@selector(spriteWillStart:)];
+        _delegateFlags.spriteDidStop = [delegate respondsToSelector:@selector(spriteDidStop:)];
+        _delegateFlags.spritePlaying_onIndex = [delegate respondsToSelector:@selector(spritePlaying:onIndex:)];
+    }
+}
 -(void)start{
-    DelegateSelf(spriteWillStart:)
     state = SpriteStatePlaying;
+    
+    if (_delegateFlags.spriteWillStart) {
+        [_delegate spriteWillStart:self];
+    }
 }
 -(void)pause{
     state = SpriteStatePause;
@@ -80,9 +78,11 @@
     state = SpriteStateStop;
 }
 -(void)stop{
-  //  DelegateSelf(spriteWillStop:)
     state = SpriteStateStop;
-    DelegateSelf(spriteDidStop:)
+
+    if (_delegateFlags.spriteDidStop) {
+        [_delegate spriteDidStop:self];
+    }
 }
 
 // if fileType == nil, support png, jpg
@@ -169,7 +169,9 @@
           //  [self resetPlay];
             state = SpriteStateStop;
             
-            DelegateSelf(spriteFinished:)
+            if (_delegateFlags.spriteFinished) {
+                [_delegate spriteFinished:self];
+            }
         }else{
             // 下一个循环开始
             curRepeatCount++;
@@ -191,12 +193,11 @@
         }
         if (lastImgIndex != index && b) {
             _curImageIndex = index;
-            /*
-            if (_delegate && [_delegate respondsToSelector:@selector(spriteOnIndex:sprite:)]) {
-               // [_delegate spriteOnIndex:_curImageIndex sprite:self];
-                objc_msgSend(_delegate, @selector(spriteOnIndex:sprite:), _curImageIndex, self);
-            }*/
-            Delegate(spriteOnIndex:sprite:, _curImageIndex, self);
+
+            if (_delegateFlags.spritePlaying_onIndex) {
+                [_delegate spritePlaying:self onIndex:_curImageIndex];
+            }
+            
             [self showImgWithIndex:_curImageIndex];
         }
         
@@ -208,7 +209,6 @@
 - (void)updateImage
 {
     if (0 == state) return;
-    
     
     if (_imageNameArray == nil && _imageNameArray.count == 0) {
         return;
@@ -244,7 +244,7 @@
     }
 }
 
--(BOOL) setFromIndex:(int)from toindex:(int)to{
+-(BOOL) setFromIndex:(NSInteger)from toindex:(NSInteger)to{
 #pragma mark - todo 边界值, 正反序
     if (to >= [_imageNameArray count] || from < -1 || to < -1 || from >= [_imageNameArray count]) {
         return NO;
@@ -272,7 +272,11 @@
     }
     
     _curImageIndex = fromIndex;
+#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+    oneImgTurnCount = labs(fromIndex - toIndex) + 1;
+#else
     oneImgTurnCount = abs(fromIndex - toIndex) + 1;
+#endif
     _duration = oneImgTurnCount / XYSpriteView_aniFrames;
     allTime = _duration + _interval;
     
@@ -360,18 +364,18 @@
     [self reset];
 
 }
-- (void) formatImg:(NSString *)format count:(int)count2 repeatCount:(NSUInteger)count{
+- (void) formatImg:(NSString *)format count:(NSInteger)count2 repeatCount:(NSUInteger)count{
     _repeatCount = count;
 
     [_imageNameArray removeAllObjects];
-    for (int i = 0 + _firstImgIndex; i < count2 + _firstImgIndex; i++) {
+    for (NSInteger i = 0 + _firstImgIndex; i < count2 + _firstImgIndex; i++) {
         [_imageNameArray addObject:[NSString stringWithFormat:format, i]];
     }
     
     [self setFromIndex:0 toindex:count2 - 1];
      [self reset];
 }
-- (void) showImgWithIndex:(int)index{
+- (void) showImgWithIndex:(NSInteger)index{
     if (self.imageNameArray.count == 0 || index > self.imageNameArray.count - 1) {
         return;
     }

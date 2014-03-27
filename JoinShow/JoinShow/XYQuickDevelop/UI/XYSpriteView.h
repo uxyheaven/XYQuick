@@ -29,7 +29,7 @@ typedef enum{
     NSTimeInterval      curPlayTime;
     NSTimeInterval      curRepeatCount;
     
-    int                 allCount;       // 累计总帧数
+    NSInteger           allCount;       // 累计总帧数
     NSInteger           fromIndex;
     NSInteger           toIndex;
     
@@ -38,7 +38,7 @@ typedef enum{
     NSTimeInterval      allTime;    // 持续时间+间隔
     NSTimeInterval      animInterval;      // 帧间隔
     BOOL                isDelayed;
-    int                 lastImgIndex;       // 上一张编号,用于优化
+    NSInteger           lastImgIndex;       // 上一张编号,用于优化
 
 }
 @property (nonatomic, retain) SpriteInfo *model;
@@ -60,7 +60,7 @@ typedef enum{
 @property (nonatomic, assign) NSInteger             curImageIndex;
 @property (nonatomic, retain) NSMutableArray        *imageNameArray;
 @property (nonatomic, copy)   NSString              *aniPath;
-@property (nonatomic, assign) int                   firstImgIndex;      // 默认从0开始
+@property (nonatomic, assign) NSInteger             firstImgIndex;      // 默认从0开始
 
 // play all asc顺序, if (from == -1) && (to == 0); play all dec降序, if (from == 0) && (to == -1)
 #pragma -mark to do  排序
@@ -70,10 +70,10 @@ typedef enum{
 - (void) imagesPath:(NSString *)imagesPath repeatCount:(NSUInteger)count;
 */
 // if copy 黄色文件夹
--(void) formatImg:(NSString *)format count:(int)count2 repeatCount:(NSUInteger)count;
+-(void) formatImg:(NSString *)format count:(NSInteger)count2 repeatCount:(NSUInteger)count;
 
--(void) showImgWithIndex:(int)index;
--(BOOL) setFromIndex:(int)from toindex:(int)to;
+-(void) showImgWithIndex:(NSInteger)index;
+-(BOOL) setFromIndex:(NSInteger)from toindex:(NSInteger)to;
 
 //- (void)duration:(NSTimeInterval)dur interval:(NSTimeInterval)i delay:(NSTimeInterval)d;
 
@@ -99,7 +99,7 @@ typedef enum{
 //-(void) spriteFailed:(XYSpriteView *)aSprite;
 -(void) spriteWillStart:(XYSpriteView *)aSprite;
 -(void) spriteDidStop:(XYSpriteView *)aSprite;
--(void) spriteOnIndex:(int)aIndex sprite:(XYSpriteView *)aSprite;
+-(void) spritePlaying:(XYSpriteView *)aSprite onIndex:(NSInteger)aIndex;
 
 @end
 

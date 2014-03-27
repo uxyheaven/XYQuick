@@ -576,6 +576,16 @@ DUMMY_CLASS(NSString_XY);
     [regextestcm evaluateWithObject:self];
 }
 
+////////////////////
+-(BOOL)isHasCharacterAndNumber{
+    BOOL isExistDigit = [self rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound;
+    
+    BOOL isExistLetter = [self rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound;
+    
+    return isExistDigit && isExistLetter;
+}
+
+
 - (NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset
 {
 	return [self substringFromIndex:from untilCharset:charset endOffset:NULL];
@@ -667,21 +677,20 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
--(int) getLength{
-    int strLength = 0;
+-(NSInteger) getLength{
+    NSInteger strLength = 0;
     char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
-    for (int i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++) {
+    for (NSInteger i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++) {
         if (*p) {
             p++;
             strLength++;
-        }
-        else {
+        } else {
             p++;
         }
     }
     return strLength;
 }
--(int) getLength2{
+-(NSInteger) getLength2{
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSData *data = [self dataUsingEncoding:enc];
     return [data length];
