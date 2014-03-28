@@ -81,13 +81,13 @@
 // 返回本机ip地址
 +(NSString *) localHost;
 
--(BOOL) isFirstRun;
--(BOOL) isFirstRunCurrentVersion;
--(void) setFirstRun;
--(void) setNotFirstRun;
++(BOOL) isFirstRun;
++(BOOL) isFirstRunCurrentVersion;
++(void) setFirstRun;
++(void) setNotFirstRun;
 
--(BOOL) isFirstRunWithUser:(NSString *)user;
--(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user;
--(void) setFirstRunWithUser:(NSString *)user;
--(void) setNotFirstRunWithUser:(NSString *)user;
++(BOOL) isFirstRunWithUser:(NSString *)user;
++(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user;
++(void) setFirstRunWithUser:(NSString *)user;
++(void) setNotFirstRunWithUser:(NSString *)user;
 @end

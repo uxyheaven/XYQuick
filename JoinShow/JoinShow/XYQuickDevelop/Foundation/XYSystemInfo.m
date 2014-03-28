@@ -343,10 +343,10 @@ static const char * __jb_app = NULL;
 }
 
 //////////////////
--(float) floatVersion{
++(float) floatVersion{
     return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
--(NSString *) xyVersionKeyWithUser:(NSString *)user{
++(NSString *) xyVersionKeyWithUser:(NSString *)user{
     if (user && [@"" isEqualToString:user]) {
         return @"XY_version";
     }else{
@@ -354,38 +354,38 @@ static const char * __jb_app = NULL;
     }
 }
 
--(BOOL) isFirstRun{
++(BOOL) isFirstRun{
     return [self isFirstRunWithUser:nil];
 }
 
--(BOOL) isFirstRunCurrentVersion{
++(BOOL) isFirstRunCurrentVersion{
     return [self isFirstRunCurrentVersionWithUser:nil];
 }
 
--(void) setFirstRun{
++(void) setFirstRun{
     [self setFirstRunWithUser:nil];
 }
 
--(void) setNotFirstRun{
++(void) setNotFirstRun{
     [self setNotFirstRunWithUser:nil];
 }
 
 
--(BOOL) isFirstRunWithUser:(NSString *)user{
++(BOOL) isFirstRunWithUser:(NSString *)user{
     return ([[NSUserDefaults standardUserDefaults] valueForKey:[self xyVersionKeyWithUser:user]] == nil);
 }
--(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user{
++(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user{
     if ([self isFirstRun]) {
         return YES;
     } else {
         return [[NSUserDefaults standardUserDefaults] floatForKey:[self xyVersionKeyWithUser:user]] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
     }
 }
--(void) setFirstRunWithUser:(NSString *)user{
++(void) setFirstRunWithUser:(NSString *)user{
     [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
--(void) setNotFirstRunWithUser:(NSString *)user{
++(void) setNotFirstRunWithUser:(NSString *)user{
     [[NSUserDefaults standardUserDefaults] setFloat:[self floatVersion] forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
