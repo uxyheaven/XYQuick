@@ -68,12 +68,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    /*
-    // 1 initalize
-    // 2 config view
-    // 3 assign view
-    // 4 addsubview
-     */
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickRight:)] autorelease];
+    self.navigationItem.rightBarButtonItem = item;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
@@ -186,5 +182,8 @@
 {
     UIViewController *vc = segue.destinationViewController;
     vc.title = [sender objectForKey:@"title"];
+}
+-(void) clickRight:(id)sender{
+    [self.tableView reloadData:YES];
 }
 @end

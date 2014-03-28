@@ -85,7 +85,7 @@
     [LKDBHelper clearTableData:[LKTest class]];
     
     
-    LKTestForeign* foreign = [[LKTestForeign alloc]init];
+    LKTestForeign* foreign = [[[LKTestForeign alloc]init] autorelease];
     foreign.address = @":asdasdasdsadasdsdas";
     foreign.postcode  = 123341;
     foreign.addid = 213214;

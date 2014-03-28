@@ -475,12 +475,14 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 {
 	AVURLAsset * asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
     AVAssetImageGenerator * generater = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    [asset release];
     generater.appliesPreferredTrackTransform = YES;
 	generater.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
 	generater.maximumSize = [UIScreen mainScreen].bounds.size;
     NSError * error = nil;
     CGImageRef image = [generater copyCGImageAtTime:time actualTime:NULL error:&error];
-    UIImage * thumb = [[UIImage alloc] initWithCGImage:image scale:scale orientation:UIImageOrientationUp];
+    [generater release];
+    UIImage * thumb = [[[UIImage alloc] initWithCGImage:image scale:scale orientation:UIImageOrientationUp] autorelease];
     CGImageRelease(image);
     return thumb;
 }

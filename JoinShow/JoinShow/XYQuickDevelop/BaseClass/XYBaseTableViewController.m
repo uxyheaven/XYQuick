@@ -84,6 +84,7 @@
 -(void) destroyEvents
 {
     // [super destroyEvents];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) loadData

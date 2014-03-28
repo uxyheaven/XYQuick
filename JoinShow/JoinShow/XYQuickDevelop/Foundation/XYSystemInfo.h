@@ -80,4 +80,9 @@
 //////////////////////////////
 // 返回本机ip地址
 +(NSString *) localHost;
+
+-(BOOL) isFirstRun;
+-(BOOL) isFirstRunCurrentVersion;
+-(void) setFirstRun;
+-(void) setNotFirstRun;
 @end

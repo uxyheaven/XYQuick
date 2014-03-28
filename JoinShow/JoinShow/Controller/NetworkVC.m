@@ -65,7 +65,6 @@
 
 - (IBAction)clickGet:(id)sender {
     HttpRequest *op = [self.networkEngine get:@"WeatherWebservice.asmx/getWeatherbyCityName"];
-    
     [op succeed:^(MKNetworkOperation *op) {
         if([op isCachedResponse]) {
             NSLog(@"Data from cache %@", [op responseString]);
@@ -76,19 +75,18 @@
     } failed:^(MKNetworkOperation *op, NSError *err) {
         NSLog(@"Request error : %@", [err localizedDescription]);
     }];
-    
     [self.networkEngine submit:op];
 }
 
 - (IBAction)clickPost:(id)sender {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"theCityName": @"深圳"}];
-    MKNetworkOperation *op = [self.networkEngine get:@"/WebServices/WeatherWebservice.asmx/getWeatherbyCityName" params:dic];
+    MKNetworkOperation *op = [self.networkEngine post:@"/WebServices/WeatherWebservice.asmx/getWeatherbyCityName" params:dic];
     [op succeed:^(MKNetworkOperation *op) {
         NSLog(@"Data from cache %@", [op responseString]);
     } failed:^(MKNetworkOperation *op, NSError *err) {
         NSLog(@"Request error : %@", [err localizedDescription]);
     }];
-    
+    op.freezable = YES;
     [self.networkEngine submit:op];
 }
 

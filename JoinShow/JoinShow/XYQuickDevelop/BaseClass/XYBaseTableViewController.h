@@ -7,8 +7,9 @@
 //
 
 #import "XYPrecompile.h"
+#import "XYControllerProtocol.h"
 
-@interface XYBaseTableViewController : UITableViewController
+@interface XYBaseTableViewController : UITableViewController<XYControllerProtocol>
 
 @property (nonatomic, retain) NSMutableDictionary   *children;       // 子视图控制器
 @property (nonatomic, assign) UIViewController      *curChild;        // 当前的子视图控制器

@@ -7,20 +7,6 @@
 //
 
 #import "XYSystemInfo.h"
-
-#pragma mark- todo 待优化
-/*
-static NSUInteger DeviceSystemMajorVersion();
-static NSUInteger DeviceSystemMajorVersion() {
-    static NSUInteger _deviceSystemMajorVersion = -1;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
-    });
-    return _deviceSystemMajorVersion;
-}*/
-
-
 @implementation XYSystemInfo
 
 + (NSString *)OSVersion
@@ -328,6 +314,8 @@ static const char * __jb_app = NULL;
 	return NO;
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 }
+
+//////////////////////////////
 +(NSString *) localHost{
     NSString *address = @"error";
     struct ifaddrs *interfaces = NULL;
@@ -352,5 +340,31 @@ static const char * __jb_app = NULL;
     // Free memory
     freeifaddrs(interfaces);
     return address;
+}
+
+-(BOOL) isFirstRun{
+    return ([[NSUserDefaults standardUserDefaults] valueForKey:@"XY_version"] == nil);
+}
+
+-(BOOL) isFirstRunCurrentVersion{
+    if ([self isFirstRun]) {
+        return YES;
+    } else {
+        return [[NSUserDefaults standardUserDefaults] floatForKey:@"XY_version"] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+    }
+}
+
+-(void) setFirstRun{
+    [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:@"XY_version"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void) setNotFirstRun{
+    [[NSUserDefaults standardUserDefaults] setFloat:[self version] forKey:@"XY_version"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(float) version{
+    return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
 @end

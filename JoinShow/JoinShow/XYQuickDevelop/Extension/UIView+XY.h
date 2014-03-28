@@ -58,6 +58,11 @@
 // 截屏
 -(UIImage *) snapshot;
 
+-(void) removeAllSubviews;
+-(void) removeSubviewWithTag:(NSInteger)tag;
+-(void) removeSubviewExceptTag:(NSInteger)tag;
+
+
 #pragma mark -todo
 -(void) showDataWithDic:(NSDictionary *)dic;
 

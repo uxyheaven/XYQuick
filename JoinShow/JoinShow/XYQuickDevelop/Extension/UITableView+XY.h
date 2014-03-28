@@ -16,3 +16,9 @@
 -(void) layoutSubviewsWithDic:(NSMutableDictionary *)dic;
 
 @end
+
+@interface UITableView (XY)
+
+-(void)reloadData: (BOOL)animated;
+
+@end

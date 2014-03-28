@@ -272,6 +272,27 @@ DUMMY_CLASS(UIView_XY);
     
 }
 
+-(void) removeAllSubviews{
+    for (UIView *temp in self.subviews) {
+        [temp removeFromSuperview];
+    }
+}
+
+-(void) removeSubviewWithTag:(NSInteger)tag{
+    for (UIView *temp in self.subviews) {
+        if (temp.tag == tag) {
+            [temp removeFromSuperview];
+        }
+    }
+}
+
+-(void) removeSubviewExceptTag:(NSInteger)tag{
+    for (UIView *temp in self.subviews) {
+        if (temp.tag != tag) {
+            [temp removeFromSuperview];
+        }
+    }
+}
 
 
 
