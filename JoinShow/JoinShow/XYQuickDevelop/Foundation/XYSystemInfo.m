@@ -342,29 +342,51 @@ static const char * __jb_app = NULL;
     return address;
 }
 
--(BOOL) isFirstRun{
-    return ([[NSUserDefaults standardUserDefaults] valueForKey:@"XY_version"] == nil);
+//////////////////
+-(float) floatVersion{
+    return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
-
--(BOOL) isFirstRunCurrentVersion{
-    if ([self isFirstRun]) {
-        return YES;
-    } else {
-        return [[NSUserDefaults standardUserDefaults] floatForKey:@"XY_version"] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+-(NSString *) xyVersionKeyWithUser:(NSString *)user{
+    if (user && [@"" isEqualToString:user]) {
+        return @"XY_version";
+    }else{
+        return [NSString stringWithFormat:@"XY_version_%@", user];
     }
 }
 
+-(BOOL) isFirstRun{
+    return [self isFirstRunWithUser:nil];
+}
+
+-(BOOL) isFirstRunCurrentVersion{
+    return [self isFirstRunCurrentVersionWithUser:nil];
+}
+
 -(void) setFirstRun{
-    [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:@"XY_version"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self setFirstRunWithUser:nil];
 }
 
 -(void) setNotFirstRun{
-    [[NSUserDefaults standardUserDefaults] setFloat:[self version] forKey:@"XY_version"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self setNotFirstRunWithUser:nil];
 }
 
--(float) version{
-    return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+
+-(BOOL) isFirstRunWithUser:(NSString *)user{
+    return ([[NSUserDefaults standardUserDefaults] valueForKey:[self xyVersionKeyWithUser:user]] == nil);
+}
+-(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user{
+    if ([self isFirstRun]) {
+        return YES;
+    } else {
+        return [[NSUserDefaults standardUserDefaults] floatForKey:[self xyVersionKeyWithUser:user]] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+    }
+}
+-(void) setFirstRunWithUser:(NSString *)user{
+    [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:[self xyVersionKeyWithUser:user]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+-(void) setNotFirstRunWithUser:(NSString *)user{
+    [[NSUserDefaults standardUserDefaults] setFloat:[self floatVersion] forKey:[self xyVersionKeyWithUser:user]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end
