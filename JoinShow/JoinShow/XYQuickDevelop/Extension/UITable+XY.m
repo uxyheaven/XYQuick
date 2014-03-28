@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "UITableView+XY.h"
+#import "UITable+XY.h"
 #import "XYPrecompile.h"
 
 @implementation UITableViewCell (XY)

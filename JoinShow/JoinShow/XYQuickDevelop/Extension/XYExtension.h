@@ -27,5 +27,5 @@
 #import "UIAlertView+XY.h"
 #import "UIActionSheet+XY.h"
 #import "UILabel+XY.h"
-#import "UITableView+XY.h"
+#import "UITable+XY.h"
 #import "UIWebView+XY.h"
