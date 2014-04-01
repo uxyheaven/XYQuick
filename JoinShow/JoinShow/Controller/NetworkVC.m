@@ -13,7 +13,7 @@
 #import "XYQuickDevelop.h"
 #endif
 #import "XYExternal.h"
-#import "DownloadRequest.h"
+#import "HTTPClient.h"
 
 @interface NetworkVC ()
 
@@ -33,12 +33,12 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.networkEngine = [RequestHelper defaultSettings];
-        [_networkEngine useCache];
+        self.httpClient = [HTTPClient sharedInstance];
+        [_httpClient useCache];
         
-        self.networkEngine3 = [DownloadRequest defaultSettings];
-        [_networkEngine3 setup];
-        [_networkEngine3 useCache];
+        self.httpClient2 = [HTTPClient2 sharedInstance];
+        
+        self.httpClient3 = [HTTPClient3 sharedInstance];
     }
     return  self;
 }
@@ -50,9 +50,10 @@
 - (void)dealloc
 {
     NSLogDD;
-    self.networkEngine = nil;
-    self.networkEngine2 = nil;
-    self.networkEngine3 = nil;
+    [self.httpClient cancelAllOperations];
+    [self.httpClient2 cancelAllOperations];
+    [self.httpClient3 cancelAllDownloads];
+    
     [_progressDownload release];
     [_labPregress release];
     [super dealloc];
@@ -64,7 +65,7 @@
 }
 
 - (IBAction)clickGet:(id)sender {
-    HttpRequest *op = [self.networkEngine get:@"WeatherWebservice.asmx/getWeatherbyCityName"];
+    HttpRequest *op = [self.httpClient get:@"WeatherWebservice.asmx/getWeatherbyCityName"];
     [op succeed:^(MKNetworkOperation *op) {
         if([op isCachedResponse]) {
             NSLog(@"Data from cache %@", [op responseString]);
@@ -75,54 +76,54 @@
     } failed:^(MKNetworkOperation *op, NSError *err) {
         NSLog(@"Request error : %@", [err localizedDescription]);
     }];
-    [self.networkEngine submit:op];
+    [self.httpClient submit:op];
 }
 
 - (IBAction)clickPost:(id)sender {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"theCityName": @"深圳"}];
-    MKNetworkOperation *op = [self.networkEngine post:@"/WebServices/WeatherWebservice.asmx/getWeatherbyCityName" params:dic];
+    MKNetworkOperation *op = [self.httpClient2 post:@"/WebServices/WeatherWebservice.asmx/getWeatherbyCityName" params:dic];
     [op succeed:^(MKNetworkOperation *op) {
         NSLog(@"Data from cache %@", [op responseString]);
     } failed:^(MKNetworkOperation *op, NSError *err) {
         NSLog(@"Request error : %@", [err localizedDescription]);
     }];
     op.freezable = YES;
-    [self.networkEngine submit:op];
+    [self.httpClient2 submit:op];
 }
 
 - (IBAction)clickDownload:(id)sender {
     NSString *locPath = [XYCommon dataFilePath:@"3.0.dmg" ofType:filePathOption_documents];
-    
-    Downloader *down = [self.networkEngine3 downLoad:NetworkVC_downloadLink
+    DEF_WEAKSELF_(NetworkVC)
+    Downloader *down = [self.httpClient3 download:NetworkVC_downloadLink
                                                   to:locPath
                                               params:nil
                                     breakpointResume:YES];
     
     [down progress:^(double progress) {
         NSLogD(@"%.2f", progress*100.0);
-        _progressDownload.progress = progress;
-        _labPregress.text = [NSString stringWithFormat:@"%.1f", progress * 100];
+        [weakSelf progressDownload].progress = progress;
+        [weakSelf labPregress].text = [NSString stringWithFormat:@"%.1f", progress * 100];
     }];
     [down succeed:^(HttpRequest *op) {
-        _progressDownload.progress = 0;
+        [weakSelf progressDownload].progress = 0;
         SHOWMSG(nil, @"Download succeed", @"ok");
     } failed:^(HttpRequest *op, NSError *err) {
         NSLog(@"Request error : %@", [err localizedDescription]);
         SHOWMSG(nil, @"Download failed",  @"ok");
     }];
     
-    [self.networkEngine3 submit:down];
+    [self.httpClient3 submit:down];
 }
 
 - (IBAction)clickStopDownload:(id)sender {
     // 删除缓存文件
-    [self.networkEngine3 emptyTempFile];
-    [self.networkEngine3 cancelDownloadWithString:NetworkVC_downloadLink];
+    [self.httpClient3 emptyTempFile];
+    [self.httpClient3 cancelDownloadWithString:NetworkVC_downloadLink];
 }
 
 - (IBAction)clickPauseDownload:(id)sender {
     // 暂停时 直接取消请求
-    [self.networkEngine3 cancelDownloadWithString:NetworkVC_downloadLink];
+    [self.httpClient3 cancelDownloadWithString:NetworkVC_downloadLink];
 }
 #else
 - (void)viewDidLoad

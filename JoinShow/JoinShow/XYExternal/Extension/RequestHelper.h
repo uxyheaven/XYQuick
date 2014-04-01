@@ -16,6 +16,12 @@
 
 //////////////////        MKNetworkOperation (XY)        ////////////////////
 typedef MKNetworkOperation HttpRequest;
+typedef void(^RequestHelper_normalRequestSucceedBlock)(HttpRequest *op);
+typedef void(^RequestHelper_normalRequestFailedBlock)(HttpRequest *op, NSError* err);
+
+typedef void(^RequestHelper_downloadRequestSucceedBlock)(HttpRequest *op);
+typedef void(^RequestHelper_downloadRequestFailedBlock)(HttpRequest *op, NSError* err);
+typedef void(^RequestHelper_downloadRequestProgressBlock)(double progress);
 
 @interface RequestHelper : MKNetworkEngine
 
@@ -60,8 +66,8 @@ typedef enum {
 @interface MKNetworkOperation (XY)
 
 -(id) uploadFiles:(NSDictionary *)name_path;
--(id) succeed:(void (^)(HttpRequest *op))blockS
-       failed:(void (^)(HttpRequest *op, NSError* err))blockF;
+-(id) succeed:(RequestHelper_normalRequestSucceedBlock)blockS
+       failed:(RequestHelper_normalRequestFailedBlock)blockF;
 -(id) submitInQueue:(RequestHelper *)requests;
 @end
 
@@ -74,9 +80,9 @@ typedef enum {
 @property (nonatomic, copy) NSString *toFile;
 
 -(id) submitInQueue:(DownloadHelper *)requests;
--(id) progress:(void(^)(double progress))blockP;
--(id) succeed:(void (^)(HttpRequest *op))blockS
-       failed:(void (^)(HttpRequest *op, NSError* err))blockF;
+-(id) progress:(RequestHelper_downloadRequestProgressBlock)blockP;
+-(id) succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
+       failed:(RequestHelper_downloadRequestFailedBlock)blockF;
 @end
 
 @interface DownloadHelper : MKNetworkEngine
@@ -85,7 +91,7 @@ typedef enum {
 // 下载前,请先执行此方法;
 -(void) setup;
 
--(Downloader *) downLoad:(NSString *)remoteURL
+-(Downloader *) download:(NSString *)remoteURL
                       to:(NSString*)filePath
                   params:(id)anObject
         breakpointResume:(BOOL)isResume;

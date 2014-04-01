@@ -213,22 +213,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/Controller/NetworkVC.m"
-            timestampString = "407063692.769038"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-dealloc"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYQuickDevelop/UI/XYSpriteHelper.m"
             timestampString = "402993634.013829"
             startingColumnNumber = "9223372036854775807"
@@ -2010,11 +1994,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/NetworkVC.m"
-            timestampString = "417610565.0599"
+            timestampString = "418041050.457462"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-clickGet:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2026,11 +2010,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/Controller/NetworkVC.m"
-            timestampString = "417610565.0599"
+            timestampString = "418041050.457462"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-clickPauseDownload:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2058,11 +2042,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "409062381.849537"
+            timestampString = "418042928.334612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "-cancelDownloadWithString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2074,11 +2058,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "409062381.849537"
+            timestampString = "418042928.334612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "-getADownloadWithString:"
             landmarkType = "5">
             <Locations>
@@ -2152,11 +2136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "407063177.941923"
+            timestampString = "418041050.457462"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "+defaultSettings"
             landmarkType = "5">
          </BreakpointContent>
@@ -2184,43 +2168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "409062381.849537"
+            timestampString = "418041697.034431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-downLoad:to:params:breakpointResume:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "409062381.849537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
-            landmarkName = "-downLoad:to:params:breakpointResume:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYExternal/Extension/RequestHelper.m"
-            timestampString = "407065255.389804"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-succeed:failed:"
             landmarkType = "5">
             <Locations>
@@ -3487,7 +3439,7 @@
                   symbolName = "-[TestVC clickBtnMuhud:]"
                   moduleName = "JoinShow"
                   urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/TestVC.m"
-                  timestampString = "418029382.853845"
+                  timestampString = "418043042.096751"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "406"
@@ -3501,7 +3453,7 @@
                   symbolName = "__24-[TestVC clickBtnMuhud:]_block_invoke290"
                   moduleName = "JoinShow"
                   urlString = "file:///Users/heaven/Desktop/IOS%20CODE/MyClass/XYQuickDevelop/JoinShow/JoinShow/Controller/TestVC.m"
-                  timestampString = "418029382.854293"
+                  timestampString = "418043042.097185"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "406"
@@ -3790,86 +3742,6 @@
             startingLineNumber = "1023"
             endingLineNumber = "1023"
             landmarkName = "-connection:didFailWithError:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYExternal/MKNetworkKit/MKNetworkEngine.m"
-            timestampString = "417609463.814689"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
-            landmarkName = "-freezeOperations"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYExternal/MKNetworkKit/MKNetworkEngine.m"
-            timestampString = "417609804.153982"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "-reachabilityChanged:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYExternal/MKNetworkKit/MKNetworkOperation.m"
-            timestampString = "417611986.890816"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "-setFreezable:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/Controller/NetworkVC.m"
-            timestampString = "417610561.329151"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-clickPost:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JoinShow/JoinShow/XYExternal/MKNetworkKit/MKNetworkEngine.m"
-            timestampString = "417611214.105768"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "-checkAndRestoreFrozenOperations"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

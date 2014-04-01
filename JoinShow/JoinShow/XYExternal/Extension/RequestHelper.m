@@ -147,8 +147,8 @@
     return self;
 }
 
--(id) succeed:(void (^)(HttpRequest *op))blockS
-       failed:(void (^)(HttpRequest *op, NSError* err))blockF{
+-(id) succeed:(RequestHelper_normalRequestSucceedBlock)blockS
+       failed:(RequestHelper_normalRequestFailedBlock)blockF{
     [self addCompletionHandler:blockS errorHandler:blockF];
     return self;
 }
@@ -184,14 +184,15 @@
     }
     return self;
 }
--(id) progress:(void(^)(double progress))blockP{
-    [self onDownloadProgressChanged:^(double progress) {
-        if (blockP) blockP(progress);
-    }];
+-(id) progress:(RequestHelper_downloadRequestProgressBlock)blockP{
+    if (blockP) {
+        [self onDownloadProgressChanged:blockP];
+    }
+    
     return self;
 }
--(id) succeed:(void (^)(HttpRequest *op))blockS
-       failed:(void (^)(HttpRequest *op, NSError* err))blockF{
+-(id) succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
+       failed:(RequestHelper_downloadRequestFailedBlock)blockF{
     
     [self addCompletionHandler:^(HttpRequest *operation) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -256,13 +257,30 @@
     self.downloadArray = nil;
     [super dealloc];
 }
--(Downloader *) downLoad:(NSString *)remoteURL
+-(Downloader *) download:(NSString *)remoteURL
                               to:(NSString*)filePath
                           params:(id)anObject
                 breakpointResume:(BOOL)isResume{
     if (self.downloadArray == nil) {
+        NSLogD(@"please run [downloader setup] once.")
         return nil;
     }
+    // 如果存在同样的下载任务,直接返回nil
+    for (Downloader *tempOP in self.downloadArray) {
+        if ([tempOP.toFile isEqualToString:filePath]) {
+            // 下载任务已经存在
+            NSLogD(@"%@\n%@\n download task exist", remoteURL, filePath);
+            return nil;
+        }
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:filePath]) {
+        NSLogD(@"%@ exist", filePath);
+    }else {
+        
+    }
+    
     // 获得临时文件的路径
     NSString *tempDoucment = NSTemporaryDirectory();
     NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
@@ -283,7 +301,6 @@
     tempFilePath = [NSString stringWithFormat:@"%@/%@.temp", tempFilePath, [filePath substringFromIndex:lastCharRange.location + 1]];
     
     // 获得临时文件的路径
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSMutableDictionary *newHeadersDict = [[[NSMutableDictionary alloc] init] autorelease];
     // 如果是重新下载，就要删除之前下载过的文件
     if (!isResume && [fileManager fileExistsAtPath:tempFilePath]) {
@@ -300,72 +317,44 @@
         }
     }
     
-    if ([fileManager fileExistsAtPath:filePath]) {
-        return nil;
-    }else {
-        
-        NSString *userAgentString = [NSString stringWithFormat:@"%@/%@",
-                                     [[[NSBundle mainBundle] infoDictionary]
-                                      objectForKey:(NSString *)kCFBundleNameKey],
-                                     [[[NSBundle mainBundle] infoDictionary]
-                                      objectForKey:(NSString *)kCFBundleVersionKey]];
-        [newHeadersDict setObject:userAgentString forKey:@"User-Agent"];
-        
-        // 判断之前是否下载过 如果有下载重新构造Header
-        if (isResume && [fileManager fileExistsAtPath:tempFilePath]) {
-            NSError *error = nil;
-            unsigned long long fileSize = [[fileManager attributesOfItemAtPath:tempFilePath
-                                                                         error:&error] fileSize];
-            if (error) {
-                NSLogD(@"get %@ fileSize failed!\nError:%@", tempFilePath, error);
-            }
-            NSString *headerRange = [NSString stringWithFormat:@"bytes=%llu-", fileSize];
-            [newHeadersDict setObject:headerRange forKey:@"Range"];
-            
+    NSString *userAgentString = [NSString stringWithFormat:@"%@/%@",
+                                 [[[NSBundle mainBundle] infoDictionary]
+                                  objectForKey:(NSString *)kCFBundleNameKey],
+                                 [[[NSBundle mainBundle] infoDictionary]
+                                  objectForKey:(NSString *)kCFBundleVersionKey]];
+    [newHeadersDict setObject:userAgentString forKey:@"User-Agent"];
+    
+    // 判断之前是否下载过 如果有下载重新构造Header
+    if (isResume && [fileManager fileExistsAtPath:tempFilePath]) {
+        NSError *error = nil;
+        unsigned long long fileSize = [[fileManager attributesOfItemAtPath:tempFilePath
+                                                                     error:&error] fileSize];
+        if (error) {
+            NSLogD(@"get %@ fileSize failed!\nError:%@", tempFilePath, error);
         }
+        NSString *headerRange = [NSString stringWithFormat:@"bytes=%llu-", fileSize];
+        [newHeadersDict setObject:headerRange forKey:@"Range"];
         
-        NSDictionary *dic = nil;
-        if (anObject) {
-            if ([anObject isKindOfClass:[NSDictionary class]]) {
-                dic = anObject;
-            }else{
-                dic = [anObject YYJSONDictionary];
-            }
-        }
-        
-        Downloader *op = (Downloader *)[self operationWithURLString:remoteURL params:dic];
-        op.downloadHelper = self;
-        [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:tempFilePath append:YES]];
-        [op addHeaders:newHeadersDict];
-        
-        op.toFile = filePath;
-        op.tempFilePath = tempFilePath;
-        
-        // 如果已经存在下载文件 operation返回nil,否则把operation放入下载队列当中
-        BOOL existDownload = NO;
-        for (HttpRequest *tempOP in self.downloadArray) {
-            if ([tempOP.url isEqualToString:op.url]) {
-                existDownload = YES;
-                break;
-            }
-        }
-        
-        if (existDownload) {
-            // [[self delegate] downloadManagerDownloadExist:self withURL:paramURL];
-            // 下载任务已经存在
-            NSLogD(@"download exist");
-        } else if (op == nil) {
-            // [[self delegate] downloadManagerDownloadDone:self withURL:paramURL];
-            // 下载文件已经存在
-            NSLogD(@"download done");
-        } else {
-            
-        }
-        
-        return op;
     }
     
-    return nil;
+    NSDictionary *dic = nil;
+    if (anObject) {
+        if ([anObject isKindOfClass:[NSDictionary class]]) {
+            dic = anObject;
+        }else{
+            dic = [anObject YYJSONDictionary];
+        }
+    }
+    
+    Downloader *op = (Downloader *)[self operationWithURLString:remoteURL params:dic];
+    op.downloadHelper = self;
+    [op addDownloadStream:[NSOutputStream outputStreamToFileAtPath:tempFilePath append:YES]];
+    [op addHeaders:newHeadersDict];
+    
+    op.toFile = filePath;
+    op.tempFilePath = tempFilePath;
+    
+    return op;
 }
 
 

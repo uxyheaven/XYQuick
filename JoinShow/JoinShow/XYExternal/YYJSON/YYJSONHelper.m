@@ -12,6 +12,7 @@ static void YY_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 @implementation NSObject (YYJSONHelper)
 
 static NSMutableDictionary *YY_JSON_OBJECT_KEYDICTS = nil;
+static NSDateFormatter *YY_JSON_OBJECT_NSDateFormatter = nil;
 
 #if DEBUG
 - (NSString *)YY
@@ -125,10 +126,12 @@ static NSMutableDictionary *YY_JSON_OBJECT_KEYDICTS = nil;
         if (value)
         {
             if ([value isKindOfClass:[NSDate class]]) {
-                NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-                value = [dateFormatter stringFromDate:value];
+                if (!YY_JSON_OBJECT_NSDateFormatter) {
+                    YY_JSON_OBJECT_NSDateFormatter = [[NSDateFormatter alloc] init];
+                    [YY_JSON_OBJECT_NSDateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                    [YY_JSON_OBJECT_NSDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+                }
+                value = [YY_JSON_OBJECT_NSDateFormatter stringFromDate:value];
             }
             [jsonDict setValue:value forKey:key];
         }

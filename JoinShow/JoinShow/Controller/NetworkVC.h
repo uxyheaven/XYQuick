@@ -9,16 +9,19 @@
 #define NetworkVC_downloadLink @"http://dl_dir.qq.com/qqfile/qq/QQforMac/QQ_V3.0.0.dmg"
 
 #import <UIKit/UIKit.h>
-@class RequestHelper;
+@class HTTPClient;
+@class HTTPClient2;
+@class HTTPClient3;
+
 @class DownloadRequest;
 @interface NetworkVC : UIViewController
 
 // get
-@property (nonatomic, retain) RequestHelper *networkEngine;
+@property (nonatomic, assign) HTTPClient *httpClient;
 // post
-@property (nonatomic, retain) RequestHelper *networkEngine2;
+@property (nonatomic, assign) HTTPClient2 *httpClient2;
 // download
-@property (nonatomic, retain) DownloadRequest *networkEngine3;
+@property (nonatomic, assign) HTTPClient3 *httpClient3;
 
 @property (retain, nonatomic) IBOutlet UIProgressView *progressDownload;
 @property (retain, nonatomic) IBOutlet UILabel *labPregress;
