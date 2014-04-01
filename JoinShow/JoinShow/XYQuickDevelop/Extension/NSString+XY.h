@@ -73,6 +73,7 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 -(BOOL)isValueOf:(NSArray *)array;
 -(BOOL)isValueOf:(NSArray *)array caseInsens:(BOOL)caseInsens;
 
+#pragma mark - bee里的检测
 -(BOOL)isNormal;
 -(BOOL)isTelephone;
 -(BOOL)isUserName;
@@ -82,8 +83,12 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 -(BOOL)isUrl;
 -(BOOL)isIPAddress;
 
+#pragma mark - 额外的检测
 // 包含一个字符和数字
--(BOOL)isHasCharacterAndNumber;
+-(BOOL) isHasCharacterAndNumber;
+// 昵称
+-(BOOL) isNickname;
+-(BOOL) isTelephone2;
 
 -(NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset;
 -(NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset endOffset:(NSUInteger *)endOffset;
@@ -107,6 +112,9 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
  * 如果是这样 _text = @"information"的 被分配到data区的无法擦除
  */
 -(void) erasure;
+
+// 大写字母 (International Business Machines 变成 IBM)
+-(NSString*) stringByInitials;
 
 @end
 

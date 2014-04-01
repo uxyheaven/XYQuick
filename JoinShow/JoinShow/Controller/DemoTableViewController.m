@@ -73,7 +73,12 @@
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
-
+-(void) viewWillAppear:(BOOL)animated{
+    
+}
+-(void) viewDidAppear:(BOOL)animated{
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -290,41 +290,6 @@
 }
 
 /***************************************************************/
-+(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
-    NSMutableArray *pathArray = [NSMutableArray array];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *tempArray = [fileManager contentsOfDirectoryAtPath:direString error:nil];
-    
-    if (tempArray == nil) {
-        return nil;
-    }
-    
-    NSString* type = [NSString stringWithFormat:@".%@",fileType];
-    for (NSString *fileName in tempArray) {
-        BOOL flag = YES;
-        NSString *fullPath = [direString stringByAppendingPathComponent:fileName];
-        
-        if ([fileManager fileExistsAtPath:fullPath isDirectory:&flag])
-        {
-            if (!flag) {
-                
-                if ([fileName hasSuffix:type]) {
-                    
-                    [pathArray addObject:fullPath];
-                    
-                }
-            }
-            else {
-                
-            }
-        }
-    }
-    
-    return pathArray;
-}
-
-/***************************************************************/
 +(void) shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc{
     /* 本项目屏蔽
      if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
@@ -398,29 +363,38 @@
 }
 
 /***************************************************************/
-+(NSString *) getStringFromDate:(NSDate *)date
-{
-    NSDateFormatter*formatter = [[NSDateFormatter alloc] init];
-    //    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateStyle:NSDateFormatterShortStyle];
-    NSString *dateTimeString=[formatter stringFromDate:date];
-    [formatter release];
-    return dateTimeString;
-}
-/***************************************************************/
-+(NSDate *) getDateFromString:(NSString *)string
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date = [dateFormatter dateFromString:string];
-    [dateFormatter release];
-    return date;
-}
-/***************************************************************/
 +(NSString *) StringForSQL:(NSString *)str
 {
     return [str stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+}
+/***************************************************************/
++(NSDateFormatter *) dateFormatter{
+    static NSDateFormatter* format;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        format = [[NSDateFormatter alloc] init];
+        format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    });
+    return format;
+}
++(NSDateFormatter *) dateFormatterTemp{
+    static NSDateFormatter* format;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        format = [[NSDateFormatter alloc] init];
+        format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    });
+    return format;
+}
++(NSDateFormatter *) dateFormatterByUTC{
+    static NSDateFormatter* format;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        format = [[NSDateFormatter alloc] init];
+        [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    });
+    return format;
 }
 /***************************************************************/
 +(void) printUsedAndFreeMemoryWithMark:(NSString *)mark{

@@ -8,8 +8,11 @@
 
 #import "NSDate+XY.h"
 #import "XYPrecompile.h"
+#import "XYCommon.h"
 
 DUMMY_CLASS(NSDate_XY);
+
+#define NSDate_key_stringCache	"NSDate.stringCache"
 
 @implementation NSDate (XY)
 
@@ -20,6 +23,7 @@ DUMMY_CLASS(NSDate_XY);
 @dynamic minute;
 @dynamic second;
 @dynamic weekday;
+@dynamic stringCache;
 
 #pragma mark - private
 + (NSCalendar *)AZ_currentCalendar {
@@ -88,7 +92,7 @@ DUMMY_CLASS(NSDate_XY);
 	
 	// thansk @lancy, changed: "NSDate depend on NSNumber" to "NSNumber depend on NSDate"
 	
-	NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter * dateFormatter = [XYCommon dateFormatterTemp];
 	[dateFormatter setDateFormat:format];
 	return [dateFormatter stringFromDate:self];
 	
@@ -174,5 +178,30 @@ DUMMY_CLASS(NSDate_XY);
                                         components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
     return [dateComponents day];
 }
+///////////////////////////
+-(NSString *) stringCache{
+    NSString *str = (NSString *)objc_getAssociatedObject(self, NSDate_key_stringCache);
+    if (str == nil) {
+       return [self resetStringCache];
+    }
+    
+    return str;
+}
 
+-(NSString *) resetStringCache{
+    NSDateFormatter * dateFormatter = [XYCommon dateFormatterByUTC];
+    NSString *str = [dateFormatter stringFromDate:self];
+    
+    objc_setAssociatedObject(self, NSDate_key_stringCache, str, OBJC_ASSOCIATION_COPY);
+    
+    return str;
+}
 @end
+
+
+
+
+
+
+
+

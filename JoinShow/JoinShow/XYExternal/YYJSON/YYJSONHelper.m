@@ -124,6 +124,12 @@ static NSMutableDictionary *YY_JSON_OBJECT_KEYDICTS = nil;
         }
         if (value)
         {
+            if ([value isKindOfClass:[NSDate class]]) {
+                NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+                value = [dateFormatter stringFromDate:value];
+            }
             [jsonDict setValue:value forKey:key];
         }
     }];

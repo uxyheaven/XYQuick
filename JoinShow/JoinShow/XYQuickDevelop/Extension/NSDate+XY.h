@@ -23,6 +23,7 @@
 @property (nonatomic, readonly) NSInteger	second;
 @property (nonatomic, readonly) NSInteger	weekday;
 
+// @"yyyy-MM-dd HH:mm:ss"
 -(NSString *) stringWithDateFormat:(NSString *)format;
 -(NSString *) timeAgo;
 
@@ -36,5 +37,10 @@
 
 // 返回距离aDate有多少天
 - (NSInteger) distanceInDaysToDate:(NSDate *)aDate;
+
+// UTC时间string缓存
+@property (nonatomic, copy, readonly) NSString *stringCache;
+// 重置缓存
+-(NSString *) resetStringCache;
 
 @end

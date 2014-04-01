@@ -1346,8 +1346,8 @@
 			isa = PBXGroup;
 			children = (
 				57D4451918B5C573006C597A /* XYBaseClass.h */,
-				57D4451318B59A12006C597A /* XYBaseViewController.h */,
 				5793DCEC18E50EEE00764DC2 /* XYControllerProtocol.h */,
+				57D4451318B59A12006C597A /* XYBaseViewController.h */,
 				57D4451418B59A12006C597A /* XYBaseViewController.m */,
 				57D4451618B5B579006C597A /* XYBaseTableViewController.h */,
 				57D4451718B5B579006C597A /* XYBaseTableViewController.m */,

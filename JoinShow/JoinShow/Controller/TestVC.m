@@ -323,12 +323,21 @@ if (1) { \
     [tempBtn addTarget:self action:@selector(clickCube:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
-#pragma mark -btn end
+
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.backgroundColor = [UIColor lightGrayColor];
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
     [tempBtn setTitle:@"OglFlip" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickOglFlip:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+#pragma mark -btn end
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"NSDateFormatter" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickNSDateFormatter:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
@@ -515,6 +524,18 @@ if (1) { \
     
     
     NSLogD(@"%@", me);
+}
+-(void) clickNSDateFormatter:(id)sender{
+    NSDateFormatter *formatter1 = [XYCommon dateFormatter];
+    NSDateFormatter *formatter2 = [XYCommon dateFormatterTemp];
+    NSDateFormatter *formatter3 = [XYCommon dateFormatterByUTC];
+    
+    NSDate *date = [NSDate date];
+    NSString *str1 = [formatter1 stringFromDate:date];
+    NSString *str2 = [formatter2 stringFromDate:date];
+    NSString *str3 = [formatter3 stringFromDate:date];
+    NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@", str1, str2, str3];
+    SHOWMSG(nil, str, @"cancel");
 }
 -(void) talk2{
     NSString *name = [self valueForKey:@"name"];

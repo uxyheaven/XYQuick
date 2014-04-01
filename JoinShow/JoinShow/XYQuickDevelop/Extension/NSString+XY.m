@@ -11,6 +11,7 @@
 #import "NSData+XY.h"
 
 #import "XYPrecompile.h"
+#import "XYCommon.h"
 
 DUMMY_CLASS(NSString_XY);
 
@@ -40,7 +41,7 @@ DUMMY_CLASS(NSString_XY);
 	NSString * format = @"yyyy-MM-dd HH:mm:ss";
 	NSString * text = [(NSString *)self substringToIndex:format.length];
 	
-	NSDateFormatter * dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter * dateFormatter = [XYCommon dateFormatterTemp];
 	[dateFormatter setDateFormat:format];
 	[dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	
@@ -577,14 +578,53 @@ DUMMY_CLASS(NSString_XY);
 }
 
 ////////////////////
--(BOOL)isHasCharacterAndNumber{
+-(BOOL) isHasCharacterAndNumber{
     BOOL isExistDigit = [self rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound;
     
     BOOL isExistLetter = [self rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound;
     
     return isExistDigit && isExistLetter;
 }
+-(BOOL) isNickname{
+    if (self == nil) {
+		return NO;
+	}
+    
+    NSString *regex = @"^[a-zA-Z0-9_\u4E00-\u9FFF-]{1,12}+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+	BOOL isMatch = [pred evaluateWithObject:self];
+    
+    return isMatch;
+}
 
+-(BOOL) isTelephone2{
+    if (self == nil) {
+		return NO;
+	}
+	//联通号码
+	NSString *regex_Unicom = @"^(130|131|132|133|185|186|156|155)[0-9]{8}";
+	//移动号码
+	NSString *regex_CMCC = @"^(134|135|136|137|138|139|147|150|151|152|157|158|159|182|187|188)[0-9]{8}";
+	//电信号码段(电信新增号段181)
+	NSString *regex_Telecom = @"^(133|153|180|181|189)[0-9]{8}";
+	
+	NSPredicate *pred_Unicom = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex_Unicom];
+	BOOL isMatch_Unicom = [pred_Unicom evaluateWithObject:self];
+	
+	NSPredicate *pred_CMCC = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex_CMCC];
+	BOOL isMatch_CMCC = [pred_CMCC evaluateWithObject:self];
+	
+	NSPredicate *pred_Telecom = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex_Telecom];
+	BOOL isMatch_Telecom = [pred_Telecom evaluateWithObject:self];
+	
+	if (isMatch_Unicom || isMatch_CMCC || isMatch_Telecom) {
+		return YES;
+	}
+	else {
+        return NO;
+	}
+}
+///////////////////
 
 - (NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset
 {
@@ -713,6 +753,21 @@ DUMMY_CLASS(NSString_XY);
 -(void) erasure{
     char *string = (char *)CFStringGetCStringPtr((CFStringRef)self, CFStringGetSystemEncoding());
     memset(string, 0, [self length]);
+}
+
+-(NSString*) stringByInitials{
+    NSMutableString *result = [NSMutableString string];
+    [self enumerateSubstringsInRange:NSMakeRange(0, self.length) options:NSStringEnumerationByWords | NSStringEnumerationLocalized usingBlock:^(NSString *word, NSRange wordRange, NSRange enclosingWordRange, BOOL *stop1) {
+        __block NSString *firstLetter = nil;
+        [self enumerateSubstringsInRange:NSMakeRange(0, word.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *letter, NSRange letterRange, NSRange enclosingLetterRange, BOOL *stop2) {
+            firstLetter = letter;
+            *stop2 = YES;
+        }];
+        if (firstLetter != nil) {
+            [result appendString:firstLetter];
+        };
+    }];
+    return result;
 }
 @end
 

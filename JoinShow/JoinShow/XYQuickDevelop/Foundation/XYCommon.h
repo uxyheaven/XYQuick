@@ -23,13 +23,16 @@
 static Method XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
     Method a = class_getInstanceMethod(c, original);
     Method b = class_getInstanceMethod(c, replacement);
+    // class_addMethod 为该类增加一个新方法
     if (class_addMethod(c, original, method_getImplementation(b), method_getTypeEncoding(b)))
     {
+        // 替换类方法的定义
         class_replaceMethod(c, replacement, method_getImplementation(a), method_getTypeEncoding(a));
         return b;   // 返回劫持前的方法
     }
     else
     {
+        // 交换2个方法的实现
         method_exchangeImplementations(a, b);
         return b;   // 返回劫持前的方法
     }
@@ -56,20 +59,10 @@ typedef enum {
  * kType 文件所在目录类型. documents:documents文件夹, tmp:Tmp文件夹, app,resource:app文件夹
  */
 +(NSString *) dataFilePath:(NSString *)file ofType:(FilePathOption)kType;
-// 程序目录，不能存任何东西
-+(NSString *) dataFileAppPath:(NSString *)file;
-// 文档目录，需要ITUNES同步备份的数据存这里
-+(NSString *) dataFileDocPath:(NSString *)file;
-// 配置目录，配置文件存这里
-+(NSString *) dataFileLibPrefPath:(NSString *)file;
-// 缓存目录，系统永远不会删除这里的文件，ITUNES会删除
-+(NSString *) dataFileLibCachePath:(NSString *)file;
-// 缓存目录，APP退出后，系统可能会删除这里的内容
-+(NSString *) dataFileTmpPath:(NSString *)file;
-
 
 /** 
  * 创建目录
+ * XYsandbox
  * api parameters 说明
  * aPath 目录路径
  */
@@ -78,6 +71,7 @@ typedef enum {
 
 /**
  * Unicode格式的字符串编码转成中文的方法(如\u7E8C)转换成中文,unicode编码以\u开头
+ * NSString(XY)
  * api parameters 说明
  *
  * unicodeStr 需要被转的字符串
@@ -148,17 +142,6 @@ typedef enum {
 +(NSMutableArray *) analyseString:(NSString *)str regularExpression:(NSString *)regexStr;
 +(NSMutableArray *) analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr;
 
-
-/**
- * 返回目下所有给定后缀的文件的方法
- * api parameters 说明
- *
- * direString 目录绝对路径
- * fileType 文件后缀名
- * operation (预留,暂时没用)
- */
-+(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
-
 #pragma mark  -todo, 分享facebook,发EMail
 /**
  * 分享至Twitter的方法
@@ -207,26 +190,21 @@ typedef enum {
  */
 +(void) showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)strCancel;
 
-
-/**
- *  NSDate to NSString
- * api parameters 说明
- */
-+(NSString *) getStringFromDate:(NSDate *)date;
-
-/**
- * NSString to NSDate
- * api parameters 说明
- */
-+(NSDate *) getDateFromString:(NSString *)string;
-
-
 /**
  * 替换string里面的单引号'为2个单引号'',用于处理SQL问题
  */
 +(NSString *) StringForSQL:(NSString *)str;
 
-
+/**
+ * 返回日期格式器
+ * api parameters 说明
+ * dateFormatter yyyy-MM-dd HH:mm:ss
+ * dateFormatterTemp 很多地方共用的
+ * dateFormatterByUTC 返回UTC格式的
+ */
++(NSDateFormatter *) dateFormatter;
++(NSDateFormatter *) dateFormatterTemp;
++(NSDateFormatter *) dateFormatterByUTC;
 /**
  * 打印内存情况
  * api parameters 说明

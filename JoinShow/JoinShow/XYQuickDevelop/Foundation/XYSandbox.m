@@ -129,6 +129,16 @@ DEF_SINGLETON( XYSandbox )
 	return _tmpPath;
 }
 
++(NSString *) resPath:(NSString *)file{
+    return [[XYSandbox sharedInstance] resPath:file];
+}
+
+-(NSString *) resPath:(NSString *)file{
+    NSString *str =[file stringByDeletingPathExtension];
+    NSString *str2 = [file pathExtension];
+    return [[NSBundle mainBundle] pathForResource:str ofType:str2];
+}
+
 + (BOOL)touch:(NSString *)path
 {
 	return [[XYSandbox sharedInstance] touch:path];
@@ -162,6 +172,51 @@ DEF_SINGLETON( XYSandbox )
 	}
 	
 	return YES;
+}
+
+/***************************************************************/
++(void) createDirectoryAtPath:(NSString *)aPath{
+    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:NULL] )
+    {
+        BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:aPath
+                                             withIntermediateDirectories:YES
+                                                              attributes:nil
+                                                                   error:nil];
+        if ( NO == ret ) {
+            NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
+            return;
+        }
+    }
+}
+
++(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
+    NSMutableArray *pathArray = [NSMutableArray array];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *tempArray = [fileManager contentsOfDirectoryAtPath:direString error:nil];
+    
+    if (tempArray == nil) {
+        return nil;
+    }
+    
+    NSString* type = [NSString stringWithFormat:@".%@",fileType];
+    for (NSString *fileName in tempArray) {
+        BOOL flag = YES;
+        NSString *fullPath = [direString stringByAppendingPathComponent:fileName];
+        
+        if ([fileManager fileExistsAtPath:fullPath isDirectory:&flag]){
+            if (!flag) {
+                if ([fileName hasSuffix:type]) {
+                    [pathArray addObject:fullPath];
+                }
+            }
+            else {
+                
+            }
+        }
+    }
+    
+    return pathArray;
 }
 
 @end

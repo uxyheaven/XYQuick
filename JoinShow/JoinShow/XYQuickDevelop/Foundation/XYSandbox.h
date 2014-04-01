@@ -24,7 +24,26 @@ XY_SINGLETON( XYSandbox )
 + (NSString *)libCachePath;	// 缓存目录，系统永远不会删除这里的文件，ITUNES会删除
 + (NSString *)tmpPath;		// 缓存目录，APP退出后，系统可能会删除这里的内容
 
++(NSString *) resPath:(NSString *)file;      // 资源目录
+
 + (BOOL)touch:(NSString *)path;
 + (BOOL)touchFile:(NSString *)file;
+
+/**
+ * 创建目录
+ * api parameters 说明
+ * aPath 目录路径
+ */
++(void) createDirectoryAtPath:(NSString *)aPath;
+
+/**
+ * 返回目下所有给定后缀的文件的方法
+ * api parameters 说明
+ *
+ * direString 目录绝对路径
+ * fileType 文件后缀名
+ * operation (预留,暂时没用)
+ */
++(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
 
 @end
