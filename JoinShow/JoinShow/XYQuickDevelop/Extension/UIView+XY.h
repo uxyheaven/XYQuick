@@ -15,23 +15,24 @@
 #import "XYFoundation.h"
 #import "XYPrecompile.h"
 
-
+typedef void(^UIViewCategoryNormalBlock)(UIView *view);
+typedef void(^UIViewCategoryAnimationBlock)(void);
 @interface UIView (XY)
 
 // 增加手势
 -(void) addTapGestureWithTarget:(id)target action:(SEL)action;
--(void) addTapGestureWithBlock:(void(^)(void))aBlock;
+-(void) addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock;
 
 -(void) removeTapGesture;
 
 // 增加背景阴影
 -(void) addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha;
--(void) addShadeWithBlock:(void(^)(void))aBlock color:(UIColor *)aColor alpha:(float)aAlpha;
+-(void) addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha;
 // 增加毛玻璃背景
 -(void) addBlurWithTarget:(id)target action:(SEL)action;
 -(void) addBlurWithTarget:(id)target action:(SEL)action level:(int)lv;
--(void) addBlurWithBlock:(void(^)(void))aBlock;
--(void) addBlurWithBlock:(void(^)(void))aBlock level:(int)lv;
+-(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock;
+-(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv;
 
 -(void) removeShade;
 -(UIView *) shadeView;
@@ -72,25 +73,25 @@
 #pragma mark - animation
 // 淡入淡出
 -(void) animationCrossfadeWithDuration:(NSTimeInterval)duration;
--(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+-(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(UIViewCategoryAnimationBlock)completion;
 
 /** 立方体翻转
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
 -(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
+-(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
 
 /** 翻转
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
 -(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
+-(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
 
 /** 覆盖
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
 -(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion;
+-(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
 
 // 抖动
 -(void) animationShake;

@@ -16,9 +16,6 @@
 
 }
 
-@property (atomic, retain) XYMemoryCache *		memoryCache;
-@property (atomic, retain) XYFileCache *		fileCache;
-
 @end
 
 @implementation XYObjectCache

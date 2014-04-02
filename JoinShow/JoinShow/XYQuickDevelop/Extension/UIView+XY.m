@@ -56,7 +56,7 @@ DUMMY_CLASS(UIView_XY);
 	}
 }
 
--(void) addTapGestureWithBlock:(void(^)(void))aBlock{
+-(void) addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];
     [self addGestureRecognizer:tap];
     [tap release];
@@ -65,9 +65,9 @@ DUMMY_CLASS(UIView_XY);
   //  XY_swizzleInstanceMethod([self class], @selector(dealloc), @selector(UIView_dealloc));
 }
 -(void)actionTap{
-    void (^aBlock)(void) = objc_getAssociatedObject(self, UIView_key_tapBlock);
+    UIViewCategoryNormalBlock block = objc_getAssociatedObject(self, UIView_key_tapBlock);
     
-    if (aBlock) aBlock();
+    if (block) block(self);
 }
 
 /////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ DUMMY_CLASS(UIView_XY);
 
     [tmpView addTapGestureWithTarget:target action:action];
 }
--(void) addShadeWithBlock:(void(^)(void))aBlock color:(UIColor *)aColor alpha:(float)aAlpha{
+-(void) addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha{
     UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
     tmpView.tag = UIView_shadeTag;
     if (aColor) {
@@ -96,9 +96,7 @@ DUMMY_CLASS(UIView_XY);
     [self addSubview:tmpView];
     
     if (aBlock) {
-        [tmpView addTapGestureWithBlock:^{
-            aBlock();
-        }];
+        [tmpView addTapGestureWithBlock:aBlock];
     }
 }
 -(void) removeShade{
@@ -137,7 +135,7 @@ DUMMY_CLASS(UIView_XY);
     [self addBlurWithTarget:target action:action level:5];
 }
 
--(void) addBlurWithBlock:(void(^)(void))aBlock level:(int)lv{
+-(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv{
     UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
     tmpView.tag = UIView_shadeTag;
     UIImage *img = [[self snapshot] stackBlur:lv];
@@ -145,12 +143,10 @@ DUMMY_CLASS(UIView_XY);
     [self addSubview:tmpView];
     
     if (aBlock) {
-        [tmpView addTapGestureWithBlock:^{
-            aBlock();
-        }];
+        [tmpView addTapGestureWithBlock:aBlock];
     }
 }
--(void) addBlurWithBlock:(void(^)(void))aBlock{
+-(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock{
     [self addBlurWithBlock:aBlock level:[XYPopupViewHelper sharedInstance].blurLevel];
 }
 
@@ -307,7 +303,7 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:animation forKey:nil];
 }
 
--(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion
+-(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(UIViewCategoryAnimationBlock)completion
 {
     [self animationCrossfadeWithDuration:duration];
     if (completion)
@@ -326,7 +322,7 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
--(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
+-(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion{
     [self animationCubeWithDuration:duration direction:direction completion:completion];
     if (completion)
     {
@@ -362,7 +358,7 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
--(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
+-(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion{
     [self animationMoveInWithDuration:duration direction:direction completion:completion];
     if (completion)
     {

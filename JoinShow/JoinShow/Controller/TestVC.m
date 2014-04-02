@@ -458,7 +458,7 @@ if (1) { \
 
 - (IBAction)clickBtnSHOWMBProgressHUDIndeterminate:(id)sender {
     MBProgressHUD *hub = SHOWMBProgressHUDIndeterminate(@"title", @"message", NO)
-    [hub addTapGestureWithBlock:^{
+    [hub addTapGestureWithBlock:^(UIView *view){
         HIDDENMBProgressHUD
     }];
     BACKGROUND_BEGIN

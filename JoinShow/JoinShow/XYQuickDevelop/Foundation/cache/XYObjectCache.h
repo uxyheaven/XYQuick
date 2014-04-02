@@ -9,12 +9,15 @@
 
 #import "XYPrecompile.h"
 
-
+@class XYMemoryCache;
+@class XYFileCache;
 @interface XYObjectCache : NSObject
 
 XY_SINGLETON(XYObjectCache)
 
-@property (nonatomic, assign, readonly) Class objectClass;
+@property (nonatomic, assign, readonly) Class objectClass;      // 缓存对象的类
+@property (atomic, retain) XYMemoryCache *		memoryCache;    // 内存缓存
+@property (atomic, retain) XYFileCache *		fileCache;      // 文件缓存
 
 -(void) registerObjectClass:(Class)aClass;
 
