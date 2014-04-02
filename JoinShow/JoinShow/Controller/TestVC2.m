@@ -137,37 +137,35 @@
 
 #pragma mark -方法的实现
 -(void) clickMuhud{
-    DEF_WEAKSELF
     DemoViewController *vc = [[[DemoViewController alloc] init] autorelease];
+    vc.methodBlock = ^(UIViewController *vc, UIButton *btn){
+        XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
+        XYAnimateStep *step1 = [XYAnimateStep duration:0.15 animate:^{
+            btn.transform = CGAffineTransformMakeScale(.5, .5);
+        }];
+        XYAnimateStep *step2 = [XYAnimateStep duration:0.2 animate:^{
+            btn.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        }];
+        XYAnimateStep *step3 = [XYAnimateStep duration:0.15 animate:^{
+            btn.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        }];
+        XYAnimateStep *step4 = [XYAnimateStep duration:0.1 animate:^{
+            btn.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        }];
+        [[[[steps addStep:step1] addStep:step2] addStep:step3] addStep:step4];
+        
+        [steps run];
+    };
     vc.viewDidLoadBlock = ^(UIViewController *vc){
         UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         tempBtn.backgroundColor = [UIColor redColor];
         tempBtn.frame = CGRectMake(10, 100, 100, 44);
         [tempBtn setTitle:@"muhud" forState:UIControlStateNormal];
-        [tempBtn addTarget:weakSelf action:@selector(clickMuhudButton:) forControlEvents:UIControlEventTouchUpInside];
+        [tempBtn addTarget:vc action:DemoViewController_sel_methodBlock forControlEvents:UIControlEventTouchUpInside];
         [vc.view addSubview:tempBtn];
         
             };
     [self.navigationController pushViewController:vc animated:YES];
-}
--(void) clickMuhudButton:(UIButton *)tempBtn{
-    XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
-    XYAnimateStep *step1 = [XYAnimateStep duration:0.15 animate:^{
-        tempBtn.transform = CGAffineTransformMakeScale(.5, .5);
-    }];
-    XYAnimateStep *step2 = [XYAnimateStep duration:0.2 animate:^{
-        tempBtn.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    }];
-    XYAnimateStep *step3 = [XYAnimateStep duration:0.15 animate:^{
-        tempBtn.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    }];
-    XYAnimateStep *step4 = [XYAnimateStep duration:0.1 animate:^{
-        tempBtn.transform = CGAffineTransformMakeScale(1.0, 1.0);
-    }];
-    [[[[steps addStep:step1] addStep:step2] addStep:step3] addStep:step4];
-    
-    [steps run];
-
 }
 
 @end

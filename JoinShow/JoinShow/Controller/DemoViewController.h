@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#define DemoViewController_sel_methodBlock @selector(funny:)
+#define DemoViewController_sel_methodBlock2 @selector(funny2:)
+
 typedef void(^DemoDemoViewControllerExecuteBlock)(UIViewController *vc);
+typedef void(^DemoDemoViewControllerFunBlock)(UIViewController *vc, id sender);
 
 @interface DemoViewController : UIViewController
 
 @property (nonatomic, copy) DemoDemoViewControllerExecuteBlock loadViewBlock;
 @property (nonatomic, copy) DemoDemoViewControllerExecuteBlock viewDidLoadBlock;
 
--(void) addSel:(SEL)sel;
+@property (nonatomic, copy) DemoDemoViewControllerFunBlock methodBlock;
+@property (nonatomic, copy) DemoDemoViewControllerFunBlock methodBlock2;
 
 @end

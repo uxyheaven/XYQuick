@@ -69,10 +69,23 @@
 - (void)dealloc
 {
     NSLogDD;
+    self.viewDidLoadBlock = nil;
+    self.loadViewBlock = nil;
+    self.methodBlock = nil;
+    self.methodBlock2 = nil;
+    
     [super dealloc];
 }
 
--(void) addSel:(SEL)sel{
-    
+-(void) funny:(id)sender{
+    if (_methodBlock) {
+        _methodBlock(self, sender);
+    }
 }
+-(void) funny2:(id)sender{
+    if (_methodBlock2) {
+        _methodBlock2(self, sender);
+    }
+}
+
 @end
