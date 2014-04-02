@@ -180,7 +180,8 @@
         [((DownloadHelper *)requests).downloadArray addObject:self];
     }else if (str == nil)
     {
-        // 非下载请求
+        // 非下载队列
+        NSLogD(@"%@ is not DownloadHelper", requests);
     }
     return self;
 }
@@ -200,25 +201,27 @@
         
         NSString *filePath = self.toFile;
         
-        // 下载完成以后 先删除之前的文件 然后mv新的文件
+        // 下载完成以后 先删除之前的文件 然后move新的文件
         if ([fileManager fileExistsAtPath:filePath]) {
             [fileManager removeItemAtPath:filePath error:&error];
             if (error) {
                 NSLogD(@"remove %@ file failed!\nError:%@", filePath, error);
-                exit(-1);
+                return;
             }
         }
         
         [fileManager moveItemAtPath:self.tempFilePath toPath:filePath error:&error];
         if (error) {
             NSLogD(@"move %@ file to %@ file is failed!\nError:%@", self.tempFilePath, filePath, error);
-            exit(-1);
+            return;
         }
         
-        if (blockS) blockS(operation);
         [self.downloadHelper.downloadArray removeObject:self];
         
+        if (blockS) blockS(operation);
     }errorHandler:^(HttpRequest *errorOp, NSError *err) {
+        [self.downloadHelper.downloadArray removeObject:self];
+        
         if (blockF) blockF(errorOp, err);
     }];
     
@@ -227,6 +230,7 @@
 - (void)dealloc
 {
     NSLogDD
+    [self.downloadHelper.downloadArray removeObject:self];
     self.toFile = nil;
     self.tempFilePath = nil;
     [super dealloc];
@@ -265,7 +269,7 @@
         NSLogD(@"please run [downloader setup] once.")
         return nil;
     }
-    // 如果存在同样的下载任务,直接返回nil
+    // 如果当前存在同样的下载任务(下载路径是一样的),直接返回nil
     for (Downloader *tempOP in self.downloadArray) {
         if ([tempOP.toFile isEqualToString:filePath]) {
             // 下载任务已经存在

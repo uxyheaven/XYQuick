@@ -7,6 +7,7 @@
 //
 
 #import "XYSandbox.h"
+#import <sys/stat.h>
 
 @interface XYSandbox()
 {
@@ -219,4 +220,46 @@ DEF_SINGLETON( XYSandbox )
     return pathArray;
 }
 
++(uint64_t) sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode{
+    uint64_t totalSize = 0;
+    NSMutableArray *searchPaths = [NSMutableArray arrayWithObject:filePath];
+    while ([searchPaths count] > 0)
+    {
+        @autoreleasepool
+        {
+            NSString *fullPath = [NSString stringWithString:[searchPaths objectAtIndex:0]];
+            [searchPaths removeObjectAtIndex:0];
+            
+            struct stat fileStat;
+            if (lstat([fullPath fileSystemRepresentation], &fileStat) == 0)
+            {
+                if (fileStat.st_mode & S_IFDIR)
+                {
+                    NSArray *childSubPaths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fullPath error:nil];
+                    for (NSString *childItem in childSubPaths)
+                    {
+                        NSString *childPath = [fullPath stringByAppendingPathComponent:childItem];
+                        [searchPaths insertObject:childPath atIndex:0];
+                    }
+                }else
+                {
+                    if (diskMode)
+                        totalSize += fileStat.st_blocks * 512;
+                    else
+                        totalSize += fileStat.st_size;
+                }
+            }
+        }
+    }
+    
+    return totalSize;
+}
+
 @end
+
+
+
+
+
+
+

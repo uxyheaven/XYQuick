@@ -37,7 +37,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.list = @[@{@"title": @"Something", @"className": @"TestVC"},
+        self.list = @[@{@"title": @"Something", @"className": @"TestVC2"},
                       @{@"title": @"Frame Animation", @"className": @"AnimationVC"},
                       @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
                       @{@"title": @"Network", @"className": @"NetworkVC"},
@@ -172,14 +172,15 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     NSDictionary *dic = [self.list objectAtIndex:indexPath.row];
-    /*
-    UIViewController *detailViewController = [[NSClassFromString([dic objectForKey:@"className"]) alloc] initWithNibName:nil bundle:nil];
-    detailViewController.title = [dic objectForKey:@"title"];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-     */
+
+    if ([[dic objectForKey:@"className"] isEqualToString:@"TestVC2"]) {
+       UIViewController *vc = [[[NSClassFromString([dic objectForKey:@"className"]) alloc] init] autorelease];
+        vc.title = [dic objectForKey:@"title"];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    // 故事版加载
     [self performSegueWithIdentifier:[dic objectForKey:@"className"] sender:dic];
     
 }

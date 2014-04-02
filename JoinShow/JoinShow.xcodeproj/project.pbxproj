@@ -246,6 +246,7 @@
 		57901EBB17E6C26E00B8E8FF /* remark in Resources */ = {isa = PBXBuildFile; fileRef = 57901EBA17E6C26E00B8E8FF /* remark */; };
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
 		579426B51856D6DC0049B426 /* EntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 579426B41856D6DC0049B426 /* EntityModel.m */; };
+		579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579B3A3418EBDCF8001650C6 /* DemoViewController.m */; };
 		57A2FE5E18063D5A002460EC /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57A2FE5D18063D5A002460EC /* bg.jpg */; };
 		57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B491888C9850005A93B /* XYMaterial.m */; };
 		57AB8B581888E1E60005A93B /* XYSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B571888E1E60005A93B /* XYSandbox.m */; };
@@ -275,6 +276,7 @@
 		57BE89BD17AA531200FCD864 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BC17AA531100FCD864 /* OpenAL.framework */; };
 		57C94E7B188B325600CCAAED /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C94E7A188B325600CCAAED /* LKTestModels.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E1518EAC9CD00D84C01 /* HTTPClient.m */; };
+		57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E2418EADB4800D84C01 /* TestVC2.m */; };
 		57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451418B59A12006C597A /* XYBaseViewController.m */; };
 		57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451718B5B579006C597A /* XYBaseTableViewController.m */; };
 		57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF4618221A4400E10954 /* LKDBHelperExtension.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -628,6 +630,8 @@
 		5793DCEC18E50EEE00764DC2 /* XYControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYControllerProtocol.h; sourceTree = "<group>"; };
 		579426B31856D6DC0049B426 /* EntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityModel.h; sourceTree = "<group>"; };
 		579426B41856D6DC0049B426 /* EntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityModel.m; sourceTree = "<group>"; };
+		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		579B3A3418EBDCF8001650C6 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		57A2FE5D18063D5A002460EC /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		57AB8B481888C9850005A93B /* XYMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMaterial.h; sourceTree = "<group>"; };
 		57AB8B491888C9850005A93B /* XYMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMaterial.m; sourceTree = "<group>"; };
@@ -671,6 +675,8 @@
 		57C94E7A188B325600CCAAED /* LKTestModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTestModels.m; sourceTree = "<group>"; };
 		57D43E1418EAC9CD00D84C01 /* HTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
 		57D43E1518EAC9CD00D84C01 /* HTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPClient.m; sourceTree = "<group>"; };
+		57D43E2318EADB4800D84C01 /* TestVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC2.h; sourceTree = "<group>"; };
+		57D43E2418EADB4800D84C01 /* TestVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC2.m; sourceTree = "<group>"; };
 		57D4451318B59A12006C597A /* XYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseViewController.h; sourceTree = "<group>"; };
 		57D4451418B59A12006C597A /* XYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseViewController.m; sourceTree = "<group>"; };
 		57D4451618B5B579006C597A /* XYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseTableViewController.h; sourceTree = "<group>"; };
@@ -808,6 +814,8 @@
 				571CBA4917C6FCC0007CB842 /* DemoTableViewController.m */,
 				57383F3917D2F5F20001079C /* TestVC.h */,
 				57383F3A17D2F5F20001079C /* TestVC.m */,
+				57D43E2318EADB4800D84C01 /* TestVC2.h */,
+				57D43E2418EADB4800D84C01 /* TestVC2.m */,
 				571CBA5B17C7000A007CB842 /* AnimationVC.h */,
 				571CBA5C17C7000A007CB842 /* AnimationVC.m */,
 				578FBFE1183AFA8B0083A952 /* AnimationVC2.h */,
@@ -830,6 +838,8 @@
 				57D4FF491822275400E10954 /* BusinessVC.m */,
 				576A0BA6182379B800CA8D9D /* PopupViewVC.h */,
 				576A0BA7182379B800CA8D9D /* PopupViewVC.m */,
+				579B3A3318EBDCF8001650C6 /* DemoViewController.h */,
+				579B3A3418EBDCF8001650C6 /* DemoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1217,8 +1227,8 @@
 		5742C18717F7BF3C00065083 /* XYExternal */ = {
 			isa = PBXGroup;
 			children = (
-				572E7CC2183860A80018179D /* LKDBHelper */,
 				57FFF3BE1818B29F00977CB5 /* Extension */,
+				572E7CC2183860A80018179D /* LKDBHelper */,
 				572E7CBE18385F9D0018179D /* YYJSON */,
 				572E7C4E18385C690018179D /* CocosDenshion */,
 				572E7C5818385C690018179D /* FMDB */,
@@ -1839,6 +1849,7 @@
 				57DB87EA183349A60015CC5A /* XYThread.m in Sources */,
 				572E7CB418385C690018179D /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */,
+				57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */,
 				57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */,
 				578D81D2188E4E8900E0058E /* XYKeychain.m in Sources */,
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
@@ -1856,6 +1867,7 @@
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
 				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,
+				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,
 				57DB87EB183349A60015CC5A /* XYTimer.m in Sources */,
 				572E7CB218385C690018179D /* NSDictionary+RequestEncoding.m in Sources */,

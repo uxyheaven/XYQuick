@@ -46,4 +46,18 @@ XY_SINGLETON( XYSandbox )
  */
 +(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
 
+
+/**
+ * 返回目录文件的size,单位字节
+ * api parameters 说明
+ *
+ * filePath 目录路径
+ * diskMode 是否是磁盘占用的size
+ */
++(uint64_t) sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode;
+
 @end
+
+
+
+
