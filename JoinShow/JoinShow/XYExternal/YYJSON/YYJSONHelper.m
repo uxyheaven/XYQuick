@@ -125,6 +125,7 @@ static NSDateFormatter *YY_JSON_OBJECT_NSDateFormatter = nil;
         }
         if (value)
         {
+            #pragma -mark modified by heaven
             if ([value isKindOfClass:[NSDate class]]) {
                 if (!YY_JSON_OBJECT_NSDateFormatter) {
                     YY_JSON_OBJECT_NSDateFormatter = [[NSDateFormatter alloc] init];

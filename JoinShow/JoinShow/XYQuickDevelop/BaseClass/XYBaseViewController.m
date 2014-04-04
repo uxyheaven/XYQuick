@@ -70,6 +70,7 @@
     // [super destroyFields];
     self.children = nil;
     self.curChild = nil;
+    self.curParent = nil;
 }
 
 -(void) createViews {
@@ -112,7 +113,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    self.children = nil;
+    //self.children = nil;
 }
 
 -(NSMutableDictionary *) children{

@@ -11,8 +11,9 @@
 
 @interface XYBaseViewController : UIViewController<XYControllerProtocol>
 
-@property (nonatomic, retain) NSMutableDictionary   *children;       // 子视图控制器
+@property (nonatomic, retain) NSMutableDictionary   *children;        // 子视图控制器
 @property (nonatomic, assign) UIViewController      *curChild;        // 当前的子视图控制器
+@property (nonatomic, assign) id<XYControllerProtocol>      curParent;       // 当前的父视图控制器
 
 #pragma mark -  生命周期
 

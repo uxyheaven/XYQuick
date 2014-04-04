@@ -323,7 +323,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 -(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion{
-    [self animationCubeWithDuration:duration direction:direction completion:completion];
+    [self animationCubeWithDuration:duration direction:direction];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -341,7 +341,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 -(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion{
-    [self animationOglFlipWithDuration:duration direction:direction completion:completion];
+    [self animationOglFlipWithDuration:duration direction:direction];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -359,7 +359,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 -(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion{
-    [self animationMoveInWithDuration:duration direction:direction completion:completion];
+    [self animationMoveInWithDuration:duration direction:direction];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
