@@ -4,6 +4,8 @@
 //
 
 #import "objc/runtime.h"
+#pragma mark - change by heaven
+#define Json_string_options 0
 
 @protocol YYJSONHelperProtocol
 

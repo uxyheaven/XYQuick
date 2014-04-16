@@ -88,7 +88,7 @@ static NSDateFormatter *YY_JSON_OBJECT_NSDateFormatter = nil;
     if ([NSJSONSerialization isValidJSONObject:self])
     {
         NSError *error;
-        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
+        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:Json_string_options error:&error];
         if (!error)
         {
             return jsonData;
@@ -112,7 +112,9 @@ static NSDateFormatter *YY_JSON_OBJECT_NSDateFormatter = nil;
         {
             if ([originalValue isKindOfClass:[NSArray class]])
             {
-                value = @{key : [[originalValue YYJSONData] YYJSONString]};
+#pragma -mark modified by heaven
+                value = [[originalValue YYJSONData] YYJSONString];
+                //value = @{key : [[originalValue YYJSONData] YYJSONString]};
             }
             else
             {
@@ -432,7 +434,7 @@ const char *property_getTypeString(objc_property_t property) {
     if ([NSJSONSerialization isValidJSONObject:jsonDictionaries])
     {
         NSError *error;
-        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:NSJSONWritingPrettyPrinted error:&error];
+        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:Json_string_options error:&error];
         if (!error)
         {
             return jsonData;

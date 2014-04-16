@@ -37,7 +37,8 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.list = @[@{@"title": @"Something", @"className": @"TestVC2"},
+        self.list = @[@{@"title": @"Something", @"className": @"TestVC"},
+                      @{@"title": @"Something2", @"className": @"TestVC2"},
                       @{@"title": @"Frame Animation", @"className": @"AnimationVC"},
                       @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
                       @{@"title": @"Network", @"className": @"NetworkVC"},
