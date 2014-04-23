@@ -11,9 +11,9 @@
 @interface XYPopupViewHelper ()
 
 @property (nonatomic, assign) UIView    *popupVIew;
-@property (nonatomic, copy) void (^dismissBlock)(UIView *aView);
-@property (nonatomic, copy) void (^showAnimation)(UIView *aView);
-@property (nonatomic, copy) void (^dismissAnimation)(UIView *aView);
+@property (nonatomic, copy) XYPopupViewHelperNormalBlock dismissBlock;
+@property (nonatomic, copy) XYPopupViewHelperNormalBlock showAnimation;
+@property (nonatomic, copy) XYPopupViewHelperNormalBlock dismissAnimation;
 
 @property (nonatomic, assign) PopupViewBGType    popupViewBGType;
 
@@ -56,8 +56,8 @@ DEF_SINGLETON(XYPopupViewHelper)
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
 touchOutsideHidden:(BOOL)hidden
-succeedBlock:(void(^)(UIView *aView))succeedBlock
-     dismissBlock:(void(^)(UIView *aView))dismissBlock{
+succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+     dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock{
     if (aView == nil) {
         return;
     }
@@ -91,7 +91,7 @@ succeedBlock:(void(^)(UIView *aView))succeedBlock
     }
 
 }
--(void) popupView:(UIView* )aView type:(PopupViewBGType)aType succeedBlock:(void(^)(UIView *aView))succeedBlock dismissBlock:(void(^)(UIView *aView))dismissBlock{
+-(void) popupView:(UIView* )aView type:(PopupViewBGType)aType succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock{
     [self popupView:aView type:aType touchOutsideHidden:YES succeedBlock:succeedBlock dismissBlock:dismissBlock];
     }
 -(void) dismissPopup{
@@ -110,11 +110,11 @@ succeedBlock:(void(^)(UIView *aView))succeedBlock
     }
     self.popupVIew = nil;
 }
--(void) setShowAnimationBlock:(void(^)(UIView *aView))aBlock{
+-(void) setShowAnimationBlock:(XYPopupViewHelperNormalBlock)aBlock{
     self.showAnimation = aBlock;
     
 }
--(void) setDismissAnimationBlock:(void(^)(UIView *aView))aBlock{
+-(void) setDismissAnimationBlock:(XYPopupViewHelperNormalBlock)aBlock{
     self.dismissAnimation = aBlock;
 }
 @end
@@ -124,13 +124,13 @@ succeedBlock:(void(^)(UIView *aView))succeedBlock
 
 -(void) popupWithtype:(PopupViewBGType)aType
    touchOutsideHidden:(BOOL)hidden
-succeedBlock:(void(^)(UIView *aView))succeedBlock
-         dismissBlock:(void(^)(UIView *aView))dismissBlock{
+succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+         dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock{
     [[XYPopupViewHelper sharedInstance] popupView:self type:aType touchOutsideHidden:hidden succeedBlock:succeedBlock dismissBlock:dismissBlock];
 }
 -(void) popupWithtype:(PopupViewBGType)aType
-succeedBlock:(void(^)(UIView *aView))succeedBlock
-         dismissBlock:(void(^)(UIView *aView))dismissBlock{
+succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+         dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock{
     [self popupWithtype:aType touchOutsideHidden:YES  succeedBlock:succeedBlock dismissBlock:dismissBlock];
 }
 -(void) dismissPopup{

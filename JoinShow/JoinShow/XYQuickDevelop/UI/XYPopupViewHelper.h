@@ -15,6 +15,8 @@ typedef enum {
     PopupViewOption_blur
 } PopupViewBGType;
 
+typedef void(^XYPopupViewHelperNormalBlock)(UIView *);
+
 @interface XYPopupViewHelper : NSObject
 
 XY_SINGLETON(XYPopupViewHelper)
@@ -23,19 +25,19 @@ XY_SINGLETON(XYPopupViewHelper)
 @property (nonatomic, assign) float         colorLumpAlpha;
 @property (nonatomic, assign) int           blurLevel;
 
--(void) setShowAnimationBlock:(void(^)(UIView *aView))aBlock;
--(void) setDismissAnimationBlock:(void(^)(UIView *aView))aBlock;
+-(void) setShowAnimationBlock:(XYPopupViewHelperNormalBlock)aBlock;
+-(void) setDismissAnimationBlock:(XYPopupViewHelperNormalBlock)aBlock;
 
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
 touchOutsideHidden:(BOOL)hidden
-     succeedBlock:(void(^)(UIView *aView))succeedBlock
-     dismissBlock:(void(^)(UIView *aView))dismissBlock;
+     succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+     dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock;
 
 -(void) popupView:(UIView* )aView
              type:(PopupViewBGType)aType
-     succeedBlock:(void(^)(UIView *aView))succeedBlock
-     dismissBlock:(void(^)(UIView *aView))dismissBlock;
+     succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+     dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock;
 
 -(void) dismissPopup;
 
@@ -46,12 +48,12 @@ touchOutsideHidden:(BOOL)hidden
 // 弹出
 -(void) popupWithtype:(PopupViewBGType)aType
    touchOutsideHidden:(BOOL)hidden
-         succeedBlock:(void(^)(UIView *aView))succeedBlock
-         dismissBlock:(void(^)(UIView *aView))dismissBlock;
+         succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+         dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock;
 
 -(void) popupWithtype:(PopupViewBGType)aType
-         succeedBlock:(void(^)(UIView *aView))succeedBlock
-         dismissBlock:(void(^)(UIView *aView))dismissBlock;
+         succeedBlock:(XYPopupViewHelperNormalBlock)succeedBlock
+         dismissBlock:(XYPopupViewHelperNormalBlock)dismissBlock;
 
 -(void) dismissPopup;
 @end

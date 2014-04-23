@@ -115,6 +115,19 @@
     // Dispose of any resources that can be recreated.
 #pragma mark - todo
     //self.children = nil;
+#pragma mark - todo
+    /*
+    // Add code to clean up any of your own resources that are no longer necessary.
+    if ([self.view window] == nil)
+    {
+        // Add code to preserve data stored in the views that might be
+        // needed later.
+        
+        // Add code to clean up other strong references to the view in
+        // the view hierarchy.
+        self.view = nil;
+    }
+     */
 }
 
 -(NSMutableDictionary *) children{
@@ -126,7 +139,18 @@
 }
 #pragma mark - rewrite
 // 额外的重写的父类的方法
-
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+}
 #pragma mark - event
 // 事件
 

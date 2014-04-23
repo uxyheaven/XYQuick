@@ -122,7 +122,7 @@ DEF_SINGLETON(XYParallaxHelper)
     }
 }
 -(void) setView:(id)aView intensity:(float)i{
-    int index = [_views indexOfObject:aView];
+    NSUInteger index = [_views indexOfObject:aView];
     if (index == NSNotFound) {
         [_views addObject:aView];
         [_intensitys addObject:@(i)];
@@ -131,7 +131,7 @@ DEF_SINGLETON(XYParallaxHelper)
     }
 }
 -(void) removeView:(id)aView{
-    int index = [_views indexOfObject:aView];
+    NSUInteger index = [_views indexOfObject:aView];
     if (index != NSNotFound) {
         [_views removeObjectAtIndex:index];
         [_intensitys removeObjectAtIndex:index];
