@@ -249,6 +249,8 @@
 		579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579B3A3418EBDCF8001650C6 /* DemoViewController.m */; };
 		57A2FE5E18063D5A002460EC /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57A2FE5D18063D5A002460EC /* bg.jpg */; };
 		57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CB1908BDA90080E33C /* UIViewController+XY.m */; };
+		57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CE1908EF9F0080E33C /* NSNull+XY.m */; };
+		57A808D21908F2BE0080E33C /* JsonTestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808D11908F2BE0080E33C /* JsonTestEntity.m */; };
 		57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B491888C9850005A93B /* XYMaterial.m */; };
 		57AB8B581888E1E60005A93B /* XYSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B571888E1E60005A93B /* XYSandbox.m */; };
 		57AC6F651845C610003B0817 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AC6F641845C610003B0817 /* ImageIO.framework */; };
@@ -636,6 +638,10 @@
 		57A2FE5D18063D5A002460EC /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		57A808CA1908BDA90080E33C /* UIViewController+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XY.h"; sourceTree = "<group>"; };
 		57A808CB1908BDA90080E33C /* UIViewController+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XY.m"; sourceTree = "<group>"; };
+		57A808CD1908EF9F0080E33C /* NSNull+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+XY.h"; sourceTree = "<group>"; };
+		57A808CE1908EF9F0080E33C /* NSNull+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+XY.m"; sourceTree = "<group>"; };
+		57A808D01908F2BE0080E33C /* JsonTestEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonTestEntity.h; sourceTree = "<group>"; };
+		57A808D11908F2BE0080E33C /* JsonTestEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonTestEntity.m; sourceTree = "<group>"; };
 		57AB8B481888C9850005A93B /* XYMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMaterial.h; sourceTree = "<group>"; };
 		57AB8B491888C9850005A93B /* XYMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMaterial.m; sourceTree = "<group>"; };
 		57AB8B561888E1E60005A93B /* XYSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSandbox.h; sourceTree = "<group>"; };
@@ -860,6 +866,8 @@
 				578922901859A3120005CC27 /* Test2Model.m */,
 				57C94E79188B325600CCAAED /* LKTestModels.h */,
 				57C94E7A188B325600CCAAED /* LKTestModels.m */,
+				57A808D01908F2BE0080E33C /* JsonTestEntity.h */,
+				57A808D11908F2BE0080E33C /* JsonTestEntity.m */,
 				575694841883D9C4004C2C74 /* GirlEntity.h */,
 				575694851883D9C4004C2C74 /* GirlEntity.m */,
 				57F134DB17DC39F200C5DCDC /* Shot.h */,
@@ -1399,6 +1407,8 @@
 			isa = PBXGroup;
 			children = (
 				57DB87B5183349A60015CC5A /* XYExtension.h */,
+				57A808CD1908EF9F0080E33C /* NSNull+XY.h */,
+				57A808CE1908EF9F0080E33C /* NSNull+XY.m */,
 				57DB879F183349A60015CC5A /* NSArray+XY.h */,
 				57DB87A0183349A60015CC5A /* NSArray+XY.mm */,
 				57DB87A1183349A60015CC5A /* NSData+XY.h */,
@@ -1881,6 +1891,7 @@
 				572E7CB918385C690018179D /* OpenUDID.m in Sources */,
 				57F439CE18C6C1FF00DAFFD8 /* MBProgressHUD.m in Sources */,
 				57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */,
+				57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */,
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
 				57AD632F188B31DD00271C06 /* LKDBUtils.m in Sources */,
 				57AD6331188B31DD00271C06 /* NSObject+LKModel.m in Sources */,
@@ -1916,6 +1927,7 @@
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
 				57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */,
 				57F134E017DC39F200C5DCDC /* Shot.m in Sources */,
+				57A808D21908F2BE0080E33C /* JsonTestEntity.m in Sources */,
 				57E7857817DE459E0056C589 /* ConfigManager.m in Sources */,
 				57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */,
 				57DB87E0183349A60015CC5A /* UIActionSheet+XY.m in Sources */,

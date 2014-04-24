@@ -112,7 +112,7 @@ static NSDateFormatter *YY_JSON_OBJECT_NSDateFormatter = nil;
         {
             if ([originalValue isKindOfClass:[NSArray class]])
             {
-#pragma -mark modified by heaven
+#pragma mark - modified by Heaven
                 value = [[originalValue YYJSONData] YYJSONString];
                 //value = @{key : [[originalValue YYJSONData] YYJSONString]};
             }
@@ -127,7 +127,7 @@ static NSDateFormatter *YY_JSON_OBJECT_NSDateFormatter = nil;
         }
         if (value)
         {
-            #pragma -mark modified by heaven
+#pragma mark - modified by Heaven
             if ([value isKindOfClass:[NSDate class]]) {
                 if (!YY_JSON_OBJECT_NSDateFormatter) {
                     YY_JSON_OBJECT_NSDateFormatter = [[NSDateFormatter alloc] init];
@@ -360,6 +360,7 @@ const char *property_getTypeString(objc_property_t property) {
     [YYJSONKeyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([dict[key] isKindOfClass:[NSArray class]])
         {
+#pragma mark - modified by Heaven
             if (NSClassFromString(obj))
             {
                 NSArray *array = [self objectsForModelClass:NSClassFromString(obj) fromArray:dict[key]];
@@ -372,10 +373,16 @@ const char *property_getTypeString(objc_property_t property) {
         }
         else if ([dict[key] isKindOfClass:[NSDictionary class]])
         {
-
-            Class otherClass = NSClassFromString(obj);
-            id    object     = [self objectForModelClass:otherClass fromDict:dict[key] withJSONKeyDict:[otherClass YYJSONKeyDict]];
-            [model setValue:object forKey:key];
+#pragma mark - modified by Heaven
+            if (NSClassFromString(obj))
+            {
+                id    object     = [self objectForModelClass:NSClassFromString(obj) fromDict:dict[key] withJSONKeyDict:[NSClassFromString(obj) YYJSONKeyDict]];
+                [model setValue:object forKey:key];
+            }
+            else
+            {
+                [model setValue:dict[key] forKey:obj];
+            }
         }
         else
         {

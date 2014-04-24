@@ -11,15 +11,15 @@
 #define DemoViewController_sel_methodBlock @selector(funny:)
 #define DemoViewController_sel_methodBlock2 @selector(funny2:)
 
-typedef void(^DemoDemoViewControllerExecuteBlock)(UIViewController *vc);
-typedef void(^DemoDemoViewControllerFunBlock)(UIViewController *vc, id sender);
+typedef void(^DemoViewControllerExecuteBlock)(UIViewController *vc);
+typedef void(^DemoViewControllerFunBlock)(UIViewController *vc, id sender);
 
 @interface DemoViewController : UIViewController
 
-@property (nonatomic, copy) DemoDemoViewControllerExecuteBlock loadViewBlock;
-@property (nonatomic, copy) DemoDemoViewControllerExecuteBlock viewDidLoadBlock;
+@property (nonatomic, copy) DemoViewControllerExecuteBlock loadViewBlock;
+@property (nonatomic, copy) DemoViewControllerExecuteBlock viewDidLoadBlock;
 
-@property (nonatomic, copy) DemoDemoViewControllerFunBlock methodBlock;
-@property (nonatomic, copy) DemoDemoViewControllerFunBlock methodBlock2;
+@property (nonatomic, copy) DemoViewControllerFunBlock methodBlock;
+@property (nonatomic, copy) DemoViewControllerFunBlock methodBlock2;
 
 @end

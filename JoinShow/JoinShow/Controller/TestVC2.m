@@ -15,6 +15,7 @@
 #endif
 
 #import "DemoViewController.h"
+#import "JsonTestEntity.h"
 
 @interface TestVC2 ()
 
@@ -41,7 +42,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.items = @[@{@"title":@"点击动画", @"sel" : @"clickMuhud"}];
+    self.items = @[@{@"title":@"点击动画", @"sel" : @"clickMuhud"},
+                   @{@"title":@"AnalyzingJsonWithNull", @"sel" : @"clickAnalyzingJson"}];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"test_cell"];
 }
@@ -167,5 +169,14 @@
             };
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+-(void) clickAnalyzingJson{
+    NSString *json = @"{ \
+	\"dic\":{}, \
+	\"array\":[] \
+}";
+    NSLogD(@"%@", json);
+    
+    JsonTestEntity *objc = [json toModel:[JsonTestEntity class]];
+    NSLogD(@"%@", objc);
+}
 @end
