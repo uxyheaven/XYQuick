@@ -7,29 +7,38 @@
 //
 
 #import "UIViewController+XY.h"
+#import <objc/runtime.h>
 
-
+#undef	UIViewController_key_parameters
+#define UIViewController_key_parameters	"UIViewController.parameters"
 
 @implementation UIViewController (XY)
 
--(void) pushVC:(NSString *)vcName succeed:(UIViewController_block_self)block{
+@dynamic parameters;
+
+-(id) parameters{
+    id object = objc_getAssociatedObject(self, UIViewController_key_parameters);
+    
+    return object;
+}
+
+-(void) setTempObject:(id)anObject{
+    objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(void) pushVC:(NSString *)vcName parameters:(id)parameters{
     UIViewController *vc = [[[NSClassFromString(vcName) alloc] init] autorelease];
     if (vc) {
-        if (block) {
-            block(self);
-        }
+        vc.parameters = parameters;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
--(void) modalVC:(NSString *)vcName succeed:(UIViewController_block_self)block{
+-(void) modalVC:(NSString *)vcName parameters:(id)parameters succeed:(UIViewController_block_void)block{
     UIViewController *vc = [[[NSClassFromString(vcName) alloc] init] autorelease];
+    vc.parameters = parameters;
     if (vc) {
-        [self presentViewController:vc animated:YES completion:^{
-            if (block) {
-                block(self);
-            }
-        }];
+            [self presentViewController:vc animated:YES completion:block];
     }
 }
 @end

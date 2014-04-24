@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^UIViewController_block_self) (UIViewController *);
+typedef void(^UIViewController_block_void) (void);
 
 @interface UIViewController (XY)
 
--(void) pushVC:(NSString *)vcName succeed:(UIViewController_block_self)block;
+@property (nonatomic, retain) id parameters; // 参数
 
--(void) modalVC:(NSString *)vcName succeed:(UIViewController_block_self)block;
+// 导航
+-(void) pushVC:(NSString *)vcName parameters:(id)parameters;
+
+// 模态
+-(void) modalVC:(NSString *)vcName parameters:(id)parameters succeed:(UIViewController_block_void)block;
 
 @end
