@@ -15,9 +15,18 @@ typedef void(^UIViewController_block_void) (void);
 @property (nonatomic, retain) id parameters; // 参数
 
 // 导航
--(void) pushVC:(NSString *)vcName parameters:(id)parameters;
+-(void) pushVC:(NSString *)vcName;
+-(void) pushVC:(NSString *)vcName object:(id)object;
 
 // 模态
--(void) modalVC:(NSString *)vcName parameters:(id)parameters succeed:(UIViewController_block_void)block;
+-(void) modalVC:(NSString *)vcName object:(id)object succeed:(UIViewController_block_void)block;
+// 模态 带导航控制器
+-(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName object:(id)object succeed:(UIViewController_block_void)block;
+
+@end
+
+@protocol XYSwitchControllerProtocol <NSObject>
+
+-(id) initWithObject:(id)object;
 
 @end
