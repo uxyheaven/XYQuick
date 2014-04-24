@@ -248,6 +248,7 @@
 		579426B51856D6DC0049B426 /* EntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 579426B41856D6DC0049B426 /* EntityModel.m */; };
 		579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579B3A3418EBDCF8001650C6 /* DemoViewController.m */; };
 		57A2FE5E18063D5A002460EC /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57A2FE5D18063D5A002460EC /* bg.jpg */; };
+		57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CB1908BDA90080E33C /* UIViewController+XY.m */; };
 		57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B491888C9850005A93B /* XYMaterial.m */; };
 		57AB8B581888E1E60005A93B /* XYSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B571888E1E60005A93B /* XYSandbox.m */; };
 		57AC6F651845C610003B0817 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AC6F641845C610003B0817 /* ImageIO.framework */; };
@@ -633,6 +634,8 @@
 		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		579B3A3418EBDCF8001650C6 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		57A2FE5D18063D5A002460EC /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		57A808CA1908BDA90080E33C /* UIViewController+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XY.h"; sourceTree = "<group>"; };
+		57A808CB1908BDA90080E33C /* UIViewController+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XY.m"; sourceTree = "<group>"; };
 		57AB8B481888C9850005A93B /* XYMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMaterial.h; sourceTree = "<group>"; };
 		57AB8B491888C9850005A93B /* XYMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMaterial.m; sourceTree = "<group>"; };
 		57AB8B561888E1E60005A93B /* XYSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSandbox.h; sourceTree = "<group>"; };
@@ -1428,6 +1431,8 @@
 				578D14CE187536690071448C /* UITable+XY.m */,
 				57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */,
 				57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */,
+				57A808CA1908BDA90080E33C /* UIViewController+XY.h */,
+				57A808CB1908BDA90080E33C /* UIViewController+XY.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1875,6 +1880,7 @@
 				57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */,
 				572E7CB918385C690018179D /* OpenUDID.m in Sources */,
 				57F439CE18C6C1FF00DAFFD8 /* MBProgressHUD.m in Sources */,
+				57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */,
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
 				57AD632F188B31DD00271C06 /* LKDBUtils.m in Sources */,
 				57AD6331188B31DD00271C06 /* NSObject+LKModel.m in Sources */,

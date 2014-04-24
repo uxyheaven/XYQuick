@@ -29,3 +29,5 @@
 #import "UILabel+XY.h"
 #import "UITable+XY.h"
 #import "UIWebView+XY.h"
+
+#import "UIViewController+XY.h"

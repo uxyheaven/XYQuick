@@ -25,62 +25,62 @@
 DUMMY_CLASS(UIActionSheet_XY);
 
 @implementation UIActionSheet (XY)
--(void) handlerClickedButton:(void (^)(UIActionSheet *actionSheet, NSInteger btnIndex))aBlock{
+-(void) handlerClickedButton:(UIActionSheet_block_self_index)aBlock{
     self.delegate = self;
     objc_setAssociatedObject(self, UIActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
--(void) handlerCancel:(void (^)(UIActionSheet *actionSheet))aBlock{
+-(void) handlerCancel:(UIActionSheet_block_self)aBlock{
     self.delegate = self;
     objc_setAssociatedObject(self, UIActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
--(void) handlerWillPresent:(void (^)(UIActionSheet *actionSheet))aBlock{
+-(void) handlerWillPresent:(UIActionSheet_block_self)aBlock{
     self.delegate = self;
     objc_setAssociatedObject(self, UIActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
--(void) handlerDidPresent:(void (^)(UIActionSheet *actionSheet))aBlock{
+-(void) handlerDidPresent:(UIActionSheet_block_self)aBlock{
     self.delegate = self;
     objc_setAssociatedObject(self, UIActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
--(void) handlerWillDismiss:(void (^)(UIActionSheet *actionSheet))aBlock{
+-(void) handlerWillDismiss:(UIActionSheet_block_self)aBlock{
     self.delegate = self;
     objc_setAssociatedObject(self, UIActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
--(void) handlerDidDismiss:(void (^)(UIActionSheet *actionSheet, NSInteger btnIndex))aBlock{
+-(void) handlerDidDismiss:(UIActionSheet_block_self_index)aBlock{
     self.delegate = self;
     objc_setAssociatedObject(self, UIActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 #pragma mark - UIActionSheetDelegate
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    void (^block)(UIActionSheet *actionSheet, NSInteger btnIndex) = objc_getAssociatedObject(self, UIActionSheet_key_clicked);
+    UIActionSheet_block_self_index block = objc_getAssociatedObject(self, UIActionSheet_key_clicked);
     
     if (block) block(actionSheet, buttonIndex);
 }
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet{
-    void (^block)(UIActionSheet *actionSheet) = objc_getAssociatedObject(self, UIActionSheet_key_cancel);
+    UIActionSheet_block_self block = objc_getAssociatedObject(self, UIActionSheet_key_cancel);
     
     if (block) block(actionSheet);
 }
 
 -(void) willPresentActionSheet:(UIActionSheet *)actionSheet{
-    void (^block)(UIActionSheet *actionSheet) = objc_getAssociatedObject(self, UIActionSheet_key_willPresent);
+    UIActionSheet_block_self block = objc_getAssociatedObject(self, UIActionSheet_key_willPresent);
     
     if (block) block(actionSheet);
 }
 
 -(void) didPresentActionSheet:(UIActionSheet *)actionSheet{
-    void (^block)(UIActionSheet *actionSheet) = objc_getAssociatedObject(self, UIActionSheet_key_didPresent);
+    UIActionSheet_block_self block = objc_getAssociatedObject(self, UIActionSheet_key_didPresent);
     
     if (block) block(actionSheet);
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex{
-    void (^block)(UIActionSheet *actionSheet, NSInteger btnIndex) = objc_getAssociatedObject(self, UIActionSheet_key_willDismiss);
+    UIActionSheet_block_self_index block = objc_getAssociatedObject(self, UIActionSheet_key_willDismiss);
     
     if (block) block(actionSheet, buttonIndex);
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    void (^block)(UIActionSheet *actionSheet, NSInteger btnIndex) = objc_getAssociatedObject(self, UIActionSheet_key_didDismiss);
+    UIActionSheet_block_self_index block = objc_getAssociatedObject(self, UIActionSheet_key_didDismiss);
     
     if (block) block(actionSheet, buttonIndex);
 }

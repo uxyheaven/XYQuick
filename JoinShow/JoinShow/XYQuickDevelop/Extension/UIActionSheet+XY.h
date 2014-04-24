@@ -7,14 +7,16 @@
 //
 
 #import "XYPrecompile.h"
+typedef void(^UIActionSheet_block_self_index)(UIActionSheet *actionSheet, NSInteger btnIndex);
+typedef void(^UIActionSheet_block_self)(UIActionSheet *actionSheet);
 
 @interface UIActionSheet (XY) <UIActionSheetDelegate>
 
--(void) handlerClickedButton:(void (^)(UIActionSheet *actionSheet, NSInteger btnIndex))aBlock;
--(void) handlerCancel:(void (^)(UIActionSheet *actionSheet))aBlock;
--(void) handlerWillPresent:(void (^)(UIActionSheet *actionSheet))aBlock;
--(void) handlerDidPresent:(void (^)(UIActionSheet *actionSheet))aBlock;
--(void) handlerWillDismiss:(void (^)(UIActionSheet *actionSheet))aBlock;
--(void) handlerDidDismiss:(void (^)(UIActionSheet *actionSheet, NSInteger btnIndex))aBlock;
+-(void) handlerClickedButton:(UIActionSheet_block_self_index)aBlock;
+-(void) handlerCancel:(UIActionSheet_block_self)aBlock;
+-(void) handlerWillPresent:(UIActionSheet_block_self)aBlock;
+-(void) handlerDidPresent:(UIActionSheet_block_self)aBlock;
+-(void) handlerWillDismiss:(UIActionSheet_block_self)aBlock;
+-(void) handlerDidDismiss:(UIActionSheet_block_self_index)aBlock;
 
 @end
