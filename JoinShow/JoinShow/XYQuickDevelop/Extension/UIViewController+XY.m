@@ -44,8 +44,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void) modalVC:(NSString *)vcName object:(id)object succeed:(UIViewController_block_void)block{
-    [self modalVC:vcName withNavigationVC:nil object:object succeed:block];
+-(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName{
+    [self modalVC:vcName withNavigationVC:navName object:nil succeed:nil];
 }
 
 -(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block{

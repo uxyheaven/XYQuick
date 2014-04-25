@@ -233,6 +233,8 @@
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
 		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
+		577952D71909718A00F95459 /* XYBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577952D61909718A00F95459 /* XYBaseView.m */; };
+		577952DA1909727E00F95459 /* XYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 577952D91909727E00F95459 /* XYBaseModel.m */; };
 		577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */; };
 		577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80918AE0BD700421CC2 /* UIColor+XY.m */; };
 		57808335181A1088000F349B /* headportrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57808334181A1088000F349B /* headportrait.jpg */; };
@@ -609,6 +611,10 @@
 		576E87D21855E77200C7A724 /* XYPerformance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPerformance.m; sourceTree = "<group>"; };
 		5771FF2D183A162900B24FE5 /* XYAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAnimate.h; sourceTree = "<group>"; };
 		5771FF2E183A162900B24FE5 /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
+		577952D51909718A00F95459 /* XYBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseView.h; sourceTree = "<group>"; };
+		577952D61909718A00F95459 /* XYBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseView.m; sourceTree = "<group>"; };
+		577952D81909727E00F95459 /* XYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseModel.h; sourceTree = "<group>"; };
+		577952D91909727E00F95459 /* XYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseModel.m; sourceTree = "<group>"; };
 		577CF80518ADE6A200421CC2 /* UIView+XY_coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XY_coordinate.h"; sourceTree = "<group>"; };
 		577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XY_coordinate.m"; sourceTree = "<group>"; };
 		577CF80818AE0BD700421CC2 /* UIColor+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+XY.h"; sourceTree = "<group>"; };
@@ -1372,6 +1378,10 @@
 				57D4451418B59A12006C597A /* XYBaseViewController.m */,
 				57D4451618B5B579006C597A /* XYBaseTableViewController.h */,
 				57D4451718B5B579006C597A /* XYBaseTableViewController.m */,
+				577952D51909718A00F95459 /* XYBaseView.h */,
+				577952D61909718A00F95459 /* XYBaseView.m */,
+				577952D81909727E00F95459 /* XYBaseModel.h */,
+				577952D91909727E00F95459 /* XYBaseModel.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1886,6 +1896,7 @@
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,
 				57DB87EB183349A60015CC5A /* XYTimer.m in Sources */,
 				572E7CB218385C690018179D /* NSDictionary+RequestEncoding.m in Sources */,
+				577952DA1909727E00F95459 /* XYBaseModel.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
 				57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */,
 				572E7CB918385C690018179D /* OpenUDID.m in Sources */,
@@ -1948,6 +1959,7 @@
 				572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */,
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
 				57DB87DE183349A60015CC5A /* NSObject+XY.m in Sources */,
+				577952D71909718A00F95459 /* XYBaseView.m in Sources */,
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
 				57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */,
 				572E7C9E18385C690018179D /* CDAudioManager.m in Sources */,

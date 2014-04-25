@@ -11,12 +11,21 @@
 
 @interface XYBaseViewController : UIViewController<XYControllerProtocol>
 
+
+#pragma mark- model
+// 定义model
+
+#pragma mark- view
+// 定义view
+
 @property (nonatomic, retain) NSMutableDictionary   *children;        // 子视图控制器
 @property (nonatomic, assign) UIViewController      *curChild;        // 当前的子视图控制器
 @property (nonatomic, assign) id<XYControllerProtocol>      curParent;       // 当前的父视图控制器
 
-#pragma mark -  生命周期
 
+
+
+#pragma mark -  生命周期
 /**
  生命周期
  loadView
@@ -45,8 +54,8 @@
  */
 
 
-
-// 创建/销毁页面级变量的地方。
+/*
+// 创建/销毁页面级变量, model的地方。
 -(void) createFields;
 -(void) destroyFields;
 
@@ -54,11 +63,13 @@
 -(void) createViews;
 -(void) destroyViews;
 
-// 创建/销毁页面内事件、通知的地方。
+// 创建/销毁页面内控件的target-action,delegate,dataSource mode的Notification,KVO的地方。
 -(void) createEvents;
 -(void) destroyEvents;
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
 -(void) loadData;
+*/
+
 
 @end

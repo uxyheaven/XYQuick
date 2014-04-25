@@ -55,13 +55,11 @@
     [super dealloc];
 }
 
--(void) createFields
-{
+-(void) createFields {
     // [super createFields];
 }
 
--(void) destroyFields
-{
+-(void) destroyFields {
     // [super destroyFields];
     self.children = nil;
     self.curChild = nil;
@@ -72,19 +70,22 @@
     // [super createViews];
 }
 
--(void) destroyViews
-{
+-(void) destroyViews {
     // [super destroyViews];
 }
 
--(void) createEvents
-{
+-(void) createEvents {
     // [super createEvents];
+    // 保存当前状态
+    if ([self respondsToSelector:@selector(saveCurrentState)]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCurrentState) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    }
+    
 }
 
--(void) destroyEvents
-{
+-(void) destroyEvents {
     // [super destroyEvents];
+    // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -93,19 +94,36 @@
     // [super loadData];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+#pragma mark - rewrite
+// 额外的重写的父类的方法
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+}
+
+-(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)didReceiveMemoryWarning
-{
+-(void) didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-#pragma mark - todo
-    //self.children = nil;
 }
 
+
+#pragma mark - private
+// 私有方法
 -(NSMutableDictionary *) children{
     if (_children == nil) {
         self.children = [NSMutableDictionary dictionaryWithCapacity:6];
@@ -113,17 +131,23 @@
     
     return _children;
 }
-#pragma mark - rewrite
-// 额外的重写的父类的方法
 
-#pragma mark - event
-// 事件
 
-#pragma mark - interface
-// 对外的接口,委托,协议都写在这
+#pragma mark - 响应 model 的地方
+#pragma mark 1 notification
 
-#pragma mark - private
-// 私有方法
+
+#pragma mark 2 KVO
+
+
+#pragma mark - 响应 view 的地方
+#pragma mark 1 target-action
+
+
+#pragma mark 2 delegate
+
+
+#pragma mark 3 dataSource
 
 
 @end
