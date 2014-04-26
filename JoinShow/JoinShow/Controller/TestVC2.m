@@ -17,6 +17,8 @@
 #import "DemoViewController.h"
 #import "JsonTestEntity.h"
 
+#import "XYTabBarController.h"
+
 @interface TestVC2 ()
 
 @end
@@ -43,7 +45,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.items = @[@{@"title":@"点击动画", @"sel" : @"clickMuhud"},
-                   @{@"title":@"AnalyzingJsonWithNull", @"sel" : @"clickAnalyzingJson"}];
+                   @{@"title":@"AnalyzingJsonWithNull", @"sel" : @"clickAnalyzingJson"},
+                   @{@"title":@"XYTabbarController", @"sel" : @"clickXYTabbarController"}];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"test_cell"];
 }
@@ -178,5 +181,51 @@
     
     JsonTestEntity *objc = [json toModel:[JsonTestEntity class]];
     NSLogD(@"%@", objc);
+}
+
+-(void) clickXYTabbarController{
+    DemoViewController *vc1 = [[[DemoViewController alloc] init] autorelease];
+    vc1.viewDidLoadBlock = ^(UIViewController *vc){
+        vc.view.backgroundColor = [UIColor whiteColor];
+        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)] autorelease];
+        label.text = @"vc1";
+        [vc.view addSubview:label];
+        
+        UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        tempBtn.backgroundColor = [UIColor redColor];
+        tempBtn.frame = CGRectMake(10, 100, 200, 44);
+        [tempBtn setTitle:@"xyTabBarController" forState:UIControlStateNormal];
+        [tempBtn addTarget:vc action:DemoViewController_sel_methodBlock forControlEvents:UIControlEventTouchUpInside];
+        [vc.view addSubview:tempBtn];
+    };
+    vc1.methodBlock = ^(UIViewController *vc, UIButton *btn){
+        NSLogD(@"%@", vc.xyTabBarController);
+    };
+    
+    DemoViewController *vc2 = [[[DemoViewController alloc] init] autorelease];
+    vc2.viewDidLoadBlock = ^(UIViewController *vc){
+        vc.view.backgroundColor = [UIColor whiteColor];
+        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)] autorelease];
+        label.text = @"vc2";
+        [vc.view addSubview:label];
+        UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        tempBtn.backgroundColor = [UIColor redColor];
+        tempBtn.frame = CGRectMake(10, 100, 200, 44);
+        [tempBtn setTitle:@"cancel" forState:UIControlStateNormal];
+        [tempBtn addTarget:vc action:DemoViewController_sel_methodBlock forControlEvents:UIControlEventTouchUpInside];
+        [vc.view addSubview:tempBtn];
+    };
+    vc2.methodBlock = ^(UIViewController *vc, UIButton *btn){
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    NSArray *array = @[vc1, vc2];
+    NSArray *items = @[@{@"text": @"DemoViewController1", @"normal": @"icon_facebook.png", @"selected" : @"icon_google.png"},
+                       @{@"text": @"vc2", @"normal": @"icon_twitter.png", @"selected" : @"icon_google.png"}];
+    
+    XYTabBarController *tabBarController = [[[XYTabBarController alloc] initWithViewControllers:array items:items] autorelease];
+    
+    [self presentViewController:tabBarController animated:YES completion:nil];
+
 }
 @end

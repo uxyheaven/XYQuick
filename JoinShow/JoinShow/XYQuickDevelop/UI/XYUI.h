@@ -28,3 +28,8 @@
 
 // 弹出窗口
 #import "XYPopupViewHelper.h"
+
+// TabBarController
+#import "XYTabBarController.h"
+
+

@@ -1,0 +1,61 @@
+//
+//  XYBaseTabBarController.h
+//  JoinShow
+//
+//  Created by Heaven on 14-4-25.
+//  Copyright (c) 2014年 Heaven. All rights reserved.
+//
+
+#pragma mark -todo 待优化
+#import "XYBaseClass.h"
+#import "XYTabBar.h"
+
+#pragma mark-
+#pragma mark- XYTabBarController
+
+@protocol XYTabBarControllerDelegate;
+
+@interface XYTabBarController : XYBaseViewController<XYTabBarDelegate>
+
+#pragma mark- model
+// 定义model
+@property(nonatomic, assign) NSUInteger selectedIndex;
+@property(nonatomic, assign, readonly) UIViewController *selectedViewController;
+@property (nonatomic, retain, readonly) NSArray *viewControllers;
+
+@property (nonatomic, assign) CGRect tabBarFrame;   // the default height is 49 at bottom.
+@property (nonatomic, assign) CGRect contentFrame;  // the default frame is self.view.bounds without tabBarFrame
+
+
+#pragma mark- view
+// 定义view
+@property (nonatomic, retain, readonly) XYTabBar *tabBar;
+@property (nonatomic, retain, readonly) UIView *contentView; // 自视图控制器显示的view
+
+@property (nonatomic, assign) id<XYTabBarControllerDelegate> delegate;
+
+
+// item: @{@"normal" :img1, @"highlighted" :img2, @"selected" :img3, @"disabled":img4, @"text": text}
+-(id) initWithViewControllers:(NSArray *)vcs items:(NSArray *)items;
+
+// 可以重载这个方法, 自定义item的位置和图片文字尺寸
+-(void) setupItem:(UIButton *)item index:(NSInteger)index;
+// 重载这个方式, 自定义animatedView的位置
+-(void) resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index;
+@end
+
+#pragma mark-
+#pragma mark- XYTabBarControllerDelegate
+@protocol XYTabBarControllerDelegate <NSObject>
+@optional
+-(BOOL) tabBarController:(XYTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
+-(void) tabBarController:(XYTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
+@end
+
+#pragma mark-
+#pragma mark- XYTabBarController()
+@interface UIViewController (XYTabBarController)
+@property(nonatomic, retain, readonly) XYTabBarController *xyTabBarController;
+@end
+
+

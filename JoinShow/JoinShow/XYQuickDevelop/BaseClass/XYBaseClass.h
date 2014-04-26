@@ -12,5 +12,8 @@
 #import "XYBaseViewController.h"
 #import "XYBaseTableViewController.h"
 
+#import "XYBaseView.h"
+
+#import "XYBaseModel.h"
 
 #endif

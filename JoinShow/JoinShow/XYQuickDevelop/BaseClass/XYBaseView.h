@@ -10,13 +10,19 @@
 
 @interface XYBaseView : UIView
 
+#pragma mark- data
+// 定义data
+
+#pragma mark- view
+// 定义view
+
 #pragma mark - v对c
 // 1 target-action
 
 // 2 delegate(should, will, did)
-@property (nonatomic, assign) id delegate;
+//@property (nonatomic, assign) id delegate;
 // 3 dataSource(count, data at)
-@property (nonatomic, assign) id dataSource;
+//@property (nonatomic, assign) id dataSource;
 
 
 #pragma mark- c直接调用

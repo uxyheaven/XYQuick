@@ -54,7 +54,7 @@
  */
 
 
-/*
+
 // 创建/销毁页面级变量, model的地方。
 -(void) createFields;
 -(void) destroyFields;
@@ -69,7 +69,6 @@
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
 -(void) loadData;
-*/
 
 
 @end

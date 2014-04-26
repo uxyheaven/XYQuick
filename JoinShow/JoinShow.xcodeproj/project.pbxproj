@@ -235,6 +235,8 @@
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
 		577952D71909718A00F95459 /* XYBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577952D61909718A00F95459 /* XYBaseView.m */; };
 		577952DA1909727E00F95459 /* XYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 577952D91909727E00F95459 /* XYBaseModel.m */; };
+		577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577ACC79190A2DD70053C9CE /* XYTabBarController.m */; };
+		577ACC7D190A30470053C9CE /* XYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 577ACC7C190A30470053C9CE /* XYTabBar.m */; };
 		577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */; };
 		577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80918AE0BD700421CC2 /* UIColor+XY.m */; };
 		57808335181A1088000F349B /* headportrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57808334181A1088000F349B /* headportrait.jpg */; };
@@ -311,6 +313,10 @@
 		57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0373188E1AA1002422D4 /* XYFileCache.m */; };
 		57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0375188E1AA1002422D4 /* XYMemoryCache.m */; };
 		57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF037C188E1CFF002422D4 /* XYObjectCache.m */; };
+		57DF99DD190AF4B10036B85D /* icon_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DB190AF4B10036B85D /* icon_facebook.png */; };
+		57DF99DE190AF4B10036B85D /* icon_twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DC190AF4B10036B85D /* icon_twitter.png */; };
+		57DF99E1190AF5070036B85D /* icon_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DF190AF5070036B85D /* icon_google.png */; };
+		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57E852E217B224E500C664F4 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E852E117B224E500C664F4 /* json2.json */; };
 		57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134D917DC393600C5DCDC /* JsonVC.m */; };
@@ -615,6 +621,10 @@
 		577952D61909718A00F95459 /* XYBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseView.m; sourceTree = "<group>"; };
 		577952D81909727E00F95459 /* XYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseModel.h; sourceTree = "<group>"; };
 		577952D91909727E00F95459 /* XYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseModel.m; sourceTree = "<group>"; };
+		577ACC78190A2DD70053C9CE /* XYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTabBarController.h; sourceTree = "<group>"; };
+		577ACC79190A2DD70053C9CE /* XYTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTabBarController.m; sourceTree = "<group>"; };
+		577ACC7B190A30470053C9CE /* XYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTabBar.h; sourceTree = "<group>"; };
+		577ACC7C190A30470053C9CE /* XYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTabBar.m; sourceTree = "<group>"; };
 		577CF80518ADE6A200421CC2 /* UIView+XY_coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XY_coordinate.h"; sourceTree = "<group>"; };
 		577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XY_coordinate.m"; sourceTree = "<group>"; };
 		577CF80818AE0BD700421CC2 /* UIColor+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+XY.h"; sourceTree = "<group>"; };
@@ -760,6 +770,10 @@
 		57DF0378188E1BE3002422D4 /* XYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCache.h; sourceTree = "<group>"; };
 		57DF037B188E1CFF002422D4 /* XYObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObjectCache.h; sourceTree = "<group>"; };
 		57DF037C188E1CFF002422D4 /* XYObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObjectCache.m; sourceTree = "<group>"; };
+		57DF99DB190AF4B10036B85D /* icon_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_facebook.png; sourceTree = "<group>"; };
+		57DF99DC190AF4B10036B85D /* icon_twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_twitter.png; sourceTree = "<group>"; };
+		57DF99DF190AF5070036B85D /* icon_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_google.png; sourceTree = "<group>"; };
+		57DF99E0190AF5070036B85D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		57E852E117B224E500C664F4 /* json2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json2.json; sourceTree = "<group>"; };
@@ -1262,6 +1276,10 @@
 		57525A4C17AB9E300094D835 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				57DF99DB190AF4B10036B85D /* icon_facebook.png */,
+				57DF99DC190AF4B10036B85D /* icon_twitter.png */,
+				57DF99DF190AF5070036B85D /* icon_google.png */,
+				57DF99E0190AF5070036B85D /* icon_tencent.png */,
 				57293C7A1824C42F007BF087 /* bg_trends.png */,
 				57A2FE5D18063D5A002460EC /* bg.jpg */,
 				57808334181A1088000F349B /* headportrait.jpg */,
@@ -1499,6 +1517,10 @@
 				57DB87D6183349A60015CC5A /* XYSpriteView.m */,
 				5771FF2D183A162900B24FE5 /* XYAnimate.h */,
 				5771FF2E183A162900B24FE5 /* XYAnimate.m */,
+				577ACC78190A2DD70053C9CE /* XYTabBarController.h */,
+				577ACC79190A2DD70053C9CE /* XYTabBarController.m */,
+				577ACC7B190A30470053C9CE /* XYTabBar.h */,
+				577ACC7C190A30470053C9CE /* XYTabBar.m */,
 				57DB87D7183349A60015CC5A /* XYUI.h */,
 			);
 			path = UI;
@@ -1674,6 +1696,7 @@
 				571CBB3317C702D1007CB842 /* p31b0033.png in Resources */,
 				571CBB3417C702D1007CB842 /* p31b0034.png in Resources */,
 				571CBB3517C702D1007CB842 /* p31b0035.png in Resources */,
+				57DF99DD190AF4B10036B85D /* icon_facebook.png in Resources */,
 				571CBB3617C702D1007CB842 /* p31b0036.png in Resources */,
 				571CBB3717C702D1007CB842 /* p31b0037.png in Resources */,
 				571CBB3817C702D1007CB842 /* p31b0038.png in Resources */,
@@ -1770,6 +1793,7 @@
 				571CBB9017C702D1007CB842 /* p31b0126.png in Resources */,
 				571CBB9117C702D1007CB842 /* p31b0127.png in Resources */,
 				571CBB9217C702D1007CB842 /* p31b0128.png in Resources */,
+				57DF99DE190AF4B10036B85D /* icon_twitter.png in Resources */,
 				571CBB9317C702D1007CB842 /* p31b0129.png in Resources */,
 				571CBB9417C702D1007CB842 /* p31b0130.png in Resources */,
 				571CBB9517C702D1007CB842 /* p31b0131.png in Resources */,
@@ -1799,6 +1823,7 @@
 				571CBBAD17C702D1007CB842 /* p31b0155.png in Resources */,
 				571CBBAE17C702D1007CB842 /* p31b0156.png in Resources */,
 				571CBBAF17C702D1007CB842 /* p31b0157.png in Resources */,
+				57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */,
 				571CBBB017C702D1007CB842 /* p31b0158.png in Resources */,
 				571CBBB117C702D1007CB842 /* p31b0159.png in Resources */,
 				571CBBB217C702D1007CB842 /* p31b0160.png in Resources */,
@@ -1822,6 +1847,7 @@
 				571CBBC317C702D1007CB842 /* p31b0177.png in Resources */,
 				571CBBC417C702D1007CB842 /* p31b0178.png in Resources */,
 				571CBBC517C702D1007CB842 /* p31b0179.png in Resources */,
+				57DF99E1190AF5070036B85D /* icon_google.png in Resources */,
 				571CBBC617C702D1007CB842 /* p31b0180.png in Resources */,
 				57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */,
 				57901EBB17E6C26E00B8E8FF /* remark in Resources */,
@@ -1877,6 +1903,7 @@
 				57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */,
 				57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */,
 				578D81D2188E4E8900E0058E /* XYKeychain.m in Sources */,
+				577ACC7D190A30470053C9CE /* XYTabBar.m in Sources */,
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
 				57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
@@ -1904,6 +1931,7 @@
 				57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */,
 				57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */,
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
+				577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */,
 				57AD632F188B31DD00271C06 /* LKDBUtils.m in Sources */,
 				57AD6331188B31DD00271C06 /* NSObject+LKModel.m in Sources */,
 				572E7CA118385C690018179D /* SimpleAudioEngine.m in Sources */,
