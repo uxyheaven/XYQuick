@@ -44,6 +44,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void) popVC{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName{
     [self modalVC:vcName withNavigationVC:navName object:nil succeed:nil];
 }
@@ -72,4 +76,10 @@
     [self presentViewController:vc animated:YES completion:block];
 }
 
+-(void) dismissModalVC{
+    [self dismissModalVCWithSucceed:nil];
+}
+-(void) dismissModalVCWithSucceed:(UIViewController_block_void)block{
+    [self dismissViewControllerAnimated:YES completion:block];
+}
 @end

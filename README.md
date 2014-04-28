@@ -1,6 +1,6 @@
 #{XY} QuickDevelop
 
-{XY} 快速开发框架是一个常用方法与常用第三方库的集合.
+{XY} 快速开发框架是一个常用方法与常用第三方库的集合.封装了网络请求,数据持久化,数据缓存（文件缓冲,内存缓存）,kvo,Notification,delegate,动画,图片处理,常用Controller,常用View.
 
 ### XYQuickDevelop
 库的代码
