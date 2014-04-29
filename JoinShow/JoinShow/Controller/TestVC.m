@@ -67,7 +67,6 @@ if (1) { \
     self.myGirl = nil;
     self.text = nil;
     [self removeAllObserver];
-    [super dealloc];
 }
 
 -(void) someTest{
@@ -94,16 +93,15 @@ if (1) { \
     
 #pragma mark - next
     NSString *strLen = @"a";
-    NSLogD(@"%d", [strLen getLength2]);
+    NSLogD(@"%ld", (long)[strLen getLength2]);
     strLen = @"啊a";
-    NSLogD(@"%d", [strLen getLength2]);
+    NSLogD(@"%ld", (long)[strLen getLength2]);
     strLen = @"你好,世界.";
-    NSLogD(@"%d", [strLen getLength2]);
+    NSLogD(@"%ld", (long)[strLen getLength2]);
     
 #pragma mark - next
     GirlEntity *tempGirl = [[GirlEntity alloc] init];
     self.myGirl = tempGirl;
-    [tempGirl release];
     
     [self observeWithObject:self keyPath:@"myGirl.name" selector:@selector(expChanged:) observeKey:@"TestVC_myGirl"];
     
@@ -122,7 +120,7 @@ if (1) { \
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [[XYTimer sharedInstance] startTimerWithInterval:2];
-    UIScrollView *scroll = [[[UIScrollView alloc] initWithFrame:CGRectMake(10, 66 , Screen_WIDTH - 20, Screen_HEIGHT - 86)] autorelease];
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 66 , Screen_WIDTH - 20, Screen_HEIGHT - 86)];
     //scroll.contentSize = CGSizeMake(Screen_WIDTH - 60, 2000);
     scroll.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     [self.view addSubview:scroll];
@@ -271,7 +269,7 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-    TestView *testView = [[[PaintCodeView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)] autorelease];
+    TestView *testView = [[PaintCodeView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)];
     _testView = testView;
     [scroll addSubview:testView];
      btnOffsetY += 220;
@@ -414,8 +412,8 @@ if (1) { \
     if (IOS7_OR_LATER) {
         NSLogD(@"1")
         
-        AVSpeechSynthesizer *av = [[[AVSpeechSynthesizer alloc] init] autorelease];
-        AVSpeechUtterance *utterance = [[[AVSpeechUtterance alloc] initWithString:@"Copyright (c) 2013 Heaven. All rights reserved"] autorelease];
+        AVSpeechSynthesizer *av = [[AVSpeechSynthesizer alloc] init];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Copyright (c) 2013 Heaven. All rights reserved"];
      //   utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
         utterance.pitchMultiplier = 1;
         [av speakUtterance:utterance];
@@ -443,15 +441,15 @@ if (1) { \
 - (IBAction)clickBtnBlockAlertView:(id)sender {
     UIAlertView *alertView = [self showMessage:NO title:@"title" message:@"msg" cancelButtonTitle:@"cancel" otherButtonTitles:@"1",@"2", nil];
     [alertView handlerClickedButton:^(UIAlertView *alertView, NSInteger btnIndex) {
-        NSLogD(@"%d", btnIndex);
+        NSLogD(@"%ld", (long)btnIndex);
     }];
     [alertView show];
 }
 
 - (IBAction)clickBtnBlockActionSheet:(id)sender {
-    UIActionSheet *actionSheet = [[[UIActionSheet alloc] initWithTitle:@"title" delegate:nil cancelButtonTitle:@"cancel" destructiveButtonTitle:@"destructive" otherButtonTitles:@"other1", @"other2", nil] autorelease];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"title" delegate:nil cancelButtonTitle:@"cancel" destructiveButtonTitle:@"destructive" otherButtonTitles:@"other1", @"other2", nil];
     [actionSheet handlerClickedButton:^(UIActionSheet *actionSheet, NSInteger btnIndex) {
-        NSLogD(@"%d", btnIndex);
+        NSLogD(@"%ld", (long)btnIndex);
     }];
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
@@ -471,12 +469,12 @@ if (1) { \
 -(void) clickNewGirl:(id)sender{
     NSMutableDictionary *me = [NSMutableDictionary dictionary];
     // 从 GirlEntity类 创建一个妹子
-    GirlEntity *girl1 = [[[GirlEntity alloc] init] autorelease];
+    GirlEntity *girl1 = [[GirlEntity alloc] init];
     girl1.name = @"妹子1";
     [me setObject:girl1 forKey:@"girlFriend"];
     
     // 创建一个NSObject对象, 然后添加属性,把他设置成妹子
-    NSObject *girl2 = [[[NSObject alloc] init] autorelease];
+    NSObject *girl2 = [[NSObject alloc] init];
     objc_setAssociatedObject(girl2, "name", @"妹子2", OBJC_ASSOCIATION_COPY);
     [me setObject:girl2 forKey:@"girlFriend2"];
     
@@ -497,13 +495,15 @@ if (1) { \
     // 注册到运行时环境
     objc_registerClassPair(kclass);
     
-    id girl3 = [[[kclass alloc] init] autorelease];
-    object_setInstanceVariable(girl3, "name", "妹子3");
-    
+    id girl3 = [[kclass alloc] init];
+    Ivar ivar = class_getInstanceVariable(kclass, "name");
+    object_setIvar(girl3, ivar, @"妹子3");
+    //object_setInstanceVariable(girl3, "name", "妹子3");
+
     [me setObject:girl3 forKey:@"girlFriend3"];
     
     // 挖墙角
-    GirlEntity *girl4 = [[[GirlEntity alloc] init] autorelease];
+    GirlEntity *girl4 = [[GirlEntity alloc] init];
     girl4.name = @"女神";
     
     SEL original = @selector(talk);
@@ -602,7 +602,7 @@ if (1) { \
     NSLogD(@"%@", str);
 }
 -(void) clickEmoji:(id)sender{
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 80)] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
    // label.font = [UIFont fontWithName:@"AppleColorEmoji" size:12.0];
     label.text = @"This is a smiley \ue415 face";
     

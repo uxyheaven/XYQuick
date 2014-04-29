@@ -167,7 +167,6 @@ DUMMY_CLASS(NSDate_XY);
     // to get the end of week for a particular date, add (7 - weekday) days
     [componentsToAdd setDay:day];
     NSDate *dateAfterDay = [calendar dateByAddingComponents:componentsToAdd toDate:self options:0];
-    [componentsToAdd release];
     
     return dateAfterDay;
 }

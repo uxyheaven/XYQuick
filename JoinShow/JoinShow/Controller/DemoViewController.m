@@ -74,7 +74,6 @@
     self.methodBlock = nil;
     self.methodBlock2 = nil;
     
-    [super dealloc];
 }
 
 -(void) funny:(id)sender{

@@ -26,7 +26,10 @@
     }
     return self;
 }
-
+- (void)dealloc
+{
+    NSLogDD
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -54,9 +54,6 @@
     [self.httpClient2 cancelAllOperations];
     [self.httpClient3 cancelAllDownloads];
     
-    [_progressDownload release];
-    [_labPregress release];
-    [super dealloc];
 }
 - (void)didReceiveMemoryWarning
 {

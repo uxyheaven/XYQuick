@@ -28,9 +28,9 @@
 
 #pragma mark - property
 // 属性列表
-@property (nonatomic, readonly) NSArray                *attributeList;
+@property (nonatomic, readonly, strong) NSArray                *attributeList;
 
-@property (nonatomic, assign) int                cellHeight;       // cell高度
+@property (nonatomic) int                cellHeight;       // cell高度
 
 #pragma mark - Conversion
 -(NSInteger) asInteger;
@@ -52,7 +52,7 @@
 -(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
 #pragma mark- Object
-@property (nonatomic, retain) id                tempObject;
+@property (nonatomic, strong) id                tempObject;
 
 // send object
 // handle block with default identifier is @"sendObject".

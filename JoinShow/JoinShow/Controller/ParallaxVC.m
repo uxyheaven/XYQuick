@@ -32,7 +32,6 @@
 {
     NSLogDD
      [[XYParallaxHelper sharedInstance] stop];
-    [super dealloc];
 }
 - (void)viewDidLoad
 {
@@ -45,7 +44,6 @@
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
     [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:10];
-    [tempLabel release];
     
     tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 150, 100, 30)];
     tempLabel.text = @"test2";
@@ -53,7 +51,6 @@
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
     [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:20];
-    [tempLabel release];
     
     tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 100, 30)];
     tempLabel.text = @"test3";
@@ -61,7 +58,6 @@
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
     [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:30];
-    [tempLabel release];
     
     tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 250, 100, 30)];
     tempLabel.text = @"test4";
@@ -69,7 +65,6 @@
     tempLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:tempLabel];
     [[XYParallaxHelper sharedInstance] setView:tempLabel intensity:40];
-    [tempLabel release];
     
     [self.view bg:@"bg.jpg"];
     [[XYParallaxHelper sharedInstance] setView:self.view intensity:-10];

@@ -47,7 +47,7 @@ typedef void (^XYAnimateStepBlock)(void);
 //////////////////////          XYAnimateSerialStep        ///////////////////////
 // 串行 序列  Serial Sequence
 @interface XYAnimateSerialStep : XYAnimateStep
-@property (nonatomic, retain, readonly) NSArray* steps;
+@property (nonatomic, strong, readonly) NSArray* steps;
 
 +(id) animate;
 -(id) addStep:(XYAnimateStep *)aStep;
@@ -57,7 +57,7 @@ typedef void (^XYAnimateStepBlock)(void);
 // 并行 序列 Parallel Spawn
 @interface XYAnimateParallelStep : XYAnimateStep
 
-@property (nonatomic, retain, readonly) NSArray* steps;
+@property (nonatomic, strong, readonly) NSArray* steps;
 
 +(id) animate;
 -(id) addStep:(XYAnimateStep *)aStep;

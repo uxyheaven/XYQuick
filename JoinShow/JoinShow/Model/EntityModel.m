@@ -37,7 +37,7 @@ DEF_SINGLETON(EntityModel)
     return self;
 }
 +(id) modelWithClass:(Class)aClass{
-    EntityModel *aModel = [[[[self class] alloc] init] autorelease];
+    EntityModel *aModel = [[[self class] alloc] init];
     
     aModel.dataClass = aClass;
     aModel.dbHelper = [[aClass class] getUsingLKDBHelper];
@@ -84,7 +84,6 @@ DEF_SINGLETON(EntityModel)
     [self.requestHelper cancelAllOperations];
     self.requestHelper = nil;
     self.dbHelper = nil;
-    [super dealloc];
 }
 
 #pragma mark - 子类重载下面的方法

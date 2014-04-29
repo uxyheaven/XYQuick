@@ -12,8 +12,7 @@
 
 @interface XYPerformance()
 {
-	NSMutableDictionary *	_records;
-	NSMutableDictionary *	_tags;
+
 }
 @end
 
@@ -23,8 +22,6 @@
 
 DEF_SINGLETON( XYPerformance );
 
-@synthesize records = _records;
-@synthesize tags = _tags;
 
 - (id)init
 {
@@ -39,13 +36,6 @@ DEF_SINGLETON( XYPerformance );
 
 - (void)dealloc
 {
-	[_tags removeAllObjects];
-	[_tags release];
-	
-	[_records removeAllObjects];
-	[_records release];
-    
-	[super dealloc];
 }
 
 + (double)timestamp

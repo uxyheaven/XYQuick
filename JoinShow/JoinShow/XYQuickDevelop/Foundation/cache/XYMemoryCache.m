@@ -39,15 +39,7 @@ DEF_SINGLETON( XYMemoryCache );
 
 - (void)dealloc
 {
-	[self unregisterAllMessage];
-	
-	[_cacheObjs removeAllObjects];
-    [_cacheObjs release];
-	
-	[_cacheKeys removeAllObjects];
-	[_cacheKeys release];
-	
-    [super dealloc];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - XYCacheProtocol

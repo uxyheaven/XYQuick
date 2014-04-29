@@ -11,9 +11,9 @@
 
 @property(nonatomic) int rebounds_count;
 @property(nonatomic) int likes_received_count;
-@property(nonatomic, copy) NSString *created_at;
-@property(nonatomic, copy) NSString *webSiteURLString;
-@property(nonatomic, copy) NSString *test;
+@property(nonatomic,  strong) NSString *created_at;
+@property(nonatomic,  strong) NSString *webSiteURLString;
+@property(nonatomic,  strong) NSString *test;
 @property(nonatomic, strong) NSArray *testArray;
 
 

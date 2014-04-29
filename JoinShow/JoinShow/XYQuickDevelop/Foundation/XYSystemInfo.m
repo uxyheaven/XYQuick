@@ -38,7 +38,7 @@
 	static NSString * __identifier = nil;
 	if ( nil == __identifier )
 	{
-		__identifier = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"] retain];
+		__identifier = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
 	}
 	return __identifier;
 #else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
@@ -105,7 +105,9 @@
 	Class openUDID = NSClassFromString( @"OpenUDID" );
 	if ( openUDID )
 	{
-		return [openUDID value];
+#pragma mark todo
+		//return [openUDID value];
+        return nil;
 	}
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     

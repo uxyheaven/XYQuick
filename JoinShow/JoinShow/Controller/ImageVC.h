@@ -10,6 +10,6 @@
 
 @interface ImageVC : UITableViewController
 
-@property (nonatomic, retain) UIImage *originImg;
+@property (nonatomic, strong) UIImage *originImg;
 
 @end

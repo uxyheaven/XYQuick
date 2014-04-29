@@ -396,7 +396,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
             
 			if ( [[NSFileManager defaultManager] fileExistsAtPath:fullPath] )
 			{
-				image = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
+				image = [[UIImage alloc] initWithContentsOfFile:fullPath];
 			}
 		}
 		
@@ -417,7 +417,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	
 	if ( array.count > 1 )
 	{
-		for ( NSString * attr in [array subarrayWithRange:NSMakeRange(1, array.count - 1)] )
+		for ( __strong NSString * attr in [array subarrayWithRange:NSMakeRange(1, array.count - 1)] )
 		{
 			attr = attr.trim.unwrap;
 			
@@ -475,14 +475,14 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 {
 	AVURLAsset * asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
     AVAssetImageGenerator * generater = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    [asset release];
+
     generater.appliesPreferredTrackTransform = YES;
 	generater.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
 	generater.maximumSize = [UIScreen mainScreen].bounds.size;
     NSError * error = nil;
     CGImageRef image = [generater copyCGImageAtTime:time actualTime:NULL error:&error];
-    [generater release];
-    UIImage * thumb = [[[UIImage alloc] initWithCGImage:image scale:scale orientation:UIImageOrientationUp] autorelease];
+
+    UIImage * thumb = [[UIImage alloc] initWithCGImage:image scale:scale orientation:UIImageOrientationUp];
     CGImageRelease(image);
     return thumb;
 }
@@ -521,7 +521,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 
 - (UIImage *)roundedRectWith:(float)radius cornerMask:(UIImageRoundedCorner)cornerMask
 {
-    UIImageView *bkImageViewTmp = [[[UIImageView alloc] initWithImage:self] autorelease];
+    UIImageView *bkImageViewTmp = [[UIImageView alloc] initWithImage:self];
     
     int w = self.size.width;
     int h = self.size.height;

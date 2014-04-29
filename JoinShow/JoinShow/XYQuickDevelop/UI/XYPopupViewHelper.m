@@ -10,7 +10,7 @@
 #import "XYExtension.h"
 @interface XYPopupViewHelper ()
 
-@property (nonatomic, assign) UIView    *popupVIew;
+@property (nonatomic, weak) UIView    *popupVIew;
 @property (nonatomic, copy) XYPopupViewHelperNormalBlock dismissBlock;
 @property (nonatomic, copy) XYPopupViewHelperNormalBlock showAnimation;
 @property (nonatomic, copy) XYPopupViewHelperNormalBlock dismissAnimation;

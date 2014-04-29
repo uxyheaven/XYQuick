@@ -24,7 +24,7 @@ DUMMY_CLASS(NSData_XY);
 	CC_MD5( [self bytes], md5Length, md5Result );
 	
 	
-	NSMutableData * retData = [[[NSMutableData alloc] init] autorelease];
+	NSMutableData * retData = [[NSMutableData alloc] init];
 	if ( nil == retData )
 		return nil;
 	

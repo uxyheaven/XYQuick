@@ -78,8 +78,8 @@ typedef void (^NetworkUnreachable)(Reachability * reachability);
 
 @interface Reachability : NSObject
 
-@property (nonatomic, copy) NetworkReachable    reachableBlock;
-@property (nonatomic, copy) NetworkUnreachable  unreachableBlock;
+@property (nonatomic,  strong) NetworkReachable    reachableBlock;
+@property (nonatomic,  strong) NetworkUnreachable  unreachableBlock;
 
 
 @property (nonatomic, assign) BOOL reachableOnWWAN;

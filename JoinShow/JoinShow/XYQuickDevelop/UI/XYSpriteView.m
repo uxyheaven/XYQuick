@@ -18,12 +18,6 @@
 
 -(void)dealloc{
     NSLogD(@"%s", __FUNCTION__);
-    self.model = nil;
-    self.delegate = nil;
-    self.aniPath = nil;
-    self.imageNameArray = nil;
-    
-    [super dealloc];
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -382,13 +376,11 @@
     NSString *imageName = [_imageNameArray objectAtIndex:index];
     NSString *tmpStr = [[NSString alloc] initWithFormat:@"%@/%@", self.aniPath, imageName];
     NSString *path = [XYCommon dataFilePath:tmpStr ofType:filePathOption_app];
-    [tmpStr release];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         self.layer.contents = nil;
         UIImage *tmpIMG = [[UIImage alloc] initWithContentsOfFile:path];
         self.layer.contents = (id)tmpIMG.CGImage;
-        [tmpIMG release];
     }
 }
 - (void)duration:(NSTimeInterval)dur interval:(NSTimeInterval)i delay:(NSTimeInterval)d{

@@ -10,8 +10,8 @@
 
 @interface TestView : UIView
 
-@property (nonatomic, retain) UILabel *label1;
-@property (nonatomic, retain) UIImageView *img1;
+@property (nonatomic, strong) UILabel *label1;
+@property (nonatomic, strong) UIImageView *img1;
 
 -(void) test;
 

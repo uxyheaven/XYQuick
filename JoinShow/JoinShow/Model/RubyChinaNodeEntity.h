@@ -11,11 +11,11 @@
 @interface RubyChinaNodeEntity : NSObject
 
 @property (nonatomic, assign) int nodeID;
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic,  strong) NSString *name;
 @property (nonatomic, assign) int topics_count;
-@property (nonatomic, copy) NSString *summary;
+@property (nonatomic,  strong) NSString *summary;
 @property (nonatomic, assign) int section_id;
 @property (nonatomic, assign) int sort;
-@property (nonatomic, copy) NSString *section_name;
+@property (nonatomic,  strong) NSString *section_name;
 
 @end

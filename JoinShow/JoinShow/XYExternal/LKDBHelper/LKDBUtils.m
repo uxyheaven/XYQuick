@@ -13,6 +13,23 @@
 @end
 
 @implementation LKDateFormatter
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.lock = [[NSLock alloc]init];
+        self.generatesCalendarDates = YES;
+        self.dateStyle = NSDateFormatterNoStyle;
+        self.timeStyle = NSDateFormatterNoStyle;
+        self.AMSymbol = nil;
+        self.PMSymbol = nil;
+        NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        if(locale){
+            [self setLocale:locale];
+        }
+    }
+    return self;
+}
 //防止在IOS5下 多线程 格式化时间时 崩溃
 -(NSDate *)dateFromString:(NSString *)string
 {
@@ -33,9 +50,14 @@
 @implementation LKDBUtils
 +(NSString *)getDocumentPath
 {
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     return documentsDirectory;
+#else
+    NSString* homePath = [[NSBundle mainBundle] resourcePath];
+    return homePath;
+#endif
 }
 +(NSString *)getDirectoryForDocuments:(NSString *)dir
 {
@@ -98,6 +120,9 @@
 {
     NSDateFormatter* formatter = [self getDBDateFormat];
     NSString* datestr = [formatter stringFromDate:date];
+    if(datestr.length > 19){
+        datestr = [datestr substringToIndex:19];
+    }
     return datestr;
 }
 +(NSDate *)dateWithString:(NSString *)str

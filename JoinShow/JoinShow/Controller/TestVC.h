@@ -21,16 +21,16 @@
     int offset;
     
 }
-@property (nonatomic, retain) NSMutableArray *array;
+@property (nonatomic, strong) NSMutableArray *array;
 
 @property (nonatomic, assign) int testKVO;
-@property (nonatomic, retain) NSMutableArray *testArrayKVO;
+@property (nonatomic, strong) NSMutableArray *testArrayKVO;
 
-@property (nonatomic, retain) GirlEntity *myGirl;
+@property (nonatomic, strong) GirlEntity *myGirl;
 
-@property (nonatomic, retain) TestView *testView;
+@property (nonatomic, strong) TestView *testView;
 
-@property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong) NSString *text;
 
 - (IBAction)clickBtn1:(id)sender;
 - (IBAction)clickBtn2:(id)sender;

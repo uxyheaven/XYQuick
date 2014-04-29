@@ -14,22 +14,22 @@
 
 @protocol EntityModelDelegate;
 @interface EntityModel : NSObject{
-    @public id <EntityModelDelegate> _delegate;
+    //@public id <EntityModelDelegate> _delegate;
 }
 
 XY_SINGLETON(EntityModel)
 
-@property (nonatomic, retain) id data;                                          // 数据
+@property (nonatomic, strong) id data;                                          // 数据
 @property (nonatomic, assign) Class dataClass;                                  // 数据类型
-@property (nonatomic, retain) id result;                                        // 临时数据
-@property (nonatomic, retain) NSMutableArray *array;                            // array
-@property (nonatomic, retain) NSMutableDictionary *dic;                         // dic
+@property (nonatomic, strong) id result;                                        // 临时数据
+@property (nonatomic, strong) NSMutableArray *array;                            // array
+@property (nonatomic, strong) NSMutableDictionary *dic;                         // dic
 
 @property (nonatomic, assign) int tag;                                          // 标签
 @property (nonatomic, assign) id <EntityModelDelegate> delegate;
 
-@property (nonatomic, retain) RequestHelper *requestHelper;                     // 网络请求,需要自己初始化
-@property (nonatomic, retain) LKDBHelper    *dbHelper;                          // 数据库帮助类
+@property (nonatomic, strong) RequestHelper *requestHelper;                     // 网络请求,需要自己初始化
+@property (nonatomic, strong) LKDBHelper    *dbHelper;                          // 数据库帮助类
 
 
 #pragma mark -

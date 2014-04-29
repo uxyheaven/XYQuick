@@ -89,8 +89,8 @@
 
 XY_SINGLETON( XYPerformance );
 
-@property (nonatomic, readonly) NSMutableDictionary *	records;
-@property (nonatomic, retain) NSMutableDictionary *		tags;
+@property (nonatomic, readonly, strong) NSMutableDictionary     *records;
+@property (nonatomic, strong) NSMutableDictionary               *tags;
 
 + (double)timestamp;
 

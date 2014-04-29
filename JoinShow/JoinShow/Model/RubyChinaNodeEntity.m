@@ -7,6 +7,7 @@
 //
 
 #import "RubyChinaNodeEntity.h"
+#import "YYJSONHelper.h"
 
 @implementation RubyChinaNodeEntity
 - (void)dealloc
@@ -14,13 +15,13 @@
     self.name = nil;
     self.summary = nil;
     self.section_name = nil;
-    [super dealloc];
 }
 
 + (void)initialize
 {
-    [super initialize];
-    [self bindYYJSONKey:@"id" toProperty:@"nodeID"];
+    if (self == [RubyChinaNodeEntity class]){
+        [self bindYYJSONKey:@"id" toProperty:@"nodeID"];
+    }
 }
 
 // DB

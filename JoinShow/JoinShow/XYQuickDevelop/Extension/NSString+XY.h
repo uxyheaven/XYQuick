@@ -20,17 +20,17 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 @interface NSString (XY)
 
-@property (nonatomic, readonly) NSStringAppendBlock		APPEND;
-@property (nonatomic, readonly) NSStringAppendBlock		LINE;
-@property (nonatomic, readonly) NSStringReplaceBlock	REPLACE;
+@property (nonatomic, readonly, copy) NSStringAppendBlock		APPEND;
+@property (nonatomic, readonly, copy) NSStringAppendBlock		LINE;
+@property (nonatomic, readonly, copy) NSStringReplaceBlock	REPLACE;
 
-@property (nonatomic, readonly) NSString 				*MD5;
-@property (nonatomic, readonly) NSData                  *MD5Data;
+@property (nonatomic, readonly, copy) NSString 				*MD5;
+@property (nonatomic, readonly, strong) NSData                  *MD5Data;
 
-@property (nonatomic, readonly) NSData                  *data;
-@property (nonatomic, readonly) NSDate                  *date;
+@property (nonatomic, readonly, strong) NSData                  *data;
+@property (nonatomic, readonly, strong) NSDate                  *date;
 
-@property (nonatomic, readonly) NSString 				*SHA1;
+@property (nonatomic, readonly, copy) NSString 				*SHA1;
 
 
 -(NSArray *) allURLs;
@@ -123,9 +123,9 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 @interface NSMutableString(BeeExtension)
 
-@property (nonatomic, readonly) NSMutableStringAppendBlock	APPEND;
-@property (nonatomic, readonly) NSMutableStringAppendBlock	LINE;
-@property (nonatomic, readonly) NSMutableStringReplaceBlock	REPLACE;
+@property (nonatomic, readonly, copy) NSMutableStringAppendBlock	APPEND;
+@property (nonatomic, readonly, copy) NSMutableStringAppendBlock	LINE;
+@property (nonatomic, readonly, copy) NSMutableStringReplaceBlock	REPLACE;
 
 @end
 

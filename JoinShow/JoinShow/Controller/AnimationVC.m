@@ -12,7 +12,7 @@
 #else
 #import "XYQuickDevelop.h"
 #endif
-@interface AnimationVC (){
+@interface AnimationVC ()<XYSpriteDelegate>{
     UILabel *labText;
     int count;
 }
@@ -33,7 +33,6 @@
 {
     NSLogDD;
     [[XYSpriteHelper sharedInstance] clearAllSprites];
-    [super dealloc];
 }
 - (void)viewDidLoad
 {
@@ -48,7 +47,6 @@
     tmpLab.text = @"test";
     labText = tmpLab;
     [self.view addSubview:tmpLab];
-    [tmpLab release];
 
     ////////////////////////////  XYSpriteView ////////////////////////////
     XYSpriteView *tmpSprite = [[XYSpriteView alloc] initWithFrame:CGRectMake(0, 50, 224, 138)];
@@ -58,7 +56,6 @@
     tmpSprite.delegate = self;
     [[XYSpriteHelper sharedInstance].sprites setObject:tmpSprite forKey:@"a"];
     [self.view addSubview:tmpSprite];
-    [tmpSprite release];
     
     [[XYSpriteHelper sharedInstance] startAllSprites];
 

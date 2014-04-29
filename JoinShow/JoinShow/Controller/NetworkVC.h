@@ -17,14 +17,14 @@
 @interface NetworkVC : UIViewController
 
 // get
-@property (nonatomic, assign) HTTPClient *httpClient;
+@property (nonatomic, weak) HTTPClient *httpClient;
 // post
-@property (nonatomic, assign) HTTPClient2 *httpClient2;
+@property (nonatomic, weak) HTTPClient2 *httpClient2;
 // download
-@property (nonatomic, assign) HTTPClient3 *httpClient3;
+@property (nonatomic, weak) HTTPClient3 *httpClient3;
 
-@property (retain, nonatomic) IBOutlet UIProgressView *progressDownload;
-@property (retain, nonatomic) IBOutlet UILabel *labPregress;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressDownload;
+@property (weak, nonatomic) IBOutlet UILabel *labPregress;
 
 - (IBAction)clickGet:(id)sender;
 - (IBAction)clickPost:(id)sender;

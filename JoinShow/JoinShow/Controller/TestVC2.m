@@ -142,7 +142,7 @@
 
 #pragma mark -方法的实现
 -(void) clickMuhud{
-    DemoViewController *vc = [[[DemoViewController alloc] init] autorelease];
+    DemoViewController *vc = [[DemoViewController alloc] init];
     vc.methodBlock = ^(UIViewController *vc, UIButton *btn){
         XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
         XYAnimateStep *step1 = [XYAnimateStep duration:0.15 animate:^{
@@ -184,10 +184,10 @@
 }
 
 -(void) clickXYTabbarController{
-    DemoViewController *vc1 = [[[DemoViewController alloc] init] autorelease];
+    DemoViewController *vc1 = [[DemoViewController alloc] init];
     vc1.viewDidLoadBlock = ^(UIViewController *vc){
         vc.view.backgroundColor = [UIColor whiteColor];
-        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)] autorelease];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)];
         label.text = @"vc1";
         [vc.view addSubview:label];
         
@@ -202,10 +202,10 @@
         NSLogD(@"%@", vc.xyTabBarController);
     };
     
-    DemoViewController *vc2 = [[[DemoViewController alloc] init] autorelease];
+    DemoViewController *vc2 = [[DemoViewController alloc] init];
     vc2.viewDidLoadBlock = ^(UIViewController *vc){
         vc.view.backgroundColor = [UIColor whiteColor];
-        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)] autorelease];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)];
         label.text = @"vc2";
         [vc.view addSubview:label];
         UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -223,7 +223,7 @@
     NSArray *items = @[@{@"text": @"DemoViewController1", @"normal": @"icon_facebook.png", @"selected" : @"icon_google.png"},
                        @{@"text": @"vc2", @"normal": @"icon_twitter.png", @"selected" : @"icon_google.png"}];
     
-    XYTabBarController *tabBarController = [[[XYTabBarController alloc] initWithViewControllers:array items:items] autorelease];
+    XYTabBarController *tabBarController = [[XYTabBarController alloc] initWithViewControllers:array items:items] ;
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 

@@ -17,8 +17,8 @@
 
 @interface BusinessVC : XYBaseViewController <EntityModelDelegate>
 
-@property (nonatomic, retain) UIButton *btnLoad;
-@property (nonatomic, retain) UIButton *btnStart;
+@property (nonatomic, strong) UIButton *btnLoad;
+@property (nonatomic, strong) UIButton *btnStart;
 
 - (IBAction)clickStart:(id)sender;
 

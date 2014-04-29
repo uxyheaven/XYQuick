@@ -11,6 +11,6 @@
 
 @interface TestVC2 : UITableViewController
 
-@property (nonatomic, retain) NSArray *items;
+@property (nonatomic, strong) NSArray *items;
 
 @end

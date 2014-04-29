@@ -45,7 +45,7 @@ DEF_SINGLETON( XYSandbox )
 		{
 			if ( [path hasSuffix:@".app"] )
 			{
-				_appPath = [[NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), path] retain];
+				_appPath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), path];
 				break;
 			}
 		}
@@ -64,7 +64,7 @@ DEF_SINGLETON( XYSandbox )
 	if ( nil == _docPath )
 	{
 		NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-		_docPath = [[paths objectAtIndex:0] retain];
+		_docPath = [paths objectAtIndex:0];
 	}
 	
 	return _docPath;
@@ -84,7 +84,7 @@ DEF_SINGLETON( XYSandbox )
 		
 		[self touch:path];
         
-		_libPrefPath = [path retain];
+		_libPrefPath = path;
 	}
     
 	return _libPrefPath;
@@ -104,7 +104,7 @@ DEF_SINGLETON( XYSandbox )
         
 		[self touch:path];
 		
-		_libCachePath = [path retain];
+		_libCachePath = path;
 	}
 	
 	return _libCachePath;
@@ -124,7 +124,7 @@ DEF_SINGLETON( XYSandbox )
 		
 		[self touch:path];
         
-		_tmpPath = [path retain];
+		_tmpPath = path;
 	}
     
 	return _tmpPath;

@@ -13,8 +13,8 @@
 
 @interface XYFileCache : NSObject <XYCacheProtocol>
 
-@property (nonatomic, retain) NSString *	cachePath;
-@property (nonatomic, retain) NSString *	cacheUser;
+@property (nonatomic, copy) NSString *	cachePath;
+@property (nonatomic, copy) NSString *	cacheUser;
 
 @property (nonatomic, assign) NSTimeInterval maxCacheAge; // 有效期,默认1周
 

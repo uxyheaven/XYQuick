@@ -109,8 +109,8 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 @property (nonatomic, assign) CGFloat   right;
 @property (nonatomic, assign) CGFloat   centerX;
 @property (nonatomic, assign) CGFloat   centerY;
-@property (nonatomic, strong, readonly) UIView *lastSubviewOnX;
-@property (nonatomic, strong, readonly) UIView *lastSubviewOnY;
+@property (nonatomic, weak, readonly) UIView *lastSubviewOnX;
+@property (nonatomic, weak, readonly) UIView *lastSubviewOnY;
 
 @end
 

@@ -58,7 +58,6 @@ DEF_SINGLETON( XYGCD )
 
 - (void)dealloc
 {
-	[super dealloc];
 }
 
 + (void)enqueueForeground:(dispatch_block_t)block

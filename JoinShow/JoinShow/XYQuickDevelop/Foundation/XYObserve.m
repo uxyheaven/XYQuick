@@ -15,7 +15,7 @@
 @property (nonatomic, assign) id target;
 @property (nonatomic) SEL selector;
 @property (nonatomic, assign) id observedObject;
-@property (nonatomic, copy) NSString* keyPath;
+@property (nonatomic,  strong) NSString* keyPath;
 @end
 
 @implementation XYObserve
@@ -28,10 +28,10 @@
                            keyPath:(NSString *)keyPath
                             target:(id)target
                           selector:(SEL)selector{
-    return [[[XYObserve alloc] initWithObject:object keyPath:keyPath target:target selector:selector] autorelease];
+    return [[XYObserve alloc] initWithObject:object keyPath:keyPath target:target selector:selector];
 }
 
--(id) initWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector
+-(instancetype) initWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector
 {
     self = [super init];
     if (self) {
@@ -39,14 +39,14 @@
         self.selector = selector;
         self.observedObject = object;
         self.keyPath = keyPath;
-        [object addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew context:self];
+        [object addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew context:(__bridge void *)(self)];
     } 
     return self; 
 }
 
 -(void) observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {
-    if (context == self) {
+    if (context == (__bridge void *)(self)) {
         id strongTarget = self.target;
         if ([strongTarget respondsToSelector:self.selector]) {
             [strongTarget performSelector:self.selector withObject:[change objectForKey:@"new"]];
@@ -62,7 +62,6 @@
         [strongObservedObject removeObserver:self forKeyPath:self.keyPath];
     }
     self.keyPath = nil;
-    [super dealloc];
 }
 @end
 

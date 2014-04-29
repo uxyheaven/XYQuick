@@ -27,7 +27,7 @@
 
 +(id) defaultSettings{
     // 参考
-    RequestHelper *eg = [[[RequestHelper alloc] initWithHostName:@"www.webxml.com.cn" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+    RequestHelper *eg = [[RequestHelper alloc] initWithHostName:@"www.webxml.com.cn" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
     
     eg.freezable = YES;
     eg.forceReload = YES;
@@ -47,7 +47,6 @@
 - (void)dealloc
 {
     NSLogDD
-    [super dealloc];
 }
 
 
@@ -103,7 +102,7 @@
 
 #pragma mark- Image
 +(void) webImageSetup{
-    [UIImageView setDefaultEngine:[[[MKNetworkEngine alloc] init] autorelease]];
+    [UIImageView setDefaultEngine:[[MKNetworkEngine alloc] init]];
 }
 
 +(NSString *) generateAccessTokenWithObject:(id)anObject{
@@ -157,12 +156,12 @@
 
 #pragma mark -  Downloader
 @interface Downloader()
-@property (nonatomic, copy) NSString *tempFilePath;
+@property (nonatomic,  strong) NSString *tempFilePath;
 @property (nonatomic, assign) DownloadHelper *downloadHelper;
 @end
 
 @interface DownloadHelper()
-@property (nonatomic, retain) NSMutableArray *downloadArray;
+@property (nonatomic, strong) NSMutableArray *downloadArray;
 
 @end
 
@@ -178,8 +177,7 @@
         // 下载请求
         [requests enqueueOperation:self];
         [((DownloadHelper *)requests).downloadArray addObject:self];
-    }else if (str == nil)
-    {
+    }else if (str == nil) {
         // 非下载队列
         NSLogD(@"%@ is not DownloadHelper", requests);
     }
@@ -199,7 +197,7 @@
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *error = nil;
         
-        NSString *filePath = self.toFile;
+        NSString *filePath = ((Downloader*)operation).toFile;
         
         // 下载完成以后 先删除之前的文件 然后move新的文件
         if ([fileManager fileExistsAtPath:filePath]) {
@@ -210,17 +208,17 @@
             }
         }
         
-        [fileManager moveItemAtPath:self.tempFilePath toPath:filePath error:&error];
+        [fileManager moveItemAtPath:((Downloader*)operation).tempFilePath toPath:filePath error:&error];
         if (error) {
-            NSLogD(@"move %@ file to %@ file is failed!\nError:%@", self.tempFilePath, filePath, error);
+            NSLogD(@"move %@ file to %@ file is failed!\nError:%@", ((Downloader*)operation).tempFilePath, filePath, error);
             return;
         }
         
-        [self.downloadHelper.downloadArray removeObject:self];
+        [((Downloader*)operation).downloadHelper.downloadArray removeObject:((Downloader*)operation)];
         
         if (blockS) blockS(operation);
     }errorHandler:^(HttpRequest *errorOp, NSError *err) {
-        [self.downloadHelper.downloadArray removeObject:self];
+        [((Downloader*)errorOp).downloadHelper.downloadArray removeObject:((Downloader*)errorOp)];
         
         if (blockF) blockF(errorOp, err);
     }];
@@ -231,9 +229,6 @@
 {
     NSLogDD
     [self.downloadHelper.downloadArray removeObject:self];
-    self.toFile = nil;
-    self.tempFilePath = nil;
-    [super dealloc];
 }
 
 @end
@@ -242,7 +237,7 @@
 @implementation DownloadHelper
 +(id) defaultSettings{
     // 参考
-    DownloadHelper *eg = [[[DownloadHelper alloc] initWithHostName:nil] autorelease];
+    DownloadHelper *eg = [[DownloadHelper alloc] initWithHostName:nil];
     [eg setup];
     
     return eg;
@@ -258,8 +253,6 @@
 - (void)dealloc
 {
     NSLogDD
-    self.downloadArray = nil;
-    [super dealloc];
 }
 -(Downloader *) download:(NSString *)remoteURL
                               to:(NSString*)filePath
@@ -305,7 +298,7 @@
     tempFilePath = [NSString stringWithFormat:@"%@/%@.temp", tempFilePath, [filePath substringFromIndex:lastCharRange.location + 1]];
     
     // 获得临时文件的路径
-    NSMutableDictionary *newHeadersDict = [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary *newHeadersDict = [[NSMutableDictionary alloc] init];
     // 如果是重新下载，就要删除之前下载过的文件
     if (!isResume && [fileManager fileExistsAtPath:tempFilePath]) {
         NSError *error = nil;

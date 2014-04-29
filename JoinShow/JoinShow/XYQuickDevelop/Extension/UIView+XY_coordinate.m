@@ -126,7 +126,7 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 }
 
 + (POViewFrameBuilder *)frameBuilderForView:(UIView *)view {
-    return [[[[self class] alloc] initWithView:view] autorelease];
+    return [[[self class] alloc] initWithView:view];
 }
 
 #pragma mark - Properties

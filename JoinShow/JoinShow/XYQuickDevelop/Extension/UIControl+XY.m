@@ -20,28 +20,28 @@ DUMMY_CLASS(UIControl_XY);
 @implementation UIControl (XY)
 
 + (void) load{
-    XY_DicControlEventString = [@{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
-                              @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
-                              @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
-                              @(UIControlEventTouchDragOutside): @"UIControlEventTouchDragOutside",
-                              @(UIControlEventTouchDragEnter): @"UIControlEventTouchDragEnter",
-                              @(UIControlEventTouchDragExit): @"UIControlEventTouchDragExit",
-                              @(UIControlEventTouchUpInside): @"UIControlEventTouchUpInside",
-                              @(UIControlEventTouchUpOutside): @"UIControlEventTouchUpOutside",
-                              @(UIControlEventTouchCancel): @"UIControlEventTouchCancel",
-                              @(UIControlEventValueChanged): @"UIControlEventValueChanged",
-                              @(UIControlEventEditingDidBegin): @"UIControlEventEditingDidBegin",
-                              @(UIControlEventEditingChanged): @"UIControlEventEditingChanged",
-                              @(UIControlEventEditingDidEnd): @"UIControlEventEditingDidEnd",
-                              @(UIControlEventEditingDidEndOnExit): @"UIControlEventEditingDidEndOnExit",
-                              @(UIControlEventAllTouchEvents): @"UIControlEventAllTouchEvents",
-                              @(UIControlEventAllEditingEvents): @"UIControlEventAllEditingEvents",
-                              @(UIControlEventApplicationReserved): @"UIControlEventApplicationReserved",
-                              @(UIControlEventSystemReserved): @"UIControlEventSystemReserved",
-                              @(UIControlEventAllEvents): @"UIControlEventAllEvents"
-                              } retain];
+    XY_DicControlEventString = @{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
+                                 @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
+                                 @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
+                                 @(UIControlEventTouchDragOutside): @"UIControlEventTouchDragOutside",
+                                 @(UIControlEventTouchDragEnter): @"UIControlEventTouchDragEnter",
+                                 @(UIControlEventTouchDragExit): @"UIControlEventTouchDragExit",
+                                 @(UIControlEventTouchUpInside): @"UIControlEventTouchUpInside",
+                                 @(UIControlEventTouchUpOutside): @"UIControlEventTouchUpOutside",
+                                 @(UIControlEventTouchCancel): @"UIControlEventTouchCancel",
+                                 @(UIControlEventValueChanged): @"UIControlEventValueChanged",
+                                 @(UIControlEventEditingDidBegin): @"UIControlEventEditingDidBegin",
+                                 @(UIControlEventEditingChanged): @"UIControlEventEditingChanged",
+                                 @(UIControlEventEditingDidEnd): @"UIControlEventEditingDidEnd",
+                                 @(UIControlEventEditingDidEndOnExit): @"UIControlEventEditingDidEndOnExit",
+                                 @(UIControlEventAllTouchEvents): @"UIControlEventAllTouchEvents",
+                                 @(UIControlEventAllEditingEvents): @"UIControlEventAllEditingEvents",
+                                 @(UIControlEventApplicationReserved): @"UIControlEventApplicationReserved",
+                                 @(UIControlEventSystemReserved): @"UIControlEventSystemReserved",
+                                 @(UIControlEventAllEvents): @"UIControlEventAllEvents"
+                                 };
     
-    XY_DicControlStringEvent = [@{@"UIControlEventTouchDown": @(UIControlEventTouchDown),
+    XY_DicControlStringEvent = @{@"UIControlEventTouchDown": @(UIControlEventTouchDown),
                                  @"UIControlEventTouchDownRepeat": @(UIControlEventTouchDownRepeat),
                                  @"UIControlEventTouchDragInside": @(UIControlEventTouchDragInside),
                                  @"UIControlEventTouchDragOutside": @(UIControlEventTouchDragOutside),
@@ -60,7 +60,7 @@ DUMMY_CLASS(UIControl_XY);
                                  @"UIControlEventApplicationReserved": @(UIControlEventApplicationReserved),
                                  @"UIControlEventSystemReserved": @(UIControlEventSystemReserved),
                                  @"UIControlEventAllEvents": @(UIControlEventAllEvents)
-                                 }  retain];
+                                 };
 }
 - (void)dealloc
 {
@@ -71,8 +71,6 @@ DUMMY_CLASS(UIControl_XY);
         }];
         objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_ASSIGN);
     }
-    
-    [super dealloc];
 }
 - (void)removeHandlerForEvent:(UIControlEvents)event
 {
@@ -100,7 +98,7 @@ DUMMY_CLASS(UIControl_XY);
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
         objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    [opreations setObject:[[block copy] autorelease] forKey:methodName];
+    [opreations setObject:[block copy] forKey:methodName];
     
     [self addTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
     

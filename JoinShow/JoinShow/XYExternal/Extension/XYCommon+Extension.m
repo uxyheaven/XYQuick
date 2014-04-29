@@ -30,7 +30,7 @@
     NSMutableArray *newColumns = [NSMutableArray arrayWithArray:((NSObject *)anObject).attributeList];
     
     //新增属性个数
-    int newColumnCount = newColumns.count - columns.count;
+    NSInteger newColumnCount = newColumns.count - columns.count;
     
     //当新增属性大于0才进行更新，我勒个去，哥不判断属性名变更了，太麻烦了，不许给我随便更改model的属性名否则后果自负
     //因为父类有SQLiteID 所有判断个数的时候-1
@@ -94,7 +94,6 @@ static MBProgressHUD *HUD = nil;
         UIImageView *img = [[UIImageView alloc] initWithImage:aImg];
         HUD.customView = img;
         HUD.mode = MBProgressHUDModeCustomView;
-        [img release];
     }
     if (aTitle || aMsg) {
         HUD.mode = MBProgressHUDModeText;

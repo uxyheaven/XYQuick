@@ -7,13 +7,14 @@
 //
 
 #import "XYBaseViewController.h"
+#import "XYObserve.h"
 
 @implementation XYBaseViewController
 
 - (id) init {
     self = [super init];
     if (self) {
-    
+        NSLogDSelf
     }
     return self;
 }
@@ -21,7 +22,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        NSLogDSelf
     }
     return self;
 }
@@ -51,13 +52,11 @@
 
 - (void)dealloc
 {
-    NSLogD(@"Class:%@ ", [self class]);
+    NSLogDSelf
     
     [self destroyEvents];
     [self destroyViews];
     [self destroyFields];
-    
-    [super dealloc];
 }
 
 -(void) createFields {
@@ -66,9 +65,6 @@
 
 -(void) destroyFields {
     // [super destroyFields];
-    self.children = nil;
-    self.curChild = nil;
-    self.curParent = nil;
 }
 
 -(void) createViews {
@@ -90,6 +86,9 @@
 
 -(void) destroyEvents {
     // [super destroyEvents];
+    
+    // 移除所有观察者
+    [self removeAllObserver];
     // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

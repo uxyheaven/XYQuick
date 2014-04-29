@@ -11,7 +11,7 @@
 
 @interface XYKeychain : NSObject <XYCacheProtocol>
 
-@property (nonatomic, retain) NSString * defaultDomain;
+@property (nonatomic, copy) NSString * defaultDomain;
 
 XY_SINGLETON( XYKeychain );
 

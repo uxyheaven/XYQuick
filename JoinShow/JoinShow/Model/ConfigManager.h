@@ -16,6 +16,6 @@
 
 XY_SINGLETON(ConfigManager)
 
-@property (nonatomic, copy) NSString *StrTest;
+@property (nonatomic,  strong) NSString *StrTest;
 
 @end

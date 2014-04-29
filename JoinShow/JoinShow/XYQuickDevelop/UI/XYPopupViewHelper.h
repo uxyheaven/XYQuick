@@ -21,7 +21,7 @@ typedef void(^XYPopupViewHelperNormalBlock)(UIView *);
 
 XY_SINGLETON(XYPopupViewHelper)
 
-@property (nonatomic, retain) UIColor       *colorLump;
+@property (nonatomic, strong) UIColor       *colorLump;
 @property (nonatomic, assign) float         colorLumpAlpha;
 @property (nonatomic, assign) int           blurLevel;
 

@@ -191,7 +191,7 @@
     return [XYCommon rangeArrayOfString:str pointStart:iStart start:strStart end:strEnd mark:strMark operation:operation everyStringExecuteBlock:nil];
 }
 +(NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block{
-    NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
     int i = 0;
     while (i != -1) {
         NSRange range = [self rangeOfString:str pointStart:i start:strStart end:strEnd mark:strMark operation:operation];
@@ -247,13 +247,13 @@
 {
 	NSMutableString *outstring = [[NSMutableString alloc] init];
 	[self dumpView:aView atIndent:0 into:outstring];
-	return [outstring autorelease];
+	return outstring;
 }
 
 /***************************************************************/
 +(NSMutableArray *) analyseString:(NSString *)str regularExpression:(NSString *)regexStr{
     NSMutableArray *arrayA = [self analyseStringToRange:str regularExpression:regexStr];
-    NSMutableArray *arrayStr = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *arrayStr = [[NSMutableArray alloc] init];
     
     for (NSValue *value in arrayA) {
         NSRange range = [value rangeValue];
@@ -265,7 +265,7 @@
     return arrayStr;
 }
 +(NSMutableArray *) analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr{
-    NSMutableArray *arrayA = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *arrayA = [[NSMutableArray alloc] init];
     
     //NSRegularExpression类里面调用表达的方法需要传递一个NSError的参数。下面定义一个
 	NSError *error;
@@ -321,17 +321,16 @@
 +(void) showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)str{
     UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:aTitle message:msg delegate:nil cancelButtonTitle:str otherButtonTitles:nil, nil];
     [alertview show];
-    [alertview release];
 }
 
 /***************************************************************/
 +(NSString *) UUID{
     CFUUIDRef puuid = CFUUIDCreate( nil );
     CFStringRef uuidString = CFUUIDCreateString(nil, puuid);
-    NSString *result = (NSString *)CFStringCreateCopy(nil, uuidString);
+    NSString *result = (NSString *)CFBridgingRelease(CFStringCreateCopy(nil, uuidString));
     CFRelease(puuid);
     CFRelease(uuidString);
-    return [result autorelease];
+    return result;
 }
 
 +(NSString *) UUIDWithoutMinus{

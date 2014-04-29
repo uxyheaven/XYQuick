@@ -10,11 +10,11 @@
 
 @interface XYSandbox : NSObject
 
-@property (nonatomic, readonly) NSString *	appPath;
-@property (nonatomic, readonly) NSString *	docPath;
-@property (nonatomic, readonly) NSString *	libPrefPath;
-@property (nonatomic, readonly) NSString *	libCachePath;
-@property (nonatomic, readonly) NSString *	tmpPath;
+@property (nonatomic, readonly, copy) NSString *	appPath;
+@property (nonatomic, readonly, copy) NSString *	docPath;
+@property (nonatomic, readonly, copy) NSString *	libPrefPath;
+@property (nonatomic, readonly, copy) NSString *	libCachePath;
+@property (nonatomic, readonly, copy) NSString *	tmpPath;
 
 XY_SINGLETON( XYSandbox )
 

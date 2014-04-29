@@ -49,7 +49,6 @@
 - (void)dealloc
 {
     self.originImg = nil;
-    [super dealloc];
 }
 #pragma mark - Table view data source
 

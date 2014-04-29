@@ -53,9 +53,6 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 
 -(void) dealloc {
 	CDLOGINFO(@"Denshion::CDLongAudioSource - deallocating %@", self);
-	[audioSourcePlayer release];
-	[audioSourceFilePath release];
-	[super dealloc];
 }	
 
 -(void) load:(NSString*) filePath {
@@ -64,8 +61,8 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 		CDLOGINFO(@"Denshion::CDLongAudioSource - Loading new audio source %@",filePath);
 		//New file
 		if (state != kLAS_Init) {
-			[audioSourceFilePath release];//Release old file path
-			[audioSourcePlayer release];//Release old AVAudioPlayer, they can't be reused
+			//Release old file path
+			//Release old AVAudioPlayer, they can't be reused
 		}
 		audioSourceFilePath = [filePath copy];
 		NSError *error = nil;
@@ -292,8 +289,8 @@ static BOOL configured = FALSE;
 		if (_sharedManagerState == kAMStateUninitialised) {
 			_sharedManagerState = kAMStateInitialising;
 			[CDAudioManager configure:mode];
-			CDAsynchInitialiser *initOp = [[[CDAsynchInitialiser alloc] init] autorelease];
-			NSOperationQueue *opQ = [[[NSOperationQueue alloc] init] autorelease];
+			CDAsynchInitialiser *initOp = [[CDAsynchInitialiser alloc] init];
+			NSOperationQueue *opQ = [[NSOperationQueue alloc] init];
 			[opQ addOperation:initOp];
 		}	
 	}
@@ -420,8 +417,7 @@ static BOOL configured = FALSE;
 		rightChannel.backgroundMusic = NO;
 		[audioSourceChannels insertObject:leftChannel atIndex:kASC_Left];	
 		[audioSourceChannels insertObject:rightChannel atIndex:kASC_Right];
-		[leftChannel release];
-		[rightChannel release];
+
 		//Used to support legacy APIs
 		backgroundMusic = [self audioSourceForChannel:BACKGROUND_MUSIC_CHANNEL];
 		backgroundMusic.delegate = self;
@@ -436,11 +432,9 @@ static BOOL configured = FALSE;
 -(void) dealloc {
 	CDLOGINFO(@"Denshion::CDAudioManager - deallocating");
 	[self stopBackgroundMusic];
-	[soundEngine release];
+
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self audioSessionSetActive:NO];
-	[audioSourceChannels release];
-	[super dealloc];
 }	
 
 /** Retrieves the audio source for the specified channel */
@@ -787,7 +781,6 @@ static BOOL configured = FALSE;
 }
 
 +(void) end {
-	[sharedManager release];
 	sharedManager = nil;
 }	
 
@@ -828,9 +821,6 @@ static BOOL configured = FALSE;
 }	
 
 -(void) dealloc {
-	[loadedBuffers release];
-	[freedBuffers release];
-	[super dealloc];
 }	
 
 -(int) bufferForFile:(NSString*) filePath create:(BOOL) create {
@@ -842,12 +832,11 @@ static BOOL configured = FALSE;
 			NSNumber* bufferId = nil;
 			//First try to get a buffer from the free buffers
 			if ([freedBuffers count] > 0) {
-				bufferId = [[[freedBuffers lastObject] retain] autorelease];
+				bufferId = [freedBuffers lastObject];
 				[freedBuffers removeLastObject]; 
 				CDLOGINFO(@"Denshion::CDBufferManager reusing buffer id %i",[bufferId intValue]);
 			} else {
 				bufferId = [[NSNumber alloc] initWithInt:nextBufferId];
-				[bufferId autorelease];
 				CDLOGINFO(@"Denshion::CDBufferManager generating new buffer id %i",[bufferId intValue]);
 				nextBufferId++;
 			}
@@ -877,7 +866,7 @@ static BOOL configured = FALSE;
 		[soundEngine unloadBuffer:bufferId];
 		[loadedBuffers removeObjectForKey:filePath];
 		NSNumber *freedBufferId = [[NSNumber alloc] initWithInt:bufferId];
-		[freedBufferId autorelease];
+
 		[freedBuffers addObject:freedBufferId];
 	}	
 }	

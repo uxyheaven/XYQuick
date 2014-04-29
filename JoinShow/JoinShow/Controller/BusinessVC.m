@@ -15,7 +15,7 @@
 
 @interface BusinessVC ()
 // get
-@property (nonatomic, retain) NSArray *model;
+@property (nonatomic, strong) NSArray *model;
 @property (nonatomic, assign) EntityModel *entityModel;
 
 @end
@@ -113,7 +113,6 @@
     [anObject loadFromDB];
     NSString *str = [anObject YYJSONString];
     SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
-    [anObject release];
 }
 
 
@@ -188,7 +187,7 @@
 #pragma mark - delegate
 #pragma mark -EntityModelDelegate
 -(RequestHelper *) entityModelSetupRequestHelper:(id)model{
-    RequestHelper *request = [[[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}] autorelease];
+    RequestHelper *request = [[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
     [request useCache];
     request.freezable = YES;
     request.forceReload = YES;

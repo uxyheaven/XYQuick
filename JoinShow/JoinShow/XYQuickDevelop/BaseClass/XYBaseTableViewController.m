@@ -7,18 +7,27 @@
 //
 
 #import "XYBaseTableViewController.h"
+#import "XYObserve.h"
 
 @interface XYBaseTableViewController ()
 
 @end
 
 @implementation XYBaseTableViewController
-
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSLogDSelf
+    }
+    return self;
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        NSLogDSelf
     }
     return self;
 }
@@ -46,13 +55,11 @@
 
 - (void)dealloc
 {
-    NSLogD(@"Class:%@ ", [self class]);
+    NSLogDSelf
     
     [self destroyEvents];
     [self destroyViews];
     [self destroyFields];
-    
-    [super dealloc];
 }
 
 -(void) createFields {
@@ -61,9 +68,6 @@
 
 -(void) destroyFields {
     // [super destroyFields];
-    self.children = nil;
-    self.curChild = nil;
-    self.curParent = nil;
 }
 
 -(void) createViews {
@@ -85,6 +89,9 @@
 
 -(void) destroyEvents {
     // [super destroyEvents];
+    
+    // 移除所有观察者
+    [self removeAllObserver];
     // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

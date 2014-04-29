@@ -40,7 +40,6 @@ DEF_DataLite_object(TestDic, YES, nil, @"default_TestDic.plist")
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 300)];
     tempLabel.text = @"Please read code in [DataLiteVC.m]";
     [self.view addSubview:tempLabel];
-    [tempLabel release];
     
     self.TestTitle = nil;
     NSLogD(@"%@", self.TestTitle);

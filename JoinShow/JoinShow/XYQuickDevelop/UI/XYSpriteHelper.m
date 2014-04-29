@@ -22,8 +22,6 @@ DEF_SINGLETON(XYSpriteHelper);
     return self;
 }
 -(void)dealloc{
-    [_sprites release];
-    [super dealloc];
 }
 
 -(void)startTimer{

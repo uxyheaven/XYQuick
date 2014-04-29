@@ -32,7 +32,7 @@ DUMMY_CLASS(NSArray_XY);
 		return array;
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy];
 }
 
 - (NSArray *)head:(NSUInteger)count
@@ -130,7 +130,7 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 		return self;
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy];
 }
 
 + (NSMutableArray *)nonRetainingArray	// copy from Three20
@@ -138,7 +138,12 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 	CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
 	callbacks.retain = __TTRetainNoOp;
 	callbacks.release = __TTReleaseNoOp;
-	return [(NSMutableArray *)CFArrayCreateMutable( nil, 0, &callbacks ) autorelease];
+    
+    CFMutableArrayRef cfArray = CFArrayCreateMutable( nil, 0, &callbacks );
+    NSMutableArray *array = CFBridgingRelease(cfArray);
+    CFRelease(cfArray);
+    
+	return array;
 }
 
 - (NSMutableArray *)pushHead:(NSObject *)obj
@@ -277,18 +282,17 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 - (void)insertObjectNoRetain:(id)object atIndex:(NSUInteger)index
 {
 	[self insertObject:object atIndex:index];
-	[object release];	
 }
 
 - (void)addObjectNoRetain:(NSObject *)object
 {
 	[self addObject:object];
-	[object release];
+	//[object release];
 }
 
 - (void)removeObjectNoRelease:(NSObject *)object
 {
-	[object retain];
+	//[object retain];
 	[self removeObject:object];
 }
 
@@ -296,7 +300,7 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 {
 	for ( NSObject * object in self )
 	{
-		[object retain];
+		//[object retain];
 	}	
 	
 	[self removeAllObjects];

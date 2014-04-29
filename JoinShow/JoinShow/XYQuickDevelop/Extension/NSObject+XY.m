@@ -55,6 +55,7 @@ static void (*__dealloc)( id, SEL);
 #endif
 }
 #pragma mark - hook
+/*
 +(void) hookDealloc{
     static BOOL __swizzled = NO;
 	if ( NO == __swizzled )
@@ -81,6 +82,7 @@ static void (*__dealloc)( id, SEL);
         __dealloc( self, _cmd );
     }
 }
+ */
 #pragma mark - perform
 
 
@@ -110,7 +112,7 @@ static void (*__dealloc)( id, SEL);
 -(NSArray *) attributeList{
     NSUInteger			propertyCount = 0;
     objc_property_t     *properties = class_copyPropertyList( [self class], &propertyCount );
-    NSMutableArray *    array = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *    array = [[NSMutableArray alloc] init];
     for ( NSUInteger i = 0; i < propertyCount; i++ )
     {
         const char *name = property_getName(properties[i]);
@@ -186,7 +188,7 @@ static void (*__dealloc)( id, SEL);
 	else if ( [self isKindOfClass:[NSData class]] )
 	{
 		NSData * data = (NSData *)self;
-		return [[[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding] autorelease];
+		return [[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding];
 	}
 	else
 	{
@@ -350,7 +352,7 @@ static void (*__dealloc)( id, SEL);
 
 #pragma mark - message box
 -(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION{
-    UIAlertView *alter = [[[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:aCancel otherButtonTitles:nil] autorelease];
+    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:aCancel otherButtonTitles:nil];
     
     va_list args;
     va_start(args, otherTitles);
@@ -400,7 +402,7 @@ static void (*__dealloc)( id, SEL);
         objc_setAssociatedObject(self, NSObject_key_objectDic, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
-    [dic setObject:[[aBlock copy] autorelease] forKey:identifier];
+    [dic setObject:[aBlock copy] forKey:identifier];
 }
 
 -(void) sendObject:(id)anObject withIdentifier:(NSString *)identifier
@@ -439,7 +441,7 @@ static void (*__dealloc)( id, SEL);
         objc_setAssociatedObject(self, NSObject_key_EventBlockDic, dic, OBJC_ASSOCIATION_RETAIN);
     }
     
-    [dic setObject:[[aBlock copy] autorelease] forKey:identifier];
+    [dic setObject:[aBlock copy] forKey:identifier];
 }
 
 -(id)blockForEventWithIdentifier:(NSString *)identifier

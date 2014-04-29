@@ -42,7 +42,7 @@
     textView.textColor = [UIColor blackColor];
     [self.view addSubview:textView];
     self.tv = textView;
-    [textView release];
+
     BACKGROUND_BEGIN
     [self test];
     BACKGROUND_COMMIT
@@ -85,7 +85,7 @@
     [LKDBHelper clearTableData:[LKTest class]];
     
     
-    LKTestForeign* foreign = [[[LKTestForeign alloc]init] autorelease];
+    LKTestForeign* foreign = [[LKTestForeign alloc]init];
     foreign.address = @":asdasdasdsadasdsdas";
     foreign.postcode  = 123341;
     foreign.addid = 213214;
@@ -106,6 +106,9 @@
     test.error = @"nil";
     
     test.score = [[NSDate date] timeIntervalSince1970];
+    
+    test.data = [@"hahaha" dataUsingEncoding:NSUTF8StringEncoding];
+    
     addText(@"%f",test.score);
     //异步 插入第一条 数据   Insert the first
     [globalHelper insertToDB:test];
@@ -221,6 +224,5 @@
         [LKDBHelper clearNoneImage:[LKTest class] columns:[NSArray arrayWithObjects:@"img",nil]];
     }];
 }
-
 
 @end

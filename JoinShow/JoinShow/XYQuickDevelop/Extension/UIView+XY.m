@@ -17,12 +17,13 @@ DUMMY_CLASS(UIView_XY);
 @implementation UIView (XY)
 
 // objc_setAssociatedObject 对象在dealloc会自动释放
+/*
 -(void) UIView_dealloc{
     objc_removeAssociatedObjects(self);
     XY_swizzleInstanceMethod([self class], @selector(UIView_dealloc), @selector(dealloc));
 	[self dealloc];
 }
-
+*/
 
 +(void) load{
 #if (1 ==  __TimeOut__ON__)
@@ -44,7 +45,6 @@ DUMMY_CLASS(UIView_XY);
 -(void) addTapGestureWithTarget:(id)target action:(SEL)action{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
     [self addGestureRecognizer:tap];
-    [tap release];
 }
 -(void) removeTapGesture{
     for (UIGestureRecognizer * gesture in self.gestureRecognizers)
@@ -59,10 +59,8 @@ DUMMY_CLASS(UIView_XY);
 -(void) addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];
     [self addGestureRecognizer:tap];
-    [tap release];
     
     objc_setAssociatedObject(self, UIView_key_tapBlock, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-  //  XY_swizzleInstanceMethod([self class], @selector(dealloc), @selector(UIView_dealloc));
 }
 -(void)actionTap{
     UIViewCategoryNormalBlock block = objc_getAssociatedObject(self, UIView_key_tapBlock);
@@ -72,7 +70,7 @@ DUMMY_CLASS(UIView_XY);
 
 /////////////////////////////////////////////////////////////
 -(void) addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha{
-    UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
     tmpView.tag = UIView_shadeTag;
     if (aColor) {
         tmpView.backgroundColor = aColor;
@@ -85,7 +83,7 @@ DUMMY_CLASS(UIView_XY);
     [tmpView addTapGestureWithTarget:target action:action];
 }
 -(void) addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha{
-    UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
     tmpView.tag = UIView_shadeTag;
     if (aColor) {
         tmpView.backgroundColor = aColor;
@@ -116,7 +114,7 @@ DUMMY_CLASS(UIView_XY);
 
 // 增加毛玻璃背景
 -(void) addBlurWithTarget:(id)target action:(SEL)action level:(int)lv{
-    UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
     tmpView.tag = UIView_shadeTag;
     [self addSubview:tmpView];
     tmpView.alpha = 0;
@@ -136,7 +134,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 -(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv{
-    UIView *tmpView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
+    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
     tmpView.tag = UIView_shadeTag;
     UIImage *img = [[self snapshot] stackBlur:lv];
     tmpView.layer.contents = (id)img.CGImage;
@@ -177,7 +175,6 @@ DUMMY_CLASS(UIView_XY);
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
     self.layer.mask = maskLayer;
-    [maskLayer release];
     
     return self;
 }
@@ -192,7 +189,7 @@ DUMMY_CLASS(UIView_XY);
 }
 /////////////////////////////////////////////////////////////
 -(UIActivityIndicatorView *) activityIndicatorViewShow{
-    UIActivityIndicatorView *aView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    UIActivityIndicatorView *aView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     aView.center = CGPointMake(self.bounds.size.width * .5, self.bounds.size.height * .5);
     aView.tag = UIView_activityIndicatorViewTag;
     [self addSubview:aView];

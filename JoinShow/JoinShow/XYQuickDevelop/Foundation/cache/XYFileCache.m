@@ -33,11 +33,6 @@ DEF_SINGLETON( XYFileCache );
 - (void)dealloc
 {
 	[NSObject cancelPreviousPerformRequestsWithTarget:self];
-    
-	self.cachePath = nil;
-	self.cacheUser = nil;
-	
-	[super dealloc];
 }
 
 - (NSString *)fileNameForKey:(NSString *)key

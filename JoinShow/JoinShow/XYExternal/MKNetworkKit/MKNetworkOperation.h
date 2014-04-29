@@ -307,7 +307,7 @@ typedef enum {
  *	If your request needs to be authenticated using a custom method (like a Web page/HTML Form), add a block method here
  *  and process the NSURLAuthenticationChallenge
  */
-@property (nonatomic, copy) MKNKAuthBlock authHandler;
+@property (nonatomic,  strong) MKNKAuthBlock authHandler;
 
 /*!
  *  @abstract Handler that you implement to monitor reachability changes

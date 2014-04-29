@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UILabel *tempLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)] autorelease];
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
         tempLabel.backgroundColor = [UIColor redColor];
         tempLabel.textColor = [UIColor whiteColor];
         tempLabel.text = @"-1";
@@ -44,7 +44,6 @@
 
 -(void)dealloc{
     NSLogDD
-    [super dealloc];
 }
 
 -(void) test{

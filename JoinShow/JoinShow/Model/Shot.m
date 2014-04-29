@@ -11,9 +11,10 @@
 @implementation Shot
 + (void)initialize
 {
-    [super initialize];
-    [self bindYYJSONKey:@"image_url" toProperty:@"imageURLString"];
-    [self bindYYJSONKey:@"player" toProperty:@"Player"];
+    if (self == [Shot class]) {
+        [self bindYYJSONKey:@"image_url" toProperty:@"imageURLString"];
+        [self bindYYJSONKey:@"player" toProperty:@"Player"];
+    }
 }
 
 @end

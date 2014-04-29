@@ -25,7 +25,7 @@ static CGFloat const SVPullToRefreshViewHeight = 60;
 
 @interface SVPullToRefreshView ()
 
-@property (nonatomic, copy) void (^pullToRefreshActionHandler)(void);
+@property (nonatomic,  strong) void (^pullToRefreshActionHandler)(void);
 
 @property (nonatomic, strong) SVPullToRefreshArrow *arrow;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;

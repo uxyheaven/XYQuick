@@ -43,8 +43,6 @@ DEF_SINGLETON( XYKeychain )
 - (void)dealloc
 {
 	self.defaultDomain = nil;
-	
-	[super dealloc];
 }
 
 + (void)setDefaultDomain:(NSString *)domain
@@ -86,30 +84,26 @@ DEF_SINGLETON( XYKeychain )
 	
 	domain = [domain stringByAppendingString:[XYSystemInfo appIdentifier]];
     
-	NSArray * keys = [[[NSArray alloc] initWithObjects: (NSString *) kSecClass, kSecAttrAccount, kSecAttrService, nil] autorelease];
-	NSArray * objects = [[[NSArray alloc] initWithObjects: (NSString *) kSecClassGenericPassword, key, domain, nil] autorelease];
+	NSArray * keys = [[NSArray alloc] initWithObjects: (__bridge NSString *) kSecClass, kSecAttrAccount, kSecAttrService, nil];
+	NSArray * objects = [[NSArray alloc] initWithObjects: (__bridge NSString *) kSecClassGenericPassword, key, domain, nil];
 	
-	NSMutableDictionary * query = [[[NSMutableDictionary alloc] initWithObjects: objects forKeys: keys] autorelease];
+	NSMutableDictionary * query = [[NSMutableDictionary alloc] initWithObjects: objects forKeys: keys];
 	NSMutableDictionary * attributeQuery = [query mutableCopy];
-	[attributeQuery setObject: (id) kCFBooleanTrue forKey:(id) kSecReturnAttributes];
+	[attributeQuery setObject: (id) kCFBooleanTrue forKey:(__bridge id) kSecReturnAttributes];
 	
 	NSDictionary * attributeResult = NULL;
-	OSStatus status = SecItemCopyMatching( (CFDictionaryRef)attributeQuery, (CFTypeRef *)&attributeResult );
-	
-	[attributeResult release];
-	[attributeQuery release];
+    CFTypeRef inTypeRef =  ( __bridge CFTypeRef ) attributeResult;
+	OSStatus status = SecItemCopyMatching( (__bridge CFDictionaryRef)attributeQuery, &inTypeRef );
 	
 	if ( noErr != status )
 		return nil;
 	
 	NSMutableDictionary * passwordQuery = [query mutableCopy];
-	[passwordQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
+	[passwordQuery setObject:(id)kCFBooleanTrue forKey:(__bridge id)kSecReturnData];
 	
 	NSData * resultData = nil;
-	status = SecItemCopyMatching( (CFDictionaryRef)passwordQuery, (CFTypeRef *)&resultData );
-    
-	[resultData autorelease];
-	[passwordQuery release];
+    CFTypeRef inTypeRef2 =  ( __bridge CFTypeRef ) resultData;
+	status = SecItemCopyMatching( (__bridge CFDictionaryRef)passwordQuery, &inTypeRef2 );
 	
 	if ( noErr != status )
 		return nil;
@@ -118,7 +112,7 @@ DEF_SINGLETON( XYKeychain )
 		return nil;
 	
 	NSString * password = [[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding];
-	return [password autorelease];
+	return password;
 }
 
 + (void)writeValue:(NSString *)value forKey:(NSString *)key
@@ -168,19 +162,19 @@ DEF_SINGLETON( XYKeychain )
 		if ( [password isEqualToString:value] )
 			return;
         
-		NSArray * keys = [[[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrService, kSecAttrLabel, kSecAttrAccount, nil] autorelease];
-		NSArray * objects = [[[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, domain, domain, key, nil] autorelease];
+		NSArray * keys = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClass, kSecAttrService, kSecAttrLabel, kSecAttrAccount, nil];
+		NSArray * objects = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClassGenericPassword, domain, domain, key, nil];
 		
-		NSDictionary * query = [[[NSDictionary alloc] initWithObjects:objects forKeys:keys] autorelease];
-		status = SecItemUpdate( (CFDictionaryRef)query, (CFDictionaryRef)[NSDictionary dictionaryWithObject:[value dataUsingEncoding:NSUTF8StringEncoding] forKey:(NSString *)kSecValueData] );
+		NSDictionary * query = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+		status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)[NSDictionary dictionaryWithObject:[value dataUsingEncoding:NSUTF8StringEncoding] forKey:(__bridge NSString *)kSecValueData] );
 	}
 	else
 	{
-		NSArray * keys = [[[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrService, kSecAttrLabel, kSecAttrAccount, kSecValueData, nil] autorelease];
-		NSArray * objects = [[[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, domain, domain, key, [value dataUsingEncoding:NSUTF8StringEncoding], nil] autorelease];
+		NSArray * keys = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClass, kSecAttrService, kSecAttrLabel, kSecAttrAccount, kSecValueData, nil];
+		NSArray * objects = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClassGenericPassword, domain, domain, key, [value dataUsingEncoding:NSUTF8StringEncoding], nil];
 		
-		NSDictionary * query = [[[NSDictionary alloc] initWithObjects: objects forKeys: keys] autorelease];
-		status = SecItemAdd( (CFDictionaryRef)query, NULL);
+		NSDictionary * query = [[NSDictionary alloc] initWithObjects: objects forKeys: keys];
+		status = SecItemAdd( (__bridge CFDictionaryRef)query, NULL);
 	}
 	
 	if ( noErr != status )
@@ -224,11 +218,11 @@ DEF_SINGLETON( XYKeychain )
 	
 	domain = [domain stringByAppendingString:[XYSystemInfo appIdentifier]];
     
-	NSArray * keys = [[[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil] autorelease];
-	NSArray * objects = [[[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, key, domain, kCFBooleanTrue, nil] autorelease];
+	NSArray * keys = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil];
+	NSArray * objects = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClassGenericPassword, key, domain, kCFBooleanTrue, nil];
 	
-	NSDictionary * query = [[[NSDictionary alloc] initWithObjects:objects forKeys:keys] autorelease];
-	SecItemDelete( (CFDictionaryRef)query );
+	NSDictionary * query = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+	SecItemDelete( (__bridge CFDictionaryRef)query );
 }
 
 - (BOOL)hasObjectForKey:(id)key

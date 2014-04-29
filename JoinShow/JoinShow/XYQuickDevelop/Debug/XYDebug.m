@@ -59,7 +59,6 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 						BorderView * border = [[BorderView alloc] initWithFrame:touch.view.bounds];
 						[touch.view addSubview:border];
 						[border startAnimation];
-						[border release];
 					}
 				}
 			}
@@ -122,7 +121,7 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 		}
 	}
 	
-	return [array autorelease];
+	return array;
 }
 +(void) breakPoint
 {
@@ -182,7 +181,6 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 
 - (void)dealloc
 {
-	[super dealloc];
 }
 
 @end

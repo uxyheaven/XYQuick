@@ -18,10 +18,12 @@
 #undef	NSLogDD
 #define NSLogD(fmt, ...) {NSLog((@"%s [Line %d] DEBUG: \n" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
 #define NSLogDD NSLogD(@"%@", @"");
+#define NSLogDSelf NSLogD(@"Class: %@", NSStringFromClass([self class]));
 
 #else
 #define NSLogD(format, ...)
 #define NSLogDD
+#define NSLogDSelf
 #endif
 
 

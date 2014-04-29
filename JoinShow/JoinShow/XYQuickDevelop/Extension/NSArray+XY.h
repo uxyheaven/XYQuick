@@ -15,9 +15,9 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 #pragma mark -
 
 @interface NSArray(XY)
-
-@property (nonatomic, readonly) NSArrayAppendBlock			APPEND;
-@property (nonatomic, readonly) NSMutableArray *			mutableArray;
+#pragma mark todo bug:
+@property (nonatomic, readonly, copy) NSArrayAppendBlock			APPEND;
+@property (nonatomic, readonly, strong) NSMutableArray *			mutableArray;
 
 - (NSArray *)head:(NSUInteger)count;
 - (NSArray *)tail:(NSUInteger)count;
@@ -31,9 +31,9 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 @interface NSMutableArray(XY)
 
-@property (nonatomic, readonly) NSMutableArrayAppendBlock	APPEND;
+@property (nonatomic, readonly, copy) NSMutableArrayAppendBlock	APPEND;
 
-+ (NSMutableArray *)nonRetainingArray;			// copy from Three20
+//+ (NSMutableArray *)nonRetainingArray;			// copy from Three20
 
 - (NSMutableArray *)pushHead:(NSObject *)obj;
 - (NSMutableArray *)pushHeadN:(NSArray *)all;
@@ -48,9 +48,11 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 - (NSMutableArray *)keepHead:(NSUInteger)n;
 - (NSMutableArray *)keepTail:(NSUInteger)n;
 
+/*
 - (void)insertObjectNoRetain:(id)anObject atIndex:(NSUInteger)index;
 - (void)addObjectNoRetain:(NSObject *)obj;
 - (void)removeObjectNoRelease:(NSObject *)obj;
 - (void)removeAllObjectsNoRelease;
+*/
 
 @end

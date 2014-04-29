@@ -11,8 +11,8 @@
 
 @interface XYTabBar ()
 
-@property (nonatomic, retain) NSMutableArray *items;
-@property (nonatomic, retain) UIImageView *backgroundView;
+@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) UIImageView *backgroundView;
 
 @end
 
@@ -72,7 +72,7 @@
 			[self.items addObject:btn];
 			[self addSubview:btn];
             
-            UIImageView *view = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+            UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectZero];
             self.animatedView = view;
             [self addSubview:view];
             
@@ -83,9 +83,6 @@
 
 - (void)dealloc
 {
-    self.items = nil;
-    self.backgroundView = nil;
-    [super dealloc];
 }
 
 /*
@@ -102,8 +99,7 @@
 
 -(void) setAnimatedView:(UIImageView *)view{
     if (_animatedView != view) {
-        [_animatedView release];
-        _animatedView = [view retain];
+        _animatedView = view;
         [self addSubview:_animatedView];
     }
 }

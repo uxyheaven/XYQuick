@@ -22,7 +22,7 @@
 
 @interface NSObject (XYObserveHelper)
 
-@property (nonatomic, readonly, retain) NSMutableDictionary *observers;
+@property (nonatomic, readonly, strong) NSMutableDictionary *observers;
 
 // default: selector = @selector(propertyChanged:), key = property, target = self
 -(void) observeWithObject:(id)object property:(NSString*)property;

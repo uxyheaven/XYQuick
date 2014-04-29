@@ -22,12 +22,12 @@
 }
 XY_SINGLETON(XYTimer)
 
-@property (nonatomic, readonly) NSMutableDictionary *delegates;
-@property (nonatomic, readonly) NSMutableDictionary *timers;
-@property (nonatomic, readonly) NSMutableDictionary *accumulatorTimes;
+@property (nonatomic, readonly, strong) NSMutableDictionary *delegates;
+@property (nonatomic, readonly, strong) NSMutableDictionary *timers;
+@property (nonatomic, readonly, strong) NSMutableDictionary *accumulatorTimes;
 
 // 默认的定时器
-@property (nonatomic, assign) id<XYTimerDelegate> delegate;
+@property (nonatomic, weak) id<XYTimerDelegate> delegate;
 -(void) startTimerWithInterval:(NSTimeInterval)ti;
 -(void) stopTimer;
 -(void) pauseTimer;

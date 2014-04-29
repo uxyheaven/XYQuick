@@ -41,7 +41,7 @@ typedef enum{
     NSInteger           lastImgIndex;       // 上一张编号,用于优化
 
 }
-@property (nonatomic, retain) SpriteInfo *model;
+@property (nonatomic, strong) SpriteInfo *model;
 
 @property (nonatomic, assign) BOOL isTransformLR;       // 左右翻转
 @property (nonatomic, assign) BOOL isTransformUD;       // 上下翻转
@@ -49,7 +49,7 @@ typedef enum{
 @property (nonatomic, assign) BOOL isReverseOrder;  // 反转播放顺序
 @property (nonatomic, assign) BOOL isPlayAudio;  // 播放生效
 
-@property (nonatomic, assign) id<XYSpriteDelegate> delegate;
+@property (nonatomic, weak) id<XYSpriteDelegate> delegate;
 #pragma mark -暂不修改 interval delay
 @property (nonatomic, assign, readonly) NSTimeInterval        interval;  // 间隔
 @property (nonatomic, assign, readonly) NSTimeInterval        delay;         // 延时
@@ -58,8 +58,8 @@ typedef enum{
 @property (nonatomic, assign) NSTimeInterval        duration;      // 持续时间
 @property (nonatomic, assign) NSInteger             repeatCount;        // 重复次数 repeat forever if 0
 @property (nonatomic, assign) NSInteger             curImageIndex;
-@property (nonatomic, retain) NSMutableArray        *imageNameArray;
-@property (nonatomic, copy)   NSString              *aniPath;
+@property (nonatomic, strong) NSMutableArray        *imageNameArray;
+@property (nonatomic, copy) NSString              *aniPath;
 @property (nonatomic, assign) NSInteger             firstImgIndex;      // 默认从0开始
 
 // play all asc顺序, if (from == -1) && (to == 0); play all dec降序, if (from == 0) && (to == -1)

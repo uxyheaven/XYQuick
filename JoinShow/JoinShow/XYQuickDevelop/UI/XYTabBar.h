@@ -17,18 +17,18 @@
 
 #pragma mark- view
 // 定义view
-@property (nonatomic, retain, readonly) NSMutableArray *items;            // 选项
-@property (nonatomic, retain, readonly) UIImageView *backgroundView;      // 背景
-@property (nonatomic, retain) UIImageView *animatedView;        // 选中item时的图片
+@property (nonatomic, strong, readonly) NSMutableArray *items;            // 选项
+@property (nonatomic, strong, readonly) UIImageView *backgroundView;      // 背景
+@property (nonatomic, strong) UIImageView *animatedView;        // 选中item时的图片
 
 
 #pragma mark - v对c
 // 1 target-action
 
 // 2 delegate(should, will, did)
-@property (nonatomic, assign) id<XYTabBarDelegate> delegate;
+@property (nonatomic, weak) id<XYTabBarDelegate> delegate;
 // 3 dataSource(count, data at)
-@property (nonatomic, assign) id dataSource;
+@property (nonatomic, weak) id dataSource;
 
 
 #pragma mark- c直接调用

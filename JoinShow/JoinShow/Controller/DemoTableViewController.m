@@ -57,7 +57,6 @@
 {
     NSLogDD;
     self.list = nil;
-    [super dealloc];
 }
 - (void)viewDidLoad
 {
@@ -69,7 +68,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *item = [[[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickRight:)] autorelease];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickRight:)];
     self.navigationItem.rightBarButtonItem = item;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
@@ -175,7 +174,7 @@
     NSDictionary *dic = [self.list objectAtIndex:indexPath.row];
 
     if ([[dic objectForKey:@"className"] isEqualToString:@"TestVC2"]) {
-       UIViewController *vc = [[[NSClassFromString([dic objectForKey:@"className"]) alloc] init] autorelease];
+       UIViewController *vc = [[NSClassFromString([dic objectForKey:@"className"]) alloc] init];
         vc.title = [dic objectForKey:@"title"];
         [self.navigationController pushViewController:vc animated:YES];
         return;

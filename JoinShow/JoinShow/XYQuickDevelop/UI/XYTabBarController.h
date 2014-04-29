@@ -19,9 +19,9 @@
 
 #pragma mark- model
 // 定义model
-@property(nonatomic, assign) NSUInteger selectedIndex;
-@property(nonatomic, assign, readonly) UIViewController *selectedViewController;
-@property (nonatomic, retain, readonly) NSArray *viewControllers;
+@property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, weak, readonly) UIViewController *selectedViewController;
+@property (nonatomic, strong, readonly) NSArray *viewControllers;
 
 @property (nonatomic, assign) CGRect tabBarFrame;   // the default height is 49 at bottom.
 @property (nonatomic, assign) CGRect contentFrame;  // the default frame is self.view.bounds without tabBarFrame
@@ -29,10 +29,10 @@
 
 #pragma mark- view
 // 定义view
-@property (nonatomic, retain, readonly) XYTabBar *tabBar;
-@property (nonatomic, retain, readonly) UIView *contentView; // 自视图控制器显示的view
+@property (nonatomic, strong, readonly) XYTabBar *tabBar;
+@property (nonatomic, strong, readonly) UIView *contentView; // 子视图控制器显示的view
 
-@property (nonatomic, assign) id<XYTabBarControllerDelegate> delegate;
+@property (nonatomic, weak) id<XYTabBarControllerDelegate> delegate;
 
 
 // item: @{@"normal" :img1, @"highlighted" :img2, @"selected" :img3, @"disabled":img4, @"text": text}
@@ -55,7 +55,7 @@
 #pragma mark-
 #pragma mark- XYTabBarController()
 @interface UIViewController (XYTabBarController)
-@property(nonatomic, retain, readonly) XYTabBarController *xyTabBarController;
+@property(nonatomic, weak, readonly) XYTabBarController *xyTabBarController;
 @end
 
 

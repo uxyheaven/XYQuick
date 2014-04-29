@@ -2,6 +2,9 @@
 
 {XY} 快速开发框架是一个常用方法与常用第三方库的集合.封装了网络请求,数据持久化,数据缓存（文件缓冲,内存缓存）,kvo,Notification,delegate,动画,图片处理,常用Controller,常用View.
 
+* 本库采用ARC
+* demo的代码很不全,有些许问题,待下个版本重构
+
 ### XYQuickDevelop
 库的代码
 
@@ -10,11 +13,13 @@ XYTimer 定时器类.
 
 XYDataLite 轻量形数据持久化, 基于NSUserDefaults
 
-XYObserve KVO的简单封装
+XYObserve KVO的封装
 
 XYSandbox 沙箱路径
 
-XYObjectCache 对象缓存类,包含内存缓存文件缓存等
+XYSystemInfo 系统信息
+
+/cache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults
 
 ##### UI
 XYParallaxHelper 实现类似ios7 视图差效果.
@@ -29,6 +34,14 @@ XYSpriteHelper 精灵管理类
 
 XYAnimate UIView动画的封装
 
+XYTabBarController 自定义的UITabBarController
+
+##### BaseClass
+XYBaseViewController UIViewController基类
+
+XYBaseTableViewController UITableViewController基类
+
+
 ### XYExternal
 所有的第三方库在这里,
 
@@ -39,13 +52,14 @@ XYAnimate UIView动画的封装
 ---
 
 ## Installation
+* 本库基于ARC
 * 拷贝XYQuickDevelop到项目里
 * 根据需要拷贝XYExternal到项目里
 * 在XYExternalPrecompile.h关闭不需要的第三方库
-* 根据说明设置文件 -fobjc-arc 或 -fno-objc-arc
+//* 根据说明设置文件 -fobjc-arc 或 -fno-objc-arc
 * 添加本库以及第三方需要的framework
 * 在需要用的文件或者pch里 `#import "XYQuickDevelop.h", #import "XYExternal.h"`
-* 在 `XYPrecompile.h ,XYExternalPrecompile.h` 开启或者关闭需要的编译选项
+* 在 `XYPrecompile.h ,XYExternalPrecompile.h` 开启或者关闭需要的编译选项()
 
 
 
@@ -53,14 +67,16 @@ XYAnimate UIView动画的封装
 ### External 使用的第三方库
 * 开启ARC: -fobjc-arc
 * 无 ARC: -fno-objc-arc
-* XYQuickDevelop 和 XYExternal/Extension 下面的文件都是MRC
+* XYQuickDevelop 和 XYExternal/Extension 下面的文件都是ARC
 * 参考了 [BeeFramework](https://github.com/gavinkwoe/BeeFramework/blob/master/document)
 
 #### CocosDenshion 
+* 已改ARC,未测试
 * cocos2d音频管理
 * 增加了播放音效循环的方法
 
 #### OpenUDID
+* ARC,MRC兼容
 * UDID替代方案
 
 #### MKNetWorkKit
@@ -73,11 +89,12 @@ XYAnimate UIView动画的封装
 
 #### LKDBHelper
 * arc
-* 基于FMDB
+* 基于FMDB(ARC,MRC兼容)
 * sqlite 数据库全自动操作
 
 ---
 #### MBProgressHUD
+* (ARC,MRC兼容)
 * 进度指示器
 
 #### SVPullToRefresh

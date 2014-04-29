@@ -82,7 +82,7 @@ XY_SINGLETON(XYKeyboardHelper)
 /*****************XYSegmentedNextPrevious***********************/
 @interface XYSegmentedNextPrevious : UISegmentedControl
 {
-    id buttonTarget;
+    __weak id buttonTarget;
     SEL previousSelector;
     SEL nextSelector;
 }

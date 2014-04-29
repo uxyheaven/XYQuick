@@ -24,10 +24,6 @@ DEF_SINGLETON(XYTimer)
 
 - (void)dealloc
 {
-    [_delegates release];
-    [_timers release];
-    [_accumulatorTimes release];
-    [super dealloc];
 }
 - (void)setDelegate:(id)iDelegate
 {
@@ -85,7 +81,6 @@ DEF_SINGLETON(XYTimer)
     timer = [[NSTimer alloc] initWithFireDate:date interval:ti target:self selector:@selector(runDefaultTimer:) userInfo:key repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     [_timers setObject:timer forKey:key];
-    [timer release];
 }
 -(void) stopTimer:(NSString *)key{
     NSTimer *timer = [_timers objectForKey:key];

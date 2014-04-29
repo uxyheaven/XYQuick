@@ -12,7 +12,7 @@ typedef void(^UIViewController_block_void) (void);
 
 @interface UIViewController (XY)
 
-@property (nonatomic, retain) id parameters; // 参数
+@property (nonatomic, strong) id parameters; // 参数
 
 // 导航
 -(void) pushVC:(NSString *)vcName;

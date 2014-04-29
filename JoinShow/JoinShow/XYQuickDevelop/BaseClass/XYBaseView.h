@@ -20,9 +20,9 @@
 // 1 target-action
 
 // 2 delegate(should, will, did)
-//@property (nonatomic, assign) id delegate;
+//@property (nonatomic, weak) id delegate;
 // 3 dataSource(count, data at)
-//@property (nonatomic, assign) id dataSource;
+//@property (nonatomic, weak) id dataSource;
 
 
 #pragma mark- c直接调用

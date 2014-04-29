@@ -40,7 +40,6 @@
 {
     NSLogDD
     [self unregisterAllMessage];
-    [super dealloc];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -59,21 +58,21 @@
 }
 
 - (IBAction)clickBase:(id)sender {
-    UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
+    UIView *view = [[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
     view.backgroundColor = [UIColor redColor];
     
     [view popupWithtype:PopupViewOption_none succeedBlock:nil dismissBlock:nil];
 }
 
 - (IBAction)clickDark:(id)sender {
-    UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
+    UIView *view = [[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
     view.backgroundColor = [UIColor redColor];
     
     [view popupWithtype:PopupViewOption_colorLump succeedBlock:nil dismissBlock:nil];
 }
 
 - (IBAction)clickBlur:(id)sender {
-    UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)] autorelease];
+    UIView *view = [[TestView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
     view.backgroundColor = [UIColor redColor];
     
     [view popupWithtype:PopupViewOption_blur succeedBlock:nil dismissBlock:^(UIView *aView) {
@@ -82,7 +81,7 @@
 }
 
 - (IBAction)clickAnimation:(id)sender {
-    UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 200, 100, 100)] autorelease];
+    UIView *view = [[TestView alloc] initWithFrame:CGRectMake(50, 200, 100, 100)];
     view.backgroundColor = [UIColor redColor];
     
     [[XYPopupViewHelper sharedInstance] setShowAnimationBlock:^(UIView *aView) {
@@ -96,7 +95,7 @@
 }
 
 - (IBAction)clickAlertView:(id)sender {
-    UIAlertView *alertview = [[[UIAlertView alloc] initWithTitle:@"title" message:@"line1\nline2\nline3\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", @"ok2", nil] autorelease];
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"title" message:@"line1\nline2\nline3\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4\nline4" delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", @"ok2", nil];
     alertview.tag = 100001;
     [alertview handlerDidPresent:^(UIAlertView *alertView) {
         /*
@@ -112,7 +111,7 @@
     }];
     [alertview show];
 
-    UIView *view = [[[TestView alloc] initWithFrame:CGRectMake(50, 200, 100, 100)] autorelease];
+    UIView *view = [[TestView alloc] initWithFrame:CGRectMake(50, 200, 100, 100)];
     view.tag = 1111;
     view.backgroundColor = [UIColor redColor];
     
@@ -121,7 +120,7 @@
 }
 
 - (IBAction)clickKeywindow:(id)sender {
-    UIWindow *alertLevelWindow = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    UIWindow *alertLevelWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     alertLevelWindow.windowLevel = UIWindowLevelAlert;
     alertLevelWindow.backgroundColor = [UIColor redColor];
     [alertLevelWindow makeKeyAndVisible];

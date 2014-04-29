@@ -64,6 +64,6 @@ static NSString* const LKSQL_Mapping_Binding          =   @"LKDBBinding";
 static NSString* const LKSQL_Mapping_UserCalculate    =   @"LKDBUserCalculate";
 
 //Object-c type converted to SQLite type  把Object-c 类型 转换为sqlite 类型
-extern inline NSString* LKSQLTypeFromObjcType(NSString *objcType);
+extern NSString* LKSQLTypeFromObjcType(NSString *objcType);
 
 

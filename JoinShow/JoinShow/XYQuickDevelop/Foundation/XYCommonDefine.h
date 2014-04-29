@@ -95,9 +95,12 @@ DUMMY_CLASS(UIColor+YYAdd)
 
 /**************************************************************/
 // block 安全self
-#define DEF_WEAKSELF     __block typeof(id) weakSelf = self;
-#define DEF_WEAKSELF_( CLASSNAME )     __block typeof( CLASSNAME *) weakSelf = self;
-
+// mrc
+//#define DEF_WEAKSELF     __block typeof(id) weakSelf = self;
+//#define DEF_WEAKSELF_( __CLASSNAME__ )     __block typeof( __CLASSNAME__ *) weakSelf = self;
+// arc
+#define DEF_WEAKSELF __weak __typeof(self) weakSelf = self;
+#define DEF_WEAKSELF_( __CLASSNAME__ ) __weak typeof( __CLASSNAME__ *) weakSelf = self;
 /**************************************************************/
 static __inline__ CGRect CGRectFromCGSize( CGSize size ) {
     return CGRectMake( 0, 0, size.width, size.height );

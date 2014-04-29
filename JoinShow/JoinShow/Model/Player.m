@@ -12,8 +12,9 @@
 
 + (void)initialize
 {
-    [super initialize];
-    [self bindYYJSONKey:@"website_url" toProperty:@"webSiteURLString"];
+    if (self == [Player class]){
+        [self bindYYJSONKey:@"website_url" toProperty:@"webSiteURLString"];
+    }
 }
 
 @end

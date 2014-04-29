@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface JsonTestEntity : NSObject
-@property (nonatomic, retain) NSArray *array;
-@property (nonatomic, retain) NSDictionary *dic;
+@property (nonatomic, strong) NSArray *array;
+@property (nonatomic, strong) NSDictionary *dic;
 @end

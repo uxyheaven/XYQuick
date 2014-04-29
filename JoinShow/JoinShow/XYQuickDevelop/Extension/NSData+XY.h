@@ -10,7 +10,7 @@
 
 @interface NSData (XY)
 
-@property (nonatomic, readonly) NSData          * MD5;
-@property (nonatomic, readonly) NSString        * MD5String;
+@property (nonatomic, readonly, strong) NSData          * MD5;
+@property (nonatomic, readonly, strong) NSString        * MD5String;
 
 @end

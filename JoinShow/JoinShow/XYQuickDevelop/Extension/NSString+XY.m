@@ -60,14 +60,13 @@ DUMMY_CLASS(NSString_XY);
 		
 		NSMutableString * copy = [self mutableCopy];
 		[copy appendString:append];
-		[append release];
         
 		va_end( args );
 		
-		return [copy autorelease];
+		return copy;
 	};
     
-	return [[block copy] autorelease];
+	return [block copy];
 }
 
 - (NSStringAppendBlock)LINE
@@ -83,17 +82,16 @@ DUMMY_CLASS(NSString_XY);
 			
 			NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
 			[copy appendString:append];
-			[append release];
             
 			va_end( args );
 		}
         
 		[copy appendString:@"\n"];
         
-		return [copy autorelease];
+		return copy;
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy];
 }
 
 - (NSStringReplaceBlock)REPLACE
@@ -103,7 +101,7 @@ DUMMY_CLASS(NSString_XY);
 		return [self stringByReplacingOccurrencesOfString:string1 withString:string2];
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy];
 }
 
 - (NSArray *)allURLs
@@ -359,12 +357,15 @@ DUMMY_CLASS(NSString_XY);
 
 - (NSString *)URLEncoding
 {
-	NSString * result = (NSString *)CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault,
-																			(CFStringRef)self,
-																			NULL,
-																			(CFStringRef)@"!*'();:@&=+$,/?%#[]",
-																			kCFStringEncodingUTF8 );
-	return [result autorelease];
+    CFStringRef aCFString = CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault,
+                                                                    (CFStringRef)self,
+                                                                    NULL,
+                                                                    (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                    kCFStringEncodingUTF8 );
+	NSString * result = (NSString *)CFBridgingRelease(aCFString);
+    CFRelease(aCFString);
+    
+	return result;
 }
 
 - (NSString *)URLDecoding
@@ -788,14 +789,13 @@ DUMMY_CLASS(NSString_XY);
 		
 		NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
 		[self appendString:append];
-		[append release];
 		
 		va_end( args );
         
 		return self;
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy] ;
 }
 
 - (NSMutableStringAppendBlock)LINE
@@ -809,7 +809,6 @@ DUMMY_CLASS(NSString_XY);
 			
 			NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
 			[(NSMutableString *)self appendString:append];
-			[append release];
 			
 			va_end( args );
 		}
@@ -819,7 +818,7 @@ DUMMY_CLASS(NSString_XY);
 		return self;
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy] ;
 }
 
 - (NSMutableStringReplaceBlock)REPLACE
@@ -834,7 +833,7 @@ DUMMY_CLASS(NSString_XY);
 		return self;
 	};
 	
-	return [[block copy] autorelease];
+	return [block copy] ;
 }
 
 @end

@@ -10,9 +10,9 @@
 
 @interface XYTabBarController ()
 
-@property (nonatomic, retain) NSMutableArray *viewControllers;
-@property (nonatomic, retain) NSArray *tempItems;
-@property (nonatomic, retain) UIView *contentView;
+@property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) NSArray *tempItems;
+@property (nonatomic, strong) UIView *contentView;
 
 @end
 
@@ -53,17 +53,15 @@
 
 -(void) destroyFields {
     [super destroyFields];
-    
-    self.viewControllers = nil;
 }
 
 -(void) createViews {
     [super createViews];
     
-    _contentView = [[[UIView alloc] initWithFrame:_contentFrame] autorelease];
+    _contentView = [[UIView alloc] initWithFrame:_contentFrame];
     [self.view addSubview:_contentView];
     
-    _tabBar = [[[XYTabBar alloc] initWithFrame:_tabBarFrame items:_tempItems] autorelease];
+    _tabBar = [[XYTabBar alloc] initWithFrame:_tabBarFrame items:_tempItems];
     [self.view addSubview:_tabBar];
 
     self.tempItems = nil;
@@ -72,7 +70,7 @@
         [self setupItem:_tabBar.items[i] index:i];
     }
     
-    UIImageView *view = [[[UIImageView alloc] initWithFrame:CGRectZero] autorelease];
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectZero];
     view.alpha = 1;
     view.backgroundColor = [UIColor yellowColor];
     _tabBar.animatedView = view;
@@ -91,8 +89,6 @@
 
 -(void) destroyEvents {
     [super destroyEvents];
-    
-    _tabBar.delegate = nil;
 }
 
 -(void) loadData {

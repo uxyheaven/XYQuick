@@ -14,7 +14,5 @@
 {
     self.array = nil;
     self.dic = nil;
-    
-    [super dealloc];
 }
 @end

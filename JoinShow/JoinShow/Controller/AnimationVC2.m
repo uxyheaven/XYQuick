@@ -50,7 +50,6 @@
 - (void)dealloc
 {
     NSLogDD
-    [super dealloc];
 }
 -(void) clickPlay1{
     UIView *tempView = [self.view viewWithTag:300001];
@@ -61,7 +60,7 @@
     view.tag = 300001;
     [self.view addSubview:view];
     __block UIView *safeView = view;
-    XYAnimateSerialStep *steps = [[[XYAnimateSerialStep alloc] init] autorelease];
+    XYAnimateSerialStep *steps = [[XYAnimateSerialStep alloc] init];
     
     XYAnimateStep *step = [XYAnimateStep duration:1 animate:^{
         safeView.center = CGPointMake(safeView.center.x, safeView.center.y + 100);

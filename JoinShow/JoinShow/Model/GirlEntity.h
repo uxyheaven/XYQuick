@@ -10,7 +10,7 @@
 
 @interface GirlEntity : NSObject
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic,  strong) NSString *name;
 
 -(void) talk;
 

@@ -19,9 +19,9 @@
 XY_SINGLETON(XYSpriteHelper)
 
 // 采用统一的定时器来刷新 sprite
-@property (nonatomic, readonly) NSTimer                   *timer;
-@property (nonatomic, assign)   NSTimeInterval            interval;       // 定时器间隔
-@property (nonatomic, readonly) NSMutableDictionary       *sprites;       // 精灵
+@property (nonatomic, readonly, strong) NSTimer                     *timer;
+@property (nonatomic, assign) NSTimeInterval                        interval;       // 定时器间隔
+@property (nonatomic, readonly, strong) NSMutableDictionary         *sprites;       // 精灵
 
 -(void) startTimer;      // 开期定时器
 -(void) pauseTimer;

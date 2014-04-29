@@ -39,10 +39,6 @@ DEF_SINGLETON(XYObjectCache)
 
 -(void) dealloc
 {
-	self.memoryCache = nil;
-	self.fileCache = nil;
-    
-    [super dealloc];
 }
 
 -(void) registerObjectClass:(Class)aClass{
@@ -89,13 +85,13 @@ DEF_SINGLETON(XYObjectCache)
 	if ( fullPath )
 	{
         if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
-            anObject = [[[UIImage alloc] initWithContentsOfFile:fullPath] autorelease];
+            anObject = [[UIImage alloc] initWithContentsOfFile:fullPath];
         } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
-            anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
+            anObject = [[NSData alloc] initWithContentsOfFile:fullPath];
         } else if ([self.objectClass isSubclassOfClass:[NSString class]]){
-            anObject = [[[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil] autorelease];
+            anObject = [[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
         } else if (1){
-            anObject = [[[NSData alloc] initWithContentsOfFile:fullPath] autorelease];
+            anObject = [[NSData alloc] initWithContentsOfFile:fullPath];
         }
         
 		id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];

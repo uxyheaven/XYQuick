@@ -22,13 +22,13 @@
 +(void)dbDidUpdated:(NSObject*)entity result:(BOOL)result;
 
 +(BOOL)dbWillDelete:(NSObject*)entity;
-+(void)dbDidIDeleted:(NSObject*)entity result:(BOOL)result;
++(void)dbDidDeleted:(NSObject*)entity result:(BOOL)result;
 
 
 //only simplify synchronous function
 +(int)rowCountWithWhere:(id)where;
 
-+(NSMutableArray*)searchColumn:(NSString*)column where:(id)where orderBy:(NSString*)orderBy offset:(int)offset count:(int)count;
++(NSMutableArray*)searchColumn:(id)columns where:(id)where orderBy:(NSString*)orderBy offset:(int)offset count:(int)count;
 +(NSMutableArray*)searchWithWhere:(id)where orderBy:(NSString*)orderBy offset:(int)offset count:(int)count;
 +(id)searchSingleWithWhere:(id)where orderBy:(NSString*)orderBy;
 
@@ -43,4 +43,5 @@
 - (BOOL)saveToDB;
 - (BOOL)deleteToDB;
 - (BOOL)isExistsFromDB;
+
 @end

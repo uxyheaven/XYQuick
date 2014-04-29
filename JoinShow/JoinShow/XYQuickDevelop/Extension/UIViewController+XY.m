@@ -35,9 +35,9 @@
     UIViewController *vc = nil;
     
     if ([class conformsToProtocol:@protocol(XYSwitchControllerProtocol)]) {
-        vc = [[[NSClassFromString(vcName) alloc] initWithObject:object] autorelease];
+        vc = [[NSClassFromString(vcName) alloc] initWithObject:object];
     }else {
-        vc = [[[NSClassFromString(vcName) alloc] init] autorelease];
+        vc = [[NSClassFromString(vcName) alloc] init];
         vc.parameters = object;
     }
 
@@ -59,15 +59,15 @@
     UIViewController *vc = nil;
     
     if ([class conformsToProtocol:@protocol(XYSwitchControllerProtocol)]) {
-        vc = [[[NSClassFromString(vcName) alloc] initWithObject:object] autorelease];
+        vc = [[NSClassFromString(vcName) alloc] initWithObject:object];
     }else {
-        vc = [[[NSClassFromString(vcName) alloc] init] autorelease];
+        vc = [[NSClassFromString(vcName) alloc] init];
         vc.parameters = object;
     }
     
     UINavigationController *nvc = nil;
     if (nvcName) {
-        nvc = [[[NSClassFromString(vcName) alloc] initWithRootViewController:vc] autorelease];
+        nvc = [[NSClassFromString(vcName) alloc] initWithRootViewController:vc];
         [self presentViewController:nvc animated:YES completion:block];
         
         return;

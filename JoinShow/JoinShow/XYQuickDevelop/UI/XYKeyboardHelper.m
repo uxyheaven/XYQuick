@@ -57,7 +57,7 @@
     CGRect topViewBeginRect;
     
     //TextField or TextView object.
-    UIView *textFieldView;
+    __weak UIView *textFieldView;
     
     //To save keyboard animation duration.
     CGFloat animationDuration;
@@ -395,15 +395,15 @@ DEF_SINGLETON(XYKeyboardHelper)
 -(void) addDoneOnKeyboardWithTarget:(id)target action:(SEL)action
 {
     //Creating a toolBar for phoneNumber keyboard
-    UIToolbar *toolbar = [[[UIToolbar alloc] init] autorelease];
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
     [toolbar sizeToFit];
     
     //Create a button to show on phoneNumber keyboard to resign it. Adding a selector to resign it.
-    UIBarButtonItem *doneButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:action] autorelease];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:action];
     
     //Create a fake button to maintain flexibleSpace between doneButton and nilButton. (Actually it moves done button to right side.
-    UIBarButtonItem *nilButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Adding button to toolBar.
     [toolbar setItems:[NSArray arrayWithObjects: nilButton,doneButton, nil]];
@@ -415,19 +415,19 @@ DEF_SINGLETON(XYKeyboardHelper)
 -(void) addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction
 {
     //Creating a toolBar for phoneNumber keyboard
-    UIToolbar *toolbar = [[[UIToolbar alloc] init] autorelease];
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
     [toolbar sizeToFit];
     
     //Create a fake button to maintain flexibleSpace between doneButton and nilButton. (Actually it moves done button to right side.
-    UIBarButtonItem *nilButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Create a button to show on phoneNumber keyboard to resign it. Adding a selector to resign it.
-    UIBarButtonItem *doneButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:doneAction] autorelease];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:doneAction];
     
-    XYSegmentedNextPrevious *segControl = [[[XYSegmentedNextPrevious alloc] initWithTarget:target previousSelector:previousAction nextSelector:nextAction] autorelease];
+    XYSegmentedNextPrevious *segControl = [[XYSegmentedNextPrevious alloc] initWithTarget:target previousSelector:previousAction nextSelector:nextAction];
     //
-    UIBarButtonItem *segButton = [[[UIBarButtonItem alloc] initWithCustomView:segControl] autorelease];
+    UIBarButtonItem *segButton = [[UIBarButtonItem alloc] initWithCustomView:segControl];
     
     //Adding button to toolBar.
     [toolbar setItems:[NSArray arrayWithObjects: segButton,nilButton,doneButton, nil]];
@@ -472,15 +472,15 @@ DEF_SINGLETON(XYKeyboardHelper)
 -(void) addDoneOnKeyboardWithTarget:(id)target action:(SEL)action
 {
     //Creating a toolBar for phoneNumber keyboard
-    UIToolbar *toolbar = [[[UIToolbar alloc] init] autorelease];
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
     [toolbar sizeToFit];
     
     //Create a button to show on phoneNumber keyboard to resign it. Adding a selector to resign it.
-    UIBarButtonItem *doneButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:action] autorelease];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:action];
     
     //Create a fake button to maintain flexibleSpace between doneButton and nilButton. (Actually it moves done button to right side.
-    UIBarButtonItem *nilButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Adding button to toolBar.
     [toolbar setItems:[NSArray arrayWithObjects: nilButton,doneButton, nil]];
@@ -492,19 +492,19 @@ DEF_SINGLETON(XYKeyboardHelper)
 -(void) addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction
 {
     //Creating a toolBar for phoneNumber keyboard
-    UIToolbar *toolbar = [[[UIToolbar alloc] init] autorelease];
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
     [toolbar sizeToFit];
     
     //Create a fake button to maintain flexibleSpace between doneButton and nilButton. (Actually it moves done button to right side.
-    UIBarButtonItem *nilButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     //Create a button to show on phoneNumber keyboard to resign it. Adding a selector to resign it.
-    UIBarButtonItem *doneButton =[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:doneAction] autorelease];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:doneAction];
     
-    XYSegmentedNextPrevious *segControl = [[[XYSegmentedNextPrevious alloc] initWithTarget:target previousSelector:previousAction nextSelector:nextAction] autorelease];
+    XYSegmentedNextPrevious *segControl = [[XYSegmentedNextPrevious alloc] initWithTarget:target previousSelector:previousAction nextSelector:nextAction];
     //
-    UIBarButtonItem *segButton = [[[UIBarButtonItem alloc] initWithCustomView:segControl] autorelease];
+    UIBarButtonItem *segButton = [[UIBarButtonItem alloc] initWithCustomView:segControl];
     
     //Adding button to toolBar.
     [toolbar setItems:[NSArray arrayWithObjects: segButton,nilButton,doneButton, nil]];

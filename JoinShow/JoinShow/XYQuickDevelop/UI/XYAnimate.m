@@ -17,7 +17,7 @@
 @interface XYAnimateStep ()
 -(NSArray*) animateStepArray;
 -(XYAnimateStepBlock) animationStep:(BOOL)animated;
-@property (nonatomic, retain) NSMutableArray *consumableSteps;
+@property (nonatomic, strong) NSMutableArray *consumableSteps;
 
 @end
 
@@ -27,7 +27,7 @@
    duration:(NSTimeInterval)duration
     option:(UIViewAnimationOptions)option
     animate:(XYAnimateStepBlock)step{
-    XYAnimateStep *anStep = [[[XYAnimateStep alloc] init] autorelease];
+    XYAnimateStep *anStep = [[XYAnimateStep alloc] init];
 	if (anStep) {
 		anStep.delay = delay;
 		anStep.duration = duration;
@@ -48,9 +48,6 @@
 }
 - (void)dealloc
 {
-    self.consumableSteps = nil;
-    self.step = nil;
-    [super dealloc];
 }
 
 + (void) runBlock:(XYAnimateStepBlock)block afterDelay:(NSTimeInterval)delay {
@@ -70,7 +67,7 @@
 
 - (void) runAnimated:(BOOL)animated{
     if (self.consumableSteps == nil) {
-		self.consumableSteps = [[[NSMutableArray alloc] initWithArray:[self animateStepArray]] autorelease];
+		self.consumableSteps = [[NSMutableArray alloc] initWithArray:[self animateStepArray]];
 	}
 	if ([self.consumableSteps count] == 0) { // recursion anchor
 		self.consumableSteps = nil;
@@ -110,7 +107,7 @@
     [self runAnimated:YES];
 }
 - (NSString*) description {
-	NSMutableString* result = [[[NSMutableString alloc] initWithCapacity:100] autorelease];
+	NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
 	[result appendString:@"\n["];
 	if (self.delay > 0.0) {
 		[result appendFormat:@"after:%.1f ", self.delay];
@@ -119,7 +116,7 @@
 		[result appendFormat:@"for:%.1f ", self.duration];
 	}
 	if (self.option > 0) {
-		[result appendFormat:@"options:%d ", self.option];
+		[result appendFormat:@"options:%lu ", self.option];
 	}
 	[result appendFormat:@"animate:%@", self.step];
 	[result appendString:@"]"];
@@ -130,7 +127,7 @@
 #pragma mark - XYAnimateSerialStep
 @implementation XYAnimateSerialStep
 +(id) animate{
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 - (id)init
 {
@@ -143,8 +140,6 @@
 - (void)dealloc
 {
     NSLogDD
-    [_steps release];
-    [super dealloc];
 }
 -(id) addStep:(XYAnimateStep *)aStep{
     if (aStep && self != aStep) {
@@ -206,7 +201,7 @@
 #pragma mark - XYAnimateParallelStep
 @implementation XYAnimateParallelStep
 +(id) animate{
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 - (id)init
 {
@@ -225,8 +220,6 @@
 - (void)dealloc
 {
     NSLogDD
-    [_steps release];
-    [super dealloc];
 }
 
 - (void) setDelay:(NSTimeInterval)delay {

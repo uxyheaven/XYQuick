@@ -73,13 +73,13 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,
 
 @property (nonatomic, strong) NSMutableArray *uploadProgressChangedHandlers;
 @property (nonatomic, strong) NSMutableArray *downloadProgressChangedHandlers;
-@property (nonatomic, copy) MKNKEncodingBlock postDataEncodingHandler;
+@property (nonatomic,  strong) MKNKEncodingBlock postDataEncodingHandler;
 
 @property (nonatomic, assign) NSInteger startPosition;
 
 @property (nonatomic, strong) NSMutableArray *downloadStreams;
-@property (nonatomic, copy) NSData *cachedResponse;
-@property (nonatomic, copy) MKNKResponseBlock cacheHandlingBlock;
+@property (nonatomic,  strong) NSData *cachedResponse;
+@property (nonatomic,  strong) MKNKResponseBlock cacheHandlingBlock;
 
 @property (nonatomic, assign) SecTrustRef serverTrust;
 

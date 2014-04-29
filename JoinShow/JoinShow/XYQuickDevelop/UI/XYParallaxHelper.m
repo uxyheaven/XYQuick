@@ -16,11 +16,11 @@
     int orientationType;
 }
 
-@property (nonatomic, retain) NSMutableArray *views;
-@property (nonatomic, retain) NSMutableArray *intensitys;
+@property (nonatomic, strong) NSMutableArray *views;
+@property (nonatomic, strong) NSMutableArray *intensitys;
 
-@property (nonatomic, retain) CMAttitude *lastAttitude;
-@property (nonatomic, retain) CMAttitude *curAttitude;
+@property (nonatomic, strong) CMAttitude *lastAttitude;
+@property (nonatomic, strong) CMAttitude *curAttitude;
 
 @end
 
@@ -41,12 +41,6 @@ DEF_SINGLETON(XYParallaxHelper)
 
 - (void)dealloc
 {
-    self.views = nil;
-    self.intensitys = nil;
-    self.lastAttitude = nil;
-    self.curAttitude = nil;
-    
-    [super dealloc];
 }
 
 -(void) start{
@@ -73,7 +67,6 @@ DEF_SINGLETON(XYParallaxHelper)
 -(void) stop{
     if (_motion) {
         [_motion stopDeviceMotionUpdates];
-        [_motion release];
         _motion = nil;
         [[XYTimer sharedInstance] stopTimer:ParallaxHelper_timer];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];

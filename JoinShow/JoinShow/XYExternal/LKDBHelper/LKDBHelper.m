@@ -330,17 +330,7 @@ return NO;}
     }
     else if(oldVersion == newVersion)
     {
-        __block BOOL isTableCreated = NO;
-        [self executeDB:^(FMDatabase *db) {
-            FMResultSet* set = [db executeQuery:@"select count(name) from sqlite_master where type='table' and name=?",tableName];
-            [set next];
-            if([set intForColumnIndex:0]>0)
-            {
-                isTableCreated = YES;
-            }
-            [set close];
-        }];
-        if(isTableCreated)
+        if([self getTableCreatedWithClass:modelClass])
         {
             //已创建表 就跳过
             [self fixSqlColumnsWithClass:modelClass];
@@ -350,7 +340,11 @@ return NO;}
     
     LKModelInfos* infos = [modelClass getModelInfos];
     NSArray* primaryKeys = infos.primaryKeys;
-    
+    BOOL isAutoinc = NO;
+    if(primaryKeys.count == 1 && [[primaryKeys lastObject] isEqual:@"rowid"])
+    {
+        isAutoinc = YES;
+    }
     NSMutableString* table_pars = [NSMutableString string];
     for (int i=0; i<infos.count; i++) {
         
@@ -389,23 +383,33 @@ return NO;}
         {
             [table_pars appendFormat:@" %@ %@",LKSQL_Attribute_Default,property.defaultValue];
         }
+        if(isAutoinc)
+        {
+            if([property.sqlColumnName isEqualToString:@"rowid"])
+            {
+                [table_pars appendString:@" primary key autoincrement"];
+            }
+        }
     }
     NSMutableString* pksb = [NSMutableString string];
-    if(primaryKeys.count>0)
+    if(isAutoinc == NO)
     {
-        pksb = [NSMutableString string];
-        for (int i=0; i<primaryKeys.count; i++) {
-            NSString* pk = [primaryKeys objectAtIndex:i];
-            
-            if(pksb.length>0)
-                [pksb appendString:@","];
-            
-            [pksb appendString:pk];
-        }
-        if(pksb.length>0)
+        if(primaryKeys.count>0)
         {
-            [pksb insertString:@",primary key(" atIndex:0];
-            [pksb appendString:@")"];
+            pksb = [NSMutableString string];
+            for (int i=0; i<primaryKeys.count; i++) {
+                NSString* pk = [primaryKeys objectAtIndex:i];
+                
+                if(pksb.length>0)
+                    [pksb appendString:@","];
+                
+                [pksb appendString:pk];
+            }
+            if(pksb.length>0)
+            {
+                [pksb insertString:@",primary key(" atIndex:0];
+                [pksb appendString:@")"];
+            }
         }
     }
     NSString* createTableSQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(%@%@)",tableName,table_pars,pksb];
@@ -419,6 +423,20 @@ return NO;}
     }
     
     return isCreated;
+}
+-(BOOL)getTableCreatedWithClass:(Class)modelClass
+{
+    __block BOOL isTableCreated = NO;
+    [self executeDB:^(FMDatabase *db) {
+        FMResultSet* set = [db executeQuery:@"select count(name) from sqlite_master where type='table' and name=?",[modelClass getTableName]];
+        [set next];
+        if([set intForColumnIndex:0]>0)
+        {
+            isTableCreated = YES;
+        }
+        [set close];
+    }];
+    return isTableCreated;
 }
 @end
 
@@ -472,15 +490,15 @@ return NO;}
 #pragma mark- search operation
 -(NSMutableArray *)search:(Class)modelClass where:(id)where orderBy:(NSString *)orderBy offset:(int)offset count:(int)count
 {
-    return [self searchBase:modelClass column:nil where:where orderBy:orderBy offset:offset count:count];
+    return [self searchBase:modelClass columns:nil where:where orderBy:orderBy offset:offset count:count];
 }
--(NSMutableArray *)search:(Class)modelClass column:(NSString *)column where:(id)where orderBy:(NSString *)orderBy offset:(int)offset count:(int)count
+-(NSMutableArray *)search:(Class)modelClass column:(id)columns where:(id)where orderBy:(NSString *)orderBy offset:(int)offset count:(int)count
 {
-    return [self searchBase:modelClass column:column where:where orderBy:orderBy offset:offset count:count];
+    return [self searchBase:modelClass columns:columns where:where orderBy:orderBy offset:offset count:count];
 }
 -(id)searchSingle:(Class)modelClass where:(id)where orderBy:(NSString *)orderBy
 {
-    NSMutableArray* array = [self searchBase:modelClass column:nil where:where orderBy:orderBy offset:0 count:1];
+    NSMutableArray* array = [self searchBase:modelClass columns:nil where:where orderBy:orderBy offset:0 count:1];
     
     if(array.count>0)
         return [array objectAtIndex:0];
@@ -490,19 +508,39 @@ return NO;}
 -(void)search:(Class)modelClass where:(id)where orderBy:(NSString *)orderBy offset:(int)offset count:(int)count callback:(void (^)(NSMutableArray *))block
 {
     [self asyncBlock:^{
-        NSMutableArray* array = [self searchBase:modelClass column:nil where:where orderBy:orderBy offset:offset count:count];
+        NSMutableArray* array = [self searchBase:modelClass columns:nil where:where orderBy:orderBy offset:offset count:count];
         
         if(block != nil)
             block(array);
     }];
 }
 
--(NSMutableArray *)searchBase:(Class)modelClass column:(NSString*)column where:(id)where orderBy:(NSString *)orderBy offset:(int)offset count:(int)count
+-(NSMutableArray *)searchBase:(Class)modelClass columns:(id)columns where:(id)where orderBy:(NSString *)orderBy offset:(int)offset count:(int)count
 {
-    BOOL isNoColumnLimit = [LKDBUtils checkStringIsEmpty:column];
-    NSString* columnNames = isNoColumnLimit?@"rowid,*":column;
-    NSMutableString* query = [NSMutableString stringWithFormat:@"select %@ from %@",columnNames,[modelClass getTableName]];
+    NSString* columnsString = nil;
+    NSUInteger columnCount = 0;
+    if([columns isKindOfClass:[NSArray class]] && [columns count]>0){
+        
+        columnsString = [columns componentsJoinedByString:@","];
+        columnsString = [NSString stringWithFormat:@"rowid,%@",columnsString];
+        
+    }else if([LKDBUtils checkStringIsEmpty:columns]==NO){
+        
+        columnsString = columns;
+        NSArray* array = [columns componentsSeparatedByString:@","];
+        
+        columnCount = array.count;
+        if(columnCount>1)
+        {
+            columnsString = [NSString stringWithFormat:@"rowid,%@",columnsString];
+        }
+    }
     
+    if(columnCount==0){
+        columnsString = @"rowid,*";
+    }
+    
+    NSMutableString* query = [NSMutableString stringWithFormat:@"select %@ from %@",columnsString,[modelClass getTableName]];
     NSMutableArray * values = [self extractQuery:query where:where];
     
     [self sqlString:query AddOder:orderBy offset:offset count:count];
@@ -519,13 +557,13 @@ return NO;}
             set = [db executeQuery:query withArgumentsInArray:values];
         }
         
-        if(isNoColumnLimit)
+        if(columnCount == 1)
         {
-            results = [self executeResult:set Class:modelClass];
+            results = [self executeOneColumnResult:set];
         }
         else
         {
-            results = [self executeOneColumnResult:set];
+            results = [self executeResult:set Class:modelClass];
         }
         
         [set close];
@@ -541,6 +579,10 @@ return NO;}
     if(count>0)
     {
         [sql appendFormat:@" limit %d offset %d",count,offset];
+    }
+    else if(offset > 0)
+    {
+        [sql appendFormat:@" limit %d offset %d",INT_MAX,offset];
     }
 }
 - (NSMutableArray *)executeOneColumnResult:(FMResultSet *)set
@@ -705,7 +747,7 @@ return NO;}
     checkModelIsInvalid(model);
     
     Class modelClass = model.class;
-
+    
     //callback
     if([modelClass dbWillUpdate:model]==NO)
     {
@@ -806,7 +848,7 @@ return NO;}
     checkModelIsInvalid(model);
     
     Class modelClass = model.class;
-
+    
     //callback
     if([modelClass dbWillDelete:model] == NO)
     {
@@ -837,7 +879,7 @@ return NO;}
     BOOL execute = [self executeSQL:deleteSQL arguments:parsArray];
     
     //callback
-    [modelClass dbDidIDeleted:model result:execute];
+    [modelClass dbDidDeleted:model result:execute];
     
     return execute;
 }
@@ -870,18 +912,19 @@ return NO;}
 -(BOOL)isExistsModel:(NSObject *)model
 {
     checkModelIsInvalid(model);
-    if(model.rowid>0)
-        return YES;
-    else
-    {
-        NSMutableString* pwhere = [self primaryKeyWhereSQLWithModel:model addPValues:nil];
-        if(pwhere.length == 0)
-        {
-            LKErrorLog(@"exists model fail: primary key is nil or invalid");
-            return NO;
-        }
-        return [self isExistsClass:model.class where:pwhere];
+    NSString* pwhere = nil;
+    if(model.rowid>0){
+        pwhere = [NSString stringWithFormat:@"rowid=%d",model.rowid];
     }
+    else{
+        pwhere = [self primaryKeyWhereSQLWithModel:model addPValues:nil];
+    }
+    if(pwhere.length == 0)
+    {
+        LKErrorLog(@"exists model fail: primary key is nil or invalid");
+        return NO;
+    }
+    return [self isExistsClass:model.class where:pwhere];
 }
 -(BOOL)isExistsClass:(Class)modelClass where:(id)where
 {
