@@ -9,7 +9,7 @@
 库的代码
 
 ##### Foundation
-XYTimer 定时器类.
+XYTimer 定时器类
 
 XYDataLite 轻量形数据持久化, 基于NSUserDefaults
 
@@ -22,7 +22,7 @@ XYSystemInfo 系统信息
 /cache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults
 
 ##### UI
-XYParallaxHelper 实现类似ios7 视图差效果.
+XYParallaxHelper 实现类似ios7 视图差效果
 
 XYKeyboardHelper 弹出键盘时,移动所编辑的控件的通用解决方案
 
