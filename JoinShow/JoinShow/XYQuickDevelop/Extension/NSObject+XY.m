@@ -380,7 +380,9 @@ static void (*__dealloc)( id, SEL);
 }
 
 -(void) setTempObject:(id)tempObject{
+    [self willChangeValueForKey:@"tempObject"];
     objc_setAssociatedObject(self, NSObject_key_tempObject, tempObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"tempObject"];
 }
 
 -(void) receiveObject:(void(^)(id object))aBlock

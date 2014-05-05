@@ -132,7 +132,7 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 	
 	return [block copy];
 }
-
+/*
 + (NSMutableArray *)nonRetainingArray	// copy from Three20
 {
 	CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
@@ -145,7 +145,7 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
     
 	return array;
 }
-
+*/
 - (NSMutableArray *)pushHead:(NSObject *)obj
 {
 	if ( obj )

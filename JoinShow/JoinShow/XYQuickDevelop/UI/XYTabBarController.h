@@ -42,6 +42,9 @@
 -(void) setupItem:(UIButton *)item index:(NSInteger)index;
 // 重载这个方式, 自定义animatedView的位置
 -(void) resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index;
+// 重载这个方法设置TabBar透明前和透明后的content尺寸
+-(void) setTabBarTransparent:(BOOL)b;
+
 @end
 
 #pragma mark-

@@ -9,7 +9,13 @@
 #ifndef JoinShow_BaseClass_h
 #define JoinShow_BaseClass_h
 
+//  初始的vc切换控制类
+#import "XYViewControllerManager.h"
+
+// UIViewController基类
 #import "XYBaseViewController.h"
+
+// UITableViewController基类
 #import "XYBaseTableViewController.h"
 
 #import "XYBaseView.h"

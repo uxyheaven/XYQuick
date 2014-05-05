@@ -23,7 +23,9 @@
 }
 
 -(void) setTempObject:(id)anObject{
+    [self willChangeValueForKey:@"tempObject"];
     objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:@"tempObject"];
 }
 
 -(void) pushVC:(NSString *)vcName{
