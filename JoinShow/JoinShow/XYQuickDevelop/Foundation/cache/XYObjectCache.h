@@ -21,18 +21,23 @@ XY_SINGLETON(XYObjectCache)
 
 -(void) registerObjectClass:(Class)aClass;
 
--(BOOL) hasCachedForURL:(NSString *)url;
--(BOOL) hasFileCachedForURL:(NSString *)url;
--(BOOL) hasMemoryCachedForURL:(NSString *)url;
-
--(id) objectForURL:(NSString *)url;
--(id) fileObjectForURL:(NSString *)url;
--(id) memoryObjectForURL:(NSString *)url;
-
--(void) saveToMemory:(id)anObject forURL:(NSString *)url;
--(void) saveToData:(NSData *)data forURL:(NSString *)url;
--(void) deleteObjectForURL:(NSString *)url;
+-(id) objectForKey:(NSString *)key;
+-(void) saveObject:(id)anObject forKey:(NSString *)key;
+-(void) deleteObjectForKey:(NSString *)key;
 -(void) deleteAllObjects;
+
+//////////////////////////////////////////////////////////////
+-(BOOL) hasCachedForKey:(NSString *)key;
+-(BOOL) hasFileCachedForKey:(NSString *)key;
+-(BOOL) hasMemoryCachedForKey:(NSString *)key;
+
+-(id) fileObjectForKey:(NSString *)key;
+-(id) memoryObjectForKey:(NSString *)key;
+
+-(void) saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async;
+-(void) saveToMemory:(id)anObject forKey:(NSString *)key;
+-(void) saveToData:(NSData *)data forKey:(NSString *)key;
+
 
 @end
 

@@ -89,16 +89,17 @@ static MBProgressHUD *HUD = nil;
     
     [vc.view addSubview:HUD];
     
+    if (aTitle || aMsg) {
+        HUD.mode = MBProgressHUDModeText;
+        HUD.labelText = aTitle;
+        HUD.detailsLabelText = aMsg;
+    }
+    
     if (aImg)
     {
         UIImageView *img = [[UIImageView alloc] initWithImage:aImg];
         HUD.customView = img;
         HUD.mode = MBProgressHUDModeCustomView;
-    }
-    if (aTitle || aMsg) {
-        HUD.mode = MBProgressHUDModeText;
-        HUD.labelText = aTitle;
-        HUD.detailsLabelText = aMsg;
     }
     
     HUD.removeFromSuperViewOnHide = YES;

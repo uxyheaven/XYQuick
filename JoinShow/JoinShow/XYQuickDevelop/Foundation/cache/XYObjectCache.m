@@ -46,7 +46,7 @@ DEF_SINGLETON(XYObjectCache)
     _fileCache.cachePath = [NSString stringWithFormat:@"%@/%@/", [XYSandbox libCachePath], NSStringFromClass(_objectClass)];
 }
 
--(BOOL) hasCachedForURL:(NSString *)string
+-(BOOL) hasCachedForKey:(NSString *)string
 {
 	NSString * cacheKey = [string MD5];
 	
@@ -59,25 +59,25 @@ DEF_SINGLETON(XYObjectCache)
 	return flag;
 }
 
--(BOOL) hasFileCachedForURL:(NSString *)url
+-(BOOL) hasFileCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [url MD5];
+	NSString * cacheKey = [key MD5];
 	
 	return [self.fileCache hasObjectForKey:cacheKey];
 }
 
--(BOOL) hasMemoryCachedForURL:(NSString *)url
+-(BOOL) hasMemoryCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [url MD5];
+	NSString * cacheKey = [key MD5];
 	
 	return [self.memoryCache hasObjectForKey:cacheKey];
 }
 
--(id) fileObjectForURL:(NSString *)url
+-(id) fileObjectForKey:(NSString *)key
 {
   //  PERF_ENTER
 	
-	NSString *	cacheKey = [url MD5];
+	NSString *	cacheKey = [key MD5];
 	id anObject = nil;
     
 	NSString * fullPath = [self.fileCache fileNameForKey:cacheKey];
@@ -107,11 +107,11 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(id) memoryObjectForURL:(NSString *)url
+-(id) memoryObjectForKey:(NSString *)key
 {
   //  PERF_ENTER
 	
-	NSString *	cacheKey = [url MD5];
+	NSString *	cacheKey = [key MD5];
 	id anObject = nil;
 	
 	NSObject * object = [self.memoryCache objectForKey:cacheKey];
@@ -127,17 +127,37 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(id) objectForURL:(NSString *)string
+-(id) objectForKey:(NSString *)string
 {
-	id anObject = [self memoryObjectForURL:string];
+	id anObject = [self memoryObjectForKey:string];
 	if ( nil == anObject )
 	{
-		anObject = [self fileObjectForURL:string];
+		anObject = [self fileObjectForKey:string];
 	}
 	return anObject;
 }
 
--(void) saveToMemory:(id)anObject forURL:(NSString *)string
+-(void) saveObject:(id)anObject forKey:(NSString *)key{
+    [self saveObject:anObject forKey:key async:YES];
+}
+
+-(void) saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async{
+    if (async) {
+        // 异步
+        FOREGROUND_BEGIN
+        [self saveToMemory:anObject forKey:key];
+        BACKGROUND_BEGIN
+        [self saveToData:[anObject dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forKey:key];
+        BACKGROUND_COMMIT
+        FOREGROUND_COMMIT
+    } else {
+        // 同步
+        [self saveToData:[anObject dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forKey:key];
+        [self saveToMemory:anObject forKey:key];
+    }
+}
+
+-(void) saveToMemory:(id)anObject forKey:(NSString *)string
 {
   //  PERF_ENTER
 	
@@ -151,7 +171,7 @@ DEF_SINGLETON(XYObjectCache)
   //  PERF_LEAVE
 }
 
--(void) saveToData:(NSData *)data forURL:(NSString *)string
+-(void) saveToData:(NSData *)data forKey:(NSString *)string
 {
   //  PERF_ENTER
 	
@@ -161,7 +181,7 @@ DEF_SINGLETON(XYObjectCache)
   //  PERF_LEAVE
 }
 
--(void) deleteObjectForURL:(NSString *)string
+-(void) deleteObjectForKey:(NSString *)string
 {
   //  PERF_ENTER
 	

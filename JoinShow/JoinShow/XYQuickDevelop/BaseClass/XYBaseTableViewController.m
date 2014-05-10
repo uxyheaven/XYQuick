@@ -101,6 +101,9 @@
     // [super loadData];
 }
 
+#pragma mark - api
+// 对外的接口
+
 #pragma mark - rewrite
 // 额外的重写的父类的方法
 -(void) viewWillAppear:(BOOL)animated{
@@ -130,15 +133,6 @@
 
 
 #pragma mark - private
-// 私有方法
--(NSMutableDictionary *) children{
-    if (_children == nil) {
-        self.children = [NSMutableDictionary dictionaryWithCapacity:6];
-    }
-    
-    return _children;
-}
-
 
 #pragma mark - 响应 model 的地方
 #pragma mark 1 notification

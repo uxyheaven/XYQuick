@@ -18,12 +18,6 @@
 #pragma mark- view
 // 定义view
 
-@property (nonatomic, strong) NSMutableDictionary   *children;        // 子视图控制器
-@property (nonatomic, weak) UIViewController      *curChild;        // 当前的子视图控制器
-@property (nonatomic, weak) id<XYControllerProtocol>      curParent;       // 当前的父视图控制器
-
-
-
 
 #pragma mark -  生命周期
 /**

@@ -573,31 +573,16 @@ if (1) { \
     NSString *key = [NSString stringWithFormat:@"%d", iKey];
     
     NSString *str = nil;
-    if (![cache hasCachedForURL:key]) {
+    if (![cache hasCachedForKey:key]) {
         str = @"hello world";
     }else{
-        str = [cache objectForURL:key];
+        str = [cache objectForKey:key];
         NSLogD(@"%@", str);
         str = [str stringByAppendingString:@"1"];
         iKey++;
         key = [NSString stringWithFormat:@"%d", iKey];
     }
-
-    if ( 0 ) {
-        // 异步
-        FOREGROUND_BEGIN
-        [cache saveToMemory:str forURL:key];
-        
-        BACKGROUND_BEGIN
-        [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
-        BACKGROUND_COMMIT
-        FOREGROUND_COMMIT
-    }
-    else {
-        // 同步
-        [cache saveToData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forURL:key];
-        [cache saveToMemory:str forURL:key];
-    }
+    [cache saveObject:str forKey:key];
     
     NSLogD(@"%@", str);
 }

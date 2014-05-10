@@ -199,10 +199,6 @@
 		5722182817DB365B003504E8 /* NetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5722182717DB365B003504E8 /* NetworkVC.m */; };
 		57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57245D5E18696F5900736D5D /* UIControl+XY.m */; };
 		57293C7B1824C42F007BF087 /* bg_trends.png in Resources */ = {isa = PBXBuildFile; fileRef = 57293C7A1824C42F007BF087 /* bg_trends.png */; };
-		572E7C9E18385C690018179D /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C5018385C690018179D /* CDAudioManager.m */; };
-		572E7C9F18385C690018179D /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C5318385C690018179D /* CDOpenALSupport.m */; };
-		572E7CA018385C690018179D /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C5518385C690018179D /* CocosDenshion.m */; };
-		572E7CA118385C690018179D /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C5718385C690018179D /* SimpleAudioEngine.m */; };
 		572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C7A18385C690018179D /* NSAlert+MKNetworkKitAdditions.m */; };
 		572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C7C18385C690018179D /* NSData+MKBase64.m */; };
 		572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C7E18385C690018179D /* NSDate+RFC1123.m */; };
@@ -260,6 +256,10 @@
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
 		579426B51856D6DC0049B426 /* EntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 579426B41856D6DC0049B426 /* EntityModel.m */; };
 		579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579B3A3418EBDCF8001650C6 /* DemoViewController.m */; };
+		57A15000191E251000B00281 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FF8191E251000B00281 /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		57A15001191E251000B00281 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FFB191E251000B00281 /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		57A15002191E251000B00281 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FFD191E251000B00281 /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		57A15003191E251000B00281 /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FFF191E251000B00281 /* SimpleAudioEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		57A2FE5E18063D5A002460EC /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57A2FE5D18063D5A002460EC /* bg.jpg */; };
 		57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CB1908BDA90080E33C /* UIViewController+XY.m */; };
 		57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CE1908EF9F0080E33C /* NSNull+XY.m */; };
@@ -546,15 +546,6 @@
 		57245D5D18696F5900736D5D /* UIControl+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+XY.h"; sourceTree = "<group>"; };
 		57245D5E18696F5900736D5D /* UIControl+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+XY.m"; sourceTree = "<group>"; };
 		57293C7A1824C42F007BF087 /* bg_trends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_trends.png; sourceTree = "<group>"; };
-		572E7C4F18385C690018179D /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
-		572E7C5018385C690018179D /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
-		572E7C5118385C690018179D /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
-		572E7C5218385C690018179D /* CDOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOpenALSupport.h; sourceTree = "<group>"; };
-		572E7C5318385C690018179D /* CDOpenALSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOpenALSupport.m; sourceTree = "<group>"; };
-		572E7C5418385C690018179D /* CocosDenshion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDenshion.h; sourceTree = "<group>"; };
-		572E7C5518385C690018179D /* CocosDenshion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosDenshion.m; sourceTree = "<group>"; };
-		572E7C5618385C690018179D /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
-		572E7C5718385C690018179D /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
 		572E7C7918385C690018179D /* NSAlert+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
 		572E7C7A18385C690018179D /* NSAlert+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
 		572E7C7B18385C690018179D /* NSData+MKBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKBase64.h"; sourceTree = "<group>"; };
@@ -669,6 +660,15 @@
 		579426B41856D6DC0049B426 /* EntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityModel.m; sourceTree = "<group>"; };
 		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		579B3A3418EBDCF8001650C6 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		57A14FF7191E251000B00281 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
+		57A14FF8191E251000B00281 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
+		57A14FF9191E251000B00281 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
+		57A14FFA191E251000B00281 /* CDOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOpenALSupport.h; sourceTree = "<group>"; };
+		57A14FFB191E251000B00281 /* CDOpenALSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOpenALSupport.m; sourceTree = "<group>"; };
+		57A14FFC191E251000B00281 /* CocosDenshion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDenshion.h; sourceTree = "<group>"; };
+		57A14FFD191E251000B00281 /* CocosDenshion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosDenshion.m; sourceTree = "<group>"; };
+		57A14FFE191E251000B00281 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
+		57A14FFF191E251000B00281 /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
 		57A2FE5D18063D5A002460EC /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		57A808CA1908BDA90080E33C /* UIViewController+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XY.h"; sourceTree = "<group>"; };
 		57A808CB1908BDA90080E33C /* UIViewController+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XY.m"; sourceTree = "<group>"; };
@@ -1105,22 +1105,6 @@
 			path = p31b;
 			sourceTree = "<group>";
 		};
-		572E7C4E18385C690018179D /* CocosDenshion */ = {
-			isa = PBXGroup;
-			children = (
-				572E7C4F18385C690018179D /* CDAudioManager.h */,
-				572E7C5018385C690018179D /* CDAudioManager.m */,
-				572E7C5118385C690018179D /* CDConfig.h */,
-				572E7C5218385C690018179D /* CDOpenALSupport.h */,
-				572E7C5318385C690018179D /* CDOpenALSupport.m */,
-				572E7C5418385C690018179D /* CocosDenshion.h */,
-				572E7C5518385C690018179D /* CocosDenshion.m */,
-				572E7C5618385C690018179D /* SimpleAudioEngine.h */,
-				572E7C5718385C690018179D /* SimpleAudioEngine.m */,
-			);
-			path = CocosDenshion;
-			sourceTree = "<group>";
-		};
 		572E7C7418385C690018179D /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1262,11 +1246,11 @@
 			isa = PBXGroup;
 			children = (
 				57FFF3BE1818B29F00977CB5 /* Extension */,
+				57A14FF6191E251000B00281 /* CocosDenshion */,
 				57403241190FA76D00C82B23 /* LKDBHelper */,
 				5740322C190FA76700C82B23 /* FMDB */,
 				5740321A190F31AB00C82B23 /* OpenUDID */,
 				572E7CBE18385F9D0018179D /* YYJSON */,
-				572E7C4E18385C690018179D /* CocosDenshion */,
 				572E7C7418385C690018179D /* MBProgressHUD */,
 				572E7C7718385C690018179D /* MKNetworkKit */,
 				572E7C9518385C690018179D /* SVPullToRefresh */,
@@ -1303,6 +1287,22 @@
 				576E87D21855E77200C7A724 /* XYPerformance.m */,
 			);
 			path = Debug;
+			sourceTree = "<group>";
+		};
+		57A14FF6191E251000B00281 /* CocosDenshion */ = {
+			isa = PBXGroup;
+			children = (
+				57A14FF7191E251000B00281 /* CDAudioManager.h */,
+				57A14FF8191E251000B00281 /* CDAudioManager.m */,
+				57A14FF9191E251000B00281 /* CDConfig.h */,
+				57A14FFA191E251000B00281 /* CDOpenALSupport.h */,
+				57A14FFB191E251000B00281 /* CDOpenALSupport.m */,
+				57A14FFC191E251000B00281 /* CocosDenshion.h */,
+				57A14FFD191E251000B00281 /* CocosDenshion.m */,
+				57A14FFE191E251000B00281 /* SimpleAudioEngine.h */,
+				57A14FFF191E251000B00281 /* SimpleAudioEngine.m */,
+			);
+			path = CocosDenshion;
 			sourceTree = "<group>";
 		};
 		57B30013177AD9BC00775FC9 /* JoinShowTests */ = {
@@ -1890,16 +1890,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A15003191E251000B00281 /* SimpleAudioEngine.m in Sources */,
 				57403251190FA76D00C82B23 /* LKDBUtils.m in Sources */,
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				572E7CB818385C690018179D /* Reachability.m in Sources */,
 				572E7CBC18385C690018179D /* UIScrollView+SVPullToRefresh.m in Sources */,
-				572E7CA018385C690018179D /* CocosDenshion.m in Sources */,
 				57B3FFF6177AD9BC00775FC9 /* main.m in Sources */,
 				57DB87E1183349A60015CC5A /* UIAlertView+XY.m in Sources */,
 				5730EC03188E015E00299121 /* XYObserve.m in Sources */,
 				57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */,
 				57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */,
+				57A15002191E251000B00281 /* CocosDenshion.m in Sources */,
 				57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */,
 				57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */,
 				57403240190FA76700C82B23 /* FMResultSet.m in Sources */,
@@ -1939,7 +1940,6 @@
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
 				57403226190F933500C82B23 /* OpenUDID.m in Sources */,
 				577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */,
-				572E7CA118385C690018179D /* SimpleAudioEngine.m in Sources */,
 				57DB87F2183349A60015CC5A /* XYSpriteView.m in Sources */,
 				57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */,
 				57DB87F1183349A60015CC5A /* XYSpriteHelper.m in Sources */,
@@ -1962,7 +1962,6 @@
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				57DB87DD183349A60015CC5A /* NSNumber+XY.m in Sources */,
 				57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */,
-				572E7C9F18385C690018179D /* CDOpenALSupport.m in Sources */,
 				572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */,
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
@@ -1973,6 +1972,7 @@
 				57E7857817DE459E0056C589 /* ConfigManager.m in Sources */,
 				57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */,
 				57DB87E0183349A60015CC5A /* UIActionSheet+XY.m in Sources */,
+				57A15001191E251000B00281 /* CDOpenALSupport.m in Sources */,
 				57DB87DF183349A60015CC5A /* NSString+XY.m in Sources */,
 				57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */,
 				5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */,
@@ -1982,6 +1982,7 @@
 				57548402181F4629008F9355 /* KeyboardVC.m in Sources */,
 				5707C1EE19123A36003986DC /* XYViewControllerManager.m in Sources */,
 				575694861883D9C4004C2C74 /* GirlEntity.m in Sources */,
+				57A15000191E251000B00281 /* CDAudioManager.m in Sources */,
 				57DB87DC183349A60015CC5A /* NSDate+XY.m in Sources */,
 				57DB87DB183349A60015CC5A /* NSData+XY.m in Sources */,
 				57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */,
@@ -1994,7 +1995,6 @@
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
 				5740324F190FA76D00C82B23 /* LKDB+Mapping.m in Sources */,
 				57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */,
-				572E7C9E18385C690018179D /* CDAudioManager.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
 				577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */,

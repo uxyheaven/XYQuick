@@ -142,7 +142,7 @@ typedef enum {
 +(NSMutableArray *) analyseString:(NSString *)str regularExpression:(NSString *)regexStr;
 +(NSMutableArray *) analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr;
 
-#pragma mark  -todo, 分享facebook,发EMail
+#pragma mark todo, 分享facebook,发EMail
 /**
  * 分享至Twitter的方法
  * api parameters 说明

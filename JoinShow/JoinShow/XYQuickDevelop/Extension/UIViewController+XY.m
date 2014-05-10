@@ -22,10 +22,10 @@
     return object;
 }
 
--(void) setTempObject:(id)anObject{
-    [self willChangeValueForKey:@"tempObject"];
+-(void) setParameters:(id)anObject{
+    [self willChangeValueForKey:@"parameters"];
     objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self didChangeValueForKey:@"tempObject"];
+    [self didChangeValueForKey:@"parameters"];
 }
 
 -(void) pushVC:(NSString *)vcName{
@@ -69,7 +69,7 @@
     
     UINavigationController *nvc = nil;
     if (nvcName) {
-        nvc = [[NSClassFromString(vcName) alloc] initWithRootViewController:vc];
+        nvc = [[NSClassFromString(nvcName) alloc] initWithRootViewController:vc];
         [self presentViewController:nvc animated:YES completion:block];
         
         return;

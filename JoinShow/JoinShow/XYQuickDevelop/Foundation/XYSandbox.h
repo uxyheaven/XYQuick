@@ -44,7 +44,7 @@ XY_SINGLETON( XYSandbox )
  * fileType 文件后缀名
  * operation (预留,暂时没用)
  */
-+(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
++(NSArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
 
 
 /**

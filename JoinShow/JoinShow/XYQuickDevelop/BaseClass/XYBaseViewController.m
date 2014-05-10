@@ -97,6 +97,8 @@
     // [super loadData];
 }
 
+#pragma mark - api
+// 对外的接口
 
 #pragma mark - rewrite
 // 额外的重写的父类的方法
@@ -124,8 +126,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 #pragma mark todo
-    //self.children = nil;
-
     /*
      // Add code to clean up any of your own resources that are no longer necessary.
      if ([self.view window] == nil)
@@ -144,13 +144,6 @@
 
 #pragma mark - private
 // 私有方法
--(NSMutableDictionary *) children{
-    if (_children == nil) {
-        self.children = [NSMutableDictionary dictionaryWithCapacity:6];
-    }
-    
-    return _children;
-}
 
 
 #pragma mark - 响应 model 的地方

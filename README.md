@@ -71,7 +71,7 @@ XYBaseTableViewController UITableViewController基类
 * 参考了 [BeeFramework](https://github.com/gavinkwoe/BeeFramework/blob/master/document)
 
 #### CocosDenshion 
-* 已改ARC,未测试
+* mrc
 * cocos2d音频管理
 * 增加了播放音效循环的方法
 

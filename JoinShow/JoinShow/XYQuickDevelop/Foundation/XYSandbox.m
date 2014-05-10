@@ -190,7 +190,7 @@ DEF_SINGLETON( XYSandbox )
     }
 }
 
-+(NSMutableArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
++(NSArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
     NSMutableArray *pathArray = [NSMutableArray array];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -202,17 +202,12 @@ DEF_SINGLETON( XYSandbox )
     
     NSString* type = [NSString stringWithFormat:@".%@",fileType];
     for (NSString *fileName in tempArray) {
-        BOOL flag = YES;
+        BOOL isDir = YES;
         NSString *fullPath = [direString stringByAppendingPathComponent:fileName];
         
-        if ([fileManager fileExistsAtPath:fullPath isDirectory:&flag]){
-            if (!flag) {
-                if ([fileName hasSuffix:type]) {
+        if ([fileManager fileExistsAtPath:fullPath isDirectory:&isDir]){
+            if (!isDir && [fileName hasSuffix:type]) {
                     [pathArray addObject:fullPath];
-                }
-            }
-            else {
-                
             }
         }
     }
