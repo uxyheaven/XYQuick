@@ -321,6 +321,7 @@
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57E852E217B224E500C664F4 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E852E117B224E500C664F4 /* json2.json */; };
+		57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EBFF3D192082C900916B80 /* UIButton+XY.m */; };
 		57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134D917DC393600C5DCDC /* JsonVC.m */; };
 		57F134DF17DC39F200C5DCDC /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134DC17DC39F200C5DCDC /* Player.m */; };
 		57F134E017DC39F200C5DCDC /* Shot.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134DE17DC39F200C5DCDC /* Shot.m */; };
@@ -781,6 +782,8 @@
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		57E852E117B224E500C664F4 /* json2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json2.json; sourceTree = "<group>"; };
+		57EBFF3C192082C900916B80 /* UIButton+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XY.h"; sourceTree = "<group>"; };
+		57EBFF3D192082C900916B80 /* UIButton+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XY.m"; sourceTree = "<group>"; };
 		57F134D817DC393600C5DCDC /* JsonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonVC.h; sourceTree = "<group>"; };
 		57F134D917DC393600C5DCDC /* JsonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonVC.m; sourceTree = "<group>"; };
 		57F134DB17DC39F200C5DCDC /* Shot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shot.h; sourceTree = "<group>"; };
@@ -1464,6 +1467,8 @@
 				57DB87AE183349A60015CC5A /* UIAlertView+XY.m */,
 				57DB87AF183349A60015CC5A /* UIImage+XY.h */,
 				57DB87B0183349A60015CC5A /* UIImage+XY.m */,
+				57EBFF3C192082C900916B80 /* UIButton+XY.h */,
+				57EBFF3D192082C900916B80 /* UIButton+XY.m */,
 				57DB87B3183349A60015CC5A /* UIView+XY.h */,
 				57DB87B4183349A60015CC5A /* UIView+XY.m */,
 				577CF80518ADE6A200421CC2 /* UIView+XY_coordinate.h */,
@@ -1990,6 +1995,7 @@
 				572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */,
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
 				57DB87DE183349A60015CC5A /* NSObject+XY.m in Sources */,
+				57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */,
 				577952D71909718A00F95459 /* XYBaseView.m in Sources */,
 				5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */,
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
