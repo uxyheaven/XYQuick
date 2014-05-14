@@ -53,6 +53,7 @@ dispatch_once( &once_##__name , ^{
 
 /**************************************************************/
 // delegate 委托
+// arm64下失效,具体看https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaTouch64BitGuide/ConvertingYourAppto64-Bit/ConvertingYourAppto64-Bit.html
 /*
 #define DelegateSelf( __fun ) \
 if (_delegate && [_delegate respondsToSelector:@selector( __fun )]) { \

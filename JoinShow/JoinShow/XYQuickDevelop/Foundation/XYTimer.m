@@ -61,7 +61,7 @@ DEF_SINGLETON(XYTimer)
     id delegate = [_delegates objectForKey:key];
     
     if (delegate && [delegate respondsToSelector:@selector(onTimer:time:)]) {
-        objc_msgSend(delegate, @selector(onTimer:time:), key, f);
+        [delegate onTimer:key time:f];
     }
     
 }

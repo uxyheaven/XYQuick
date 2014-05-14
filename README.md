@@ -19,7 +19,10 @@ XYSandbox 沙箱路径
 
 XYSystemInfo 系统信息
 
-/cache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults
+XYObjectCache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults
+
+##### Extension
+一大堆category
 
 ##### UI
 XYParallaxHelper 实现类似ios7 视图差效果
@@ -40,6 +43,8 @@ XYTabBarController 自定义的UITabBarController
 XYBaseViewController UIViewController基类
 
 XYBaseTableViewController UITableViewController基类
+
+
 
 
 ### XYExternal
