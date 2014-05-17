@@ -39,9 +39,17 @@ DEF_SINGLETON(XYViewControllerManager)
 
 -(void) createViews {
     [super createViews];
-    _contentView = [[UIView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:_contentView];
     
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown) {
+        // 竖屏
+        _contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_contentView];
+    }else{
+        // 横屏
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
+        [self.view addSubview:_contentView];
+    }
 }
 
 -(void) destroyViews {
@@ -83,10 +91,6 @@ DEF_SINGLETON(XYViewControllerManager)
     [super viewDidDisappear:animated];
 }
 
--(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 -(void) didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -98,6 +102,19 @@ DEF_SINGLETON(XYViewControllerManager)
 
 -(void) addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key{
     [_viewControllerSetupBlocks setObject:block forKey:key];
+}
+
+-(void) didRotateFromInterfaceOrientation: (UIInterfaceOrientation)fromInterfaceOrientation
+{
+    /* 在这里加入代码，处理方向变换之后的变化 */
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown) {
+        // 竖屏
+        _contentView.frame = self.view.bounds;
+    }else{
+        // 横屏
+        _contentView.frame = self.view.bounds;
+    }
 }
 #pragma mark - private
 // 私有方法
