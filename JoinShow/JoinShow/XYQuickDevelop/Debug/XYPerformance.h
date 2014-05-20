@@ -87,7 +87,7 @@
 
 @interface XYPerformance : NSObject
 
-XY_SINGLETON( XYPerformance );
+AS_SINGLETON( XYPerformance );
 
 @property (nonatomic, readonly, strong) NSMutableDictionary     *records;
 @property (nonatomic, strong) NSMutableDictionary               *tags;

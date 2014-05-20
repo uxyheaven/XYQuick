@@ -43,7 +43,7 @@ return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObj
 #import "XYFoundation.h"
 
 @interface XYDataLite : NSObject
-//XY_SINGLETON(DataLite)
+//AS_SINGLETON(DataLite)
 //XY_DataLite_string(StrTest)
 
 // dont support bool

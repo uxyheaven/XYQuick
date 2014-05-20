@@ -20,7 +20,7 @@
 @interface XYTimer : NSObject{
   //  int classIsa;
 }
-XY_SINGLETON(XYTimer)
+AS_SINGLETON(XYTimer)
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *delegates;
 @property (nonatomic, readonly, strong) NSMutableDictionary *timers;

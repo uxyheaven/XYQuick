@@ -96,6 +96,9 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 // 抖动
 -(void) animationShake;
 
+// 返回所在的vc
+-(UIViewController *) viewController;
+
 @end
 
 

@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy) NSString * defaultDomain;
 
-XY_SINGLETON( XYKeychain );
+AS_SINGLETON( XYKeychain );
 
 + (void)setDefaultDomain:(NSString *)domain;
 

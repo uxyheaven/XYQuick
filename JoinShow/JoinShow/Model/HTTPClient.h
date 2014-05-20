@@ -10,14 +10,14 @@
 #import "RequestHelper.h"
 
 @interface HTTPClient : RequestHelper
-XY_SINGLETON(HTTPClient)
+AS_SINGLETON(HTTPClient)
 @end
 
 /////////
 @interface HTTPClient2 : RequestHelper
-XY_SINGLETON(HTTPClient2)
+AS_SINGLETON(HTTPClient2)
 @end
 
 @interface HTTPClient3 : DownloadHelper
-XY_SINGLETON(HTTPClient3)
+AS_SINGLETON(HTTPClient3)
 @end

@@ -11,7 +11,7 @@
 
 @interface XYUserDefaults : NSObject <XYCacheProtocol>
 
-XY_SINGLETON(XYUserDefaults)
+AS_SINGLETON(XYUserDefaults)
 
 @end
 

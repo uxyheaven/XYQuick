@@ -374,6 +374,34 @@ DUMMY_CLASS(UIView_XY);
     shake.repeatCount = 3;
     [self.layer addAnimation:shake forKey:@"XYShake"];
 }
+
+-(UIViewController *) viewController
+{
+    /*
+	UIView * view = self;
+	while ( nil != view ) {
+		if ( nil == view.superview )
+			break;
+        
+		view = view.superview;
+	}
+    
+	UIResponder * nextResponder = [view nextResponder];
+	if ( [nextResponder isKindOfClass:[UIViewController class]] ) {
+		return (UIViewController *)nextResponder;
+	}
+	
+	return nil;
+    */
+    
+    id viewController = [self nextResponder];
+    UIView *view = self;
+    while (viewController && ![viewController isKindOfClass:[UIViewController class]]) {
+        view = [view superview];
+        viewController = [view nextResponder];
+    }
+    return viewController;
+}
 @end
 
 

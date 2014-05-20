@@ -18,7 +18,7 @@
 
 @property (nonatomic, assign) NSTimeInterval maxCacheAge; // 有效期,默认1周
 
-XY_SINGLETON( XYFileCache );
+AS_SINGLETON( XYFileCache );
 
 -(NSString *)fileNameForKey:(NSString *)key;
 #pragma mark - todo

@@ -12,7 +12,7 @@
 
 @interface XYMemoryCache : NSObject <XYCacheProtocol>
 
-XY_SINGLETON( XYMemoryCache );
+AS_SINGLETON( XYMemoryCache );
 
 @property (nonatomic, assign) BOOL					clearWhenMemoryLow;
 @property (nonatomic, assign) NSUInteger			maxCacheCount;

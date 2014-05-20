@@ -19,7 +19,7 @@ typedef void(^XYPopupViewHelperNormalBlock)(UIView *);
 
 @interface XYPopupViewHelper : NSObject
 
-XY_SINGLETON(XYPopupViewHelper)
+AS_SINGLETON(XYPopupViewHelper)
 
 @property (nonatomic, strong) UIColor       *colorLump;
 @property (nonatomic, assign) float         colorLumpAlpha;

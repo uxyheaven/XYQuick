@@ -22,7 +22,7 @@
 
 @interface UmengManager : NSObject
 
-//XY_SINGLETON(UmengManager)
+//AS_SINGLETON(UmengManager)
 
 +(void) startWithAppkey;
 +(void) beginLogPageView:(NSString *)str;

@@ -16,7 +16,7 @@
 	dispatch_queue_t _backQueue;
 }
 
-XY_SINGLETON( XYGCD )
+AS_SINGLETON( XYGCD )
 
 @end
 

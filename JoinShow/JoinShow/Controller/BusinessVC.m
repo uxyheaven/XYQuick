@@ -7,7 +7,7 @@
 //
 
 #import "BusinessVC.h"
-#import "EntityModel.h"
+#import "EntityBaseModel.h"
 
 #import "XYExternal.h"
 
@@ -16,7 +16,7 @@
 @interface BusinessVC ()
 // get
 @property (nonatomic, strong) NSArray *model;
-@property (nonatomic, assign) EntityModel *entityModel;
+@property (nonatomic, strong) EntityBaseModel *entityModel;
 
 @end
 
@@ -47,8 +47,13 @@
 {
     [super createFields];
     
-    self.entityModel = [EntityModel sharedInstance];
-    self.entityModel.delegate = self;
+    self.entityModel = [[EntityBaseModel alloc] init];
+    RequestHelper *request = [[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
+    [request useCache];
+    request.freezable = YES;
+    request.forceReload = YES;
+    
+    self.entityModel.requestHelper = request;
 }
 
 -(void) destroyFields
@@ -185,14 +190,6 @@
 }
 
 #pragma mark - delegate
-#pragma mark -EntityModelDelegate
--(RequestHelper *) entityModelSetupRequestHelper:(id)model{
-    RequestHelper *request = [[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
-    [request useCache];
-    request.freezable = YES;
-    request.forceReload = YES;
-    return request;
-}
 
 #pragma mark - private
 @end

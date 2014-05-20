@@ -14,7 +14,7 @@
 
 @interface ConfigManager : NSObject
 
-XY_SINGLETON(ConfigManager)
+AS_SINGLETON(ConfigManager)
 
 @property (nonatomic,  strong) NSString *StrTest;
 

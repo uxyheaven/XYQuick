@@ -37,7 +37,8 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.list = @[@{@"title": @"Something", @"className": @"TestVC"},
+        self.list = @[
+                      @{@"title": @"Something", @"className": @"TestVC"},
                       @{@"title": @"Something2", @"className": @"TestVC2"},
                       @{@"title": @"Frame Animation", @"className": @"AnimationVC"},
                       @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
@@ -49,7 +50,9 @@
                       @{@"title": @"Image", @"className": @"ImageVC"},
                       @{@"title": @"Keyboard", @"className": @"KeyboardVC"},
                       @{@"title": @"Business", @"className": @"BusinessVC"},
-                      @{@"title": @"PopupView", @"className": @"PopupViewVC"}];
+                      @{@"title": @"PopupView", @"className": @"PopupViewVC"},
+                      @{@"title": @"UISignal", @"className" : @"UISignalVC"}
+                      ];
     }
     return self;
 }
@@ -173,7 +176,8 @@
     // Navigation logic may go here. Create and push another view controller.
     NSDictionary *dic = [self.list objectAtIndex:indexPath.row];
 
-    if ([[dic objectForKey:@"className"] isEqualToString:@"TestVC2"]) {
+    if (([[dic objectForKey:@"className"] isEqualToString:@"TestVC2"]) ||
+        ([[dic objectForKey:@"className"] isEqualToString:@"UISignalVC"])) {
        UIViewController *vc = [[NSClassFromString([dic objectForKey:@"className"]) alloc] init];
         vc.title = [dic objectForKey:@"title"];
         [self.navigationController pushViewController:vc animated:YES];

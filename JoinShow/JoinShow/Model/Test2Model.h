@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "EntityModel.h"
+#import "EntityBaseModel.h"
 
-@interface Test2Model : EntityModel
+@interface Test2Model : EntityBaseModel
 
 @end

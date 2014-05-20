@@ -13,7 +13,7 @@ typedef UIViewController *(^XYViewControllerManager_createVC_block)(void);
 
 @interface XYViewControllerManager : XYBaseViewController
 
-XY_SINGLETON(XYViewControllerManager)
+AS_SINGLETON(XYViewControllerManager)
 
 @property (nonatomic, strong, readonly) NSMutableDictionary *viewControllers;
 @property (nonatomic, weak) UIViewController *selectedViewController;

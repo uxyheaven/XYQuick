@@ -15,7 +15,7 @@
 
 @interface XYParallaxHelper : NSObject
 
-XY_SINGLETON(XYParallaxHelper)
+AS_SINGLETON(XYParallaxHelper)
 
 // 设备信息刷新间隔
 @property (nonatomic, assign) NSTimeInterval updateInterval;

@@ -13,9 +13,7 @@
 #import "XYQuickDevelop.h"
 #endif
 
-#import "EntityModel.h"
-
-@interface BusinessVC : XYBaseViewController <EntityModelDelegate>
+@interface BusinessVC : XYBaseViewController
 
 @property (nonatomic, strong) UIButton *btnLoad;
 @property (nonatomic, strong) UIButton *btnStart;

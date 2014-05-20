@@ -33,3 +33,7 @@
 #import "XYTabBarController.h"
 
 
+// UI信号量
+#import "XYUISignal.h"
+
+

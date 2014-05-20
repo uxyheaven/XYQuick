@@ -7,8 +7,8 @@
 
 /**************************************************************/
 // 单例模式
-#undef	XY_SINGLETON
-#define XY_SINGLETON( __class ) \
+#undef	AS_SINGLETON
+#define AS_SINGLETON( __class ) \
 + (__class *)sharedInstance;
 //+ (void) purgeSharedInstance;
 
@@ -16,10 +16,10 @@
 #define DEF_SINGLETON( __class ) \
 + (__class *)sharedInstance \
 { \
-static dispatch_once_t once; \
-static __class * __singleton__; \
-dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
-return __singleton__; \
+    static dispatch_once_t once; \
+    static __class * __singleton__; \
+    dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
+    return __singleton__; \
 }
 
 /**************************************************************/
@@ -68,8 +68,10 @@ if (_delegate && [_delegate respondsToSelector:@selector(__x)]) { \
  */
 #pragma mark - to  delegate被注册KVO时,isa会变, 判断delegate被释放?
 #define Delegate( __fun, ...) \
-if (_delegate && [_delegate respondsToSelector:@selector( __fun )]) { \
-objc_msgSend(_delegate, @selector( __fun ), ## __VA_ARGS__);}
+if (_delegate && [_delegate respondsToSelector:@selector( __fun )]) \
+{ \
+    objc_msgSend(_delegate, @selector( __fun ), ## __VA_ARGS__); \
+}
 
 /**************************************************************/
 // NSUserDefaults
@@ -118,33 +120,103 @@ static __inline__ CGRect CGRectMakeWithOriginAndSize( CGPoint origin, CGSize siz
 static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     return CGPointMake( CGRectGetMidX( rect ), CGRectGetMidY( rect ) );
 };
+/**************************************************************/
+// property
+#undef	AS_STATIC_PROPERTY
+#define AS_STATIC_PROPERTY( __name ) \
+- (NSString *)__name; \
++ (NSString *)__name;
+
+#undef	DEF_STATIC_PROPERTY
+#define DEF_STATIC_PROPERTY( __name ) \
+- (NSString *)__name \
+{ \
+    return (NSString *)[[self class] __name]; \
+} \
++ (NSString *)__name \
+{ \
+    static NSString * __local = nil; \
+    if ( nil == __local ) \
+    { \
+        __local = [NSString stringWithFormat:@"%s", #__name]; \
+    } \
+    return __local; \
+}
+
+#undef	DEF_STATIC_PROPERTY2
+#define DEF_STATIC_PROPERTY2( __name, __prefix ) \
+- (NSString *)__name \
+{ \
+    return (NSString *)[[self class] __name]; \
+} \
++ (NSString *)__name \
+{ \
+    static NSString * __local = nil; \
+    if ( nil == __local ) \
+    { \
+        __local = [NSString stringWithFormat:@"%@.%s", __prefix, #__name]; \
+    } \
+    return __local; \
+}
+
+
+#undef	DEF_STATIC_PROPERTY3
+#define DEF_STATIC_PROPERTY3( __name, __prefix, __prefix2 ) \
+- (NSString *)__name \
+{ \
+    return (NSString *)[[self class] __name]; \
+} \
++ (NSString *)__name \
+{ \
+    static NSString * __local = nil; \
+    if ( nil == __local ) \
+    { \
+        __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__name]; \
+    } \
+    return __local; \
+}
+
+#undef	DEF_STATIC_PROPERTY4
+#define DEF_STATIC_PROPERTY4( __name, __value, __prefix, __prefix2 ) \
+- (NSString *)__name \
+{ \
+    return (NSString *)[[self class] __name]; \
+} \
++ (NSString *)__name \
+{ \
+    static NSString * __local = nil; \
+    if ( nil == __local ) \
+    { \
+        __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__value]; \
+    } \
+    return __local; \
+}
+
+#undef	AS_STATIC_PROPERTY_INT
+#define AS_STATIC_PROPERTY_INT( __name ) \
+- (NSInteger)__name; \
++ (NSInteger)__name;
+
+#undef	DEF_STATIC_PROPERTY_INT
+#define DEF_STATIC_PROPERTY_INT( __name, __value ) \
+- (NSInteger)__name \
+{ \
+    return (NSInteger)[[self class] __name]; \
+} \
++ (NSInteger)__name \
+{ \
+    return __value; \
+}
+
+
+#undef	AS_INT
+#define AS_INT	AS_STATIC_PROPERTY_INT
+
+#undef	DEF_INT
+#define DEF_INT	DEF_STATIC_PROPERTY_INT
 
 
 #pragma mark -end
-/**************************************************************/
-// 版本
-/*
- #define SYSTEMVERSION_UNDER_7 (DeviceSystemMajorVersion() < 7)
- 
- //
- static NSUInteger DeviceSystemMajorVersion();
- static NSUInteger DeviceSystemMajorVersion() {
- static NSUInteger _deviceSystemMajorVersion = -1;
- static dispatch_once_t onceToken;
- dispatch_once(&onceToken, ^{
- _deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
- });
- return _deviceSystemMajorVersion;
- }
- */
-
-/**************************************************************/
-
-
-
-
-
-
 /**************************************************************/
 
 /*
