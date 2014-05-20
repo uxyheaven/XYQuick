@@ -39,12 +39,14 @@ XYAnimate UIView动画的封装
 
 XYTabBarController 自定义的UITabBarController
 
+XYUISignal 封装的UIView的event传递类
+
 ##### BaseClass
 XYBaseViewController UIViewController基类
 
 XYBaseTableViewController UITableViewController基类
 
-
+XYViewControllerManager UIViewController 管理类
 
 
 ### XYExternal
