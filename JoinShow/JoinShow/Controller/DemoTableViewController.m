@@ -175,18 +175,18 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     NSDictionary *dic = [self.list objectAtIndex:indexPath.row];
-
-    if (([[dic objectForKey:@"className"] isEqualToString:@"TestVC2"]) ||
-        ([[dic objectForKey:@"className"] isEqualToString:@"UISignalVC"])) {
-       UIViewController *vc = [[NSClassFromString([dic objectForKey:@"className"]) alloc] init];
+    
+    @try {
+        // 故事版加载
+        [self performSegueWithIdentifier:[dic objectForKey:@"className"] sender:dic];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Segue not found: %@", exception);
+        
+        UIViewController *vc = [[NSClassFromString([dic objectForKey:@"className"]) alloc] init];
         vc.title = [dic objectForKey:@"title"];
         [self.navigationController pushViewController:vc animated:YES];
-        return;
     }
-    
-    // 故事版加载
-    [self performSegueWithIdentifier:[dic objectForKey:@"className"] sender:dic];
-    
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

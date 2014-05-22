@@ -72,10 +72,7 @@ if (1) { \
 -(void) someTest{
 #pragma mark - others
     //////////////////// test KVO ///////////////////////
-   // [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged:) observeKey:@"test_testKVO"];
     [self observeWithObject:self property:@"testKVO"];
-    [self observeWithObject:self keyPath:@"testKVO" selector:@selector(testKVOChanged2:) observeKey:@"test_testKVO2"];
-    [self observeWithObject:self keyPath:@"testArrayKVO" selector:@selector(testArrayKVOChanged:) observeKey:@"test_testArrayKVO"];
     
     NSString *str2 = MultiPlatform(@"xib");
     NSLogD(@"%@", str2);
@@ -100,10 +97,7 @@ if (1) { \
     NSLogD(@"%ld", (long)[strLen getLength2]);
     
 #pragma mark - next
-    GirlEntity *tempGirl = [[GirlEntity alloc] init];
-    self.myGirl = tempGirl;
     
-    [self observeWithObject:self keyPath:@"myGirl.name" selector:@selector(expChanged:) observeKey:@"TestVC_myGirl"];
     
 #pragma mark - next
     self.array = [NSMutableArray arrayWithArray:@[@"a"]];
@@ -341,24 +335,8 @@ if (1) { \
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
     
-  /*
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:4000000];
-    PERF_ENTER
-    for (int i = 0; i <1000000; i++) {
-        [array addObject:@"a"];
-    }
-    PERF_LEAVE
-    PERF_ENTER
-    for (int i = 0; i < 100000; i++) {
-        [array addObject:@"a"];
-    }
-    PERF_LEAVE
-    PERF_ENTER
-    for (int i = 0; i < 100000; i++) {
-        [array insertObject:@"a" atIndex:1000000 + 000000 + i - 100];
-    }
-    PERF_LEAVE
-   */
+    //[self someTest];
+    [self observeWithObject:self property:@"testKVO"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -366,9 +344,7 @@ if (1) { \
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void) expChanged:(id)value{
-    NSLogD(@"vlaue:%@", value);
-}
+
 - (IBAction)clickBtn1:(id)sender {
     /*
     [[XYTimer sharedInstance] startTimerWithInterval:2];
@@ -378,7 +354,6 @@ if (1) { \
     self.testKVO = self.testKVO + 1;
     self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
     id j = [self valueForKeyPath:@"testKVO"];
-    NSLog(@"%@", j);
     
     // 观察array
     [self willChangeValueForKey:@"testArrayKVO"];
@@ -655,17 +630,9 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
     [self.view addSubview:self.tableView];
 }
 */
--(void) testKVOChanged:(id)value{
-    NSLogD(@"vlaue:%@", value);
+-(void) testKVOChanged:(id)value old:(id)oldValue{
+    NSLogD(@"vlaue:%@ old:%@", value, oldValue);
 }
-
--(void) testKVOChanged2:(id)value{
-    NSLogD(@"vlaue:%@", value);
-}
--(void) testArrayKVOChanged:(id)value{
-    NSLogD(@"vlaue:%@", value);
-}
-
 
 #pragma mark - XYTimerDelegate
 -(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
