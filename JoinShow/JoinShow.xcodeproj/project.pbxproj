@@ -214,7 +214,6 @@
 		572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CC018385F9D0018179D /* YYJSONHelper.m */; };
 		572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EEF4918473CA700FE1301 /* UILabel+XY.m */; };
 		5730EC03188E015E00299121 /* XYObserve.m in Sources */ = {isa = PBXBuildFile; fileRef = 5730EC02188E015E00299121 /* XYObserve.m */; };
-		5733A98C192A07A600DC78B0 /* XYUISignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5733A98B192A07A600DC78B0 /* XYUISignal.m */; };
 		5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5733A98E192B0F4300DC78B0 /* UISignalVC.m */; };
 		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
@@ -258,6 +257,7 @@
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
 		579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 579426B41856D6DC0049B426 /* EntityBaseModel.m */; };
 		579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579B3A3418EBDCF8001650C6 /* DemoViewController.m */; };
+		579E68A3192EFA4C00EECAB4 /* XYUISignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E68A2192EFA4C00EECAB4 /* XYUISignal.m */; };
 		57A15000191E251000B00281 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FF8191E251000B00281 /* CDAudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		57A15001191E251000B00281 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FFB191E251000B00281 /* CDOpenALSupport.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		57A15002191E251000B00281 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A14FFD191E251000B00281 /* CocosDenshion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -581,8 +581,6 @@
 		572EEF4918473CA700FE1301 /* UILabel+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+XY.m"; sourceTree = "<group>"; };
 		5730EC01188E015E00299121 /* XYObserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserve.h; sourceTree = "<group>"; };
 		5730EC02188E015E00299121 /* XYObserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObserve.m; sourceTree = "<group>"; };
-		5733A98A192A07A600DC78B0 /* XYUISignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUISignal.h; sourceTree = "<group>"; };
-		5733A98B192A07A600DC78B0 /* XYUISignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUISignal.m; sourceTree = "<group>"; };
 		5733A98D192B0F4300DC78B0 /* UISignalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISignalVC.h; sourceTree = "<group>"; };
 		5733A98E192B0F4300DC78B0 /* UISignalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISignalVC.m; sourceTree = "<group>"; };
 		5737618518BB586E004E7D46 /* PaintCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintCodeView.h; sourceTree = "<group>"; };
@@ -667,6 +665,8 @@
 		579426B41856D6DC0049B426 /* EntityBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityBaseModel.m; sourceTree = "<group>"; };
 		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		579B3A3418EBDCF8001650C6 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		579E68A1192EFA4C00EECAB4 /* XYUISignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUISignal.h; sourceTree = "<group>"; };
+		579E68A2192EFA4C00EECAB4 /* XYUISignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUISignal.m; sourceTree = "<group>"; };
 		57A14FF7191E251000B00281 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		57A14FF8191E251000B00281 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		57A14FF9191E251000B00281 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1539,8 +1539,8 @@
 				577ACC79190A2DD70053C9CE /* XYTabBarController.m */,
 				577ACC7B190A30470053C9CE /* XYTabBar.h */,
 				577ACC7C190A30470053C9CE /* XYTabBar.m */,
-				5733A98A192A07A600DC78B0 /* XYUISignal.h */,
-				5733A98B192A07A600DC78B0 /* XYUISignal.m */,
+				579E68A1192EFA4C00EECAB4 /* XYUISignal.h */,
+				579E68A2192EFA4C00EECAB4 /* XYUISignal.m */,
 				57DB87D7183349A60015CC5A /* XYUI.h */,
 			);
 			path = UI;
@@ -1929,7 +1929,6 @@
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
 				57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */,
 				5740323C190FA76700C82B23 /* FMDatabase.m in Sources */,
-				5733A98C192A07A600DC78B0 /* XYUISignal.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
 				578D81CF188E4E1700E0058E /* XYUserDefaults.m in Sources */,
 				571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */,
@@ -1938,6 +1937,7 @@
 				57403250190FA76D00C82B23 /* LKDBHelper.m in Sources */,
 				57DB87EF183349A60015CC5A /* XYParallaxHelper.m in Sources */,
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
+				579E68A3192EFA4C00EECAB4 /* XYUISignal.m in Sources */,
 				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,
 				57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,

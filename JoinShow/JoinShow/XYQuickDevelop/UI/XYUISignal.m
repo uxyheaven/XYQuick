@@ -151,7 +151,8 @@
     }
     
     if (!self.isReach) {
-        //[_target performSelector:@selector(signalForward:) withObject:self];
+        [_target performSelector:@selector(signalForward:) withObject:self];
+        /*
         if ([_target isKindOfClass:[UIView class]]) {
             UIView *superView = [_target superview];
             if (superView) {
@@ -175,6 +176,7 @@
         }else{
             self.isReach = YES;
         }
+         */
     }
     
     /*  // 发送给父类
@@ -286,6 +288,18 @@
     
 	return signal;
 }
+-(void) signalForward:(XYUISignal *)signal{
+    UIView *superView = [signal.target superview];
+    if (superView) {
+        [signal forward:superView];
+    }else{
+        // 到顶了
+        UIViewController *vc = [signal.source viewController];
+        if (vc) {
+            [signal forward:vc];
+        }
+    }
+}
 @end
 
 #pragma mark - UIViewController(XYUISignal)
@@ -344,6 +358,16 @@
 	}
     
 	return signal;
+}
+-(void) signalForward:(XYUISignal *)signal{
+    if ([signal.target isKindOfClass:[UINavigationController class]]) {
+        UIViewController *vc = [(UINavigationController*)signal.target topViewController];
+        if (vc) {
+            [signal forward:vc];
+        }else{
+            // [self forward:vc];
+        }
+    }
 }
 @end
 
