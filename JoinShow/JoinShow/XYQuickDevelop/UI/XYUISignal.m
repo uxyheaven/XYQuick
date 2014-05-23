@@ -145,40 +145,66 @@
     NSObject * targetObject = _target;
 	if ( nil == targetObject )
 		return;
-	
-	if ( [_target isKindOfClass:[UIView class]] ) {
-		UIViewController *viewController = [(UIView *)_target viewController];
-		if ( viewController ) {
-			targetObject = viewController;
-		}
-	}
-
-    Class rtti = [_source class];
-	for ( ;; ) {
-		if ( nil == rtti )
-			break;
-		
-		NSString *	selectorName = [NSString stringWithFormat:@"handle%@:", [rtti description]];
-		SEL			selector = NSSelectorFromString(selectorName);
-        
-		if ( selector && [targetObject respondsToSelector:selector] ) {
-			[targetObject performSelector:selector withObject:self];
-			break;
-		}
-        
-		rtti = class_getSuperclass( rtti );
-		if ( rtti == [UIResponder class] )
-		{
-			rtti = nil;
-			break;
-		}
-	}
-
-    if ( nil == rtti ) {
-        if ( [targetObject respondsToSelector:@selector(handleUISignal:)] ) {
-            [targetObject performSelector:@selector(handleUISignal:) withObject:self];
+    
+    if ( [_target respondsToSelector:@selector(handleUISignal:)] ) {
+        [_target performSelector:@selector(handleUISignal:) withObject:self];
+    }
+    
+    if (!self.isReach) {
+        //[_target performSelector:@selector(signalForward:) withObject:self];
+        if ([_target isKindOfClass:[UIView class]]) {
+            UIView *superView = [_target superview];
+            if (superView) {
+                [self forward:superView];
+            }else{
+                // 到顶了
+                UIViewController *vc = [_source viewController];
+                if (vc) {
+                    [self forward:vc];
+                }
+            }
+        }else if ([_target isKindOfClass:[UIViewController class]]) {
+            if ([_target isKindOfClass:[UINavigationController class]]) {
+                UIViewController *vc = [(UINavigationController*)_target topViewController];
+                if (vc) {
+                    [self forward:vc];
+                }else{
+                   // [self forward:vc];
+                }
+            }
+        }else{
+            self.isReach = YES;
         }
     }
+    
+    /*  // 发送给父类
+     Class rtti = [_source class];
+     for ( ;; ) {
+     if ( nil == rtti )
+     break;
+     
+     NSString *	selectorName = [NSString stringWithFormat:@"handle%@:", [rtti description]];
+     SEL			selector = NSSelectorFromString(selectorName);
+     
+     if ( selector && [targetObject respondsToSelector:selector] ) {
+     [targetObject performSelector:selector withObject:self];
+     break;
+     }
+     
+     rtti = class_getSuperclass( rtti );
+     if ( rtti == [UIResponder class] )
+     {
+     rtti = nil;
+     break;
+     }
+     }
+     */
+    /*
+     if ( [targetObject respondsToSelector:@selector(handleUISignal:)] ) {
+     [targetObject performSelector:@selector(handleUISignal:) withObject:self];
+     }
+     */
+        
 }
 
 -(BOOL) boolValue
@@ -234,14 +260,6 @@
 	return [NSString stringWithFormat:@"signal.%@.", [self description]];
 }
 
--(void) handleUISignal:(XYUISignal *)signal
-{
-	if ( self.superview ) {
-		[signal forward:self.superview];
-	} else {
-		signal.isReach = YES;
-	}
-}
 
 -(XYUISignal *) sendUISignal:(NSString *)name
 {
@@ -300,11 +318,6 @@
 +(NSString *) SIGNAL_TYPE
 {
 	return [NSString stringWithFormat:@"signal.%@.", [self description]];
-}
-
--(void) handleUISignal:(XYUISignal *)signal
-{
-	signal.isReach = YES;
 }
 
 -(XYUISignal *) sendUISignal:(NSString *)name

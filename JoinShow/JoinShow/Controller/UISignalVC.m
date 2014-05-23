@@ -13,6 +13,8 @@
 
 @implementation Signal1
 
+DEF_SIGNAL( BUTTON_CLICK )
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -22,6 +24,10 @@
         [self addSubview:view];
     }
     return self;
+}
+
+ON_SIGNAL( signal ){
+    NSLogD(@"%@", signal);
 }
 
 @end
@@ -42,6 +48,10 @@ DEF_SIGNAL( BUTTON_CLICK )
         [self addSubview:btn];
     }
     return self;
+}
+
+ON_SIGNAL( signal ){
+    NSLogD(@"%@", signal);
 }
 
 -(void) click1:(id)sender{

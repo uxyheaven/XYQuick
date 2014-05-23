@@ -71,7 +71,7 @@
 +(NSString *) SIGNAL;
 +(NSString *) SIGNAL_TYPE;
 
--(void) handleUISignal:(XYUISignal *)signal;
+//-(void) handleUISignal:(XYUISignal *)signal;
 
 -(XYUISignal *) sendUISignal:(NSString *)name;
 -(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object;
@@ -88,7 +88,7 @@
 +(NSString *) SIGNAL;
 +(NSString *) SIGNAL_TYPE;
 
--(void) handleUISignal:(XYUISignal *)signal;
+//-(void) handleUISignal:(XYUISignal *)signal;
 
 -(XYUISignal *) sendUISignal:(NSString *)name;
 -(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object;

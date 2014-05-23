@@ -11,6 +11,8 @@
 
 @interface Signal1 : UIView
 
+AS_SIGNAL( BUTTON_CLICK )
+
 @end
 
 
