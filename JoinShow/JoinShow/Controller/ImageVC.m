@@ -74,7 +74,7 @@
    NSDictionary *dic = [self getCellDataIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%d %@", indexPath.row, [dic objectForKey:@"title"]];
     cell.imageView.image = [dic objectForKey:@"img"];
-    
+    UIPopoverController
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -164,14 +164,14 @@
         case 4:
         {
             [dic setObject:@"stretched" forKey:@"title"];
-            UIImage *tempImg = [self.originImg stretched];
+            UIImage *tempImg = [LoadImage_cache(@"user_currentstandings.png") stretched];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 5:
         {
             [dic setObject:@"stretched(UIEdgeInsetsMake)" forKey:@"title"];
-            UIImage *tempImg = [self.originImg stretched:UIEdgeInsetsMake(30, 20, 10, 10)];
+            UIImage *tempImg = [LoadImage_cache(@"user_currentstandings.png") stretched:UIEdgeInsetsMake(12, 1, 2, 2)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }

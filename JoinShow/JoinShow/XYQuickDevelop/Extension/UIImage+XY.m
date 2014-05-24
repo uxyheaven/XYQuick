@@ -240,9 +240,9 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 - (UIImage *)stretched
 {
-	CGFloat leftCap = floorf(self.size.width / 2.0f);
-	CGFloat topCap = floorf(self.size.height / 2.0f);
-	return [self stretchableImageWithLeftCapWidth:leftCap topCapHeight:topCap];
+	CGFloat x = floorf(self.size.width / 2.0f);
+	CGFloat y = floorf(self.size.height / 2.0f);
+	return [self resizableImageWithCapInsets:UIEdgeInsetsMake(x, y, x, y)];
 }
 
 - (UIImage *)stretched:(UIEdgeInsets)capInsets

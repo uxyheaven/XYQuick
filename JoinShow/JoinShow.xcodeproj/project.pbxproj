@@ -272,6 +272,7 @@
 		57AC6F671845C620003B0817 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AC6F661845C620003B0817 /* SystemConfiguration.framework */; };
 		57AC6F691845C630003B0817 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AC6F681845C630003B0817 /* QuartzCore.framework */; };
 		57AE2ED418D2AA8C009F0481 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE2ED318D2AA8C009F0481 /* image.png */; };
+		57B08683193046C800D2B26D /* user_currentstandings.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B08682193046C800D2B26D /* user_currentstandings.png */; };
 		57B30000177AD9BC00775FC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */; };
 		57B3000E177AD9BC00775FC9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */; };
 		57B3000F177AD9BC00775FC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3FFE9177AD9BC00775FC9 /* UIKit.framework */; };
@@ -691,6 +692,7 @@
 		57AC6F661845C620003B0817 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		57AC6F681845C630003B0817 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		57AE2ED318D2AA8C009F0481 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		57B08682193046C800D2B26D /* user_currentstandings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_currentstandings.png; sourceTree = "<group>"; };
 		57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoinShowTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		57B30015177AD9BC00775FC9 /* JoinShowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoinShowTests-Info.plist"; sourceTree = "<group>"; };
@@ -1274,6 +1276,7 @@
 		57525A4C17AB9E300094D835 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				57B08682193046C800D2B26D /* user_currentstandings.png */,
 				57DF99DB190AF4B10036B85D /* icon_facebook.png */,
 				57DF99DC190AF4B10036B85D /* icon_twitter.png */,
 				57DF99DF190AF5070036B85D /* icon_google.png */,
@@ -1836,6 +1839,7 @@
 				571CBBA617C702D1007CB842 /* p31b0148.png in Resources */,
 				571CBBA717C702D1007CB842 /* p31b0149.png in Resources */,
 				571CBBA817C702D1007CB842 /* p31b0150.png in Resources */,
+				57B08683193046C800D2B26D /* user_currentstandings.png in Resources */,
 				571CBBA917C702D1007CB842 /* p31b0151.png in Resources */,
 				571CBBAA17C702D1007CB842 /* p31b0152.png in Resources */,
 				571CBBAB17C702D1007CB842 /* p31b0153.png in Resources */,
