@@ -74,7 +74,7 @@
    NSDictionary *dic = [self getCellDataIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%d %@", indexPath.row, [dic objectForKey:@"title"]];
     cell.imageView.image = [dic objectForKey:@"img"];
-    UIPopoverController
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
