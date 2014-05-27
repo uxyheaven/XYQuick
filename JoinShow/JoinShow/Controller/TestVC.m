@@ -54,6 +54,7 @@ if (1) { \
     if (self) {
         self.array = [NSMutableArray array];
         _testKVO = 0;
+        _testKVO2 = 0;
         self.testArrayKVO = [NSMutableArray array];
     }
     return self;
@@ -62,18 +63,12 @@ if (1) { \
 {
     NSLogDD
     [XYTimer sharedInstance].delegate = nil;
-    self.array = nil;
-    self.testArrayKVO = nil;
-    self.myGirl = nil;
-    self.text = nil;
-    [self removeAllObserver];
+    //[self removeAllObserver];
+    [self removeObserverWithObject:self];
 }
 
 -(void) someTest{
 #pragma mark - others
-    //////////////////// test KVO ///////////////////////
-    [self observeWithObject:self property:@"testKVO"];
-    
     NSString *str2 = MultiPlatform(@"xib");
     NSLogD(@"%@", str2);
     
@@ -337,6 +332,9 @@ if (1) { \
     
     //[self someTest];
     [self observeWithObject:self property:@"testKVO"];
+    [self observeWithObject:self property:@"testKVO2" block:^(id sourceObject, id newValue, id oldValue) {
+        NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -352,8 +350,8 @@ if (1) { \
      */
     // kvo
     self.testKVO = self.testKVO + 1;
+    self.testKVO2 = self.testKVO2 + 1;
     self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
-    id j = [self valueForKeyPath:@"testKVO"];
     
     // 观察array
     [self willChangeValueForKey:@"testArrayKVO"];
@@ -630,12 +628,13 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
     [self.view addSubview:self.tableView];
 }
 */
--(void) testKVOChanged:(id)value old:(id)oldValue{
-    NSLogD(@"vlaue:%@ old:%@", value, oldValue);
+-(void) testKVOIn:(id)sourceObject new:(id)newValue old:(id)oldValue{
+    NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
 
 #pragma mark - XYTimerDelegate
 -(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
     _testKVO++;
+    _testKVO2++;
 }
 @end

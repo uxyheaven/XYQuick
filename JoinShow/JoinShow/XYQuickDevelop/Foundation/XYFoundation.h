@@ -27,7 +27,7 @@
 #import "XYSystemInfo.h"
 
 // kvo
-#import "XYObserve.h"
+#import "XYObserver.h"
 
 // 缓存
 #import "XYCache.h"

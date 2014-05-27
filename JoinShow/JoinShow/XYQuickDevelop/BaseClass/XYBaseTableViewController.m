@@ -7,7 +7,6 @@
 //
 
 #import "XYBaseTableViewController.h"
-#import "XYObserve.h"
 
 @interface XYBaseTableViewController ()
 
@@ -90,8 +89,6 @@
 -(void) destroyEvents {
     // [super destroyEvents];
     
-    // 移除所有观察者
-    [self removeAllObserver];
     // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

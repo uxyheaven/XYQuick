@@ -114,7 +114,8 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     UIGraphicsEndImageContext();
     return scaledImage;
 }
-// 压缩转换
+
+
 -(UIImage *) transprent
 {
 	CGImageAlphaInfo alpha = CGImageGetAlphaInfo( self.CGImage );

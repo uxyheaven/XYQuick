@@ -21,7 +21,6 @@
 // used: imageWithContentsOfFile
 +(UIImage *) imageWithFile:(NSString *)path;
 
-// 压缩转换
 -(UIImage *) transprent;
 
 // 圆形

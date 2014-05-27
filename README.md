@@ -13,7 +13,7 @@ XYTimer 定时器类
 
 XYDataLite 轻量形数据持久化, 基于NSUserDefaults
 
-XYObserve KVO的封装
+XYObserver KVO的封装
 
 XYSandbox 沙箱路径
 

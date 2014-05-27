@@ -215,6 +215,10 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
 #undef	DEF_INT
 #define DEF_INT	DEF_STATIC_PROPERTY_INT
 
+/**************************************************************/
+// No-ops for non-retaining objects.
+static const void *XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
+static void XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 #pragma mark -end
 /**************************************************************/

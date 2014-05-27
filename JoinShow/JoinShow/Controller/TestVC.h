@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *array;
 
 @property (nonatomic, assign) int testKVO;
+@property (nonatomic, assign) int testKVO2;
 @property (nonatomic, strong) NSMutableArray *testArrayKVO;
 
 @property (nonatomic, strong) GirlEntity *myGirl;
