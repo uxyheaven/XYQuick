@@ -8,6 +8,13 @@
 // kvo 的封装
 #import "XYPrecompile.h"
 
+
+#define	ON_KVO_1_( __property )     -(void) __property##New:(id)newValue
+#define	ON_KVO_2_( __property )     -(void) __property##New:(id)newValue old:(id)oldValue
+#define	ON_KVO_3_( __property )     -(void) __property##In:(id)sourceObject new:(id)newValue
+#define	ON_KVO_4_( __property )     -(void) __property##In:(id)sourceObject new:(id)newValue old:(id)oldValue
+
+
 #undef	NSObject_observers
 #define NSObject_observers	"NSObject.XYObserve.observers"
 

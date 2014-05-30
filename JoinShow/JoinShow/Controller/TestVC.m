@@ -628,10 +628,14 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
     [self.view addSubview:self.tableView];
 }
 */
+/*
 -(void) testKVOIn:(id)sourceObject new:(id)newValue old:(id)oldValue{
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
-
+ */
+ON_KVO_4_(testKVO){
+     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
+}
 #pragma mark - XYTimerDelegate
 -(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
     _testKVO++;
