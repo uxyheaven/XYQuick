@@ -8,8 +8,6 @@
 
 #import "XYObserver.h"
 #import "XYPrecompile.h"
-#import "NSDictionary+XY.h"
-
 
 void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
@@ -59,7 +57,6 @@ void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 }
 -(void) dealloc
 {
-    NSLogDD
     if (_sourceObject) { [_sourceObject removeObserver:self forKeyPath:_keyPath]; }
 }
 
@@ -77,9 +74,9 @@ void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     }else if (_type == XYObserverType_new_old) {
         action(_target, _selector, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
     }else if (_type == XYObserverType_self_new) {
-        action(_target, _selector, self, change[NSKeyValueChangeNewKey]);
+        action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
     }else if (_type == XYObserverType_self_new_old) {
-        action(_target, _selector, self, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
+        action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
     }
 }
 

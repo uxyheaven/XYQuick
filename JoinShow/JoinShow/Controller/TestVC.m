@@ -344,12 +344,10 @@ if (1) { \
 }
 
 - (IBAction)clickBtn1:(id)sender {
-    /*
-    [[XYTimer sharedInstance] startTimerWithInterval:2];
-    [XYTimer sharedInstance].delegate = self;
-     */
     // kvo
     self.testKVO = self.testKVO + 1;
+   // [self setValue:@99 forKeyPath:@"testKVO"];
+    
     self.testKVO2 = self.testKVO2 + 1;
     self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
     
