@@ -15,6 +15,8 @@ XYDataLite 轻量形数据持久化, 基于NSUserDefaults
 
 XYObserver KVO的封装
 
+XYNotification NSNotification的封装
+
 XYSandbox 沙箱路径
 
 XYSystemInfo 系统信息
