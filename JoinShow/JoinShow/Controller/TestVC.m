@@ -335,6 +335,11 @@ if (1) { \
     [self observeWithObject:self property:@"testKVO2" block:^(id sourceObject, id newValue, id oldValue) {
         NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
     }];
+    
+    [self registerNotification:@"aaa"];
+    [self registerNotification:@"bbb" block:^(NSNotification *notification) {
+        NSLogD(@"%@", notification.userInfo);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -535,6 +540,9 @@ if (1) { \
     [self presentModalViewController:controller animated:YES];
     //        [[[[controller viewControllers] lastObject] navigationItem] setTitle:@"SomethingElse"];//修改短信界面标题
      */
+    
+    [self postNotification:@"aaa" userInfo:@{@"msg": @"test"}];
+    [self postNotification:@"bbb" userInfo:@{@"msg": @"test2"}];
 }
 -(void) clickStringCache:(id)sender{
     static int iKey = 0;
@@ -631,9 +639,14 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
  */
-ON_KVO_4_(testKVO){
+ON_KVO_4_( testKVO ) {
      NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
+
+ON_NOTIFICATION_1_( aaa ){
+    NSLogD(@"%@", notification.userInfo);
+}
+
 #pragma mark - XYTimerDelegate
 -(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
     _testKVO++;

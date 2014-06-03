@@ -29,6 +29,9 @@
 // kvo
 #import "XYObserver.h"
 
+// Notification
+#import "XYNotification.h"
+
 // 缓存
 #import "XYCache.h"
 

@@ -30,7 +30,7 @@ DEF_SINGLETON( XYMemoryCache );
 		_cacheObjs = [[NSMutableDictionary alloc] init];
         
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-        [self registerMessage:UIApplicationDidReceiveMemoryWarningNotification selector:@selector(handleNotification:) source:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMemoryCacheNotification:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 	}
     
@@ -109,7 +109,7 @@ DEF_SINGLETON( XYMemoryCache );
 
 #pragma mark -
 
-- (void)handleNotification:(NSNotification *)notification
+- (void)handleMemoryCacheNotification:(NSNotification *)notification
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 	if ([notification.name isEqualToString:UIApplicationDidReceiveMemoryWarningNotification])

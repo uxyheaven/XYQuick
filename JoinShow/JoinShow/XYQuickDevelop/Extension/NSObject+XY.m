@@ -87,6 +87,7 @@ static void (*__dealloc)( id, SEL);
 
 
 #pragma mark - NSNotificationCenter
+/*
 -(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source{
     if (aMsg == nil || aSel == nil) return;
     [self unregisterMessage:aMsg];
@@ -107,6 +108,7 @@ static void (*__dealloc)( id, SEL);
     if (aMsg == nil) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:aMsg object:self userInfo:userInfo];
 }
+*/
 
 #pragma mark - property
 -(NSArray *) attributeList{

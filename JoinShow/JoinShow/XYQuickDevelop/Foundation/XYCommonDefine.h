@@ -220,6 +220,10 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
 static const void *XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
+/**************************************************************/
+// 方法定义
+//void (*actionXY)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+
 #pragma mark -end
 /**************************************************************/
 

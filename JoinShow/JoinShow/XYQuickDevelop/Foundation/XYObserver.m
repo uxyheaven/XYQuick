@@ -9,7 +9,7 @@
 #import "XYObserver.h"
 #import "XYPrecompile.h"
 
-void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 #pragma mark - XYObserver
 @interface XYObserver ()
@@ -21,7 +21,7 @@ void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 @property (nonatomic, copy) XYObserver_block_sourceObject_new_old block;        // 值改变时执行的block
 
 @property (nonatomic, assign) id  sourceObject;         // 被观察的对象
-@property (nonatomic, strong) NSString *keyPath;        // 被观察的对象的keyPath
+@property (nonatomic, copy) NSString *keyPath;        // 被观察的对象的keyPath
 
 -(instancetype) initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type;
 
@@ -57,6 +57,7 @@ void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 }
 -(void) dealloc
 {
+    //NSLogD(@"%@", _keyPath);
     if (_sourceObject) { [_sourceObject removeObserver:self forKeyPath:_keyPath]; }
 }
 
@@ -70,13 +71,13 @@ void (*action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     }
     
     if (_type == XYObserverType_new) {
-        action(_target, _selector, change[NSKeyValueChangeNewKey]);
+        XYObserver_action(_target, _selector, change[NSKeyValueChangeNewKey]);
     }else if (_type == XYObserverType_new_old) {
-        action(_target, _selector, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
+        XYObserver_action(_target, _selector, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
     }else if (_type == XYObserverType_self_new) {
-        action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
+        XYObserver_action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
     }else if (_type == XYObserverType_self_new_old) {
-        action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
+        XYObserver_action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
     }
 }
 

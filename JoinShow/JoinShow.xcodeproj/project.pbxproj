@@ -251,6 +251,7 @@
 		578D14CF187536690071448C /* UITable+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D14CE187536690071448C /* UITable+XY.m */; };
 		578D81CF188E4E1700E0058E /* XYUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D81CE188E4E1700E0058E /* XYUserDefaults.m */; };
 		578D81D2188E4E8900E0058E /* XYKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D81D1188E4E8900E0058E /* XYKeychain.m */; };
+		578ED6A3193DB08C00585D4B /* XYNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 578ED6A2193DB08C00585D4B /* XYNotification.m */; };
 		578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 578FBFE2183AFA8B0083A952 /* AnimationVC2.m */; };
 		57901EBB17E6C26E00B8E8FF /* remark in Resources */ = {isa = PBXBuildFile; fileRef = 57901EBA17E6C26E00B8E8FF /* remark */; };
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
@@ -656,6 +657,8 @@
 		578D81CE188E4E1700E0058E /* XYUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUserDefaults.m; sourceTree = "<group>"; };
 		578D81D0188E4E8900E0058E /* XYKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKeychain.h; sourceTree = "<group>"; };
 		578D81D1188E4E8900E0058E /* XYKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYKeychain.m; sourceTree = "<group>"; };
+		578ED6A1193DB08C00585D4B /* XYNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYNotification.h; sourceTree = "<group>"; };
+		578ED6A2193DB08C00585D4B /* XYNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNotification.m; sourceTree = "<group>"; };
 		578FBFE1183AFA8B0083A952 /* AnimationVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationVC2.h; sourceTree = "<group>"; };
 		578FBFE2183AFA8B0083A952 /* AnimationVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationVC2.m; sourceTree = "<group>"; };
 		57901EBA17E6C26E00B8E8FF /* remark */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = remark; sourceTree = "<group>"; };
@@ -1513,6 +1516,8 @@
 				57DB87BB183349A60015CC5A /* XYDataLite.m */,
 				57FC73DC1934C15300FA8C36 /* XYObserver.h */,
 				57FC73DD1934C15300FA8C36 /* XYObserver.m */,
+				578ED6A1193DB08C00585D4B /* XYNotification.h */,
+				578ED6A2193DB08C00585D4B /* XYNotification.m */,
 				57DB87C1183349A60015CC5A /* XYSystemInfo.h */,
 				57DB87C2183349A60015CC5A /* XYSystemInfo.m */,
 				57DB87C3183349A60015CC5A /* XYThread.h */,
@@ -1961,6 +1966,7 @@
 				577952DA1909727E00F95459 /* XYBaseModel.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
 				57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */,
+				578ED6A3193DB08C00585D4B /* XYNotification.m in Sources */,
 				57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */,
 				57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */,
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
