@@ -7,6 +7,7 @@
 //
 
 #import "XYTimer.h"
+#import "NSDictionary+XY.h"
 
 @implementation XYTimer
 DEF_SINGLETON(XYTimer)
@@ -15,7 +16,7 @@ DEF_SINGLETON(XYTimer)
 {
     self = [super init];
     if (self) {
-        _delegates = [[NSMutableDictionary alloc] initWithCapacity:4];
+        _delegates = [NSMutableDictionary nonRetainDictionary];
         _timers = [[NSMutableDictionary alloc] initWithCapacity:4];
         _accumulatorTimes = [[NSMutableDictionary alloc] initWithCapacity:4];
     }
