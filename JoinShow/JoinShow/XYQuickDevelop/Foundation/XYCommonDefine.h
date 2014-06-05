@@ -47,9 +47,11 @@ dispatch_once( &once_##__name , ^{
 //typedef void (^BasicBlock)(void);
 
 /**************************************************************/
-// 宏定义字符串 转NSString, NSStringify( __name )
-#define NSStringifyWithoutExpandingMacros(x) @#x
-#define NSStringify(x) NSStringifyWithoutExpandingMacros(x)
+// 宏定义字符串 转NSString, __TEXT( __x )
+#undef __TEXT
+#undef __TEXT_intermediary
+#define __TEXT( __x ) __TEXT_intermediary( __x )
+#define __TEXT_intermediary(x) @#x
 
 /**************************************************************/
 // delegate 委托

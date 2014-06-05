@@ -32,10 +32,10 @@
  */
 #define DEF_DataLite_object( __name , __synchronize, __defaultObject, __defaultPath) \
 -(void) set##__name:(id)anObject{ \
-[XYDataLite writeObject:anObject forKey:NSStringify( __func__##__name ) synchronize:__synchronize]; \
+[XYDataLite writeObject:anObject forKey:__TEXT( __func__##__name ) synchronize:__synchronize]; \
 } \
 -(id) __name{ \
-NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], NSStringify( __name )]; \
+NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], __TEXT( __name )]; \
 return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
 }
 

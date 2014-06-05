@@ -8,6 +8,8 @@
 // kvo 的封装
 #import "XYPrecompile.h"
 
+#pragma mark - #define
+#define KVO_NAME( __name )					__TEXT( __name )
 
 #define	ON_KVO_1_( __property )     -(void) __property##New:(id)newValue
 #define	ON_KVO_2_( __property )     -(void) __property##New:(id)newValue old:(id)oldValue

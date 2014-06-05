@@ -63,8 +63,6 @@ if (1) { \
 {
     NSLogDD
     [XYTimer sharedInstance].delegate = nil;
-    //[self removeAllObserver];
-    [self removeObserverWithObject:self];
 }
 
 -(void) someTest{
@@ -331,13 +329,13 @@ if (1) { \
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
     
     //[self someTest];
-    [self observeWithObject:self property:@"testKVO"];
-    [self observeWithObject:self property:@"testKVO2" block:^(id sourceObject, id newValue, id oldValue) {
+    [self observeWithObject:self property:KVO_NAME(testKVO)];
+    [self observeWithObject:self property:KVO_NAME(testKVO2) block:^(id sourceObject, id newValue, id oldValue) {
         NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
     }];
     
-    [self registerNotification:@"aaa"];
-    [self registerNotification:@"bbb" block:^(NSNotification *notification) {
+    [self registerNotification:NOTIFICATION_NAME(aaa)];
+    [self registerNotification:NOTIFICATION_NAME(bbb) block:^(NSNotification *notification) {
         NSLogD(@"%@", notification.userInfo);
     }];
 }
@@ -531,18 +529,8 @@ if (1) { \
 }
 
 -(void) clickSendMessage:(id)sender{
-    /*
-    MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init]; autorelease];
-    controller.recipients = [NSArray arrayWithObject:@"15988888888"];
-    controller.body = @"请直接将此条认证短信发送给我们，以完成手机安全绑定。(9qzkd27953ma)";
-    controller.messageComposeDelegate = self;
-    
-    [self presentModalViewController:controller animated:YES];
-    //        [[[[controller viewControllers] lastObject] navigationItem] setTitle:@"SomethingElse"];//修改短信界面标题
-     */
-    
-    [self postNotification:@"aaa" userInfo:@{@"msg": @"test"}];
-    [self postNotification:@"bbb" userInfo:@{@"msg": @"test2"}];
+    [self postNotification:NOTIFICATION_NAME(aaa) userInfo:@{@"msg": @"test"}];
+    [self postNotification:NOTIFICATION_NAME(bbb) userInfo:@{@"msg": @"test2"}];
 }
 -(void) clickStringCache:(id)sender{
     static int iKey = 0;

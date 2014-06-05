@@ -67,8 +67,5 @@
 +(void) synchronize{
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-//-(id) __name{ \
-//    NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], NSStringify( __name )];
-//    return [XYDataLite readObjectForKey:NSStringify( __name ) defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
-//}
+
 @end

@@ -7,10 +7,12 @@
 // NSNotification 的封装
 
 #import <Foundation/Foundation.h>
+#import "XYCommonDefine.h"
 
+#pragma mark - #define
+#define NOTIFICATION_NAME( __name )					__TEXT( __name )
 
 #define	ON_NOTIFICATION_1_( __name )     -(void) __name##NotificationHandle:(NSNotification *)notification
-
 
 #undef	NSObject_notifications
 #define NSObject_notifications	"NSObject.XYNotification.notifications"
