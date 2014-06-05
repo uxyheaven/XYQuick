@@ -14,19 +14,6 @@
 
 #pragma mark - perform
 
-#pragma mark - NSNotificationCenter
-/*
-// source : 表示接收哪个发送者的通知，如果第为nil,接收所有发送者的通知
-// NSNotification.userInfo : 传递的信息
--(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source;
--(void) unregisterMessage:(NSString*)aMsg;
--(void) unregisterAllMessage;
--(void) sendMessage:(NSString *)aMsg userInfo:(NSDictionary *)userInfo;
-*/
-/*
- - (void) function: (NSNotification*) notification;
- */
-
 #pragma mark - property
 // 属性列表
 @property (nonatomic, readonly, strong) NSArray                *attributeList;

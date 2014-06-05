@@ -85,31 +85,6 @@ static void (*__dealloc)( id, SEL);
  */
 #pragma mark - perform
 
-
-#pragma mark - NSNotificationCenter
-/*
--(void) registerMessage:(NSString*)aMsg selector:(SEL)aSel source:(id)source{
-    if (aMsg == nil || aSel == nil) return;
-    [self unregisterMessage:aMsg];
-    
-    if ([self respondsToSelector:aSel]){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:aSel name:aMsg object:source];
-        return;
-    }
-}
--(void) unregisterMessage:(NSString*)aMsg{
-    if (aMsg == nil) return;
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:aMsg object:nil];
-}
--(void) unregisterAllMessage{
-   [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
--(void) sendMessage:(NSString *)aMsg userInfo:(NSDictionary *)userInfo{
-    if (aMsg == nil) return;
-    [[NSNotificationCenter defaultCenter] postNotificationName:aMsg object:self userInfo:userInfo];
-}
-*/
-
 #pragma mark - property
 -(NSArray *) attributeList{
     NSUInteger			propertyCount = 0;
