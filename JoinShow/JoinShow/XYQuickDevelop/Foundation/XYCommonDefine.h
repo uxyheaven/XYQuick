@@ -217,8 +217,8 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
 
 /**************************************************************/
 // No-ops for non-retaining objects.
-static const void *XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
-static void XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
+static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
+static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 /**************************************************************/
 // 方法定义

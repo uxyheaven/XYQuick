@@ -275,6 +275,13 @@ const char *property_getTypeString(objc_property_t property) {
     return [self dataUsingEncoding:NSUTF8StringEncoding];
 }
 
+-(id) JSONValue{
+    NSError* error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:self.toYYData options:kNilOptions error:&error];
+    if (error != nil) return nil;
+    
+    return result;
+}
 @end
 
 @implementation NSDictionary (YYJSONHelper)

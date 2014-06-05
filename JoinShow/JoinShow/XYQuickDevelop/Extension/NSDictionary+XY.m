@@ -14,9 +14,9 @@
 +(NSMutableDictionary *) nonRetainDictionary{
     CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
     CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
-    callbacks.retain = XYRetainNoOp;
-    callbacks.release = XYReleaseNoOp;
-    return (NSMutableDictionary *)CFBridgingRelease(CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks));
+    callbacks.retain = __XYRetainNoOp;
+    callbacks.release = __XYReleaseNoOp;
+    return  (__bridge_transfer NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }
 
 @end

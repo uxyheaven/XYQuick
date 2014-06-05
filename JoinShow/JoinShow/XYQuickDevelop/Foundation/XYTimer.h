@@ -43,3 +43,12 @@ AS_SINGLETON(XYTimer)
 -(void) stopAllTimer;
 
 @end
+
+#pragma mark - 
+// CADisplayLink
+// Ticker
+
+
+
+
+

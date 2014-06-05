@@ -110,11 +110,6 @@ DUMMY_CLASS(NSArray_XY);
 
 @end
 
-#pragma mark -
-
-// No-ops for non-retaining objects.
-static const void *	__TTRetainNoOp( CFAllocatorRef allocator, const void * value ) { return value; }
-static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { }
 
 #pragma mark -
 
@@ -132,20 +127,15 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 	
 	return [block copy];
 }
-/*
-+ (NSMutableArray *)nonRetainingArray	// copy from Three20
+
++ (NSMutableArray *)nonRetainingArray
 {
 	CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
-	callbacks.retain = __TTRetainNoOp;
-	callbacks.release = __TTReleaseNoOp;
-    
-    CFMutableArrayRef cfArray = CFArrayCreateMutable( nil, 0, &callbacks );
-    NSMutableArray *array = CFBridgingRelease(cfArray);
-    CFRelease(cfArray);
-    
-	return array;
+    callbacks.retain = __XYRetainNoOp;
+    callbacks.release = __XYReleaseNoOp;
+    return (__bridge_transfer NSMutableArray *)CFArrayCreateMutable(nil, 0, &callbacks);
 }
-*/
+
 - (NSMutableArray *)pushHead:(NSObject *)obj
 {
 	if ( obj )
@@ -312,62 +302,3 @@ static void			__TTReleaseNoOp( CFAllocatorRef allocator, const void * value ) { 
 // Unit test
 // ----------------------------------
 
-#if defined(__BEE_UNITTEST__) && __BEE_UNITTEST__
-
-TEST_CASE( NSArray_XY )
-{
-	TIMES( 3 )
-	{
-		NSArray * arr = [NSArray array];
-		EXPECTED( arr );
-		EXPECTED( 0 == arr.count );
-		
-		NSString * temp = [arr safeObjectAtIndex:100];
-		EXPECTED( nil == temp );
-		
-		arr = arr.APPEND( @"1" );
-		EXPECTED( 1 == arr.count );
-		
-		arr = arr.APPEND( @"2" ).APPEND( @"3" );
-		EXPECTED( 3 == arr.count );
-		
-		NSArray * head2 = [arr head:2];
-		EXPECTED( head2 );
-		EXPECTED( 2 == head2.count );
-		EXPECTED( [[head2 objectAtIndex:0] isEqualToString:@"1"] );
-		EXPECTED( [[head2 objectAtIndex:1] isEqualToString:@"2"] );
-		
-		NSArray * tail2 = [arr tail:2];
-		EXPECTED( tail2 );
-		EXPECTED( 2 == tail2.count );
-		EXPECTED( [[tail2 objectAtIndex:0] isEqualToString:@"2"] );
-		EXPECTED( [[tail2 objectAtIndex:1] isEqualToString:@"3"] );
-	}
-}
-TEST_CASE_END
-
-TEST_CASE( NSMutableArray_XY )
-{
-	//	+ (NSMutableArray *)nonRetainingArray;	// copy from Three20
-	//
-	//	- (NSMutableArray *)pushHead:(NSObject *)obj;
-	//	- (NSMutableArray *)pushHeadN:(NSArray *)all;
-	//	- (NSMutableArray *)popTail;
-	//	- (NSMutableArray *)popTailN:(NSUInteger)n;
-	//
-	//	- (NSMutableArray *)pushTail:(NSObject *)obj;
-	//	- (NSMutableArray *)pushTailN:(NSArray *)all;
-	//	- (NSMutableArray *)popHead;
-	//	- (NSMutableArray *)popHeadN:(NSUInteger)n;
-	//
-	//	- (NSMutableArray *)keepHead:(NSUInteger)n;
-	//	- (NSMutableArray *)keepTail:(NSUInteger)n;
-	//
-	//	- (void)insertObjectNoRetain:(id)anObject atIndex:(NSUInteger)index;
-	//	- (void)addObjectNoRetain:(NSObject *)obj;
-	//	- (void)removeObjectNoRelease:(NSObject *)obj;
-	//	- (void)removeAllObjectsNoRelease;
-}
-TEST_CASE_END
-
-#endif	// #if defined(__BEE_UNITTEST__) && __BEE_UNITTEST__

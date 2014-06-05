@@ -101,8 +101,11 @@
 
 
 #pragma mark- Image
-+(void) webImageSetup{
-    [UIImageView setDefaultEngine:[[MKNetworkEngine alloc] init]];
++(id) webImageEngine{
+    static dispatch_once_t once;
+    static MKNetworkEngine * __singleton__;
+    dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } );
+    return __singleton__;
 }
 
 +(NSString *) generateAccessTokenWithObject:(id)anObject{
@@ -146,6 +149,7 @@
     return self;
 }
 
+// 请重载此方法实现自己的通用解析方法
 -(id) succeed:(RequestHelper_normalRequestSucceedBlock)blockS
        failed:(RequestHelper_normalRequestFailedBlock)blockF{
     [self addCompletionHandler:blockS errorHandler:blockF];
@@ -204,6 +208,19 @@
             [fileManager removeItemAtPath:filePath error:&error];
             if (error) {
                 NSLogD(@"remove %@ file failed!\nError:%@", filePath, error);
+                return;
+            }
+        }
+        
+        NSString *path = [filePath stringByDeletingLastPathComponent];
+        if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:path] )
+        {
+            [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&error];
+            if (error) {
+                NSLogD(@"Error:%@", error);
                 return;
             }
         }
@@ -279,23 +296,14 @@
     }
     
     // 获得临时文件的路径
-    NSString *tempDoucment = NSTemporaryDirectory();
-    NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
-    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:tempFilePath isDirectory:NULL] )
-    {
-        BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:tempFilePath
-                                             withIntermediateDirectories:YES
-                                                              attributes:nil
-                                                                   error:nil];
-        if ( NO == ret ) {
-            NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, tempFilePath);
-            return nil;
-        }
-    }
+    /*
+     NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"/"];
+     NSRange lastCharRange = [filePath rangeOfCharacterFromSet:charSet options:NSBackwardsSearch];
+     tempFilePath = [NSString stringWithFormat:@"%@/%@.temp", tempFilePath, [filePath substringFromIndex:lastCharRange.location + 1]];
+     */
     
-    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"/"];
-    NSRange lastCharRange = [filePath rangeOfCharacterFromSet:charSet options:NSBackwardsSearch];
-    tempFilePath = [NSString stringWithFormat:@"%@/%@.temp", tempFilePath, [filePath substringFromIndex:lastCharRange.location + 1]];
+    NSString *tempFileName = [NSString stringWithFormat:@"%@.temp", [filePath lastPathComponent]];
+    NSString *tempFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName];
     
     // 获得临时文件的路径
     NSMutableDictionary *newHeadersDict = [[NSMutableDictionary alloc] init];

@@ -55,8 +55,8 @@ typedef enum {
 //////////////////        Image        ////////////////////
 #pragma mark- Image
 // 设置图片缓存引擎
-#define XY_setupWebImageCache [RequestHelper webImageSetup];
-+(void) webImageSetup;
+#define XY_setupWebImageEngine [UIImageView setDefaultEngine:[RequestHelper webImageEngine]];
++(id) webImageEngine;
 
 // 子类需要重新写, 暂时废弃
 //+(NSString *) generateAccessTokenWithObject:(id)anObject;
@@ -81,6 +81,8 @@ typedef enum {
 
 -(id) submitInQueue:(DownloadHelper *)requests;
 -(id) progress:(RequestHelper_downloadRequestProgressBlock)blockP;
+
+// 请重载此方法实现自己的通用解析方法
 -(id) succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
        failed:(RequestHelper_downloadRequestFailedBlock)blockF;
 @end

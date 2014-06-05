@@ -116,6 +116,9 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 // 大写字母 (International Business Machines 变成 IBM)
 -(NSString*) stringByInitials;
 
+// 返回显示字串所需要的尺寸
+-(CGSize) calculateSize:(CGSize)size font:(UIFont *)font;
+
 @end
 
 

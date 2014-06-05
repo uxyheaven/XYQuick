@@ -33,7 +33,7 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 @property (nonatomic, readonly, copy) NSMutableArrayAppendBlock	APPEND;
 
-//+ (NSMutableArray *)nonRetainingArray;			// copy from Three20
++ (NSMutableArray *)nonRetainingArray;
 
 - (NSMutableArray *)pushHead:(NSObject *)obj;
 - (NSMutableArray *)pushHeadN:(NSArray *)all;

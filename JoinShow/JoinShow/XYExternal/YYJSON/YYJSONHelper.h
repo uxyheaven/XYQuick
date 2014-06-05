@@ -66,6 +66,9 @@ const char *property_getTypeString(objc_property_t property);
 - (NSArray *)toModels:(Class)modelClass;
 
 - (NSArray *)toModels:(Class)modelClass forKey:(NSString *)jsonKey;
+
+- (id)JSONValue;
+
 @end
 
 @interface NSDictionary (YYJSONHelper)
