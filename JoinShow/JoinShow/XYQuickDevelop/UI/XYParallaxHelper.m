@@ -52,8 +52,8 @@ DEF_SINGLETON(XYParallaxHelper)
             self.lastAttitude = _motion.deviceMotion.attitude;
             self.curAttitude = _motion.deviceMotion.attitude;
             [self resetDeviceOrientation];
-            [[XYTimer sharedInstance] startTimer:ParallaxHelper_timer interval:_updateInterval];
-            [[XYTimer sharedInstance] setTimer:ParallaxHelper_timer delegate:self];
+            [self timer:_updateInterval repeat:YES];
+
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
         }else{
             SHOWMSG(@"Message", @"Can't use deviceMotionAvailable.", @"cancel");
@@ -68,7 +68,8 @@ DEF_SINGLETON(XYParallaxHelper)
     if (_motion) {
         [_motion stopDeviceMotionUpdates];
         _motion = nil;
-        [[XYTimer sharedInstance] stopTimer:ParallaxHelper_timer];
+        [self cancelTimer:nil];
+        
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
         [_views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             UIView *view = obj;
@@ -136,12 +137,12 @@ DEF_SINGLETON(XYParallaxHelper)
 }
 
 #define mark - XYTimerDelegate
--(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
+ON_TIMER(){
     CMDeviceMotion *motion = _motion.deviceMotion;
     self.curAttitude = motion.attitude;
     
     CGPoint point = CGPointMake((self.curAttitude.roll - self.lastAttitude.roll), (self.curAttitude.pitch - self.lastAttitude.pitch));
-  //  NSLogD(@"%@", NSStringFromCGPoint(point));
+    //  NSLogD(@"%@", NSStringFromCGPoint(point));
     
     [_views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIView *view = obj;
@@ -170,6 +171,7 @@ DEF_SINGLETON(XYParallaxHelper)
         
         view.transform = newTransform;
     }];
+
 }
 
 #pragma mark - kvo

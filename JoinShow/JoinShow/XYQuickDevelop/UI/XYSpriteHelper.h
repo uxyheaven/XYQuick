@@ -13,7 +13,7 @@
 #import "XYUI.h"
 #import "XYFoundation.h"
 
-@interface XYSpriteHelper : NSObject<XYTimerDelegate>{
+@interface XYSpriteHelper : NSObject{
 }
 
 AS_SINGLETON(XYSpriteHelper)

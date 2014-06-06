@@ -25,14 +25,13 @@ DEF_SINGLETON(XYSpriteHelper);
 }
 
 -(void)startTimer{
-    [[XYTimer sharedInstance] startTimer:XYSpriteHelper_timer interval:_interval];
-    [[XYTimer sharedInstance] setTimer:XYSpriteHelper_timer delegate:self];
+    [self timer:_interval repeat:YES];
 }
 -(void) pauseTimer{
-    [[XYTimer sharedInstance] pauseTimer:XYSpriteHelper_timer];
+    [self cancelTimer:nil];
 }
 -(void)stopTimer{
-    [[XYTimer sharedInstance] stopTimer:XYSpriteHelper_timer];
+    [self cancelTimer:nil];
 }
 
 -(void)clearAllSprites{
@@ -61,8 +60,8 @@ DEF_SINGLETON(XYSpriteHelper);
     }];
 }
 #define mark - XYTimerDelegate
--(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
-  //  NSLogD(@"%f", ti);
+
+ON_TIMER(){
     [self updateSprites];
 }
 #pragma mark -

@@ -6,21 +6,21 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
+#import "XYPrecompile.h"
+
 #pragma mark - #define
+
+#define TIMER_NAME( __name )					__TEXT( __name )
+
+#undef	ON_TIMER
+#define ON_TIMER( __name ) \
+        -(void) __name##TimerHandle:(XYTimer *)Timer time:(NSTimeInterval)time
 
 #undef	NSObject_XYTimers
 #define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
 
-#import "XYPrecompile.h"
-
-
-#pragma mark - #define
-
-#undef	ON_TIMER
-#define ON_TIMER( __name ) \
-        -(void) __name##TimerHandle:(NSTimer *)Timer time:(NSTimeInterval)time
-
-typedef void(^XYTimer_block)(NSTimer *timer, NSTimeInterval time);
+@class XYTimer;
+typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval time);
 
 #pragma mark - XYTimer
 @interface XYTimer : NSObject
@@ -34,9 +34,14 @@ typedef void(^XYTimer_block)(NSTimer *timer, NSTimeInterval time);
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *XYtimers;
 
--(NSTimer *) timer:(NSTimeInterval *)interval;
--(NSTimer *) timer:(NSTimeInterval *)interval repeat:(BOOL)repeat;
--(NSTimer *) timer:(NSTimeInterval *)interval repeat:(BOOL)repeat name:(NSString *)name;
+-(NSTimer *) timer:(NSTimeInterval)interval;
+-(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat;
+-(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name;
+
+-(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
+
+//-(void) pauseTimer;
+//-(void) resumeTimer;
 
 -(void) cancelTimer:(NSString *)name;
 -(void) cancelAllTimer;

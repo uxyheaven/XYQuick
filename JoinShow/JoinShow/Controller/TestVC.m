@@ -62,7 +62,6 @@ if (1) { \
 - (void)dealloc
 {
     NSLogDD
-    [XYTimer sharedInstance].delegate = nil;
 }
 
 -(void) someTest{
@@ -106,7 +105,6 @@ if (1) { \
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [[XYTimer sharedInstance] startTimerWithInterval:2];
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 66 , Screen_WIDTH - 20, Screen_HEIGHT - 86)];
     //scroll.contentSize = CGSizeMake(Screen_WIDTH - 60, 2000);
     scroll.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
@@ -361,7 +359,7 @@ if (1) { \
 }
 
 - (IBAction)clickBtn2:(id)sender {
-    [[XYTimer sharedInstance] pauseTimer];
+
 }
 - (IBAction)clickBtnMuhud:(id)sender {
     UIButton* btn=(UIButton*) sender;

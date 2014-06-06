@@ -17,7 +17,7 @@
 @class XYObserve;
 @class TestView;
 @class GirlEntity;
-@interface TestVC : UIViewController <XYTimerDelegate>{
+@interface TestVC : UIViewController {
     int offset;
     
 }
