@@ -62,6 +62,7 @@ if (1) { \
 - (void)dealloc
 {
     NSLogDD
+    [self cancelTimer:nil];
 }
 
 -(void) someTest{
@@ -336,6 +337,8 @@ if (1) { \
     [self registerNotification:NOTIFICATION_NAME(bbb) block:^(NSNotification *notification) {
         NSLogD(@"%@", notification.userInfo);
     }];
+    
+    [self timer:1 repeat:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -634,8 +637,8 @@ ON_NOTIFICATION_1_( aaa ){
 }
 
 #pragma mark - XYTimerDelegate
--(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti{
-    _testKVO++;
-    _testKVO2++;
+
+ON_TIMER(){
+    NSLogD(@"%g", time);
 }
 @end

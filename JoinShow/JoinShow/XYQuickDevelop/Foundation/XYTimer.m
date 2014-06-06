@@ -28,10 +28,17 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 -(void) handleTimer;
 
+-(void) stop;
+
 @end
 
 @implementation XYTimer
 
+-(void) stop{
+    if (_timer.isValid){
+        [_timer invalidate];
+    }
+}
 -(void) handleTimer{
     NSTimeInterval ti = [[NSDate date] timeIntervalSince1970] - _start_at;
     
@@ -45,9 +52,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 
 -(void) dealloc{
-    if (_timer.isValid){
-        [_timer invalidate];
-    }
+
 }
 
 @end
@@ -87,10 +92,10 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
         [self cancelTimer:timerName];
     }
 
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:", timerName]);
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:time:", timerName]);
     
     if (![self respondsToSelector:@selector(aSel)]) {
-        return nil;
+       // return nil;
     }
     NSDate *date = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
@@ -99,7 +104,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     timer.target = self;
     timer.selector = aSel;
     timer.time = 0;
-    timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer:) userInfo:nil repeats:repeat];
+    timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
     [timers setObject:timer forKey:timerName];
@@ -111,11 +116,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     NSString *timerName = (name == nil) ? @"" : name;
     
     NSMutableDictionary *timers = self.XYtimers;
-    XYTimer *timer2 = timers[timerName];
-    
-    if (timer2) {
-        [self cancelTimer:timerName];
-    }
+    [self cancelTimer:timerName];
     
     NSDate *date = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
@@ -133,11 +134,23 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 -(void) cancelTimer:(NSString *)name{
     NSString *timerName = (name == nil) ? @"" : name;
-    [self.XYtimers removeObjectForKey:timerName];
+
+    NSMutableDictionary *timers = self.XYtimers;
+    XYTimer *timer2 = timers[timerName];
+    
+    if (timer2) {
+        [timer2 stop];
+        [timers removeObjectForKey:timerName];
+    }
 }
 
 -(void) cancelAllTimer{
-    [self.XYtimers removeAllObjects];
+    NSMutableDictionary *timers = self.XYtimers;
+    [timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [obj stop];
+    }];
+    
+    [timers removeAllObjects];
 }
 
 @end

@@ -14,7 +14,7 @@
 
 #undef	ON_TIMER
 #define ON_TIMER( __name ) \
-        -(void) __name##TimerHandle:(XYTimer *)Timer time:(NSTimeInterval)time
+        -(void) __name##TimerHandle:(XYTimer *)timer time:(NSTimeInterval)time
 
 #undef	NSObject_XYTimers
 #define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
@@ -23,6 +23,10 @@
 typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval time);
 
 #pragma mark - XYTimer
+/**
+ * 说明
+ * XYTimer 是每个对象可以拥有多个,建议不要用太多, 不用的时候需要手动移除观察
+ */
 @interface XYTimer : NSObject
 
 @property (nonatomic ,strong) NSTimer *timer;

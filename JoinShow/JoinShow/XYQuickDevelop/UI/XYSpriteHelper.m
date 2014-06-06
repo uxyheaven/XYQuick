@@ -61,8 +61,9 @@ DEF_SINGLETON(XYSpriteHelper);
 }
 #define mark - XYTimerDelegate
 
-ON_TIMER(){
+ON_TIMER( ){
     [self updateSprites];
 }
+
 #pragma mark -
 @end
