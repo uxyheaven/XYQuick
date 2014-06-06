@@ -8,41 +8,38 @@
 
 #pragma mark - #define
 
-#define XYTimer_default @"ddd"
+#undef	NSObject_XYTimers
+#define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
+
 #import "XYPrecompile.h"
 
-@protocol XYTimerDelegate <NSObject>
 
-@optional
--(void) onTimer:(NSString *)timer time:(NSTimeInterval)ti;
+#pragma mark - #define
+
+#undef	ON_TIMER
+#define ON_TIMER( __name ) \
+        -(void) __name##TimerHandle:(NSTimer *)Timer time:(NSTimeInterval)time
+
+typedef void(^XYTimer_block)(NSTimer *timer, NSTimeInterval time);
+
+#pragma mark - XYTimer
+@interface XYTimer : NSObject
+
+@property (nonatomic ,strong) NSTimer *timer;
 
 @end
 
+#pragma mark - NSObject(XYTimer)
+@interface NSObject (XYTimer)
 
-@interface XYTimer : NSObject{
-  //  int classIsa;
-}
-AS_SINGLETON(XYTimer)
+@property (nonatomic, readonly, strong) NSMutableDictionary *XYtimers;
 
-@property (nonatomic, readonly, strong) NSMutableDictionary *delegates;
-@property (nonatomic, readonly, strong) NSMutableDictionary *timers;
-@property (nonatomic, readonly, strong) NSMutableDictionary *accumulatorTimes;
+-(NSTimer *) timer:(NSTimeInterval *)interval;
+-(NSTimer *) timer:(NSTimeInterval *)interval repeat:(BOOL)repeat;
+-(NSTimer *) timer:(NSTimeInterval *)interval repeat:(BOOL)repeat name:(NSString *)name;
 
-// 默认的定时器
-@property (nonatomic, weak) id<XYTimerDelegate> delegate;
--(void) startTimerWithInterval:(NSTimeInterval)ti;
--(void) stopTimer;
--(void) pauseTimer;
--(void) resumeTimer;
-
-// 特定的定时器
--(void) startTimer:(NSString *)key interval:(NSTimeInterval)ti;
--(void) stopTimer:(NSString *)key;
--(void) pauseTimer:(NSString *)key;
--(void) resumeTimer:(NSString *)key;
--(void) setTimer:(NSString *)key delegate:(id)anObject;
-
--(void) stopAllTimer;
+-(void) cancelTimer:(NSString *)name;
+-(void) cancelAllTimer;
 
 @end
 

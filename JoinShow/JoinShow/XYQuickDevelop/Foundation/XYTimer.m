@@ -117,8 +117,85 @@ DEF_SINGLETON(XYTimer)
 }
 @end
 
+void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+
+#pragma mark - XYTimer
+@interface XYTimer2 ()
+
+@property (nonatomic, weak) id target;                  //
+@property (nonatomic, assign) SEL selector;             //
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) id sender;                // 来源
+@property (nonatomic, assign) NSTimeInterval time;      // 累计时间
+
+@property (nonatomic ,assign) NSTimeInterval start_at;  // 开始时间
+
+@property (nonatomic, copy) XYTimer_block block;
+
+-(void) handleTimer:(NSTimer *)timer;
+
+@end
+
+@implementation XYTimer
+
+-(void) handleTimer:(NSTimer *)timer{
+    NSTimeInterval ti = [NSDate date] - _start_at;
+    
+    if (_block) {
+        _block(self , ti);
+        return;
+    }
+    
+    XYTimer_action(_target, _selector, self, ti);
+}
 
 
+-(void) dealloc{
+    if (_timer.isValid){
+        [_timer invalidate];
+    }
+}
+
+@end
+
+#pragma mark - NSObject(XYTimer)
+@implementation NSObject(XYTimer)
+
+@dynamic XYtimers;
+
+-(NSMutableDictionary *) XYtimers{
+    id object = objc_getAssociatedObject(self, NSObject_notifications);
+    
+    if (nil == object) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
+        objc_setAssociatedObject(self, NSObject_XYTimers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return dic;
+    }
+    
+    return object;
+}
+
+-(NSTimer *) timer:(NSTimeInterval *)interval{
+   return [self timer:interval repeat:NO];
+}
+
+-(NSTimer *) timer:(NSTimeInterval *)interval repeat:(BOOL)repeat{
+   return [self timer:interval repeat:repeat name:@""];
+}
+
+-(NSTimer *) timer:(NSTimeInterval *)interval repeat:(BOOL)repeat name:(NSString *)name{
+    
+}
+
+-(void) cancelTimer:(NSString *)name{
+    
+}
+
+-(void) cancelAllTimer{
+    
+}
+
+@end
 
 #pragma mark - XYTicker
 
