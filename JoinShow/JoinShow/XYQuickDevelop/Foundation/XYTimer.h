@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
+#pragma mark - #define
+
 #define XYTimer_default @"ddd"
 #import "XYPrecompile.h"
 
@@ -47,6 +49,45 @@ AS_SINGLETON(XYTimer)
 #pragma mark - 
 // CADisplayLink
 // Ticker
+
+
+#pragma mark - #define
+
+#undef	ON_TICK
+#define ON_TICK( __time ) \
+-(void) handleTick:(NSTimeInterval)__time
+
+#pragma mark - XYTicker
+/**
+ * 说明
+ * XYTicker 采用用一个CADisplayLink计时, 不用的时候需要手动移除观察
+ */
+@interface XYTicker : NSObject
+
+@property (nonatomic, weak, readonly) CADisplayLink *timer;
+@property (nonatomic, assign, readonly)	NSTimeInterval		timestamp;
+@property (nonatomic, assign) NSTimeInterval		interval;
+
+AS_SINGLETON( XYTicker )
+
+-(void) addReceiver:(NSObject *)obj;
+-(void) removeReceiver:(NSObject *)obj;
+
+@end
+
+@interface NSObject(XYTicker)
+
+-(void) observeTick;
+-(void) unobserveTick;
+-(void) handleTick:(NSTimeInterval)elapsed;
+
+@end
+
+
+
+
+
+
 
 
 
