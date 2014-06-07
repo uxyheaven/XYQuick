@@ -14,18 +14,19 @@
 
 #undef	ON_TIMER
 #define ON_TIMER( __name ) \
-        -(void) __name##TimerHandle:(XYTimer *)timer time:(NSTimeInterval)time
+        -(void) __name##TimerHandle:(XYTimer *)timer duration:(NSTimeInterval)duration
 
 #undef	NSObject_XYTimers
 #define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
 
 @class XYTimer;
-typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval time);
+typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
 #pragma mark - XYTimer
 /**
  * 说明
  * XYTimer 是每个对象可以拥有多个,建议不要用太多, 不用的时候需要手动移除观察
+ * todo:可以在加一层用于响应NSTimer, 然后在XYTimer释放的时候停止定时器
  */
 @interface XYTimer : NSObject
 

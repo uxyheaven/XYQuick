@@ -639,6 +639,6 @@ ON_NOTIFICATION_1_( aaa ){
 #pragma mark - XYTimerDelegate
 
 ON_TIMER(){
-    NSLogD(@"%g", time);
+    NSLogD(@"%g", duration);
 }
 @end

@@ -19,8 +19,8 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 @property (nonatomic, weak) id target;                  //
 @property (nonatomic, assign) SEL selector;             //
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) id sender;                // 来源
-@property (nonatomic, assign) NSTimeInterval time;      // 累计时间
+//@property (nonatomic, assign) id sender;                // 来源
+@property (nonatomic, assign) NSTimeInterval duration;  // 持续时间
 
 @property (nonatomic ,assign) NSTimeInterval start_at;  // 开始时间
 
@@ -92,18 +92,17 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
         [self cancelTimer:timerName];
     }
 
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:time:", timerName]);
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:duration:", timerName]);
     
-    if (![self respondsToSelector:@selector(aSel)]) {
-       // return nil;
-    }
+    NSAssert([self respondsToSelector:aSel], @"selector 必须存在");
+    
     NSDate *date = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
     timer.name = timerName;
     timer.start_at = [date timeIntervalSince1970];
     timer.target = self;
     timer.selector = aSel;
-    timer.time = 0;
+    timer.duration = 0;
     timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
@@ -122,7 +121,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     XYTimer *timer = [[XYTimer alloc] init];
     timer.name = timerName;
     timer.start_at = [date timeIntervalSince1970];
-    timer.time = 0;
+    timer.duration = 0;
     timer.block = block;
     timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer:) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
