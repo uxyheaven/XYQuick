@@ -62,7 +62,7 @@ if (1) { \
 - (void)dealloc
 {
     NSLogDD
-    [self cancelTimer:nil];
+  //  [self cancelTimer:nil];
 }
 
 -(void) someTest{

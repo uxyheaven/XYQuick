@@ -57,6 +57,32 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @end
 
+
+#pragma mark - XYTimerContainer
+@interface XYTimerContainer : NSObject
+
+@property (nonatomic, strong) XYTimer *timer;
+
+-(instancetype) initWithXYTimer:(XYTimer *)timer;
+
+@end
+
+@implementation XYTimerContainer
+
+-(instancetype) initWithXYTimer:(XYTimer *)timer
+{
+    self = [super init];
+    if (self) {
+        _timer = timer;
+    }
+    return self;
+}
+- (void)dealloc
+{
+    [_timer stop];
+}
+
+@end
 #pragma mark - NSObject(XYTimer)
 @implementation NSObject(XYTimer)
 
@@ -106,7 +132,9 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
-    [timers setObject:timer forKey:timerName];
+    XYTimerContainer *container = [[XYTimerContainer alloc] initWithXYTimer:timer];
+    
+    [timers setObject:container forKey:timerName];
     
     return timer.timer;
 }
@@ -126,7 +154,9 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer:) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
-    [timers setObject:timer forKey:timerName];
+    XYTimerContainer *container = [[XYTimerContainer alloc] initWithXYTimer:timer];
+    
+    [timers setObject:container forKey:timerName];
     
     return timer.timer;
 }
@@ -135,10 +165,10 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     NSString *timerName = (name == nil) ? @"" : name;
 
     NSMutableDictionary *timers = self.XYtimers;
-    XYTimer *timer2 = timers[timerName];
+    XYTimerContainer *timer2 = timers[timerName];
     
     if (timer2) {
-        [timer2 stop];
+        [timer2.timer stop];
         [timers removeObjectForKey:timerName];
     }
 }

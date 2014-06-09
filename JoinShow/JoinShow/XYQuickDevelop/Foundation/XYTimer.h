@@ -25,14 +25,17 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 #pragma mark - XYTimer
 /**
  * 说明
- * XYTimer 是每个对象可以拥有多个,建议不要用太多, 不用的时候需要手动移除观察
- * todo:可以在加一层用于响应NSTimer, 然后在XYTimer释放的时候停止定时器
+ * XYTimer 是每个对象可以拥有多个,建议不要用太多,在对象释放的时候会自动停止
  */
 @interface XYTimer : NSObject
 
 @property (nonatomic ,strong) NSTimer *timer;
 
 @end
+
+
+#pragma mark - XYTimerContainer
+
 
 #pragma mark - NSObject(XYTimer)
 @interface NSObject (XYTimer)
