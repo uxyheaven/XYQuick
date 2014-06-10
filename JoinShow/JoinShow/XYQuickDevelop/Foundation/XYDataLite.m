@@ -11,9 +11,6 @@
 #import "XYDataLite.h"
 
 @implementation XYDataLite
-//DEF_SINGLETON(DataLite)
-
-//DEF_DataLite_object(StrTest, YES, nil, nil)
 
 #pragma mark - todo 多类型判断
 

@@ -85,6 +85,7 @@ AS_SINGLETON( XYTicker )
 
 @end
 
+#pragma mark - NSObject(XYTicker)
 @interface NSObject(XYTicker)
 
 -(void) observeTick;

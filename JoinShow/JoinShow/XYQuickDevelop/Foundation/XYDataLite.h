@@ -15,11 +15,11 @@
 #define XY_DataLite_synchronize [XYDataLite synchronize];
 
 // 注意: __name 首字母需要大写
-#define XY_DataLite_string( __name ) \
+#define AS_DataLite_string( __name ) \
 -(void) set##__name:(NSString *)anObject; \
 -(id) __name;
 
-#define XY_DataLite_object( __name ) \
+#define AS_DataLite_object( __name ) \
 -(void) set##__name:(id)anObject; \
 -(id) __name;
 
@@ -32,29 +32,23 @@
  */
 #define DEF_DataLite_object( __name , __synchronize, __defaultObject, __defaultPath) \
 -(void) set##__name:(id)anObject{ \
-[XYDataLite writeObject:anObject forKey:__TEXT( __func__##__name ) synchronize:__synchronize]; \
+    [XYDataLite writeObject:anObject forKey:__TEXT( __func__##__name ) synchronize:__synchronize]; \
 } \
 -(id) __name{ \
-NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], __TEXT( __name )]; \
-return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
+    NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], __TEXT( __name )]; \
+    return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
 }
 
 #import "XYPrecompile.h"
 #import "XYFoundation.h"
 
 @interface XYDataLite : NSObject
-//AS_SINGLETON(DataLite)
-//XY_DataLite_string(StrTest)
 
 // dont support bool
 +(id) readObjectForKey:(NSString *)key;
+
 // defaultObject dont support bool, defaultObjectPath dont support NSNumber
 +(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject defaultObjectPath:(NSString *)aPath;
-
-// dont support bool
-//+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject;
-//+(id) readObjectForKey:(NSString *)key defaultObjectPath:(NSString *)aPath;
-
 
 // if bSync == YES, run [[NSUserDefaults standardUserDefaults] synchronize]
 +(void) writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync;
@@ -64,4 +58,5 @@ return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObj
 +(void) registerDefaults:(NSDictionary *)dic;
 
 +(void) synchronize;
+
 @end
