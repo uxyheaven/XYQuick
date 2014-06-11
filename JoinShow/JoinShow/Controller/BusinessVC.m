@@ -110,14 +110,14 @@
 }
 
 - (IBAction)clickLoad:(id)sender {
-    UITextField *textField = (UITextField *)[self.view viewWithTag:11000];
+    UITextField *textField = (UITextField *)[self.view viewWithTag:11003];
     [self.view endEditing:YES];
     
     RubyChinaNodeEntity *anObject = [[RubyChinaNodeEntity alloc] init];
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
     NSString *str = [anObject YYJSONString];
-    SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
+    SHOWMBProgressHUD(@"Data", str, nil, NO, 99);
 }
 
 

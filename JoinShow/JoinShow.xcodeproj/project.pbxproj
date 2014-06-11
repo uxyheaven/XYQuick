@@ -218,7 +218,6 @@
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
 		57403226190F933500C82B23 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403225190F933500C82B23 /* OpenUDID.m */; };
-		5740322B190FA23600C82B23 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740322A190FA23600C82B23 /* MBProgressHUD.m */; };
 		5740323B190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740322F190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.m */; };
 		5740323C190FA76700C82B23 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403232190FA76700C82B23 /* FMDatabase.m */; };
 		5740323D190FA76700C82B23 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403234190FA76700C82B23 /* FMDatabaseAdditions.m */; };
@@ -339,6 +338,8 @@
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
+		CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */; };
+		CEE0036819480697005AE8C4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0036719480697005AE8C4 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -591,8 +592,6 @@
 		5738D27F1845C5E800837DB7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		57403224190F933500C82B23 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		57403225190F933500C82B23 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
-		57403227190FA22F00C82B23 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		5740322A190FA23600C82B23 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5740322E190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+InMemoryOnDiskIO.h"; sourceTree = "<group>"; };
 		5740322F190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+InMemoryOnDiskIO.m"; sourceTree = "<group>"; };
 		57403231190FA76700C82B23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -821,6 +820,10 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
+		CEE003631947F2F7005AE8C4 /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
+		CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorHelper.m; sourceTree = "<group>"; };
+		CEE0036619480697005AE8C4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CEE0036719480697005AE8C4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1127,8 +1130,8 @@
 		572E7C7418385C690018179D /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				57403227190FA22F00C82B23 /* MBProgressHUD.h */,
-				5740322A190FA23600C82B23 /* MBProgressHUD.m */,
+				CEE0036619480697005AE8C4 /* MBProgressHUD.h */,
+				CEE0036719480697005AE8C4 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -1599,6 +1602,8 @@
 				57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */,
 				57D4FF4518221A4400E10954 /* LKDBHelperExtension.h */,
 				57D4FF4618221A4400E10954 /* LKDBHelperExtension.m */,
+				CEE003631947F2F7005AE8C4 /* IndicatorHelper.h */,
+				CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1942,6 +1947,7 @@
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
 				57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */,
 				5740323C190FA76700C82B23 /* FMDatabase.m in Sources */,
+				CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */,
 				57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
 				57FC73DE1934C15300FA8C36 /* XYObserver.m in Sources */,
@@ -1959,6 +1965,7 @@
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
 				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,
 				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
+				CEE0036819480697005AE8C4 /* MBProgressHUD.m in Sources */,
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,
 				57DB87EB183349A60015CC5A /* XYTimer.m in Sources */,
 				57403253190FA76D00C82B23 /* NSObject+LKModel.m in Sources */,
@@ -2036,7 +2043,6 @@
 				576E87D31855E77200C7A724 /* XYPerformance.m in Sources */,
 				5740324E190FA76D00C82B23 /* LKDB+Manager.m in Sources */,
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
-				5740322B190FA23600C82B23 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

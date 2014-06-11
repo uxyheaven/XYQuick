@@ -181,16 +181,16 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.labelText = nil;
 		self.detailsLabelText = nil;
 		self.opacity = 0.8f;
-        self.color = nil;
+		self.color = nil;
 		self.labelFont = [UIFont boldSystemFontOfSize:kLabelFontSize];
-        self.labelColor = [UIColor whiteColor];
+		self.labelColor = [UIColor whiteColor];
 		self.detailsLabelFont = [UIFont boldSystemFontOfSize:kDetailsLabelFontSize];
-        self.detailsLabelColor = [UIColor whiteColor];
+		self.detailsLabelColor = [UIColor whiteColor];
 		self.xOffset = 0.0f;
 		self.yOffset = 0.0f;
 		self.dimBackground = NO;
 		self.margin = 20.0f;
-        self.cornerRadius = 10.0f;
+		self.cornerRadius = 10.0f;
 		self.graceTime = 0.0f;
 		self.minShowTime = 0.0f;
 		self.removeFromSuperViewOnHide = NO;
@@ -239,6 +239,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	[minShowTimer release];
 	[showStarted release];
 	[customView release];
+	[labelFont release];
+	[labelColor release];
+	[detailsLabelFont release];
+	[detailsLabelColor release];
 #if NS_BLOCKS_AVAILABLE
 	[completionBlock release];
 #endif
@@ -414,12 +418,12 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	self.taskInProgress = YES;
 	self.completionBlock = completion;
 	dispatch_async(queue, ^(void) {
-        block();
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [self cleanUp];
-        });
-    });
-  [self show:animated];
+		block();
+		dispatch_async(dispatch_get_main_queue(), ^(void) {
+			[self cleanUp];
+		});
+	});
+	[self show:animated];
 }
 
 #endif
@@ -491,7 +495,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	else if (mode == MBProgressHUDModeDeterminateHorizontalBar) {
 		// Update to bar determinate indicator
 		[indicator removeFromSuperview];
-        self.indicator = MB_AUTORELEASE([[MBBarProgressView alloc] init]);
+		self.indicator = MB_AUTORELEASE([[MBBarProgressView alloc] init]);
 		[self addSubview:indicator];
 	}
 	else if (mode == MBProgressHUDModeDeterminate || mode == MBProgressHUDModeAnnularDeterminate) {
@@ -629,12 +633,12 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		CGGradientRelease(gradient);
 	}
 
-    // Set background rect color
-    if (self.color) {
-        CGContextSetFillColorWithColor(context, self.color.CGColor);
-    } else {
-        CGContextSetGrayFillColor(context, 0.0f, self.opacity);
-    }
+	// Set background rect color
+	if (self.color) {
+		CGContextSetFillColorWithColor(context, self.color.CGColor);
+	} else {
+		CGContextSetGrayFillColor(context, 0.0f, self.opacity);
+	}
 
 	
 	// Center HUD
@@ -877,8 +881,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+	self = [super initWithFrame:frame];
+	if (self) {
 		_progress = 0.f;
 		_lineColor = [UIColor whiteColor];
 		_progressColor = [UIColor whiteColor];
@@ -886,8 +890,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.backgroundColor = [UIColor clearColor];
 		self.opaque = NO;
 		[self registerForKVO];
-    }
-    return self;
+	}
+	return self;
 }
 
 - (void)dealloc {
@@ -905,12 +909,11 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
-	// setup properties
 	CGContextSetLineWidth(context, 2);
 	CGContextSetStrokeColorWithColor(context,[_lineColor CGColor]);
 	CGContextSetFillColorWithColor(context, [_progressRemainingColor CGColor]);
 	
-	// draw line border
+	// Draw background
 	float radius = (rect.size.height / 2) - 2;
 	CGContextMoveToPoint(context, 2, rect.size.height/2);
 	CGContextAddArcToPoint(context, 2, 2, radius + 2, 2, radius);
@@ -921,7 +924,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	CGContextAddArcToPoint(context, 2, rect.size.height - 2, 2, rect.size.height/2, radius);
 	CGContextFillPath(context);
 	
-	// draw progress background
+	// Draw border
 	CGContextMoveToPoint(context, 2, rect.size.height/2);
 	CGContextAddArcToPoint(context, 2, 2, radius + 2, 2, radius);
 	CGContextAddLineToPoint(context, rect.size.width - radius - 2, 2);
@@ -931,20 +934,17 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	CGContextAddArcToPoint(context, 2, rect.size.height - 2, 2, rect.size.height/2, radius);
 	CGContextStrokePath(context);
 	
-	// setup to draw progress color
 	CGContextSetFillColorWithColor(context, [_progressColor CGColor]);
 	radius = radius - 2;
 	float amount = self.progress * rect.size.width;
 	
-	// if progress is in the middle area
+	// Progress in the middle area
 	if (amount >= radius + 4 && amount <= (rect.size.width - radius - 4)) {
-		// top
 		CGContextMoveToPoint(context, 4, rect.size.height/2);
 		CGContextAddArcToPoint(context, 4, 4, radius + 4, 4, radius);
 		CGContextAddLineToPoint(context, amount, 4);
 		CGContextAddLineToPoint(context, amount, radius + 4);
 		
-		// bottom
 		CGContextMoveToPoint(context, 4, rect.size.height/2);
 		CGContextAddArcToPoint(context, 4, rect.size.height - 4, radius + 4, rect.size.height - 4, radius);
 		CGContextAddLineToPoint(context, amount, rect.size.height - 4);
@@ -953,11 +953,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		CGContextFillPath(context);
 	}
 	
-	// progress is in the right arc
+	// Progress in the right arc
 	else if (amount > radius + 4) {
 		float x = amount - (rect.size.width - radius - 4);
-		
-		// top
+
 		CGContextMoveToPoint(context, 4, rect.size.height/2);
 		CGContextAddArcToPoint(context, 4, 4, radius + 4, 4, radius);
 		CGContextAddLineToPoint(context, rect.size.width - radius - 4, 4);
@@ -965,8 +964,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		if (isnan(angle)) angle = 0;
 		CGContextAddArc(context, rect.size.width - radius - 4, rect.size.height/2, radius, M_PI, angle, 0);
 		CGContextAddLineToPoint(context, amount, rect.size.height/2);
-		
-		// bottom
+
 		CGContextMoveToPoint(context, 4, rect.size.height/2);
 		CGContextAddArcToPoint(context, 4, rect.size.height - 4, radius + 4, rect.size.height - 4, radius);
 		CGContextAddLineToPoint(context, rect.size.width - radius - 4, rect.size.height - 4);
@@ -978,14 +976,12 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		CGContextFillPath(context);
 	}
 	
-	// progress is in the left arc
+	// Progress is in the left arc
 	else if (amount < radius + 4 && amount > 0) {
-		// top
 		CGContextMoveToPoint(context, 4, rect.size.height/2);
 		CGContextAddArcToPoint(context, 4, 4, radius + 4, 4, radius);
 		CGContextAddLineToPoint(context, radius + 4, rect.size.height/2);
-		
-		// bottom
+
 		CGContextMoveToPoint(context, 4, rect.size.height/2);
 		CGContextAddArcToPoint(context, 4, rect.size.height - 4, radius + 4, rect.size.height - 4, radius);
 		CGContextAddLineToPoint(context, radius + 4, rect.size.height/2);
