@@ -117,7 +117,7 @@
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
     NSString *str = [anObject YYJSONString];
-    SHOWMBProgressHUD(@"Data", str, nil, NO, 99);
+    SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
 }
 
 
