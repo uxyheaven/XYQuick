@@ -15,14 +15,18 @@
 
 AS_SINGLETON(IndicatorHelper)
 
+// 返回一个indicatorView
++(id) indicatorView;
+
 // apple原生的UIActivityIndicatorView
 +(id) originalIndicator;
 +(id) MBProgressHUD;
 
 //
--(void) showMessage:(NSString *)message;
+-(id) message:(NSString *)message;
+-(id) inView:(UIView *)view;
 
--(void) show;
+-(id) show;
 
 
 

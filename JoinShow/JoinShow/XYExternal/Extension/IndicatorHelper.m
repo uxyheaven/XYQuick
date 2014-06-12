@@ -29,41 +29,51 @@ DEF_SINGLETON(IndicatorHelper)
 }
 
 +(id) MBProgressHUD{
-    /*
     static dispatch_once_t once;
     static MBProgressHUD *MB_HUD;
     dispatch_once(&once, ^ {
         MB_HUD = [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     });
-    */
-    return [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    return MB_HUD;
+    
+    //return [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
++(id) indicatorView{
+    return [IndicatorHelper MBProgressHUD];
+}
+
+
 //
--(void) showMessage:(NSString *)message{
-    MBProgressHUD *hud = [IndicatorHelper MBProgressHUD];
+-(id) message:(NSString *)message{
+    MBProgressHUD *hud = [IndicatorHelper indicatorView];
     hud.userInteractionEnabled = NO;
     hud.mode = MBProgressHUDModeText;
     hud.labelText = message;
-    hud.removeFromSuperViewOnHide = YES;
     
     [self bringViewToFront:hud];
     
-    [hud show:YES];
-    [hud hide:YES afterDelay:[self displayDurationForString:message]];
+    return hud;
 }
 
-
--(void) show{
+-(id) inView:(UIView *)view{
+    MBProgressHUD *hud = [IndicatorHelper indicatorView];
+    [view addSubview:hud];
     
+    return hud;
+}
+-(id) show{
+    MBProgressHUD *hud = [IndicatorHelper indicatorView];
+    
+    [hud show:YES];
+    [hud hide:YES afterDelay:[self displayDurationForString:hud.labelText]];
+    
+    return hud;
 }
 
 -(NSTimeInterval) displayDurationForString:(NSString *)str{
     return MIN((float)str.length * 0.06 + 0.3, .5);
-}
-
--(id) indicatorView{
-    return [IndicatorHelper MBProgressHUD];
 }
 
 -(void) bringViewToFront:(UIView *)view{
