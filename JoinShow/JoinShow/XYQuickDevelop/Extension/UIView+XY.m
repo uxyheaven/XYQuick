@@ -265,6 +265,18 @@ DUMMY_CLASS(UIView_XY);
     
 }
 
+-(void) removeFromSuperviewWithCrossfade{
+    self.alpha = 0;
+    
+    CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
+    [animation setValue:@"kCATransitionFade" forKey:@"type"];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    animation.duration = .3;
+    [self.layer addAnimation:animation forKey:nil];
+    
+    [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:.3];
+}
+
 -(void) removeAllSubviews{
     for (UIView *temp in self.subviews) {
         [temp removeFromSuperview];

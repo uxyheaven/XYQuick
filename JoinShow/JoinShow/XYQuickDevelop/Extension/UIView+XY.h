@@ -59,6 +59,9 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 // 截屏
 -(UIImage *) snapshot;
 
+// 淡出,然后移除
+-(void) removeFromSuperviewWithCrossfade;
+
 -(void) removeAllSubviews;
 -(void) removeSubviewWithTag:(NSInteger)tag;
 -(void) removeSubviewExceptTag:(NSInteger)tag;

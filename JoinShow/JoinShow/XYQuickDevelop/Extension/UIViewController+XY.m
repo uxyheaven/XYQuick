@@ -88,7 +88,7 @@
     [self dismissViewControllerAnimated:YES completion:block];
 }
 
--(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString{
+-(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block{
     int isShow = [[NSUserDefaults standardUserDefaults] integerForKey:key];
     if (isShow == 0) {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:key];
@@ -100,12 +100,13 @@
         
         // 用户引导背景图
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:userGuideView.bounds];
+        imageView.tag = UserGuide_tag;
         UIImage *image = LoadImage_nocache(imgName, nil);
         if (image == nil) {
             image = LoadImage_cache(imgName);
         }
         
-        if ([frameString isEqualToString:@"full"]) {
+        if ([frameString isEqualToString:@"full"] || frameString.length == 0) {
             imageView.image = image;
         }else if ([frameString isEqualToString:@"center"]){
             // 高清屏幕就缩小图片显示尺寸
@@ -117,7 +118,6 @@
             CGRect rect = CGRectFromString(frameString);
             if (!CGRectIsEmpty(rect)) {
                 imageView.frame = rect;
-                imageView.center = userGuideView.center;
                 imageView.image = image;
             }else{
                 CGPoint point = CGPointFromString(frameString);
@@ -134,11 +134,25 @@
         btnHide.frame = userGuideView.bounds;
         [btnHide handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
             UIView *bgView = ((UIView *)sender).superview;
-            if (bgView){
-                [bgView removeFromSuperview];
+            if (block) {
+                block(bgView);
+            }else{
+                if (bgView){
+                    bgView.hidden = YES;
+                    
+                    CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
+                    [animation setValue:@"kCATransitionFade" forKey:@"type"];
+                    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+                    animation.duration = 0.3;
+                    [bgView.layer addAnimation:animation forKey:nil];
+                    
+                    [bgView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:.3];
+                }
             }
+            
         }];
         [userGuideView addSubview:btnHide];
+        [self.view addSubview:userGuideView];
         
         return userGuideView;
     }

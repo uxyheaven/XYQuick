@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^UIViewController_block_void) (void);
+typedef void(^UIViewController_block_view) (UIView *view);
 
 @interface UIViewController (XY)
 
@@ -25,16 +26,18 @@ typedef void(^UIViewController_block_void) (void);
 -(void) dismissModalVC;
 -(void) dismissModalVCWithSucceed:(UIViewController_block_void)block;
 
+#define UserGuide_tag 30912
 /**
  * 显示用户引导图
  * api parameters 说明
- * imgNmae 图片名称,默认用无图片缓解方式加载
+ * imgName 图片名称,默认用无图片缓存方式加载, UIImageView tag == UserGuide_tag
  * key 引导图的key,默认每个key只显示一次
- * frameString 引导图的位置, full 全屏, center 居中, 
-    frame : @"{0,0},{100,100}", center : @"{100,100}"
+ * frameString 引导图的位置, full 全屏, center 居中,
+ frame : @"{{0,0},{100,100}}", center : @"{{100,100}}"
+ * block 点击背景执行的方法, 默认是淡出
  * return 返回底层的蒙板view
  */
--(id) showUserGuideViewWithImage:(NSString *)imgNmae key:(NSString *)key frame:(NSString *)frameString;
+-(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block;
 
 @end
 
