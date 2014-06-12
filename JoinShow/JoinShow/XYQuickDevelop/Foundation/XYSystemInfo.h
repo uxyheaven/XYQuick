@@ -60,6 +60,9 @@
 +(NSString *) deviceModel;
 +(NSString *) deviceUUID;
 
+// 是否retina屏
++(BOOL) isRetina;
+
 // 是否越狱
 +(BOOL) isJailBroken		NS_AVAILABLE_IOS(4_0);
 +(NSString *) jailBreaker	NS_AVAILABLE_IOS(4_0);

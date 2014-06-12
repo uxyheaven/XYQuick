@@ -24,6 +24,18 @@ typedef void(^UIViewController_block_void) (void);
 -(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName object:(id)object succeed:(UIViewController_block_void)block;
 -(void) dismissModalVC;
 -(void) dismissModalVCWithSucceed:(UIViewController_block_void)block;
+
+/**
+ * 显示用户引导图
+ * api parameters 说明
+ * imgNmae 图片名称,默认用无图片缓解方式加载
+ * key 引导图的key,默认每个key只显示一次
+ * frameString 引导图的位置, full 全屏, center 居中, 
+    frame : @"{0,0},{100,100}", center : @"{100,100}"
+ * return 返回底层的蒙板view
+ */
+-(id) showUserGuideViewWithImage:(NSString *)imgNmae key:(NSString *)key frame:(NSString *)frameString;
+
 @end
 
 @protocol XYSwitchControllerProtocol <NSObject>

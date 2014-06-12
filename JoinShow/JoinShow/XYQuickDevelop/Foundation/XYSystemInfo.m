@@ -114,6 +114,10 @@
 	return nil;
 }
 
++(BOOL) isRetina{
+    return [UIScreen mainScreen].scale == 2;
+}
+
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 static const char * __jb_app = NULL;
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
