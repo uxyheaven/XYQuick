@@ -153,6 +153,7 @@
             
         }];
         [userGuideView addSubview:btnHide];
+        userGuideView.window.windowLevel = UIWindowLevelStatusBar + 1;
         [self.view addSubview:userGuideView];
         
         // 淡入淡入
