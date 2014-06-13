@@ -316,6 +316,14 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"user guide" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickUserGuide:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
 #pragma mark -btn end
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.backgroundColor = [UIColor lightGrayColor];
@@ -579,6 +587,11 @@ if (1) { \
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
+}
+
+-(void) clickUserGuide:(id)sender{
+    NSString *key = [NSString stringWithFormat:@"guide_%d", arc4random()]  ;
+    [self showUserGuideViewWithImage:@"bg_trends.png" key:key frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
 }
 /////////////////////////// 备注 ///////////////////////////////
 /*

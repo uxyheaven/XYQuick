@@ -140,6 +140,7 @@
                 if (bgView){
                     bgView.hidden = YES;
                     
+                    // 淡入淡出
                     CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
                     [animation setValue:@"kCATransitionFade" forKey:@"type"];
                     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
@@ -153,6 +154,13 @@
         }];
         [userGuideView addSubview:btnHide];
         [self.view addSubview:userGuideView];
+        
+        // 淡入淡入
+        CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
+        [animation setValue:@"kCATransitionFade" forKey:@"type"];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+        animation.duration = .15;
+        [self.view.layer addAnimation:animation forKey:nil];
         
         return userGuideView;
     }
