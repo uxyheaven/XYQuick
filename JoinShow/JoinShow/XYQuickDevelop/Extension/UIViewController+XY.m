@@ -89,7 +89,7 @@
 }
 
 -(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block{
-    int isShow = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    NSInteger isShow = [[NSUserDefaults standardUserDefaults] integerForKey:key];
     if (isShow == 0) {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
