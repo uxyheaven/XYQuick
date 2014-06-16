@@ -344,7 +344,7 @@
     if ([url isKindOfClass:[NSString class]]) {
         tmpURL = [NSURL URLWithString:(NSString *)url];
     }
-    [[UIApplication sharedApplication ] openURL:tmpURL];
+    [[UIApplication sharedApplication] openURL:tmpURL];
 }
 
 
