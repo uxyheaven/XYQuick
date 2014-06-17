@@ -224,13 +224,6 @@
 		5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403236190FA76700C82B23 /* FMDatabasePool.m */; };
 		5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403238190FA76700C82B23 /* FMDatabaseQueue.m */; };
 		57403240190FA76700C82B23 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740323A190FA76700C82B23 /* FMResultSet.m */; };
-		5740324E190FA76D00C82B23 /* LKDB+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403243190FA76D00C82B23 /* LKDB+Manager.m */; };
-		5740324F190FA76D00C82B23 /* LKDB+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403245190FA76D00C82B23 /* LKDB+Mapping.m */; };
-		57403250190FA76D00C82B23 /* LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403247190FA76D00C82B23 /* LKDBHelper.m */; };
-		57403251190FA76D00C82B23 /* LKDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403249190FA76D00C82B23 /* LKDBUtils.m */; };
-		57403252190FA76D00C82B23 /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740324B190FA76D00C82B23 /* NSObject+LKDBHelper.m */; };
-		57403253190FA76D00C82B23 /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740324D190FA76D00C82B23 /* NSObject+LKModel.m */; };
-		57403259190FBDD100C82B23 /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403258190FBDD100C82B23 /* LKTestModels.m */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A0BA7182379B800CA8D9D /* PopupViewVC.m */; };
@@ -338,6 +331,13 @@
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
+		CE3CED901950000E00E336F4 /* LKDB+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED851950000E00E336F4 /* LKDB+Manager.m */; };
+		CE3CED911950000E00E336F4 /* LKDB+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED871950000E00E336F4 /* LKDB+Mapping.m */; };
+		CE3CED921950000E00E336F4 /* LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED891950000E00E336F4 /* LKDBHelper.m */; };
+		CE3CED931950000E00E336F4 /* LKDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED8B1950000E00E336F4 /* LKDBUtils.m */; };
+		CE3CED941950000E00E336F4 /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED8D1950000E00E336F4 /* NSObject+LKDBHelper.m */; };
+		CE3CED951950000E00E336F4 /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED8F1950000E00E336F4 /* NSObject+LKModel.m */; };
+		CE3CED981950003500E336F4 /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3CED971950003500E336F4 /* LKTestModels.m */; };
 		CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */; };
 		CEE0036819480697005AE8C4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0036719480697005AE8C4 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
@@ -604,20 +604,6 @@
 		57403238190FA76700C82B23 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		57403239190FA76700C82B23 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		5740323A190FA76700C82B23 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		57403242190FA76D00C82B23 /* LKDB+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Manager.h"; sourceTree = "<group>"; };
-		57403243190FA76D00C82B23 /* LKDB+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LKDB+Manager.m"; sourceTree = "<group>"; };
-		57403244190FA76D00C82B23 /* LKDB+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Mapping.h"; sourceTree = "<group>"; };
-		57403245190FA76D00C82B23 /* LKDB+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LKDB+Mapping.m"; sourceTree = "<group>"; };
-		57403246190FA76D00C82B23 /* LKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelper.h; sourceTree = "<group>"; };
-		57403247190FA76D00C82B23 /* LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBHelper.m; sourceTree = "<group>"; };
-		57403248190FA76D00C82B23 /* LKDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBUtils.h; sourceTree = "<group>"; };
-		57403249190FA76D00C82B23 /* LKDBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBUtils.m; sourceTree = "<group>"; };
-		5740324A190FA76D00C82B23 /* NSObject+LKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKDBHelper.h"; sourceTree = "<group>"; };
-		5740324B190FA76D00C82B23 /* NSObject+LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKDBHelper.m"; sourceTree = "<group>"; };
-		5740324C190FA76D00C82B23 /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
-		5740324D190FA76D00C82B23 /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
-		57403257190FBDD100C82B23 /* LKTestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTestModels.h; sourceTree = "<group>"; };
-		57403258190FBDD100C82B23 /* LKTestModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTestModels.m; sourceTree = "<group>"; };
 		5742C1F017F7BF3C00065083 /* XYExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternal.h; sourceTree = "<group>"; };
 		57548400181F4629008F9355 /* KeyboardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardVC.h; sourceTree = "<group>"; };
 		57548401181F4629008F9355 /* KeyboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardVC.m; sourceTree = "<group>"; };
@@ -820,6 +806,20 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
+		CE3CED841950000E00E336F4 /* LKDB+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Manager.h"; sourceTree = "<group>"; };
+		CE3CED851950000E00E336F4 /* LKDB+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LKDB+Manager.m"; sourceTree = "<group>"; };
+		CE3CED861950000E00E336F4 /* LKDB+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Mapping.h"; sourceTree = "<group>"; };
+		CE3CED871950000E00E336F4 /* LKDB+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LKDB+Mapping.m"; sourceTree = "<group>"; };
+		CE3CED881950000E00E336F4 /* LKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelper.h; sourceTree = "<group>"; };
+		CE3CED891950000E00E336F4 /* LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBHelper.m; sourceTree = "<group>"; };
+		CE3CED8A1950000E00E336F4 /* LKDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBUtils.h; sourceTree = "<group>"; };
+		CE3CED8B1950000E00E336F4 /* LKDBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBUtils.m; sourceTree = "<group>"; };
+		CE3CED8C1950000E00E336F4 /* NSObject+LKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKDBHelper.h"; sourceTree = "<group>"; };
+		CE3CED8D1950000E00E336F4 /* NSObject+LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKDBHelper.m"; sourceTree = "<group>"; };
+		CE3CED8E1950000E00E336F4 /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
+		CE3CED8F1950000E00E336F4 /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
+		CE3CED961950003500E336F4 /* LKTestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTestModels.h; sourceTree = "<group>"; };
+		CE3CED971950003500E336F4 /* LKTestModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTestModels.m; sourceTree = "<group>"; };
 		CEE003631947F2F7005AE8C4 /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
 		CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorHelper.m; sourceTree = "<group>"; };
 		CEE0036619480697005AE8C4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -903,6 +903,8 @@
 			children = (
 				579426B31856D6DC0049B426 /* EntityBaseModel.h */,
 				579426B41856D6DC0049B426 /* EntityBaseModel.m */,
+				CE3CED961950003500E336F4 /* LKTestModels.h */,
+				CE3CED971950003500E336F4 /* LKTestModels.m */,
 				57D43E1418EAC9CD00D84C01 /* HTTPClient.h */,
 				57D43E1518EAC9CD00D84C01 /* HTTPClient.m */,
 				5789228C1859A3040005CC27 /* Test1Model.h */,
@@ -911,8 +913,6 @@
 				578922901859A3120005CC27 /* Test2Model.m */,
 				57A808D01908F2BE0080E33C /* JsonTestEntity.h */,
 				57A808D11908F2BE0080E33C /* JsonTestEntity.m */,
-				57403257190FBDD100C82B23 /* LKTestModels.h */,
-				57403258190FBDD100C82B23 /* LKTestModels.m */,
 				575694841883D9C4004C2C74 /* GirlEntity.h */,
 				575694851883D9C4004C2C74 /* GirlEntity.m */,
 				57F134DB17DC39F200C5DCDC /* Shot.h */,
@@ -1245,31 +1245,12 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		57403241190FA76D00C82B23 /* LKDBHelper */ = {
-			isa = PBXGroup;
-			children = (
-				57403242190FA76D00C82B23 /* LKDB+Manager.h */,
-				57403243190FA76D00C82B23 /* LKDB+Manager.m */,
-				57403244190FA76D00C82B23 /* LKDB+Mapping.h */,
-				57403245190FA76D00C82B23 /* LKDB+Mapping.m */,
-				57403246190FA76D00C82B23 /* LKDBHelper.h */,
-				57403247190FA76D00C82B23 /* LKDBHelper.m */,
-				57403248190FA76D00C82B23 /* LKDBUtils.h */,
-				57403249190FA76D00C82B23 /* LKDBUtils.m */,
-				5740324A190FA76D00C82B23 /* NSObject+LKDBHelper.h */,
-				5740324B190FA76D00C82B23 /* NSObject+LKDBHelper.m */,
-				5740324C190FA76D00C82B23 /* NSObject+LKModel.h */,
-				5740324D190FA76D00C82B23 /* NSObject+LKModel.m */,
-			);
-			path = LKDBHelper;
-			sourceTree = "<group>";
-		};
 		5742C18717F7BF3C00065083 /* XYExternal */ = {
 			isa = PBXGroup;
 			children = (
+				CE3CED831950000E00E336F4 /* LKDBHelper */,
 				57FFF3BE1818B29F00977CB5 /* Extension */,
 				57A14FF6191E251000B00281 /* CocosDenshion */,
-				57403241190FA76D00C82B23 /* LKDBHelper */,
 				5740322C190FA76700C82B23 /* FMDB */,
 				5740321A190F31AB00C82B23 /* OpenUDID */,
 				572E7CBE18385F9D0018179D /* YYJSON */,
@@ -1608,6 +1589,25 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		CE3CED831950000E00E336F4 /* LKDBHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CE3CED841950000E00E336F4 /* LKDB+Manager.h */,
+				CE3CED851950000E00E336F4 /* LKDB+Manager.m */,
+				CE3CED861950000E00E336F4 /* LKDB+Mapping.h */,
+				CE3CED871950000E00E336F4 /* LKDB+Mapping.m */,
+				CE3CED881950000E00E336F4 /* LKDBHelper.h */,
+				CE3CED891950000E00E336F4 /* LKDBHelper.m */,
+				CE3CED8A1950000E00E336F4 /* LKDBUtils.h */,
+				CE3CED8B1950000E00E336F4 /* LKDBUtils.m */,
+				CE3CED8C1950000E00E336F4 /* NSObject+LKDBHelper.h */,
+				CE3CED8D1950000E00E336F4 /* NSObject+LKDBHelper.m */,
+				CE3CED8E1950000E00E336F4 /* NSObject+LKModel.h */,
+				CE3CED8F1950000E00E336F4 /* NSObject+LKModel.m */,
+			);
+			path = LKDBHelper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1925,11 +1925,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				57A15003191E251000B00281 /* SimpleAudioEngine.m in Sources */,
-				57403251190FA76D00C82B23 /* LKDBUtils.m in Sources */,
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				572E7CB818385C690018179D /* Reachability.m in Sources */,
 				572E7CBC18385C690018179D /* UIScrollView+SVPullToRefresh.m in Sources */,
 				57B3FFF6177AD9BC00775FC9 /* main.m in Sources */,
+				CE3CED981950003500E336F4 /* LKTestModels.m in Sources */,
 				57DB87E1183349A60015CC5A /* UIAlertView+XY.m in Sources */,
 				57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */,
 				57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */,
@@ -1946,6 +1946,7 @@
 				577ACC7D190A30470053C9CE /* XYTabBar.m in Sources */,
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
 				57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */,
+				CE3CED911950000E00E336F4 /* LKDB+Mapping.m in Sources */,
 				5740323C190FA76700C82B23 /* FMDatabase.m in Sources */,
 				CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */,
 				57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */,
@@ -1955,7 +1956,6 @@
 				571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
-				57403250190FA76D00C82B23 /* LKDBHelper.m in Sources */,
 				57DB87EF183349A60015CC5A /* XYParallaxHelper.m in Sources */,
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				579E68A3192EFA4C00EECAB4 /* XYUISignal.m in Sources */,
@@ -1963,12 +1963,12 @@
 				57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
+				CE3CED941950000E00E336F4 /* NSObject+LKDBHelper.m in Sources */,
 				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,
 				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
 				CEE0036819480697005AE8C4 /* MBProgressHUD.m in Sources */,
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,
 				57DB87EB183349A60015CC5A /* XYTimer.m in Sources */,
-				57403253190FA76D00C82B23 /* NSObject+LKModel.m in Sources */,
 				572E7CB218385C690018179D /* NSDictionary+RequestEncoding.m in Sources */,
 				577952DA1909727E00F95459 /* XYBaseModel.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
@@ -1998,24 +1998,24 @@
 				57FC26A418053155007AA3BC /* ParallaxVC.m in Sources */,
 				5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */,
 				572E7CB718385C690018179D /* MKNetworkOperation.m in Sources */,
-				57403259190FBDD100C82B23 /* LKTestModels.m in Sources */,
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				57DB87DD183349A60015CC5A /* NSNumber+XY.m in Sources */,
 				57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */,
 				572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */,
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
-				57403252190FA76D00C82B23 /* NSObject+LKDBHelper.m in Sources */,
 				57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */,
 				57F134E017DC39F200C5DCDC /* Shot.m in Sources */,
 				57A808D21908F2BE0080E33C /* JsonTestEntity.m in Sources */,
 				57E7857817DE459E0056C589 /* ConfigManager.m in Sources */,
 				57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */,
+				CE3CED921950000E00E336F4 /* LKDBHelper.m in Sources */,
 				57DB87E0183349A60015CC5A /* UIActionSheet+XY.m in Sources */,
 				57A15001191E251000B00281 /* CDOpenALSupport.m in Sources */,
 				57DB87DF183349A60015CC5A /* NSString+XY.m in Sources */,
 				57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */,
 				5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */,
+				CE3CED901950000E00E336F4 /* LKDB+Manager.m in Sources */,
 				57FC192E17DEBF8F00B5E6F9 /* DataLiteVC.m in Sources */,
 				5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */,
 				57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */,
@@ -2026,6 +2026,7 @@
 				57DB87DC183349A60015CC5A /* NSDate+XY.m in Sources */,
 				57DB87DB183349A60015CC5A /* NSData+XY.m in Sources */,
 				57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */,
+				CE3CED931950000E00E336F4 /* LKDBUtils.m in Sources */,
 				578D14CF187536690071448C /* UITable+XY.m in Sources */,
 				572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */,
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
@@ -2034,14 +2035,13 @@
 				577952D71909718A00F95459 /* XYBaseView.m in Sources */,
 				5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */,
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
-				5740324F190FA76D00C82B23 /* LKDB+Mapping.m in Sources */,
 				57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
 				577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
 				576E87D31855E77200C7A724 /* XYPerformance.m in Sources */,
-				5740324E190FA76D00C82B23 /* LKDB+Manager.m in Sources */,
+				CE3CED951950000E00E336F4 /* NSObject+LKModel.m in Sources */,
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

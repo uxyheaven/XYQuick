@@ -25,13 +25,19 @@
 +(LKDBHelper*)sharedDBHelper DEPRECATED_ATTRIBUTE;
 #pragma mark-
 
-
--(id)initWithDBName:(NSString*)dbname;
+/**
+ *	@brief  filepath the use of : "documents/db/" + fileName + ".db"
+ *  refer:  FMDatabase.h  + (instancetype)databaseWithPath:(NSString*)inPath;
+ */
+-(instancetype)initWithDBName:(NSString*)dbname;
+-(void)setDBName:(NSString*)fileName;
 
 /**
- *	@brief  change database , filepath the use of : "documents/db/" + fileName + ".db"
+ *	@brief  path of database file
+ *  refer:  FMDatabase.h  + (instancetype)databaseWithPath:(NSString*)inPath;
  */
--(void)setDBName:(NSString*)fileName;
+-(instancetype)initWithDBPath:(NSString*)filePath;
+-(void)setDBPath:(NSString*)filePath;
 
 /**
  *	@brief  execute database operations synchronously,not afraid of recursive deadlock  同步执行数据库操作 可递归调用
@@ -44,16 +50,16 @@
 
 @interface LKDBHelper(DatabaseManager)
 
-//get table has created
+///get table has created
 -(BOOL)getTableCreatedWithClass:(Class)model;
 
-//create table with entity class
+///create table with entity class
 -(BOOL)createTableWithModelClass:(Class)model;
 
-//drop all table
+///drop all table
 -(void)dropAllTable;
 
-//drop table with entity class
+///drop table with entity class
 -(BOOL)dropTableWithClass:(Class)modelClass;
 
 @end
@@ -85,6 +91,16 @@
  *	@return	query finished result is an array(model instance collection)
  */
 -(NSMutableArray*)search:(Class)modelClass where:(id)where orderBy:(NSString*)orderBy offset:(int)offset count:(int)count;
+
+/**
+ *  query sql, query finished result is an array(model instance collection)
+ *  you can use the "@t" replace Model TableName
+ *  example: 
+            NSMutableArray* array = [[LKDBHelper getUsingLKDBHelper] searchWithSQL:@"select * from @t where blah blah.." toClass:[ModelClass class]];
+ *
+ */
+-(NSMutableArray*)searchWithSQL:(NSString*)sql toClass:(Class)modelClass;
+
 -(void)search:(Class)modelClass where:(id)where orderBy:(NSString*)orderBy offset:(int)offset count:(int)count callback:(void(^)(NSMutableArray* array))block;
 /**
     columns may NSArray or NSString   if query column count == 1  return single column string array
@@ -92,7 +108,7 @@
  */
 -(NSMutableArray*)search:(Class)modelClass column:(id)columns where:(id)where orderBy:(NSString*)orderBy offset:(int)offset count:(int)count;
 
-//return first model or nil
+///return first model or nil
 -(id)searchSingle:(Class)modelClass where:(id)where orderBy:(NSString*)orderBy;
 
 /**

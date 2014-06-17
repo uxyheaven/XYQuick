@@ -37,6 +37,19 @@
     //[[self getUsingLKDBHelper] createTableWithModelClass:self];
 }
 
+//重载可以选择 使用的LKDBHelper
++(LKDBHelper *)getUsingLKDBHelper
+{
+    static LKDBHelper* db;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString* dbpath = [NSHomeDirectory() stringByAppendingPathComponent:@"asd/asd.db"];
+        db = [[LKDBHelper alloc]initWithDBPath:dbpath];
+    });
+    return db;
+}
+
+
 // 将要插入数据库
 +(BOOL)dbWillInsert:(NSObject *)entity
 {
@@ -130,15 +143,15 @@
 //升级
 +(LKTableUpdateType)tableUpdateForOldVersion:(int)oldVersion newVersion:(int)newVersion
 {
+    //..... eh...  upgrade for table
     switch (oldVersion) {
         case 1:
         {
-            [self tableUpdateAddColumnWithPN:@"color"];
+//            [self updateToDBWithSet:@"blah blah" where:nil];
         }
         case 2:
         {
-            [self tableUpdateAddColumnWithName:@"address" sqliteType:LKSQL_Type_Text];
-            //@"error" is removed
+//            [self deleteWithWhere:@"blah blah"];
         }
             break;
     }
@@ -148,6 +161,10 @@
 
 
 @implementation LKTestForeign
++(LKDBHelper *)getUsingLKDBHelper
+{
+    return [LKTest getUsingLKDBHelper];
+}
 +(NSString *)getPrimaryKey
 {
     return @"addid";
@@ -156,12 +173,18 @@
 {
     return @"LKTestAddress";
 }
++(BOOL)isContainParent
+{
+    return YES;
+}
 +(int)getTableVersion
 {
     return 1;
 }
 @end
 
+@implementation LKTestForeignSuper
+@end
 
 
 

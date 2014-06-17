@@ -18,7 +18,7 @@ return NO;}
 @interface LKDBHelper()
 @property(unsafe_unretained,nonatomic)FMDatabase* usingdb;
 @property(strong,nonatomic)FMDatabaseQueue* bindingQueue;
-@property(copy,nonatomic)NSString* dbname;
+@property(copy,nonatomic)NSString* dbPath;
 
 @property(strong,nonatomic)NSRecursiveLock* threadLock;
 @property(strong,nonatomic)LKTableManager* tableManager;
@@ -31,7 +31,7 @@ return NO;}
 {return [LKDBHelper getUsingLKDBHelper];}
 #pragma mark-
 
--(id)initWithDBName:(NSString *)dbname
+-(instancetype)initWithDBName:(NSString *)dbname
 {
     self = [super init];
     if (self) {
@@ -40,33 +40,64 @@ return NO;}
     }
     return self;
 }
-- (id)init
+-(instancetype)initWithDBPath:(NSString *)filePath
+{
+    self = [super init];
+    if (self) {
+        self.threadLock = [[NSRecursiveLock alloc]init];
+        [self setDBPath:filePath];
+    }
+    return self;
+}
+- (instancetype)init
 {
     return [self initWithDBName:@"LKDB"];
 }
+
 -(void)setDBName:(NSString *)fileName
 {
-    if([self.dbname isEqualToString:fileName] == NO)
-    {
-        if([fileName hasSuffix:@".db"] == NO)
-        {
-            self.dbname = [NSString stringWithFormat:@"%@.db",fileName];
-        }
-        else
-        {
-            self.dbname = fileName;
-        }
-        [self.bindingQueue close];
-        self.bindingQueue = [[FMDatabaseQueue alloc]initWithPath:[LKDBUtils getPathForDocuments:self.dbname inDir:@"db"]];
-        
-#ifdef DEBUG
-        //debug 模式下  打印错误日志
-        [_bindingQueue inDatabase:^(FMDatabase *db) {
-            db.logsErrors = YES;
-        }];
-#endif
-        self.tableManager = [[LKTableManager alloc]initWithLKDBHelper:self];
+    NSString* dbname = nil;
+    if([fileName hasSuffix:@".db"] == NO){
+        dbname = [NSString stringWithFormat:@"%@.db",fileName];
     }
+    else{
+        dbname = fileName;
+    }
+    
+    NSString* filePath = [LKDBUtils getPathForDocuments:dbname inDir:@"db"];
+    [self setDBPath:filePath];
+}
+
+-(void)setDBPath:(NSString *)filePath
+{
+    if(self.bindingQueue && [self.dbPath isEqualToString:[filePath lowercaseString]])
+    {
+        return;
+    }
+    
+    NSRange lastComponent = [filePath rangeOfString:@"/" options:NSBackwardsSearch];
+    if(lastComponent.length > 0){
+        NSString* dirPath = [filePath substringToIndex:lastComponent.location];
+        BOOL isDir = NO;
+        BOOL isCreated = [[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:&isDir];
+        if ( isCreated == NO || isDir == NO ) {
+            NSError* error = nil;
+            BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error];
+            if(success == NO)
+                NSLog(@"create dir error: %@",error.debugDescription);
+        }
+    }
+    self.dbPath = filePath;
+    [self.bindingQueue close];
+    self.bindingQueue = [[FMDatabaseQueue alloc]initWithPath:self.dbPath];
+    
+#ifdef DEBUG
+    //debug 模式下  打印错误日志
+    [_bindingQueue inDatabase:^(FMDatabase *db) {
+        db.logsErrors = YES;
+    }];
+#endif
+    self.tableManager = [[LKTableManager alloc]initWithLKDBHelper:self];
 }
 
 #pragma mark- core
@@ -235,7 +266,7 @@ return NO;}
     [self.bindingQueue close];
     self.usingdb = nil;
     self.bindingQueue = nil;
-    self.dbname = nil;
+    self.dbPath = nil;
     self.tableManager = nil;
     self.threadLock = nil;
 }
@@ -283,6 +314,7 @@ return NO;}
         FMResultSet* set = [db executeQuery:select];
         NSArray*  columnArray = set.columnNameToIndexMap.allKeys;
         [set close];
+        BOOL hasTableChanged = NO;
         for (int i=0; i<infos.count; i++) {
             LKDBProperty* p = [infos objectWithIndex:i];
             if([p.sqlColumnName.lowercaseString isEqualToString:@"rowid"])
@@ -291,12 +323,18 @@ return NO;}
             if([columnArray indexOfObject:p.sqlColumnName.lowercaseString] == NSNotFound)
             {
                 if([clazz getAutoUpdateSqlColumn])
+                {
                     [clazz tableUpdateAddColumnWithName:p.sqlColumnName sqliteType:p.sqlColumnType];
+                    hasTableChanged = YES;
+                }
                 else
+                {
                     [clazz removePropertyWithColumnName:p.sqlColumnName];
-                
-                [clazz tableDidCreatedOrUpdated];
+                }
             }
+        }
+        if (hasTableChanged) {
+            [clazz tableDidCreatedOrUpdated];
         }
     }];
 }
@@ -310,6 +348,7 @@ return NO;}
     
     if(oldVersion>0 && oldVersion != newVersion)
     {
+        [self fixSqlColumnsWithClass:modelClass];
         LKTableUpdateType userOperation = [modelClass tableUpdateForOldVersion:oldVersion newVersion:newVersion];
         switch (userOperation) {
             case LKTableUpdateTypeDeleteOld:
@@ -319,11 +358,9 @@ return NO;}
                 break;
                 
             case LKTableUpdateTypeDefault:
-                [self fixSqlColumnsWithClass:modelClass];
                 return NO;
                 
             case LKTableUpdateTypeCustom:
-                [self fixSqlColumnsWithClass:modelClass];
                 [_tableManager setTableName:tableName version:newVersion];
                 return YES;
         }
@@ -540,10 +577,17 @@ return NO;}
         columnsString = @"rowid,*";
     }
     
-    NSMutableString* query = [NSMutableString stringWithFormat:@"select %@ from %@",columnsString,[modelClass getTableName]];
+    NSMutableString* query = [NSMutableString stringWithFormat:@"select %@ from @t",columnsString];
     NSMutableArray * values = [self extractQuery:query where:where];
     
     [self sqlString:query AddOder:orderBy offset:offset count:count];
+    
+    //replace @t to model table name
+    NSString* replaceTableName = [NSString stringWithFormat:@" %@ ",[modelClass getTableName]];
+    if([query hasSuffix:@" @t"]){
+        [query appendString:@" "];
+    }
+    [query replaceOccurrencesOfString:@" @t " withString:replaceTableName options:NSCaseInsensitiveSearch range:NSMakeRange(0, query.length)];
     
     __block NSMutableArray* results = nil;
     [self executeDB:^(FMDatabase *db) {
@@ -570,6 +614,24 @@ return NO;}
     }];
     return results;
 }
+-(NSMutableArray *)searchWithSQL:(NSString *)sql toClass:(Class)modelClass
+{
+    //replace @t to model table name
+    NSString* tableName = [NSString stringWithFormat:@" %@ ",[modelClass getTableName]];
+    if([sql hasSuffix:@" @t"]){
+        sql = [sql stringByAppendingString:@" "];
+    }
+    NSString* executeSQL = [sql stringByReplacingOccurrencesOfString:@" @t " withString:tableName options:NSCaseInsensitiveSearch range:NSMakeRange(0, sql.length)];
+    
+    __block NSMutableArray* results = nil;
+    [self executeDB:^(FMDatabase *db) {
+        FMResultSet* set = [db executeQuery:executeSQL];
+        results = [self executeResult:set Class:modelClass];
+        [set close];
+    }];
+    return results;
+}
+
 -(void)sqlString:(NSMutableString*)sql AddOder:(NSString*)orderby offset:(int)offset count:(int)count
 {
     if([LKDBUtils checkStringIsEmpty:orderby] == NO)
@@ -605,20 +667,28 @@ return NO;}
     while ([set next]) {
         
         NSObject* bindingModel = [[modelClass alloc]init];
-        bindingModel.rowid = [set intForColumnIndex:0];
         
-        for (int i=1; i<columnCount; i++) {
-            NSString* sqlName = [set columnNameForIndex:i];
-            NSString* sqlValue = [set stringForColumnIndex:i];
+        for (int i=0; i<columnCount; i++) {
             
+            NSString* sqlName = [set columnNameForIndex:i];
             LKDBProperty* property = [infos objectWithSqlColumnName:sqlName];
-            if(property.propertyName && [property.type isEqualToString:LKSQL_Mapping_UserCalculate] ==NO)
+            
+            BOOL isUserCalculate = [property.type isEqualToString:LKSQL_Mapping_UserCalculate];
+            if([[sqlName lowercaseString] isEqualToString:@"rowid"] && isUserCalculate==NO)
             {
-                [bindingModel modelSetValue:property value:sqlValue];
+                bindingModel.rowid = [set intForColumnIndex:i];
             }
             else
             {
-                [bindingModel userSetValueForModel:property value:sqlValue];
+                NSString* sqlValue = [set stringForColumnIndex:i];
+                if(property.propertyName && isUserCalculate == NO)
+                {
+                    [bindingModel modelSetValue:property value:sqlValue];
+                }
+                else
+                {
+                    [bindingModel userSetValueForModel:property value:sqlValue];
+                }
             }
         }
         [array addObject:bindingModel];

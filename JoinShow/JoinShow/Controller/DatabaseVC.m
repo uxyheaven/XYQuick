@@ -71,7 +71,7 @@
     addText(@"示例 开始 example start \n\n");
     
     //清空数据库
-    LKDBHelper* globalHelper = [LKDBHelper getUsingLKDBHelper];
+    LKDBHelper* globalHelper = [LKTest getUsingLKDBHelper];
     [globalHelper dropAllTable];
     
     //创建表  会根据表的版本号  来判断具体的操作 . create table need to manually call
@@ -156,7 +156,15 @@
     //查询   search
     addText(@"同步搜索    sync search");
     
-    NSMutableArray* arraySync = [LKTest searchWithWhere:nil orderBy:nil offset:0 count:100];
+    NSMutableArray* arraySync = nil;
+    arraySync = [globalHelper searchWithSQL:@"select * from @t" toClass:[LKTest class]];
+    for (id obj in arraySync) {
+        addText(@"%@",[obj printAllPropertys]);
+    }
+    
+    //查询   search
+    addText(@"同步搜索    sync search 2");
+    arraySync = [LKTest searchWithWhere:nil orderBy:nil offset:0 count:100];
     for (id obj in arraySync) {
         addText(@"%@",[obj printAllPropertys]);
     }
@@ -224,5 +232,4 @@
         [LKDBHelper clearNoneImage:[LKTest class] columns:[NSArray arrayWithObjects:@"img",nil]];
     }];
 }
-
 @end
