@@ -14,6 +14,8 @@ DUMMY_CLASS(NSDate_XY);
 
 #define NSDate_key_stringCache	"NSDate.stringCache"
 
+
+
 @implementation NSDate (XY)
 
 @dynamic year;
@@ -23,7 +25,12 @@ DUMMY_CLASS(NSDate_XY);
 @dynamic minute;
 @dynamic second;
 @dynamic weekday;
+@dynamic stringWeekday;
 @dynamic stringCache;
+
++(void) load{
+    XY_weekdays = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+}
 
 #pragma mark - private
 + (NSCalendar *)AZ_currentCalendar {
@@ -79,6 +86,10 @@ DUMMY_CLASS(NSDate_XY);
 {
 	return [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit
 										   fromDate:self].weekday;
+}
+
+-(NSString *) stringWeekday{
+    return XY_weekdays[self.weekday - 1];
 }
 
 - (NSString *)stringWithDateFormat:(NSString *)format

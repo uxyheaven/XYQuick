@@ -12,6 +12,7 @@
 #define DAY		(24 * HOUR)
 #define MONTH	(30 * DAY)
 
+static NSArray *XY_weekdays = nil;
 
 @interface NSDate (XY)
 
@@ -22,6 +23,8 @@
 @property (nonatomic, readonly) NSInteger	minute;
 @property (nonatomic, readonly) NSInteger	second;
 @property (nonatomic, readonly) NSInteger	weekday;
+
+@property (nonatomic, readonly) NSString	*stringWeekday;
 
 // @"yyyy-MM-dd HH:mm:ss"
 -(NSString *) stringWithDateFormat:(NSString *)format;
