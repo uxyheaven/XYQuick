@@ -29,7 +29,7 @@ typedef enum {
     XYObserverType_self_new_old,    // 参数有self,new,old
 }XYObserverType;
 
-typedef void(^XYObserver_block_sourceObject_new_old)(id sourceObject, id newValue,id oldValue);
+typedef void(^XYObserver_block_sourceObject_new_old)(id sourceObject, id newValue, id oldValue);
 
 
 #pragma mark - XYObserver
