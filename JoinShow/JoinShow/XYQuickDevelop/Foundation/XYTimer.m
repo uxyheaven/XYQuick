@@ -176,7 +176,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 -(void) cancelAllTimer{
     NSMutableDictionary *timers = self.XYtimers;
     [timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [obj stop];
+        [(XYTimer *)obj stop];
     }];
     
     [timers removeAllObjects];

@@ -666,8 +666,7 @@ ON_NOTIFICATION_1_( aaa ){
     NSLogD(@"%@", notification.userInfo);
 }
 
-#pragma mark - XYTimerDelegate
-
+#pragma mark - XYTimer
 ON_TIMER(){
    // NSLogD(@"%g", duration);
 }
