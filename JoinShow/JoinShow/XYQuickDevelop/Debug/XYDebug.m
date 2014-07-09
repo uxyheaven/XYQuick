@@ -12,9 +12,13 @@
 #undef	MAX_CALLSTACK_DEPTH
 #define MAX_CALLSTACK_DEPTH	(64)
 
+#undef	XYDebug_key_hookDealloc
+#define XYDebug_key_hookDealloc	"XYDebug.hookDealloc"
 
 static void (*__sendEvent)( id, SEL, UIEvent * );
 
+
+#pragma mark - UIWindow
 @interface UIWindow(XYDebugPrivate)
 - (void)mySendEvent:(UIEvent *)event;
 @end
@@ -71,6 +75,18 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
     }
 }
 
+@end
+
+
+#pragma mark - XYWatcher
+@interface XYWatcher : NSObject
+@property (nonatomic ,copy) NSString *stringDealloc;
+@end
+
+@implementation XYWatcher
+-(void) dealloc{
+    NSLog(@"%@", _stringDealloc);
+}
 @end
 
 @implementation XYDebug
@@ -133,6 +149,13 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 #endif	// #elif defined(__i386__)
 #endif	// #if __BEE_DEVELOPMENT__
 }
+
++(void) hookObject:(id)anObject whenDeallocLogString:(NSString *)string{
+    XYWatcher *watcher = [[XYWatcher alloc] init];
+    watcher.stringDealloc = string;
+    objc_setAssociatedObject(anObject, XYDebug_key_hookDealloc, watcher, OBJC_ASSOCIATION_RETAIN);
+}
+
 @end
 
 
@@ -210,6 +233,3 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 }
 */
 @end
-
-
-

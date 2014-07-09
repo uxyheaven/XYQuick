@@ -41,20 +41,23 @@
 
 #import "XYPerformance.h"
 
+#pragma mark - UIWindow
 @interface UIWindow(XYDebug)
 
 + (void)hookSendEvent;
 
 @end
 
-#import <Foundation/Foundation.h>
-
+#pragma mark - XYDebug
 @interface XYDebug : NSObject
 
 +(NSArray *) callstack:(NSUInteger)depth;
 
 +(void) printCallstack:(NSUInteger)depth;
 +(void) breakPoint;
+
+// 当被观察的对象释放的时候打印一段String
++(void) hookObject:(id)anObject whenDeallocLogString:(NSString *)string;
 
 @end
 
@@ -69,4 +72,6 @@
 
 
 @end
+
+
 

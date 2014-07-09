@@ -324,7 +324,6 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-#pragma mark -btn end
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.backgroundColor = [UIColor lightGrayColor];
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
@@ -332,6 +331,15 @@ if (1) { \
     [tempBtn addTarget:self action:@selector(clickNSDateFormatter:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"Dealloc Log String" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickHookDealloc:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+#pragma mark -btn end
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
     
@@ -593,6 +601,15 @@ if (1) { \
     NSString *key = [NSString stringWithFormat:@"guide_%d", arc4random()]  ;
     [self showUserGuideViewWithImage:@"bg_trends.png" key:key frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
 }
+
+-(void) clickHookDealloc:(id)sender{
+    UILabel *label = [[UILabel alloc] initWithFrame:self.view.frame];
+    label.text = @"3秒后移除";
+    label.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:label];
+    [XYDebug hookObject:label whenDeallocLogString:@"over"];
+    [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:3];
+}
 /////////////////////////// 备注 ///////////////////////////////
 /*
 void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {
@@ -652,6 +669,6 @@ ON_NOTIFICATION_1_( aaa ){
 #pragma mark - XYTimerDelegate
 
 ON_TIMER(){
-    NSLogD(@"%g", duration);
+   // NSLogD(@"%g", duration);
 }
 @end
