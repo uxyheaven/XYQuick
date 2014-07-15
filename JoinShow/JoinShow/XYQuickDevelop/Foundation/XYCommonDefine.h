@@ -123,6 +123,18 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     return CGPointMake( CGRectGetMidX( rect ), CGRectGetMidY( rect ) );
 };
 /**************************************************************/
+// arc mrc 兼容
+#if __has_feature(objc_arc)
+    #define XY_AUTORELEASE(exp) exp
+    #define XY_RELEASE(exp) exp
+    #define XY_RETAIN(exp) exp
+#else
+    #define XY_AUTORELEASE(exp) [exp autorelease]
+    #define XY_RELEASE(exp) [exp release]
+    #define XY_RETAIN(exp) [exp retain]
+#endif
+
+/**************************************************************/
 // property
 #undef	AS_STATIC_PROPERTY
 #define AS_STATIC_PROPERTY( __name ) \
@@ -142,7 +154,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%s", #__name]; \
     } \
-    return __local; \
+    return XY_AUTORELEASE(__local); \
 }
 
 #undef	DEF_STATIC_PROPERTY2
@@ -158,7 +170,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%@.%s", __prefix, #__name]; \
     } \
-    return __local; \
+    return XY_AUTORELEASE(__local); \
 }
 
 
@@ -175,7 +187,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__name]; \
     } \
-    return __local; \
+    return XY_AUTORELEASE(__local); \
 }
 
 #undef	DEF_STATIC_PROPERTY4
@@ -191,7 +203,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__value]; \
     } \
-    return __local; \
+    return XY_AUTORELEASE(__local); \
 }
 
 #undef	AS_STATIC_PROPERTY_INT
