@@ -17,6 +17,10 @@
 #define ON_SIGNAL( __signal ) \
 -(void) handleUISignal:(XYUISignal *)__signal
 
+#undef	ON_SIGNAL2
+#define ON_SIGNAL2( __filter, __signal ) \
+-(void) handleUISignal_##__filter:(XYUISignal *)__signal
+
 
 #pragma mark - XYUISignal : NSObject
 @interface XYUISignal : NSObject

@@ -146,7 +146,31 @@
 	if ( nil == targetObject )
 		return;
     
-    if ( [_target respondsToSelector:@selector(handleUISignal:)] ) {
+    NSString *	selectorName = nil;
+    SEL			selector = nil;
+    
+    NSString *	signalPrefix = nil;
+	NSString *	signalClass = nil;
+	NSString *	signalMethod = nil;
+	
+	if ( self.name && [self.name hasPrefix:@"signal."] )
+	{
+		NSArray * array = [self.name componentsSeparatedByString:@"."];
+		if ( array && array.count > 1 )
+		{
+			signalPrefix = (NSString *)[array objectAtIndex:0];
+			signalClass = (NSString *)[array objectAtIndex:1];
+			signalMethod = (NSString *)[array objectAtIndex:2];
+		}
+	}
+    
+    
+    selectorName = [NSString stringWithFormat:@"handleUISignal_%@:", signalMethod];
+    selector = NSSelectorFromString(selectorName);
+    
+    if ( [_target respondsToSelector:selector] ) {
+        [_target performSelector:selector withObject:self];
+    }else if ( [_target respondsToSelector:@selector(handleUISignal:)] ) {
         [_target performSelector:@selector(handleUISignal:) withObject:self];
     }
     

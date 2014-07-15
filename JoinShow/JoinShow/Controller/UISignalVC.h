@@ -11,14 +11,14 @@
 
 @interface Signal1 : UIView
 
-AS_SIGNAL( BUTTON_CLICK )
+AS_SIGNAL( BUTTON_CLICK1 )
 
 @end
 
 
 @interface Signal2 : UIView
 
-AS_SIGNAL( BUTTON_CLICK )
+AS_SIGNAL( BUTTON_CLICK2 )
 
 @property (nonatomic, strong) UIButton *btn;
 

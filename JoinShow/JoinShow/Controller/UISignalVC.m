@@ -13,7 +13,7 @@
 
 @implementation Signal1
 
-DEF_SIGNAL( BUTTON_CLICK )
+DEF_SIGNAL( BUTTON_CLICK1 )
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -22,8 +22,19 @@ DEF_SIGNAL( BUTTON_CLICK )
         self.backgroundColor = [UIColor redColor];
         Signal2 *view = [[Signal2_child alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
         [self addSubview:view];
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 110, 50, 33);
+        [btn setTitle:@"click1" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(click1:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+        
     }
     return self;
+}
+
+-(void) click1:(id)sender{
+    [self sendUISignal:self.BUTTON_CLICK1 withObject:sender];
 }
 
 ON_SIGNAL( signal ){
@@ -34,7 +45,7 @@ ON_SIGNAL( signal ){
 
 @implementation Signal2
 
-DEF_SIGNAL( BUTTON_CLICK )
+DEF_SIGNAL( BUTTON_CLICK2 )
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -43,20 +54,21 @@ DEF_SIGNAL( BUTTON_CLICK )
         self.backgroundColor = [UIColor lightGrayColor];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(0, 0, 60, 33);
-        [btn setTitle:@"click" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(click1:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"click2" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(click2:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
     return self;
+}
+
+-(void) click2:(id)sender{
+    [self sendUISignal:self.BUTTON_CLICK2 withObject:sender];
 }
 
 ON_SIGNAL( signal ){
     NSLogD(@"%@", signal);
 }
 
--(void) click1:(id)sender{
-    [self sendUISignal:self.BUTTON_CLICK withObject:sender];
-}
 @end
 
 @implementation Signal2_child
@@ -107,6 +119,10 @@ ON_SIGNAL( signal ){
 */
 
 ON_SIGNAL( signal ){
+    NSLogD(@"%@", signal);
+}
+
+ON_SIGNAL2(BUTTON_CLICK1, signal){
     NSLogD(@"%@", signal);
 }
 @end
