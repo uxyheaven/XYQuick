@@ -154,7 +154,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%s", #__name]; \
     } \
-    return XY_AUTORELEASE(__local); \
+    return XY_RETAIN(__local); \
 }
 
 #undef	DEF_STATIC_PROPERTY2
@@ -170,7 +170,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%@.%s", __prefix, #__name]; \
     } \
-    return XY_AUTORELEASE(__local); \
+    return XY_RETAIN(__local); \
 }
 
 
@@ -187,7 +187,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__name]; \
     } \
-    return XY_AUTORELEASE(__local); \
+    return XY_RETAIN(__local); \
 }
 
 #undef	DEF_STATIC_PROPERTY4
@@ -203,7 +203,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
     { \
         __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__value]; \
     } \
-    return XY_AUTORELEASE(__local); \
+    return XY_RETAIN(__local); \
 }
 
 #undef	AS_STATIC_PROPERTY_INT
