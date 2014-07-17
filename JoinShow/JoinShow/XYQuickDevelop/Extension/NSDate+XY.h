@@ -45,5 +45,7 @@ static NSArray *XY_weekdays = nil;
 @property (nonatomic, copy, readonly) NSString *stringCache;
 // 重置缓存
 -(NSString *) resetStringCache;
+// 返回当地时区的时间
+-(NSDate *) localTime;
 
 @end

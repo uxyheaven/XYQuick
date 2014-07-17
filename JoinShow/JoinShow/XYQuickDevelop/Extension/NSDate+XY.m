@@ -206,6 +206,15 @@ DUMMY_CLASS(NSDate_XY);
     
     return str;
 }
+
+-(NSDate *) localTime{
+    // NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSTimeZone *zone = [NSTimeZone localTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: self];
+    NSDate *localeDate = [self  dateByAddingTimeInterval: interval];
+    
+    return localeDate;
+}
 @end
 
 
