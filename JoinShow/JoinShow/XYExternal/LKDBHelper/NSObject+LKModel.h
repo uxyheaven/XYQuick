@@ -16,11 +16,11 @@
 #pragma mark- 表结构
 @interface NSObject(LKTabelStructure)
 
-// overwrite in your models, return # table name #
+/// overwrite in your models, return # table name #
 +(NSString*)getTableName;
 +(BOOL)getAutoUpdateSqlColumn;
 
-// overwrite in your models, set column attribute
+/// overwrite in your models, set column attribute
 +(void)columnAttributeWithProperty:(LKDBProperty*)property;
 
 /**
@@ -31,7 +31,7 @@
  */
 +(NSString*)getPrimaryKey;
 
-//return multi primary key    返回联合主键
+///return multi primary key    返回联合主键
 +(NSArray*) getPrimaryKeyUnionArray;
 
 @property int rowid;
@@ -50,7 +50,7 @@
 #pragma mark- 表数据操作
 @interface NSObject(LKTableData)
 
-/**
+/***
  *	@brief      overwrite in your models,return insert sqlite table data
  *
  *
@@ -58,15 +58,17 @@
  */
 -(id)userGetValueForModel:(LKDBProperty*)property;
 
-/**
+/***
  *	@brief	overwrite in your models,return insert sqlite table data
  *
  *	@param 	property        will set property
- *	@param 	value           sqlite value (normal value is NSString type)
+ *	@param 	value           sqlite value (NSString(NSData UTF8 Coding) or NSData)
  */
 -(void)userSetValueForModel:(LKDBProperty*)property value:(id)value;
 
+///overwrite
 +(NSDateFormatter*)getModelDateFormatter;
+
 //lkdbhelper use
 -(id)modelGetValue:(LKDBProperty*)property;
 -(void)modelSetValue:(LKDBProperty*)property value:(id)value;
@@ -78,7 +80,7 @@
 
 @interface NSObject (LKModel)
 
-//return model use LKDBHelper , default return global LKDBHelper;
+///return model use LKDBHelper , default return global LKDBHelper;
 +(LKDBHelper*)getUsingLKDBHelper;
 
 /**
