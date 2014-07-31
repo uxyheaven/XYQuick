@@ -27,15 +27,10 @@ XYObjectCache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefau
 一大堆category
 
 ##### UI
-XYParallaxHelper 实现类似ios7 视图差效果
 
 XYKeyboardHelper 弹出键盘时,移动所编辑的控件的通用解决方案
 
 XYPopupViewHelper 弹出View,支持背景暗色和模糊效果
-
-XYSpriteView 帧动画精灵类
-
-XYSpriteHelper 精灵管理类
 
 XYAnimate UIView动画的封装
 

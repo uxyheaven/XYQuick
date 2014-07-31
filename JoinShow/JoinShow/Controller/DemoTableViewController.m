@@ -40,17 +40,14 @@
         self.list = @[
                       @{@"title": @"Something", @"className": @"TestVC"},
                       @{@"title": @"Something2", @"className": @"TestVC2"},
-                      @{@"title": @"Frame Animation", @"className": @"AnimationVC"},
                       @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
                       @{@"title": @"Network", @"className": @"NetworkVC"},
                       @{@"title": @"Json", @"className": @"JsonVC"},
                       @{@"title": @"DataLite", @"className": @"DataLiteVC"},
                       @{@"title": @"Database", @"className": @"DatabaseVC"},
-                      @{@"title": @"Parallax", @"className": @"ParallaxVC"},
                       @{@"title": @"Image", @"className": @"ImageVC"},
                       @{@"title": @"Keyboard", @"className": @"KeyboardVC"},
                       @{@"title": @"Business", @"className": @"BusinessVC"},
-                      @{@"title": @"PopupView", @"className": @"PopupViewVC"},
                       @{@"title": @"UISignal", @"className" : @"UISignalVC"}
                       ];
     }

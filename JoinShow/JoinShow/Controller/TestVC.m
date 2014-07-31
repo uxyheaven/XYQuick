@@ -573,8 +573,7 @@ if (1) { \
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
    // label.font = [UIFont fontWithName:@"AppleColorEmoji" size:12.0];
     label.text = @"This is a smiley \ue415 face";
-    
-    [label popupWithtype:PopupViewOption_none touchOutsideHidden:YES succeedBlock:nil dismissBlock:nil];
+    [self.view addSubview:label];
     [label.po_frameBuilder centerInSuperview];
 }
 
