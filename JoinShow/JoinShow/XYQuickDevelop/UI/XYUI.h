@@ -20,7 +20,7 @@
 #import "XYAnimate.h"
 
 // 视差
-#import "XYParallaxHelper.h"
+// 已分离
 
 // Keyboard偏移通用解决方案
 #import "XYKeyboardHelper.h"
