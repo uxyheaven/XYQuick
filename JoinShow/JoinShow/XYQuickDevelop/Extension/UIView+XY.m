@@ -145,7 +145,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 -(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock{
-    [self addBlurWithBlock:aBlock level:[XYPopupViewHelper sharedInstance].blurLevel];
+    [self addBlurWithBlock:aBlock level:10];
 }
 
 /////////////////////////////////////////////////////////////
