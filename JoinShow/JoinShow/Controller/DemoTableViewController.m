@@ -45,11 +45,9 @@
                       @{@"title": @"Json", @"className": @"JsonVC"},
                       @{@"title": @"DataLite", @"className": @"DataLiteVC"},
                       @{@"title": @"Database", @"className": @"DatabaseVC"},
-                      @{@"title": @"Parallax", @"className": @"ParallaxVC"},
                       @{@"title": @"Image", @"className": @"ImageVC"},
                       @{@"title": @"Keyboard", @"className": @"KeyboardVC"},
                       @{@"title": @"Business", @"className": @"BusinessVC"},
-                      @{@"title": @"PopupView", @"className": @"PopupViewVC"},
                       @{@"title": @"UISignal", @"className" : @"UISignalVC"}
                       ];
     }

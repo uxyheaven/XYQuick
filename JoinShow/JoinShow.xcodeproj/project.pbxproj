@@ -45,7 +45,6 @@
 		57403240190FA76700C82B23 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740323A190FA76700C82B23 /* FMResultSet.m */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
-		576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 576A0BA7182379B800CA8D9D /* PopupViewVC.m */; };
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
 		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
@@ -122,7 +121,6 @@
 		57DB87EB183349A60015CC5A /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C6183349A60015CC5A /* XYTimer.m */; };
 		57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CA183349A60015CC5A /* AutoSizeView.m */; };
 		57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */; };
-		57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */; };
 		57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0373188E1AA1002422D4 /* XYFileCache.m */; };
 		57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0375188E1AA1002422D4 /* XYMemoryCache.m */; };
 		57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF037C188E1CFF002422D4 /* XYObjectCache.m */; };
@@ -242,8 +240,6 @@
 		57548401181F4629008F9355 /* KeyboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardVC.m; sourceTree = "<group>"; };
 		575694841883D9C4004C2C74 /* GirlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GirlEntity.h; sourceTree = "<group>"; };
 		575694851883D9C4004C2C74 /* GirlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GirlEntity.m; sourceTree = "<group>"; };
-		576A0BA6182379B800CA8D9D /* PopupViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupViewVC.h; sourceTree = "<group>"; };
-		576A0BA7182379B800CA8D9D /* PopupViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewVC.m; sourceTree = "<group>"; };
 		576E87CE1855D23F00C7A724 /* XYDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDebug.h; sourceTree = "<group>"; };
 		576E87CF1855D23F00C7A724 /* XYDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDebug.m; sourceTree = "<group>"; };
 		576E87D11855E77200C7A724 /* XYPerformance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPerformance.h; sourceTree = "<group>"; };
@@ -384,8 +380,6 @@
 		57DB87CA183349A60015CC5A /* AutoSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSizeView.m; sourceTree = "<group>"; };
 		57DB87CD183349A60015CC5A /* XYKeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKeyboardHelper.h; sourceTree = "<group>"; };
 		57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYKeyboardHelper.m; sourceTree = "<group>"; };
-		57DB87D1183349A60015CC5A /* XYPopupViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPopupViewHelper.h; sourceTree = "<group>"; };
-		57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPopupViewHelper.m; sourceTree = "<group>"; };
 		57DB87D7183349A60015CC5A /* XYUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUI.h; sourceTree = "<group>"; };
 		57DB87D8183349A60015CC5A /* XYPrecompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPrecompile.h; sourceTree = "<group>"; };
 		57DB87D9183349A60015CC5A /* XYQuickDevelop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuickDevelop.h; sourceTree = "<group>"; };
@@ -509,8 +503,6 @@
 				57548401181F4629008F9355 /* KeyboardVC.m */,
 				57D4FF481822275400E10954 /* BusinessVC.h */,
 				57D4FF491822275400E10954 /* BusinessVC.m */,
-				576A0BA6182379B800CA8D9D /* PopupViewVC.h */,
-				576A0BA7182379B800CA8D9D /* PopupViewVC.m */,
 				5733A98D192B0F4300DC78B0 /* UISignalVC.h */,
 				5733A98E192B0F4300DC78B0 /* UISignalVC.m */,
 				579B3A3318EBDCF8001650C6 /* DemoViewController.h */,
@@ -955,8 +947,6 @@
 				57DB87C8183349A60015CC5A /* AutoSizeView */,
 				57DB87CD183349A60015CC5A /* XYKeyboardHelper.h */,
 				57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */,
-				57DB87D1183349A60015CC5A /* XYPopupViewHelper.h */,
-				57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */,
 				5771FF2D183A162900B24FE5 /* XYAnimate.h */,
 				5771FF2E183A162900B24FE5 /* XYAnimate.m */,
 				577ACC78190A2DD70053C9CE /* XYTabBarController.h */,
@@ -1209,7 +1199,6 @@
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				84DBC5B3197E6E7E00718937 /* NSObject+LKDBHelper.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
-				57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */,
 				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
 				CEE0036819480697005AE8C4 /* MBProgressHUD.m in Sources */,
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,
@@ -1221,7 +1210,6 @@
 				578ED6A3193DB08C00585D4B /* XYNotification.m in Sources */,
 				57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */,
 				57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */,
-				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
 				57403226190F933500C82B23 /* OpenUDID.m in Sources */,
 				577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */,
 				57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */,
