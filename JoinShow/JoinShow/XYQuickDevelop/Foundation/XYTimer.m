@@ -100,31 +100,28 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     return object;
 }
 
--(NSTimer *) timer:(NSTimeInterval)interval{
-   return [self timer:interval repeat:NO];
+-(NSTimer *) timer:(NSTimeInterval)interval name:(NSString *)name{
+   return [self timer:interval repeat:NO name:name];
 }
 
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat{
-   return [self timer:interval repeat:repeat name:@""];
-}
 
 -(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name{
-    NSString *timerName = (name == nil) ? @"" : name;
+    NSAssert(name.length > 1, @"name 不能为空");
     
     NSMutableDictionary *timers = self.XYtimers;
-    XYTimer *timer2 = timers[timerName];
+    XYTimer *timer2 = timers[name];
     
     if (timer2) {
-        [self cancelTimer:timerName];
+        [self cancelTimer:name];
     }
 
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:duration:", timerName]);
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:duration:", name]);
     
     NSAssert([self respondsToSelector:aSel], @"selector 必须存在");
     
     NSDate *date = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
-    timer.name = timerName;
+    timer.name = name;
     timer.start_at = [date timeIntervalSince1970];
     timer.target = self;
     timer.selector = aSel;
@@ -134,7 +131,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     
     XYTimerContainer *container = [[XYTimerContainer alloc] initWithXYTimer:timer];
     
-    [timers setObject:container forKey:timerName];
+    [timers setObject:container forKey:name];
     
     return timer.timer;
 }

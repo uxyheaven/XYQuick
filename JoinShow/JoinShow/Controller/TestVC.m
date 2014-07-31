@@ -354,7 +354,6 @@ if (1) { \
         NSLogD(@"%@", notification.userInfo);
     }];
     
-    [self timer:1 repeat:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -667,7 +666,4 @@ ON_NOTIFICATION_1_( aaa ){
 }
 
 #pragma mark - XYTimer
-ON_TIMER(){
-   // NSLogD(@"%g", duration);
-}
 @end

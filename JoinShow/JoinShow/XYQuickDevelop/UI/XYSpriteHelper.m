@@ -25,7 +25,7 @@ DEF_SINGLETON(XYSpriteHelper);
 }
 
 -(void)startTimer{
-    [self timer:_interval repeat:YES];
+    [self timer:_interval repeat:YES name:@"XYSprite"];
 }
 -(void) pauseTimer{
     [self cancelTimer:nil];
@@ -61,7 +61,7 @@ DEF_SINGLETON(XYSpriteHelper);
 }
 #define mark - XYTimerDelegate
 
-ON_TIMER( ){
+ON_TIMER( XYSprite ){
     [self updateSprites];
 }
 

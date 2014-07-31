@@ -52,7 +52,7 @@ DEF_SINGLETON(XYParallaxHelper)
             self.lastAttitude = _motion.deviceMotion.attitude;
             self.curAttitude = _motion.deviceMotion.attitude;
             [self resetDeviceOrientation];
-            [self timer:_updateInterval repeat:YES];
+            [self timer:_updateInterval repeat:YES name:@"XYParallax"];
 
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
         }else{
@@ -137,7 +137,7 @@ DEF_SINGLETON(XYParallaxHelper)
 }
 
 #define mark - XYTimerDelegate
-ON_TIMER(){
+ON_TIMER( XYParallax ){
     CMDeviceMotion *motion = _motion.deviceMotion;
     self.curAttitude = motion.attitude;
     
