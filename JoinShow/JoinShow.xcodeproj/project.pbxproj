@@ -15,7 +15,6 @@
 		571CBA5817C6FCC0007CB842 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA4F17C6FCC0007CB842 /* Storyboard.storyboard */; };
 		571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5217C6FCC0007CB842 /* Test2View.m */; };
 		571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5417C6FCC0007CB842 /* TestView.m */; };
-		571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5C17C7000A007CB842 /* AnimationVC.m */; };
 		571CBB1317C702D1007CB842 /* p31b0001.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA5F17C702D0007CB842 /* p31b0001.png */; };
 		571CBB1417C702D1007CB842 /* p31b0002.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA6017C702D0007CB842 /* p31b0002.png */; };
 		571CBB1517C702D1007CB842 /* p31b0003.png in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA6117C702D0007CB842 /* p31b0003.png */; };
@@ -305,8 +304,6 @@
 		57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */; };
 		57DB87EF183349A60015CC5A /* XYParallaxHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D0183349A60015CC5A /* XYParallaxHelper.m */; };
 		57DB87F0183349A60015CC5A /* XYPopupViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */; };
-		57DB87F1183349A60015CC5A /* XYSpriteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D4183349A60015CC5A /* XYSpriteHelper.m */; };
-		57DB87F2183349A60015CC5A /* XYSpriteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87D6183349A60015CC5A /* XYSpriteView.m */; };
 		57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0373188E1AA1002422D4 /* XYFileCache.m */; };
 		57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0375188E1AA1002422D4 /* XYMemoryCache.m */; };
 		57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF037C188E1CFF002422D4 /* XYObjectCache.m */; };
@@ -366,8 +363,6 @@
 		571CBA5217C6FCC0007CB842 /* Test2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2View.m; sourceTree = "<group>"; };
 		571CBA5317C6FCC0007CB842 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		571CBA5417C6FCC0007CB842 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
-		571CBA5B17C7000A007CB842 /* AnimationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationVC.h; sourceTree = "<group>"; };
-		571CBA5C17C7000A007CB842 /* AnimationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationVC.m; sourceTree = "<group>"; };
 		571CBA5F17C702D0007CB842 /* p31b0001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p31b0001.png; sourceTree = "<group>"; };
 		571CBA6017C702D0007CB842 /* p31b0002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p31b0002.png; sourceTree = "<group>"; };
 		571CBA6117C702D0007CB842 /* p31b0003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p31b0003.png; sourceTree = "<group>"; };
@@ -755,10 +750,6 @@
 		57DB87D0183349A60015CC5A /* XYParallaxHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYParallaxHelper.m; sourceTree = "<group>"; };
 		57DB87D1183349A60015CC5A /* XYPopupViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPopupViewHelper.h; sourceTree = "<group>"; };
 		57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPopupViewHelper.m; sourceTree = "<group>"; };
-		57DB87D3183349A60015CC5A /* XYSpriteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSpriteHelper.h; sourceTree = "<group>"; };
-		57DB87D4183349A60015CC5A /* XYSpriteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSpriteHelper.m; sourceTree = "<group>"; };
-		57DB87D5183349A60015CC5A /* XYSpriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSpriteView.h; sourceTree = "<group>"; };
-		57DB87D6183349A60015CC5A /* XYSpriteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSpriteView.m; sourceTree = "<group>"; };
 		57DB87D7183349A60015CC5A /* XYUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUI.h; sourceTree = "<group>"; };
 		57DB87D8183349A60015CC5A /* XYPrecompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPrecompile.h; sourceTree = "<group>"; };
 		57DB87D9183349A60015CC5A /* XYQuickDevelop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuickDevelop.h; sourceTree = "<group>"; };
@@ -868,8 +859,6 @@
 				57383F3A17D2F5F20001079C /* TestVC.m */,
 				57D43E2318EADB4800D84C01 /* TestVC2.h */,
 				57D43E2418EADB4800D84C01 /* TestVC2.m */,
-				571CBA5B17C7000A007CB842 /* AnimationVC.h */,
-				571CBA5C17C7000A007CB842 /* AnimationVC.m */,
 				578FBFE1183AFA8B0083A952 /* AnimationVC2.h */,
 				578FBFE2183AFA8B0083A952 /* AnimationVC2.m */,
 				5722182617DB365B003504E8 /* NetworkVC.h */,
@@ -1526,10 +1515,6 @@
 				57DB87D0183349A60015CC5A /* XYParallaxHelper.m */,
 				57DB87D1183349A60015CC5A /* XYPopupViewHelper.h */,
 				57DB87D2183349A60015CC5A /* XYPopupViewHelper.m */,
-				57DB87D3183349A60015CC5A /* XYSpriteHelper.h */,
-				57DB87D4183349A60015CC5A /* XYSpriteHelper.m */,
-				57DB87D5183349A60015CC5A /* XYSpriteView.h */,
-				57DB87D6183349A60015CC5A /* XYSpriteView.m */,
 				5771FF2D183A162900B24FE5 /* XYAnimate.h */,
 				5771FF2E183A162900B24FE5 /* XYAnimate.m */,
 				577ACC78190A2DD70053C9CE /* XYTabBarController.h */,
@@ -1959,7 +1944,6 @@
 				57DB87EF183349A60015CC5A /* XYParallaxHelper.m in Sources */,
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				579E68A3192EFA4C00EECAB4 /* XYUISignal.m in Sources */,
-				571CBA5D17C7000A007CB842 /* AnimationVC.m in Sources */,
 				57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				84DBC5B3197E6E7E00718937 /* NSObject+LKDBHelper.m in Sources */,
@@ -1979,9 +1963,7 @@
 				576A0BA8182379B800CA8D9D /* PopupViewVC.m in Sources */,
 				57403226190F933500C82B23 /* OpenUDID.m in Sources */,
 				577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */,
-				57DB87F2183349A60015CC5A /* XYSpriteView.m in Sources */,
 				57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */,
-				57DB87F1183349A60015CC5A /* XYSpriteHelper.m in Sources */,
 				57AB8B581888E1E60005A93B /* XYSandbox.m in Sources */,
 				5722182817DB365B003504E8 /* NetworkVC.m in Sources */,
 				5740323D190FA76700C82B23 /* FMDatabaseAdditions.m in Sources */,

@@ -13,9 +13,8 @@
 
 #endif
 
-// 帧动画
-#import "XYSpriteView.h"
-#import "XYSpriteHelper.h"
+// 序列帧动画
+// 已分离
 
 // 普通动画
 #import "XYAnimate.h"
