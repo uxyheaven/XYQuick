@@ -72,6 +72,7 @@ if (_delegate && [_delegate respondsToSelector:@selector(__x)]) { \
 #define Delegate( __fun, ...) \
 if (_delegate && [_delegate respondsToSelector:@selector( __fun )]) \
 { \
+    __actionXY_return_void = objc_msgSend; \
     objc_msgSend(_delegate, @selector( __fun ), ## __VA_ARGS__); \
 }
 
@@ -240,8 +241,9 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 /**************************************************************/
 // 方法定义
-//void (*actionXY)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
-
+//void (*__actionXY)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+void (*__actionXY_return_void)(id, SEL, ...);
+id (*__actionXY_return_id)(id, SEL, ...);
 #pragma mark -end
 /**************************************************************/
 
@@ -373,6 +375,4 @@ description:__VA_ARGS__];                             \
 
 #define LOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
 
-// rgb颜色转换（16进制->10进制）
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
  */

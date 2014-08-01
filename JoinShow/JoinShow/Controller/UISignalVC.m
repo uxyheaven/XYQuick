@@ -99,6 +99,20 @@ ON_SIGNAL( signal ){
     Signal1 *view = [[Signal1 alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
     [self.view addSubview:view];
     [view.po_frameBuilder alignToTopInSuperviewWithInset:66];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(0, 320, 44, 44);
+    [btn setTitle:@"3" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(click3:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(50, 320, 44, 44);
+    [btn setTitle:@"4" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(click4:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,5 +138,19 @@ ON_SIGNAL( signal ){
 
 ON_SIGNAL2(BUTTON_CLICK1, signal){
     NSLogD(@"%@", signal);
+}
+
+-(void) click3:(id)sender{
+    //UILabel *label = [[UILabel alloc] init];
+    //self.tempObject = label;
+    //[self.view addSubview:label];
+   // NSLogD(@"%@", label);
+}
+-(void) click4:(id)sender{
+    //id temp = self.tempObject;
+    //if (temp) {
+   //     NSLogD(@"%@", self.tempObject);
+   // }
+    
 }
 @end

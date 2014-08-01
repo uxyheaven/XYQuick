@@ -144,6 +144,7 @@
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
+		8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400D0CB198B353200A5E289 /* NSSet+XY.m */; };
 		84DBC5AF197E6E7E00718937 /* LKDB+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5A4197E6E7E00718937 /* LKDB+Manager.m */; };
 		84DBC5B0197E6E7E00718937 /* LKDB+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5A6197E6E7E00718937 /* LKDB+Mapping.m */; };
 		84DBC5B1197E6E7E00718937 /* LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5A8197E6E7E00718937 /* LKDBHelper.m */; };
@@ -425,6 +426,8 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
+		8400D0CA198B353200A5E289 /* NSSet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+XY.h"; sourceTree = "<group>"; };
+		8400D0CB198B353200A5E289 /* NSSet+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+XY.m"; sourceTree = "<group>"; };
 		84DBC5A3197E6E7E00718937 /* LKDB+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Manager.h"; sourceTree = "<group>"; };
 		84DBC5A4197E6E7E00718937 /* LKDB+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LKDB+Manager.m"; sourceTree = "<group>"; };
 		84DBC5A5197E6E7E00718937 /* LKDB+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LKDB+Mapping.h"; sourceTree = "<group>"; };
@@ -875,6 +878,8 @@
 				57DB87A0183349A60015CC5A /* NSArray+XY.mm */,
 				57FC73D91934C0D200FA8C36 /* NSDictionary+XY.h */,
 				57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */,
+				8400D0CA198B353200A5E289 /* NSSet+XY.h */,
+				8400D0CB198B353200A5E289 /* NSSet+XY.m */,
 				57DB87A1183349A60015CC5A /* NSData+XY.h */,
 				57DB87A2183349A60015CC5A /* NSData+XY.m */,
 				57DB87A3183349A60015CC5A /* NSDate+XY.h */,
@@ -1075,7 +1080,7 @@
 				ORGANIZATIONNAME = Heaven;
 				TargetAttributes = {
 					57B3FFE5177AD9BC00775FC9 = {
-						DevelopmentTeam = J9JJ28EMZ9;
+						DevelopmentTeam = NYSSA4N746;
 					};
 				};
 			};
@@ -1226,6 +1231,7 @@
 				57F134DF17DC39F200C5DCDC /* Player.m in Sources */,
 				579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */,
 				57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */,
+				8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */,
 				5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */,
 				572E7CB718385C690018179D /* MKNetworkOperation.m in Sources */,
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,

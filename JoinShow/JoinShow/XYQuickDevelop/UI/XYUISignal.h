@@ -103,8 +103,19 @@
 #pragma mark - XYUISignal(SourceView)
 @interface XYUISignal(SourceView)
 
-@property (nonatomic, readonly) UIView *			sourceView;
-@property (nonatomic, readonly) UIViewController *	sourceViewController;
+@property (nonatomic, readonly) UIView *sourceView;
+@property (nonatomic, readonly) UIViewController *sourceViewController;
 
 @end
+
+/*
+#pragma mark - NSObject(XYUISignal_delegate)
+// 此处扩展其它类也可以使用signal
+@interface NSObject(XYUISignal_delegate)
+
+@property (nonatomic, strong) NSMutableSet *XY_delegates;       // 处理事件的委托集合, 和XY_deldgate不兼容
+@property (nonatomic, weak) id XY_deldgate;                     // 处理事件的委托
+
+@end
+ */
 
