@@ -103,6 +103,22 @@ DUMMY_CLASS(NSArray_XY);
 	return [self subarrayWithRange:NSMakeRange(range.location, range.length)];
 }
 
+-(NSInteger) indexOfString:(NSString *)string{
+    if (string == nil || string.length < 1) {
+        return NSNotFound;
+    }
+    if (self.count == 0) {
+        return NSNotFound;
+    }
+    
+    for (int i = 0; i < self.count; i++) {
+        if ([string isEqualToString:self[i]]) {
+            return i;
+        }
+    }
+    
+    return NSNotFound;
+}
 - (NSMutableArray *)mutableArray
 {
 	return [NSMutableArray arrayWithArray:self];

@@ -25,6 +25,8 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 - (id)safeObjectAtIndex:(NSInteger)index;
 - (NSArray *)safeSubarrayWithRange:(NSRange)range;
 
+-(NSInteger) indexOfString:(NSString *)string;
+
 @end
 
 #pragma mark -
