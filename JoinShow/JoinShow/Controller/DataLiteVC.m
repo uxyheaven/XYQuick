@@ -20,8 +20,8 @@
 
 @implementation DataLiteVC
 
-DEF_DATALITE_STRING(TestTitle, YES, nil)
-DEF_DATALITE_OBJECT(TestSting, YES, @"DataLiteSting")
+DEF_DATALITE_STRING(TestTitle, nil)
+DEF_DATALITE_OBJECT(TestSting, @"DataLiteSting")
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
