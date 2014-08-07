@@ -9,6 +9,10 @@
 #import "XYDebug.h"
 #import "XYFoundation.h"
 
+#define K	(1024)
+#define M	(K * 1024)
+#define G	(M * 1024)
+
 #undef	MAX_CALLSTACK_DEPTH
 #define MAX_CALLSTACK_DEPTH	(64)
 
@@ -89,7 +93,17 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 }
 @end
 
+
+#pragma mark - XYDebug
+@interface XYDebug()
+
+@property (nonatomic, readonly) int64_t				manualBytes;
+@property (nonatomic, readonly) NSMutableArray *	manualBlocks;
+@end
+
 @implementation XYDebug
+
+DEF_SINGLETON(XYDebug)
 
 + (void)printCallstack:(NSUInteger)depth
 {
@@ -150,11 +164,79 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 #endif	// #if __BEE_DEVELOPMENT__
 }
 
+-(void) allocAll
+{
+	NSProcessInfo *		progress = [NSProcessInfo processInfo];
+	unsigned long long	total = [progress physicalMemory];
+    //	NSUInteger			total = NSRealMemoryAvailable();
+	
+	for ( ;; )
+	{
+		if ( _manualBytes + 50 * M >= total )
+			break;
+        
+		void * block = NSZoneCalloc( NSDefaultMallocZone(), 50, M );
+		if ( nil == block )
+		{
+			block = NSZoneMalloc( NSDefaultMallocZone(), 50 * M );
+		}
+		
+		if ( block )
+		{
+			_manualBytes += 50 * M;
+			[_manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
+		}
+		else
+		{
+			break;
+		}
+	}
+}
+
+-(void) freeAll
+{
+	for ( NSNumber * block in _manualBlocks )
+	{
+		void * ptr = (void *)[block unsignedLongLongValue];
+		NSZoneFree( NSDefaultMallocZone(), ptr );
+	}
+	
+	[_manualBlocks removeAllObjects];
+}
+
+-(void) alloc50M
+{
+	void * block = NSZoneCalloc( NSDefaultMallocZone(), 50, M );
+	if ( nil == block )
+	{
+		block = NSZoneMalloc( NSDefaultMallocZone(), 50 * M );
+	}
+	
+	if ( block )
+	{
+		_manualBytes += 50 * M;
+		[_manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
+	}
+}
+
+-(void) free50M
+{
+	NSNumber * block = [_manualBlocks lastObject];
+	if ( block )
+	{
+		void * ptr = (void *)[block unsignedLongLongValue];
+		NSZoneFree( NSDefaultMallocZone(), ptr );
+		
+		[_manualBlocks removeLastObject];
+	}
+}
+
 +(void) hookObject:(id)anObject whenDeallocLogString:(NSString *)string{
     XYWatcher *watcher = [[XYWatcher alloc] init];
     watcher.stringDealloc = string;
     objc_setAssociatedObject(anObject, XYDebug_key_hookDealloc, watcher, OBJC_ASSOCIATION_RETAIN);
 }
+
 
 @end
 

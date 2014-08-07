@@ -14,7 +14,7 @@
 #endif
 
 @interface DataLiteVC : UIViewController
-AS_DataLite_string(TestTitle)
-AS_DataLite_string(TestSting)
-AS_DataLite_string(TestDic)
+AS_DATALITE_STRING(TestTitle)
+AS_DATALITE_STRING(TestSting)
+
 @end

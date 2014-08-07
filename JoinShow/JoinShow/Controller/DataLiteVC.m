@@ -20,9 +20,8 @@
 
 @implementation DataLiteVC
 
-DEF_DataLite_object(TestTitle, YES, nil, nil)
-DEF_DataLite_object(TestSting, YES, @"DataLiteSting", nil)
-DEF_DataLite_object(TestDic, YES, nil, @"default_TestDic.plist")
+DEF_DATALITE_STRING(TestTitle, YES, nil)
+DEF_DATALITE_OBJECT(TestSting, YES, @"DataLiteSting")
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,9 +46,6 @@ DEF_DataLite_object(TestDic, YES, nil, @"default_TestDic.plist")
     NSLogD(@"%@", self.TestTitle);
     
     NSLogD(@"%@", self.TestSting);
-    
-    NSLogD(@"%@", self.TestDic);
-    
 }
 
 - (void)didReceiveMemoryWarning

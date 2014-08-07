@@ -7,7 +7,7 @@
 //
 
 // 轻量形数据持久化, 基于NSUserDefaults
-// 如果最后用的是DEF_DataLite_object, 记得在程序进入后台,退出时调用 XY_DataLite_synchronize
+// 如果最后用的是DEF_DATALITE_OBJECT, 记得在程序进入后台,退出时调用 XY_DataLite_synchronize
 
 #import "XYCommonDefine.h"
 
@@ -15,29 +15,35 @@
 #define XY_DataLite_synchronize [XYDataLite synchronize];
 
 // 注意: __name 首字母需要大写
-#define AS_DataLite_string( __name ) \
--(void) set##__name:(NSString *)anObject; \
--(id) __name;
-
-#define AS_DataLite_object( __name ) \
+#define AS_DATALITE_OBJECT( __name ) \
 -(void) set##__name:(id)anObject; \
 -(id) __name;
+
+#define AS_DATALITE_STRING( __name ) \
+-(void) set##__name:(NSString *)anObject; \
+-(NSString *) __name;
+
+
+#define AS_DATALITE_INT( __name ) \
+-(void) set##__name:(int)anObject; \
+-(int) __name;
 
 /**
  __synchronize 自动存
  * 注意:__defaultObject不要使用bool
- * 用__defaultPath时不要用NSNumber, NSString NSData 识别问题
- * 2个只能用一个
  * 建议在 applicationDidFinishLaunching: 中调用[XYDataLite registerDefaults:dic]设置默认值
  */
-#define DEF_DataLite_object( __name , __synchronize, __defaultObject, __defaultPath) \
+#define DEF_DATALITE_OBJECT( __name , __defaultObject) \
 -(void) set##__name:(id)anObject{ \
-    [XYDataLite writeObject:anObject forKey:__TEXT( __func__##__name ) synchronize:__synchronize]; \
+    [XYDataLite writeObject:anObject forKey:__TEXT( __func__##__name ) synchronize:YES]; \
 } \
 -(id) __name{ \
     NSString *key = [NSString stringWithFormat:@"%@_%@", [self class], __TEXT( __name )]; \
-    return [XYDataLite readObjectForKey:key defaultObject:__defaultObject defaultObjectPath:__defaultPath]; \
+    return [XYDataLite readObjectForKey:key defaultObject:__defaultObject]; \
 }
+
+#define DEF_DATALITE_STRING( __name , __defaultObject) \
+DEF_DATALITE_OBJECT( __name , __defaultObject)
 
 #import "XYPrecompile.h"
 #import "XYFoundation.h"
@@ -47,9 +53,10 @@
 // dont support bool
 +(id) readObjectForKey:(NSString *)key;
 
-// defaultObject dont support bool, defaultObjectPath dont support NSNumber
-+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject defaultObjectPath:(NSString *)aPath;
+// defaultObject dont support bool,
++(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject;
 
++(void) writeObject:(id)anObject forKey:(NSString *)key;
 // if bSync == YES, run [[NSUserDefaults standardUserDefaults] synchronize]
 +(void) writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync;
 

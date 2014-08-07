@@ -51,10 +51,18 @@
 #pragma mark - XYDebug
 @interface XYDebug : NSObject
 
+AS_SINGLETON(XYDebug)
+
 +(NSArray *) callstack:(NSUInteger)depth;
 
 +(void) printCallstack:(NSUInteger)depth;
 +(void) breakPoint;
+
+-(void) allocAll;
+-(void) freeAll;
+
+-(void) alloc50M;
+-(void) free50M;
 
 // 当被观察的对象释放的时候打印一段String
 +(void) hookObject:(id)anObject whenDeallocLogString:(NSString *)string;

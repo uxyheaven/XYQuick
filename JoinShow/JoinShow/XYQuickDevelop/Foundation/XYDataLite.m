@@ -15,34 +15,16 @@
 #pragma mark - todo 多类型判断
 
 +(id) readObjectForKey:(NSString *)key{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    return [self readObjectForKey:key defaultObject:nil];
 }
-+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject defaultObjectPath:(NSString *)aPath{
++(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject{
     id tempObject = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    
     if (tempObject) {
         return tempObject;
     }else if (defaultObject) {
         return defaultObject;
-    }else if (aPath) {
-        NSString *str = [XYCommon dataFilePath:aPath ofType:filePathOption_app];
-        id anObject = nil;
-        
-        if ((anObject = [NSDictionary dictionaryWithContentsOfFile:str]))
-        {
-            return anObject;
-        }else if ((anObject = [NSArray arrayWithContentsOfFile:aPath]))
-        {
-            return anObject;
-        }else if ((anObject = [NSString stringWithContentsOfFile:aPath encoding:NSUTF8StringEncoding error:nil]))
-        {
-#pragma mark - to do NSString NSData 问题
-            return anObject;
-        }else if ((anObject = [NSData dataWithContentsOfFile:aPath]))
-        {
-            return anObject;
-        }
-        return nil;
-    }else{
+    } else{
         return nil;
     }
 }
@@ -54,8 +36,11 @@
         [[NSUserDefaults standardUserDefaults] setObject:anObject forKey:key];
     }
     if (bSync) {
-        [[self class] synchronize];
+        [self synchronize];
     }
+}
++(void) writeObject:(id)anObject forKey:(NSString *)key{
+    [self writeObject:anObject forKey:key synchronize:YES];
 }
 +(void) registerDefaults:(NSDictionary *)dic{
     [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
