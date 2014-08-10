@@ -788,6 +788,11 @@ DUMMY_CLASS(NSString_XY);
     
     return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
 }
+
+-(NSTimeInterval) displayTime{
+    return MAX((float)self.length * 0.1 + 2, 2);
+}
+
 @end
 
 #pragma mark -

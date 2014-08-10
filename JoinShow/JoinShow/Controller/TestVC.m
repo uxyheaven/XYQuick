@@ -433,7 +433,7 @@ if (1) { \
     [alertView handlerClickedButton:^(UIAlertView *alertView, NSInteger btnIndex) {
         NSLogD(@"%ld", (long)btnIndex);
     }];
-    [alertView show];
+    [alertView showWithDuration:3];
 }
 
 - (IBAction)clickBtnBlockActionSheet:(id)sender {

@@ -119,6 +119,8 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 // 返回显示字串所需要的尺寸
 -(CGSize) calculateSize:(CGSize)size font:(UIFont *)font;
 
+-(NSTimeInterval) displayTime;
+
 @end
 
 
