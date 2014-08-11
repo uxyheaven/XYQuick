@@ -30,6 +30,7 @@ DEF_SINGLETON( XYGCD )
 	if ( self )
 	{
 		_foreQueue = dispatch_get_main_queue();
+        // 串行队列
 		_backQueue = dispatch_queue_create( "com.XY.taskQueue", nil );
 	}
 	
