@@ -48,8 +48,8 @@
 @end
 
 #pragma mark-
-#pragma mark- XYTabBarControllerDelegate
-@protocol XYTabBarControllerDelegate <NSObject>
+#pragma mark- XYTabBarControllerProtocol
+@protocol XYTabBarControllerProtocol <NSObject>
 @optional
 -(BOOL) tabBarController:(XYTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
 -(void) tabBarController:(XYTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;

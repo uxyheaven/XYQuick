@@ -154,7 +154,7 @@
 // 私有方法
 
 -(void) displayViewAtIndex:(NSUInteger)index{
-    UIViewController *targetViewController = [self.viewControllers objectAtIndex:index];
+    UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers objectAtIndex:index];
     // If target index is equal to current index.
     if (_selectedIndex == index && [[_contentView subviews] count] != 0)
     {
@@ -171,8 +171,15 @@
     [self addChildViewController:targetViewController];
     [_contentView addSubview:targetViewController.view];
     
-    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
-        [_delegate tabBarController:self didSelectViewController:targetViewController];
+    if ([targetViewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController<XYTabBarControllerProtocol> *vc = ((UINavigationController *)targetViewController).topViewController;
+        if ([vc respondsToSelector:@selector(tabBarController:didSelectViewController:)]){
+            [vc tabBarController:self didSelectViewController:[self.viewControllers objectAtIndex:index]];
+        }
+    }
+    
+    if ([targetViewController respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
+        [targetViewController tabBarController:self didSelectViewController:targetViewController];
     }
 }
 #pragma mark - 响应 model 的地方
@@ -191,9 +198,19 @@
 #pragma mark XYTabBarDelegate
 -(BOOL) tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index
 {
-    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]){
-        return [_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];
+    UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers objectAtIndex:index];
+    
+    if ([targetViewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController<XYTabBarControllerProtocol> *vc = ((UINavigationController *)targetViewController).topViewController;
+        if ([vc respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]){
+            return [vc tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];
+        }
     }
+    
+    if ([targetViewController respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]){
+        return [targetViewController tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];
+    }
+    
     return YES;
 }
 
