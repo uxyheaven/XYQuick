@@ -8,6 +8,7 @@
 
 #import "XYPrecompile.h"
 
+// 职责链模式(chain of responsibility)
 #pragma mark - #define
 #define AS_SIGNAL( __name )					AS_STATIC_PROPERTY( __name )
 #define DEF_SIGNAL( __name )				DEF_STATIC_PROPERTY3( __name, @"signal", [self description] )
