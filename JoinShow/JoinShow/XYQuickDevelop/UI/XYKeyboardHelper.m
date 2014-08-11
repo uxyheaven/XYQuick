@@ -173,9 +173,12 @@ DEF_SINGLETON(XYKeyboardHelper)
     // UIKeyboardDidShowNotification ---> UITextViewTextDidBeginEditingNotification
     // UITextFieldTextDidBeginEditingNotification ---> UIKeyboardDidShowNotification
     // UITextView 和 UITextField 的键盘出现的消息的顺序不一样的问题
+    /*
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     UIView *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
     textFieldView = firstResponder;
+     */
+    
     [self commonDidBeginEditing];
   //  NSLogD(@"%@", firstResponder);
     
