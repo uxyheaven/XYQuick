@@ -56,6 +56,9 @@ AS_SINGLETON( XYSandbox )
  */
 +(uint64_t) sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode;
 
+// 设置目录里的文件不备份
++(BOOL) skipFileBackupForItemAtURL:(NSURL*)URL;
+
 @end
 
 
