@@ -28,7 +28,7 @@ DUMMY_CLASS(NSDate_XY);
 @dynamic stringWeekday;
 @dynamic stringCache;
 
-+(void) load{
++ (void)load{
     XY_weekdays = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
 }
 
@@ -37,10 +37,12 @@ DUMMY_CLASS(NSDate_XY);
     // 你使用NSThread的threadDictionary方法来检索一个NSMutableDictionary对象，你可以在它里面添加任何线程需要的键。每个线程都维护了一个键-值的字典，它可以在线程里面的任何地方被访问。你可以使用该字典来保存一些信息，这些信息在整个线程的执行过程中都保持不变。
     NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
     NSCalendar *currentCalendar = [dictionary objectForKey:@"AZ_currentCalendar"];
-    if (currentCalendar == nil) {
+    if (currentCalendar == nil)
+    {
         currentCalendar = [NSCalendar currentCalendar];
         [dictionary setObject:currentCalendar forKey:@"AZ_currentCalendar"];
     }
+    
     return currentCalendar;
 }
 
@@ -98,6 +100,7 @@ DUMMY_CLASS(NSDate_XY);
 	
 	NSTimeInterval time = [self timeIntervalSince1970];
 	NSUInteger timeUint = (NSUInteger)time;
+    
 	return [[NSNumber numberWithUnsignedInteger:timeUint] stringWithDateFormat:format];
 	
 #else
@@ -106,6 +109,7 @@ DUMMY_CLASS(NSDate_XY);
 	
 	NSDateFormatter * dateFormatter = [XYCommon dateFormatterTemp];
 	[dateFormatter setDateFormat:format];
+    
 	return [dateFormatter stringFromDate:self];
 	
 #endif
@@ -191,7 +195,8 @@ DUMMY_CLASS(NSDate_XY);
 ///////////////////////////
 -(NSString *) stringCache{
     NSString *str = (NSString *)objc_getAssociatedObject(self, NSDate_key_stringCache);
-    if (str == nil) {
+    if (str == nil)
+    {
        return [self resetStringCache];
     }
     

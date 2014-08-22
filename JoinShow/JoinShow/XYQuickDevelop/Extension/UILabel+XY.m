@@ -27,7 +27,7 @@
 
 @implementation UILabel (XY)
 
--(void) resize:(UILabelResizeType)type{
+- (void)resize:(UILabelResizeType)type{
     CGSize size;
     if (type == UILabelResizeType_constantHeight) {
         // 高不变

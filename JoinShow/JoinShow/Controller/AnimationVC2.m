@@ -51,7 +51,8 @@
 {
     NSLogDD
 }
--(void) clickPlay1{
+
+- (void)clickPlay1{
     UIView *tempView = [self.view viewWithTag:300001];
     [tempView removeFromSuperview];
     
@@ -109,7 +110,7 @@
     
     [steps run];
 }
--(void) clickPlay2{
+- (void)clickPlay2{
     UIView *tempView = [self.view viewWithTag:300001];
     [tempView removeFromSuperview];
     

@@ -44,18 +44,18 @@
     // Pass the selected object to the new view controller.
 }
 */
--(void) createFields {
+- (void)createFields {
     [super createFields];
     
     _tabBarFrame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
     _contentFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 49);
 }
 
--(void) destroyFields {
+- (void)destroyFields {
     [super destroyFields];
 }
 
--(void) createViews {
+- (void)createViews {
     [super createViews];
     
     _contentView = [[UIView alloc] initWithFrame:_contentFrame];
@@ -77,21 +77,21 @@
     [_tabBar addSubview:view];
 }
 
--(void) destroyViews {
+- (void)destroyViews {
     [super destroyViews];
 }
 
--(void) createEvents {
+- (void)createEvents {
     [super createEvents];
     
     _tabBar.delegate = self;
 }
 
--(void) destroyEvents {
+- (void)destroyEvents {
     [super destroyEvents];
 }
 
--(void) loadData {
+- (void)loadData {
     [super loadData];
     
     self.selectedIndex = 0;
@@ -108,11 +108,11 @@
     [self displayViewAtIndex:index];
     [_tabBar selectTabAtIndex:index];
 }
--(void) setupItem:(UIButton *)item index:(NSInteger)index{
+- (void)setupItem:(UIButton *)item index:(NSInteger)index{
     [_tabBar setupItem:item index:index];
 }
 
--(void) resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index {
+- (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index {
     static BOOL isFirst = NO;
     if (!isFirst) {
         animatedView.backgroundColor = [UIColor orangeColor];
@@ -125,19 +125,19 @@
 
 #pragma mark - rewrite
 // 额外的重写的父类的方法
--(void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 
--(void) viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
 
--(void) viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
 
--(void) viewDidDisappear:(BOOL)animated{
+- (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
 
@@ -145,7 +145,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) didReceiveMemoryWarning{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -153,7 +153,7 @@
 #pragma mark - private
 // 私有方法
 
--(void) displayViewAtIndex:(NSUInteger)index{
+- (void)displayViewAtIndex:(NSUInteger)index{
     UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers objectAtIndex:index];
     // If target index is equal to current index.
     if (_selectedIndex == index && [[_contentView subviews] count] != 0)
@@ -214,7 +214,7 @@
     return YES;
 }
 
--(void) tabBar:(XYTabBar *)tabBar didSelectIndex:(NSInteger)index
+- (void)tabBar:(XYTabBar *)tabBar didSelectIndex:(NSInteger)index
 {
 	[self displayViewAtIndex:index];
     

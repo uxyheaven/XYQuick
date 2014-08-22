@@ -55,14 +55,14 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     }
     return self;
 }
--(void) dealloc
+- (void)dealloc
 {
     //NSLogD(@"%@", _keyPath);
     if (_sourceObject) { [_sourceObject removeObserver:self forKeyPath:_keyPath]; }
 }
 
 #pragma mark NSKeyValueObserving
--(void) observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {
     __weak __typeof(self) weakSelf = self;
     if (_block) {
@@ -86,7 +86,7 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 #pragma mark - NSObject (XYObserverPrivate)
 @interface NSObject (XYObserverPrivate)
 
--(void) observeWithObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type;
+- (void)observeWithObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type;
 
 @end
 
@@ -106,7 +106,7 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     return object;
 }
 
--(void) observeWithObject:(id)object property:(NSString*)property{
+- (void)observeWithObject:(id)object property:(NSString*)property{
     SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@New:", property]);
     if ([self respondsToSelector:aSel]) {
         [self observeWithObject:object
@@ -147,11 +147,11 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     }
 }
 
--(void) observeWithObject:(id)object property:(NSString*)property block:(XYObserver_block_sourceObject_new_old)block{
+- (void)observeWithObject:(id)object property:(NSString*)property block:(XYObserver_block_sourceObject_new_old)block{
     [self observeWithObject:object keyPath:property block:block];
 }
 
--(void) observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type{
+- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type{
     NSAssert([target respondsToSelector:selector], @"selector 必须存在");
     NSAssert(keyPath.length > 0, @"property 必须存在");
     NSAssert(object, @"被观察的对象object 必须存在");
@@ -162,7 +162,7 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     [self.observers setObject:ob forKey:key];
 }
 
--(void) observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYObserver_block_sourceObject_new_old)block{
+- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYObserver_block_sourceObject_new_old)block{
     NSAssert(block, @"block 必须存在");
     
     XYObserver *ob = [[XYObserver alloc] initWithSourceObject:object keyPath:keyPath block:block];
@@ -171,19 +171,19 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     [self.observers setObject:ob forKey:key];
 }
 
--(void) removeObserverWithObject:(id)object property:(NSString *)property{
+- (void)removeObserverWithObject:(id)object property:(NSString *)property{
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, property];
     [self.observers removeObjectForKey:key];
 }
 
--(void) removeObserverWithObject:(id)object{
+- (void)removeObserverWithObject:(id)object{
     NSString *prefix = [NSString stringWithFormat:@"%@", object];
     [self.observers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([key hasPrefix:prefix]) { [self.observers removeObjectForKey:key]; }
     }];
 }
 
--(void) removeAllObserver{
+- (void)removeAllObserver{
     [self.observers removeAllObjects];
 }
 

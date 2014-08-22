@@ -82,12 +82,12 @@ DEF_SINGLETON(XYKeyboardHelper)
     }
     return self;
 }
--(void) setTextFieldDistanceFromKeyboard:(CGFloat)distance
+- (void)setTextFieldDistanceFromKeyboard:(CGFloat)distance
 {
     //Setting keyboard distance.
     self.keyboardDistanceFromTextField = MAX(distance, 0);
 }
--(void) enableKeyboardHelper
+- (void)enableKeyboardHelper
 {
     //registering for notifications if it is not enable already.
     if (self.isEnabled == NO)
@@ -112,7 +112,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     }
 }
 
--(void) disableKeyboardHelper
+- (void)disableKeyboardHelper
 {
     //Unregister for all notifications if it is enabled.
     if (self.isEnabled == YES)
@@ -129,7 +129,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 }
 #pragma mark - Helper Animation function
 //Helper function to manipulate RootViewController's frame with animation.
--(void) setRootViewFrame:(CGRect)frame
+- (void)setRootViewFrame:(CGRect)frame
 {
     
 //    if (isKeyboardShowing == YES && ABS(frame.origin.x) <= 0.01 && ABS(frame.origin.y) <= 0.01) {
@@ -148,7 +148,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 
 #pragma mark - UIKeyboad Delegate methods
 // Keyboard Will hide. So setting rootViewController to it's default frame.
--(void) keyboardWillHide:(NSNotification*)aNotification
+- (void)keyboardWillHide:(NSNotification*)aNotification
 {
     NSLogDD
     //Boolean to know keyboard is showing/hiding
@@ -167,7 +167,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 }
 
 //UIKeyboard Did show
--(void) keyboardDidShow:(NSNotification*)aNotification
+- (void)keyboardDidShow:(NSNotification*)aNotification
 {
     // 临时解决 也许有bug
     // UIKeyboardDidShowNotification ---> UITextViewTextDidBeginEditingNotification
@@ -211,7 +211,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 }
 
 //UIKeyboard Did show. Adjusting RootViewController's frame according to device orientation.
--(void) adjustFrameWithDuration:(CGFloat)aDuration {
+- (void)adjustFrameWithDuration:(CGFloat)aDuration {
     //Boolean to know keyboard is showing/hiding
     isKeyboardShowing = YES;
     
@@ -346,7 +346,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 
 #pragma mark - UITextField Delegate methods
 //Fetching UITextField object from notification.
--(void) textFieldDidBeginEditing:(NSNotification*)notification
+- (void)textFieldDidBeginEditing:(NSNotification*)notification
 {
    // NSLogDD
     textFieldView = notification.object;
@@ -354,14 +354,14 @@ DEF_SINGLETON(XYKeyboardHelper)
 }
 
 //Removing fetched object.
--(void) textFieldDidEndEditing:(NSNotification*)notification
+- (void)textFieldDidEndEditing:(NSNotification*)notification
 {
     textFieldView = nil;
 }
 
 #pragma mark - UITextView Delegate methods
 //Fetching UITextView object from notification.
--(void) textViewDidBeginEditing:(NSNotification*)notification
+- (void)textViewDidBeginEditing:(NSNotification*)notification
 {
   //  NSLogDD
     textFieldView = notification.object;
@@ -369,13 +369,13 @@ DEF_SINGLETON(XYKeyboardHelper)
 }
 
 //Removing fetched object.
--(void) textViewdDidEndEditing:(NSNotification*)notification
+- (void)textViewdDidEndEditing:(NSNotification*)notification
 {
     textFieldView = nil;
 }
 
 // Common code to perform on begin editing
--(void) commonDidBeginEditing {
+- (void)commonDidBeginEditing {
     if (isKeyboardShowing)
     {
         // keyboard is already showing. adjust frame.
@@ -395,7 +395,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 @implementation UITextField(ToolbarOnKeyboard)
 
 #pragma mark - Toolbar on UIKeyboard
--(void) addDoneOnKeyboardWithTarget:(id)target action:(SEL)action
+- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action
 {
     //Creating a toolBar for phoneNumber keyboard
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -415,7 +415,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     [self setInputAccessoryView:toolbar];
 }
 
--(void) addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction
 {
     //Creating a toolBar for phoneNumber keyboard
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -444,7 +444,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     }
 }
 
--(void) setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled
+- (void)setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled
 {
     UIToolbar *inputView = (UIToolbar*)[self inputAccessoryView];
     
@@ -472,7 +472,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 @implementation UITextView(ToolbarOnKeyboard)
 
 #pragma mark - Toolbar on UIKeyboard
--(void) addDoneOnKeyboardWithTarget:(id)target action:(SEL)action
+- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action
 {
     //Creating a toolBar for phoneNumber keyboard
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -492,7 +492,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     [self setInputAccessoryView:toolbar];
 }
 
--(void) addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction
 {
     //Creating a toolBar for phoneNumber keyboard
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -521,7 +521,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     }
 }
 
--(void) setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled
+- (void)setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled
 {
     UIToolbar *inputView = (UIToolbar*)[self inputAccessoryView];
     
@@ -568,7 +568,7 @@ DEF_SINGLETON(XYKeyboardHelper)
     return self;
 }
 
--(void) segmentedControlHandler:(XYSegmentedNextPrevious*)sender
+- (void)segmentedControlHandler:(XYSegmentedNextPrevious*)sender
 {
     switch ([sender selectedSegmentIndex])
     {

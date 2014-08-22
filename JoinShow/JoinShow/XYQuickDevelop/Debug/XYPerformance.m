@@ -63,8 +63,7 @@ DEF_SINGLETON( XYPerformance );
 	NSNumber * time1 = [[XYPerformance sharedInstance].tags objectForKey:tag1];
 	NSNumber * time2 = [[XYPerformance sharedInstance].tags objectForKey:tag2];
 	
-	if ( nil == time1 || nil == time2 )
-		return 0.0;
+	if ( nil == time1 || nil == time2 ) return 0.0;
 	
 	double time = fabs( [time2 doubleValue] - [time1 doubleValue] );
 	

@@ -40,8 +40,8 @@ typedef void (^XYAnimateStepBlock)(void);
 @property (nonatomic, assign) UIViewAnimationOptions option;
 
 
--(void) runAnimated:(BOOL)animated;
--(void) run;
+- (void)runAnimated:(BOOL)animated;
+- (void)run;
 
 @end
 //////////////////////          XYAnimateSerialStep        ///////////////////////

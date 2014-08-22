@@ -65,7 +65,7 @@ if (1) { \
   //  [self cancelTimer:nil];
 }
 
--(void) someTest{
+- (void)someTest{
 #pragma mark - others
     NSString *str2 = MultiPlatform(@"xib");
     NSLogD(@"%@", str2);
@@ -456,7 +456,7 @@ if (1) { \
     FOREGROUND_COMMIT
     BACKGROUND_COMMIT
 }
--(void) clickNewGirl:(id)sender{
+- (void)clickNewGirl:(id)sender{
     NSMutableDictionary *me = [NSMutableDictionary dictionary];
     // 从 GirlEntity类 创建一个妹子
     GirlEntity *girl1 = [[GirlEntity alloc] init];
@@ -515,7 +515,7 @@ if (1) { \
     
     NSLogD(@"%@", me);
 }
--(void) clickNSDateFormatter:(id)sender{
+- (void)clickNSDateFormatter:(id)sender{
     NSDateFormatter *formatter1 = [XYCommon dateFormatter];
     NSDateFormatter *formatter2 = [XYCommon dateFormatterTemp];
     NSDateFormatter *formatter3 = [XYCommon dateFormatterByUTC];
@@ -527,7 +527,7 @@ if (1) { \
     NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@", str1, str2, str3];
     SHOWMSG(nil, str, @"cancel");
 }
--(void) talk2{
+- (void)talk2{
     NSString *name = [self valueForKey:@"name"];
     if ([name isEqualToString:@"女神"]) {
         // do 你懂的
@@ -535,20 +535,20 @@ if (1) { \
     }
 }
 
--(void) clickViewBindData:(id)sender{
+- (void)clickViewBindData:(id)sender{
     
     NSDictionary *dic = @{@"label1": @(self.testKVO), @"img1": @"headportrait.jpg"};
     [_testView showDataWithDic:dic];
 }
--(void) clickChangeViewData:(id)sender{
+- (void)clickChangeViewData:(id)sender{
     
 }
 
--(void) clickSendMessage:(id)sender{
+- (void)clickSendMessage:(id)sender{
     [self postNotification:NOTIFICATION_NAME(aaa) userInfo:@{@"msg": @"test"}];
     [self postNotification:NOTIFICATION_NAME(bbb) userInfo:@{@"msg": @"test2"}];
 }
--(void) clickStringCache:(id)sender{
+- (void)clickStringCache:(id)sender{
     static int iKey = 0;
     
     XYObjectCache *cache = [XYObjectCache sharedInstance];
@@ -569,7 +569,7 @@ if (1) { \
     
     NSLogD(@"%@", str);
 }
--(void) clickEmoji:(id)sender{
+- (void)clickEmoji:(id)sender{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
    // label.font = [UIFont fontWithName:@"AppleColorEmoji" size:12.0];
     label.text = @"This is a smiley \ue415 face";
@@ -577,30 +577,30 @@ if (1) { \
     [label.po_frameBuilder centerInSuperview];
 }
 
--(void) clickCrossfade:(id)sender{
+- (void)clickCrossfade:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationCrossfadeWithDuration:5];
 }
 
--(void) clickCube:(id)sender{
+- (void)clickCube:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationCubeWithDuration:5 direction:kCATransitionFromRight];
 }
 
--(void) clickOglFlip:(id)sender{
+- (void)clickOglFlip:(id)sender{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
 }
 
--(void) clickUserGuide:(id)sender{
+- (void)clickUserGuide:(id)sender{
     NSString *key = [NSString stringWithFormat:@"guide_%d", arc4random()]  ;
     [self showUserGuideViewWithImage:@"bg_trends.png" key:key frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
 }
 
--(void) clickHookDealloc:(id)sender{
+- (void)clickHookDealloc:(id)sender{
     UILabel *label = [[UILabel alloc] initWithFrame:self.view.frame];
     label.text = @"3秒后移除";
     label.backgroundColor = [UIColor lightGrayColor];
@@ -652,7 +652,7 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
 }
 */
 /*
--(void) testKVOIn:(id)sourceObject new:(id)newValue old:(id)oldValue{
+- (void)testKVOIn:(id)sourceObject new:(id)newValue old:(id)oldValue{
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
  */

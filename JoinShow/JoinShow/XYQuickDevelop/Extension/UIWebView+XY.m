@@ -11,7 +11,7 @@
 @implementation UIWebView (XY)
 
 
--(void) clean:(BOOL)isCleanCache{
+- (void)clean:(BOOL)isCleanCache{
     [self loadHTMLString:@"" baseURL:nil];
     [self stopLoading];
     self.delegate = nil;

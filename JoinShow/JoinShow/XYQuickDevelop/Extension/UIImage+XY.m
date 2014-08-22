@@ -551,16 +551,16 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return newImage;
 }
 
--(void) saveAsPngWithPath:(NSString *)path{
+- (void)saveAsPngWithPath:(NSString *)path{
     if ([UIImagePNGRepresentation(self) writeToFile:path atomically:YES]) {
     }
 }
 // compression is 0(most)..1(least)
--(void) saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality{
+- (void)saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality{
     if ([UIImageJPEGRepresentation(self, quality) writeToFile:path atomically:YES]) {
     }
 }
--(void) saveAsPhotoWithPath:(NSString *)path{
+- (void)saveAsPhotoWithPath:(NSString *)path{
     UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil);
 }
 

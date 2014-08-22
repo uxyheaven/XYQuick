@@ -14,7 +14,7 @@
 
 #undef	ON_TIMER
 #define ON_TIMER( __name ) \
-        -(void) __name##TimerHandle:(XYTimer *)timer duration:(NSTimeInterval)duration
+        - (void)__name##TimerHandle:(XYTimer *)timer duration:(NSTimeInterval)duration
 
 #undef	NSObject_XYTimers
 #define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
@@ -47,11 +47,11 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
 -(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
 
-//-(void) pauseTimer;
-//-(void) resumeTimer;
+//- (void)pauseTimer;
+//- (void)resumeTimer;
 
--(void) cancelTimer:(NSString *)name;
--(void) cancelAllTimer;
+- (void)cancelTimer:(NSString *)name;
+- (void)cancelAllTimer;
 
 @end
 
@@ -64,7 +64,7 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
 #undef	ON_TICK
 #define ON_TICK( __time ) \
--(void) handleTick:(NSTimeInterval)__time
+- (void)handleTick:(NSTimeInterval)__time
 
 #pragma mark - XYTicker
 /**
@@ -79,17 +79,17 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
 AS_SINGLETON( XYTicker )
 
--(void) addReceiver:(NSObject *)obj;
--(void) removeReceiver:(NSObject *)obj;
+- (void)addReceiver:(NSObject *)obj;
+- (void)removeReceiver:(NSObject *)obj;
 
 @end
 
 #pragma mark - NSObject(XYTicker)
 @interface NSObject(XYTicker)
 
--(void) observeTick;
--(void) unobserveTick;
--(void) handleTick:(NSTimeInterval)elapsed;
+- (void)observeTick;
+- (void)unobserveTick;
+- (void)handleTick:(NSTimeInterval)elapsed;
 
 @end
 

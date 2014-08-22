@@ -21,53 +21,59 @@ DEF_SINGLETON(XYViewControllerManager)
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _viewControllers = [NSMutableDictionary dictionaryWithCapacity:4];
         _viewControllerSetupBlocks = [NSMutableDictionary dictionaryWithCapacity:4];
     }
+    
     return self;
 }
 
--(void) createFields {
+- (void)createFields {
     [super createFields];
  
 }
 
--(void) destroyFields {
+- (void)destroyFields {
     [super destroyFields];
 }
 
--(void) createViews {
+- (void)createViews {
     [super createViews];
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown) {
+    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown)
+    {
         // 竖屏
         _contentView = [[UIView alloc] initWithFrame:self.view.bounds];
         [self.view addSubview:_contentView];
-    }else{
+    }
+    else
+    {
         // 横屏
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
         [self.view addSubview:_contentView];
     }
 }
 
--(void) destroyViews {
+- (void)destroyViews {
     [super destroyViews];
 }
 
--(void) createEvents {
+- (void)createEvents {
     [super createEvents];
 }
 
--(void) destroyEvents {
+- (void)destroyEvents {
     [super destroyEvents];
 }
 
--(void) loadData {
+- (void)loadData {
     [super loadData];
     
-    if (_firstKey) {
+    if (_firstKey)
+    {
         self.selectedKey = _firstKey;
     }
 }
@@ -75,23 +81,23 @@ DEF_SINGLETON(XYViewControllerManager)
 
 #pragma mark - rewrite
 // 额外的重写的父类的方法
--(void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 
--(void) viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
 
--(void) viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
 
--(void) viewDidDisappear:(BOOL)animated{
+- (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
 
--(void) didReceiveMemoryWarning{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -100,29 +106,34 @@ DEF_SINGLETON(XYViewControllerManager)
     [self displayViewWithKey:selectedKey];
 }
 
--(void) addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key{
+- (void)addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key{
     [_viewControllerSetupBlocks setObject:block forKey:key];
 }
 
--(void) didRotateFromInterfaceOrientation: (UIInterfaceOrientation)fromInterfaceOrientation
+- (void)didRotateFromInterfaceOrientation: (UIInterfaceOrientation)fromInterfaceOrientation
 {
     /* 在这里加入代码，处理方向变换之后的变化 */
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown) {
+    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown)
+    {
         // 竖屏
         _contentView.frame = self.view.bounds;
-    }else{
+    }
+    else
+    {
         // 横屏
         _contentView.frame = self.view.bounds;
     }
 }
 #pragma mark - private
 // 私有方法
--(void) displayViewWithKey:(NSString *)key{
+- (void)displayViewWithKey:(NSString *)key{
     UIViewController *targetViewController = (_viewControllers[key]) ? _viewControllers[key] : ((XYViewControllerManager_createVC_block)_viewControllerSetupBlocks[key])();
     
-    if ([_selectedKey isEqualToString:key] && (_contentView.subviews.count != 0)) {
-        if ([targetViewController isKindOfClass:[UINavigationController class]]) {
+    if ([_selectedKey isEqualToString:key] && (_contentView.subviews.count != 0))
+    {
+        if ([targetViewController isKindOfClass:[UINavigationController class]])
+        {
             [(UINavigationController*)targetViewController popToRootViewControllerAnimated:YES];
         }
         return;
@@ -148,9 +159,10 @@ DEF_SINGLETON(XYViewControllerManager)
     return [_viewControllers objectForKey:_selectedKey];
 }
 
--(void) clean{
+- (void)clean{
     [_viewControllers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (![_selectedKey isEqualToString:key]) {
+        if (![_selectedKey isEqualToString:key])
+        {
             [_viewControllers removeObjectForKey:key];
         }
     }];

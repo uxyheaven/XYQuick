@@ -34,7 +34,7 @@
  * 执行时改变hub需要调用Common_MainFun(aFun)
  */
 #define HIDDENMBProgressHUD [XYCommon hiddenMBProgressHUD];
-+(void) hiddenMBProgressHUD;
++ (void)hiddenMBProgressHUD;
 
 +(MBProgressHUD *) MBProgressHUD;
 
@@ -75,11 +75,11 @@
  * blocklocalIsOld 本地是旧的版本代码块
  */
 // 有提示框弹出
-+(void) checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion appURLString:(NSString *)strURL
++ (void)checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion appURLString:(NSString *)strURL
                          same:(void(^)(void))blockSame
                     stayStill:(void(^)(void))blockStayStill;
 // 需要自己处理弹出对话框
-+(void) checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion
++ (void)checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion
                          same:(void(^)(void))blockSame
                    localIsOld:(void(^)(NSString *appStoreVersion))blockLocalIsOld;
 #endif

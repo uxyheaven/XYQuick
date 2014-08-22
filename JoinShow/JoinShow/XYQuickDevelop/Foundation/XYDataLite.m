@@ -29,7 +29,7 @@
     }
 }
 
-+(void) writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync{
++ (void)writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync{
     if (anObject == nil) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     }else{
@@ -39,14 +39,14 @@
         [self synchronize];
     }
 }
-+(void) writeObject:(id)anObject forKey:(NSString *)key{
++ (void)writeObject:(id)anObject forKey:(NSString *)key{
     [self writeObject:anObject forKey:key synchronize:YES];
 }
-+(void) registerDefaults:(NSDictionary *)dic{
++ (void)registerDefaults:(NSDictionary *)dic{
     [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(void) synchronize{
++ (void)synchronize{
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

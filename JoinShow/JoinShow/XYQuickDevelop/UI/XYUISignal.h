@@ -16,11 +16,11 @@
 
 #undef	ON_SIGNAL
 #define ON_SIGNAL( __signal ) \
--(void) handleUISignal:(XYUISignal *)__signal
+- (void)handleUISignal:(XYUISignal *)__signal
 
 #undef	ON_SIGNAL2
 #define ON_SIGNAL2( __filter, __signal ) \
--(void) handleUISignal_##__filter:(XYUISignal *)__signal
+- (void)handleUISignal_##__filter:(XYUISignal *)__signal
 
 
 #pragma mark - XYUISignal : NSObject
@@ -76,7 +76,7 @@
 +(NSString *) SIGNAL;
 +(NSString *) SIGNAL_TYPE;
 
-//-(void) handleUISignal:(XYUISignal *)signal;
+//- (void)handleUISignal:(XYUISignal *)signal;
 
 -(XYUISignal *) sendUISignal:(NSString *)name;
 -(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object;
@@ -93,7 +93,7 @@
 +(NSString *) SIGNAL;
 +(NSString *) SIGNAL_TYPE;
 
-//-(void) handleUISignal:(XYUISignal *)signal;
+//- (void)handleUISignal:(XYUISignal *)signal;
 
 -(XYUISignal *) sendUISignal:(NSString *)name;
 -(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object;

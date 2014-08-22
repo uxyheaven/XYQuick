@@ -43,13 +43,13 @@ typedef void(^XYBaseListData_block_removeData)(NSArray *, NSArray *);
 // 定义数据的排序规则
 -(NSComparisonResult) compareObject:(id)firstObject withObject:(id)secendObject;
 // 加载数据的实际操作
--(void) loadDataOperationWithRange:(NSRange)range;
+- (void)loadDataOperationWithRange:(NSRange)range;
 // 删除数据的实际操作
--(void) removeDataOperation:(NSArray *)array;
+- (void)removeDataOperation:(NSArray *)array;
 
 // 此方法需要子类在重写的 loadDataWithRange:, removeData: 里主动调用,
 // 数据实际操作完成时，通过该函数传递给 XYBaseListData 进行管理
--(void) finishOperationWithArray:(NSArray *)array;
+- (void)finishOperationWithArray:(NSArray *)array;
 
 //Public方法：
 // 初始化
@@ -61,16 +61,16 @@ typedef void(^XYBaseListData_block_removeData)(NSArray *, NSArray *);
 // 删除数据
 -(BOOL) removeData:(NSArray *)data;
 // 重置XYBaseListData，将已缓存的数据清除
--(void) resetCache;
+- (void)resetCache;
 // 取消当前的操作
--(void) stopCurrentOperation;
+- (void)stopCurrentOperation;
 
 @end
 
 @protocol XYBaseListDataDelegate <NSObject>
 @required
--(void) listData:(XYBaseListData *)dataCache didFinishOperation:(XYBaseListDataOperation)operation data:(NSArray *)array;
--(void) listDataNeedReloadData:(XYBaseListData *)dataCache;
+- (void)listData:(XYBaseListData *)dataCache didFinishOperation:(XYBaseListDataOperation)operation data:(NSArray *)array;
+- (void)listDataNeedReloadData:(XYBaseListData *)dataCache;
 @end
 
 

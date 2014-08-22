@@ -36,7 +36,7 @@
     return [MobClick getConfigParams:key];
 }
 
-+(void) updateOnlineConfig{
++ (void)updateOnlineConfig{
     [MobClick updateOnlineConfig];
 }
 

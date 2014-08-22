@@ -141,7 +141,7 @@
 */
 
 #pragma mark -方法的实现
--(void) clickMuhud{
+- (void)clickMuhud{
     DemoViewController *vc = [[DemoViewController alloc] init];
     vc.methodBlock = ^(UIViewController *vc, UIButton *btn){
         XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
@@ -172,7 +172,7 @@
             };
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void) clickAnalyzingJson{
+- (void)clickAnalyzingJson{
     NSString *json = @"{ \
 	\"dic\":{}, \
 	\"array\":[] \
@@ -183,7 +183,7 @@
     NSLogD(@"%@", objc);
 }
 
--(void) clickXYTabbarController{
+- (void)clickXYTabbarController{
     DemoViewController *vc1 = [[DemoViewController alloc] init];
     vc1.viewDidLoadBlock = ^(UIViewController *vc){
         vc.view.backgroundColor = [UIColor whiteColor];

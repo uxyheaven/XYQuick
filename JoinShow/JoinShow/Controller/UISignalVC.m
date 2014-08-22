@@ -33,7 +33,7 @@ DEF_SIGNAL( BUTTON_CLICK1 )
     return self;
 }
 
--(void) click1:(id)sender{
+- (void)click1:(id)sender{
     [self sendUISignal:self.BUTTON_CLICK1 withObject:sender];
 }
 
@@ -61,7 +61,7 @@ DEF_SIGNAL( BUTTON_CLICK2 )
     return self;
 }
 
--(void) click2:(id)sender{
+- (void)click2:(id)sender{
     [self sendUISignal:self.BUTTON_CLICK2 withObject:sender];
 }
 
@@ -140,13 +140,13 @@ ON_SIGNAL2(BUTTON_CLICK1, signal){
     NSLogD(@"%@", signal);
 }
 
--(void) click3:(id)sender{
+- (void)click3:(id)sender{
     //UILabel *label = [[UILabel alloc] init];
     //self.tempObject = label;
     //[self.view addSubview:label];
    // NSLogD(@"%@", label);
 }
--(void) click4:(id)sender{
+- (void)click4:(id)sender{
     //id temp = self.tempObject;
     //if (temp) {
    //     NSLogD(@"%@", self.tempObject);

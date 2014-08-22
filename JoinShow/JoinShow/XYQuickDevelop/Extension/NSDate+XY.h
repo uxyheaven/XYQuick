@@ -27,25 +27,25 @@ static NSArray *XY_weekdays = nil;
 @property (nonatomic, readonly) NSString	*stringWeekday;
 
 // @"yyyy-MM-dd HH:mm:ss"
--(NSString *) stringWithDateFormat:(NSString *)format;
--(NSString *) timeAgo;
+- (NSString *)stringWithDateFormat:(NSString *)format;
+- (NSString *)timeAgo;
 
-+(long long) timeStamp;
++ (long long)timeStamp;
 
-+(NSDate *) dateWithString:(NSString *)string;
-+(NSDate *) now;
++ (NSDate *)dateWithString:(NSString *)string;
++ (NSDate *)now;
 
 // 返回day天后的日期(若day为负数,则为|day|天前的日期)
--(NSDate *) dateAfterDay:(int)day;
+- (NSDate *)dateAfterDay:(int)day;
 
 // 返回距离aDate有多少天
-- (NSInteger) distanceInDaysToDate:(NSDate *)aDate;
+- (NSInteger)distanceInDaysToDate:(NSDate *)aDate;
 
 // UTC时间string缓存
 @property (nonatomic, copy, readonly) NSString *stringCache;
 // 重置缓存
--(NSString *) resetStringCache;
+- (NSString *)resetStringCache;
 // 返回当地时区的时间
--(NSDate *) localTime;
+- (NSDate *)localTime;
 
 @end

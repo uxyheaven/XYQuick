@@ -31,7 +31,8 @@
 #pragma mark - Private Function
 -(id) initWithDelegate:(id<XYBaseListDataDelegate>)delegate{
 
-    if(self = [super init]) {
+    if(self = [super init])
+    {
         _data = [NSMutableArray arrayWithCapacity:128];
         _loadedData = [NSMutableArray arrayWithCapacity:128];
         _dataTable = [NSMutableDictionary dictionaryWithCapacity:128];
@@ -68,7 +69,8 @@
 {
     NSInteger i;
     NSString* dataKey;
-    for(i = 0 ; i < array.count; ++i) {
+    for(i = 0 ; i < array.count; ++i)
+    {
         dataKey = [self keyForObject:array[i]];
         [_dataTable setObject:[NSNumber numberWithInteger:_data.count] forKey:dataKey];
         [(NSMutableArray *)_data addObject:array[i]];
@@ -88,7 +90,7 @@
     return NO;
 }
 
--(void) handleLoadedData:(NSArray *)newData
+- (void)handleLoadedData:(NSArray *)newData
 {
     
 }
@@ -99,8 +101,9 @@
     [self.delegate listData:self didFinishOperation:XYBaseListDataOperationRemove data:removedData];
 }
 
--(void) finishOperationWithArray:(NSArray *)array{
-    if((array == nil) || ([array isKindOfClass:[NSArray class]] == NO)) {
+- (void)finishOperationWithArray:(NSArray *)array{
+    if((array == nil) || ([array isKindOfClass:[NSArray class]] == NO))
+    {
         [self resetState];
         [self.delegate listData:self didFinishOperation:_currentOperation data:nil];
         
@@ -185,6 +188,7 @@
             _isAvailable = NO;
             _currentOperation = XYBaseListDataOperationRemove;
             [self removeDataOperation:data];
+            
             return YES;
         }
     }
@@ -211,13 +215,13 @@
     return NSOrderedSame;
 }
 // 加载数据的实际操作
--(void) loadDataOperationWithRange:(NSRange)range{
+- (void)loadDataOperationWithRange:(NSRange)range{
     NSAssert(kXYBaseListData_assert, @"请实现这个方法");
     // 先从 range 取到 array
     [self finishOperationWithArray:nil];
 }
 // 删除数据的实际操作
--(void) removeDataOperation:(NSArray *)data{
+- (void)removeDataOperation:(NSArray *)data{
     NSAssert(kXYBaseListData_assert, @"请实现这个方法");
     //
     [self finishOperationWithArray:nil];

@@ -12,7 +12,7 @@
 
 @implementation NSObject(XY_LKDBHelper)
 
--(void) loadFromDB{
+- (void)loadFromDB{
     id value = [self valueForKey:[self.class getPrimaryKey]];
     NSString *strValue = nil;
     NSString *str = nil;
@@ -50,7 +50,7 @@
 
 @implementation NSArray(XY_LKDBHelper)
 
--(void) saveAllToDB
+- (void)saveAllToDB
 {
   //  [self.class insertToDB:self];
     if (self.count > 0) {

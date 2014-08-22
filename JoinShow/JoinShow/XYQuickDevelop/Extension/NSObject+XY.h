@@ -10,7 +10,7 @@
 
 @interface NSObject (XY)
 #pragma mark -hook
-+(void) hookDealloc;
++ (void)hookDealloc;
 
 #pragma mark - perform
 
@@ -19,20 +19,20 @@
 @property (nonatomic, readonly, strong) NSArray                *attributeList;
 
 #pragma mark - Conversion
--(NSInteger) asInteger;
--(float) asFloat;
--(BOOL) asBool;
+- (NSInteger)asInteger;
+- (float)asFloat;
+- (BOOL)asBool;
 
--(NSNumber *) asNSNumber;
--(NSString *) asNSString;
--(NSDate *) asNSDate;
--(NSData *) asNSData;	// TODO
--(NSArray *) asNSArray;
+- (NSNumber *)asNSNumber;
+- (NSString *)asNSString;
+- (NSDate *)asNSDate;
+- (NSData *)asNSData;	// TODO
+- (NSArray *)asNSArray;
 //- (NSArray *)asNSArrayWithClass:(Class)clazz;
--(NSMutableArray *) asNSMutableArray;
+- (NSMutableArray *)asNSMutableArray;
 //-(NSMutableArray *) asNSMutableArrayWithClass:(Class)clazz;
--(NSDictionary *) asNSDictionary;
--(NSMutableDictionary *) asNSMutableDictionary;
+- (NSDictionary *)asNSDictionary;
+- (NSMutableDictionary *)asNSMutableDictionary;
 
 #pragma mark - message box
 -(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
@@ -42,20 +42,20 @@
 
 // send object
 // handle block with default identifier is @"sendObject".
--(void) receiveObject:(void(^)(id object))aBlock;
--(void) sendObject:(id)anObject;
+- (void)receiveObject:(void(^)(id object))aBlock;
+- (void)sendObject:(id)anObject;
 
 //tag can't be nil
--(void) receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier;
--(void) sendObject:(id)anObject withIdentifier:(NSString *)identifier;
+- (void)receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier;
+- (void)sendObject:(id)anObject withIdentifier:(NSString *)identifier;
 
 #pragma mark- block
 // handle block with default identifier is @"EventBlock".
--(void) handlerDefaultEventWithBlock:(id)aBlock;
+- (void)handlerDefaultEventWithBlock:(id)aBlock;
 -(id) blockForDefaultEvent;
 
 // 设置一个block作为回调
--(void) handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
+- (void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
 -(id) blockForEventWithIdentifier:(NSString *)identifier;
 
 @end

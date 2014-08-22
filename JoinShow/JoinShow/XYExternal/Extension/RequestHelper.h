@@ -48,7 +48,7 @@ typedef enum {
                   params:(id)anObject
                   method:(HTTPMethod)httpMethod;
 // cancel
--(void) cancelRequestWithString:(NSString*)string;
+- (void)cancelRequestWithString:(NSString*)string;
 
 -(id) submit:(HttpRequest *)op;
 
@@ -91,20 +91,20 @@ typedef enum {
 +(id) defaultSettings;      // 参考
 
 // 下载前,请先执行此方法;
--(void) setup;
+- (void)setup;
 
 -(Downloader *) download:(NSString *)remoteURL
                       to:(NSString*)filePath
                   params:(id)anObject
         breakpointResume:(BOOL)isResume;
 
--(void) cancelAllDownloads;
--(void) cancelDownloadWithString:(NSString *)string;
+- (void)cancelAllDownloads;
+- (void)cancelDownloadWithString:(NSString *)string;
 
 -(NSArray *) allDownloads;
 -(Downloader *) getADownloadWithString:(NSString *)string;
 
--(void) emptyTempFile;
+- (void)emptyTempFile;
 
 -(id) submit:(Downloader *)op;
 

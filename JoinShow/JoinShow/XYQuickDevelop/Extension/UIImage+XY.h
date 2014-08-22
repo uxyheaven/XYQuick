@@ -80,10 +80,10 @@ typedef enum {
 -(UIImage *) roundedRectWith:(float)radius cornerMask:(UIImageRoundedCorner)cornerMask;
 
 #pragma mark - 待完善
--(void) saveAsPngWithPath:(NSString *)path;
+- (void)saveAsPngWithPath:(NSString *)path;
 // compression is 0(most)..1(least)
--(void) saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality;
--(void) saveAsPhotoWithPath:(NSString *)path;
+- (void)saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality;
+- (void)saveAsPhotoWithPath:(NSString *)path;
 
 // 高斯模糊
 -(UIImage*) stackBlur:(NSUInteger)radius;

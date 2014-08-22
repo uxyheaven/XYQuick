@@ -39,11 +39,11 @@
 -(id) initWithViewControllers:(NSArray *)vcs items:(NSArray *)items;
 
 // 可以重载这个方法, 自定义item的位置和图片文字尺寸
--(void) setupItem:(UIButton *)item index:(NSInteger)index;
+- (void)setupItem:(UIButton *)item index:(NSInteger)index;
 // 重载这个方式, 自定义animatedView的位置
--(void) resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index;
+- (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index;
 // 重载这个方法设置TabBar透明前和透明后的content尺寸
--(void) setTabBarTransparent:(BOOL)b;
+- (void)setTabBarTransparent:(BOOL)b;
 
 @end
 
@@ -52,7 +52,7 @@
 @protocol XYTabBarControllerProtocol <NSObject>
 @optional
 -(BOOL) tabBarController:(XYTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
--(void) tabBarController:(XYTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
+- (void)tabBarController:(XYTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
 @end
 
 #pragma mark-

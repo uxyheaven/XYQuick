@@ -11,10 +11,10 @@
 #pragma mark - #define
 #define KVO_NAME( __name )					__TEXT( __name )
 
-#define	ON_KVO_1_( __property )     -(void) __property##New:(id)newValue
-#define	ON_KVO_2_( __property )     -(void) __property##New:(id)newValue old:(id)oldValue
-#define	ON_KVO_3_( __property )     -(void) __property##In:(id)sourceObject new:(id)newValue
-#define	ON_KVO_4_( __property )     -(void) __property##In:(id)sourceObject new:(id)newValue old:(id)oldValue
+#define	ON_KVO_1_( __property )     - (void)__property##New:(id)newValue
+#define	ON_KVO_2_( __property )     - (void)__property##New:(id)newValue old:(id)oldValue
+#define	ON_KVO_3_( __property )     - (void)__property##In:(id)sourceObject new:(id)newValue
+#define	ON_KVO_4_( __property )     - (void)__property##In:(id)sourceObject new:(id)newValue old:(id)oldValue
 
 
 #undef	NSObject_observers
@@ -60,12 +60,12 @@ typedef void(^XYObserver_block_sourceObject_new_old)(id sourceObject, id newValu
  
  * block selector, block二选一
  */
--(void) observeWithObject:(id)sourceObject property:(NSString*)property;
--(void) observeWithObject:(id)sourceObject property:(NSString*)property block:(XYObserver_block_sourceObject_new_old)block;
+- (void)observeWithObject:(id)sourceObject property:(NSString*)property;
+- (void)observeWithObject:(id)sourceObject property:(NSString*)property block:(XYObserver_block_sourceObject_new_old)block;
 
--(void) removeObserverWithObject:(id)sourceObject property:(NSString *)property;
--(void) removeObserverWithObject:(id)sourceObject;
--(void) removeAllObserver;
+- (void)removeObserverWithObject:(id)sourceObject property:(NSString *)property;
+- (void)removeObserverWithObject:(id)sourceObject;
+- (void)removeAllObserver;
 
 @end
 

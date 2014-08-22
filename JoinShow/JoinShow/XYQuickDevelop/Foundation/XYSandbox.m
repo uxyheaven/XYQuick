@@ -177,7 +177,7 @@ DEF_SINGLETON( XYSandbox )
 }
 
 /***************************************************************/
-+(void) createDirectoryAtPath:(NSString *)aPath{
++ (void)createDirectoryAtPath:(NSString *)aPath{
     if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:NULL] )
     {
         BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:aPath

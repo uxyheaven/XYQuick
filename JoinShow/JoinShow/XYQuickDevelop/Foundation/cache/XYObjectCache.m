@@ -37,11 +37,11 @@ DEF_SINGLETON(XYObjectCache)
 	return self;
 }
 
--(void) dealloc
+- (void)dealloc
 {
 }
 
--(void) registerObjectClass:(Class)aClass{
+- (void)registerObjectClass:(Class)aClass{
     _objectClass = aClass;
     _fileCache.cachePath = [NSString stringWithFormat:@"%@/%@/", [XYSandbox libCachePath], NSStringFromClass(_objectClass)];
 }
@@ -137,11 +137,11 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(void) saveObject:(id)anObject forKey:(NSString *)key{
+- (void)saveObject:(id)anObject forKey:(NSString *)key{
     [self saveObject:anObject forKey:key async:YES];
 }
 
--(void) saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async{
+- (void)saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async{
     if (async) {
         // 异步
         FOREGROUND_BEGIN
@@ -157,7 +157,7 @@ DEF_SINGLETON(XYObjectCache)
     }
 }
 
--(void) saveToMemory:(id)anObject forKey:(NSString *)string
+- (void)saveToMemory:(id)anObject forKey:(NSString *)string
 {
   //  PERF_ENTER
 	
@@ -171,7 +171,7 @@ DEF_SINGLETON(XYObjectCache)
   //  PERF_LEAVE
 }
 
--(void) saveToData:(NSData *)data forKey:(NSString *)string
+- (void)saveToData:(NSData *)data forKey:(NSString *)string
 {
   //  PERF_ENTER
 	
@@ -181,7 +181,7 @@ DEF_SINGLETON(XYObjectCache)
   //  PERF_LEAVE
 }
 
--(void) deleteObjectForKey:(NSString *)string
+- (void)deleteObjectForKey:(NSString *)string
 {
   //  PERF_ENTER
 	
@@ -193,7 +193,7 @@ DEF_SINGLETON(XYObjectCache)
  //   PERF_LEAVE
 }
 
--(void) deleteAllObjects
+- (void)deleteAllObjects
 {
 	[self.memoryCache removeAllObjects];
 	[self.fileCache removeAllObjects];

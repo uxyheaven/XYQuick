@@ -35,22 +35,22 @@
 // Outlet
 // item: @{@"normal" :img1, @"highlighted" :img2, @"selected" :img3, @"disabled":img4, @"text": text}
 -(id) initWithFrame:(CGRect)frame items:(NSArray *)items;
--(void) selectTabAtIndex:(NSInteger)index;
--(void) setBackgroundImage:(UIImage *)img;
+- (void)selectTabAtIndex:(NSInteger)index;
+- (void)setBackgroundImage:(UIImage *)img;
 
-//-(void) removeTabAtIndex:(NSInteger)index;
-//-(void) insertTabWithImageDic:(NSDictionary *)dict atIndex:(NSUInteger)index;
+//- (void)removeTabAtIndex:(NSInteger)index;
+//- (void)insertTabWithImageDic:(NSDictionary *)dict atIndex:(NSUInteger)index;
 
 // 在这里设置item的位置和图片文字尺寸
--(void) setupItem:(UIButton *)item index:(NSInteger)index;
+- (void)setupItem:(UIButton *)item index:(NSInteger)index;
 // 在这里设置animatedView的位置
--(void) resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index;
+- (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index;
 
 @end
 
 @protocol XYTabBarDelegate<NSObject>
 @optional
 -(BOOL) tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index;
--(void) tabBar:(XYTabBar *)tabBar didSelectIndex:(NSInteger)index;
--(void) tabBar:(XYTabBar *)tabBar animatedView:(UIImageView *)animatedView item:(UIButton *)item index:(NSInteger)index;
+- (void)tabBar:(XYTabBar *)tabBar didSelectIndex:(NSInteger)index;
+- (void)tabBar:(XYTabBar *)tabBar animatedView:(UIImageView *)animatedView item:(UIButton *)item index:(NSInteger)index;
 @end

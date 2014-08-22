@@ -40,7 +40,7 @@ DUMMY_CLASS(NSObject_XY);
 static void (*__dealloc)( id, SEL);
 
 @interface NSObject(XYPrivate)
--(void) myDealloc;
+- (void)myDealloc;
 @end
 
 @implementation NSObject (XY)
@@ -55,7 +55,7 @@ static void (*__dealloc)( id, SEL);
 }
 #pragma mark - hook
 /*
-+(void) hookDealloc{
++ (void)hookDealloc{
     static BOOL __swizzled = NO;
 	if ( NO == __swizzled )
 	{
@@ -65,7 +65,7 @@ static void (*__dealloc)( id, SEL);
         __swizzled = YES;
 	}
 }
--(void) myDealloc{
+- (void)myDealloc{
         if ([self respondsToSelector:@selector(delegate)]
             && (![self isKindOfClass:[CAAnimation class]])) {
             //  [self performSelector:@selector(setDelegate:) withObject:nil];
@@ -85,7 +85,7 @@ static void (*__dealloc)( id, SEL);
 #pragma mark - perform
 
 #pragma mark - property
--(NSArray *) attributeList{
+- (NSArray *)attributeList{
     NSUInteger			propertyCount = 0;
     objc_property_t     *properties = class_copyPropertyList( [self class], &propertyCount );
     NSMutableArray *    array = [[NSMutableArray alloc] init];
@@ -99,6 +99,7 @@ static void (*__dealloc)( id, SEL);
         [array addObject:propertyName];
     }
     free( properties );
+    
     return array;
 }
 
@@ -315,7 +316,7 @@ static void (*__dealloc)( id, SEL);
 }
 
 #pragma mark - message box
--(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION{
+- (UIAlertView *)showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION{
     UIAlertView *alter = [[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:aCancel otherButtonTitles:nil];
     
     va_list args;
@@ -331,34 +332,35 @@ static void (*__dealloc)( id, SEL);
     }
     va_end(args);
     
-    if (isShow) [alter show];
+    if (isShow)
+        [alter show];
     
     return alter;
 }
 
 #pragma mark- Object
--(id) tempObject{
+- (id)tempObject{
     id object = objc_getAssociatedObject(self, NSObject_key_tempObject);
     
     return object;
 }
 
--(void) setTempObject:(id)tempObject{
+- (void)setTempObject:(id)tempObject{
     [self willChangeValueForKey:@"tempObject"];
     objc_setAssociatedObject(self, NSObject_key_tempObject, tempObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"tempObject"];
 }
 
--(void) receiveObject:(void(^)(id object))aBlock
+- (void)receiveObject:(void(^)(id object))aBlock
 {
     [self receiveObject:aBlock withIdentifier:@"sendObject"];
 }
--(void) sendObject:(id)anObject
+- (void)sendObject:(id)anObject
 {
     [self sendObject:anObject withIdentifier:@"sendObject"];
 }
 
--(void) receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier
+- (void)receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_objectDic);
@@ -371,7 +373,7 @@ static void (*__dealloc)( id, SEL);
     [dic setObject:[aBlock copy] forKey:identifier];
 }
 
--(void) sendObject:(id)anObject withIdentifier:(NSString *)identifier
+- (void)sendObject:(id)anObject withIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     
@@ -386,18 +388,18 @@ static void (*__dealloc)( id, SEL);
 }
 
 #pragma mark- block
--(void) handlerDefaultEventWithBlock:(id)block
+- (void)handlerDefaultEventWithBlock:(id)block
 {
     [self handlerEventWithBlock:block withIdentifier:@"EventBlock"];
 }
 
 
--(id) blockForDefaultEvent
+- (id)blockForDefaultEvent
 {
     return [self blockForEventWithIdentifier:@"EventBlock"];
 }
 
--(void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier
+- (void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_EventBlockDic);
@@ -410,11 +412,13 @@ static void (*__dealloc)( id, SEL);
     [dic setObject:[aBlock copy] forKey:identifier];
 }
 
--(id)blockForEventWithIdentifier:(NSString *)identifier
+- (id)blockForEventWithIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     NSDictionary *dic = objc_getAssociatedObject(self, NSObject_key_EventBlockDic);
-    if(dic == nil) return nil;
+    if(dic == nil)
+        return nil;
+    
     return [dic objectForKey:identifier];
 }
 
@@ -488,12 +492,14 @@ static NSString *const AutocodingException = @"AutocodingException";
         NSLog(@"AutoCoding Warning: codableKeys method is no longer supported. Use codableProperties instead.");
     }
     deprecatedSelector = NSSelectorFromString(@"uncodableKeys");
+    
     if ([self respondsToSelector:deprecatedSelector] || [self instancesRespondToSelector:deprecatedSelector])
     {
         NSLog(@"AutoCoding Warning: uncodableKeys method is no longer supported. Use ivars, or synthesize your properties using non-KVC-compliant names to avoid coding them instead.");
     }
     deprecatedSelector = NSSelectorFromString(@"uncodableProperties");
     NSArray *uncodableProperties = nil;
+    
     if ([self respondsToSelector:deprecatedSelector] || [self instancesRespondToSelector:deprecatedSelector])
     {
         uncodableProperties = [self valueForKey:@"uncodableProperties"];
@@ -592,6 +598,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     }
     
     free(properties);
+    
     return codableProperties;
 }
 
@@ -621,7 +628,8 @@ static NSString *const AutocodingException = @"AutocodingException";
     for (__unsafe_unretained NSString *key in [self codableProperties])
     {
         id value = [self valueForKey:key];
-        if (value) dict[key] = value;
+        if (value)
+            dict[key] = value;
     }
     return dict;
 }
@@ -665,7 +673,8 @@ static NSString *const AutocodingException = @"AutocodingException";
     for (NSString *key in [self codableProperties])
     {
         id object = [self valueForKey:key];
-        if (object) [aCoder encodeObject:object forKey:key];
+        if (object)
+            [aCoder encodeObject:object forKey:key];
     }
 }
 

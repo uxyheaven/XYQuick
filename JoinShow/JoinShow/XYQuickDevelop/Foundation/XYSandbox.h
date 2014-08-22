@@ -34,7 +34,7 @@ AS_SINGLETON( XYSandbox )
  * api parameters 说明
  * aPath 目录路径
  */
-+(void) createDirectoryAtPath:(NSString *)aPath;
++ (void)createDirectoryAtPath:(NSString *)aPath;
 
 /**
  * 返回目下所有给定后缀的文件的方法

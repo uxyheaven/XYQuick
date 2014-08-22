@@ -47,19 +47,19 @@
 
 
  // 创建/销毁页面级变量, model的地方。
- -(void) createFields;
- -(void) destroyFields;
+ - (void)createFields;
+ - (void)destroyFields;
  
  // 创建/销毁页面内控件的地方。
- -(void) createViews;
- -(void) destroyViews;
+ - (void)createViews;
+ - (void)destroyViews;
  
  // 创建/销毁页面内控件的target-action,delegate,dataSource mode的Notification,KVO的地方。
- -(void) createEvents;
- -(void) destroyEvents;
+ - (void)createEvents;
+ - (void)destroyEvents;
  
  // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
- -(void) loadData;
+ - (void)loadData;
 
 
 @end

@@ -53,7 +53,7 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     return self;
 }
 
--(void) handleNotification:(NSNotification *) notification{
+- (void)handleNotification:(NSNotification *) notification{
     if (_block) {
         _block(notification);
         return;
@@ -62,7 +62,7 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     XYNotification_action(_target, _selector, notification);
 }
 
--(void) dealloc
+- (void)dealloc
 {
     //NSLogD(@"%@", _name);
     [[NSNotificationCenter defaultCenter] removeObserver:self name:_name object:nil];
@@ -87,7 +87,7 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     return object;
 }
 
--(void) registerNotification:(NSString *)name{
+- (void)registerNotification:(NSString *)name{
     SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@NotificationHandle:", name]);
     if ([self respondsToSelector:aSel]) {
         [self notificationWihtName:name target:self selector:aSel];
@@ -95,33 +95,33 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     }
 }
 
--(void) registerNotification:(NSString *)name block:(XYNotification_block)block{
+- (void)registerNotification:(NSString *)name block:(XYNotification_block)block{
     [self notificationWihtName:name block:block];
 }
 
--(void) notificationWihtName:(NSString *)name target:(id)target selector:(SEL)selector{
+- (void)notificationWihtName:(NSString *)name target:(id)target selector:(SEL)selector{
     XYNotification *notification = [[XYNotification alloc] initWithName:name sender:nil target:target selector:selector];
     
     NSString *key = [NSString stringWithFormat:@"%@", name];
     [self.notifications setObject:notification forKey:key];
 }
--(void) notificationWihtName:(NSString *)name block:(XYNotification_block)block{
+- (void)notificationWihtName:(NSString *)name block:(XYNotification_block)block{
     XYNotification *notification = [[XYNotification alloc] initWithName:name sender:nil block:block];
     
     NSString *key = [NSString stringWithFormat:@"%@", name];
     [self.notifications setObject:notification forKey:key];
 }
 
--(void) postNotification:(NSString *)name userInfo:(id)userInfo{
+- (void)postNotification:(NSString *)name userInfo:(id)userInfo{
     [[NSNotificationCenter defaultCenter] postNotificationName:name object:self userInfo:userInfo];
 }
 
--(void) unregisterNotification:(NSString*)name{
+- (void)unregisterNotification:(NSString*)name{
      NSString *key = [NSString stringWithFormat:@"%@", name];
     [self.notifications removeObjectForKey:key];
 }
 
--(void) unregisterAllNotification{
+- (void)unregisterAllNotification{
     [self.notifications removeAllObjects];
 }
 @end

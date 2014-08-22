@@ -25,16 +25,16 @@
     return object;
 }
 
--(void) setParameters:(id)anObject{
+- (void)setParameters:(id)anObject{
     [self willChangeValueForKey:@"parameters"];
     objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"parameters"];
 }
 
--(void) pushVC:(NSString *)vcName{
+- (void)pushVC:(NSString *)vcName{
     [self pushVC:vcName object:nil];
 }
--(void) pushVC:(NSString *)vcName object:(id)object{
+- (void)pushVC:(NSString *)vcName object:(id)object{
     Class class = NSClassFromString(vcName);
     NSAssert(class != nil, @"Class 必须存在");
     UIViewController *vc = nil;
@@ -49,15 +49,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void) popVC{
+- (void)popVC{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName{
+- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName{
     [self modalVC:vcName withNavigationVC:navName object:nil succeed:nil];
 }
 
--(void) modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block{
+- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block{
     Class class = NSClassFromString(vcName);
     NSAssert(class != nil, @"Class 必须存在");
     
@@ -81,10 +81,10 @@
     [self presentViewController:vc animated:YES completion:block];
 }
 
--(void) dismissModalVC{
+- (void)dismissModalVC{
     [self dismissModalVCWithSucceed:nil];
 }
--(void) dismissModalVCWithSucceed:(UIViewController_block_void)block{
+- (void)dismissModalVCWithSucceed:(UIViewController_block_void)block{
     [self dismissViewControllerAnimated:YES completion:block];
 }
 

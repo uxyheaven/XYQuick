@@ -141,7 +141,7 @@
     
 	return _isReach;
 }
--(void) routes{
+- (void)routes{
     NSObject * targetObject = _target;
 	if ( nil == targetObject )
 		return;
@@ -241,12 +241,12 @@
 	return [(NSNumber *)_returnValue boolValue];
 }
 
--(void) returnYES
+- (void)returnYES
 {
 	self.returnValue = @YES;
 }
 
--(void) returnNO
+- (void)returnNO
 {
 	self.returnValue = @NO;
 }
@@ -268,7 +268,7 @@
 	return nil;
 }
 
--(void) setNameSpace:(NSString *)value
+- (void)setNameSpace:(NSString *)value
 {
 	if ( nil == value )
 		return;
@@ -312,7 +312,7 @@
     
 	return signal;
 }
--(void) signalForward:(XYUISignal *)signal{
+- (void)signalForward:(XYUISignal *)signal{
     UIView *superView = [signal.target superview];
     if (superView) {
         [signal forward:superView];
@@ -340,7 +340,7 @@
 	return nil;
 }
 
--(void) setNameSpace:(NSString *)value
+- (void)setNameSpace:(NSString *)value
 {
 	if ( nil == value )
 		return;
@@ -383,7 +383,7 @@
     
 	return signal;
 }
--(void) signalForward:(XYUISignal *)signal{
+- (void)signalForward:(XYUISignal *)signal{
     if ([signal.target isKindOfClass:[UINavigationController class]]) {
         UIViewController *vc = [(UINavigationController*)signal.target topViewController];
         if (vc) {

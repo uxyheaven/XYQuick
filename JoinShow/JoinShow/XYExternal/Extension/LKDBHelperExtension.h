@@ -16,7 +16,7 @@
 
 @interface NSObject(XY_LKDBHelper)
 
--(void) loadFromDB;
+- (void)loadFromDB;
 
 +(NSString *) primaryKeyAndDESC;
 
@@ -24,7 +24,7 @@
 
 @interface NSArray(XY_LKDBHelper)
 
--(void) saveAllToDB;
+- (void)saveAllToDB;
 +(id) loadFromDBWithClass:(Class)modelClass;
 
 @end

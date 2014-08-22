@@ -73,10 +73,10 @@
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
--(void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     
 }
--(void) viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated{
     
 }
 - (void)didReceiveMemoryWarning
@@ -190,7 +190,7 @@
     UIViewController *vc = segue.destinationViewController;
     vc.title = [sender objectForKey:@"title"];
 }
--(void) clickRight:(id)sender{
+- (void)clickRight:(id)sender{
     [self.tableView reloadData:YES];
 }
 @end

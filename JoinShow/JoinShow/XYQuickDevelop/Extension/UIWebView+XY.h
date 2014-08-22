@@ -11,6 +11,6 @@
 @interface UIWebView (XY)
 
 // 清理网页,如果isCleanCache = YES, 就连NSURLCache,Disk,Memory也清理
--(void) clean:(BOOL)isCleanCache;
+- (void)clean:(BOOL)isCleanCache;
 
 @end

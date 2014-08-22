@@ -13,6 +13,6 @@
 
 @optional
 // 选择子控制器
--(void) selectChildWithItem:(id)item;
+- (void)selectChildWithItem:(id)item;
 
 @end

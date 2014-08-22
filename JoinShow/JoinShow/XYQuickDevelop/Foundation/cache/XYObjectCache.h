@@ -19,12 +19,12 @@ AS_SINGLETON(XYObjectCache)
 @property (atomic, strong) XYMemoryCache *		memoryCache;    // 内存缓存
 @property (atomic, strong) XYFileCache *		fileCache;      // 文件缓存
 
--(void) registerObjectClass:(Class)aClass;
+- (void)registerObjectClass:(Class)aClass;
 
 -(id) objectForKey:(NSString *)key;
--(void) saveObject:(id)anObject forKey:(NSString *)key;
--(void) deleteObjectForKey:(NSString *)key;
--(void) deleteAllObjects;
+- (void)saveObject:(id)anObject forKey:(NSString *)key;
+- (void)deleteObjectForKey:(NSString *)key;
+- (void)deleteAllObjects;
 
 //////////////////////////////////////////////////////////////
 -(BOOL) hasCachedForKey:(NSString *)key;
@@ -34,9 +34,9 @@ AS_SINGLETON(XYObjectCache)
 -(id) fileObjectForKey:(NSString *)key;
 -(id) memoryObjectForKey:(NSString *)key;
 
--(void) saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async;
--(void) saveToMemory:(id)anObject forKey:(NSString *)key;
--(void) saveToData:(NSData *)data forKey:(NSString *)key;
+- (void)saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async;
+- (void)saveToMemory:(id)anObject forKey:(NSString *)key;
+- (void)saveToData:(NSData *)data forKey:(NSString *)key;
 
 
 @end

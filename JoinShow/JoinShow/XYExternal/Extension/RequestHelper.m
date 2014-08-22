@@ -10,7 +10,7 @@
  MKNetworkEngine是一个假单例的类，负责管理你的app的网络队列。因此，简单的请求时，你应该直接使用MKNetworkEngine的方法。在更为复杂的定制中，你应该集成并子类化它。每一个MKNetworkEngine的子类都有他自己的Reachability对象来通知服务器的连通情况。你应该考虑为你的每一个特别的REST服务器请求子类化MKNetworkEngine。因为是假单例模式，每一个单独的子类的请求，都会通过仅有的队列发送。
  
  
- 重写 MKNetworkEngin的一些方法时,需要调用 -(void) registerOperationSubclass:(Class) aClass;
+ 重写 MKNetworkEngin的一些方法时,需要调用 - (void)registerOperationSubclass:(Class) aClass;
  
  改变提交的数据类型需要设置postDataEncoding
  */
@@ -95,7 +95,7 @@
     return tempOp;
 }
 
--(void) cancelRequestWithString:(NSString*)string{
+- (void)cancelRequestWithString:(NSString*)string{
     [RequestHelper cancelOperationsContainingURLString:string];
 }
 
@@ -171,7 +171,7 @@
 
 @implementation Downloader
 /*
--(void) setDownloadHelper:(DownloadHelper *)downloadHelper{
+- (void)setDownloadHelper:(DownloadHelper *)downloadHelper{
     _downloadHelper = downloadHelper;
 }
 */
@@ -260,7 +260,7 @@
     return eg;
 }
 
--(void) setup{
+- (void)setup{
     [self registerOperationSubclass:[Downloader class]];
     if (self.downloadArray == nil) {
         self.downloadArray = [NSMutableArray arrayWithCapacity:8];
@@ -363,7 +363,7 @@
 }
 
 
--(void) cancelDownloadWithString:(NSString *)string
+- (void)cancelDownloadWithString:(NSString *)string
 {
     Downloader *op = [self getADownloadWithString:string];
     if (op) {
@@ -372,14 +372,14 @@
     }
 }
 
--(void) cancelAllDownloads
+- (void)cancelAllDownloads
 {
     for (HttpRequest *tempOP in self.downloadArray) {
         [tempOP cancel];
     }
     [self.downloadArray removeAllObjects];
 }
--(void) emptyTempFile{
+- (void)emptyTempFile{
     NSString *tempDoucment = NSTemporaryDirectory();
     NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
     [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];

@@ -16,16 +16,16 @@
 
 // 注意: __name 首字母需要大写
 #define AS_DATALITE_OBJECT( __name ) \
--(void) set##__name:(id)anObject; \
+- (void)set##__name:(id)anObject; \
 -(id) __name;
 
 #define AS_DATALITE_STRING( __name ) \
--(void) set##__name:(NSString *)anObject; \
+- (void)set##__name:(NSString *)anObject; \
 -(NSString *) __name;
 
 
 #define AS_DATALITE_INT( __name ) \
--(void) set##__name:(int)anObject; \
+- (void)set##__name:(int)anObject; \
 -(int) __name;
 
 /**
@@ -34,7 +34,7 @@
  * 建议在 applicationDidFinishLaunching: 中调用[XYDataLite registerDefaults:dic]设置默认值
  */
 #define DEF_DATALITE_OBJECT( __name , __defaultObject) \
--(void) set##__name:(id)anObject{ \
+- (void)set##__name:(id)anObject{ \
     [XYDataLite writeObject:anObject forKey:__TEXT( __func__##__name ) synchronize:YES]; \
 } \
 -(id) __name{ \
@@ -56,14 +56,14 @@ DEF_DATALITE_OBJECT( __name , __defaultObject)
 // defaultObject dont support bool,
 +(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject;
 
-+(void) writeObject:(id)anObject forKey:(NSString *)key;
++ (void)writeObject:(id)anObject forKey:(NSString *)key;
 // if bSync == YES, run [[NSUserDefaults standardUserDefaults] synchronize]
-+(void) writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync;
++ (void)writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync;
 
 
 // 设置默认的值
-+(void) registerDefaults:(NSDictionary *)dic;
++ (void)registerDefaults:(NSDictionary *)dic;
 
-+(void) synchronize;
++ (void)synchronize;
 
 @end

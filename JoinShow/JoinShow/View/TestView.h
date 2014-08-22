@@ -13,6 +13,6 @@
 @property (nonatomic, strong) UILabel *label1;
 @property (nonatomic, strong) UIImageView *img1;
 
--(void) test;
+- (void)test;
 
 @end

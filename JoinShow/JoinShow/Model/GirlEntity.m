@@ -10,7 +10,7 @@
 
 @implementation GirlEntity
 
--(void) talk{
+- (void)talk{
     NSLog(@"%s", __func__);
 }
 

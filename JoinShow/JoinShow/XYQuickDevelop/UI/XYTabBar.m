@@ -93,17 +93,17 @@
     // Drawing code
 }
 */
--(void) setBackgroundImage:(UIImage *)img{
+- (void)setBackgroundImage:(UIImage *)img{
     [_backgroundView setImage:img];
 }
 
--(void) setAnimatedView:(UIImageView *)view{
+- (void)setAnimatedView:(UIImageView *)view{
     if (_animatedView != view) {
         _animatedView = view;
         [self addSubview:_animatedView];
     }
 }
--(void) setupItem:(UIButton *)item index:(NSInteger)index{
+- (void)setupItem:(UIButton *)item index:(NSInteger)index{
     // 设置尺寸
     float w = self.bounds.size.width / self.items.count;
     item.frame = CGRectMake(0 + w * index, 0, w, self.frame.size.height);
@@ -127,14 +127,14 @@
     
     item.titleEdgeInsets = UIEdgeInsetsMake(imgW, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
 }
--(void) resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index{
+- (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index{
     UIButton *item = _items[index];
     
     [UIView animateWithDuration:0.1f animations:^{
         animatedView.frame = CGRectMake(item.frame.origin.x, item.frame.origin.y, item.frame.size.width, item.frame.size.height);
     }];
 }
--(void) tabBarButtonClicked:(id)sender
+- (void)tabBarButtonClicked:(id)sender
 {
     UIButton *btn = sender;
     NSInteger index = btn.tag - kXYTabBar_itemStartTag;
@@ -146,7 +146,7 @@
     [self selectTabAtIndex:index];
 }
 
--(void) selectTabAtIndex:(NSInteger)index
+- (void)selectTabAtIndex:(NSInteger)index
 {
 	for (int i = 0; i < [self.items count]; i++) {
 		UIButton *btn = [self.items objectAtIndex:i];

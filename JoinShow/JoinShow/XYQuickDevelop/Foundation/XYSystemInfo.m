@@ -368,11 +368,11 @@ static const char * __jb_app = NULL;
     return [self isFirstRunCurrentVersionWithUser:nil];
 }
 
-+(void) setFirstRun{
++ (void)setFirstRun{
     [self setFirstRunWithUser:nil];
 }
 
-+(void) setNotFirstRun{
++ (void)setNotFirstRun{
     [self setNotFirstRunWithUser:nil];
 }
 
@@ -387,11 +387,11 @@ static const char * __jb_app = NULL;
         return [[NSUserDefaults standardUserDefaults] floatForKey:[self xyVersionKeyWithUser:user]] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
     }
 }
-+(void) setFirstRunWithUser:(NSString *)user{
++ (void)setFirstRunWithUser:(NSString *)user{
     [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(void) setNotFirstRunWithUser:(NSString *)user{
++ (void)setNotFirstRunWithUser:(NSString *)user{
     [[NSUserDefaults standardUserDefaults] setFloat:[self floatVersion] forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

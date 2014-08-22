@@ -70,7 +70,7 @@
 /***************************************************************/
 #if (1 == __USED_MBProgressHUD__)
 static MBProgressHUD *HUD = nil;
-+(void) hiddenMBProgressHUD{
++ (void)hiddenMBProgressHUD{
     [HUD hide:YES];
 }
 +(MBProgressHUD *) MBProgressHUD{
@@ -190,7 +190,7 @@ static MBProgressHUD *HUD = nil;
 
 /***************************************************************/
 #if (1 ==  __USED_ASIHTTPRequest__)
-+(void) checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion appURLString:(NSString *)strURL
++ (void)checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion appURLString:(NSString *)strURL
                          same:(void(^)(void))blockSame
                     stayStill:(void(^)(void))blockStayStill{
     [self checkUpdateInAppStore:appID curVersion:aVersion
@@ -215,7 +215,7 @@ static MBProgressHUD *HUD = nil;
                                }];
                            }];
 }
-+(void) checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion
++ (void)checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion
                          same:(void(^)(void))blockSame
                    localIsOld:(void(^)(NSString *appStoreVersion))blockLocalIsOld{
     NSURL *appleLink = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@", appID]];

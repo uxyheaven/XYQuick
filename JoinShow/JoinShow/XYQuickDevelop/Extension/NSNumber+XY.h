@@ -25,6 +25,6 @@
 
 @property (nonatomic, readonly, strong) NSDate  *dateValue;
 
--(NSString *) stringWithDateFormat:(NSString *)format;
+- (NSString *)stringWithDateFormat:(NSString *)format;
 
 @end

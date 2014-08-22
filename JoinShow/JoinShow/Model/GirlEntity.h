@@ -12,6 +12,6 @@
 
 @property (nonatomic,  strong) NSString *name;
 
--(void) talk;
+- (void)talk;
 
 @end

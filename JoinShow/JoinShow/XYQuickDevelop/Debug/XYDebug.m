@@ -28,13 +28,13 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 @end
 
 @implementation UIWindow(XYDebug)
-+(void) load{
++ (void)load{
 #if (1 == __XYDEBUG__showborder__)
     [UIWindow hookSendEvent];
 #endif
 }
 
-+(void) hookSendEvent
++ (void)hookSendEvent
 {
 #if (1 == __XYDEBUG__showborder__)
 	static BOOL __swizzled = NO;
@@ -48,29 +48,23 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 #endif
 }
 
--(void) mySendEvent:(UIEvent *)event
+- (void)mySendEvent:(UIEvent *)event
 {
 	UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
-	if ( self == keyWindow )
+	if ( self == keyWindow && UIEventTypeTouches == event.type)
 	{
-		if ( UIEventTypeTouches == event.type )
-		{
-			NSSet * allTouches = [event allTouches];
-			if ( 1 == [allTouches count] )
-			{
-				UITouch * touch = [[allTouches allObjects] objectAtIndex:0];
-				if ( 1 == [touch tapCount] )
-				{
-					if ( UITouchPhaseBegan == touch.phase )
-					{
-                       // NSLog(@"view '%@', touch began\n%@", [[touch.view class] description], [touch.view description]);
-						BorderView * border = [[BorderView alloc] initWithFrame:touch.view.bounds];
-						[touch.view addSubview:border];
-						[border startAnimation];
-					}
-				}
-			}
-		}
+        NSSet * allTouches = [event allTouches];
+        if ( 1 == [allTouches count] )
+        {
+            UITouch * touch = [[allTouches allObjects] objectAtIndex:0];
+            if ( 1 == [touch tapCount]  && UITouchPhaseBegan == touch.phase )
+            {
+                // NSLog(@"view '%@', touch began\n%@", [[touch.view class] description], [touch.view description]);
+                BorderView * border = [[BorderView alloc] initWithFrame:touch.view.bounds];
+                [touch.view addSubview:border];
+                [border startAnimation];
+            }
+        }
 	}
     
     if ( __sendEvent )
@@ -88,7 +82,8 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 @end
 
 @implementation XYWatcher
--(void) dealloc{
+- (void)dealloc
+{
     NSLog(@"%@", _stringDealloc);
 }
 @end
@@ -141,7 +136,7 @@ DEF_SINGLETON(XYDebug)
 					range3.length = range2.location + range2.length - range1.location;
 					[array addObject:[symbol substringWithRange:range3]];
 				}
-				else
+                else
 				{
 					[array addObject:symbol];
 				}
@@ -153,7 +148,7 @@ DEF_SINGLETON(XYDebug)
 	
 	return array;
 }
-+(void) breakPoint
++ (void)breakPoint
 {
 #if __XY_DEVELOPMENT__
 #if defined(__ppc__)
@@ -164,7 +159,7 @@ DEF_SINGLETON(XYDebug)
 #endif	// #if __BEE_DEVELOPMENT__
 }
 
--(void) allocAll
+- (void)allocAll
 {
 	NSProcessInfo *		progress = [NSProcessInfo processInfo];
 	unsigned long long	total = [progress physicalMemory];
@@ -193,7 +188,7 @@ DEF_SINGLETON(XYDebug)
 	}
 }
 
--(void) freeAll
+- (void)freeAll
 {
 	for ( NSNumber * block in _manualBlocks )
 	{
@@ -204,7 +199,7 @@ DEF_SINGLETON(XYDebug)
 	[_manualBlocks removeAllObjects];
 }
 
--(void) alloc50M
+- (void)alloc50M
 {
 	void * block = NSZoneCalloc( NSDefaultMallocZone(), 50, M );
 	if ( nil == block )
@@ -219,7 +214,7 @@ DEF_SINGLETON(XYDebug)
 	}
 }
 
--(void) free50M
+- (void)free50M
 {
 	NSNumber * block = [_manualBlocks lastObject];
 	if ( block )
@@ -231,7 +226,7 @@ DEF_SINGLETON(XYDebug)
 	}
 }
 
-+(void) hookObject:(id)anObject whenDeallocLogString:(NSString *)string{
++ (void)hookObject:(id)anObject whenDeallocLogString:(NSString *)string{
     XYWatcher *watcher = [[XYWatcher alloc] init];
     watcher.stringDealloc = string;
     objc_setAssociatedObject(anObject, XYDebug_key_hookDealloc, watcher, OBJC_ASSOCIATION_RETAIN);

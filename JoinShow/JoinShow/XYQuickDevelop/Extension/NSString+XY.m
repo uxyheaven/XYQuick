@@ -481,7 +481,7 @@ DUMMY_CLASS(NSString_XY);
 }
 
 
--(BOOL) isNormal{
+- (BOOL)isNormal{
     NSString *regex = @"([^%&',;=!~?$]+)";
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
 	
@@ -496,7 +496,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)isChineseUserName
+- (BOOL) isChineseUserName
 {
 	NSString *		regex = @"(^[A-Za-z0-9\u4e00-\u9fa5]{3,20}$)";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -579,14 +579,14 @@ DUMMY_CLASS(NSString_XY);
 }
 
 ////////////////////
--(BOOL) isHasCharacterAndNumber{
+- (BOOL)isHasCharacterAndNumber{
     BOOL isExistDigit = [self rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound;
     
     BOOL isExistLetter = [self rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound;
     
     return isExistDigit && isExistLetter;
 }
--(BOOL) isNickname{
+- (BOOL)isNickname{
     if (self == nil) {
 		return NO;
 	}
@@ -598,10 +598,10 @@ DUMMY_CLASS(NSString_XY);
     return isMatch;
 }
 
--(BOOL) isTelephone2{
-    if (self == nil) {
-		return NO;
-	}
+- (BOOL)isTelephone2{
+    if (self == nil)
+        return NO;
+
 	//联通号码
 	NSString *regex_Unicom = @"^(130|131|132|133|185|186|156|155)[0-9]{8}";
 	//移动号码
@@ -618,10 +618,12 @@ DUMMY_CLASS(NSString_XY);
 	NSPredicate *pred_Telecom = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex_Telecom];
 	BOOL isMatch_Telecom = [pred_Telecom evaluateWithObject:self];
 	
-	if (isMatch_Unicom || isMatch_CMCC || isMatch_Telecom) {
+	if (isMatch_Unicom || isMatch_CMCC || isMatch_Telecom)
+    {
 		return YES;
 	}
-	else {
+	else
+    {
         return NO;
 	}
 }
@@ -718,26 +720,29 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
--(NSInteger) getLength{
+- (NSInteger)getLength{
     NSInteger strLength = 0;
     char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
-    for (NSInteger i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++) {
-        if (*p) {
+    for (NSInteger i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++)
+    {
+        if (*p)
+        {
             p++;
             strLength++;
-        } else {
+        } else
+        {
             p++;
         }
     }
     return strLength;
 }
--(NSInteger) getLength2{
+- (NSInteger)getLength2{
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSData *data = [self dataUsingEncoding:enc];
     return [data length];
 }
 
--(NSString *) replaceUnicode
+- (NSString *)replaceUnicode
 {
     NSString *tempStr1 = [self stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
     NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
@@ -751,12 +756,12 @@ DUMMY_CLASS(NSString_XY);
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
 }
 
--(void) erasure{
+- (void)erasure{
     char *string = (char *)CFStringGetCStringPtr((CFStringRef)self, CFStringGetSystemEncoding());
     memset(string, 0, [self length]);
 }
 
--(NSString*) stringByInitials{
+- (NSString*)stringByInitials{
     NSMutableString *result = [NSMutableString string];
     [self enumerateSubstringsInRange:NSMakeRange(0, self.length) options:NSStringEnumerationByWords | NSStringEnumerationLocalized usingBlock:^(NSString *word, NSRange wordRange, NSRange enclosingWordRange, BOOL *stop1) {
         __block NSString *firstLetter = nil;
@@ -771,7 +776,7 @@ DUMMY_CLASS(NSString_XY);
     return result;
 }
 
--(CGSize) calculateSize:(CGSize)size font:(UIFont *)font{
+- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font{
     CGSize expectedLabelSize = CGSizeZero;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -789,7 +794,8 @@ DUMMY_CLASS(NSString_XY);
     return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
 }
 
--(NSTimeInterval) displayTime{
+- (NSTimeInterval) displayTime
+{
     return MAX((float)self.length * 0.1 + 2, 2);
 }
 

@@ -46,7 +46,7 @@
     NSLogDD
 }
 
--(void) test{
+- (void)test{
     NSLogD(@"%@", [self class]);
 }
 @end

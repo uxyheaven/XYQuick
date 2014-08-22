@@ -94,7 +94,7 @@
     }
 }
 /***************************************************************/
-+(void) createDirectoryAtPath:(NSString *)aPath{
++ (void)createDirectoryAtPath:(NSString *)aPath{
     if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:NULL] )
     {
         BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:aPath
@@ -237,7 +237,7 @@
 }
 /***************************************************************/
 // Recursively travel down the view tree, increasing the indentation level for children
-+(void) dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *) outstring{
++ (void)dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *) outstring{
     for (int i = 0; i < indent; i++) [outstring appendString:@"--"];
 	[outstring appendFormat:@"[%2d] %@\n tag:%d frame:%@\n", indent, [[aView class] description], aView.tag, NSStringFromCGRect(aView.frame)];
 	for (UIView *view in [aView subviews]) [self dumpView:view atIndent:indent + 1 into:outstring];
@@ -290,7 +290,7 @@
 }
 
 /***************************************************************/
-+(void) shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc{
++ (void)shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc{
     /* 本项目屏蔽
      if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
      {
@@ -318,7 +318,7 @@
      */
 }
 /***************************************************************/
-+(void) showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)str{
++ (void)showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)str{
     UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:aTitle message:msg delegate:nil cancelButtonTitle:str otherButtonTitles:nil];
     [alertview show];
 }
@@ -339,7 +339,7 @@
     return str;
 }
 /***************************************************************/
-+(void) openURL:(NSURL *)url{
++ (void)openURL:(NSURL *)url{
     NSURL *tmpURL = url;
     if ([url isKindOfClass:[NSString class]]) {
         tmpURL = [NSURL URLWithString:(NSString *)url];
@@ -396,7 +396,7 @@
     return format;
 }
 /***************************************************************/
-+(void) printUsedAndFreeMemoryWithMark:(NSString *)mark{
++ (void)printUsedAndFreeMemoryWithMark:(NSString *)mark{
     mach_port_t host_port;
     mach_msg_type_number_t host_size;
     vm_size_t pagesize;

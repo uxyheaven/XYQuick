@@ -86,11 +86,11 @@
 
 +(BOOL) isFirstRun;
 +(BOOL) isFirstRunCurrentVersion;
-+(void) setFirstRun;
-+(void) setNotFirstRun;
++ (void)setFirstRun;
++ (void)setNotFirstRun;
 
 +(BOOL) isFirstRunWithUser:(NSString *)user;
 +(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user;
-+(void) setFirstRunWithUser:(NSString *)user;
-+(void) setNotFirstRunWithUser:(NSString *)user;
++ (void)setFirstRunWithUser:(NSString *)user;
++ (void)setNotFirstRunWithUser:(NSString *)user;
 @end

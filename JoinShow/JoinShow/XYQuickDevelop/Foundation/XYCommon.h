@@ -63,7 +63,7 @@ typedef enum {
  * @brief 创建目录, 已经移植到XYSandbox
  * @param aPath 目录路径
  */
-+(void) createDirectoryAtPath:(NSString *)aPath;
++ (void)createDirectoryAtPath:(NSString *)aPath;
 
 
 /**
@@ -115,7 +115,7 @@ typedef enum {
  * @param indent 层次 请给0值
  * @param outstring 保存层次的字符串
  */
-+(void) dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *)outstring;
++ (void)dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *)outstring;
 // 打印视图层次结构
 +(NSString *) displayViews: (UIView *) aView;
 
@@ -139,7 +139,7 @@ typedef enum {
  * @param strURL URL地址
  * @param vc Twitter的父视图控制器,目前版本请用nil,默认为[UIApplication sharedApplication].delegate.window.rootViewControlle
  */
-+(void) shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc;
++ (void)shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc;
 
 
 /**
@@ -154,7 +154,7 @@ typedef enum {
  * @brief 用[UIApplication sharedApplication]打开一个URL
  * @param url http:// 浏览器, mailto:// 邮件, tel:// 拨号, sms: 短信
  */
-+(void) openURL:(NSURL *)url;
++ (void)openURL:(NSURL *)url;
 
 /**
  * @brief 得到当前UIViewController
@@ -170,7 +170,7 @@ typedef enum {
  * @param msg 信息
  * @param strCancel 取消按钮标题
  */
-+(void) showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)strCancel;
++ (void)showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)strCancel;
 
 /**
  * @brief 替换string里面的单引号'为2个单引号'',用于处理SQL问题
@@ -189,7 +189,7 @@ typedef enum {
  * @brief  打印内存情况
  * @param mark 标记
  */
-+(void) printUsedAndFreeMemoryWithMark:(NSString *)mark;
++ (void)printUsedAndFreeMemoryWithMark:(NSString *)mark;
 
 
 /** 

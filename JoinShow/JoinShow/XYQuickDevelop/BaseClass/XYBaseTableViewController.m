@@ -24,7 +24,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
         NSLogDSelf
     }
@@ -61,39 +62,40 @@
     [self destroyFields];
 }
 
--(void) createFields {
+- (void)createFields {
     // [super createFields];
 }
 
--(void) destroyFields {
+- (void)destroyFields {
     // [super destroyFields];
 }
 
--(void) createViews {
+- (void)createViews {
     // [super createViews];
 }
 
--(void) destroyViews {
+- (void)destroyViews {
     // [super destroyViews];
 }
 
--(void) createEvents {
+- (void)createEvents {
     // [super createEvents];
     // 保存当前状态
-    if ([self respondsToSelector:@selector(saveCurrentState)]) {
+    if ([self respondsToSelector:@selector(saveCurrentState)])
+    {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCurrentState) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     
 }
 
--(void) destroyEvents {
+- (void)destroyEvents {
     // [super destroyEvents];
     
     // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void) loadData
+- (void)loadData
 {
     // [super loadData];
 }
@@ -103,19 +105,19 @@
 
 #pragma mark - rewrite
 // 额外的重写的父类的方法
--(void) viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 
--(void) viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
 
--(void) viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
 
--(void) viewDidDisappear:(BOOL)animated{
+- (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }
 
@@ -123,7 +125,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) didReceiveMemoryWarning{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

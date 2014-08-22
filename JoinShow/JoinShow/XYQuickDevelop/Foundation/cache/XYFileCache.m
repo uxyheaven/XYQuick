@@ -68,7 +68,7 @@ DEF_SINGLETON( XYFileCache );
 	return pathName;
 }
 
--(void) removeOverdueFiles{
+- (void)removeOverdueFiles{
 
 }
 #pragma mark - XYCacheProtocol

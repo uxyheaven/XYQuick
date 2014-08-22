@@ -27,7 +27,7 @@
     return signature;
 }
 
--(void) forwardInvocation:(NSInvocation *)anInvocation
+- (void)forwardInvocation:(NSInvocation *)anInvocation
 {
     SEL aSelector = [anInvocation selector];
     

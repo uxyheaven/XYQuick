@@ -12,7 +12,7 @@
 #pragma mark - #define
 #define NOTIFICATION_NAME( __name )					__TEXT( __name )
 
-#define	ON_NOTIFICATION_1_( __name )     -(void) __name##NotificationHandle:(NSNotification *)notification
+#define	ON_NOTIFICATION_1_( __name )     - (void)__name##NotificationHandle:(NSNotification *)notification
 
 #undef	NSObject_notifications
 #define NSObject_notifications	"NSObject.XYNotification.notifications"
@@ -29,12 +29,12 @@ typedef void(^XYNotification_block)(NSNotification *notification);
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *notifications;
 
--(void) registerNotification:(NSString *)name;
--(void) registerNotification:(NSString *)name block:(XYNotification_block)block;
+- (void)registerNotification:(NSString *)name;
+- (void)registerNotification:(NSString *)name block:(XYNotification_block)block;
 
--(void) unregisterNotification:(NSString*)name;
--(void) unregisterAllNotification;
+- (void)unregisterNotification:(NSString*)name;
+- (void)unregisterAllNotification;
 
--(void) postNotification:(NSString *)name userInfo:(id)userInfo;
+- (void)postNotification:(NSString *)name userInfo:(id)userInfo;
 
 @end

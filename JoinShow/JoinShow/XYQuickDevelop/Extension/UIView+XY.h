@@ -20,21 +20,21 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 @interface UIView (XY)
 
 // 增加手势
--(void) addTapGestureWithTarget:(id)target action:(SEL)action;
--(void) addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock;
+- (void)addTapGestureWithTarget:(id)target action:(SEL)action;
+- (void)addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock;
 
--(void) removeTapGesture;
+- (void)removeTapGesture;
 
 // 增加背景阴影
--(void) addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha;
--(void) addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha;
+- (void)addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha;
+- (void)addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha;
 // 增加毛玻璃背景
--(void) addBlurWithTarget:(id)target action:(SEL)action;
--(void) addBlurWithTarget:(id)target action:(SEL)action level:(int)lv;
--(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock;
--(void) addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv;
+- (void)addBlurWithTarget:(id)target action:(SEL)action;
+- (void)addBlurWithTarget:(id)target action:(SEL)action level:(int)lv;
+- (void)addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock;
+- (void)addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv;
 
--(void) removeShade;
+- (void)removeShade;
 -(UIView *) shadeView;
 
 // 设置背景
@@ -54,50 +54,50 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 
 // 活动指示器
 -(UIActivityIndicatorView *) activityIndicatorViewShow;
--(void) activityIndicatorViewHidden;
+- (void)activityIndicatorViewHidden;
 
 // 截屏
 -(UIImage *) snapshot;
 
 // 淡出,然后移除
--(void) removeFromSuperviewWithCrossfade;
+- (void)removeFromSuperviewWithCrossfade;
 
--(void) removeAllSubviews;
--(void) removeSubviewWithTag:(NSInteger)tag;
--(void) removeSubviewExceptTag:(NSInteger)tag;
+- (void)removeAllSubviews;
+- (void)removeSubviewWithTag:(NSInteger)tag;
+- (void)removeSubviewExceptTag:(NSInteger)tag;
 
 
 #pragma mark -todo attribute
--(void) showDataWithDic:(NSDictionary *)dic;
+- (void)showDataWithDic:(NSDictionary *)dic;
 
 // 子类需要重新此方法
-//+(void) setupDataBind:(NSMutableDictionary *)dic;
+//+ (void)setupDataBind:(NSMutableDictionary *)dic;
 
 #pragma mark - animation
 // 淡入淡出
--(void) animationCrossfadeWithDuration:(NSTimeInterval)duration;
--(void) animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(UIViewCategoryAnimationBlock)completion;
+- (void)animationCrossfadeWithDuration:(NSTimeInterval)duration;
+- (void)animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(UIViewCategoryAnimationBlock)completion;
 
 /** 立方体翻转
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
--(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
+- (void)animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+- (void)animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
 
 /** 翻转
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
--(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
+- (void)animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+- (void)animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
 
 /** 覆盖
  *kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom
  */
--(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
--(void) animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
+- (void)animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction;
+- (void)animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion;
 
 // 抖动
--(void) animationShake;
+- (void)animationShake;
 
 // 返回所在的vc
 -(UIViewController *) viewController;

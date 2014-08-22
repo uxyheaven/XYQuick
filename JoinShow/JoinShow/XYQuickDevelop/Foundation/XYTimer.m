@@ -26,20 +26,20 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @property (nonatomic, copy) XYTimer_block block;
 
--(void) handleTimer;
+- (void)handleTimer;
 
--(void) stop;
+- (void)stop;
 
 @end
 
 @implementation XYTimer
 
--(void) stop{
+- (void)stop{
     if (_timer.isValid){
         [_timer invalidate];
     }
 }
--(void) handleTimer{
+- (void)handleTimer{
     NSTimeInterval ti = [[NSDate date] timeIntervalSince1970] - _start_at;
     
     if (_block) {
@@ -51,7 +51,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 }
 
 
--(void) dealloc{
+- (void)dealloc{
 
 }
 
@@ -158,7 +158,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     return timer.timer;
 }
 
--(void) cancelTimer:(NSString *)name{
+- (void)cancelTimer:(NSString *)name{
     NSString *timerName = (name == nil) ? @"" : name;
 
     NSMutableDictionary *timers = self.XYtimers;
@@ -170,7 +170,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     }
 }
 
--(void) cancelAllTimer{
+- (void)cancelAllTimer{
     NSMutableDictionary *timers = self.XYtimers;
     [timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [(XYTimer *)obj stop];
@@ -205,7 +205,7 @@ DEF_SINGLETON( XYTicker )
     return self;
 }
 
--(void) addReceiver:(NSObject *)obj
+- (void)addReceiver:(NSObject *)obj
 {
 	if ( NO == [_receivers containsObject:obj] )
 	{
@@ -221,7 +221,7 @@ DEF_SINGLETON( XYTicker )
 	}
 }
 
--(void) removeReceiver:(NSObject *)obj
+- (void)removeReceiver:(NSObject *)obj
 {
 	[_receivers removeObject:obj];
 	
@@ -257,17 +257,17 @@ DEF_SINGLETON( XYTicker )
 
 @implementation NSObject(XYTicker)
 
--(void) observeTick
+- (void)observeTick
 {
 	[[XYTicker sharedInstance] addReceiver:self];
 }
 
--(void) unobserveTick
+- (void)unobserveTick
 {
 	[[XYTicker sharedInstance] removeReceiver:self];
 }
 
--(void) handleTick:(NSTimeInterval)elapsed
+- (void)handleTick:(NSTimeInterval)elapsed
 {
 }
 

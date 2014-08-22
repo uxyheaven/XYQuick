@@ -42,10 +42,10 @@ AS_SINGLETON(XYKeyboardHelper)
 @property(nonatomic, assign) BOOL isEnabled;
 
 //Enable keyboard Helper.
--(void) enableKeyboardHelper;    /*default enabled*/
+- (void)enableKeyboardHelper;    /*default enabled*/
 
 //Desable keyboard Helper.
--(void) disableKeyboardHelper;
+- (void)disableKeyboardHelper;
 
 @end
 
@@ -54,13 +54,13 @@ AS_SINGLETON(XYKeyboardHelper)
 @interface UITextField (ToolbarOnKeyboard)
 
 //Helper functions to add Done button on keyboard.
--(void) addDoneOnKeyboardWithTarget:(id)target action:(SEL)action;
+- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action;
 
 //Helper function to add SegmentedNextPrevious and Done button on keyboard.
--(void) addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction;
 
 //Helper methods to enable and desable previous next buttons.
--(void) setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled;
+- (void)setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled;
 
 @end
 
@@ -68,13 +68,13 @@ AS_SINGLETON(XYKeyboardHelper)
 @interface UITextView (ToolbarOnKeyboard)
 
 //Helper functions to add Done button on keyboard.
--(void) addDoneOnKeyboardWithTarget:(id)target action:(SEL)action;
+- (void)addDoneOnKeyboardWithTarget:(id)target action:(SEL)action;
 
 //Helper function to add SegmentedNextPrevious and Done button on keyboard.
--(void) addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)target previousAction:(SEL)previousAction nextAction:(SEL)nextAction doneAction:(SEL)doneAction;
 
 //Helper methods to enable and desable previous next buttons.
--(void) setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled;
+- (void)setEnablePrevious:(BOOL)isPreviousEnabled next:(BOOL)isNextEnabled;
 
 @end
 

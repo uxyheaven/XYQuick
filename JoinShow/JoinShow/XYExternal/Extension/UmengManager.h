@@ -24,13 +24,13 @@
 
 //AS_SINGLETON(UmengManager)
 
-+(void) startWithAppkey;
-+(void) beginLogPageView:(NSString *)str;
-+(void) endLogPageView:(NSString *)str;
-+(void) event:(NSString *)eventID attributes:(NSDictionary *)dic;
-+(void) checkUpdate;
++ (void)startWithAppkey;
++ (void)beginLogPageView:(NSString *)str;
++ (void)endLogPageView:(NSString *)str;
++ (void)event:(NSString *)eventID attributes:(NSDictionary *)dic;
++ (void)checkUpdate;
 +(NSString *) getConfigParams:(NSString *)key;
-+(void) updateOnlineConfig;
++ (void)updateOnlineConfig;
 
 @end
 #endif

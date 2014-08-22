@@ -29,6 +29,7 @@ DUMMY_CLASS(NSArray_XY);
 	{
 		NSMutableArray * array = [NSMutableArray arrayWithArray:self];
 		[array addObject:obj];
+        
 		return array;
 	};
 	
@@ -41,7 +42,7 @@ DUMMY_CLASS(NSArray_XY);
 	{
 		return self;
 	}
-	else
+    else
 	{
 		NSMutableArray * tempFeeds = [NSMutableArray array];
 		for ( NSObject * elem in self )
@@ -50,6 +51,7 @@ DUMMY_CLASS(NSArray_XY);
 			if ( [tempFeeds count] >= count )
 				break;
 		}
+        
 		return tempFeeds;
 	}
 }
@@ -75,6 +77,7 @@ DUMMY_CLASS(NSArray_XY);
 // thansk @lancy, changed: NSArray tail: count
 
 	NSRange range = NSMakeRange( self.count - count, count );
+    
 	return [self subarrayWithRange:range];
 }
 
@@ -103,16 +106,20 @@ DUMMY_CLASS(NSArray_XY);
 	return [self subarrayWithRange:NSMakeRange(range.location, range.length)];
 }
 
--(NSInteger) indexOfString:(NSString *)string{
-    if (string == nil || string.length < 1) {
+- (NSInteger)indexOfString:(NSString *)string{
+    if (string == nil || string.length < 1)
+    {
         return NSNotFound;
     }
-    if (self.count == 0) {
+    if (self.count == 0)
+    {
         return NSNotFound;
     }
     
-    for (int i = 0; i < self.count; i++) {
-        if ([string isEqualToString:self[i]]) {
+    for (int i = 0; i < self.count; i++)
+    {
+        if ([string isEqualToString:self[i]])
+        {
             return i;
         }
     }
@@ -149,6 +156,7 @@ DUMMY_CLASS(NSArray_XY);
 	CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
     callbacks.retain = __XYRetainNoOp;
     callbacks.release = __XYReleaseNoOp;
+    
     return (__bridge_transfer NSMutableArray *)CFArrayCreateMutable(nil, 0, &callbacks);
 }
 

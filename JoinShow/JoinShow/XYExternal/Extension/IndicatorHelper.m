@@ -76,7 +76,7 @@ DEF_SINGLETON(IndicatorHelper)
     return MIN((float)str.length * 0.06 + 0.3, .5);
 }
 
--(void) bringViewToFront:(UIView *)view{
+- (void)bringViewToFront:(UIView *)view{
     //Getting rootViewController
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     

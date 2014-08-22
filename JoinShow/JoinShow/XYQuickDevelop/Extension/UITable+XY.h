@@ -13,7 +13,7 @@
 // 子类需要重新此方法
 +(CGFloat) heightForRowWithData:(id)aData;
 
--(void) layoutSubviewsWithDic:(NSMutableDictionary *)dic;
+- (void)layoutSubviewsWithDic:(NSMutableDictionary *)dic;
 
 @end
 

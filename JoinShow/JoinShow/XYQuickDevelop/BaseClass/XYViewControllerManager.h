@@ -25,9 +25,9 @@ AS_SINGLETON(XYViewControllerManager)
 @property (nonatomic, strong, readonly) UIView *contentView; // 子视图控制器显示的view
 
 
--(void) addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key;
+- (void)addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key;
 
--(void) clean;
+- (void)clean;
 
 @end
 

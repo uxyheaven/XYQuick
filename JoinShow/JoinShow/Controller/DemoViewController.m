@@ -48,7 +48,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) loadView{
+- (void)loadView{
     [super loadView];
     
     if (_loadViewBlock) {
@@ -76,12 +76,12 @@
     
 }
 
--(void) funny:(id)sender{
+- (void)funny:(id)sender{
     if (_methodBlock) {
         _methodBlock(self, sender);
     }
 }
--(void) funny2:(id)sender{
+- (void)funny2:(id)sender{
     if (_methodBlock2) {
         _methodBlock2(self, sender);
     }

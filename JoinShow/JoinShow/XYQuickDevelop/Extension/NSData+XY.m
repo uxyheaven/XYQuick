@@ -29,6 +29,7 @@ DUMMY_CLASS(NSData_XY);
 		return nil;
 	
 	[retData appendBytes:md5Result length:CC_MD5_DIGEST_LENGTH];
+    
 	return retData;
 }
 
@@ -52,6 +53,7 @@ DUMMY_CLASS(NSData_XY);
 		
 		NSString * result = [NSString stringWithUTF8String:(const char *)hex];
 		free( hex );
+        
 		return result;
 	}
 	else

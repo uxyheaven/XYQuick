@@ -30,7 +30,7 @@
     }
     return self;
 }
--(id)initWithCoder:(NSCoder *)aDecoder{
+- (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
     }
@@ -43,7 +43,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) createFields
+- (void)createFields
 {
     [super createFields];
     
@@ -56,14 +56,14 @@
     self.entityModel.requestHelper = request;
 }
 
--(void) destroyFields
+- (void)destroyFields
 {
     [super destroyFields];
     
     self.entityModel = nil;
 }
 
--(void) createViews
+- (void)createViews
 {
     [super createViews];
     
@@ -72,12 +72,12 @@
     _btnLoad = (UIButton *)[self.view viewWithTag:11001];
 }
 
--(void) destroyViews
+- (void)destroyViews
 {
     [super destroyViews];
 }
 
--(void) createEvents
+- (void)createEvents
 {
     [super createEvents];
     
@@ -85,13 +85,13 @@
     [_btnLoad addTarget: self action: @selector(clickLoad:) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void) destroyEvents
+- (void)destroyEvents
 {
     [super destroyEvents];
 }
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
--(void) loadData
+- (void)loadData
 {
     [super loadData];
 }
@@ -121,12 +121,12 @@
 }
 
 
--(void) start{
+- (void)start{
     UILabel *label = (UILabel *)[self.view viewWithTag:0 + 10000];
     label.textColor = [UIColor redColor];
     [self performSelector:@selector(httpGET) withObject:nil afterDelay:1];
 }
--(void) httpGET{
+- (void)httpGET{
     UILabel *label = (UILabel *)[self.view viewWithTag:1 + 10000];
     label.textColor = [UIColor redColor];
     __block id myself =self;
@@ -153,7 +153,7 @@
     
     [self.entityModel.requestHelper submit:request];
 }
--(void) parseData:(NSString *)str isCachedResponse:(BOOL)isCachedResponse{
+- (void)parseData:(NSString *)str isCachedResponse:(BOOL)isCachedResponse{
     UILabel *label = (UILabel *)[self.view viewWithTag:3 + 10000];
     label.textColor = [UIColor redColor];
     
@@ -167,14 +167,14 @@
         [self performSelector:@selector(saveToDBProcess) withObject:nil afterDelay:1];
     }
 }
--(void) saveToDBProcess{
+- (void)saveToDBProcess{
     UILabel *label = (UILabel *)[self.view viewWithTag:4 + 10000];
     label.textColor = [UIColor redColor];
     PERF_ENTER_( saveAllToDB )
     [self.model saveAllToDB];
     PERF_LEAVE_( saveAllToDB )
 }
--(void) refreshUI{
+- (void)refreshUI{
     UILabel *label = (UILabel *)[self.view viewWithTag:5 + 10000];
     label.textColor = [UIColor redColor];
     
@@ -183,7 +183,7 @@
         SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
     }
 }
--(void) loadFromDBProcess{
+- (void)loadFromDBProcess{
     self.model = [NSArray loadFromDBWithClass:[RubyChinaNodeEntity class]];
     
     [self performSelector:@selector(refreshUI) withObject:nil afterDelay:1];

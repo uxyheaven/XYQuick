@@ -36,10 +36,10 @@
 +(id) modelWithClass:(Class)aClass;
 
 #pragma mark - net
-//-(void) loadFromServer/
+//- (void)loadFromServer/
 
 #pragma mark - database
-//-(void) loadFromDatabase
+//- (void)loadFromDatabase
 
 - (void)addObject:(id)anObject;
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index;
