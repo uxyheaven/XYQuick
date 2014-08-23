@@ -35,28 +35,28 @@ typedef enum {
 @property (nonatomic, assign) BOOL freezable;
 @property (nonatomic, assign) BOOL forceReload;
 //
-+(id) defaultSettings;
++ (id)defaultSettings;
 
--(HttpRequest *) get:(NSString *)path;
--(HttpRequest *) get:(NSString *)path
+- (HttpRequest *)get:(NSString *)path;
+- (HttpRequest *)get:(NSString *)path
               params:(id)anObject;
 
--(HttpRequest *) post:(NSString *)path
+- (HttpRequest *)post:(NSString *)path
                params:(id)anObject;
 
--(HttpRequest *) request:(NSString *)path
+- (HttpRequest *)request:(NSString *)path
                   params:(id)anObject
                   method:(HTTPMethod)httpMethod;
 // cancel
 - (void)cancelRequestWithString:(NSString*)string;
 
--(id) submit:(HttpRequest *)op;
+- (id)submit:(HttpRequest *)op;
 
 //////////////////        Image        ////////////////////
 #pragma mark- Image
 // 设置图片缓存引擎
 #define XY_setupWebImageEngine [UIImageView setDefaultEngine:[RequestHelper webImageEngine]];
-+(id) webImageEngine;
++ (id)webImageEngine;
 
 // 子类需要重新写, 暂时废弃
 //+(NSString *) generateAccessTokenWithObject:(id)anObject;
@@ -65,10 +65,10 @@ typedef enum {
 #pragma mark -  MKNetworkOperation (XY)
 @interface MKNetworkOperation (XY)
 
--(id) uploadFiles:(NSDictionary *)name_path;
--(id) succeed:(RequestHelper_normalRequestSucceedBlock)blockS
+- (id)uploadFiles:(NSDictionary *)name_path;
+- (id)succeed:(RequestHelper_normalRequestSucceedBlock)blockS
        failed:(RequestHelper_normalRequestFailedBlock)blockF;
--(id) submitInQueue:(RequestHelper *)requests;
+- (id)submitInQueue:(RequestHelper *)requests;
 @end
 
 #pragma mark - download
@@ -79,8 +79,8 @@ typedef enum {
 
 @property (nonatomic, copy) NSString *toFile;
 
--(id) submitInQueue:(DownloadHelper *)requests;
--(id) progress:(RequestHelper_downloadRequestProgressBlock)blockP;
+- (id)submitInQueue:(DownloadHelper *)requests;
+- (id)progress:(RequestHelper_downloadRequestProgressBlock)blockP;
 
 // 请重载此方法实现自己的通用解析方法
 -(id) succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
@@ -88,12 +88,12 @@ typedef enum {
 @end
 
 @interface DownloadHelper : MKNetworkEngine
-+(id) defaultSettings;      // 参考
++ (id)defaultSettings;      // 参考
 
 // 下载前,请先执行此方法;
 - (void)setup;
 
--(Downloader *) download:(NSString *)remoteURL
+- (Downloader *)download:(NSString *)remoteURL
                       to:(NSString*)filePath
                   params:(id)anObject
         breakpointResume:(BOOL)isResume;
@@ -101,12 +101,12 @@ typedef enum {
 - (void)cancelAllDownloads;
 - (void)cancelDownloadWithString:(NSString *)string;
 
--(NSArray *) allDownloads;
--(Downloader *) getADownloadWithString:(NSString *)string;
+- (NSArray *)allDownloads;
+- (Downloader *)getADownloadWithString:(NSString *)string;
 
 - (void)emptyTempFile;
 
--(id) submit:(Downloader *)op;
+- (id)submit:(Downloader *)op;
 
 #pragma mark- todo ,数量控制
 // 定义队列最大并发数量, 默认为wifi下 6, 2g/3g下 2

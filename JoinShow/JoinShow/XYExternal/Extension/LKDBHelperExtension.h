@@ -25,7 +25,7 @@
 @interface NSArray(XY_LKDBHelper)
 
 - (void)saveAllToDB;
-+(id) loadFromDBWithClass:(Class)modelClass;
++ (id)loadFromDBWithClass:(Class)modelClass;
 
 @end
 #endif

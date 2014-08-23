@@ -24,14 +24,14 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
     
     //如果左上角需要画圆角，画出一个弧线出来。
-    if (cornerMask & UIImageRoundedCornerTopLeft) {
-        
+    if (cornerMask & UIImageRoundedCornerTopLeft)
+    {
         //已左上的正方形的右下脚为圆心，半径为radius， 180度到90度画一个弧线，
         CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,
                         radius, M_PI, M_PI / 2, 1);
     }
-    
-    else {
+    else
+    {
         //如果不需要画左上角的弧度。从线2终点，画到线3的终点，
         CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height);
         
@@ -44,11 +44,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
                             rect.origin.y + rect.size.height);
     
     //画右上角
-    if (cornerMask & UIImageRoundedCornerTopRight) {
+    if (cornerMask & UIImageRoundedCornerTopRight)
+    {
         CGContextAddArc(context, rect.origin.x + rect.size.width - radius,
                         rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
     }
-    else {
+    else
+    {
         CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height);
         CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height - radius);
     }
@@ -56,11 +58,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + radius);
     
     //画右下角弧线
-    if (cornerMask & UIImageRoundedCornerBottomRight) {
+    if (cornerMask & UIImageRoundedCornerBottomRight)
+    {
         CGContextAddArc(context, rect.origin.x + rect.size.width - radius, rect.origin.y + radius,
                         radius, 0.0f, -M_PI / 2, 1);
     }
-    else {
+    else
+    {
         CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y);
         CGContextAddLineToPoint(context, rect.origin.x + rect.size.width - radius, rect.origin.y);
     }
@@ -68,11 +72,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
     
     //画左下角弧线
-    if (cornerMask & UIImageRoundedCornerBottomLeft) {
+    if (cornerMask & UIImageRoundedCornerBottomLeft)
+    {
         CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,
                         -M_PI / 2, M_PI, 1);
     }
-    else {
+    else
+    {
         CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y);
         CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + radius);
     }
@@ -82,7 +88,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 
 @implementation UIImage (XY)
 
-+(UIImage *) image:(NSString *)resourceName{
++ (UIImage *)image:(NSString *)resourceName{
     UIImage *img = nil;
     if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
         img = [[UIImage imageNamed:resourceName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -93,7 +99,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return img;
 }
 
-+(UIImage *) imageWithFile:(NSString *)path{
++ (UIImage *)imageWithFile:(NSString *)path{
     UIImage *img = nil;
     
     if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
@@ -106,7 +112,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 
 //等比例缩放
--(UIImage *) scaleToSize:(CGSize)size
+- (UIImage *)scaleToSize:(CGSize)size
 {
     UIGraphicsBeginImageContext(size);
     [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
@@ -116,7 +122,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 
 
--(UIImage *) transprent
+- (UIImage *)transprent
 {
 	CGImageAlphaInfo alpha = CGImageGetAlphaInfo( self.CGImage );
 	
@@ -280,7 +286,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextRotateCTM( bitmap, M_PI / 180 * angle );
     
     CGContextScaleCTM( bitmap, 1.0, -1.0 );
-    CGContextDrawImage( bitmap, CGRectMake( -(imageSize.width / 2), -(imageSize.height / 2), imageSize.width, imageSize.height), self.CGImage );
+    CGContextDrawImage( bitmap, CGRectMake( - (imageSize.width / 2), - (imageSize.height / 2), imageSize.width, imageSize.height), self.CGImage );
     
 	result = UIGraphicsGetImageFromCurrentImageContext();
 	
@@ -557,7 +563,8 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 // compression is 0(most)..1(least)
 - (void)saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality{
-    if ([UIImageJPEGRepresentation(self, quality) writeToFile:path atomically:YES]) {
+    if ([UIImageJPEGRepresentation(self, quality) writeToFile:path atomically:YES])
+    {
     }
 }
 - (void)saveAsPhotoWithPath:(NSString *)path{
@@ -578,7 +585,8 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	// First get the image into your data buffer
     CGImageRef inImage = self.CGImage;
     int nbPerCompt = CGImageGetBitsPerPixel(inImage);
-    if(nbPerCompt != 32){
+    if (nbPerCompt != 32)
+    {
         UIImage *tmpImage = [self normalize];
         inImage = tmpImage.CGImage;
     }
@@ -615,12 +623,14 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	CGImageRelease(imageRef);
 	CFRelease(m_DataRef);
     free(m_PixelBuf);
+    
 	return finalImage;
 }
 
 #define SQUARE(i) ((i)*(i))
 inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int) * count); }
-+ (void) applyStackBlurToBuffer:(UInt8*)targetBuffer width:(const int)w height:(const int)h withRadius:(NSUInteger)inradius {
++ (void) applyStackBlurToBuffer:(UInt8*)targetBuffer width:(const int)w height:(const int)h withRadius:(NSUInteger)inradius
+{
     // Constants
 	const int radius = inradius; // Transform unsigned into signed for further operations
 	const int wm = w - 1;
@@ -647,7 +657,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     
     const size_t dvcount = 256 * divsum;
     int *dv = malloc(sizeof(int) * dvcount);
-	for (int i = 0;i < dvcount;i++) {
+	for (int i = 0;i < dvcount;i++)
+    {
 		dv[i] = (i / divsum);
 	}
     
@@ -662,10 +673,12 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 	int rbs;
     
 	int yw = 0, yi = 0;
-	for (y = 0;y < h;y++) {
+	for (y = 0;y < h;y++)
+    {
 		rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
 		
-		for(int i = -radius;i <= radius;i++){
+		for (int i = -radius;i <= radius;i++)
+        {
 			sir = &stack[(i + radius)*3];
 			int offset = (yi + MIN(wm, MAX(i, 0)))*4;
 			sir[0] = targetBuffer[offset];
@@ -676,11 +689,14 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 			rsum += sir[0] * rbs;
 			gsum += sir[1] * rbs;
 			bsum += sir[2] * rbs;
-			if (i > 0){
+			if (i > 0)
+            {
 				rinsum += sir[0];
 				ginsum += sir[1];
 				binsum += sir[2];
-			} else {
+			}
+            else
+            {
 				routsum += sir[0];
 				goutsum += sir[1];
 				boutsum += sir[2];
@@ -688,7 +704,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 		}
 		stackpointer = radius;
 		
-		for (x = 0;x < w;x++) {
+		for (x = 0;x < w;x++)
+        {
 			r[yi] = dv[rsum];
 			g[yi] = dv[gsum];
 			b[yi] = dv[bsum];
@@ -704,7 +721,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 			goutsum -= sir[1];
 			boutsum -= sir[2];
 			
-			if (y == 0){
+			if (y == 0)
+            {
 				vmin[x] = MIN(x + radius + 1, wm);
 			}
 			
@@ -736,10 +754,12 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 		yw += w;
 	}
     
-	for (x = 0;x < w;x++) {
+	for (x = 0;x < w;x++)
+    {
 		rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
 		yp = -radius*w;
-		for(int i = -radius;i <= radius;i++) {
+		for(int i = -radius;i <= radius;i++)
+        {
 			yi = MAX(0, yp) + x;
 			
 			sir = &stack[(i + radius)*3];
@@ -764,13 +784,15 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 				boutsum += sir[2];
 			}
 			
-			if (i < hm) {
+			if (i < hm)
+            {
 				yp += w;
 			}
 		}
 		yi = x;
 		stackpointer = radius;
-		for (y = 0;y < h;y++) {
+		for (y = 0;y < h;y++)
+        {
 			int offset = yi*4;
 			targetBuffer[offset]     = dv[rsum];
 			targetBuffer[offset + 1] = dv[gsum];
@@ -786,7 +808,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 			goutsum -= sir[1];
 			boutsum -= sir[2];
 			
-			if (x == 0){
+			if (x == 0)
+            {
 				vmin[y] = MIN(y + r1, hm)*w;
 			}
 			p = x + vmin[y];
@@ -824,7 +847,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     free(dv);
 }
 
-- (UIImage *) normalize {
+- (UIImage *)normalize {
     int width = self.size.width;
     int height = self.size.height;
     CGColorSpaceRef genericColorSpace = CGColorSpaceCreateDeviceRGB();
@@ -846,7 +869,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return result;
 }
 
--(UIImage *) fixOrientation{
+- (UIImage *)fixOrientation{
     // No-op if the orientation is already correct
     if (self.imageOrientation == UIImageOrientationUp)
         return self;
@@ -855,7 +878,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
     CGAffineTransform transform = CGAffineTransformIdentity;
     
-    switch (self.imageOrientation) {
+    switch (self.imageOrientation)
+    {
         case UIImageOrientationDown:
         case UIImageOrientationDownMirrored:
             transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
@@ -877,7 +901,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
             break;
     }
     
-    switch (self.imageOrientation) {
+    switch (self.imageOrientation)
+    {
         case UIImageOrientationUpMirrored:
         case UIImageOrientationDownMirrored:
             transform = CGAffineTransformTranslate(transform, self.size.width, 0);
@@ -900,7 +925,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
                                              CGImageGetColorSpace(self.CGImage),
                                              CGImageGetBitmapInfo(self.CGImage));
     CGContextConcatCTM(ctx, transform);
-    switch (self.imageOrientation) {
+    switch (self.imageOrientation)
+    {
         case UIImageOrientationLeft:
         case UIImageOrientationLeftMirrored:
         case UIImageOrientationRight:
@@ -919,6 +945,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     UIImage *img = [UIImage imageWithCGImage:cgimg];
     CGContextRelease(ctx);
     CGImageRelease(cgimg);
+    
     return img;
 }
 
@@ -931,11 +958,13 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 
 - (UIImage *)imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction
 {
-	if (color) {
+	if (color)
+    {
 		// Construct new image the same size as this one.
 		UIImage *image;
 		
-		if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
+		if ([UIScreen instancesRespondToSelector:@selector(scale)])
+        {
 			UIGraphicsBeginImageContextWithOptions([self size], NO, 0.f); // 0.f for scale means "scale for device's main screen".
 		} else {
 			UIGraphicsBeginImageContext([self size]);
@@ -952,7 +981,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 		[self drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.0];
 		
 		// Finally, composite this image over the tinted mask at desired opacity.
-		if (fraction > 0.0) {
+		if (fraction > 0.0)
+        {
 			// We want behaviour like NSCompositeSourceOver on Mac OS X.
 			[self drawInRect:rect blendMode:kCGBlendModeSourceAtop alpha:fraction];
 		}
@@ -964,17 +994,17 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 	
 	return self;
 }
-- (UIImage *) imageWithTintColor:(UIColor *)tintColor
+- (UIImage *)imageWithTintColor:(UIColor *)tintColor
 {
     return [self imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
 }
 
-- (UIImage *) imageWithGradientTintColor:(UIColor *)tintColor
+- (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor
 {
     return [self imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
 }
 
-- (UIImage *) imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
+- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
 {
     //We want to keep alpha, set opaque to NO; Use 0.0f for scale to use the scale factor of the device’s main screen.
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
@@ -985,7 +1015,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     //Draw the tinted image in context
     [self drawInRect:bounds blendMode:blendMode alpha:1.0f];
     
-    if (blendMode != kCGBlendModeDestinationIn) {
+    if (blendMode != kCGBlendModeDestinationIn)
+    {
         [self drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
     }
     
@@ -994,4 +1025,5 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     
     return tintedImage;
 }
+
 @end

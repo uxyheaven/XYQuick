@@ -34,15 +34,17 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @implementation XYTimer
 
-- (void)stop{
-    if (_timer.isValid){
+- (void)stop
+{
+    if (_timer.isValid)
         [_timer invalidate];
-    }
 }
-- (void)handleTimer{
+- (void)handleTimer
+{
     NSTimeInterval ti = [[NSDate date] timeIntervalSince1970] - _start_at;
     
-    if (_block) {
+    if (_block)
+    {
         _block(self, ti);
         return;
     }
@@ -51,7 +53,8 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 }
 
 
-- (void)dealloc{
+- (void)dealloc
+{
 
 }
 
@@ -72,11 +75,13 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 -(instancetype) initWithXYTimer:(XYTimer *)timer
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _timer = timer;
     }
     return self;
 }
+
 - (void)dealloc
 {
     [_timer stop];
@@ -88,30 +93,36 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @dynamic XYtimers;
 
--(NSMutableDictionary *) XYtimers{
+-(NSMutableDictionary *) XYtimers
+{
     id object = objc_getAssociatedObject(self, NSObject_XYTimers);
     
-    if (nil == object) {
+    if (nil == object)
+    {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
         objc_setAssociatedObject(self, NSObject_XYTimers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
         return dic;
     }
     
     return object;
 }
 
--(NSTimer *) timer:(NSTimeInterval)interval name:(NSString *)name{
+-(NSTimer *) timer:(NSTimeInterval)interval name:(NSString *)name
+{
    return [self timer:interval repeat:NO name:name];
 }
 
 
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name{
+-(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
+{
     NSAssert(name.length > 1, @"name 不能为空");
     
     NSMutableDictionary *timers = self.XYtimers;
     XYTimer *timer2 = timers[name];
     
-    if (timer2) {
+    if (timer2)
+    {
         [self cancelTimer:name];
     }
 
@@ -136,7 +147,8 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     return timer.timer;
 }
 
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block{
+-(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
+{
     NSString *timerName = (name == nil) ? @"" : name;
     
     NSMutableDictionary *timers = self.XYtimers;
@@ -158,19 +170,22 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     return timer.timer;
 }
 
-- (void)cancelTimer:(NSString *)name{
+- (void)cancelTimer:(NSString *)name
+{
     NSString *timerName = (name == nil) ? @"" : name;
 
     NSMutableDictionary *timers = self.XYtimers;
     XYTimerContainer *timer2 = timers[timerName];
     
-    if (timer2) {
+    if (timer2)
+    {
         [timer2.timer stop];
         [timers removeObjectForKey:timerName];
     }
 }
 
-- (void)cancelAllTimer{
+- (void)cancelAllTimer
+{
     NSMutableDictionary *timers = self.XYtimers;
     [timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [(XYTimer *)obj stop];
@@ -183,7 +198,8 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 #pragma mark - XYTicker
 
-@interface XYTicker(){
+@interface XYTicker()
+{
     
 }
 

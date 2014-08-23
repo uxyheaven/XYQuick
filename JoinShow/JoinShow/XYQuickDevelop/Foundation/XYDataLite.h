@@ -51,10 +51,10 @@ DEF_DATALITE_OBJECT( __name , __defaultObject)
 @interface XYDataLite : NSObject
 
 // dont support bool
-+(id) readObjectForKey:(NSString *)key;
++ (id)readObjectForKey:(NSString *)key;
 
 // defaultObject dont support bool,
-+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject;
++ (id)readObjectForKey:(NSString *)key defaultObject:(id)defaultObject;
 
 + (void)writeObject:(id)anObject forKey:(NSString *)key;
 // if bSync == YES, run [[NSUserDefaults standardUserDefaults] synchronize]

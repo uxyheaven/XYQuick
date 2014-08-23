@@ -63,7 +63,7 @@
 @interface NSObject(XYUISignalResponder)
 
 // 是否响应Signal
--(BOOL) isUISignalResponder;
+- (BOOL)isUISignalResponder;
 
 @end
 
@@ -73,14 +73,14 @@
 
 @property (nonatomic, copy) NSString *nameSpace;
 
-+(NSString *) SIGNAL;
-+(NSString *) SIGNAL_TYPE;
++ (NSString *)SIGNAL;
++ (NSString *)SIGNAL_TYPE;
 
 //- (void)handleUISignal:(XYUISignal *)signal;
 
--(XYUISignal *) sendUISignal:(NSString *)name;
--(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object;
--(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object from:(id)source;
+- (XYUISignal *)sendUISignal:(NSString *)name;
+- (XYUISignal *)sendUISignal:(NSString *)name withObject:(NSObject *)object;
+- (XYUISignal *)sendUISignal:(NSString *)name withObject:(NSObject *)object from:(id)source;
 
 @end
 

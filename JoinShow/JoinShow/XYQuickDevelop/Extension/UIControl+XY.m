@@ -65,7 +65,8 @@ DUMMY_CLASS(UIControl_XY);
 - (void)dealloc
 {
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
-    if (opreations) {
+    if (opreations)
+    {
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self removeHandlerForEvent:[UIControl eventWithName:key]];
         }];
@@ -83,6 +84,7 @@ DUMMY_CLASS(UIControl_XY);
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
         objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    
     [opreations removeObjectForKey:methodName];
     [self removeTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
 }
@@ -98,49 +100,52 @@ DUMMY_CLASS(UIControl_XY);
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
         objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    
     [opreations setObject:[block copy] forKey:methodName];
-    
     [self addTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
-    
 }
 
 
--(void)UIControlEventTouchDown{[self callActionBlock:UIControlEventTouchDown];}
--(void)UIControlEventTouchDownRepeat{[self callActionBlock:UIControlEventTouchDownRepeat];}
--(void)UIControlEventTouchDragInside{[self callActionBlock:UIControlEventTouchDragInside];}
--(void)UIControlEventTouchDragOutside{[self callActionBlock:UIControlEventTouchDragOutside];}
--(void)UIControlEventTouchDragEnter{[self callActionBlock:UIControlEventTouchDragEnter];}
--(void)UIControlEventTouchDragExit{[self callActionBlock:UIControlEventTouchDragExit];}
--(void)UIControlEventTouchUpInside{[self callActionBlock:UIControlEventTouchUpInside];}
--(void)UIControlEventTouchUpOutside{[self callActionBlock:UIControlEventTouchUpOutside];}
--(void)UIControlEventTouchCancel{[self callActionBlock:UIControlEventTouchCancel];}
--(void)UIControlEventValueChanged{[self callActionBlock:UIControlEventValueChanged];}
--(void)UIControlEventEditingDidBegin{[self callActionBlock:UIControlEventEditingDidBegin];}
--(void)UIControlEventEditingChanged{[self callActionBlock:UIControlEventEditingChanged];}
--(void)UIControlEventEditingDidEnd{[self callActionBlock:UIControlEventEditingDidEnd];}
--(void)UIControlEventEditingDidEndOnExit{[self callActionBlock:UIControlEventEditingDidEndOnExit];}
--(void)UIControlEventAllTouchEvents{[self callActionBlock:UIControlEventAllTouchEvents];}
--(void)UIControlEventAllEditingEvents{[self callActionBlock:UIControlEventAllEditingEvents];}
--(void)UIControlEventApplicationReserved{[self callActionBlock:UIControlEventApplicationReserved];}
--(void)UIControlEventSystemReserved{[self callActionBlock:UIControlEventSystemReserved];}
--(void)UIControlEventAllEvents{[self callActionBlock:UIControlEventAllEvents];}
+- (void)UIControlEventTouchDown{[self callActionBlock:UIControlEventTouchDown];}
+- (void)UIControlEventTouchDownRepeat{[self callActionBlock:UIControlEventTouchDownRepeat];}
+- (void)UIControlEventTouchDragInside{[self callActionBlock:UIControlEventTouchDragInside];}
+- (void)UIControlEventTouchDragOutside{[self callActionBlock:UIControlEventTouchDragOutside];}
+- (void)UIControlEventTouchDragEnter{[self callActionBlock:UIControlEventTouchDragEnter];}
+- (void)UIControlEventTouchDragExit{[self callActionBlock:UIControlEventTouchDragExit];}
+- (void)UIControlEventTouchUpInside{[self callActionBlock:UIControlEventTouchUpInside];}
+- (void)UIControlEventTouchUpOutside{[self callActionBlock:UIControlEventTouchUpOutside];}
+- (void)UIControlEventTouchCancel{[self callActionBlock:UIControlEventTouchCancel];}
+- (void)UIControlEventValueChanged{[self callActionBlock:UIControlEventValueChanged];}
+- (void)UIControlEventEditingDidBegin{[self callActionBlock:UIControlEventEditingDidBegin];}
+- (void)UIControlEventEditingChanged{[self callActionBlock:UIControlEventEditingChanged];}
+- (void)UIControlEventEditingDidEnd{[self callActionBlock:UIControlEventEditingDidEnd];}
+- (void)UIControlEventEditingDidEndOnExit{[self callActionBlock:UIControlEventEditingDidEndOnExit];}
+- (void)UIControlEventAllTouchEvents{[self callActionBlock:UIControlEventAllTouchEvents];}
+- (void)UIControlEventAllEditingEvents{[self callActionBlock:UIControlEventAllEditingEvents];}
+- (void)UIControlEventApplicationReserved{[self callActionBlock:UIControlEventApplicationReserved];}
+- (void)UIControlEventSystemReserved{[self callActionBlock:UIControlEventSystemReserved];}
+- (void)UIControlEventAllEvents{[self callActionBlock:UIControlEventAllEvents];}
 
 
-- (void)callActionBlock:(UIControlEvents)event {
+- (void)callActionBlock:(UIControlEvents)event
+{
     
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
     
-    if(opreations == nil) return;
+    if(opreations == nil)
+        return;
+    
     void(^block)(id sender) = [opreations objectForKey:[UIControl eventName:event]];
     
-    if (block) block(self);
+    if (block)
+        block(self);
     
 }
-+(NSString *)eventName:(UIControlEvents)event
++ (NSString *)eventName:(UIControlEvents)event
 {
     return [XY_DicControlEventString objectForKey:@(event)];
 }
-+(UIControlEvents)eventWithName:(NSString *)name
++ (UIControlEvents)eventWithName:(NSString *)name
 {
     return [[XY_DicControlStringEvent objectForKey:name] integerValue];
 }

@@ -20,7 +20,8 @@
  * @param replacement 劫持后的方法
  * @return 返回劫持前的方法original
  */
-static Method XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
+static Method XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
+{
     Method a = class_getInstanceMethod(c, original);
     Method b = class_getInstanceMethod(c, replacement);
     // class_addMethod 为该类增加一个新方法
@@ -28,14 +29,17 @@ static Method XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
     {
         // 替换类方法的定义
         class_replaceMethod(c, replacement, method_getImplementation(a), method_getTypeEncoding(a));
+        
         return b;   // 返回劫持前的方法
     }
     else
     {
         // 交换2个方法的实现
         method_exchangeImplementations(a, b);
+        
         return b;   // 返回劫持前的方法
     }
+    
     return nil;   //
 }
 
@@ -57,7 +61,7 @@ typedef enum {
  * @param kType 文件所在目录类型. documents:documents文件夹, tmp:Tmp文件夹, app,resource:app文件夹
  * @return 文件路径
  */
-+(NSString *) dataFilePath:(NSString *)file ofType:(FilePathOption)kType;
++ (NSString *)dataFilePath:(NSString *)file ofType:(FilePathOption)kType;
 
 /** 
  * @brief 创建目录, 已经移植到XYSandbox
@@ -71,7 +75,7 @@ typedef enum {
  * @param unicodeStr 需要被转的字符串
  * @return 转换后的字串
  */
-+(NSString *) replaceUnicode:(NSString *)unicodeStr;
++ (NSString *)replaceUnicode:(NSString *)unicodeStr;
 
 
 typedef enum {
@@ -91,9 +95,9 @@ typedef enum {
  * @param block 每一个字符串都执行该block
  * @return 范围
  */
-+(NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
-+(NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
-+(NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block;
++ (NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
++ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
++ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block;
 
 
 
@@ -106,7 +110,7 @@ typedef enum {
  * @param operation 模式. XYCommon_lastLocation 从上次结束的位置开始查找,提高效率
  * @return 返回没有属性的xml中指定节点的值
  */
-+(NSString *) getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location;
++ (NSString *)getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location;
 
 
 /**
@@ -117,7 +121,7 @@ typedef enum {
  */
 + (void)dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *)outstring;
 // 打印视图层次结构
-+(NSString *) displayViews: (UIView *) aView;
++ (NSString *) displayViews: (UIView *) aView;
 
 
 /**
@@ -128,8 +132,8 @@ typedef enum {
  * @param options (已取消)匹配选项使用
  * @return 结果的字符串的array
  */
-+(NSMutableArray *) analyseString:(NSString *)str regularExpression:(NSString *)regexStr;
-+(NSMutableArray *) analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr;
++ (NSMutableArray *)analyseString:(NSString *)str regularExpression:(NSString *)regexStr;
++ (NSMutableArray *)analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr;
 
 #pragma mark todo, 分享facebook,发EMail
 /**
@@ -146,9 +150,9 @@ typedef enum {
  * @brief 返回UUID
  * @return UUID
  */
-+(NSString *) UUID;
++ (NSString *)UUID;
 // 没有"-"
-+(NSString *) UUIDWithoutMinus;
++ (NSString *)UUIDWithoutMinus;
 
 /**
  * @brief 用[UIApplication sharedApplication]打开一个URL
@@ -160,7 +164,7 @@ typedef enum {
  * @brief 得到当前UIViewController
  * @return 当前UIViewController
  */
-+ (UIViewController *) topMostController;
++ (UIViewController *)topMostController;
 
 
 #define SHOWMSG(title, msg, cancel) [XYCommon showAlertViewTitle:title message:msg cancelButtonTitle:cancel];
@@ -175,15 +179,15 @@ typedef enum {
 /**
  * @brief 替换string里面的单引号'为2个单引号'',用于处理SQL问题
  */
-+(NSString *) StringForSQL:(NSString *)str;
++ (NSString *)StringForSQL:(NSString *)str;
 
 /**
  * @brief 返回日期格式器
  * @return dateFormatter yyyy-MM-dd HH:mm:ss. dateFormatterTemp 很多地方共用的. dateFormatterByUTC 返回UTC格式的
  */
-+(NSDateFormatter *) dateFormatter;
-+(NSDateFormatter *) dateFormatterTemp;
-+(NSDateFormatter *) dateFormatterByUTC;
++ (NSDateFormatter *)dateFormatter;
++ (NSDateFormatter *)dateFormatterTemp;
++ (NSDateFormatter *)dateFormatterByUTC;
 
 /**
  * @brief  打印内存情况
@@ -198,7 +202,7 @@ typedef enum {
  * @param newVersion 新版本号
  * @return 比较oldVersion和newVersion，如果oldVersion比newVersion旧，则返回YES，否则NO
  */
-+(BOOL) compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion;
++ (BOOL)compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion;
 
 
 #pragma mark - to do

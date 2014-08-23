@@ -14,39 +14,54 @@
 
 #pragma mark - todo 多类型判断
 
-+(id) readObjectForKey:(NSString *)key{
++ (id)readObjectForKey:(NSString *)key
+{
     return [self readObjectForKey:key defaultObject:nil];
 }
-+(id) readObjectForKey:(NSString *)key defaultObject:(id)defaultObject{
++ (id)readObjectForKey:(NSString *)key defaultObject:(id)defaultObject
+{
     id tempObject = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     
-    if (tempObject) {
+    if (tempObject)
+    {
         return tempObject;
-    }else if (defaultObject) {
+    }else if (defaultObject)
+    {
         return defaultObject;
-    } else{
+    }
+    else
+    {
         return nil;
     }
 }
 
-+ (void)writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync{
-    if (anObject == nil) {
++ (void)writeObject:(id)anObject forKey:(NSString *)key synchronize:(BOOL)bSync
+{
+    if (anObject == nil)
+    {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-    }else{
+    }
+    else
+    {
         [[NSUserDefaults standardUserDefaults] setObject:anObject forKey:key];
     }
-    if (bSync) {
+    
+    if (bSync)
+    {
         [self synchronize];
     }
 }
-+ (void)writeObject:(id)anObject forKey:(NSString *)key{
++ (void)writeObject:(id)anObject forKey:(NSString *)key
+{
     [self writeObject:anObject forKey:key synchronize:YES];
 }
-+ (void)registerDefaults:(NSDictionary *)dic{
++ (void)registerDefaults:(NSDictionary *)dic
+{
     [[NSUserDefaults standardUserDefaults] registerDefaults:dic];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+ (void)synchronize{
++ (void)synchronize
+{
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

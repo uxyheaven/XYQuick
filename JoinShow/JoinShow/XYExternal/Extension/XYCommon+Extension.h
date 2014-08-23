@@ -36,15 +36,15 @@
 #define HIDDENMBProgressHUD [XYCommon hiddenMBProgressHUD];
 + (void)hiddenMBProgressHUD;
 
-+(MBProgressHUD *) MBProgressHUD;
++ (MBProgressHUD *)MBProgressHUD;
 
 #define SHOWMBProgressHUD(aTitle, aMsg, aImg, aDimBG, aDelay) [XYCommon showMBProgressHUDTitle:aTitle msg:aMsg image:aImg dimBG:aDimBG delay:aDelay];
-+(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d;
++ (MBProgressHUD *)showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d;
 
 #define SHOWMBProgressHUDIndeterminate(aTitle, aMsg, aDimBG) [XYCommon showMBProgressHUDModeIndeterminateTitle:aTitle msg:aMsg dimBG:aDimBG];
-+(MBProgressHUD *) showMBProgressHUDModeIndeterminateTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG;
++ (MBProgressHUD *)showMBProgressHUDModeIndeterminateTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG;
 
-+(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG executeBlock:(void(^)(MBProgressHUD *hud))blockE finishBlock:(void(^)(void))blockF;
++ (MBProgressHUD *)showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG executeBlock:(void(^)(MBProgressHUD *hud))blockE finishBlock:(void(^)(void))blockF;
 #else
 #define SHOWMBProgressHUD(aTitle, aMsg, aImg, aDimBG, aDelay) SHOWMSG(aTitle, aMsg, @"cancel");
 #endif
@@ -58,7 +58,7 @@
  * blockS 成功的代码块
  * blockF 失败的代码块
  */
-+(ASIHTTPRequest *) startAsynchronousRequestWithURLString:(NSString *)str
++ (ASIHTTPRequest *)startAsynchronousRequestWithURLString:(NSString *)str
                                                   succeed:(void (^)(ASIHTTPRequest *request))blockS
                                                    failed:(void (^)(NSError *error))blockF;
 #endif

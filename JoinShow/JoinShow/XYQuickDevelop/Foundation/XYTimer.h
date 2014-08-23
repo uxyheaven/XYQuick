@@ -42,10 +42,10 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *XYtimers;
 
--(NSTimer *) timer:(NSTimeInterval)interval name:(NSString *)name;
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name;
+- (NSTimer *)timer:(NSTimeInterval)interval name:(NSString *)name;
+- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name;
 
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
+- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
 
 //- (void)pauseTimer;
 //- (void)resumeTimer;

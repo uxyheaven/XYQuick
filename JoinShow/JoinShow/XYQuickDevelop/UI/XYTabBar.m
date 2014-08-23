@@ -18,7 +18,7 @@
 
 @implementation XYTabBar
 
--(id) initWithFrame:(CGRect)frame items:(NSArray *)items
+- (id)initWithFrame:(CGRect)frame items:(NSArray *)items
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -30,7 +30,8 @@
 		self.items = [NSMutableArray arrayWithCapacity:[items count]];
 		UIButton *btn;
 
-		for (int i = 0; i < [items count]; i++) {
+		for (int i = 0; i < [items count]; i++)
+        {
 			btn = [UIButton buttonWithType:UIButtonTypeCustom];
 			//btn.showsTouchWhenHighlighted = YES;
 			btn.tag = i + kXYTabBar_itemStartTag;
@@ -39,28 +40,33 @@
             
             // 设置图片
             image = [UIImage imageNamed:item[@"normal"]];
-            if (image) {
+            if (image)
+            {
                 [btn setImage:image forState:UIControlStateNormal];
             }
             
             image = [UIImage imageNamed:item[@"highlighted"]];
-            if (image) {
+            if (image)
+            {
                 [btn setImage:image forState:UIControlStateHighlighted];
             }
             
             image = [UIImage imageNamed:item[@"selected"]];
-            if (image) {
+            if (image)
+            {
                 [btn setImage:image forState:UIControlStateSelected];
             }
             
             image = [UIImage imageNamed:item[@"disabled"]];
-            if (image) {
+            if (image)
+            {
                 [btn setImage:image forState:UIControlStateDisabled];
             }
             
             // 设置文字
             NSString *text = item[@"text"];
-            if (text) {
+            if (text)
+            {
                 [btn setTitle:text forState:UIControlStateNormal];
                 btn.titleLabel.textAlignment = NSTextAlignmentCenter;
                 btn.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -78,6 +84,7 @@
             
 		}
     }
+    
     return self;
 }
 
@@ -93,17 +100,21 @@
     // Drawing code
 }
 */
-- (void)setBackgroundImage:(UIImage *)img{
+- (void)setBackgroundImage:(UIImage *)img
+{
     [_backgroundView setImage:img];
 }
 
-- (void)setAnimatedView:(UIImageView *)view{
-    if (_animatedView != view) {
+- (void)setAnimatedView:(UIImageView *)view
+{
+    if (_animatedView != view)
+    {
         _animatedView = view;
         [self addSubview:_animatedView];
     }
 }
-- (void)setupItem:(UIButton *)item index:(NSInteger)index{
+- (void)setupItem:(UIButton *)item index:(NSInteger)index
+{
     // 设置尺寸
     float w = self.bounds.size.width / self.items.count;
     item.frame = CGRectMake(0 + w * index, 0, w, self.frame.size.height);
@@ -127,7 +138,8 @@
     
     item.titleEdgeInsets = UIEdgeInsetsMake(imgW, titleEdgeInsetsLeft, 0, titleEdgeInsetsRight);
 }
-- (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index{
+- (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index
+{
     UIButton *item = _items[index];
     
     [UIView animateWithDuration:0.1f animations:^{
@@ -138,17 +150,19 @@
 {
     UIButton *btn = sender;
     NSInteger index = btn.tag - kXYTabBar_itemStartTag;
-    if ([_delegate respondsToSelector:@selector(tabBar:shouldSelectIndex:)]) {
-        if (![_delegate tabBar:self shouldSelectIndex:index]) {
+    if ([_delegate respondsToSelector:@selector(tabBar:shouldSelectIndex:)])
+    {
+        if (![_delegate tabBar:self shouldSelectIndex:index])
             return;
-        }
     }
+    
     [self selectTabAtIndex:index];
 }
 
 - (void)selectTabAtIndex:(NSInteger)index
 {
-	for (int i = 0; i < [self.items count]; i++) {
+	for (int i = 0; i < [self.items count]; i++)
+    {
 		UIButton *btn = [self.items objectAtIndex:i];
 		btn.selected = NO;
 	}
@@ -156,7 +170,8 @@
 	UIButton *btn = [self.items objectAtIndex:index];
 	btn.selected = YES;
     
-    if ([_delegate respondsToSelector:@selector(tabBar:didSelectIndex:)]) {
+    if ([_delegate respondsToSelector:@selector(tabBar:didSelectIndex:)])
+    {
         [_delegate tabBar:self didSelectIndex:index];
     }
 

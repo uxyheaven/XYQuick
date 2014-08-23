@@ -34,7 +34,7 @@
 #pragma mark- c直接调用
 // Outlet
 // item: @{@"normal" :img1, @"highlighted" :img2, @"selected" :img3, @"disabled":img4, @"text": text}
--(id) initWithFrame:(CGRect)frame items:(NSArray *)items;
+- (id) initWithFrame:(CGRect)frame items:(NSArray *)items;
 - (void)selectTabAtIndex:(NSInteger)index;
 - (void)setBackgroundImage:(UIImage *)img;
 
@@ -50,7 +50,7 @@
 
 @protocol XYTabBarDelegate<NSObject>
 @optional
--(BOOL) tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index;
+- (BOOL)tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index;
 - (void)tabBar:(XYTabBar *)tabBar didSelectIndex:(NSInteger)index;
 - (void)tabBar:(XYTabBar *)tabBar animatedView:(UIImageView *)animatedView item:(UIButton *)item index:(NSInteger)index;
 @end

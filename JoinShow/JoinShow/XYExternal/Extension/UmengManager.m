@@ -12,27 +12,27 @@
 
 //DEF_SINGLETON(UmengManager)
 
-+(void)startWithAppkey{
++ (void)startWithAppkey{
     [MobClick startWithAppkey:Umeng_appkey];
 }
 
-+(void)beginLogPageView:(NSString *)str{
++ (void)beginLogPageView:(NSString *)str{
     [MobClick beginLogPageView:str];
 }
 
-+(void)endLogPageView:(NSString *)str{
++ (void)endLogPageView:(NSString *)str{
     [MobClick endLogPageView:str];
 }
 
-+(void)event:(NSString *)eventID attributes:(NSDictionary *)dic{
++ (void)event:(NSString *)eventID attributes:(NSDictionary *)dic{
     [MobClick event:eventID attributes:dic];
 }
 
-+(void)checkUpdate{
++ (void)checkUpdate{
     [MobClick checkUpdate];
 }
 
-+(NSString *) getConfigParams:(NSString *)key{
++ (NSString *)getConfigParams:(NSString *)key{
     return [MobClick getConfigParams:key];
 }
 

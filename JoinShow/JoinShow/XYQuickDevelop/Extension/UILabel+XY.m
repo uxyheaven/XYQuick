@@ -29,16 +29,20 @@
 
 - (void)resize:(UILabelResizeType)type{
     CGSize size;
-    if (type == UILabelResizeType_constantHeight) {
+    if (type == UILabelResizeType_constantHeight)
+    {
         // 高不变
         size = [self estimateUISizeByHeight:self.bounds.size.height];
-        if (!CGSizeEqualToSize(CGSizeZero, size)) {
+        if (!CGSizeEqualToSize(CGSizeZero, size))
+        {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, self.bounds.size.height);
         }
-    }else if (type == UILabelResizeType_constantWidth) {
+    }else if (type == UILabelResizeType_constantWidth)
+    {
         // 宽不变
         size = [self estimateUISizeByWidth:self.bounds.size.width];
-        if (!CGSizeEqualToSize(CGSizeZero, size)) {
+        if (!CGSizeEqualToSize(CGSizeZero, size))
+        {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, size.height);
         }
         

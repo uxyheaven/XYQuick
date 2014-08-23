@@ -13,22 +13,16 @@
 
 DEF_SINGLETON(IndicatorHelper)
 
-+(id) originalIndicator{
-    /*
-    static dispatch_once_t once;
-    static UIActivityIndicatorView *activityIndicatorView;
-    dispatch_once(&once, ^ {
-        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        activityIndicatorView.hidesWhenStopped = YES;
-    });
-    */
++ (id)originalIndicator
+{
     UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     view.hidesWhenStopped = YES;
     
     return view;
 }
 
-+(id) MBProgressHUD{
++ (id)MBProgressHUD
+{
     static dispatch_once_t once;
     static MBProgressHUD *MB_HUD;
     dispatch_once(&once, ^ {
@@ -36,17 +30,16 @@ DEF_SINGLETON(IndicatorHelper)
     });
     
     return MB_HUD;
-    
-    //return [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
-+(id) indicatorView{
++ (id)indicatorView{
     return [IndicatorHelper MBProgressHUD];
 }
 
 
 //
--(id) message:(NSString *)message{
+- (id)message:(NSString *)message
+{
     MBProgressHUD *hud = [IndicatorHelper indicatorView];
     hud.userInteractionEnabled = NO;
     hud.mode = MBProgressHUDModeText;
@@ -57,13 +50,13 @@ DEF_SINGLETON(IndicatorHelper)
     return hud;
 }
 
--(id) inView:(UIView *)view{
+- (id)inView:(UIView *)view{
     MBProgressHUD *hud = [IndicatorHelper indicatorView];
     [view addSubview:hud];
     
     return hud;
 }
--(id) show{
+- (id)show{
     MBProgressHUD *hud = [IndicatorHelper indicatorView];
     
     [hud show:YES];
@@ -72,11 +65,13 @@ DEF_SINGLETON(IndicatorHelper)
     return hud;
 }
 
--(NSTimeInterval) displayDurationForString:(NSString *)str{
+- (NSTimeInterval)displayDurationForString:(NSString *)str
+{
     return MIN((float)str.length * 0.06 + 0.3, .5);
 }
 
-- (void)bringViewToFront:(UIView *)view{
+- (void)bringViewToFront:(UIView *)view
+{
     //Getting rootViewController
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
@@ -86,4 +81,5 @@ DEF_SINGLETON(IndicatorHelper)
     
     [topController.view addSubview:view];
 }
+
 @end

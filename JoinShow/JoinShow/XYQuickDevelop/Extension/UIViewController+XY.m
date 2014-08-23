@@ -19,29 +19,36 @@
 
 @dynamic parameters;
 
--(id) parameters{
+-(id) parameters
+{
     id object = objc_getAssociatedObject(self, UIViewController_key_parameters);
     
     return object;
 }
 
-- (void)setParameters:(id)anObject{
+- (void)setParameters:(id)anObject
+{
     [self willChangeValueForKey:@"parameters"];
     objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"parameters"];
 }
 
-- (void)pushVC:(NSString *)vcName{
+- (void)pushVC:(NSString *)vcName
+{
     [self pushVC:vcName object:nil];
 }
-- (void)pushVC:(NSString *)vcName object:(id)object{
+- (void)pushVC:(NSString *)vcName object:(id)object
+{
     Class class = NSClassFromString(vcName);
     NSAssert(class != nil, @"Class 必须存在");
     UIViewController *vc = nil;
     
-    if ([class conformsToProtocol:@protocol(XYSwitchControllerProtocol)]) {
+    if ([class conformsToProtocol:@protocol(XYSwitchControllerProtocol)])
+    {
         vc = [[NSClassFromString(vcName) alloc] initWithObject:object];
-    }else {
+    }
+    else
+    {
         vc = [[NSClassFromString(vcName) alloc] init];
         vc.parameters = object;
     }
@@ -49,29 +56,36 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)popVC{
+- (void)popVC
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName{
+- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName
+{
     [self modalVC:vcName withNavigationVC:navName object:nil succeed:nil];
 }
 
-- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block{
+- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block
+{
     Class class = NSClassFromString(vcName);
     NSAssert(class != nil, @"Class 必须存在");
     
     UIViewController *vc = nil;
     
-    if ([class conformsToProtocol:@protocol(XYSwitchControllerProtocol)]) {
+    if ([class conformsToProtocol:@protocol(XYSwitchControllerProtocol)])
+    {
         vc = [[NSClassFromString(vcName) alloc] initWithObject:object];
-    }else {
+    }
+    else
+    {
         vc = [[NSClassFromString(vcName) alloc] init];
         vc.parameters = object;
     }
     
     UINavigationController *nvc = nil;
-    if (nvcName) {
+    if (nvcName)
+    {
         nvc = [[NSClassFromString(nvcName) alloc] initWithRootViewController:vc];
         [self presentViewController:nvc animated:YES completion:block];
         
@@ -81,16 +95,19 @@
     [self presentViewController:vc animated:YES completion:block];
 }
 
-- (void)dismissModalVC{
+- (void)dismissModalVC
+{
     [self dismissModalVCWithSucceed:nil];
 }
 - (void)dismissModalVCWithSucceed:(UIViewController_block_void)block{
     [self dismissViewControllerAnimated:YES completion:block];
 }
 
--(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block{
+-(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block
+{
     NSInteger isShow = [[NSUserDefaults standardUserDefaults] integerForKey:key];
-    if (isShow == 0) {
+    if (isShow == 0)
+    {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -102,24 +119,33 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:userGuideView.bounds];
         imageView.tag = UserGuide_tag;
         UIImage *image = LoadImage_nocache(imgName, nil);
-        if (image == nil) {
+        if (image == nil)
+        {
             image = LoadImage_cache(imgName);
         }
         
-        if ([frameString isEqualToString:@"full"] || frameString.length == 0) {
+        if ([frameString isEqualToString:@"full"] || frameString.length == 0)
+        {
             imageView.image = image;
-        }else if ([frameString isEqualToString:@"center"]){
+        }
+        else if ([frameString isEqualToString:@"center"])
+        {
             // 高清屏幕就缩小图片显示尺寸
             imageView.bounds = CGRectMake(0, 0, image.size.width / [UIScreen mainScreen].scale, image.size.height / [UIScreen mainScreen].scale);
             imageView.center = userGuideView.center;
             imageView.image = image;
-        }else if (frameString.length > 0){
+        }
+        else if (frameString.length > 0)
+        {
             // 坐标是string类型
             CGRect rect = CGRectFromString(frameString);
-            if (!CGRectIsEmpty(rect)) {
+            if (!CGRectIsEmpty(rect))
+            {
                 imageView.frame = rect;
                 imageView.image = image;
-            }else{
+            }
+            else
+            {
                 CGPoint point = CGPointFromString(frameString);
                 imageView.bounds = CGRectMake(0, 0, image.size.width / [UIScreen mainScreen].scale, image.size.height / [UIScreen mainScreen].scale);
                 imageView.center = point;
@@ -134,10 +160,14 @@
         btnHide.frame = userGuideView.bounds;
         [btnHide handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
             UIView *bgView = ((UIView *)sender).superview;
-            if (block) {
+            if (block)
+            {
                 block(bgView);
-            }else{
-                if (bgView){
+            }
+            else
+            {
+                if (bgView)
+                {
                     bgView.hidden = YES;
                     
                     // 淡入淡出

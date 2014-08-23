@@ -12,7 +12,7 @@
 
 /***************************************************************/
 #if (1 == __USED_FMDatabase__)
-+(BOOL) updateTable:(NSString *)tableName dbPath:(NSString *)dbPath object:(id)anObject{
++ (BOOL)updateTable:(NSString *)tableName dbPath:(NSString *)dbPath object:(id)anObject{
     // NSString *path = [XYCommon dataFilePath:@"/BeeDatabase/TWP_SkyBookShelf.db" ofType:kCommon_dataFilePath_documents];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
@@ -70,26 +70,29 @@
 /***************************************************************/
 #if (1 == __USED_MBProgressHUD__)
 static MBProgressHUD *HUD = nil;
-+ (void)hiddenMBProgressHUD{
++ (void)hiddenMBProgressHUD
+{
     [HUD hide:YES];
 }
-+(MBProgressHUD *) MBProgressHUD{
++ (MBProgressHUD *)MBProgressHUD
+{
     return HUD;
 }
-+(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d{
++ (MBProgressHUD *)showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg image:(UIImage *)aImg dimBG:(BOOL)dimBG delay:(float)d{
     UIViewController *vc = [self topMostController];
     
-    if (vc == nil) {
+    if (vc == nil)
         return nil;
-    }
     
-    if (nil == HUD) {
+    if (nil == HUD)
+    {
         HUD = [[MBProgressHUD alloc] initWithView:vc.view];
     }
     
     [vc.view addSubview:HUD];
     
-    if (aTitle || aMsg) {
+    if (aTitle || aMsg)
+    {
         HUD.mode = MBProgressHUDModeText;
         HUD.labelText = aTitle;
         HUD.detailsLabelText = aMsg;
@@ -106,23 +109,25 @@ static MBProgressHUD *HUD = nil;
     HUD.dimBackground = dimBG;
     [HUD show:YES];
     
-    if (d > 0) {
+    if (d > 0)
+    {
         [HUD hide:YES afterDelay:d];
     }
     
     return HUD;
 }
 
-+(MBProgressHUD *) showMBProgressHUDModeIndeterminateTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG{
++ (MBProgressHUD *)showMBProgressHUDModeIndeterminateTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG{
     UIViewController *vc = [self topMostController];
     
-    if (vc == nil) {
+    if (vc == nil)
         return nil;
-    }
     
-    if (nil == HUD) {
+    if (nil == HUD)
+    {
         HUD = [[MBProgressHUD alloc] initWithView:vc.view];
     }
+    
     [vc.view addSubview:HUD];
     
     HUD.mode = MBProgressHUDModeIndeterminate;
@@ -135,14 +140,14 @@ static MBProgressHUD *HUD = nil;
     return HUD;
 }
 
-+(MBProgressHUD *) showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG executeBlock:(void(^)(MBProgressHUD *hud))blockE finishBlock:(void(^)(void))blockF{
++ (MBProgressHUD *)showMBProgressHUDTitle:(NSString *)aTitle msg:(NSString *)aMsg dimBG:(BOOL)dimBG executeBlock:(void(^)(MBProgressHUD *hud))blockE finishBlock:(void(^)(void))blockF{
     UIViewController *vc = [self topMostController];
     
-    if (vc == nil) {
+    if (vc == nil)
         return nil;
-    }
     
-    if (nil == HUD) {
+    if (nil == HUD)
+    {
         HUD = [[MBProgressHUD alloc] initWithView:vc.view];
     }
     
@@ -165,22 +170,20 @@ static MBProgressHUD *HUD = nil;
 
 /***************************************************************/
 #if (1 ==  __USED_ASIHTTPRequest__)
-+(ASIHTTPRequest *) startAsynchronousRequestWithURLString:(NSString *)str
++ (ASIHTTPRequest *)startAsynchronousRequestWithURLString:(NSString *)str
                                                   succeed:(void (^)(ASIHTTPRequest *request))blockS
                                                    failed:(void (^)(NSError *error))blockF{
     NSURL *link = [NSURL URLWithString:str];
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:link];
     request.timeOutSeconds = 10;
     [request setCompletionBlock:^{
-        if (blockS) {
+        if (blockS)
             blockS(request);
-        }
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
-        if (blockF) {
+        if (blockF)
             blockF(error);
-        }
     }];
     [request startAsynchronous];
     
@@ -205,16 +208,19 @@ static MBProgressHUD *HUD = nil;
                                                                      cancelButtonTitle:@"Cancel"
                                                                      otherButtonTitles:@"Update",nil];
                                [alert showWithCompletionHandler:^(NSInteger buttonIndex) {
-                                   if (buttonIndex == 0) {
-                                       if (blockStayStill) {
+                                   if (buttonIndex == 0)
+                                   {
+                                       if (blockStayStill)
                                            blockStayStill();
-                                       }
-                                   }else if (buttonIndex == 1){
+                                   }
+                                   else if (buttonIndex == 1)
+                                   {
                                        [self openURL:[NSURL URLWithString:strURL]];
                                    }
                                }];
                            }];
 }
+
 + (void)checkUpdateInAppStore:(NSString *)appID curVersion:(NSString *)aVersion
                          same:(void(^)(void))blockSame
                    localIsOld:(void(^)(NSString *appStoreVersion))blockLocalIsOld{
@@ -229,30 +235,34 @@ static MBProgressHUD *HUD = nil;
         NSRange range = [self rangeOfString:str pointStart:0 start:@":\"" end:@"\"," mark:@"\"version\"" operation:markOption_front];
         NSString *versionAppStore = [str substringWithRange:NSMakeRange(range.location + 2, range.length -4)];
         NSString *localVersion;
-        if (aVersion == nil) {
+        if (aVersion == nil)
+        {
             localVersion = [infoDict objectForKey:@"CFBundleVersion"];
-        }else{
+        }
+        else
+        {
             localVersion = aVersion;
         }
         
         BOOL b = [self compareVersionFromOldVersion:localVersion newVersion:versionAppStore];
         
-        if (b) {
-            if (blockLocalIsOld) {
+        if (b)
+        {
+            if (blockLocalIsOld)
                 blockLocalIsOld(versionAppStore);
-            }
-        }else{
-            if (blockSame) {
+        }
+        else
+        {
+            if (blockSame)
                 blockSame();
-            }
         }
         
     }];
     [request setFailedBlock:^{
-        if (blockSame) {
+        if (blockSame)
             blockSame();
-        }
     }];
+    
     [request startAsynchronous];
 }
 #endif

@@ -131,13 +131,14 @@ DEF_SINGLETON( XYSandbox )
 	return _tmpPath;
 }
 
-+(NSString *) resPath:(NSString *)file{
++ (NSString *)resPath:(NSString *)file{
     return [[XYSandbox sharedInstance] resPath:file];
 }
 
--(NSString *) resPath:(NSString *)file{
+- (NSString *)resPath:(NSString *)file{
     NSString *str =[file stringByDeletingPathExtension];
     NSString *str2 = [file pathExtension];
+    
     return [[NSBundle mainBundle] pathForResource:str ofType:str2];
 }
 
@@ -184,30 +185,33 @@ DEF_SINGLETON( XYSandbox )
                                              withIntermediateDirectories:YES
                                                               attributes:nil
                                                                    error:nil];
-        if ( NO == ret ) {
+        if ( NO == ret )
+        {
             NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
             return;
         }
     }
 }
 
-+(NSArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
++ (NSArray *)allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
     NSMutableArray *pathArray = [NSMutableArray array];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *tempArray = [fileManager contentsOfDirectoryAtPath:direString error:nil];
     
-    if (tempArray == nil) {
+    if (tempArray == nil)
         return nil;
-    }
     
     NSString* type = [NSString stringWithFormat:@".%@",fileType];
-    for (NSString *fileName in tempArray) {
+    for (NSString *fileName in tempArray)
+    {
         BOOL isDir = YES;
         NSString *fullPath = [direString stringByAppendingPathComponent:fileName];
         
-        if ([fileManager fileExistsAtPath:fullPath isDirectory:&isDir]){
-            if (!isDir && [fileName hasSuffix:type]) {
+        if ([fileManager fileExistsAtPath:fullPath isDirectory:&isDir])
+        {
+            if (!isDir && [fileName hasSuffix:type])
+            {
                     [pathArray addObject:fullPath];
             }
         }
@@ -216,7 +220,7 @@ DEF_SINGLETON( XYSandbox )
     return pathArray;
 }
 
-+(uint64_t) sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode{
++ (uint64_t)sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode{
     uint64_t totalSize = 0;
     NSMutableArray *searchPaths = [NSMutableArray arrayWithObject:filePath];
     while ([searchPaths count] > 0)
@@ -237,12 +241,17 @@ DEF_SINGLETON( XYSandbox )
                         NSString *childPath = [fullPath stringByAppendingPathComponent:childItem];
                         [searchPaths insertObject:childPath atIndex:0];
                     }
-                }else
+                }
+                else
                 {
                     if (diskMode)
+                    {
                         totalSize += fileStat.st_blocks * 512;
+                    }
                     else
+                    {
                         totalSize += fileStat.st_size;
+                    }
                 }
             }
         }
@@ -252,9 +261,8 @@ DEF_SINGLETON( XYSandbox )
 }
 
 +(BOOL) skipFileBackupForItemAtURL:(NSURL*)URL{
-    if (![[NSFileManager defaultManager] fileExistsAtPath: [URL path]]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath: [URL path]])
         return NO;
-    }
     
     // iOS <= 5.0.1
     //if (&NSURLIsExcludedFromBackupKey == nil) {
@@ -278,6 +286,7 @@ DEF_SINGLETON( XYSandbox )
     //    }
     //    return success;
 }
+
 @end
 
 

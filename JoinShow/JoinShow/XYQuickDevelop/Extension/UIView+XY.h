@@ -35,29 +35,29 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 - (void)addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv;
 
 - (void)removeShade;
--(UIView *) shadeView;
+- (UIView *)shadeView;
 
 // 设置背景
--(instancetype) bg:(NSString *)str;
+- (instancetype)bg:(NSString *)str;
 
 // 旋转 1.0:顺时针180度
--(instancetype) rotate:(CGFloat)angle;
+- (instancetype)rotate:(CGFloat)angle;
 
 // 圆形
--(instancetype) rounded;
+- (instancetype)rounded;
 // 圆角矩形, corners:一个矩形的四个角。
--(instancetype) roundedRectWith:(CGFloat)radius;
--(instancetype) roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners;
+- (instancetype)roundedRectWith:(CGFloat)radius;
+- (instancetype)roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners;
 
 // 边框大小,颜色
--(instancetype) borderWidth:(CGFloat)width color:(UIColor *)color;
+- (instancetype)borderWidth:(CGFloat)width color:(UIColor *)color;
 
 // 活动指示器
--(UIActivityIndicatorView *) activityIndicatorViewShow;
+- (UIActivityIndicatorView *)activityIndicatorViewShow;
 - (void)activityIndicatorViewHidden;
 
 // 截屏
--(UIImage *) snapshot;
+- (UIImage *)snapshot;
 
 // 淡出,然后移除
 - (void)removeFromSuperviewWithCrossfade;
@@ -100,7 +100,7 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 - (void)animationShake;
 
 // 返回所在的vc
--(UIViewController *) viewController;
+- (UIViewController *)viewController;
 
 @end
 

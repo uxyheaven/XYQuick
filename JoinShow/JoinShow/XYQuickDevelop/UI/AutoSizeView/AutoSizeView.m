@@ -13,7 +13,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         // Initialization code
     }
     return self;
@@ -30,9 +31,9 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    if (newSuperview.bounds.size.width == 0.0 || newSuperview.bounds.size.height == 0.0) {
+    if (newSuperview.bounds.size.width == 0.0 || newSuperview.bounds.size.height == 0.0)
         return;
-    }
+    
     [self setFrame:newSuperview.bounds];
 }
 

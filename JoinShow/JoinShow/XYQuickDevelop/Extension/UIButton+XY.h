@@ -10,8 +10,8 @@
 
 @interface UIButton (XY)
 
--(NSIndexPath *) getTableViewCellIndexPath;
+- (NSIndexPath *)getTableViewCellIndexPath;
 
--(NSIndexPath *) getTableViewCellIndexPathAtTableView:(UITableView *)tableView;
+- (NSIndexPath *)getTableViewCellIndexPathAtTableView:(UITableView *)tableView;
 
 @end

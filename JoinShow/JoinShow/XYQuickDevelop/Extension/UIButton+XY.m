@@ -10,16 +10,19 @@
 
 @implementation UIButton (XY)
 
--(NSIndexPath *) getTableViewCellIndexPath{
+- (NSIndexPath *)getTableViewCellIndexPath
+{
     UIView *cell = self.superview;
     
-    while (![cell isKindOfClass:[UITableViewCell class]]) {
+    while (![cell isKindOfClass:[UITableViewCell class]])
+    {
         cell = cell.superview;
     }
     
     UIView *tableView = self.superview;
     
-    while (![tableView isKindOfClass:[UITableView class]]) {
+    while (![tableView isKindOfClass:[UITableView class]])
+    {
         tableView = tableView.superview;
     }
     
@@ -29,7 +32,7 @@
     return indexPath;
 }
 
--(NSIndexPath *) getTableViewCellIndexPathAtTableView:(UITableView *)tableView{
+- (NSIndexPath *)getTableViewCellIndexPathAtTableView:(UITableView *)tableView{
     CGPoint point = [self convertPoint:CGPointZero toView:tableView];
     NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:point];
     

@@ -22,14 +22,14 @@ typedef void (^XYAnimateStepBlock)(void);
 
 @interface XYAnimateStep : NSObject
 
-+(id) duration:(NSTimeInterval)duration
++ (id)duration:(NSTimeInterval)duration
        animate:(XYAnimateStepBlock)step;
 
-+(id) delay:(NSTimeInterval)delay
++ (id)delay:(NSTimeInterval)delay
    duration:(NSTimeInterval)duration
     animate:(XYAnimateStepBlock)step;
 
-+(id) delay:(NSTimeInterval)delay
++ (id)delay:(NSTimeInterval)delay
    duration:(NSTimeInterval)duration
     option:(UIViewAnimationOptions)option
     animate:(XYAnimateStepBlock)step;
@@ -49,8 +49,8 @@ typedef void (^XYAnimateStepBlock)(void);
 @interface XYAnimateSerialStep : XYAnimateStep
 @property (nonatomic, strong, readonly) NSArray* steps;
 
-+(id) animate;
--(id) addStep:(XYAnimateStep *)aStep;
++ (id)animate;
+- (id)addStep:(XYAnimateStep *)aStep;
 
 @end
 //////////////////////          XYAnimateParallelStep        ///////////////////////
@@ -59,8 +59,8 @@ typedef void (^XYAnimateStepBlock)(void);
 
 @property (nonatomic, strong, readonly) NSArray* steps;
 
-+(id) animate;
--(id) addStep:(XYAnimateStep *)aStep;
++ (id)animate;
+- (id)addStep:(XYAnimateStep *)aStep;
 
 @end
 

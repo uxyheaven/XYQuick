@@ -114,7 +114,8 @@
 	return nil;
 }
 
-+(BOOL) isRetina{
++ (BOOL) isRetina
+{
     return [UIScreen mainScreen].scale == 2;
 }
 
@@ -322,20 +323,25 @@ static const char * __jb_app = NULL;
 }
 
 //////////////////////////////
-+(NSString *) localHost{
++ (NSString *)localHost
+{
     NSString *address = @"error";
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
     int success = 0;
     // retrieve the current interfaces - returns 0 on success
     success = getifaddrs(&interfaces);
-    if (success == 0) {
+    if (success == 0)
+    {
         // Loop through linked list of interfaces
         temp_addr = interfaces;
-        while(temp_addr != NULL) {
-            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+        while(temp_addr != NULL)
+        {
+            if(temp_addr->ifa_addr->sa_family == AF_INET)
+            {
                 // Check if interface is en0 which is the wifi connection on the iPhone
-                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"])
+                {
                     // Get NSString from C String
                     address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
                 }
@@ -345,53 +351,68 @@ static const char * __jb_app = NULL;
     }
     // Free memory
     freeifaddrs(interfaces);
+    
     return address;
 }
 
 //////////////////
-+(float) floatVersion{
++ (float)floatVersion
+{
     return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
-+(NSString *) xyVersionKeyWithUser:(NSString *)user{
++ (NSString *)xyVersionKeyWithUser:(NSString *)user
+{
     if (user && [@"" isEqualToString:user]) {
         return @"XY_version";
-    }else{
+    }
+    else
+    {
         return [NSString stringWithFormat:@"XY_version_%@", user];
     }
 }
 
-+(BOOL) isFirstRun{
++ (BOOL)isFirstRun
+{
     return [self isFirstRunWithUser:nil];
 }
 
-+(BOOL) isFirstRunCurrentVersion{
++ (BOOL)isFirstRunCurrentVersion
+{
     return [self isFirstRunCurrentVersionWithUser:nil];
 }
 
-+ (void)setFirstRun{
++ (void)setFirstRun
+{
     [self setFirstRunWithUser:nil];
 }
 
-+ (void)setNotFirstRun{
++ (void)setNotFirstRun
+{
     [self setNotFirstRunWithUser:nil];
 }
 
 
-+(BOOL) isFirstRunWithUser:(NSString *)user{
++ (BOOL)isFirstRunWithUser:(NSString *)user
+{
     return ([[NSUserDefaults standardUserDefaults] valueForKey:[self xyVersionKeyWithUser:user]] == nil);
 }
-+(BOOL) isFirstRunCurrentVersionWithUser:(NSString *)user{
-    if ([self isFirstRun]) {
++ (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user
+{
+    if ([self isFirstRun])
+    {
         return YES;
-    } else {
+    } else
+    {
         return [[NSUserDefaults standardUserDefaults] floatForKey:[self xyVersionKeyWithUser:user]] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
     }
 }
-+ (void)setFirstRunWithUser:(NSString *)user{
++ (void)setFirstRunWithUser:(NSString *)user
+{
     [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+ (void)setNotFirstRunWithUser:(NSString *)user{
++ (void)setNotFirstRunWithUser:(NSString *)user
+{
     [[NSUserDefaults standardUserDefaults] setFloat:[self floatVersion] forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

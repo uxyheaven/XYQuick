@@ -13,9 +13,11 @@
     
 }
 /***************************************************************/
-+ (NSString *) dataFilePath:(NSString *)file ofType:(FilePathOption)kType{
++ (NSString *) dataFilePath:(NSString *)file ofType:(FilePathOption)kType
+{
     NSString *pathFile = nil;
-    switch (kType) {
+    switch (kType)
+    {
         case filePathOption_documents:
         {
             // NSDocumentDirectory代表查找Documents路径,NSUserDomainMask代表在应用程序沙盒下找
@@ -45,20 +47,24 @@
         default:
             break;
     }
+    
     return pathFile;
 }
 // 程序目录，不能存任何东西
-+(NSString *) dataFileAppPath:(NSString *)file{
++ (NSString *)dataFileAppPath:(NSString *)file{
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
 	
-    if (file) {
+    if (file)
+    {
         return [NSString stringWithFormat:@"%@/%@",[paths objectAtIndex:0], file];
-    }else{
+    }
+    else
+    {
         return [paths objectAtIndex:0];
     }
 }
 // 文档目录，需要ITUNES同步备份的数据存这里
-+(NSString *) dataFileDocPath:(NSString *)file{
++ (NSString *)dataFileDocPath:(NSString *)file{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     if (file) {
         return [NSString stringWithFormat:@"%@/%@",[paths objectAtIndex:0], file];
@@ -67,7 +73,7 @@
     }
 }
 // 配置目录，配置文件存这里
-+(NSString *) dataFileLibPrefPath:(NSString *)file{
++ (NSString *)dataFileLibPrefPath:(NSString *)file{
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     if (file) {
         return [NSString stringWithFormat:@"%@/Preference/%@",[paths objectAtIndex:0], file];
@@ -76,20 +82,28 @@
     }
 }
 // 缓存目录，系统永远不会删除这里的文件，ITUNES会删除
-+(NSString *) dataFileLibCachePath:(NSString *)file{
++ (NSString *)dataFileLibCachePath:(NSString *)file
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (file) {
+    if (file)
+    {
         return [NSString stringWithFormat:@"%@/Caches/%@",[paths objectAtIndex:0], file];
-    }else{
+    }
+    else
+    {
         return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
     }
 }
 // 缓存目录，APP退出后，系统可能会删除这里的内容
-+(NSString *) dataFileTmpPath:(NSString *)file{
++ (NSString *) dataFileTmpPath:(NSString *)file
+{
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (file) {
+    if (file)
+    {
         return [NSString stringWithFormat:@"%@/tmp/%@",[paths objectAtIndex:0], file];
-    }else{
+    }
+    else
+    {
         return [[paths objectAtIndex:0] stringByAppendingFormat:@"/tmp"];
     }
 }
@@ -101,14 +115,15 @@
                                              withIntermediateDirectories:YES
                                                               attributes:nil
                                                                    error:nil];
-        if ( NO == ret ) {
+        if ( NO == ret )
+        {
             NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
             return;
         }
     }
 }
 /***************************************************************/
-+(NSString *) replaceUnicode:(NSString *)unicodeStr
++ (NSString *) replaceUnicode:(NSString *)unicodeStr
 {
     NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
     NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
@@ -123,7 +138,7 @@
 }
 
 /***************************************************************/
-+(NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
++ (NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
 {
     int option = 0;
     NSRange rangeMark = {0, 0};
@@ -134,7 +149,8 @@
     
     rangeMark = [str rangeOfString:strMark options:NSLiteralSearch range:rangeMark];
     if(rangeMark.length == 0) return rangeMark;
-    switch (operation) {
+    switch (operation)
+    {
         case MarkOption_middle:
             rangeMarkA.location = iStart;
             rangeMarkA.length = rangeMark.location + rangeMark.length - iStart;
@@ -153,10 +169,12 @@
             break;
     }
     rangeMarkA = [str rangeOfString:strStart options:option range:rangeMarkA];
-    if(rangeMarkA.length == 0) return rangeMarkA;
+    if(rangeMarkA.length == 0)
+        return rangeMarkA;
     
     NSRange rangeMarkB = NSMakeRange(0, 0);
-    switch (operation) {
+    switch (operation)
+    {
         case MarkOption_middle:
             rangeMarkB.length = str.length - rangeMark.location;
             rangeMarkB.location = rangeMark.location;
@@ -181,23 +199,27 @@
     return rangeTmp;
 }
 
-+(NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd operation:(int)operation;
++ (NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd operation:(int)operation;
 {
     // NSString *strMark = nil;
     NSRange rangeMark;
     return rangeMark;
 }
-+(NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation{
++ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation
+{
     return [XYCommon rangeArrayOfString:str pointStart:iStart start:strStart end:strEnd mark:strMark operation:operation everyStringExecuteBlock:nil];
 }
-+(NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block{
++ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block
+{
     NSMutableArray *array = [[NSMutableArray alloc] init];
     int i = 0;
-    while (i != -1) {
+    while (i != -1)
+    {
         NSRange range = [self rangeOfString:str pointStart:i start:strStart end:strEnd mark:strMark operation:operation];
         if(range.length == 0) break;
         [array addObject:[NSValue valueWithRange:range]];
-        if (block) {
+        if (block)
+        {
             // NSString *tmpStr = [str substringWithRange:range];
             block(range);
         }
@@ -207,23 +229,33 @@
     return array;
 }
 /***************************************************************/
-+(NSString *) getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location{
++ (NSString *) getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location{
     NSString *str1 = [NSString stringWithFormat:@"<%@>", akey];
     NSString *str2 = [NSString stringWithFormat:@"</%@>", akey];
     static int i = 0;
-    if (XYCommon_lastLocation == location) {
+    if (XYCommon_lastLocation == location)
+    {
         //   NSLogD(@"%s,%d", __FUNCTION__, str.length - akey.length*2);
-        if (i> (str.length - akey.length*2)) i = 0;
-    }else i = location;
+        if (i > (str.length - akey.length*2))
+        {
+           i = 0;
+        }
+    }
+    else
+    {
+       i = location;
+    }
     
     NSRange range = [XYCommon rangeOfString:str pointStart:i start:str1 end:str2 mark:str1 operation:MarkOption_middle];
 #pragma mark- 待优化
-    if (0 == range.length) {
+    if (0 == range.length)
+    {
         i = 0;
         range = [XYCommon rangeOfString:str pointStart:i start:str1 end:str2 mark:str1 operation:MarkOption_middle];
     }
     
-    if (0 == range.length) return nil;
+    if (0 == range.length)
+        return nil;
     
     i = range.location +range.length;
     range.location = range.location + str1.length;
@@ -231,19 +263,21 @@
     
     NSString *tmp = [str substringWithRange:range];
 #pragma mark - 如果没有 返回空格
-    if (tmp == nil) tmp = @" ";
+    if (tmp == nil)
+        tmp = @" ";
     
     return tmp;
 }
 /***************************************************************/
 // Recursively travel down the view tree, increasing the indentation level for children
-+ (void)dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *) outstring{
++ (void)dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *) outstring
+{
     for (int i = 0; i < indent; i++) [outstring appendString:@"--"];
 	[outstring appendFormat:@"[%2d] %@\n tag:%d frame:%@\n", indent, [[aView class] description], aView.tag, NSStringFromCGRect(aView.frame)];
 	for (UIView *view in [aView subviews]) [self dumpView:view atIndent:indent + 1 into:outstring];
 }
 // Start the tree recursion at level 0 with the root view
-+(NSString *) displayViews: (UIView *) aView
++ (NSString *) displayViews: (UIView *) aView
 {
 	NSMutableString *outstring = [[NSMutableString alloc] init];
 	[self dumpView:aView atIndent:0 into:outstring];
@@ -251,11 +285,13 @@
 }
 
 /***************************************************************/
-+(NSMutableArray *) analyseString:(NSString *)str regularExpression:(NSString *)regexStr{
++ (NSMutableArray *)analyseString:(NSString *)str regularExpression:(NSString *)regexStr
+{
     NSMutableArray *arrayA = [self analyseStringToRange:str regularExpression:regexStr];
     NSMutableArray *arrayStr = [[NSMutableArray alloc] init];
     
-    for (NSValue *value in arrayA) {
+    for (NSValue *value in arrayA)
+    {
         NSRange range = [value rangeValue];
         NSString *tmpString = [str substringWithRange:range];
         //NSLogD(@"->%@<-",result);
@@ -264,18 +300,22 @@
     
     return arrayStr;
 }
-+(NSMutableArray *) analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr{
++ (NSMutableArray *)analyseStringToRange:(NSString *)str regularExpression:(NSString *)regexStr
+{
     NSMutableArray *arrayA = [[NSMutableArray alloc] init];
     
     //NSRegularExpression类里面调用表达的方法需要传递一个NSError的参数。下面定义一个
 	NSError *error;
     // \\d*\\.?\\d+匹配浮点
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:0 error:&error];
-    if (regex != nil) {
+    if (regex != nil)
+    {
         NSArray *matchs=[regex matchesInString:str options:0 range:NSMakeRange(0, [str length])];
         
-        for (NSTextCheckingResult *match in matchs){
-            if (match) {
+        for (NSTextCheckingResult *match in matchs)
+        {
+            if (match)
+            {
                 NSRange resultRange = [match rangeAtIndex:0];
                 
                 //从str当中截取数据
@@ -286,11 +326,13 @@
             }
         }
     }
+    
     return arrayA;
 }
 
 /***************************************************************/
-+ (void)shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc{
++ (void)shareToTwitterWithStr:(NSString *)strText withPicPath:(NSString *)picPath withURL:(NSString*)strURL inController:(id)vc
+{
     /* 本项目屏蔽
      if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
      {
@@ -318,30 +360,36 @@
      */
 }
 /***************************************************************/
-+ (void)showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)str{
++ (void)showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)str
+{
     UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:aTitle message:msg delegate:nil cancelButtonTitle:str otherButtonTitles:nil];
     [alertview show];
 }
 
 /***************************************************************/
-+(NSString *) UUID{
++ (NSString *)UUID
+{
     CFUUIDRef puuid = CFUUIDCreate( nil );
     CFStringRef uuidString = CFUUIDCreateString(nil, puuid);
     NSString *result = (NSString *)CFBridgingRelease(CFStringCreateCopy(nil, uuidString));
     CFRelease(puuid);
     CFRelease(uuidString);
+    
     return result;
 }
 
-+(NSString *) UUIDWithoutMinus{
++ (NSString *)UUIDWithoutMinus
+{
     NSString *str = [self UUID];
     str = [str stringByReplacingOccurrencesOfString :@"-" withString:@""];
     return str;
 }
 /***************************************************************/
-+ (void)openURL:(NSURL *)url{
++ (void)openURL:(NSURL *)url
+{
     NSURL *tmpURL = url;
-    if ([url isKindOfClass:[NSString class]]) {
+    if ([url isKindOfClass:[NSString class]])
+    {
         tmpURL = [NSURL URLWithString:(NSString *)url];
     }
     [[UIApplication sharedApplication] openURL:tmpURL];
@@ -349,7 +397,8 @@
 
 
 /***************************************************************/
-+(UIViewController *) topMostController {
++ (UIViewController *)topMostController
+{
     //Getting rootViewController
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
@@ -362,30 +411,35 @@
 }
 
 /***************************************************************/
-+(NSString *) StringForSQL:(NSString *)str
++ (NSString *) StringForSQL:(NSString *)str
 {
     return [str stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
 }
 /***************************************************************/
-+(NSDateFormatter *) dateFormatter{
++ (NSDateFormatter *)dateFormatter
+{
     static NSDateFormatter* format;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         format = [[NSDateFormatter alloc] init];
         format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     });
+    
     return format;
 }
-+(NSDateFormatter *) dateFormatterTemp{
++ (NSDateFormatter *)dateFormatterTemp
+{
     static NSDateFormatter* format;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         format = [[NSDateFormatter alloc] init];
         format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     });
+    
     return format;
 }
-+(NSDateFormatter *) dateFormatterByUTC{
++ (NSDateFormatter *)dateFormatterByUTC
+{
     static NSDateFormatter* format;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -393,10 +447,12 @@
         [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
         [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     });
+    
     return format;
 }
 /***************************************************************/
-+ (void)printUsedAndFreeMemoryWithMark:(NSString *)mark{
++ (void)printUsedAndFreeMemoryWithMark:(NSString *)mark
+{
     mach_port_t host_port;
     mach_msg_type_number_t host_size;
     vm_size_t pagesize;
@@ -423,25 +479,32 @@
 }
 
 /***************************************************************/
-+(BOOL) compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion{
++ (BOOL) compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion
+{
     NSArray *oldV = [oldVersion componentsSeparatedByString:@"."];
     NSArray *newV = [newVersion componentsSeparatedByString:@"."];
     
-    if (oldV.count == newV.count) {
-        for (NSInteger i = 0; i < oldV.count; i++) {
+    if (oldV.count == newV.count)
+    {
+        for (NSInteger i = 0; i < oldV.count; i++)
+        {
             NSInteger old = [(NSString *)[oldV objectAtIndex:i] integerValue];
             NSInteger new = [(NSString *)[newV objectAtIndex:i] integerValue];
-            if (old < new) {
+            if (old < new)
+            {
                 return YES;
             }
         }
         return NO;
-    } else {
+    }
+    else
+    {
         return NO;
     }
 }
 /***************************************************************/
 
 /***************************************************************/
+
 @end
 

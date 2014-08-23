@@ -49,7 +49,8 @@
 
 #import "XYKeyboardHelper.h"
 
-@interface XYKeyboardHelper (){
+@interface XYKeyboardHelper ()
+{
     //Boolean to maintain keyboard is showing or it is hide. To solve rootViewController.view.frame calculations;
     BOOL isKeyboardShowing;
     
@@ -439,7 +440,8 @@ DEF_SINGLETON(XYKeyboardHelper)
     //Setting toolbar to textFieldPhoneNumber keyboard.
     [self setInputAccessoryView:toolbar];
     
-    if (previousAction == nil || nextAction == nil) {
+    if (previousAction == nil || nextAction == nil)
+    {
         [self setEnablePrevious:(previousAction != nil) next:(nextAction != nil)];
     }
 }
@@ -516,7 +518,8 @@ DEF_SINGLETON(XYKeyboardHelper)
     //Setting toolbar to textFieldPhoneNumber keyboard.
     [self setInputAccessoryView:toolbar];
     
-    if (previousAction == nil || nextAction == nil) {
+    if (previousAction == nil || nextAction == nil)
+    {
         [self setEnablePrevious:(previousAction != nil) next:(nextAction != nil)];
     }
 }
@@ -548,7 +551,7 @@ DEF_SINGLETON(XYKeyboardHelper)
 
 @implementation XYSegmentedNextPrevious
 
--(id) initWithTarget:(id)target previousSelector:(SEL)pSelector nextSelector:(SEL)nSelector
+- (id)initWithTarget:(id)target previousSelector:(SEL)pSelector nextSelector:(SEL)nSelector
 {
     self = [super initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Previous", @"前一项") , NSLocalizedString(@"Next", @"后一项") ,nil]];
     

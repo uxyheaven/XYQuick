@@ -30,7 +30,8 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
 -(instancetype) initWithName:(NSString *)name sender:(id)sender target:(id)target selector:(SEL)selector;
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _name = name;
         _sender = sender;
         _target = target;
@@ -38,23 +39,29 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleNotification:)                                                            name:name                                                            object:sender];
     }
+    
     return self;
 }
 
--(instancetype) initWithName:(NSString *)name sender:(id)sender block:(XYNotification_block)block{
+-(instancetype) initWithName:(NSString *)name sender:(id)sender block:(XYNotification_block)block
+{
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _name = name;
         _sender = sender;
         _block = block;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleNotification:)                                                            name:name                                                            object:sender];
     }
+    
     return self;
 }
 
-- (void)handleNotification:(NSNotification *) notification{
-    if (_block) {
+- (void)handleNotification:(NSNotification *) notification
+{
+    if (_block)
+    {
         _block(notification);
         return;
     }
@@ -78,7 +85,8 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
 -(id) notifications{
     id object = objc_getAssociatedObject(self, NSObject_notifications);
     
-    if (nil == object) {
+    if (nil == object)
+    {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
         objc_setAssociatedObject(self, NSObject_notifications, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return dic;
@@ -87,41 +95,50 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     return object;
 }
 
-- (void)registerNotification:(NSString *)name{
+- (void)registerNotification:(NSString *)name
+{
     SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@NotificationHandle:", name]);
-    if ([self respondsToSelector:aSel]) {
+    if ([self respondsToSelector:aSel])
+    {
         [self notificationWihtName:name target:self selector:aSel];
         return;
     }
 }
 
-- (void)registerNotification:(NSString *)name block:(XYNotification_block)block{
+- (void)registerNotification:(NSString *)name block:(XYNotification_block)block
+{
     [self notificationWihtName:name block:block];
 }
 
-- (void)notificationWihtName:(NSString *)name target:(id)target selector:(SEL)selector{
+- (void)notificationWihtName:(NSString *)name target:(id)target selector:(SEL)selector
+{
     XYNotification *notification = [[XYNotification alloc] initWithName:name sender:nil target:target selector:selector];
     
     NSString *key = [NSString stringWithFormat:@"%@", name];
     [self.notifications setObject:notification forKey:key];
 }
-- (void)notificationWihtName:(NSString *)name block:(XYNotification_block)block{
+- (void)notificationWihtName:(NSString *)name block:(XYNotification_block)block
+{
     XYNotification *notification = [[XYNotification alloc] initWithName:name sender:nil block:block];
     
     NSString *key = [NSString stringWithFormat:@"%@", name];
     [self.notifications setObject:notification forKey:key];
 }
 
-- (void)postNotification:(NSString *)name userInfo:(id)userInfo{
+- (void)postNotification:(NSString *)name userInfo:(id)userInfo
+{
     [[NSNotificationCenter defaultCenter] postNotificationName:name object:self userInfo:userInfo];
 }
 
-- (void)unregisterNotification:(NSString*)name{
+- (void)unregisterNotification:(NSString*)name
+{
      NSString *key = [NSString stringWithFormat:@"%@", name];
     [self.notifications removeObjectForKey:key];
 }
 
-- (void)unregisterAllNotification{
+- (void)unregisterAllNotification
+{
     [self.notifications removeAllObjects];
 }
+
 @end

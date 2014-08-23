@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 
 @interface UIView (XY_frameBuilder)
 
--(POViewFrameBuilder *) po_frameBuilder;
+- (POViewFrameBuilder *)po_frameBuilder;
 
 @end
 

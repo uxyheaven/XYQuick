@@ -16,30 +16,34 @@
 #pragma mark - XYUISignal
 @implementation XYUISignal
 
--(instancetype)init
+- (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _isDead = NO;
         _isReach = NO;
         _jump = 0;
         _name = @"signal.nil.nil";
         _callPath = [NSMutableString string];
     }
+    
     return self;
 }
 
--(NSString *) description
+- (NSString *)description
 {
-	if ( _callPath.length ) {
+	if ( _callPath.length )
+    {
 		return [NSString stringWithFormat:@"%@ > %@", _name, _callPath];
 	}
-	else {
+	else
+    {
 		return [NSString stringWithFormat:@"%@", _name];
 	}
 }
 
--(BOOL) is:(NSString *)name
+- (BOOL)is:(NSString *)name
 {
 	return [_name isEqualToString:name];
 }
@@ -49,20 +53,23 @@
 	return [_name hasPrefix:prefix];
 }
 
--(BOOL) isSentFrom:(id)source
+- (BOOL)isSentFrom:(id)source
 {
 	return (self.source == source) ? YES : NO;
 }
 
--(BOOL) send
+- (BOOL)send
 {
     if ( self.source )
 	{
 		UIView * sourceView = nil;
         
-		if ( [self.source isKindOfClass:[UIView class]] ) {
+		if ( [self.source isKindOfClass:[UIView class]] )
+        {
 			sourceView = self.source;
-		} else if ( [self.source isKindOfClass:[UIViewController class]] ) {
+		}
+        else if ( [self.source isKindOfClass:[UIViewController class]] )
+        {
 			sourceView = ((UIViewController *)self.source).view;
 		}
         
@@ -72,7 +79,8 @@
 			NSInteger tag = sourceView.tag;	// .lowercaseString;
 			
 			NSString * selector = nil;
-			if ( nameSpace) {
+			if ( nameSpace)
+            {
 				selector = [NSString stringWithFormat:@"%@_%d", nameSpace, tag];
 			}
             
@@ -82,11 +90,14 @@
 		}
 	}
     
-    if ( [_target isKindOfClass:[UIView class]] || [_target isKindOfClass:[UIViewController class]] ) {
+    if ( [_target isKindOfClass:[UIView class]] || [_target isKindOfClass:[UIViewController class]] )
+    {
 		_jump = 1;
 		
 		[self routes];
-	} else {
+	}
+    else
+    {
 		_isReach = YES;
 	}
     
@@ -101,14 +112,19 @@
 	if ( nil == _target )
 		return NO;
 	
-	if ( [_target isKindOfClass:[UIView class]] ) {
+	if ( [_target isKindOfClass:[UIView class]] )
+    {
 		UIView * targetView = ((UIView *)_target).superview;
-		if ( targetView ) {
+		if ( targetView )
+        {
 			[self forward:targetView];
-		} else {
+		}
+        else
+        {
 			_isReach = YES;
 		}
-	} else if ( [_target isKindOfClass:[UIViewController class]] ) {
+	} else if ( [_target isKindOfClass:[UIViewController class]] )
+    {
 		_isReach = YES;
 	}
     
@@ -120,22 +136,30 @@
 		return NO;
     
 #if (__XYUISIGNAL_USED_CALLPATH__ == 1)
-	if ( [target isKindOfClass:[UIView class]] ) {
+	if ( [target isKindOfClass:[UIView class]] )
+    {
 		[_callPath appendFormat:@" > %@(%d)", [[target class] description], [((UIView *)target) tag]];
-	} else {
+	}
+    else
+    {
 		[_callPath appendFormat:@" > %@", [[target class] description]];
 	}
-	if ( _isReach ) {
+    
+	if ( _isReach )
+    {
 		[_callPath appendFormat:@" > [DONE]"];
 	}
 #endif
     
-    if ( [_target isKindOfClass:[UIView class]] || [_target isKindOfClass:[UIViewController class]] ) {
+    if ( [_target isKindOfClass:[UIView class]] || [_target isKindOfClass:[UIViewController class]] )
+    {
 		_jump += 1;
 		_target = target;
 		
 		[self routes];
-	} else {
+	}
+    else
+    {
 		_isReach = YES;
 	}
     
@@ -168,13 +192,17 @@
     selectorName = [NSString stringWithFormat:@"handleUISignal_%@:", signalMethod];
     selector = NSSelectorFromString(selectorName);
     
-    if ( [_target respondsToSelector:selector] ) {
+    if ( [_target respondsToSelector:selector] )
+    {
         [_target performSelector:selector withObject:self];
-    }else if ( [_target respondsToSelector:@selector(handleUISignal:)] ) {
+    }
+    else if ( [_target respondsToSelector:@selector(handleUISignal:)] )
+    {
         [_target performSelector:@selector(handleUISignal:) withObject:self];
     }
     
-    if (!self.isReach) {
+    if (!self.isReach)
+    {
         [_target performSelector:@selector(signalForward:) withObject:self];
         /*
         if ([_target isKindOfClass:[UIView class]]) {
@@ -301,7 +329,8 @@
 {
 	XYUISignal * signal = [[XYUISignal alloc] init];
     
-	if ( signal ) {
+	if ( signal )
+    {
 		signal.source = source ? source : self;
 		signal.target = self;
 		signal.name = name;
@@ -314,16 +343,19 @@
 }
 - (void)signalForward:(XYUISignal *)signal{
     UIView *superView = [signal.target superview];
-    if (superView) {
+    if (superView)
+    {
         [signal forward:superView];
     }else{
         // 到顶了
         UIViewController *vc = [signal.source viewController];
-        if (vc) {
+        if (vc)
+        {
             [signal forward:vc];
         }
     }
 }
+
 @end
 
 #pragma mark - UIViewController(XYUISignal)
@@ -372,7 +404,8 @@
 {
 	XYUISignal *signal = [[XYUISignal alloc] init];
     
-	if ( signal ) {
+	if ( signal )
+    {
 		signal.source = source ? source : self;
 		signal.target = self;
 		signal.name = name;
@@ -383,12 +416,17 @@
     
 	return signal;
 }
-- (void)signalForward:(XYUISignal *)signal{
-    if ([signal.target isKindOfClass:[UINavigationController class]]) {
+- (void)signalForward:(XYUISignal *)signal
+{
+    if ([signal.target isKindOfClass:[UINavigationController class]])
+    {
         UIViewController *vc = [(UINavigationController*)signal.target topViewController];
-        if (vc) {
+        if (vc)
+        {
             [signal forward:vc];
-        }else{
+        }
+        else
+        {
             // [self forward:vc];
         }
     }
@@ -407,9 +445,12 @@
 	if ( nil == self.source )
 		return nil;
 	
-	if ( [self.source isKindOfClass:[UIView class]] ) {
+	if ( [self.source isKindOfClass:[UIView class]] )
+    {
 		return (UIView *)self.source;
-	} else if ( [self.source isKindOfClass:[UIViewController class]] ) {
+	}
+    else if ( [self.source isKindOfClass:[UIViewController class]] )
+    {
 		return ((UIViewController *)self.source).view;
 	}
     
@@ -421,9 +462,12 @@
 	if ( nil == self.source )
 		return nil;
 	
-	if ( [self.source isKindOfClass:[UIView class]] ) {
+	if ( [self.source isKindOfClass:[UIView class]] )
+    {
 		return [(UIView *)self.source viewController];
-	} else if ( [self.source isKindOfClass:[UIViewController class]] ) {
+	}
+    else if ( [self.source isKindOfClass:[UIViewController class]] )
+    {
 		return (UIViewController *)self.source;
 	}
     

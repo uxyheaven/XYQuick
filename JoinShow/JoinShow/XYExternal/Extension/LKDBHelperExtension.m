@@ -12,39 +12,49 @@
 
 @implementation NSObject(XY_LKDBHelper)
 
-- (void)loadFromDB{
+- (void)loadFromDB
+{
     id value = [self valueForKey:[self.class getPrimaryKey]];
     NSString *strValue = nil;
     NSString *str = nil;
-    if (value == nil) {
+    if (value == nil)
         return ;
-    }
-    if ([value isKindOfClass:[NSString class]]) {
+    
+    if ([value isKindOfClass:[NSString class]])
+    {
         strValue = value;
         str = [NSString stringWithFormat:@"%@ = '%@'", [self.class getPrimaryKey], strValue];
-    }else if ([value isKindOfClass:[NSNumber class]]) {
+    }
+    else if ([value isKindOfClass:[NSNumber class]])
+    {
         strValue = [value stringValue];
         str = [NSString stringWithFormat:@"%@ = %@", [self.class getPrimaryKey], strValue];
-    }else if (1)
+    }
+    else if (1)
     {
 #pragma mark- todo  多主键种类判断
         strValue = @"";
     }
     
     NSMutableArray *arraySync = [self.class searchWithWhere:str orderBy:nil offset:0 count:1];
-    if (arraySync.count > 0) {
+    if (arraySync.count > 0)
+    {
         NSObject *temp = [arraySync objectAtIndex:0];
-        for (NSString *attribute in self.attributeList) {
+        for (NSString *attribute in self.attributeList)
+        {
             [self setValue:[temp valueForKey:attribute] forKey:attribute];
         }
-    }else
+    }
+    else
     {
       return;
     }
 }
-+(NSString *) primaryKeyAndDESC{
++ (NSString *)primaryKeyAndDESC
+{
     return [[self getPrimaryKey] stringByAppendingString:@" DESC"];
 }
+
 @end
 
 
@@ -53,7 +63,8 @@
 - (void)saveAllToDB
 {
   //  [self.class insertToDB:self];
-    if (self.count > 0) {
+    if (self.count > 0)
+    {
         NSObject *anObject = [self objectAtIndex:0];
         LKDBHelper* globalHelper = [LKDBHelper getUsingLKDBHelper];
         
@@ -63,7 +74,8 @@
         // 异步 插入
         [globalHelper executeDB:^(FMDatabase *db) {
             [db beginTransaction];
-            for (NSObject *anObject2 in self) {
+            for (NSObject *anObject2 in self)
+            {
                 [globalHelper insertToDB:anObject2];
             }
 #pragma mark - todo
@@ -76,10 +88,14 @@
         }];
     }
 }
-+(id) loadFromDBWithClass:(Class)modelClass{
+
++(id) loadFromDBWithClass:(Class)modelClass
+{
     NSString *str = [modelClass primaryKeyAndDESC];
     NSMutableArray *arraySync = [modelClass searchWithWhere:nil orderBy:str offset:0 count:100];
+    
     return arraySync;
 }
+
 @end
 #endif

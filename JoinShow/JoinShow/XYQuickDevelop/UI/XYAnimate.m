@@ -15,20 +15,22 @@
 //////////////////////          XYAnimateStep        ///////////////////////
 
 @interface XYAnimateStep ()
--(NSArray*) animateStepArray;
--(XYAnimateStepBlock) animationStep:(BOOL)animated;
+- (NSArray*)animateStepArray;
+- (XYAnimateStepBlock)animationStep:(BOOL)animated;
 @property (nonatomic, strong) NSMutableArray *consumableSteps;
 
 @end
 
 @implementation XYAnimateStep
 
-+(id) delay:(NSTimeInterval)delay
++ (id)delay:(NSTimeInterval)delay
    duration:(NSTimeInterval)duration
     option:(UIViewAnimationOptions)option
-    animate:(XYAnimateStepBlock)step{
+    animate:(XYAnimateStepBlock)step
+{
     XYAnimateStep *anStep = [[XYAnimateStep alloc] init];
-	if (anStep) {
+	if (anStep)
+    {
 		anStep.delay = delay;
 		anStep.duration = duration;
 		anStep.option = option;
@@ -36,40 +38,48 @@
 	}
 	return anStep;
 }
-+(id) duration:(NSTimeInterval)duration
-       animate:(XYAnimateStepBlock)step{
++ (id)duration:(NSTimeInterval)duration
+       animate:(XYAnimateStepBlock)step
+{
     return [self delay:0 duration:duration option:0 animate:step];
 }
 
-+(id) delay:(NSTimeInterval)delay
++ (id)delay:(NSTimeInterval)delay
    duration:(NSTimeInterval)duration
-    animate:(XYAnimateStepBlock)step{
+    animate:(XYAnimateStepBlock)step
+{
     return [self delay:delay duration:duration option:0 animate:step];
 }
 - (void)dealloc
 {
 }
 
-+ (void) runBlock:(XYAnimateStepBlock)block afterDelay:(NSTimeInterval)delay {
++ (void) runBlock:(XYAnimateStepBlock)block afterDelay:(NSTimeInterval)delay
+{
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC*delay), dispatch_get_main_queue(), block);
 }
 
-- (NSArray*) animateStepArray {
+- (NSArray*)animateStepArray
+{
 	// subclasses must override this!
     // 子类必须实现这个方法
 	return [NSArray arrayWithObject:self];
 }
 
-- (XYAnimateStepBlock) animationStep:(BOOL)animated {
+- (XYAnimateStepBlock)animationStep:(BOOL)animated
+{
 	// override it if needed
 	return self.step;
 }
 
-- (void) runAnimated:(BOOL)animated{
-    if (self.consumableSteps == nil) {
+- (void)runAnimated:(BOOL)animated
+{
+    if (self.consumableSteps == nil)
+    {
 		self.consumableSteps = [[NSMutableArray alloc] initWithArray:[self animateStepArray]];
 	}
-	if ([self.consumableSteps count] == 0) { // recursion anchor
+	if ([self.consumableSteps count] == 0)
+    { // recursion anchor
 		self.consumableSteps = nil;
 		return;
 	}
@@ -80,7 +90,8 @@
 	};
     
     XYAnimateStep *curStep = [self.consumableSteps lastObject];
-    if (animated && curStep.duration >= 0.02) {
+    if (animated && curStep.duration >= 0.02)
+    {
 		[UIView animateWithDuration:curStep.duration
 							  delay:curStep.delay
 							options:curStep.option
@@ -90,89 +101,117 @@
 								 completionStep();
 							 }
 						 }];
-	} else {
+	}
+    else
+    {
 		void (^execution)(void) = ^{
 			[curStep animationStep:animated]();
 			completionStep();
 		};
 		
-		if (animated && curStep.delay) {
+		if (animated && curStep.delay)
+        {
 			[XYAnimateStep runBlock:execution afterDelay:curStep.delay];
-		} else {
+		}
+        else
+        {
 			execution();
 		}
 	}
 }
-- (void) run{
+- (void)run
+{
     [self runAnimated:YES];
 }
-- (NSString*) description {
+- (NSString*)description
+{
 	NSMutableString* result = [[NSMutableString alloc] initWithCapacity:100];
 	[result appendString:@"\n["];
-	if (self.delay > 0.0) {
+	if (self.delay > 0.0)
+    {
 		[result appendFormat:@"after:%.1f ", self.delay];
 	}
-	if (self.duration > 0.0) {
+    
+	if (self.duration > 0.0)
+    {
 		[result appendFormat:@"for:%.1f ", self.duration];
 	}
-	if (self.option > 0) {
-		[result appendFormat:@"options:%lu ", self.option];
+    
+	if (self.option > 0)
+    {
+		[result appendFormat:@"options:%u ", self.option];
 	}
+    
 	[result appendFormat:@"animate:%@", self.step];
 	[result appendString:@"]"];
+    
 	return result;
 }
 
 @end
 #pragma mark - XYAnimateSerialStep
 @implementation XYAnimateSerialStep
-+(id) animate{
++ (id)animate
+{
     return [[self alloc] init];
 }
 - (id)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _steps = [[NSMutableArray alloc] initWithCapacity:5];
     }
+    
     return self;
 }
 - (void)dealloc
 {
     NSLogDD
 }
--(id) addStep:(XYAnimateStep *)aStep{
-    if (aStep && self != aStep) {
+- (id)addStep:(XYAnimateStep *)aStep
+{
+    if (aStep && self != aStep)
+    {
 		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
 	}
+    
     return self;
 }
 
-- (void) setDelay:(NSTimeInterval)delay {
+- (void)setDelay:(NSTimeInterval)delay
+{
     NSAssert(NO, @"Setting a delay on a sequence is undefined and therefore disallowed!");
 }
 
-- (void) setDuration:(NSTimeInterval)duration {
+- (void)setDuration:(NSTimeInterval)duration
+{
     NSAssert(NO, @"Setting a duration on a sequence is undefined and therefore disallowed!");
 }
-- (NSTimeInterval) duration {
+- (NSTimeInterval)duration
+{
 	NSTimeInterval fullDuration = 0;
-	for (XYAnimateStep *current in self.animateStepArray) {
+	for (XYAnimateStep *current in self.animateStepArray)
+    {
 		fullDuration += current.delay;
 		fullDuration += current.duration;
 	}
+    
 	return fullDuration+self.delay;
 }
 
-- (void) setOptions:(UIViewAnimationOptions)options {
+- (void)setOptions:(UIViewAnimationOptions)options
+{
     NSAssert(NO, @"Setting options on a sequence is undefined and therefore disallowed!");
 }
 
 #pragma mark - build the sequence
 
-- (NSArray*) animateStepArray {
+- (NSArray*)animateStepArray
+{
 	NSMutableArray* array = [NSMutableArray arrayWithCapacity:[self.steps count]];
-	for (XYAnimateStep *current in self.steps) {
+	for (XYAnimateStep *current in self.steps)
+    {
 		[array addObjectsFromArray:[current animateStepArray]];
 	}
 	return array;
@@ -180,9 +219,11 @@
 
 #pragma mark - pretty-print
 
-- (NSString*) description {
+- (NSString*)description
+{
 	NSMutableString *sequenceBody = [NSMutableString stringWithCapacity:100 * [self.steps count]];
-	for (XYAnimateStep *step in self.steps) {
+	for (XYAnimateStep *step in self.steps)
+    {
 		[sequenceBody appendString:[step description]];
 	}
 	// indent
@@ -190,6 +231,7 @@
                                   withString:@"\n  "
                                      options:NSCaseInsensitiveSearch
                                        range:NSMakeRange(0, [sequenceBody length])];
+    
 	return [NSString stringWithFormat:@"\n(sequence:%@\n)", sequenceBody];
 }
 

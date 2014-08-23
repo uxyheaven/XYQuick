@@ -18,7 +18,8 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     POViewFrameBuilderEdgeLeft,
     POViewFrameBuilderEdgeRight,
 };
-static inline CGRect PORectInsets(CGRect rect, CGFloat top, CGFloat left, CGFloat bottom, CGFloat right) {
+static inline CGRect PORectInsets(CGRect rect, CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
+{
     return UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(top, left, bottom, right));
 }
 
@@ -29,9 +30,11 @@ static inline CGRect PORectWithSize(CGRect rect, CGFloat width, CGFloat height) 
     return rect;
 }
 
-static inline CGRect PORectFromSize(CGFloat width, CGFloat height) {
+static inline CGRect PORectFromSize(CGFloat width, CGFloat height)
+{
     return PORectWithSize(CGRectZero, width, height);
 }
+
 
 static inline CGRect PORectWithWidth(CGRect rect, CGFloat width) {
     rect.size.width = width;
@@ -39,70 +42,83 @@ static inline CGRect PORectWithWidth(CGRect rect, CGFloat width) {
     return rect;
 }
 
-static inline CGRect PORectWithHeight(CGRect rect, CGFloat height) {
+static inline CGRect PORectWithHeight(CGRect rect, CGFloat height)
+{
     rect.size.height = height;
     
     return rect;
 }
 
-static inline CGRect PORectWithOrigin(CGRect rect, CGFloat x, CGFloat y) {
+static inline CGRect PORectWithOrigin(CGRect rect, CGFloat x, CGFloat y)
+{
     rect.origin.x = x;
     rect.origin.y = y;
     
     return rect;
 }
 
-static inline CGRect PORectWithX(CGRect rect, CGFloat x) {
+static inline CGRect PORectWithX(CGRect rect, CGFloat x)
+{
     rect.origin.x = x;
     
     return rect;
 }
 
-static inline CGRect PORectWithY(CGRect rect, CGFloat y) {
+static inline CGRect PORectWithY(CGRect rect, CGFloat y)
+{
     rect.origin.y = y;
     
     return rect;
 }
 
-static inline CGPoint POPointWithOffset(CGPoint p, CGFloat dx, CGFloat dy) {
+static inline CGPoint POPointWithOffset(CGPoint p, CGFloat dx, CGFloat dy)
+{
     return CGPointMake(p.x + dx, p.y + dy);
 }
 
-static inline CGPoint POPointCenterInSize(CGSize s) {
+static inline CGPoint POPointCenterInSize(CGSize s)
+{
     return CGPointMake(roundf(s.width / 2), roundf(s.height / 2));
 }
 
-static inline CGPoint POPointIntegral(CGPoint point) {
+static inline CGPoint POPointIntegral(CGPoint point)
+{
     point.x = floorf(point.x);
     point.y = floorf(point.y);
     return point;
 }
 
-static inline CGPoint PORectCenter(CGRect rect) {
+static inline CGPoint PORectCenter(CGRect rect)
+{
     return POPointIntegral((CGPoint){
         .x = CGRectGetMidX(rect),
         .y = CGRectGetMidY(rect)
     });
 }
 
-static inline CGRect PORectMove(CGRect rect, CGFloat dx, CGFloat dy) {
+static inline CGRect PORectMove(CGRect rect, CGFloat dx, CGFloat dy)
+{
     rect.origin.x += dx;
     rect.origin.y += dy;
     
     return rect;
 }
 
-static inline CGSize POEdgeInsetsInsetSize(CGSize size, UIEdgeInsets insets) {
+static inline CGSize POEdgeInsetsInsetSize(CGSize size, UIEdgeInsets insets)
+{
     size.width  -= (insets.left + insets.right);
     size.height -= (insets.top  + insets.bottom);
+
     return size;
 }
 
-static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets insets2) {
+static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets insets2)
+{
     insets1.top    += insets2.top;
     insets1.left   += insets2.left;
     insets1.bottom += insets2.bottom;
     insets1.right  += insets2.right;
+    
     return insets1;
 }
 
@@ -115,54 +131,65 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 
 @implementation POViewFrameBuilder
 
-- (id)initWithView:(UIView *)view {
+- (id)initWithView:(UIView *)view
+{
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _view = view;
         _frame = view.frame;
         _automaticallyCommitChanges = YES;
     }
+    
     return self;
 }
 
-+ (POViewFrameBuilder *)frameBuilderForView:(UIView *)view {
++ (POViewFrameBuilder *)frameBuilderForView:(UIView *)view
+{
     return [[[self class] alloc] initWithView:view];
 }
 
 #pragma mark - Properties
 
-- (void)setFrame:(CGRect)frame {
+- (void)setFrame:(CGRect)frame
+{
     _frame = frame;
     
-    if (self.automaticallyCommitChanges) {
+    if (self.automaticallyCommitChanges)
+    {
         [self commit];
     }
 }
 
 #pragma mark - Impl
 
-- (void)commit {
+- (void)commit
+{
     self.view.frame = self.frame;
 }
 
-- (void)reset {
+- (void)reset
+{
     self.frame = self.view.frame;
 }
 
-- (void)update:(void (^)(POViewFrameBuilder *builder))block {
+- (void)update:(void (^)(POViewFrameBuilder *builder))block
+{
     [self disableAutoCommit];
     block(self);
     [self commit];
 }
 
-- (POViewFrameBuilder *)performChangesInGroupWithBlock:(void (^)(void))block {
+- (POViewFrameBuilder *)performChangesInGroupWithBlock:(void (^)(void))block
+{
     BOOL automaticCommitEnabled = self.automaticallyCommitChanges;
     
     self.automaticallyCommitChanges = NO;
     block();
     self.automaticallyCommitChanges = automaticCommitEnabled;
     
-    if (self.automaticallyCommitChanges) {
+    if (self.automaticallyCommitChanges)
+    {
         [self commit];
     }
     
@@ -171,13 +198,15 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 
 #pragma mark - Configure
 
-- (POViewFrameBuilder *)enableAutoCommit {
+- (POViewFrameBuilder *)enableAutoCommit
+{
     self.automaticallyCommitChanges = YES;
     
     return self;
 }
 
-- (POViewFrameBuilder *)disableAutoCommit {
+- (POViewFrameBuilder *)disableAutoCommit
+{
     self.automaticallyCommitChanges = NO;
     
     return self;
@@ -185,50 +214,59 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 
 #pragma mark - Move
 
-- (POViewFrameBuilder *)setX:(CGFloat)x {
+- (POViewFrameBuilder *)setX:(CGFloat)x
+{
     self.frame = PORectWithX(self.frame, x);
     
     return self;
 }
 
-- (POViewFrameBuilder *)setY:(CGFloat)y {
+- (POViewFrameBuilder *)setY:(CGFloat)y
+{
     self.frame = PORectWithY(self.frame, y);
     
     return self;
 }
 
-- (POViewFrameBuilder *)setOriginWithX:(CGFloat)x y:(CGFloat)y {
+- (POViewFrameBuilder *)setOriginWithX:(CGFloat)x y:(CGFloat)y
+{
     return [self performChangesInGroupWithBlock:^{
         [[self setX:x] setY:y];
     }];
 }
 
-- (POViewFrameBuilder *)moveWithOffsetX:(CGFloat)offsetX {
+- (POViewFrameBuilder *)moveWithOffsetX:(CGFloat)offsetX
+{
     self.frame = PORectWithX(self.frame, self.frame.origin.x + offsetX);
     
     return self;
 }
 
-- (POViewFrameBuilder *)moveWithOffsetY:(CGFloat)offsetY {
+- (POViewFrameBuilder *)moveWithOffsetY:(CGFloat)offsetY
+{
     self.frame = PORectWithY(self.frame, self.frame.origin.y + offsetY);
     
     return self;
 }
 
-- (POViewFrameBuilder *)moveWithOffsetX:(CGFloat)offsetX offsetY:(CGFloat)offsetY {
+- (POViewFrameBuilder *)moveWithOffsetX:(CGFloat)offsetX offsetY:(CGFloat)offsetY
+{
     return [self performChangesInGroupWithBlock:^{
         [[self moveWithOffsetX:offsetX] moveWithOffsetY:offsetY];
     }];
 }
 
-- (POViewFrameBuilder *)centerInSuperview {
+- (POViewFrameBuilder *)centerInSuperview
+{
     return [self performChangesInGroupWithBlock:^{
         [[self centerHorizontallyInSuperview] centerVerticallyInSuperview];
     }];
 }
 
-- (POViewFrameBuilder *)centerHorizontallyInSuperview {
-    if (!self.view.superview) {
+- (POViewFrameBuilder *)centerHorizontallyInSuperview
+{
+    if (!self.view.superview)
+    {
         return self;
     }
     
@@ -237,8 +275,10 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)centerVerticallyInSuperview {
-    if (!self.view.superview) {
+- (POViewFrameBuilder *)centerVerticallyInSuperview
+{
+    if (!self.view.superview)
+    {
         return self;
     }
     
@@ -247,32 +287,37 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)alignToTopInSuperviewWithInset:(CGFloat)inset {
+- (POViewFrameBuilder *)alignToTopInSuperviewWithInset:(CGFloat)inset
+{
     [self alignToTopInSuperviewWithInsets:UIEdgeInsetsMake(inset, 0.0f, 0.0f, 0.0f)];
     
     return self;
 }
 
-- (POViewFrameBuilder *)alignToBottomInSuperviewWithInset:(CGFloat)inset {
+- (POViewFrameBuilder *)alignToBottomInSuperviewWithInset:(CGFloat)inset
+{
     [self alignToBottomInSuperviewWithInsets:UIEdgeInsetsMake(0.0f, 0.0f, inset, 0.0f)];
     
     return self;
 }
 
-- (POViewFrameBuilder *)alignLeftInSuperviewWithInset:(CGFloat)inset {
+- (POViewFrameBuilder *)alignLeftInSuperviewWithInset:(CGFloat)inset
+{
     [self alignLeftInSuperviewWithInsets:UIEdgeInsetsMake(0.0f, inset, 0.0f, 0.0f)];
     
     return self;
     
 }
 
-- (POViewFrameBuilder *)alignRightInSuperviewWithInset:(CGFloat)inset {
+- (POViewFrameBuilder *)alignRightInSuperviewWithInset:(CGFloat)inset
+{
     [self alignRightInSuperviewWithInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, inset)];
     
     return self;
 }
 
-- (POViewFrameBuilder *)alignToTopInSuperviewWithInsets:(UIEdgeInsets)insets {
+- (POViewFrameBuilder *)alignToTopInSuperviewWithInsets:(UIEdgeInsets)insets
+{
     self.frame = PORectWithOrigin(self.frame,
                                   self.frame.origin.x + insets.left - insets.right,
                                   insets.top - insets.bottom);
@@ -280,7 +325,8 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)alignToBottomInSuperviewWithInsets:(UIEdgeInsets)insets {
+- (POViewFrameBuilder *)alignToBottomInSuperviewWithInsets:(UIEdgeInsets)insets
+{
     self.frame = PORectWithOrigin(self.frame,
                                   self.frame.origin.x + insets.left - insets.right,
                                   self.view.superview.bounds.size.height - self.frame.size.height + insets.top - insets.bottom);
@@ -288,7 +334,8 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)alignLeftInSuperviewWithInsets:(UIEdgeInsets)insets {
+- (POViewFrameBuilder *)alignLeftInSuperviewWithInsets:(UIEdgeInsets)insets
+{
     self.frame = PORectWithOrigin(self.frame,
                                   insets.left - insets.right,
                                   self.frame.origin.y + insets.top - insets.bottom);
@@ -296,7 +343,8 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)alignRightInSuperviewWithInsets:(UIEdgeInsets)insets {
+- (POViewFrameBuilder *)alignRightInSuperviewWithInsets:(UIEdgeInsets)insets
+{
     self.frame = PORectWithOrigin(self.frame,
                                   self.view.superview.bounds.size.width - self.frame.size.width + insets.left - insets.right,
                                   self.frame.origin.y + insets.top - insets.bottom);
@@ -304,10 +352,12 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)alignToView:(UIView *)view edge:(POViewFrameBuilderEdge)edge offset:(CGFloat)offset {
+- (POViewFrameBuilder *)alignToView:(UIView *)view edge:(POViewFrameBuilderEdge)edge offset:(CGFloat)offset
+{
     CGRect viewFrame = [view.superview convertRect:view.frame toView:self.view.superview];
     
-    switch (edge) {
+    switch (edge)
+    {
         case POViewFrameBuilderEdgeTop:
             self.frame = PORectWithY(self.frame, viewFrame.origin.y - offset - self.frame.size.height);
             break;
@@ -327,19 +377,23 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)alignToTopOfView:(UIView *)view offset:(CGFloat)offset {
+- (POViewFrameBuilder *)alignToTopOfView:(UIView *)view offset:(CGFloat)offset
+{
     return [self alignToView:view edge:POViewFrameBuilderEdgeTop offset:offset];
 }
 
-- (POViewFrameBuilder *)alignToBottomOfView:(UIView *)view offset:(CGFloat)offset {
+- (POViewFrameBuilder *)alignToBottomOfView:(UIView *)view offset:(CGFloat)offset
+{
     return [self alignToView:view edge:POViewFrameBuilderEdgeBottom offset:offset];
 }
 
-- (POViewFrameBuilder *)alignLeftOfView:(UIView *)view offset:(CGFloat)offset {
+- (POViewFrameBuilder *)alignLeftOfView:(UIView *)view offset:(CGFloat)offset
+{
     return [self alignToView:view edge:POViewFrameBuilderEdgeLeft offset:offset];
 }
 
-- (POViewFrameBuilder *)alignRightOfView:(UIView *)view offset:(CGFloat)offset {
+- (POViewFrameBuilder *)alignRightOfView:(UIView *)view offset:(CGFloat)offset
+{
     return [self alignToView:view edge:POViewFrameBuilderEdgeRight offset:offset];
 }
 
@@ -349,13 +403,17 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     }];;
 }
 
-+ (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
++ (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block
+{
     UIView *previousView = nil;
-    for (UIView *view in views) {
-        if (previousView) {
+    for (UIView *view in views)
+    {
+        if (previousView)
+        {
             CGFloat spacing = block != nil ? block(previousView, view) : 0.0f;
             
-            switch (direction) {
+            switch (direction)
+            {
                 case POViewFrameBuilderDirectionRight:
                     [[[self class] frameBuilderForView:view] alignRightOfView:previousView offset:spacing];
                     break;
@@ -377,52 +435,65 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     }
 }
 
-+ (void)alignViewsVertically:(NSArray *)views spacing:(CGFloat)spacing {
++ (void)alignViewsVertically:(NSArray *)views spacing:(CGFloat)spacing
+{
     [self alignViewsVertically:views spacingWithBlock:^CGFloat(UIView *firstView, UIView *secondView) {
         return spacing;
     }];
 }
 
-+ (void)alignViewsVertically:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
++ (void)alignViewsVertically:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block
+{
     [self alignViews:views direction:POViewFrameBuilderDirectionDown spacingWithBlock:block];
 }
 
-+ (void)alignViewsHorizontally:(NSArray *)views spacing:(CGFloat)spacing {
++ (void)alignViewsHorizontally:(NSArray *)views spacing:(CGFloat)spacing
+{
     [self alignViewsHorizontally:views spacingWithBlock:^CGFloat(UIView *firstView, UIView *secondView) {
         return spacing;
     }];
 }
 
-+ (void)alignViewsHorizontally:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
++ (void)alignViewsHorizontally:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block
+{
     [self alignViews:views direction:POViewFrameBuilderDirectionRight spacingWithBlock:block];
 }
 
-+ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views spacing:(CGFloat)spacing {
++ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views spacing:(CGFloat)spacing
+{
     return [self heightForViewsAlignedVertically:views constrainedToWidth:0.0f spacing:spacing];
 }
 
-+ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
++ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block
+{
     return [self heightForViewsAlignedVertically:views constrainedToWidth:0.0f spacingWithBlock:block];
 }
 
-+ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views constrainedToWidth:(CGFloat)constrainedWidth spacing:(CGFloat)spacing {
++ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views constrainedToWidth:(CGFloat)constrainedWidth spacing:(CGFloat)spacing
+{
     return [self heightForViewsAlignedVertically:views constrainedToWidth:constrainedWidth spacingWithBlock:^CGFloat(UIView *firstView, UIView *secondView) {
         return spacing;
     }];
 }
 
-+ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views constrainedToWidth:(CGFloat)constrainedWidth spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
++ (CGFloat)heightForViewsAlignedVertically:(NSArray *)views constrainedToWidth:(CGFloat)constrainedWidth spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block
+{
     CGFloat height = 0.0f;
     
     UIView *previousView = nil;
-    for (UIView *view in views) {
-        if (constrainedWidth > FLT_EPSILON) {
+    for (UIView *view in views)
+    {
+        if (constrainedWidth > FLT_EPSILON)
+        {
             height += [view sizeThatFits:CGSizeMake(constrainedWidth, CGFLOAT_MAX)].height;
-        } else {
+        }
+        else
+        {
             height += view.bounds.size.height;
         }
         
-        if (previousView) {
+        if (previousView)
+        {
             height += block != nil ? block(previousView, view) : 0.0f;
         }
         
@@ -434,31 +505,36 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 
 #pragma mark - Resize
 
-- (POViewFrameBuilder *)setWidth:(CGFloat)width {
+- (POViewFrameBuilder *)setWidth:(CGFloat)width
+{
     self.frame = PORectWithWidth(self.frame, width);
     
     return self;
 }
 
-- (POViewFrameBuilder *)setHeight:(CGFloat)height {
+- (POViewFrameBuilder *)setHeight:(CGFloat)height
+{
     self.frame = PORectWithHeight(self.frame, height);
     
     return self;
 }
 
-- (POViewFrameBuilder *)setSize:(CGSize)size {
+- (POViewFrameBuilder *)setSize:(CGSize)size
+{
     self.frame = PORectWithSize(self.frame, size.width, size.height);
     
     return self;
 }
 
-- (POViewFrameBuilder *)setSizeWithWidth:(CGFloat)width height:(CGFloat)height {
+- (POViewFrameBuilder *)setSizeWithWidth:(CGFloat)width height:(CGFloat)height
+{
     return [self performChangesInGroupWithBlock:^{
         [[self setWidth:width] setHeight:height];
     }];
 }
 
-- (POViewFrameBuilder *)setSizeToFitWidth {
+- (POViewFrameBuilder *)setSizeToFitWidth
+{
     CGRect frame = self.frame;
     frame.size.width = [self.view sizeThatFits:CGSizeMake(CGFLOAT_MAX, self.frame.size.height)].width;
     self.frame = frame;
@@ -466,7 +542,8 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)setSizeToFitHeight {
+- (POViewFrameBuilder *)setSizeToFitHeight
+{
     CGRect frame = self.frame;
     frame.size.height = [self.view sizeThatFits:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)].height;
     self.frame = frame;
@@ -474,7 +551,8 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-- (POViewFrameBuilder *)setSizeToFit {
+- (POViewFrameBuilder *)setSizeToFit
+{
     CGSize size = [self.view sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
     
     CGRect frame = self.frame;
@@ -485,8 +563,10 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return self;
 }
 
-+ (void)sizeToFitViews:(NSArray *)views {
-    for (UIView *view in views) {
++ (void)sizeToFitViews:(NSArray *)views
+{
+    for (UIView *view in views)
+    {
         [view sizeToFit];
     }
 }
@@ -494,7 +574,8 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 @end
 @implementation UIView (XY_frameBuilder)
 
-- (POViewFrameBuilder *)po_frameBuilder {
+- (POViewFrameBuilder *)po_frameBuilder
+{
     return [POViewFrameBuilder frameBuilderForView:self];
 }
 
@@ -510,108 +591,132 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 @dynamic size;
 
 // Setters
--(void)setX:(CGFloat)x{
+- (void)setX:(CGFloat)x
+{
     CGRect r        = self.frame;
     r.origin.x      = x;
     self.frame      = r;
 }
 
--(void)setY:(CGFloat)y{
+- (void)setY:(CGFloat)y
+{
     CGRect r        = self.frame;
     r.origin.y      = y;
     self.frame      = r;
 }
 
--(void)setWidth:(CGFloat)width{
+- (void)setWidth:(CGFloat)width
+{
     CGRect r        = self.frame;
     r.size.width    = width;
     self.frame      = r;
 }
 
--(void)setHeight:(CGFloat)height{
+- (void)setHeight:(CGFloat)height
+{
     CGRect r        = self.frame;
     r.size.height   = height;
     self.frame      = r;
 }
 
--(void)setOrigin:(CGPoint)origin{
+- (void)setOrigin:(CGPoint)origin
+{
     self.x          = origin.x;
     self.y          = origin.y;
 }
 
--(void)setSize:(CGSize)size{
+- (void)setSize:(CGSize)size
+{
     self.width      = size.width;
     self.height     = size.height;
 }
 
--(void)setRight:(CGFloat)right {
+- (void)setRight:(CGFloat)right
+{
     CGRect frame = self.frame;
     frame.origin.x = right - frame.size.width;
     self.frame = frame;
 }
 
--(void)setBottom:(CGFloat)bottom {
+- (void)setBottom:(CGFloat)bottom
+{
     CGRect frame = self.frame;
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
 }
 
--(void)setCenterX:(CGFloat)centerX {
+- (void)setCenterX:(CGFloat)centerX
+{
     self.center = CGPointMake(centerX, self.center.y);
 }
 
--(void)setCenterY:(CGFloat)centerY {
+- (void)setCenterY:(CGFloat)centerY
+{
     self.center = CGPointMake(self.center.x, centerY);
 }
 
 // Getters
--(CGFloat)x{
+- (CGFloat)x
+{
     return self.frame.origin.x;
 }
 
--(CGFloat)y{
+- (CGFloat)y
+{
     return self.frame.origin.y;
 }
 
--(CGFloat)width{
+- (CGFloat)width
+{
     return self.frame.size.width;
 }
 
--(CGFloat)height{
+- (CGFloat)height
+{
     return self.frame.size.height;
 }
 
--(CGPoint)origin{
+- (CGPoint)origin
+{
     return CGPointMake(self.x, self.y);
 }
 
--(CGSize)size{
+- (CGSize)size
+{
     return CGSizeMake(self.width, self.height);
 }
 
--(CGFloat)right {
+- (CGFloat)right
+{
     return self.frame.origin.x + self.frame.size.width;
 }
 
--(CGFloat)bottom {
+- (CGFloat)bottom
+{
     return self.frame.origin.y + self.frame.size.height;
 }
 
--(CGFloat)centerX {
+- (CGFloat)centerX
+{
     return self.center.x;
 }
 
--(CGFloat)centerY {
+- (CGFloat)centerY
+{
     return self.center.y;
 }
 
--(UIView *)lastSubviewOnX{
-    if(self.subviews.count > 0){
+- (UIView *)lastSubviewOnX
+{
+    if (self.subviews.count > 0)
+    {
         UIView *outView = self.subviews[0];
         
         for(UIView *v in self.subviews)
+        {
             if(v.x > outView.x)
                 outView = v;
+        }
         
         return outView;
     }
@@ -619,17 +724,22 @@ static inline UIEdgeInsets POEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return nil;
 }
 
--(UIView *)lastSubviewOnY{
-    if(self.subviews.count > 0){
+- (UIView *)lastSubviewOnY
+{
+    if(self.subviews.count > 0)
+    {
         UIView *outView = self.subviews[0];
         
         for(UIView *v in self.subviews)
+        {
             if(v.y > outView.y)
                 outView = v;
+        }
         
         return outView;
     }
     
     return nil;
 }
+
 @end

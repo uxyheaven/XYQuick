@@ -20,8 +20,8 @@ typedef enum {
 - (void)resize:(UILabelResizeType)type;
 
 // 返回估计的尺寸
--(CGSize) estimateUISizeByHeight:(CGFloat)height;
--(CGSize) estimateUISizeByWidth:(CGFloat)width;
+- (CGSize)estimateUISizeByHeight:(CGFloat)height;
+- (CGSize)estimateUISizeByWidth:(CGFloat)width;
 
 
 @end
