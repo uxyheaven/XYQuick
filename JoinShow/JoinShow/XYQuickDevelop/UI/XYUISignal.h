@@ -26,19 +26,19 @@
 #pragma mark - XYUISignal : NSObject
 @interface XYUISignal : NSObject
 
-@property (nonatomic, assign) BOOL isDead;			// 杀死SIGNAL
-@property (nonatomic, assign) BOOL isReach;			// 是否触达顶级ViewController
-@property (nonatomic, assign) NSUInteger jump;			// 转发次数
-@property (nonatomic, assign) id source;			// 发送来源
-@property (nonatomic, assign) id target;			// 转发目标
-@property (nonatomic, copy) NSString *name;			// Signal名字
-@property (nonatomic, copy) NSString *namePrefix;		// Signal前辍
-@property (nonatomic, strong) NSObject *object;			// 附带参数
+@property (nonatomic, assign) BOOL            isDead;       // 杀死SIGNAL
+@property (nonatomic, assign) BOOL            isReach;      // 是否触达顶级ViewController
+@property (nonatomic, assign) NSUInteger      jump;         // 转发次数
+@property (nonatomic, assign) id              source;       // 发送来源
+@property (nonatomic, assign) id              target;       // 转发目标
+@property (nonatomic, copy  ) NSString        *name;        // Signal名字
+@property (nonatomic, copy  ) NSString        *namePrefix;  // Signal前辍
+@property (nonatomic, strong) NSObject        *object;      // 附带参数
 
-@property (nonatomic, strong) NSObject *returnValue;	// 返回值，默认为空
-@property (nonatomic, copy) NSString *preSelector;	// 返回值，默认为空
+@property (nonatomic, strong) NSObject        *returnValue; // 返回值，默认为空
+@property (nonatomic, copy  ) NSString        *preSelector; // 返回值，默认为空
 
-@property (nonatomic, copy) NSMutableString *callPath;       // 调用路径
+@property (nonatomic, copy  ) NSMutableString *callPath;    // 调用路径
 
 
 - (BOOL)is:(NSString *)name;
@@ -104,7 +104,7 @@
 #pragma mark - XYUISignal(SourceView)
 @interface XYUISignal(SourceView)
 
-@property (nonatomic, readonly) UIView *sourceView;
+@property (nonatomic, readonly) UIView           *sourceView;
 @property (nonatomic, readonly) UIViewController *sourceViewController;
 
 @end

@@ -29,7 +29,7 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
  */
 @interface XYTimer : NSObject
 
-@property (nonatomic ,strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -73,9 +73,9 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
  */
 @interface XYTicker : NSObject
 
-@property (nonatomic, weak, readonly) CADisplayLink *timer;
-@property (nonatomic, assign, readonly)	NSTimeInterval		timestamp;
-@property (nonatomic, assign) NSTimeInterval		interval;
+@property (nonatomic, weak, readonly  ) CADisplayLink  *timer;
+@property (nonatomic, assign, readonly) NSTimeInterval timestamp;
+@property (nonatomic, assign          ) NSTimeInterval interval;
 
 AS_SINGLETON( XYTicker )
 

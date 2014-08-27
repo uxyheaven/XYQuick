@@ -87,7 +87,7 @@ AS_SINGLETON(XYKeyboardHelper)
     SEL nextSelector;
 }
 
--(id) initWithTarget:(id)target previousSelector:(SEL)pSelector nextSelector:(SEL)nSelector;
+- (id)initWithTarget:(id)target previousSelector:(SEL)pSelector nextSelector:(SEL)nSelector;
 
 @end
 

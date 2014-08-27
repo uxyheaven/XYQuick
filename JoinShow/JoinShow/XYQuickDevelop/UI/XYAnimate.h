@@ -34,9 +34,9 @@ typedef void (^XYAnimateStepBlock)(void);
     option:(UIViewAnimationOptions)option
     animate:(XYAnimateStepBlock)step;
 
-@property (nonatomic, assign) NSTimeInterval delay;
-@property (nonatomic, assign) NSTimeInterval duration;
-@property (nonatomic, copy) XYAnimateStepBlock step;
+@property (nonatomic, assign) NSTimeInterval         delay;
+@property (nonatomic, assign) NSTimeInterval         duration;
+@property (nonatomic, copy  ) XYAnimateStepBlock     step;
 @property (nonatomic, assign) UIViewAnimationOptions option;
 
 

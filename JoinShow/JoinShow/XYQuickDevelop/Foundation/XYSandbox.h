@@ -24,7 +24,7 @@ AS_SINGLETON( XYSandbox )
 + (NSString *)libCachePath;	// 缓存目录，系统在磁盘空间不足的情况下会删除里面的文件，ITUNES会删除
 + (NSString *)tmpPath;		// 缓存目录，APP退出后，系统可能会删除这里的内容
 
-+(NSString *) resPath:(NSString *)file;      // 资源目录
++ (NSString *)resPath:(NSString *)file;      // 资源目录
 
 + (BOOL)touch:(NSString *)path;
 + (BOOL)touchFile:(NSString *)file;
@@ -44,7 +44,7 @@ AS_SINGLETON( XYSandbox )
  * fileType 文件后缀名
  * operation (预留,暂时没用)
  */
-+(NSArray *) allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
++ (NSArray *)allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operation;
 
 
 /**
@@ -54,10 +54,10 @@ AS_SINGLETON( XYSandbox )
  * filePath 目录路径
  * diskMode 是否是磁盘占用的size
  */
-+(uint64_t) sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode;
++ (uint64_t)sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode;
 
 // 设置目录里的文件不备份
-+(BOOL) skipFileBackupForItemAtURL:(NSURL*)URL;
++ (BOOL)skipFileBackupForItemAtURL:(NSURL*)URL;
 
 @end
 

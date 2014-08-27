@@ -260,7 +260,7 @@ DEF_SINGLETON( XYSandbox )
     return totalSize;
 }
 
-+(BOOL) skipFileBackupForItemAtURL:(NSURL*)URL{
++ (BOOL)skipFileBackupForItemAtURL:(NSURL*)URL{
     if (![[NSFileManager defaultManager] fileExistsAtPath: [URL path]])
         return NO;
     

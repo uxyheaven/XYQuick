@@ -53,7 +53,7 @@
 
 AS_SINGLETON(XYDebug)
 
-+(NSArray *) callstack:(NSUInteger)depth;
++ (NSArray *)callstack:(NSUInteger)depth;
 
 + (void)printCallstack:(NSUInteger)depth;
 + (void)breakPoint;
