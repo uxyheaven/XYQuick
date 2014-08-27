@@ -35,7 +35,7 @@
 - (NSMutableDictionary *)asNSMutableDictionary;
 
 #pragma mark - message box
--(UIAlertView *) showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (UIAlertView *)showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
 #pragma mark- Object
 @property (nonatomic, strong) id                tempObject;
@@ -52,11 +52,11 @@
 #pragma mark- block
 // handle block with default identifier is @"EventBlock".
 - (void)handlerDefaultEventWithBlock:(id)aBlock;
--(id) blockForDefaultEvent;
+- (id)blockForDefaultEvent;
 
 // 设置一个block作为回调
 - (void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
--(id) blockForEventWithIdentifier:(NSString *)identifier;
+- (id)blockForEventWithIdentifier:(NSString *)identifier;
 
 @end
 
