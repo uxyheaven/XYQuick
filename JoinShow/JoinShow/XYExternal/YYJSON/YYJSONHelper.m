@@ -418,7 +418,7 @@ const char *property_getTypeString(objc_property_t property) {
 {
     if (key && [[self YYJSONObject] isKindOfClass:[NSDictionary class]])
     {
-        return [[self YYJSONObject] objectForKey:key];
+        return [[self YYJSONObject] valueForKeyPath:key];
     }
     else
     {
