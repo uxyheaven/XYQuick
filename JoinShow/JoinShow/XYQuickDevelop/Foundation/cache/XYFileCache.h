@@ -13,14 +13,14 @@
 
 @interface XYFileCache : NSObject <XYCacheProtocol>
 
-@property (nonatomic, copy) NSString *	cachePath;
-@property (nonatomic, copy) NSString *	cacheUser;
+@property (nonatomic, copy) NSString *cachePath;
+@property (nonatomic, copy) NSString *cacheUser;
 
 @property (nonatomic, assign) NSTimeInterval maxCacheAge; // 有效期,默认1周
 
 AS_SINGLETON( XYFileCache );
 
--(NSString *)fileNameForKey:(NSString *)key;
+- (NSString *)fileNameForKey:(NSString *)key;
 #pragma mark - todo
 //- (void)removeOverdueFiles;
 

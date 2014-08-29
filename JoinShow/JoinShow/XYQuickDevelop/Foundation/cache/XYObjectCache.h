@@ -16,23 +16,23 @@
 AS_SINGLETON(XYObjectCache)
 
 @property (nonatomic, weak, readonly) Class objectClass;      // 缓存对象的类
-@property (atomic, strong) XYMemoryCache *		memoryCache;    // 内存缓存
-@property (atomic, strong) XYFileCache *		fileCache;      // 文件缓存
+@property (atomic, strong) XYMemoryCache *memoryCache;// 内存缓存
+@property (atomic, strong) XYFileCache   *fileCache;// 文件缓存
 
 - (void)registerObjectClass:(Class)aClass;
 
--(id) objectForKey:(NSString *)key;
+- (id)objectForKey:(NSString *)key;
 - (void)saveObject:(id)anObject forKey:(NSString *)key;
 - (void)deleteObjectForKey:(NSString *)key;
 - (void)deleteAllObjects;
 
 //////////////////////////////////////////////////////////////
--(BOOL) hasCachedForKey:(NSString *)key;
--(BOOL) hasFileCachedForKey:(NSString *)key;
--(BOOL) hasMemoryCachedForKey:(NSString *)key;
+- (BOOL)hasCachedForKey:(NSString *)key;
+- (BOOL)hasFileCachedForKey:(NSString *)key;
+- (BOOL)hasMemoryCachedForKey:(NSString *)key;
 
--(id) fileObjectForKey:(NSString *)key;
--(id) memoryObjectForKey:(NSString *)key;
+- (id)fileObjectForKey:(NSString *)key;
+- (id)memoryObjectForKey:(NSString *)key;
 
 - (void)saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async;
 - (void)saveToMemory:(id)anObject forKey:(NSString *)key;

@@ -46,7 +46,7 @@ DEF_SINGLETON(XYObjectCache)
     _fileCache.cachePath = [NSString stringWithFormat:@"%@/%@/", [XYSandbox libCachePath], NSStringFromClass(_objectClass)];
 }
 
--(BOOL) hasCachedForKey:(NSString *)string
+- (BOOL)hasCachedForKey:(NSString *)string
 {
 	NSString * cacheKey = [string MD5];
 	
@@ -59,21 +59,21 @@ DEF_SINGLETON(XYObjectCache)
 	return flag;
 }
 
--(BOOL) hasFileCachedForKey:(NSString *)key
+- (BOOL)hasFileCachedForKey:(NSString *)key
 {
 	NSString * cacheKey = [key MD5];
 	
 	return [self.fileCache hasObjectForKey:cacheKey];
 }
 
--(BOOL) hasMemoryCachedForKey:(NSString *)key
+- (BOOL)hasMemoryCachedForKey:(NSString *)key
 {
 	NSString * cacheKey = [key MD5];
 	
 	return [self.memoryCache hasObjectForKey:cacheKey];
 }
 
--(id) fileObjectForKey:(NSString *)key
+- (id)fileObjectForKey:(NSString *)key
 {
   //  PERF_ENTER
 	
@@ -84,13 +84,20 @@ DEF_SINGLETON(XYObjectCache)
 
 	if ( fullPath )
 	{
-        if ([self.objectClass isSubclassOfClass:[UIImage class]]) {
+        if ([self.objectClass isSubclassOfClass:[UIImage class]])
+        {
             anObject = [[UIImage alloc] initWithContentsOfFile:fullPath];
-        } else if ([self.objectClass isSubclassOfClass:[NSData class]]){
+        }
+        else if ([self.objectClass isSubclassOfClass:[NSData class]])
+        {
             anObject = [[NSData alloc] initWithContentsOfFile:fullPath];
-        } else if ([self.objectClass isSubclassOfClass:[NSString class]]){
+        }
+        else if ([self.objectClass isSubclassOfClass:[NSString class]])
+        {
             anObject = [[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
-        } else if (1){
+        }
+        else if (1)
+        {
             anObject = [[NSData alloc] initWithContentsOfFile:fullPath];
         }
         
@@ -107,7 +114,7 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(id) memoryObjectForKey:(NSString *)key
+- (id)memoryObjectForKey:(NSString *)key
 {
   //  PERF_ENTER
 	
@@ -118,7 +125,9 @@ DEF_SINGLETON(XYObjectCache)
 	if ( object && [object isKindOfClass:self.objectClass] )
 	{
 		anObject = (id)object;
-	} else if (object && 1){
+	}
+    else if (object && 1)
+    {
         anObject = (id)object;
     }
 	
@@ -127,7 +136,7 @@ DEF_SINGLETON(XYObjectCache)
 	return anObject;
 }
 
--(id) objectForKey:(NSString *)string
+- (id)objectForKey:(NSString *)string
 {
 	id anObject = [self memoryObjectForKey:string];
 	if ( nil == anObject )

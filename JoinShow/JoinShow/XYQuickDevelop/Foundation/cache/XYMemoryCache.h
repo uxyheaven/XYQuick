@@ -14,10 +14,10 @@
 
 AS_SINGLETON( XYMemoryCache );
 
-@property (nonatomic, assign) BOOL					clearWhenMemoryLow;
-@property (nonatomic, assign) NSUInteger			maxCacheCount;
-@property (nonatomic, assign) NSUInteger			cachedCount;
-@property (atomic, strong) NSMutableArray *			cacheKeys;
-@property (atomic, strong) NSMutableDictionary *	cacheObjs;
+@property (nonatomic, assign) BOOL                clearWhenMemoryLow;
+@property (nonatomic, assign) NSUInteger          maxCacheCount;
+@property (nonatomic, assign) NSUInteger          cachedCount;
+@property (atomic, strong   ) NSMutableArray      *cacheKeys;
+@property (atomic, strong   ) NSMutableDictionary *cacheObjs;
 
 @end
