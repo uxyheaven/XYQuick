@@ -418,37 +418,61 @@
 /***************************************************************/
 + (NSDateFormatter *)dateFormatter
 {
-    static NSDateFormatter* format;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        format = [[NSDateFormatter alloc] init];
-        format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    });
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = threadDictionary[@"dateFormatter"];
+    if(!dateFormatter)
+    {
+        @synchronized(self)
+        {
+            if(!dateFormatter)
+            {
+                dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                threadDictionary[@"dateFormatter"] = dateFormatter;
+            }
+        }
+    }
     
-    return format;
+    return dateFormatter;
 }
 + (NSDateFormatter *)dateFormatterTemp
 {
-    static NSDateFormatter* format;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        format = [[NSDateFormatter alloc] init];
-        format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    });
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = threadDictionary[@"dateFormatterTemp"];
+    if(!dateFormatter)
+    {
+        @synchronized(self)
+        {
+            if(!dateFormatter)
+            {
+                dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                threadDictionary[@"dateFormatterTemp"] = dateFormatter;
+            }
+        }
+    }
     
-    return format;
+    return dateFormatter;
 }
 + (NSDateFormatter *)dateFormatterByUTC
 {
-    static NSDateFormatter* format;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        format = [[NSDateFormatter alloc] init];
-        [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    });
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = threadDictionary[@"dateFormatterByUTC"];
+    if(!dateFormatter)
+    {
+        @synchronized(self)
+        {
+            if(!dateFormatter)
+            {
+                dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                threadDictionary[@"dateFormatterByUTC"] = dateFormatter;
+            }
+        }
+    }
     
-    return format;
+    return dateFormatter;
 }
 /***************************************************************/
 + (void)printUsedAndFreeMemoryWithMark:(NSString *)mark

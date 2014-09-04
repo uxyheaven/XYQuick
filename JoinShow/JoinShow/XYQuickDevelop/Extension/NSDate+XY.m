@@ -36,7 +36,7 @@ DUMMY_CLASS(NSDate_XY);
 + (NSCalendar *)AZ_currentCalendar {
     // 你使用NSThread的threadDictionary方法来检索一个NSMutableDictionary对象，你可以在它里面添加任何线程需要的键。每个线程都维护了一个键-值的字典，它可以在线程里面的任何地方被访问。你可以使用该字典来保存一些信息，这些信息在整个线程的执行过程中都保持不变。
     NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
-    NSCalendar *currentCalendar = [dictionary objectForKey:@"AZ_currentCalendar"];
+    NSCalendar *currentCalendar     = [dictionary objectForKey:@"AZ_currentCalendar"];
     if (currentCalendar == nil)
     {
         currentCalendar = [NSCalendar currentCalendar];
@@ -176,14 +176,11 @@ DUMMY_CLASS(NSDate_XY);
 }
 
 -(NSDate *) dateAfterDay:(int)day{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    // Get the weekday component of the current date
-    // NSDateComponents *weekdayComponents = [calendar components:NSWeekdayCalendarUnit fromDate:self];
     NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
-    // to get the end of week for a particular date, add (7 - weekday) days
     [componentsToAdd setDay:day];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *dateAfterDay = [calendar dateByAddingComponents:componentsToAdd toDate:self options:0];
-    
+
     return dateAfterDay;
 }
 
@@ -204,8 +201,8 @@ DUMMY_CLASS(NSDate_XY);
 }
 
 -(NSString *) resetStringCache{
-    NSDateFormatter * dateFormatter = [XYCommon dateFormatterByUTC];
-    NSString *str = [dateFormatter stringFromDate:self];
+    NSDateFormatter *dateFormatter = [XYCommon dateFormatterByUTC];
+    NSString *str                  = [dateFormatter stringFromDate:self];
     
     objc_setAssociatedObject(self, NSDate_key_stringCache, str, OBJC_ASSOCIATION_COPY);
     
@@ -214,7 +211,7 @@ DUMMY_CLASS(NSDate_XY);
 
 -(NSDate *) localTime{
     // NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSTimeZone *zone = [NSTimeZone localTimeZone];
+    NSTimeZone *zone   = [NSTimeZone localTimeZone];
     NSInteger interval = [zone secondsFromGMTForDate: self];
     NSDate *localeDate = [self  dateByAddingTimeInterval: interval];
     
