@@ -153,9 +153,9 @@ DUMMY_CLASS(NSArray_XY);
 
 + (NSMutableArray *)nonRetainingArray
 {
-	CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
-    callbacks.retain = __XYRetainNoOp;
-    callbacks.release = __XYReleaseNoOp;
+    CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
+    callbacks.retain           = __XYRetainNoOp;
+    callbacks.release          = __XYReleaseNoOp;
     
     return (__bridge_transfer NSMutableArray *)CFArrayCreateMutable(nil, 0, &callbacks);
 }
