@@ -42,6 +42,8 @@
 		5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403236190FA76700C82B23 /* FMDatabasePool.m */; };
 		5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403238190FA76700C82B23 /* FMDatabaseQueue.m */; };
 		57403240190FA76700C82B23 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740323A190FA76700C82B23 /* FMResultSet.m */; };
+		5749BF8419BF480900D676CC /* JSONVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5749BF8319BF480900D676CC /* JSONVC.m */; };
+		5749BF8619BF4DEB00D676CC /* json0.json in Resources */ = {isa = PBXBuildFile; fileRef = 5749BF8519BF4DEB00D676CC /* json0.json */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
@@ -128,7 +130,6 @@
 		57DF99E1190AF5070036B85D /* icon_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DF190AF5070036B85D /* icon_google.png */; };
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
-		57E852E217B224E500C664F4 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E852E117B224E500C664F4 /* json2.json */; };
 		57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EBFF3D192082C900916B80 /* UIButton+XY.m */; };
 		57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */; };
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
@@ -233,6 +234,9 @@
 		57403239190FA76700C82B23 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		5740323A190FA76700C82B23 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		5742C1F017F7BF3C00065083 /* XYExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternal.h; sourceTree = "<group>"; };
+		5749BF8219BF480900D676CC /* JSONVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONVC.h; sourceTree = "<group>"; };
+		5749BF8319BF480900D676CC /* JSONVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONVC.m; sourceTree = "<group>"; };
+		5749BF8519BF4DEB00D676CC /* json0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json0.json; sourceTree = "<group>"; };
 		57548400181F4629008F9355 /* KeyboardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardVC.h; sourceTree = "<group>"; };
 		57548401181F4629008F9355 /* KeyboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardVC.m; sourceTree = "<group>"; };
 		575694841883D9C4004C2C74 /* GirlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GirlEntity.h; sourceTree = "<group>"; };
@@ -394,7 +398,6 @@
 		57DF99E0190AF5070036B85D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
-		57E852E117B224E500C664F4 /* json2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json2.json; sourceTree = "<group>"; };
 		57EBFF3C192082C900916B80 /* UIButton+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XY.h"; sourceTree = "<group>"; };
 		57EBFF3D192082C900916B80 /* UIButton+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XY.m"; sourceTree = "<group>"; };
 		57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+XY.h"; sourceTree = "<group>"; };
@@ -502,6 +505,8 @@
 				5733A98E192B0F4300DC78B0 /* UISignalVC.m */,
 				579B3A3318EBDCF8001650C6 /* DemoViewController.h */,
 				579B3A3418EBDCF8001650C6 /* DemoViewController.m */,
+				5749BF8219BF480900D676CC /* JSONVC.h */,
+				5749BF8319BF480900D676CC /* JSONVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -683,7 +688,7 @@
 				57808334181A1088000F349B /* headportrait.jpg */,
 				57AE2ED318D2AA8C009F0481 /* image.png */,
 				57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */,
-				57E852E117B224E500C664F4 /* json2.json */,
+				5749BF8519BF4DEB00D676CC /* json0.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1101,12 +1106,12 @@
 				57B3FFFC177AD9BC00775FC9 /* Default.png in Resources */,
 				57B3FFFE177AD9BC00775FC9 /* Default@2x.png in Resources */,
 				57B30000177AD9BC00775FC9 /* Default-568h@2x.png in Resources */,
-				57E852E217B224E500C664F4 /* json2.json in Resources */,
 				571CBA5817C6FCC0007CB842 /* Storyboard.storyboard in Resources */,
 				57DF99DD190AF4B10036B85D /* icon_facebook.png in Resources */,
 				57A2FE5E18063D5A002460EC /* bg.jpg in Resources */,
 				57808335181A1088000F349B /* headportrait.jpg in Resources */,
 				57AE2ED418D2AA8C009F0481 /* image.png in Resources */,
+				5749BF8619BF4DEB00D676CC /* json0.json in Resources */,
 				57DF99DE190AF4B10036B85D /* icon_twitter.png in Resources */,
 				57B08683193046C800D2B26D /* user_currentstandings.png in Resources */,
 				57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */,
@@ -1186,6 +1191,7 @@
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				84DBC5B3197E6E7E00718937 /* NSObject+LKDBHelper.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
+				5749BF8419BF480900D676CC /* JSONVC.m in Sources */,
 				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
 				CEE0036819480697005AE8C4 /* MBProgressHUD.m in Sources */,
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,

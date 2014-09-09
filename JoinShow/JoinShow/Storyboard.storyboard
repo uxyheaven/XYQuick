@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zz8-6Z-mRL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zz8-6Z-mRL">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -34,7 +34,6 @@
                         <segue destination="uej-ya-UBt" kind="push" identifier="AnimationVC" id="f9U-az-oJ1"/>
                         <segue destination="qzB-8S-awF" kind="push" identifier="TestVC" id="DeR-Fe-khK"/>
                         <segue destination="8ud-g3-1KC" kind="push" identifier="NetworkVC" id="TkI-HH-JJn"/>
-                        <segue destination="vat-fs-THh" kind="push" identifier="JsonVC" id="B9s-62-jZ9"/>
                         <segue destination="gta-pL-g3S" kind="push" identifier="DataLiteVC" id="A6X-a4-BDC"/>
                         <segue destination="5k6-n1-nlt" kind="push" identifier="DatabaseVC" id="cw5-M5-J7I"/>
                         <segue destination="EKU-hd-IO3" kind="push" identifier="ParallaxVC" id="tum-Sn-3df"/>
@@ -125,41 +124,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I4I-A7-HXj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2158" y="-1718"/>
-        </scene>
-        <!--JsonVC-->
-        <scene sceneID="GCU-Se-UPa">
-            <objects>
-                <viewController id="vat-fs-THh" customClass="JsonVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8DQ-N3-Mnq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bWj-lw-2cC">
-                                <rect key="frame" x="20" y="80" width="94" height="30"/>
-                                <state key="normal" title="testString">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickTestString:" destination="vat-fs-THh" eventType="touchUpInside" id="J91-jk-yEQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ohE-BH-0n4">
-                                <rect key="frame" x="189" y="80" width="84" height="30"/>
-                                <state key="normal" title="testData">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickTestData:" destination="vat-fs-THh" eventType="touchUpInside" id="JfL-Jb-oQk"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="KqK-PL-bgV"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JGY-JC-npJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2698" y="-1718"/>
         </scene>
         <!--Data LiteVC-->
         <scene sceneID="5mL-Up-H7F">

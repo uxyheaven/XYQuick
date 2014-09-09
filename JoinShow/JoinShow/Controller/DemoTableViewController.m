@@ -41,6 +41,7 @@
                       @{@"title": @"Something", @"className": @"TestVC"},
                       @{@"title": @"Something2", @"className": @"TestVC2"},
                       @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
+                      @{@"title": @"JSON", @"className": @"JSONVC"},
                       @{@"title": @"Network", @"className": @"NetworkVC"},
                       @{@"title": @"DataLite", @"className": @"DataLiteVC"},
                       @{@"title": @"Database", @"className": @"DatabaseVC"},
