@@ -19,8 +19,11 @@
 
 #pragma mark - XYJSONHelperProtocol
 @protocol XYJSONHelperProtocol
-
-@end
+/*
+ * 通过 Protocol 免去NSArray 手动bind
+ * @property(strong, nonatomic) NSArray	<AudioPartModel> *audioParts;
+*/
+ @end
 
 
 #pragma mark - NSObject (XYJSONHelper)
