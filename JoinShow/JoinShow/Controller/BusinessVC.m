@@ -116,7 +116,7 @@
     RubyChinaNodeEntity *anObject = [[RubyChinaNodeEntity alloc] init];
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
-    NSString *str = [anObject YYJSONString];
+    NSString *str = [anObject XYJSONString];
     SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
 }
 
@@ -179,7 +179,7 @@
     label.textColor = [UIColor redColor];
     
     if (self.model && self.model.count > 0) {
-        NSString *str = [[self.model objectAtIndex:0] YYJSONString];
+        NSString *str = [[self.model objectAtIndex:0] XYJSONString];
         SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
     }
 }

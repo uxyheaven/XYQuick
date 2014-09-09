@@ -23,6 +23,8 @@ XYSystemInfo 系统信息
 
 XYObjectCache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults
 
+XYJSONHelper json to object , object to json
+
 ##### Extension
 一大堆category
 
@@ -86,9 +88,6 @@ XYViewControllerManager UIViewController 管理类
 * arc
 * 网络请求
 
-#### YYJSON
-* arc
-* json to object , object to json
 
 #### LKDBHelper
 * arc

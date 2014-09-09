@@ -22,7 +22,6 @@
 #define __USED_LKDBHelper__         (1)
 #define __USED_MKNetworkKit__       (1)
 #define __USED_ASIHTTPRequest__     (0)
-#define __USED_YYJSONHelper__       (1)
 #define __USED_CocosDenshion__      (1)
 #define __USED_OpenUDID__           (1)
 #define __OPEN_Statistics__         (0)

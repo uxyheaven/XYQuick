@@ -30,7 +30,6 @@
 		572E7CB818385C690018179D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C8E18385C690018179D /* Reachability.m */; };
 		572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9818385C690018179D /* UIScrollView+SVInfiniteScrolling.m */; };
 		572E7CBC18385C690018179D /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7C9A18385C690018179D /* UIScrollView+SVPullToRefresh.m */; };
-		572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E7CC018385F9D0018179D /* YYJSONHelper.m */; };
 		572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 572EEF4918473CA700FE1301 /* UILabel+XY.m */; };
 		5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5733A98E192B0F4300DC78B0 /* UISignalVC.m */; };
 		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
@@ -131,9 +130,6 @@
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57E852E217B224E500C664F4 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 57E852E117B224E500C664F4 /* json2.json */; };
 		57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EBFF3D192082C900916B80 /* UIButton+XY.m */; };
-		57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134D917DC393600C5DCDC /* JsonVC.m */; };
-		57F134DF17DC39F200C5DCDC /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134DC17DC39F200C5DCDC /* Player.m */; };
-		57F134E017DC39F200C5DCDC /* Shot.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F134DE17DC39F200C5DCDC /* Shot.m */; };
 		57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */; };
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
@@ -144,6 +140,7 @@
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
+		74571E4A19BEF18300996555 /* XYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74571E4919BEF18300996555 /* XYJSONHelper.m */; };
 		7485396419A58BB6004D8B66 /* XYBaseListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7485396319A58BB6004D8B66 /* XYBaseListData.m */; };
 		8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400D0CB198B353200A5E289 /* NSSet+XY.m */; };
 		84DBC5AF197E6E7E00718937 /* LKDB+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5A4197E6E7E00718937 /* LKDB+Manager.m */; };
@@ -212,8 +209,6 @@
 		572E7C9818385C690018179D /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		572E7C9918385C690018179D /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		572E7C9A18385C690018179D /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
-		572E7CBF18385F9D0018179D /* YYJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYJSONHelper.h; sourceTree = "<group>"; };
-		572E7CC018385F9D0018179D /* YYJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYJSONHelper.m; sourceTree = "<group>"; };
 		572EEF4818473CA700FE1301 /* UILabel+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+XY.h"; sourceTree = "<group>"; };
 		572EEF4918473CA700FE1301 /* UILabel+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+XY.m"; sourceTree = "<group>"; };
 		5733A98D192B0F4300DC78B0 /* UISignalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISignalVC.h; sourceTree = "<group>"; };
@@ -402,12 +397,6 @@
 		57E852E117B224E500C664F4 /* json2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json2.json; sourceTree = "<group>"; };
 		57EBFF3C192082C900916B80 /* UIButton+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XY.h"; sourceTree = "<group>"; };
 		57EBFF3D192082C900916B80 /* UIButton+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XY.m"; sourceTree = "<group>"; };
-		57F134D817DC393600C5DCDC /* JsonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonVC.h; sourceTree = "<group>"; };
-		57F134D917DC393600C5DCDC /* JsonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonVC.m; sourceTree = "<group>"; };
-		57F134DB17DC39F200C5DCDC /* Shot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shot.h; sourceTree = "<group>"; };
-		57F134DC17DC39F200C5DCDC /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		57F134DD17DC39F200C5DCDC /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		57F134DE17DC39F200C5DCDC /* Shot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shot.m; sourceTree = "<group>"; };
 		57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+XY.h"; sourceTree = "<group>"; };
 		57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+XY.m"; sourceTree = "<group>"; };
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -427,6 +416,8 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
+		74571E4819BEF18300996555 /* XYJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYJSONHelper.h; sourceTree = "<group>"; };
+		74571E4919BEF18300996555 /* XYJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYJSONHelper.m; sourceTree = "<group>"; };
 		7485396219A58BB6004D8B66 /* XYBaseListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseListData.h; sourceTree = "<group>"; };
 		7485396319A58BB6004D8B66 /* XYBaseListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseListData.m; sourceTree = "<group>"; };
 		8400D0CA198B353200A5E289 /* NSSet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+XY.h"; sourceTree = "<group>"; };
@@ -497,8 +488,6 @@
 				578FBFE2183AFA8B0083A952 /* AnimationVC2.m */,
 				5722182617DB365B003504E8 /* NetworkVC.h */,
 				5722182717DB365B003504E8 /* NetworkVC.m */,
-				57F134D817DC393600C5DCDC /* JsonVC.h */,
-				57F134D917DC393600C5DCDC /* JsonVC.m */,
 				57FC192C17DEBF8F00B5E6F9 /* DataLiteVC.h */,
 				57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */,
 				57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */,
@@ -534,10 +523,6 @@
 				57A808D11908F2BE0080E33C /* JsonTestEntity.m */,
 				575694841883D9C4004C2C74 /* GirlEntity.h */,
 				575694851883D9C4004C2C74 /* GirlEntity.m */,
-				57F134DB17DC39F200C5DCDC /* Shot.h */,
-				57F134DE17DC39F200C5DCDC /* Shot.m */,
-				57F134DC17DC39F200C5DCDC /* Player.m */,
-				57F134DD17DC39F200C5DCDC /* Player.h */,
 				57D4FF4B18222E2700E10954 /* RubyChinaNodeEntity.h */,
 				57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */,
 				57E7857617DE459E0056C589 /* ConfigManager.h */,
@@ -624,15 +609,6 @@
 			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
-		572E7CBE18385F9D0018179D /* YYJSON */ = {
-			isa = PBXGroup;
-			children = (
-				572E7CBF18385F9D0018179D /* YYJSONHelper.h */,
-				572E7CC018385F9D0018179D /* YYJSONHelper.m */,
-			);
-			path = YYJSON;
-			sourceTree = "<group>";
-		};
 		5740321A190F31AB00C82B23 /* OpenUDID */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,7 +661,6 @@
 				57A14FF6191E251000B00281 /* CocosDenshion */,
 				5740322C190FA76700C82B23 /* FMDB */,
 				5740321A190F31AB00C82B23 /* OpenUDID */,
-				572E7CBE18385F9D0018179D /* YYJSON */,
 				572E7C7418385C690018179D /* MBProgressHUD */,
 				572E7C7718385C690018179D /* MKNetworkKit */,
 				572E7C9518385C690018179D /* SVPullToRefresh */,
@@ -947,6 +922,8 @@
 				57AB8B571888E1E60005A93B /* XYSandbox.m */,
 				57AB8B481888C9850005A93B /* XYMaterial.h */,
 				57AB8B491888C9850005A93B /* XYMaterial.m */,
+				74571E4819BEF18300996555 /* XYJSONHelper.h */,
+				74571E4919BEF18300996555 /* XYJSONHelper.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1215,6 +1192,7 @@
 				57DB87EB183349A60015CC5A /* XYTimer.m in Sources */,
 				572E7CB218385C690018179D /* NSDictionary+RequestEncoding.m in Sources */,
 				577952DA1909727E00F95459 /* XYBaseModel.m in Sources */,
+				74571E4A19BEF18300996555 /* XYJSONHelper.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
 				57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */,
 				578ED6A3193DB08C00585D4B /* XYNotification.m in Sources */,
@@ -1231,10 +1209,8 @@
 				576E87D01855D23F00C7A724 /* XYDebug.m in Sources */,
 				577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */,
 				7485396419A58BB6004D8B66 /* XYBaseListData.m in Sources */,
-				57F134DA17DC393600C5DCDC /* JsonVC.m in Sources */,
 				5740323B190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				57F134DF17DC39F200C5DCDC /* Player.m in Sources */,
 				579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */,
 				57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */,
 				8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */,
@@ -1247,7 +1223,6 @@
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
 				57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */,
-				57F134E017DC39F200C5DCDC /* Shot.m in Sources */,
 				57A808D21908F2BE0080E33C /* JsonTestEntity.m in Sources */,
 				57E7857817DE459E0056C589 /* ConfigManager.m in Sources */,
 				57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */,
@@ -1270,7 +1245,6 @@
 				57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */,
 				84DBC5B2197E6E7E00718937 /* LKDBUtils.m in Sources */,
 				578D14CF187536690071448C /* UITable+XY.m in Sources */,
-				572E7CC118385F9D0018179D /* YYJSONHelper.m in Sources */,
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
 				57DB87DE183349A60015CC5A /* NSObject+XY.m in Sources */,
 				57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */,

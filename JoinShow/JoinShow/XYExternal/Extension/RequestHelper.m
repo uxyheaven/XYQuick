@@ -16,7 +16,7 @@
  */
 
 #import "RequestHelper.h"
-#import "YYJSONHelper.h"
+#import "XYJSONHelper.h"
 #if (1 ==  __USED_MKNetworkKit__)
 
 @interface RequestHelper()
@@ -99,7 +99,7 @@
         }
         else
         {
-            dic = [anObject YYJSONDictionary];
+            dic = [anObject XYJSONDictionary];
         }
     }
 
@@ -398,7 +398,7 @@
         }
         else
         {
-            dic = [anObject YYJSONDictionary];
+            dic = [anObject XYJSONDictionary];
         }
     }
     

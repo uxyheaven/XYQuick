@@ -37,11 +37,6 @@
 #import "ASIHTTPRequest.h"
 #endif
 
-// json to object , object to json
-#if (1 ==  __USED_YYJSONHelper__)
-#import "YYJSONHelper.h"
-#endif
-
 // cocos2d 音频引擎
 #if (1 == __USED_CocosDenshion__)
 #import "SimpleAudioEngine.h"
