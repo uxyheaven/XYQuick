@@ -35,18 +35,19 @@ static NSDateFormatter *XY_JSON_OBJECT_NSDateFormatter = nil;
 
 + (NSDictionary *)XYJSONKeyDict
 {
-    return [self _XYJSONKeyDict];
+    return [self __XYJSONKeyDict];
 }
 
 
-+ (NSMutableDictionary *)_XYJSONKeyDict
++ (NSMutableDictionary *)__XYJSONKeyDict
 {
     if (!XY_JSON_OBJECT_KEYDICTS)
     {
         XY_JSON_OBJECT_KEYDICTS = [[NSMutableDictionary alloc] init];
     }
-    NSString            *YYObjectKey = [NSString stringWithFormat:@"XY_JSON_%@", NSStringFromClass([self class])];
-    NSMutableDictionary *dictionary  = [XY_JSON_OBJECT_KEYDICTS yyObjectForKey:YYObjectKey];
+    
+    NSString *YYObjectKey           = [NSString stringWithFormat:@"XY_JSON_%@", NSStringFromClass([self class])];
+    NSMutableDictionary *dictionary = [XY_JSON_OBJECT_KEYDICTS __objectForKey:YYObjectKey];
     if (!dictionary)
     {
         dictionary          = [[NSMutableDictionary alloc] init];
@@ -76,7 +77,7 @@ static NSDateFormatter *XY_JSON_OBJECT_NSDateFormatter = nil;
 
 + (void)bindXYJSONKey:(NSString *)jsonKey toProperty:(NSString *)property
 {
-    NSMutableDictionary *dictionary = [self _XYJSONKeyDict];
+    NSMutableDictionary *dictionary = [self __XYJSONKeyDict];
     [dictionary removeObjectForKey:property];
     [dictionary setObject:property forKey:jsonKey];
 }
@@ -298,7 +299,7 @@ const char *property_getTypeString(objc_property_t property) {
     return nil;
 }
 
-- (id)yyObjectForKey:(id)key
+- (id)__objectForKey:(id)key
 {
     if (key)
     {
@@ -321,11 +322,16 @@ const char *property_getTypeString(objc_property_t property) {
 
 - (id)toModel:(Class)modelClass forKey:(NSString *)key
 {
-    if (modelClass == nil)return nil;
+    if (modelClass == nil)
+        return nil;
+    
     id XYJSONObject = [self XYJSONObjectForKey:key];
-    if (XYJSONObject == nil)return nil;
+    if (XYJSONObject == nil)
+        return nil;
+    
     NSDictionary *XYJSONKeyDict = [modelClass XYJSONKeyDict];
-    id           model          = [self objectForModelClass:modelClass fromDict:XYJSONObject withJSONKeyDict:XYJSONKeyDict];
+    id model                    = [NSData objectForModelClass:modelClass fromDict:XYJSONObject withJSONKeyDict:XYJSONKeyDict];
+    
     return model;
 }
 
@@ -348,7 +354,7 @@ const char *property_getTypeString(objc_property_t property) {
     {
         NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[XYJSONObject count]];
         [XYJSONObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            id model = [self objectForModelClass:modelClass fromDict:obj withJSONKeyDict:XYJSONKeyDict];
+            id model = [NSData objectForModelClass:modelClass fromDict:obj withJSONKeyDict:XYJSONKeyDict];
             [models addObject:model];
         }];
         
@@ -356,13 +362,13 @@ const char *property_getTypeString(objc_property_t property) {
     }
     else if ([XYJSONObject isKindOfClass:[NSDictionary class]])
     {
-        return [self objectForModelClass:modelClass fromDict:XYJSONObject withJSONKeyDict:XYJSONKeyDict];
+        return [NSData objectForModelClass:modelClass fromDict:XYJSONObject withJSONKeyDict:XYJSONKeyDict];
     }
     
     return nil;
 }
 
-- (id)objectsForModelClass:(Class)modelClass fromArray:(NSArray *)array
++ (id)objectsForModelClass:(Class)modelClass fromArray:(NSArray *)array
 {
     NSMutableArray *models        = [[NSMutableArray alloc] initWithCapacity:array.count];
     NSDictionary   *XYJSONKeyDict = [modelClass XYJSONKeyDict];
@@ -372,40 +378,70 @@ const char *property_getTypeString(objc_property_t property) {
     return models;
 }
 
-- (id)objectForModelClass:(Class)modelClass fromDict:(NSDictionary *)dict withJSONKeyDict:(NSDictionary *)XYJSONKeyDict
++ (id)objectForModelClass:(Class)modelClass fromDict:(NSDictionary *)dict withJSONKeyDict:(NSDictionary *)XYJSONKeyDict
 {
+    if (![dict isKindOfClass:[NSDictionary class]])
+    {
+        return nil;
+    }
+    if (![XYJSONKeyDict isKindOfClass:[NSDictionary class]])
+    {
+        return nil;
+    }
+    if (!modelClass)
+    {
+        return nil;
+    }
+    
     id model = [[modelClass alloc] init];
     [XYJSONKeyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if ([dict[key] isKindOfClass:[NSArray class]])
+        if ([[dict valueForKeyPath:key] isKindOfClass:[NSArray class]])
         {
-            if (NSClassFromString(obj))
+            if ([self classForString:obj valueKey:nil])
             {
-                NSArray *array = [self objectsForModelClass:NSClassFromString(obj) fromArray:dict[key]];
-                [model setValue:array forKey:key];
+                NSString *valueKey = nil;
+                NSArray *array = [self objectsForModelClass:[self classForString:obj valueKey:&valueKey] fromArray:[dict valueForKeyPath:key]];
+                if (array.count)
+                {
+                    if (valueKey)
+                    {
+                        key = valueKey;
+                    }
+                    [model setValue:array forKey:key];
+                }
             }
             else
             {
-                [model setValue:dict[key] forKey:obj];
+                [model setValue:[dict valueForKeyPath:key] forKey:obj];
             }
         }
-        else if ([dict[key] isKindOfClass:[NSDictionary class]])
+        else if ([[dict valueForKeyPath:key] isKindOfClass:[NSDictionary class]])
         {
-            if (NSClassFromString(obj))
+            NSString *valueKey = nil;
+            Class otherClass = [self classForString:obj valueKey:&valueKey];
+            if (otherClass)
             {
-                id    object     = [self objectForModelClass:NSClassFromString(obj) fromDict:dict[key] withJSONKeyDict:[NSClassFromString(obj) XYJSONKeyDict]];
-                [model setValue:object forKey:key];
+                id object = [self objectForModelClass:otherClass fromDict:[dict valueForKeyPath:key] withJSONKeyDict:[otherClass XYJSONKeyDict]];
+                if (object)
+                {
+                    if (valueKey)
+                    {
+                        key = valueKey;
+                    }
+                    [model setValue:object forKeyPath:key];
+                }
             }
             else
             {
-                [model setValue:dict[key] forKey:obj];
+                [model setValue:[dict valueForKeyPath:key] forKey:obj];
             }
         }
         else
         {
-            id value = dict[key];
+            id value = [dict valueForKeyPath:key];
             if (![value isKindOfClass:[NSNull class]] && value != nil)
             {
-                [model setValue:dict[key] forKey:obj];
+                [model setValue:value forKey:obj];
             }
         }
     }];
@@ -435,6 +471,26 @@ const char *property_getTypeString(objc_property_t property) {
     }
 }
 
++ (Class)classForString:(NSString *)string valueKey:(NSString **)key
+{
+    if (string.length>0)
+    {
+        if ([string rangeOfString:@"."].length>0)
+        {
+            NSArray *strings = [string componentsSeparatedByString:@"."];
+            if (strings.count>1)
+            {
+                *key = strings.firstObject;
+                return NSClassFromString(strings.lastObject);
+            }
+        }
+        else
+        {
+            return NSClassFromString(string);
+        }
+    }
+    return nil;
+}
 
 @end
 

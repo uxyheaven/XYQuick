@@ -22,6 +22,7 @@
 /*
  * 通过 Protocol 免去NSArray 手动bind
  * @property(strong, nonatomic) NSArray	<AudioPartModel> *audioParts;
+ * @property(strong, nonatomic) Man <XYJSONHelperProtocol> *man;
 */
  @end
 
@@ -83,7 +84,7 @@
  */
 - (NSString *)XYJSONString;
 
-- (id)yyObjectForKey:(id)key;
+- (id)__objectForKey:(id)key;
 
 @end
 
