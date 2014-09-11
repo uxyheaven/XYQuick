@@ -370,7 +370,10 @@ static char LKModelBase_Key_RowID;
         NSMutableArray* pronames = [NSMutableArray array];
         NSMutableArray* protypes = [NSMutableArray array];
         NSDictionary* keymapping = [self getTableMapping];
-        [self getSelfPropertys:pronames protypes:protypes];
+        
+        if ([self isContainSelf] && [self class] != [NSObject class]) {
+            [self getSelfPropertys:pronames protypes:protypes];
+        }
         
         NSArray* pkArray = [self getPrimaryKeyUnionArray];
         if(pkArray.count == 0)
@@ -403,10 +406,17 @@ static char LKModelBase_Key_RowID;
     return infos;
     
 }
+
 +(BOOL)isContainParent
 {
     return NO;
 }
+
++(BOOL)isContainSelf
+{
+    return YES;
+}
+
 /**
  *	@brief	获取自身的属性
  *
@@ -502,6 +512,14 @@ static char LKModelBase_Key_RowID;
 }
 
 #pragma mark - log all property
+-(NSMutableString *)getAllPropertysString
+{
+    Class clazz = [self class];
+    NSMutableString* sb = [NSMutableString stringWithFormat:@"\n <%@> :\n", NSStringFromClass(clazz)];
+    [sb appendFormat:@"rowid : %d\n",self.rowid];
+    [self mutableString:sb appendPropertyStringWithClass:clazz containParent:YES];
+    return sb;
+}
 -(NSString*)printAllPropertys
 {
     return [self printAllPropertysIsContainParent:NO];
@@ -521,6 +539,10 @@ static char LKModelBase_Key_RowID;
 }
 -(void)mutableString:(NSMutableString*)sb appendPropertyStringWithClass:(Class)clazz containParent:(BOOL)containParent
 {
+    if (clazz == [NSObject class])
+    {
+        return;
+    }
     unsigned int outCount, i;
     objc_property_t *properties = class_copyPropertyList(clazz, &outCount);
     for (i = 0; i < outCount; i++) {
@@ -531,7 +553,7 @@ static char LKModelBase_Key_RowID;
     free(properties);
     if(containParent)
     {
-        [self mutableString:sb appendPropertyStringWithClass:self.superclass containParent:containParent];
+        [self mutableString:sb appendPropertyStringWithClass:clazz.superclass containParent:containParent];
     }
 }
 

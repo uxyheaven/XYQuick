@@ -7,11 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
+#define XYBaseDao_error_code 123123
+#define XYBaseDao_load_maxCount 100
+
+@protocol XYBaseDaoEntityProtocol <NSObject>
+
+@required
+// 返回表名
++(NSString *)getTableName;
+
+// 返回主键
++(NSString *)getPrimaryKey;
+
+@end
+
 
 // 范化的本地dao类
 @interface XYBaseDao : NSObject
 
-+ (void)daoWithEntityClass:(Class)aClass;
+@property (nonatomic, weak, readonly) Class entityClass;
+
++ (instancetype)daoWithEntityClass:(Class)aClass;
 
 - (NSError *)saveEntity:(id)entity;
 - (NSError *)saveEntityWithArray:(NSArray *)array;

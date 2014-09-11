@@ -16,12 +16,11 @@ return NO;}
 #define checkModelIsInvalid(model)if(model == nil){LKErrorLog(@"model is nil");return NO;}checkClassIsInvalid(model.class)
 
 @interface LKDBWeakObject : NSObject
-@property(unsafe_unretained,nonatomic)LKDBHelper* obj;
+@property(LKDBWeak,nonatomic)LKDBHelper* obj;
 @end
 
-
 @interface LKDBHelper()
-@property(unsafe_unretained,nonatomic)FMDatabase* usingdb;
+@property(LKDBWeak,nonatomic)FMDatabase* usingdb;
 @property(strong,nonatomic)FMDatabaseQueue* bindingQueue;
 @property(copy,nonatomic)NSString* dbPath;
 
@@ -172,6 +171,10 @@ return NO;}
     }
     else
     {
+        if(_bindingQueue == nil)
+        {
+            _bindingQueue = [[FMDatabaseQueue alloc]initWithPath:_dbPath];
+        }
         [_bindingQueue inDatabase:^(FMDatabase *db) {
             self.usingdb = db;
             block(db);
@@ -737,6 +740,14 @@ return NO;}
         {
             [array addObject:string];
         }
+        else
+        {
+            NSData* data = [set dataForColumnIndex:0];
+            if(data)
+            {
+                [array addObject:data];
+            }
+        }
     }
     return array;
 }
@@ -847,8 +858,10 @@ return NO;}
         
         if([property isEqual:primaryProperty])
         {
-            if([model singlePrimaryKeyValueIsEmpty])
+            if([property.sqlColumnType isEqualToString:LKSQL_Type_Int] && [model singlePrimaryKeyValueIsEmpty])
+            {
                 continue;
+            }
         }
         
         if(insertKey.length>0)
