@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^XYBaseNetDao_successBlock)(id request, NSError *err, id data, BOOL isCache);
+
 @interface XYBaseNetDao : NSObject
+
+-(void) loadEntity;
 
 @end

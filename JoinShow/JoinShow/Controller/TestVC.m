@@ -682,7 +682,6 @@ if (1) { \
     
     [dao deleteEntityWithKey:@"c"];
     [dao deleteEntityWithKey:@"brand = '科鲁兹'"];
-    
 }
 /////////////////////////// 备注 ///////////////////////////////
 /*

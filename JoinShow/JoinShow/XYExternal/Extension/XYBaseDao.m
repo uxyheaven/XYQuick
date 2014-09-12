@@ -60,7 +60,7 @@
     
     __weak __typeof(XYBaseDao *) weakSelf = self;
     
-    //事物  transaction
+    // 事务 transaction
     [_globalHelper executeDB:^(FMDatabase *db) {
         [db beginTransaction];
         for (NSObject *entity in array)
