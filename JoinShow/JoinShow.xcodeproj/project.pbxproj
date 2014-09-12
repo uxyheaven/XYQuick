@@ -151,6 +151,7 @@
 		74BA434C19C17B6200B49E7B /* LKDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA434419C17B6200B49E7B /* LKDBUtils.m */; };
 		74BA434D19C17B6200B49E7B /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA434619C17B6200B49E7B /* NSObject+LKDBHelper.m */; };
 		74BA434E19C17B6200B49E7B /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA434819C17B6200B49E7B /* NSObject+LKModel.m */; };
+		74CD53FA19C28C630069282B /* CarEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD53F919C28C630069282B /* CarEntity.m */; };
 		8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400D0CB198B353200A5E289 /* NSSet+XY.m */; };
 		84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5B6197E6EBC00718937 /* LKTestModels.m */; };
 		CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */; };
@@ -441,6 +442,8 @@
 		74BA434619C17B6200B49E7B /* NSObject+LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKDBHelper.m"; sourceTree = "<group>"; };
 		74BA434719C17B6200B49E7B /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
 		74BA434819C17B6200B49E7B /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
+		74CD53F819C28C630069282B /* CarEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarEntity.h; sourceTree = "<group>"; };
+		74CD53F919C28C630069282B /* CarEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarEntity.m; sourceTree = "<group>"; };
 		8400D0CA198B353200A5E289 /* NSSet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+XY.h"; sourceTree = "<group>"; };
 		8400D0CB198B353200A5E289 /* NSSet+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+XY.m"; sourceTree = "<group>"; };
 		84DBC5B5197E6EBC00718937 /* LKTestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTestModels.h; sourceTree = "<group>"; };
@@ -534,6 +537,8 @@
 				57A808D11908F2BE0080E33C /* JsonTestEntity.m */,
 				575694841883D9C4004C2C74 /* GirlEntity.h */,
 				575694851883D9C4004C2C74 /* GirlEntity.m */,
+				74CD53F819C28C630069282B /* CarEntity.h */,
+				74CD53F919C28C630069282B /* CarEntity.m */,
 				57D4FF4B18222E2700E10954 /* RubyChinaNodeEntity.h */,
 				57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */,
 				57E7857617DE459E0056C589 /* ConfigManager.h */,
@@ -1221,6 +1226,7 @@
 				577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */,
 				57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */,
 				57AB8B581888E1E60005A93B /* XYSandbox.m in Sources */,
+				74CD53FA19C28C630069282B /* CarEntity.m in Sources */,
 				5722182817DB365B003504E8 /* NetworkVC.m in Sources */,
 				5740323D190FA76700C82B23 /* FMDatabaseAdditions.m in Sources */,
 				572EEF4A18473CA700FE1301 /* UILabel+XY.m in Sources */,

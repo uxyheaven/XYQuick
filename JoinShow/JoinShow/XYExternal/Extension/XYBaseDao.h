@@ -14,10 +14,10 @@
 
 @required
 // 返回表名
-+(NSString *)getTableName;
++ (NSString *)getTableName;
 
 // 返回主键
-+(NSString *)getPrimaryKey;
++ (NSString *)getPrimaryKey;
 
 @end
 
@@ -39,5 +39,7 @@
 
 - (NSError *)deleteEntityWithKey:(NSString *)key;
 - (NSError *)deleteEntityWithWhere:(NSString *)where;
+
+- (void)deleteAllEntity;
 
 @end

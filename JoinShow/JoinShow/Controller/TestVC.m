@@ -24,7 +24,8 @@
 #import "Test1Model.h"
 #import "Test2Model.h"
 #import "GirlEntity.h"
-
+#import "XYBaseDao.h"
+#import "CarEntity.h"
 
 #define MultiPlatform( __xib ) \
 (NSString *)^(void){ \
@@ -339,6 +340,14 @@ if (1) { \
     [tempBtn addTarget:self action:@selector(clickHookDealloc:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"test dao" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickTestDao:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
 #pragma mark -btn end
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
@@ -362,7 +371,8 @@ if (1) { \
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)clickBtn1:(id)sender {
+- (IBAction)clickBtn1:(id)sender
+{
     // kvo
     self.testKVO = self.testKVO + 1;
    // [self setValue:@99 forKeyPath:@"testKVO"];
@@ -376,10 +386,12 @@ if (1) { \
     [self didChangeValueForKey:@"testArrayKVO"];
 }
 
-- (IBAction)clickBtn2:(id)sender {
+- (IBAction)clickBtn2:(id)sender
+{
 
 }
-- (IBAction)clickBtnMuhud:(id)sender {
+- (IBAction)clickBtnMuhud:(id)sender
+{
     UIButton* btn=(UIButton*) sender;
     XYAnimateSerialStep *steps = [XYAnimateSerialStep animate];
     XYAnimateStep *step1 = [XYAnimateStep duration:0.15 animate:^{
@@ -398,7 +410,8 @@ if (1) { \
     
     [steps run];
 }
-- (IBAction)clickAVSpeech:(id)sender {
+- (IBAction)clickAVSpeech:(id)sender
+{
     if (IOS7_OR_LATER) {
         NSLogD(@"1")
         
@@ -414,18 +427,21 @@ if (1) { \
     
 }
 
-- (IBAction)clickOnce:(id)sender {
+- (IBAction)clickOnce:(id)sender
+{
     XY_ONCE_BEGIN(a)
     SHOWMBProgressHUD(@"only show once", nil, nil, NO, 2)
     XY_ONCE_END
 }
 
-- (IBAction)clickOnce2:(id)sender {
+- (IBAction)clickOnce2:(id)sender
+{
     XY_ONCE_BEGIN(b)
     SHOWMBProgressHUD(@"only show once2", nil, nil, NO, 2)
     XY_ONCE_END
 }
-- (IBAction)clickBtnShade:(id)sender {
+- (IBAction)clickBtnShade:(id)sender
+{
     [self.view addShadeWithTarget:self action:@selector(closeShade) color:nil alpha:0.7];
 }
 - (IBAction)clickBtnBlockAlertView:(id)sender {
@@ -436,7 +452,8 @@ if (1) { \
     [alertView showWithDuration:3];
 }
 
-- (IBAction)clickBtnBlockActionSheet:(id)sender {
+- (IBAction)clickBtnBlockActionSheet:(id)sender
+{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"title" delegate:nil cancelButtonTitle:@"cancel" destructiveButtonTitle:@"destructive" otherButtonTitles:@"other1", @"other2", nil];
     [actionSheet handlerClickedButton:^(UIActionSheet *actionSheet, NSInteger btnIndex) {
         NSLogD(@"%ld", (long)btnIndex);
@@ -444,7 +461,8 @@ if (1) { \
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
-- (IBAction)clickBtnSHOWMBProgressHUDIndeterminate:(id)sender {
+- (IBAction)clickBtnSHOWMBProgressHUDIndeterminate:(id)sender
+{
     MBProgressHUD *hub = SHOWMBProgressHUDIndeterminate(@"title", @"message", NO)
     [hub addTapGestureWithBlock:^(UIView *view){
         HIDDENMBProgressHUD
@@ -456,7 +474,8 @@ if (1) { \
     FOREGROUND_COMMIT
     BACKGROUND_COMMIT
 }
-- (void)clickNewGirl:(id)sender{
+- (void)clickNewGirl:(id)sender
+{
     NSMutableDictionary *me = [NSMutableDictionary dictionary];
     // 从 GirlEntity类 创建一个妹子
     GirlEntity *girl1 = [[GirlEntity alloc] init];
@@ -515,7 +534,8 @@ if (1) { \
     
     NSLogD(@"%@", me);
 }
-- (void)clickNSDateFormatter:(id)sender{
+- (void)clickNSDateFormatter:(id)sender
+{
     NSDateFormatter *formatter1 = [XYCommon dateFormatter];
     NSDateFormatter *formatter2 = [XYCommon dateFormatterTemp];
     NSDateFormatter *formatter3 = [XYCommon dateFormatterByUTC];
@@ -527,7 +547,8 @@ if (1) { \
     NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@", str1, str2, str3];
     SHOWMSG(nil, str, @"cancel");
 }
-- (void)talk2{
+- (void)talk2
+{
     NSString *name = [self valueForKey:@"name"];
     if ([name isEqualToString:@"女神"]) {
         // do 你懂的
@@ -535,20 +556,24 @@ if (1) { \
     }
 }
 
-- (void)clickViewBindData:(id)sender{
+- (void)clickViewBindData:(id)sender
+{
     
     NSDictionary *dic = @{@"label1": @(self.testKVO), @"img1": @"headportrait.jpg"};
     [_testView showDataWithDic:dic];
 }
-- (void)clickChangeViewData:(id)sender{
+- (void)clickChangeViewData:(id)sender
+{
     
 }
 
-- (void)clickSendMessage:(id)sender{
+- (void)clickSendMessage:(id)sender
+{
     [self postNotification:NOTIFICATION_NAME(aaa) userInfo:@{@"msg": @"test"}];
     [self postNotification:NOTIFICATION_NAME(bbb) userInfo:@{@"msg": @"test2"}];
 }
-- (void)clickStringCache:(id)sender{
+- (void)clickStringCache:(id)sender
+{
     static int iKey = 0;
     
     XYObjectCache *cache = [XYObjectCache sharedInstance];
@@ -569,7 +594,8 @@ if (1) { \
     
     NSLogD(@"%@", str);
 }
-- (void)clickEmoji:(id)sender{
+- (void)clickEmoji:(id)sender
+{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
    // label.font = [UIFont fontWithName:@"AppleColorEmoji" size:12.0];
     label.text = @"This is a smiley \ue415 face";
@@ -577,36 +603,86 @@ if (1) { \
     [label.po_frameBuilder centerInSuperview];
 }
 
-- (void)clickCrossfade:(id)sender{
+- (void)clickCrossfade:(id)sender
+{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationCrossfadeWithDuration:5];
 }
 
-- (void)clickCube:(id)sender{
+- (void)clickCube:(id)sender
+{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationCubeWithDuration:5 direction:kCATransitionFromRight];
 }
 
-- (void)clickOglFlip:(id)sender{
+- (void)clickOglFlip:(id)sender
+{
     UIButton *btn = (UIButton *)sender;
     [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
     [btn animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
 }
 
-- (void)clickUserGuide:(id)sender{
+- (void)clickUserGuide:(id)sender
+{
     NSString *key = [NSString stringWithFormat:@"guide_%d", arc4random()]  ;
     [self showUserGuideViewWithImage:@"bg_trends.png" key:key frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
 }
 
-- (void)clickHookDealloc:(id)sender{
+- (void)clickHookDealloc:(id)sender
+{
     UILabel *label = [[UILabel alloc] initWithFrame:self.view.frame];
     label.text = @"3秒后移除";
     label.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:label];
     [XYDebug hookObject:label whenDeallocLogString:@"over"];
     [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:3];
+}
+
+- (void)clickTestDao:(id)sender
+{
+    XYBaseDao *dao = [XYBaseDao daoWithEntityClass:[CarEntity class]];
+    [dao deleteAllEntity];
+    
+    CarEntity *car = [[CarEntity alloc] init];
+    car.name = @"a";
+    car.brand = @"科鲁兹";
+    car.time = 1;
+    
+    [dao saveEntity:car];
+    
+    CarEntity *car2 = [[CarEntity alloc] init];
+    car2.name = @"b";
+    car2.brand = @"科鲁兹";
+    car2.time = 1;
+    
+    CarEntity *car3 = [[CarEntity alloc] init];
+    car3.name = @"c";
+    car3.brand = @"福克斯";
+    car3.time = 1;
+    
+    CarEntity *car5 = [[CarEntity alloc] init];
+    car5.name = @"d";
+    car5.brand = @"高尔夫";
+    car5.time = 1;
+    
+    NSArray *array = @[car2, car3, car5];
+    
+    [dao saveEntityWithArray:array];
+    
+    CarEntity *car4 = [dao loadEntityWithKey:@"c"];
+    NSLog(@"%@", car4);
+    
+    NSArray *array2 = [dao loadEntityWithWhere:@"brand = '科鲁兹'"];
+    NSLog(@"%@", array2);
+    
+    NSInteger count = [dao countWithWhere:nil];
+    NSLog(@"%d", count);
+    
+    [dao deleteEntityWithKey:@"c"];
+    [dao deleteEntityWithKey:@"brand = '科鲁兹'"];
+    
 }
 /////////////////////////// 备注 ///////////////////////////////
 /*

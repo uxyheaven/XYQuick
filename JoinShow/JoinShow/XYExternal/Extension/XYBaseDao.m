@@ -87,19 +87,16 @@
         return nil;
     
     id object = [[_entityClass alloc] init];
-    id keyValue = [object valueForKey:[_entityClass getPrimaryKey]];
-    if (keyValue == nil)
-        return nil;
     
     NSString *where = nil;
     
-    if ([keyValue isKindOfClass:[NSString class]])
+    if ([key isKindOfClass:[NSString class]])
     {
-        where = [NSString stringWithFormat:@"%@ = '%@'", [self.class getPrimaryKey], keyValue];
+        where = [NSString stringWithFormat:@"%@ = '%@'", [_entityClass getPrimaryKey], key];
     }
-    else if ([keyValue isKindOfClass:[NSNumber class]])
+    else if ([key isKindOfClass:[NSNumber class]])
     {
-        where = [NSString stringWithFormat:@"%@ = %@", [self.class getPrimaryKey], keyValue];
+        where = [NSString stringWithFormat:@"%@ = %@", [_entityClass getPrimaryKey], key];
     }
     else if (1)
     {
@@ -112,7 +109,8 @@
     return object;
 }
 
-- (NSArray *)loadEntityWithWhere:(NSString *)where{
+- (NSArray *)loadEntityWithWhere:(NSString *)where
+{
     if (where.length == 0)
         return nil;
     
@@ -121,11 +119,13 @@
     return array;
 }
 
-- (NSInteger)countWithWhere:(NSString *)where{
+- (NSInteger)countWithWhere:(NSString *)where
+{
     return [_entityClass rowCountWithWhere:where];
 }
 
-- (NSError *)deleteEntityWithKey:(NSString *)key{
+- (NSError *)deleteEntityWithKey:(NSString *)key
+{
     id object = [[_entityClass alloc] init];
     [object setValue:key forKey:[_entityClass getPrimaryKey]];
     
@@ -137,13 +137,19 @@
     return nil;
 }
 
-- (NSError *)deleteEntityWithWhere:(NSString *)where{
+- (NSError *)deleteEntityWithWhere:(NSString *)where
+{
     if (![_entityClass deleteWithWhere:where])
     {
         return  [NSError errorWithDomain:[NSString stringWithFormat:@"[delete error] : %@ %@", _entityClass, where] code:XYBaseDao_error_code userInfo:nil];
     }
     
     return nil;
+}
+
+- (void)deleteAllEntity
+{
+    [LKDBHelper clearTableData:[_entityClass class]];
 }
 
 @end
