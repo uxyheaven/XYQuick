@@ -244,9 +244,17 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 //void (*__actionXY)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 void (*__actionXY_return_void)(id, SEL, ...);
 id (*__actionXY_return_id)(id, SEL, ...);
-#pragma mark -end
-/**************************************************************/
 
+/**************************************************************/
+// 国际化
+#undef __T
+#define __T(key) NSLocalizedString((key),@"")
+
+/*! Use NSLocalizedString representing a format string */
+#undef __Tf
+#define __Tf(key,...) [NSString stringWithFormat:_T(key),__VA_ARGS__]
+/**************************************************************/
+#pragma mark -end
 /*
 #define NavigationBar_HEIGHT 44
 
