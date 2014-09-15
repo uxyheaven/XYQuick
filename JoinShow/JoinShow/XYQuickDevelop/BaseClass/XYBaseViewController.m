@@ -81,12 +81,16 @@
 
 - (void)createEvents {
     // [super createEvents];
-    // 保存当前状态
-    if ([self respondsToSelector:@selector(saveCurrentState)])
+
+    if ([self respondsToSelector:@selector(enterBackground)])
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCurrentState) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     
+    if ([self respondsToSelector:@selector(enterForeground)])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
 }
 
 - (void)destroyEvents {
@@ -147,7 +151,21 @@
 
 #pragma mark - private
 // 私有方法
-
+- (void)handleNotification:(NSNotification *)notification
+{
+    if ( [notification.name isEqualToString:UIApplicationDidEnterBackgroundNotification] )
+	{
+	}
+	else if ( [notification.name isEqualToString:UIApplicationWillEnterForegroundNotification] )
+	{
+	}
+	else if ( [notification.name isEqualToString:UIApplicationWillChangeStatusBarOrientationNotification] )
+	{
+	}
+	else if ( [notification.name isEqualToString:UIApplicationDidChangeStatusBarOrientationNotification] )
+	{
+	}
+}
 
 #pragma mark - 响应 model 的地方
 #pragma mark 1 notification

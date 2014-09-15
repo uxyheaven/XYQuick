@@ -678,7 +678,7 @@ if (1) { \
     NSLog(@"%@", array2);
     
     NSInteger count = [dao countWithWhere:nil];
-    NSLog(@"%d", count);
+    NSLog(@"%ld", count);
     
     [dao deleteEntityWithKey:@"c"];
     [dao deleteEntityWithKey:@"brand = '科鲁兹'"];

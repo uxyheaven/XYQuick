@@ -19,7 +19,7 @@
 // 定义view
 
 
-#pragma mark -  生命周期
+#pragma mark- 生命周期
 /**
  生命周期
  loadView
@@ -64,5 +64,11 @@
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
 - (void)loadData;
 
+#pragma mark -
+// 以下方法的消息已经注册过,需要实现的时候,请直接写
+/*
+- (void)enterBackground;        // 进入后台时
+- (void)enterForeground;        // 进入前台时
+*/
 
 @end

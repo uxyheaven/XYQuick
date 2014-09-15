@@ -18,22 +18,24 @@ typedef enum {
 
 @interface XYBaseService : NSObject
 
-// 数据
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign, readonly) XYServiceState state;
-
-
-@property (nonatomic, strong, readonly) NSMutableDictionary *dic;
-
 // 初始化
 + (id)service;
 
 // 状态相关接口
-- (void) start;
-- (void) stop;
-- (void) pause;
+- (void)start;
+- (void)stop;
+- (void)pause;
 //- (void) resume;
 
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign, readonly) XYServiceState state;
+
+
+#pragma mark 以下需要具体业务具体实现
+// 数据
+@property (nonatomic, strong, readonly) NSMutableDictionary *dic;
+
+// 数据相关的接口
 //- (void) refreshData;
 
 @end

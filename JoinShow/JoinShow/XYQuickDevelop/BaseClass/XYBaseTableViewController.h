@@ -46,20 +46,27 @@
  */
 
 
- // 创建/销毁页面级变量, model的地方。
- - (void)createFields;
- - (void)destroyFields;
- 
- // 创建/销毁页面内控件的地方。
- - (void)createViews;
- - (void)destroyViews;
- 
- // 创建/销毁页面内控件的target-action,delegate,dataSource mode的Notification,KVO的地方。
- - (void)createEvents;
- - (void)destroyEvents;
- 
- // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
- - (void)loadData;
+// 创建/销毁页面级变量, model的地方。
+- (void)createFields;
+- (void)destroyFields;
 
+// 创建/销毁页面内控件的地方。
+- (void)createViews;
+- (void)destroyViews;
+
+// 创建/销毁页面内控件的target-action,delegate,dataSource mode的Notification,KVO的地方。
+- (void)createEvents;
+- (void)destroyEvents;
+
+// 如果页面加载过程需要调用MobileAPI，则写在这个地方。
+- (void)loadData;
+
+#pragma mark -
+// 以下方法的消息已经注册过,需要实现的时候,请直接写
+/*
+ - (void)enterBackground;        // 进入后台时
+ - (void)enterForeground;        // 进入前台时
+ */
+#pragma mark -
 
 @end

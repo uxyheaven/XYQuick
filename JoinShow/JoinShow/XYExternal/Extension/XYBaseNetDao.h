@@ -12,6 +12,6 @@ typedef void(^XYBaseNetDao_successBlock)(id request, NSError *err, id data, BOOL
 
 @interface XYBaseNetDao : NSObject
 
--(void) loadEntity;
+- (void)loadEntity;
 
 @end

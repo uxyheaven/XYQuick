@@ -80,12 +80,16 @@
 
 - (void)createEvents {
     // [super createEvents];
-    // 保存当前状态
-    if ([self respondsToSelector:@selector(saveCurrentState)])
+   
+    if ([self respondsToSelector:@selector(enterBackground)])
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveCurrentState) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     
+    if ([self respondsToSelector:@selector(enterForeground)])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
 }
 
 - (void)destroyEvents {
