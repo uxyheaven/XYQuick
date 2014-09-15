@@ -173,6 +173,9 @@
     NSString *	selectorName = nil;
     SEL			selector = nil;
     
+    NSString *	selectorName2 = nil;
+    SEL			selector2 = nil;
+    
     NSString *	signalPrefix = nil;
 	NSString *	signalClass = nil;
 	NSString *	signalMethod = nil;
@@ -189,12 +192,19 @@
 	}
     
     
-    selectorName = [NSString stringWithFormat:@"handleUISignal_%@:", signalMethod];
+    selectorName = [NSString stringWithFormat:@"handleUISignal_%@_%@:", signalClass, signalMethod];
     selector = NSSelectorFromString(selectorName);
+    
+    selectorName2 = [NSString stringWithFormat:@"handleUISignal_%@:", signalMethod];
+    selector2 = NSSelectorFromString(selectorName);
     
     if ( [_target respondsToSelector:selector] )
     {
         [_target performSelector:selector withObject:self];
+    }
+    else if ( [_target respondsToSelector:selector2] )
+    {
+        [_target performSelector:selector2 withObject:self];
     }
     else if ( [_target respondsToSelector:@selector(handleUISignal:)] )
     {
@@ -204,61 +214,7 @@
     if (!self.isReach)
     {
         [_target performSelector:@selector(signalForward:) withObject:self];
-        /*
-        if ([_target isKindOfClass:[UIView class]]) {
-            UIView *superView = [_target superview];
-            if (superView) {
-                [self forward:superView];
-            }else{
-                // 到顶了
-                UIViewController *vc = [_source viewController];
-                if (vc) {
-                    [self forward:vc];
-                }
-            }
-        }else if ([_target isKindOfClass:[UIViewController class]]) {
-            if ([_target isKindOfClass:[UINavigationController class]]) {
-                UIViewController *vc = [(UINavigationController*)_target topViewController];
-                if (vc) {
-                    [self forward:vc];
-                }else{
-                   // [self forward:vc];
-                }
-            }
-        }else{
-            self.isReach = YES;
-        }
-         */
     }
-    
-    /*  // 发送给父类
-     Class rtti = [_source class];
-     for ( ;; ) {
-     if ( nil == rtti )
-     break;
-     
-     NSString *	selectorName = [NSString stringWithFormat:@"handle%@:", [rtti description]];
-     SEL			selector = NSSelectorFromString(selectorName);
-     
-     if ( selector && [targetObject respondsToSelector:selector] ) {
-     [targetObject performSelector:selector withObject:self];
-     break;
-     }
-     
-     rtti = class_getSuperclass( rtti );
-     if ( rtti == [UIResponder class] )
-     {
-     rtti = nil;
-     break;
-     }
-     }
-     */
-    /*
-     if ( [targetObject respondsToSelector:@selector(handleUISignal:)] ) {
-     [targetObject performSelector:@selector(handleUISignal:) withObject:self];
-     }
-     */
-        
 }
 
 -(BOOL) boolValue

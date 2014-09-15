@@ -13,13 +13,13 @@
 
 @implementation Signal1
 
-DEF_SIGNAL( BUTTON_CLICK1 )
+DEF_SIGNAL( click1 )
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor blueColor];
         Signal2 *view = [[Signal2_child alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
         [self addSubview:view];
         
@@ -34,7 +34,7 @@ DEF_SIGNAL( BUTTON_CLICK1 )
 }
 
 - (void)click1:(id)sender{
-    [self sendUISignal:self.BUTTON_CLICK1 withObject:sender];
+    [self sendUISignal:self.click1 withObject:sender];
 }
 
 ON_SIGNAL( signal ){
@@ -45,7 +45,7 @@ ON_SIGNAL( signal ){
 
 @implementation Signal2
 
-DEF_SIGNAL( BUTTON_CLICK2 )
+DEF_SIGNAL( click2 )
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -62,7 +62,7 @@ DEF_SIGNAL( BUTTON_CLICK2 )
 }
 
 - (void)click2:(id)sender{
-    [self sendUISignal:self.BUTTON_CLICK2 withObject:sender];
+    [self sendUISignal:self.click2 withObject:sender];
 }
 
 ON_SIGNAL( signal ){
@@ -135,8 +135,12 @@ ON_SIGNAL( signal ){
 ON_SIGNAL( signal ){
     NSLogD(@"%@", signal);
 }
-
-ON_SIGNAL2(BUTTON_CLICK1, signal){
+/*
+ON_SIGNAL2(click1, signal){
+    NSLogD(@"%@", signal);
+}
+*/
+ON_SIGNAL3(Signal1, click1, signal){
     NSLogD(@"%@", signal);
 }
 
