@@ -21,10 +21,10 @@
     self = [super init];
     if (self)
     {
-        _isDead = NO;
-        _isReach = NO;
-        _jump = 0;
-        _name = @"signal.nil.nil";
+        _isDead   = NO;
+        _isReach  = NO;
+        _jump     = 0;
+        _name     = @"signal.nil.nil";
         _callPath = [NSMutableString string];
     }
     
@@ -62,7 +62,7 @@
 {
     if ( self.source )
 	{
-		UIView * sourceView = nil;
+		UIView *sourceView = nil;
         
 		if ( [self.source isKindOfClass:[UIView class]] )
         {
@@ -75,13 +75,13 @@
         
 		if ( sourceView )
 		{
-			NSString * nameSpace = sourceView.nameSpace;	// .lowercaseString;
-			NSInteger tag = sourceView.tag;	// .lowercaseString;
-			
-			NSString * selector = nil;
+            NSString *nameSpace = sourceView.nameSpace;// .lowercaseString;
+            NSInteger tag       = sourceView.tag;// .lowercaseString;
+
+            NSString *selector  = nil;
 			if ( nameSpace)
             {
-				selector = [NSString stringWithFormat:@"%@_%d", nameSpace, tag];
+				selector = [NSString stringWithFormat:@"%@_%ld", nameSpace, tag];
 			}
             
 			selector = [selector stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
@@ -114,7 +114,7 @@
 	
 	if ( [_target isKindOfClass:[UIView class]] )
     {
-		UIView * targetView = ((UIView *)_target).superview;
+		UIView *targetView = ((UIView *)_target).superview;
 		if ( targetView )
         {
 			[self forward:targetView];
@@ -138,7 +138,7 @@
 #if (__XYUISIGNAL_USED_CALLPATH__ == 1)
 	if ( [target isKindOfClass:[UIView class]] )
     {
-		[_callPath appendFormat:@" > %@(%d)", [[target class] description], [((UIView *)target) tag]];
+		[_callPath appendFormat:@" > %@(%ld)", [[target class] description], [((UIView *)target) tag]];
 	}
     else
     {
@@ -153,8 +153,8 @@
     
     if ( [_target isKindOfClass:[UIView class]] || [_target isKindOfClass:[UIViewController class]] )
     {
-		_jump += 1;
-		_target = target;
+        _jump   += 1;
+        _target = target;
 		
 		[self routes];
 	}
@@ -166,37 +166,36 @@
 	return _isReach;
 }
 - (void)routes{
-    NSObject * targetObject = _target;
+    NSObject *targetObject = _target;
 	if ( nil == targetObject )
 		return;
     
-    NSString *	selectorName = nil;
-    SEL			selector = nil;
-    
-    NSString *	selectorName2 = nil;
-    SEL			selector2 = nil;
-    
-    NSString *	signalPrefix = nil;
-	NSString *	signalClass = nil;
-	NSString *	signalMethod = nil;
+    NSString *selectorName  = nil;
+    SEL selector            = nil;
+
+    NSString *selectorName2 = nil;
+    SEL selector2           = nil;
+
+    NSString *signalPrefix  = nil;
+    NSString *signalClass   = nil;
+    NSString *signalMethod  = nil;
 	
 	if ( self.name && [self.name hasPrefix:@"signal."] )
 	{
-		NSArray * array = [self.name componentsSeparatedByString:@"."];
+        NSArray * array = [self.name componentsSeparatedByString:@"."];
 		if ( array && array.count > 1 )
 		{
-			signalPrefix = (NSString *)[array objectAtIndex:0];
-			signalClass = (NSString *)[array objectAtIndex:1];
-			signalMethod = (NSString *)[array objectAtIndex:2];
+        signalPrefix    = (NSString *)[array objectAtIndex:0];
+        signalClass     = (NSString *)[array objectAtIndex:1];
+        signalMethod    = (NSString *)[array objectAtIndex:2];
 		}
 	}
     
-    
-    selectorName = [NSString stringWithFormat:@"handleUISignal_%@_%@:", signalClass, signalMethod];
-    selector = NSSelectorFromString(selectorName);
-    
+    selectorName  = [NSString stringWithFormat:@"handleUISignal_%@_%@:", signalClass, signalMethod];
+    selector      = NSSelectorFromString(selectorName);
+
     selectorName2 = [NSString stringWithFormat:@"handleUISignal_%@:", signalMethod];
-    selector2 = NSSelectorFromString(selectorName);
+    selector2     = NSSelectorFromString(selectorName);
     
     if ( [_target respondsToSelector:selector] )
     {
@@ -243,9 +242,9 @@
 
 @dynamic nameSpace;
 
--(NSString *) nameSpace
+- (NSString *)nameSpace
 {
-	NSObject * obj = objc_getAssociatedObject( self, XYUISignal_NAMESPACE );
+	NSObject *obj = objc_getAssociatedObject( self, XYUISignal_NAMESPACE );
 	if ( obj && [obj isKindOfClass:[NSString class]] )
 		return (NSString *)obj;
 	
@@ -260,37 +259,37 @@
 	objc_setAssociatedObject( self, XYUISignal_NAMESPACE, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC );
 }
 
-+(NSString *) SIGNAL
++ (NSString *)SIGNAL
 {
 	return [self SIGNAL_TYPE];
 }
 
-+(NSString *) SIGNAL_TYPE
++ (NSString *)SIGNAL_TYPE
 {
 	return [NSString stringWithFormat:@"signal.%@.", [self description]];
 }
 
 
--(XYUISignal *) sendUISignal:(NSString *)name
+- (XYUISignal *)sendUISignal:(NSString *)name
 {
 	return [self sendUISignal:name withObject:nil from:self];
 }
 
--(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object
+- (XYUISignal *)sendUISignal:(NSString *)name withObject:(NSObject *)object
 {
 	return [self sendUISignal:name withObject:object from:self];
 }
 
--(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object from:(id)source
+- (XYUISignal *)sendUISignal:(NSString *)name withObject:(NSObject *)object from:(id)source
 {
-	XYUISignal * signal = [[XYUISignal alloc] init];
+	XYUISignal *signal = [[XYUISignal alloc] init];
     
 	if ( signal )
     {
-		signal.source = source ? source : self;
-		signal.target = self;
-		signal.name = name;
-		signal.object = object;
+        signal.source = source ? source : self;
+        signal.target = self;
+        signal.name   = name;
+        signal.object = object;
 		
 		[signal send];
 	}
@@ -319,7 +318,7 @@
 
 @dynamic nameSpace;
 
--(NSString *) nameSpace
+- (NSString *)nameSpace
 {
 	NSObject * obj = objc_getAssociatedObject( self, XYUISignal_NAMESPACE );
 	if ( obj && [obj isKindOfClass:[NSString class]] )
@@ -336,27 +335,27 @@
 	objc_setAssociatedObject( self, XYUISignal_NAMESPACE, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC );
 }
 
-+(NSString *) SIGNAL
++ (NSString *)SIGNAL
 {
 	return [self SIGNAL_TYPE];
 }
 
-+(NSString *) SIGNAL_TYPE
++ (NSString *)SIGNAL_TYPE
 {
 	return [NSString stringWithFormat:@"signal.%@.", [self description]];
 }
 
--(XYUISignal *) sendUISignal:(NSString *)name
+- (XYUISignal *)sendUISignal:(NSString *)name
 {
 	return [self sendUISignal:name withObject:nil from:self];
 }
 
--(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object
+- (XYUISignal *)sendUISignal:(NSString *)name withObject:(NSObject *)object
 {
 	return [self sendUISignal:name withObject:object from:self];
 }
 
--(XYUISignal *) sendUISignal:(NSString *)name withObject:(NSObject *)object from:(id)source
+- (XYUISignal *)sendUISignal:(NSString *)name withObject:(NSObject *)object from:(id)source
 {
 	XYUISignal *signal = [[XYUISignal alloc] init];
     
