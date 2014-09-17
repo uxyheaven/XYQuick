@@ -17,9 +17,17 @@
 
 + (instancetype)daoWithEntityClass:(Class)aClass
 {
+    if (aClass == nil)
+        return nil;
+    
     XYBaseDao *dao = [[[self class] alloc] initWithEntityClass:aClass];
 
     return dao;
+}
+
++ (instancetype)daoWithEntityClassName:(NSString *)name
+{
+    return [self daoWithEntityClass:NSClassFromString(name)];
 }
 
 - (instancetype)initWithEntityClass:(Class)aClass

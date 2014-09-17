@@ -28,6 +28,7 @@
 @property (nonatomic, weak, readonly) Class entityClass;
 
 + (instancetype)daoWithEntityClass:(Class)aClass;
++ (instancetype)daoWithEntityClassName:(NSString *)name;
 
 - (NSError *)saveEntity:(id)entity;
 - (NSError *)saveEntityWithArray:(NSArray *)array;
