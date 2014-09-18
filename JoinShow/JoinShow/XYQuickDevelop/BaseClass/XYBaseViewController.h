@@ -9,7 +9,7 @@
 #import "XYPrecompile.h"
 #import "XYControllerProtocol.h"
 
-#if (1)
+#if (0 == __XY_HOOK__VC__)
 @interface XYBaseViewController : UIViewController<XYControllerProtocol>
 
 

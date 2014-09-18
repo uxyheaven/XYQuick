@@ -9,7 +9,7 @@
 #import "XYBaseViewController.h"
 #import "XYCommon.h"
 
-#if (1)
+#if (0 == __XY_HOOK__VC__)
 @implementation XYBaseViewController
 
 - (instancetype)init
@@ -197,12 +197,24 @@
     if ([self respondsToSelector:@selector(createViews)])
         [self performSelector:@selector(createViews)];
     
+    if ([self respondsToSelector:@selector(enterBackground)])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    }
+    
+    if ([self respondsToSelector:@selector(enterForeground)])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
+    
     if ([self respondsToSelector:@selector(createEvents)])
         [self performSelector:@selector(createEvents)];
 }
 
 - (void)xy__dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     if ([self respondsToSelector:@selector(destroyEvents)])
         [self performSelector:@selector(destroyEvents)];
     
@@ -221,25 +233,6 @@
         [self performSelector:@selector(loadData)];
     
     [self xy__viewDidLoad];
-}
-
-- (void)createEvents
-{
-    if ([self respondsToSelector:@selector(enterBackground)])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    }
-    
-    if ([self respondsToSelector:@selector(enterForeground)])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
-    }
-}
-
-- (void)destroyEvents
-{
-    // 移除此对象所有观察的消息
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
