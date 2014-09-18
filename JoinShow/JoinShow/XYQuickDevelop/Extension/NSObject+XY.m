@@ -48,11 +48,6 @@ static void (*__dealloc)( id, SEL);
 @dynamic attributeList;
 @dynamic tempObject;
 
-+(void)load{
-#if (1 == __XY_HOOK_DEALLOC__)
-    [NSObject hookDealloc];
-#endif
-}
 #pragma mark - hook
 /*
 + (void)hookDealloc{

@@ -24,9 +24,6 @@
 // XYUISIGNAL
 #define __XYUISIGNAL_USED_CALLPATH__         (1)
 
-// hook dealloc,在释放前设置delegate = nil,等
-// 有bug待测试
-#define __XY_HOOK_DEALLOC__         (0)
 
 #define __TimeOut__ON__             (0)
 #define __TimeOut__date__           @"2015-3-10 00:00:00"

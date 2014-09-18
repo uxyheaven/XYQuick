@@ -7,7 +7,9 @@
 //
 
 #import "XYBaseViewController.h"
+#import "XYCommon.h"
 
+#if (1)
 @implementation XYBaseViewController
 
 - (instancetype)init
@@ -19,6 +21,7 @@
     }
     return self;
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,23 +66,28 @@
     [self destroyFields];
 }
 
-- (void)createFields {
+- (void)createFields
+{
   // [super createFields];
 }
 
-- (void)destroyFields {
+- (void)destroyFields
+{
     // [super destroyFields];
 }
 
-- (void)createViews {
+- (void)createViews
+{
     // [super createViews];
 }
 
-- (void)destroyViews {
+- (void)destroyViews
+{
     // [super destroyViews];
 }
 
-- (void)createEvents {
+- (void)createEvents
+{
     // [super createEvents];
 
     if ([self respondsToSelector:@selector(enterBackground)])
@@ -93,14 +101,16 @@
     }
 }
 
-- (void)destroyEvents {
+- (void)destroyEvents
+{
     // [super destroyEvents];
 
     // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)loadData {
+- (void)loadData
+{
     // [super loadData];
 }
 
@@ -109,25 +119,6 @@
 
 #pragma mark - rewrite
 // 额外的重写的父类的方法
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-}
-
--(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -180,5 +171,83 @@
 
 #pragma mark 2 delegate dataSource protocol
 
+@end
+
+#else
+#pragma mark -
+#pragma mark -
+@implementation XYBaseViewController
+@end
+
+@implementation UIViewController (base)
+
++(void)load{
+    XY_swizzleInstanceMethod([UIViewController class], @selector(loadView), @selector(xy__loadView));
+    XY_swizzleInstanceMethod([UIViewController class], @selector(viewDidLoad), @selector(xy__viewDidLoad));
+    XY_swizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"dealloc"), @selector(xy__dealloc));
+}
+
+- (void)xy__loadView
+{
+    [self xy__loadView];
+    
+    if ([self respondsToSelector:@selector(createFields)])
+        [self performSelector:@selector(createFields)];
+    
+    if ([self respondsToSelector:@selector(createViews)])
+        [self performSelector:@selector(createViews)];
+    
+    if ([self respondsToSelector:@selector(createEvents)])
+        [self performSelector:@selector(createEvents)];
+}
+
+- (void)xy__dealloc
+{
+    if ([self respondsToSelector:@selector(destroyEvents)])
+        [self performSelector:@selector(destroyEvents)];
+    
+    if ([self respondsToSelector:@selector(destroyViews)])
+        [self performSelector:@selector(destroyViews)];
+    
+    if ([self respondsToSelector:@selector(destroyFields)])
+        [self performSelector:@selector(destroyFields)];
+    
+    [self xy__dealloc];
+}
+
+- (void)xy__viewDidLoad
+{
+    if ([self respondsToSelector:@selector(loadData)])
+        [self performSelector:@selector(loadData)];
+    
+    [self xy__viewDidLoad];
+}
+
+- (void)createEvents
+{
+    if ([self respondsToSelector:@selector(enterBackground)])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    }
+    
+    if ([self respondsToSelector:@selector(enterForeground)])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    }
+}
+
+- (void)destroyEvents
+{
+    // 移除此对象所有观察的消息
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end
+
+#endif
+
+
+
+
+
+

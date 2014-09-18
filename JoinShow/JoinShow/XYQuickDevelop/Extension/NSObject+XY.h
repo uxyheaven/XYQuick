@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (XY)
-#pragma mark -hook
-+ (void)hookDealloc;
 
 #pragma mark - perform
 
