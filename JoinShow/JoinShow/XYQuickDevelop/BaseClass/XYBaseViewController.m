@@ -68,28 +68,22 @@
 
 - (void)createFields
 {
-  // [super createFields];
 }
 
 - (void)destroyFields
 {
-    // [super destroyFields];
 }
 
 - (void)createViews
 {
-    // [super createViews];
 }
 
 - (void)destroyViews
 {
-    // [super destroyViews];
 }
 
 - (void)createEvents
 {
-    // [super createEvents];
-
     if ([self respondsToSelector:@selector(enterBackground)])
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
@@ -103,22 +97,12 @@
 
 - (void)destroyEvents
 {
-    // [super destroyEvents];
-
-    // 移除此对象所有观察的消息
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)loadData
 {
-    // [super loadData];
 }
-
-#pragma mark - api
-// 对外的接口
-
-#pragma mark - rewrite
-// 额外的重写的父类的方法
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -138,8 +122,6 @@
      */
 }
 
-
-
 #pragma mark - private
 // 私有方法
 - (void)handleNotification:(NSNotification *)notification
@@ -158,23 +140,30 @@
 	}
 }
 
-#pragma mark - 响应 model 的地方
-#pragma mark 1 notification
-
-
-#pragma mark 2 KVO
-
-
-#pragma mark - 响应 view 的地方
-#pragma mark 1 target-action
-
-
-#pragma mark 2 delegate dataSource protocol
 
 @end
 
 #else
+
+/*************************************************************************************/
 #pragma mark -
+
+#pragma mark - api
+// 对外的接口
+
+#pragma mark - rewrite
+// 额外的重写的父类的方法
+
+#pragma mark - private
+
+#pragma mark - 响应 model 的地方
+#pragma mark 1 notification
+#pragma mark 2 KVO
+
+#pragma mark - 响应 view 的地方
+#pragma mark 1 target-action
+#pragma mark 2 delegate dataSource protocol
+
 #pragma mark -
 
 @implementation UIViewController (base)
