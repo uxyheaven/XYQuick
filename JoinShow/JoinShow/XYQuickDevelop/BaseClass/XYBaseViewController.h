@@ -7,7 +7,6 @@
 //
 
 #import "XYPrecompile.h"
-#import "XYControllerProtocol.h"
 
 #if (0 == __XY_HOOK_VC__)
 @interface XYBaseViewController : UIViewController<XYControllerProtocol>
@@ -64,7 +63,7 @@
 #pragma mark -
 typedef UIViewController XYBaseViewController;
 
-@interface UIViewController (base)<XYControllerProtocol>
+@interface UIViewController (base)
 #pragma mark- model
 // 定义model
 
