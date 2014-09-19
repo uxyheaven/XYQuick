@@ -9,7 +9,7 @@
 #import "XYPrecompile.h"
 #import "XYControllerProtocol.h"
 
-#if (0 == __XY_HOOK__VC__)
+#if (0 == __XY_HOOK_VC__)
 @interface XYBaseViewController : UIViewController<XYControllerProtocol>
 
 
@@ -75,9 +75,7 @@
 #else
 #pragma mark -
 #pragma mark -
-
-@interface XYBaseViewController : UIViewController<XYControllerProtocol>
-@end
+typedef UIViewController XYBaseViewController;
 
 @interface UIViewController (base)<XYControllerProtocol>
 //- (void)createFields;

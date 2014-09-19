@@ -21,7 +21,7 @@
 
 #define __XY_DEVELOPMENT__          (1)
 
-#define __XY_HOOK_VC__             (0)
+#define __XY_HOOK_VC__             (1)
 
 // XYUISIGNAL
 #define __XYUISIGNAL_USED_CALLPATH__         (1)

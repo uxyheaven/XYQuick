@@ -117,11 +117,13 @@
     return object;
 }
 
-- (NSArray *)loadEntityWithWhere:(NSString *)where
+- (NSArray *)loadEntityWithWhere:(NSString *)where order:(NSString *)order;
 {
-    if (where.length == 0)
-        return nil;
-    
+    return [self loadEntityWithWhere:where order:order offset:0 count:XYBaseDao_load_maxCount];
+}
+
+- (NSArray *)loadEntityWithWhere:(NSString *)where order:(NSString *)order offset:(NSInteger)offset count:(NSInteger)count
+{
     NSArray *array = [_entityClass searchWithWhere:where orderBy:nil offset:0 count:XYBaseDao_load_maxCount];
     
     return array;
@@ -130,6 +132,16 @@
 - (NSInteger)countWithWhere:(NSString *)where
 {
     return [_entityClass rowCountWithWhere:where];
+}
+
+- (NSError *)deleteEntity:(id)entity
+{
+    if (![entity deleteToDB])
+    {
+        return  [NSError errorWithDomain:[NSString stringWithFormat:@"[delete error] : %@ %@", _entityClass, entity] code:XYBaseDao_error_code userInfo:nil];
+    }
+    
+    return nil;
 }
 
 - (NSError *)deleteEntityWithKey:(NSString *)key

@@ -30,17 +30,25 @@ DEF_SINGLETON(XYViewControllerManager)
     return self;
 }
 
-- (void)createFields {
+- (void)createFields
+{
+#if (0 == __XY_HOOK_VC__)
     [super createFields];
- 
+#endif
 }
 
-- (void)destroyFields {
+- (void)destroyFields
+{
+#if (0 == __XY_HOOK_VC__)
     [super destroyFields];
+#endif
 }
 
-- (void)createViews {
+- (void)createViews
+{
+#if (0 == __XY_HOOK_VC__)
     [super createViews];
+#endif
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown)
@@ -57,20 +65,32 @@ DEF_SINGLETON(XYViewControllerManager)
     }
 }
 
-- (void)destroyViews {
+- (void)destroyViews
+{
+#if (0 == __XY_HOOK_VC__)
     [super destroyViews];
+#endif
 }
 
-- (void)createEvents {
+- (void)createEvents
+{
+#if (0 == __XY_HOOK_VC__)
     [super createEvents];
+#endif
 }
 
-- (void)destroyEvents {
+- (void)destroyEvents
+{
+#if (0 == __XY_HOOK_VC__)
     [super destroyEvents];
+#endif
 }
 
-- (void)loadData {
+- (void)loadData
+{
+#if (0 == __XY_HOOK_VC__)
     [super loadData];
+#endif
     
     if (_firstKey)
     {
@@ -81,21 +101,6 @@ DEF_SINGLETON(XYViewControllerManager)
 
 #pragma mark - rewrite
 // 额外的重写的父类的方法
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-}
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -127,7 +132,8 @@ DEF_SINGLETON(XYViewControllerManager)
 }
 #pragma mark - private
 // 私有方法
-- (void)displayViewWithKey:(NSString *)key{
+- (void)displayViewWithKey:(NSString *)key
+{
     UIViewController *targetViewController = (_viewControllers[key]) ? _viewControllers[key] : ((XYViewControllerManager_createVC_block)_viewControllerSetupBlocks[key])();
     
     if ([_selectedKey isEqualToString:key] && (_contentView.subviews.count != 0))
@@ -155,11 +161,13 @@ DEF_SINGLETON(XYViewControllerManager)
     [self.view animationCrossfadeWithDuration:.3];
 }
 
--(UIViewController *) selectedViewController{
+-(UIViewController *) selectedViewController
+{
     return [_viewControllers objectForKey:_selectedKey];
 }
 
-- (void)clean{
+- (void)clean
+{
     [_viewControllers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if (![_selectedKey isEqualToString:key])
         {
@@ -189,7 +197,8 @@ DEF_SINGLETON(XYViewControllerManager)
 
 @implementation UIViewController (XYViewControllerManager)
 
--(XYViewControllerManager *) viewControllerManager{
+-(XYViewControllerManager *) viewControllerManager
+{
     return [XYViewControllerManager sharedInstance];
 }
 

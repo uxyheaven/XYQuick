@@ -45,7 +45,9 @@
 
 - (void)createFields
 {
+#if (0 == __XY_HOOK_VC__)
     [super createFields];
+#endif
     
     self.entityModel = [[EntityBaseModel alloc] init];
     RequestHelper *request = [[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
@@ -58,15 +60,17 @@
 
 - (void)destroyFields
 {
+#if (0 == __XY_HOOK_VC__)
     [super destroyFields];
-    
+#endif
     self.entityModel = nil;
 }
 
 - (void)createViews
 {
+#if (0 == __XY_HOOK_VC__)
     [super createViews];
-    
+#endif
     _btnStart = (UIButton *)[self.view viewWithTag:11000];
     
     _btnLoad = (UIButton *)[self.view viewWithTag:11001];
@@ -74,26 +78,33 @@
 
 - (void)destroyViews
 {
+#if (0 == __XY_HOOK_VC__)
     [super destroyViews];
+#endif
 }
 
 - (void)createEvents
 {
+#if (0 == __XY_HOOK_VC__)
     [super createEvents];
-    
+#endif
     [_btnStart addTarget: self action: @selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
     [_btnLoad addTarget: self action: @selector(clickLoad:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)destroyEvents
 {
+#if (0 == __XY_HOOK_VC__)
     [super destroyEvents];
+#endif
 }
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
 - (void)loadData
 {
+#if (0 == __XY_HOOK_VC__)
     [super loadData];
+#endif
 }
 
 

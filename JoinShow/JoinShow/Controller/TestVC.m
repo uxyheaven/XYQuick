@@ -674,7 +674,7 @@ if (1) { \
     CarEntity *car4 = [dao loadEntityWithKey:@"c"];
     NSLog(@"%@", car4);
     
-    NSArray *array2 = [dao loadEntityWithWhere:@"brand = '科鲁兹'"];
+    NSArray *array2 = [dao loadEntityWithWhere:@"brand = '科鲁兹'" order:nil];
     NSLog(@"%@", array2);
     
     NSInteger count = [dao countWithWhere:nil];

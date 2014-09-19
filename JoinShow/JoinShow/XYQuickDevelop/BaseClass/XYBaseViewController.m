@@ -9,7 +9,7 @@
 #import "XYBaseViewController.h"
 #import "XYCommon.h"
 
-#if (0 == __XY_HOOK__VC__)
+#if (0 == __XY_HOOK_VC__)
 @implementation XYBaseViewController
 
 - (instancetype)init
@@ -176,8 +176,6 @@
 #else
 #pragma mark -
 #pragma mark -
-@implementation XYBaseViewController
-@end
 
 @implementation UIViewController (base)
 

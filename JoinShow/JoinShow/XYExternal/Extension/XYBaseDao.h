@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #define XYBaseDao_error_code 123123
-#define XYBaseDao_load_maxCount 100
+#define XYBaseDao_load_maxCount 1000
 
 @protocol XYBaseDaoEntityProtocol <NSObject>
 
@@ -18,6 +18,9 @@
 
 // 返回主键
 + (NSString *)getPrimaryKey;
+
+// 返回联合主键
++ (NSArray *)getPrimaryKeyUnionArray;
 
 @end
 
@@ -34,10 +37,13 @@
 - (NSError *)saveEntityWithArray:(NSArray *)array;
 
 - (id)loadEntityWithKey:(NSString *)key;
-- (NSArray *)loadEntityWithWhere:(NSString *)where;
+- (NSArray *)loadEntityWithWhere:(NSString *)where order:(NSString *)order;
+- (NSArray *)loadEntityWithWhere:(NSString *)where order:(NSString *)order offset:(NSInteger)offset count:(NSInteger)count;
+
 
 - (NSInteger)countWithWhere:(NSString *)where;
 
+- (NSError *)deleteEntity:(id)entity;
 - (NSError *)deleteEntityWithKey:(NSString *)key;
 - (NSError *)deleteEntityWithWhere:(NSString *)where;
 
