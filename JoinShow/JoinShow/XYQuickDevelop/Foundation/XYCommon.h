@@ -12,7 +12,13 @@
 @class MBProgressHUD;
 @class ASIHTTPRequest;
 
+@class XYCommon;
 
+#undef	$
+#define $ __getTestBlock( self )
+typedef	XYCommon *			(^XYCommonBlockTest)( id first, ... );
+typedef	XYCommonBlockTest	(^XYCommonContextBlock)( id context );
+XYCommonContextBlock	__getTestBlock( id context );
 /** 
  * @brief 移魂大法
  * @param c 类

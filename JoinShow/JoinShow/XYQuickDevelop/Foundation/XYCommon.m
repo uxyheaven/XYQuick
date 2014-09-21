@@ -532,3 +532,10 @@
 
 @end
 
+/***************************************************************/
+
+XYCommonContextBlock	__getTestBlock( id context )
+{
+    NSLogD(@"%@", context);
+    return nil;
+}

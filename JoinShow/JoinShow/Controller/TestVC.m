@@ -363,6 +363,8 @@ if (1) { \
         NSLogD(@"%@", notification.userInfo);
     }];
     
+    $(@"test");
+    
 }
 
 - (void)didReceiveMemoryWarning
