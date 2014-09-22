@@ -366,6 +366,8 @@ if (1) { \
    // $(@"test");
    // __getTestBlock(@"1");
     
+    NSArray *array = @[@"1", @"2"];
+    array = [array safeSubarrayWithRange:NSMakeRange(-1, 1)];
 }
 
 - (void)didReceiveMemoryWarning
