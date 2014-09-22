@@ -49,4 +49,6 @@
 
 - (void)deleteAllEntity;
 
+- (BOOL)isExistEntity:(id)entity;
+
 @end

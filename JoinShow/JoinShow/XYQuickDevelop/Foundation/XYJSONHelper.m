@@ -82,6 +82,12 @@ static NSDateFormatter *XY_JSON_OBJECT_NSDateFormatter = nil;
     [dictionary setObject:property forKey:jsonKey];
 }
 
++ (void)removeXYJSONKeyWithProperty:(NSString *)property
+{
+    NSMutableDictionary *dictionary = [self __XYJSONKeyDict];
+    [dictionary removeObjectForKey:property];
+}
+
 - (NSString *)XYJSONString
 {
     return [self XYJSONDictionary].XYJSONString;

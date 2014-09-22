@@ -172,4 +172,9 @@
     [LKDBHelper clearTableData:[_entityClass class]];
 }
 
+- (BOOL)isExistEntity:(id)entity
+{
+    return [entity isExistsFromDB];
+}
+
 @end

@@ -47,6 +47,11 @@
 + (void)bindXYJSONKey:(NSString *)jsonKey toProperty:(NSString *)property;
 
 /**
+ * @brief 解除不需要解析的属性
+ */
++ (void)removeXYJSONKeyWithProperty:(NSString *)property;
+
+/**
  * @brief 返回jsonString
  */
 - (NSString *)XYJSONString;
@@ -60,6 +65,7 @@
  * @brief 返回json字典, 不支持NSArray
  */
 - (NSDictionary *)XYJSONDictionary;
+
 @end
 
 
@@ -114,6 +120,7 @@
  * @brief 返回jsonString
  */
 - (NSString *)XYJSONString;
+
 @end
 
 #pragma mark - NSArray (XYJSONHelper)
