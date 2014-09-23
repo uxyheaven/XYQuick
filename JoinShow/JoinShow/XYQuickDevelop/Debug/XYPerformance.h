@@ -40,8 +40,9 @@
 //
 
 
-#import <Foundation/Foundation.h>
+#import "XYPrecompile.h"
 #import "XYCommonDefine.h"
+
 #pragma mark -
 
 #if (1 ==  __XY_PERFORMANCE__)

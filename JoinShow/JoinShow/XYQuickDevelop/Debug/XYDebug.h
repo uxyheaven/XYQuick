@@ -6,10 +6,11 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //  Copy from bee Framework http://www.bee-framework.com
 
-//#import "XYPrecompile.h"
-
 // debug模式下的nslog
 
+#import "XYPrecompile.h"
+
+#import "XYPerformance.h"
 /*
  * 说明 仅在debug下才显示nslog
  */
@@ -38,8 +39,6 @@
 
 #undef	BB
 #define BB						[XYDebug breakPoint];
-
-#import "XYPerformance.h"
 
 #pragma mark - UIWindow
 @interface UIWindow(XYDebug)
