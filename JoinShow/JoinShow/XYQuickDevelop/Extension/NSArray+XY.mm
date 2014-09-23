@@ -100,7 +100,7 @@ DUMMY_CLASS(NSArray_XY);
 	if ( range.location >= self.count )
 		return nil;
 
-	if ( range.location + range.length >= self.count )
+	if ( range.location + range.length > self.count )
 		return nil;
 	
 	return [self subarrayWithRange:NSMakeRange(range.location, range.length)];
