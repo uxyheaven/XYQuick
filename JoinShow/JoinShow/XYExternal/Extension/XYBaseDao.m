@@ -124,7 +124,7 @@
 
 - (NSArray *)loadEntityWithWhere:(NSString *)where order:(NSString *)order offset:(NSInteger)offset count:(NSInteger)count
 {
-    NSArray *array = [_entityClass searchWithWhere:where orderBy:order offset:0 count:XYBaseDao_load_maxCount];
+    NSArray *array = [_entityClass searchWithWhere:where orderBy:order offset:0 count:count];
     
     return array;
 }
