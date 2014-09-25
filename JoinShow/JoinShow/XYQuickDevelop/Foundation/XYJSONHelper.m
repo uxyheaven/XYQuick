@@ -98,7 +98,7 @@ static NSDateFormatter *XY_JSON_OBJECT_NSDateFormatter = nil;
     if ([NSJSONSerialization isValidJSONObject:self])
     {
         NSError *error;
-        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:Json_string_options error:&error];
+        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
         if (!error)
         {
             return jsonData;
@@ -261,33 +261,34 @@ const char *property_getTypeString(objc_property_t property) {
 @implementation NSString (XYJSONHelper)
 - (id)toModel:(Class)modelClass
 {
-    return [self.toYYData toModel:modelClass];
+    return [self.toXYData toModel:modelClass];
 }
 
 - (id)toModel:(Class)modelClass forKey:(NSString *)jsonKey
 {
-    return [self.toYYData toModel:modelClass forKey:jsonKey];
+    return [self.toXYData toModel:modelClass forKey:jsonKey];
 }
 
 - (NSArray *)toModels:(Class)modelClass
 {
-    return [self.toYYData toModels:modelClass];
+    return [self.toXYData toModels:modelClass];
 }
 
 - (NSArray *)toModels:(Class)modelClass forKey:(NSString *)jsonKey
 {
-    return [self.toYYData toModels:modelClass forKey:jsonKey];
+    return [self.toXYData toModels:modelClass forKey:jsonKey];
 }
 
-- (NSData *)toYYData
+- (NSData *)toXYData
 {
     return [self dataUsingEncoding:NSUTF8StringEncoding];
 }
 
--(id) JSONValue{
-    NSError* error = nil;
-    id result = [NSJSONSerialization JSONObjectWithData:self.toYYData options:kNilOptions error:&error];
-    if (error != nil) return nil;
+- (id)JSONValue{
+    NSError *error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:self.toXYData options:Json_string_options error:&error];
+    if (error != nil)
+        return nil;
     
     return result;
 }
@@ -462,7 +463,12 @@ const char *property_getTypeString(objc_property_t property) {
 
 - (id)XYJSONObject
 {
-    return [NSJSONSerialization JSONObjectWithData:self options:NSJSONReadingAllowFragments error:nil];
+    NSError *error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:self options:Json_string_options error:&error];
+    if (error != nil)
+        return nil;
+    
+    return result;
 }
 
 - (id)XYJSONObjectForKey:(NSString *)key
@@ -519,7 +525,7 @@ const char *property_getTypeString(objc_property_t property) {
     if ([NSJSONSerialization isValidJSONObject:jsonDictionaries])
     {
         NSError *error;
-        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:Json_string_options error:&error];
+        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:kNilOptions error:&error];
         if (!error)
         {
             return jsonData;

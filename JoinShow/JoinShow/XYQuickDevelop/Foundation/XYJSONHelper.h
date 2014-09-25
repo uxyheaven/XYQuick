@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-#define Json_string_options 0
+#define Json_string_options NSJSONReadingAllowFragments
 
 
 @interface XYJSONHelper : NSObject
