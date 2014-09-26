@@ -254,6 +254,23 @@ id (*__actionXY_return_id)(id, SEL, ...);
 #undef __Tf
 #define __Tf(key,...) [NSString stringWithFormat:_T(key),__VA_ARGS__]
 /**************************************************************/
+// 主线程下同步会造成死锁
+#undef dispatch_main_sync_safe
+#define dispatch_main_sync_safe(block)\
+    if ([NSThread isMainThread]) {\
+        block();\
+    } else {\
+        dispatch_sync(dispatch_get_main_queue(), block);\
+    }
+
+#undef dispatch_main_async_safe
+#define dispatch_main_async_safe(block)\
+    if ([NSThread isMainThread]) {\
+        block();\
+    } else {\
+            dispatch_async(dispatch_get_main_queue(), block);\
+    }
+/**************************************************************/
 #pragma mark -end
 /*
 #define NavigationBar_HEIGHT 44
