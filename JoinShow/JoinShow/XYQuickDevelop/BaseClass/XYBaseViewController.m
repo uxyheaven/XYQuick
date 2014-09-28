@@ -9,145 +9,6 @@
 #import "XYBaseViewController.h"
 #import "XYCommon.h"
 
-#if (0 == __XY_HOOK_VC__)
-@implementation XYBaseViewController
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self)
-    {
-        NSLogDSelf
-    }
-    return self;
-}
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        NSLogDSelf
-    }
-    
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self loadData];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
-- (void)loadView
-{
-    // 如果想自己通过代码来创建UIViewController的view，就不需要调用[super loadView]
-    // 若没有xib文件，[super loadView]默认会创建一个空白的UIView。
-    [super loadView];
-    
-    [self createFields];
-    [self createViews];
-    [self createEvents];
-}
-
-- (void)dealloc
-{
-    NSLogDSelf
-    
-    [self destroyEvents];
-    [self destroyViews];
-    [self destroyFields];
-}
-
-- (void)createFields
-{
-}
-
-- (void)destroyFields
-{
-}
-
-- (void)createViews
-{
-}
-
-- (void)destroyViews
-{
-}
-
-- (void)createEvents
-{
-    if ([self respondsToSelector:@selector(enterBackground)])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    }
-    
-    if ([self respondsToSelector:@selector(enterForeground)])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
-    }
-}
-
-- (void)destroyEvents
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)loadData
-{
-}
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-#pragma mark todo
-    /*
-     // Add code to clean up any of your own resources that are no longer necessary.
-     if ([self.view window] == nil)
-     {
-     // Add code to preserve data stored in the views that might be
-     // needed later.
-     
-     // Add code to clean up other strong references to the view in
-     // the view hierarchy.
-     self.view = nil;
-     }
-     */
-}
-
-#pragma mark - private
-// 私有方法
-- (void)handleNotification:(NSNotification *)notification
-{
-    if ( [notification.name isEqualToString:UIApplicationDidEnterBackgroundNotification] )
-	{
-	}
-	else if ( [notification.name isEqualToString:UIApplicationWillEnterForegroundNotification] )
-	{
-	}
-	else if ( [notification.name isEqualToString:UIApplicationWillChangeStatusBarOrientationNotification] )
-	{
-	}
-	else if ( [notification.name isEqualToString:UIApplicationDidChangeStatusBarOrientationNotification] )
-	{
-	}
-}
-
-
-@end
-
-#else
-
-/*************************************************************************************/
-#pragma mark -
-
 #pragma mark - api
 // 对外的接口
 
@@ -225,13 +86,10 @@
 
 - (void)xy__didReceiveMemoryWarning
 {
-    if ([self respondsToSelector:@selector(destroyFields)])
-        [self performSelector:@selector(destroyFields)];
-    
     if ([self isViewLoaded] && [self.view window] == nil)
     {
-        if ([self respondsToSelector:@selector(memoryWarning)])
-            [self performSelector:@selector(memoryWarning)];
+        if ([self respondsToSelector:@selector(cleanData)])
+            [self performSelector:@selector(cleanData)];
     }
     
     [self xy__didReceiveMemoryWarning];
@@ -239,8 +97,6 @@
 
 
 @end
-
-#endif
 
 
 

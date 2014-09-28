@@ -101,7 +101,6 @@
 		57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E1518EAC9CD00D84C01 /* HTTPClient.m */; };
 		57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E2418EADB4800D84C01 /* TestVC2.m */; };
 		57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451418B59A12006C597A /* XYBaseViewController.m */; };
-		57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4451718B5B579006C597A /* XYBaseTableViewController.m */; };
 		57D4FF4718221A4400E10954 /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF4618221A4400E10954 /* LKDBHelperExtension.m */; };
 		57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF491822275400E10954 /* BusinessVC.m */; };
 		57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */; };
@@ -338,8 +337,6 @@
 		57D43E2418EADB4800D84C01 /* TestVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC2.m; sourceTree = "<group>"; };
 		57D4451318B59A12006C597A /* XYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseViewController.h; sourceTree = "<group>"; };
 		57D4451418B59A12006C597A /* XYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseViewController.m; sourceTree = "<group>"; };
-		57D4451618B5B579006C597A /* XYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseTableViewController.h; sourceTree = "<group>"; };
-		57D4451718B5B579006C597A /* XYBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseTableViewController.m; sourceTree = "<group>"; };
 		57D4451918B5C573006C597A /* XYBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseClass.h; sourceTree = "<group>"; };
 		57D4FF4518221A4400E10954 /* LKDBHelperExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelperExtension.h; sourceTree = "<group>"; };
 		57D4FF4618221A4400E10954 /* LKDBHelperExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDBHelperExtension.m; sourceTree = "<group>"; };
@@ -828,8 +825,6 @@
 				5707C1ED19123A36003986DC /* XYViewControllerManager.m */,
 				57D4451318B59A12006C597A /* XYBaseViewController.h */,
 				57D4451418B59A12006C597A /* XYBaseViewController.m */,
-				57D4451618B5B579006C597A /* XYBaseTableViewController.h */,
-				57D4451718B5B579006C597A /* XYBaseTableViewController.m */,
 				577952D51909718A00F95459 /* XYBaseView.h */,
 				577952D61909718A00F95459 /* XYBaseView.m */,
 				577952D81909727E00F95459 /* XYBaseModel.h */,
@@ -1057,7 +1052,7 @@
 			name = JoinShowTests;
 			productName = JoinShowTests;
 			productReference = 57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		57B3FFE5177AD9BC00775FC9 /* JoinShow */ = {
 			isa = PBXNativeTarget;
@@ -1210,7 +1205,6 @@
 				57DB87E5183349A60015CC5A /* XYCommon.m in Sources */,
 				74BA434919C17B6200B49E7B /* LKDB+Manager.m in Sources */,
 				579E68A3192EFA4C00EECAB4 /* XYUISignal.m in Sources */,
-				57D4451818B5B579006C597A /* XYBaseTableViewController.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				572E7CB318385C690018179D /* NSString+MKNetworkKitAdditions.m in Sources */,
 				5749BF8419BF480900D676CC /* JSONVC.m in Sources */,

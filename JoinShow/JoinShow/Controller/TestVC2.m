@@ -185,6 +185,7 @@
 
 - (void)clickXYTabbarController{
     DemoViewController *vc1 = [[DemoViewController alloc] init];
+    vc1.name = @"vc1";
     vc1.viewDidLoadBlock = ^(UIViewController *vc){
         vc.view.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)];
@@ -203,6 +204,7 @@
     };
     
     DemoViewController *vc2 = [[DemoViewController alloc] init];
+    vc2.name = @"vc2";
     vc2.viewDidLoadBlock = ^(UIViewController *vc){
         vc.view.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 44)];

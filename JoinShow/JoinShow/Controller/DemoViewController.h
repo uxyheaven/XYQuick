@@ -16,10 +16,14 @@ typedef void(^DemoViewControllerFunBlock)(UIViewController *vc, id sender);
 
 @interface DemoViewController : UIViewController
 
-@property (nonatomic,  strong) DemoViewControllerExecuteBlock loadViewBlock;
-@property (nonatomic,  strong) DemoViewControllerExecuteBlock viewDidLoadBlock;
+@property (nonatomic, copy) NSString *name;
 
-@property (nonatomic,  strong) DemoViewControllerFunBlock methodBlock;
-@property (nonatomic,  strong) DemoViewControllerFunBlock methodBlock2;
+@property (nonatomic, strong) DemoViewControllerExecuteBlock loadViewBlock;
+@property (nonatomic, strong) DemoViewControllerExecuteBlock viewDidLoadBlock;
+
+@property (nonatomic, strong) DemoViewControllerFunBlock methodBlock;
+@property (nonatomic, strong) DemoViewControllerFunBlock methodBlock2;
+
+//- (void)memoryWarning;
 
 @end

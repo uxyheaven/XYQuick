@@ -23,33 +23,15 @@ DEF_SINGLETON(XYViewControllerManager)
     self = [super init];
     if (self)
     {
-        _viewControllers = [NSMutableDictionary dictionaryWithCapacity:4];
+        _viewControllers           = [NSMutableDictionary dictionaryWithCapacity:4];
         _viewControllerSetupBlocks = [NSMutableDictionary dictionaryWithCapacity:4];
     }
     
     return self;
 }
 
-- (void)createFields
-{
-#if (0 == __XY_HOOK_VC__)
-    [super createFields];
-#endif
-}
-
-- (void)destroyFields
-{
-#if (0 == __XY_HOOK_VC__)
-    [super destroyFields];
-#endif
-}
-
 - (void)createViews
 {
-#if (0 == __XY_HOOK_VC__)
-    [super createViews];
-#endif
-    
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown)
     {
@@ -65,33 +47,8 @@ DEF_SINGLETON(XYViewControllerManager)
     }
 }
 
-- (void)destroyViews
-{
-#if (0 == __XY_HOOK_VC__)
-    [super destroyViews];
-#endif
-}
-
-- (void)createEvents
-{
-#if (0 == __XY_HOOK_VC__)
-    [super createEvents];
-#endif
-}
-
-- (void)destroyEvents
-{
-#if (0 == __XY_HOOK_VC__)
-    [super destroyEvents];
-#endif
-}
-
 - (void)loadData
 {
-#if (0 == __XY_HOOK_VC__)
-    [super loadData];
-#endif
-    
     if (_firstKey)
     {
         self.selectedKey = _firstKey;
@@ -102,16 +59,19 @@ DEF_SINGLETON(XYViewControllerManager)
 #pragma mark - rewrite
 // 额外的重写的父类的方法
 
-- (void)didReceiveMemoryWarning{
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)setSelectedKey:(NSString *)selectedKey{
+-(void)setSelectedKey:(NSString *)selectedKey
+{
     [self displayViewWithKey:selectedKey];
 }
 
-- (void)addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key{
+- (void)addAViewController:(XYViewControllerManager_createVC_block)block key:(NSString *)key
+{
     [_viewControllerSetupBlocks setObject:block forKey:key];
 }
 
@@ -175,22 +135,6 @@ DEF_SINGLETON(XYViewControllerManager)
         }
     }];
 }
-#pragma mark - 响应 model 的地方
-#pragma mark 1 notification
-
-
-#pragma mark 2 KVO
-
-
-#pragma mark - 响应 view 的地方
-#pragma mark 1 target-action
-
-
-#pragma mark 2 delegate
-
-
-#pragma mark 3 dataSource
-
 
 @end
 

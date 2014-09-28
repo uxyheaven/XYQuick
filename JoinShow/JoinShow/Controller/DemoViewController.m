@@ -87,4 +87,8 @@
     }
 }
 
+- (void)memoryWarning
+{
+    NSLogD(@"%@", self.name);
+}
 @end

@@ -15,11 +15,7 @@
 // UIViewController基类
 #import "XYBaseViewController.h"
 
-// UITableViewController基类
-#import "XYBaseTableViewController.h"
-
-#import "XYBaseView.h"
-
-#import "XYBaseModel.h"
+//#import "XYBaseView.h"
+//#import "XYBaseModel.h"
 
 #endif

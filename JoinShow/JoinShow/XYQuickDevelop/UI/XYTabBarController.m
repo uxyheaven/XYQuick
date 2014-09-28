@@ -48,27 +48,17 @@
 */
 - (void)createFields
 {
-#if (0 == __XY_HOOK_VC__)
-    [super createFields];
-#endif
-    
     _tabBarFrame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
     _contentFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 49);
 }
 
 - (void)destroyFields
 {
-#if (0 == __XY_HOOK_VC__)
-    [super destroyFields];
-#endif
+
 }
 
 - (void)createViews
 {
-#if (0 == __XY_HOOK_VC__)
-    [super createViews];
-#endif
-    
     _contentView = [[UIView alloc] initWithFrame:_contentFrame];
     [self.view addSubview:_contentView];
     
@@ -91,33 +81,21 @@
 
 - (void)destroyViews
 {
-#if (0 == __XY_HOOK_VC__)
-    [super destroyViews];
-#endif
+
 }
 
 - (void)createEvents
 {
-#if (0 == __XY_HOOK_VC__)
-    [super createEvents];
-#endif
-    
     _tabBar.delegate = self;
 }
 
 - (void)destroyEvents
 {
-#if (0 == __XY_HOOK_VC__)
-    [super destroyEvents];
-#endif
+
 }
 
 - (void)loadData
 {
-#if (0 == __XY_HOOK_VC__)
-    [super loadData];
-#endif
-    
     self.selectedIndex = 0;
 }
 
