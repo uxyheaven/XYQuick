@@ -168,10 +168,11 @@
 
 @implementation UIViewController (base)
 
-+(void)load{
++ (void)load{
     XY_swizzleInstanceMethod([UIViewController class], @selector(loadView), @selector(xy__loadView));
     XY_swizzleInstanceMethod([UIViewController class], @selector(viewDidLoad), @selector(xy__viewDidLoad));
     XY_swizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"dealloc"), @selector(xy__dealloc));
+    XY_swizzleInstanceMethod([UIViewController class], @selector(didReceiveMemoryWarning), @selector(xy__didReceiveMemoryWarning));
 }
 
 - (void)xy__loadView
@@ -221,6 +222,21 @@
     
     [self xy__viewDidLoad];
 }
+
+- (void)xy__didReceiveMemoryWarning
+{
+    if ([self respondsToSelector:@selector(destroyFields)])
+        [self performSelector:@selector(destroyFields)];
+    
+    if ([self isViewLoaded] && [self.view window] == nil)
+    {
+        if ([self respondsToSelector:@selector(memoryWarning)])
+            [self performSelector:@selector(memoryWarning)];
+    }
+    
+    [self xy__didReceiveMemoryWarning];
+}
+
 
 @end
 

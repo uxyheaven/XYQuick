@@ -59,6 +59,7 @@
 // 以下方法的消息已经注册过,需要实现的时候,请直接写
 //- (void)enterBackground;        // 进入后台时
 //- (void)enterForeground;        // 进入前台时
+//- (void)memoryWarning;          // 已经加载,不在window上的vc,收到内存警告
 
 #pragma mark -
 typedef UIViewController XYBaseViewController;
