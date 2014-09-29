@@ -29,7 +29,8 @@
 
 @implementation UIViewController (base)
 
-+ (void)load{
++ (void)load
+{
     XY_swizzleInstanceMethod([UIViewController class], @selector(loadView), @selector(xy__loadView));
     XY_swizzleInstanceMethod([UIViewController class], @selector(viewDidLoad), @selector(xy__viewDidLoad));
     XY_swizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"dealloc"), @selector(xy__dealloc));

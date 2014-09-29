@@ -20,8 +20,8 @@
  1. loadData
  
  dealloc
- 1. destroyViews
- 2. destroyEvents
+ 1. destroyEvents
+ 2. destroyViews
  3. destroyFields
  
  didReceiveMemoryWarning
@@ -75,4 +75,7 @@ typedef UIViewController XYBaseViewController;
 
 #pragma mark- view
 // 定义view
+
+#pragma mark- api
+// 定义api
 @end
