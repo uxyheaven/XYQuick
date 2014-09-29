@@ -7,6 +7,7 @@
 //
 
 #import "XYTabBarController.h"
+#import "XYUISignal.h"
 
 @interface XYTabBarController ()
 
@@ -240,7 +241,9 @@
 
 #pragma mark 3 dataSource
 
-
+ON_SIGNAL( signal ){
+    NSLogD(@"%@", signal);
+}
 
 @end
 

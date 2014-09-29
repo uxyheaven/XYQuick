@@ -81,6 +81,8 @@ ON_SIGNAL( signal ){
 
 @implementation UISignalVC
 
+DEF_SIGNAL( click3 )
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -149,6 +151,7 @@ ON_SIGNAL3(Signal1, click1, signal){
     //self.tempObject = label;
     //[self.view addSubview:label];
    // NSLogD(@"%@", label);
+    [self sendUISignal:self.click3 withObject:sender];
 }
 - (void)click4:(id)sender{
     //id temp = self.tempObject;

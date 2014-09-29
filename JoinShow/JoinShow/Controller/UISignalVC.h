@@ -30,4 +30,6 @@ AS_SIGNAL( click2 )
 
 @interface UISignalVC : UIViewController
 
+AS_SIGNAL( click3 )
+
 @end

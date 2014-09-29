@@ -375,7 +375,19 @@
 {
     if ([signal.target isKindOfClass:[UINavigationController class]])
     {
-        UIViewController *vc = [(UINavigationController*)signal.target topViewController];
+        UIViewController *vc = [(UINavigationController *)signal.target topViewController];
+        if (vc)
+        {
+            [signal forward:vc];
+        }
+        else
+        {
+            // [self forward:vc];
+        }
+    }
+    else if ([signal.target isKindOfClass:[UIViewController class]])
+    {
+        UIViewController *vc = [(UIViewController *)signal.target parentViewController];
         if (vc)
         {
             [signal forward:vc];

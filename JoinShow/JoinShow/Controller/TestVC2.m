@@ -15,6 +15,7 @@
 #endif
 
 #import "DemoViewController.h"
+#import "UISignalVC.h"
 #import "JsonTestEntity.h"
 
 #import "XYTabBarController.h"
@@ -221,13 +222,21 @@
         [vc dismissViewControllerAnimated:YES completion:nil];
     };
     
-    NSArray *array = @[vc1, vc2];
+    UISignalVC *vc3 = [[UISignalVC alloc] init];
+    
+    
+    NSArray *array = @[vc1, vc2, vc3];
     NSArray *items = @[@{@"text": @"DemoViewController1", @"normal": @"icon_facebook.png", @"selected" : @"icon_google.png"},
-                       @{@"text": @"vc2", @"normal": @"icon_twitter.png", @"selected" : @"icon_google.png"}];
+                       @{@"text": @"vc2", @"normal": @"icon_twitter.png", @"selected" : @"icon_google.png"},
+                        @{@"text": @"vc3", @"normal": @"icon_tencent.png", @"selected" : @"icon_google.png"}];
     
     XYTabBarController *tabBarController = [[XYTabBarController alloc] initWithViewControllers:array items:items] ;
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 
+}
+
+ON_SIGNAL( signal ){
+    NSLogD(@"%@", signal);
 }
 @end
