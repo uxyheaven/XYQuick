@@ -11,7 +11,7 @@
 
 @implementation NSDictionary (XY)
 
-+(NSMutableDictionary *) nonRetainDictionary{
++ (NSMutableDictionary *)nonRetainDictionary{
     CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
     CFDictionaryValueCallBacks callbacks  = kCFTypeDictionaryValueCallBacks;
     callbacks.retain                      = __XYRetainNoOp;

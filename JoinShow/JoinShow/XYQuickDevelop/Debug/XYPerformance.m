@@ -88,7 +88,7 @@ DEF_SINGLETON( XYPerformance );
 
 + (void)recordName:(NSString *)name andTime:(NSTimeInterval)time
 {
-	NSLog( @"%s '%@' = %.4f(s)", __PRETTY_FUNCTION__, name, time );
+	NSLog( @"%s '%@' = %.6f(s)", __PRETTY_FUNCTION__, name, time );
 }
 
 @end

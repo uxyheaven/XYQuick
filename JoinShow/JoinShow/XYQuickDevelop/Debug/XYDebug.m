@@ -153,7 +153,7 @@ DEF_SINGLETON(XYDebug)
 #if __XY_DEVELOPMENT__
 #if defined(__ppc__)
 	asm("trap");
-#elif defined(__i386__)
+#elif defined(__i386__) ||  defined(__amd64__)
 	asm("int3");
 #endif	// #elif defined(__i386__)
 #endif	// #if __BEE_DEVELOPMENT__

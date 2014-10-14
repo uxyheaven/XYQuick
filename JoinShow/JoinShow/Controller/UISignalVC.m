@@ -62,11 +62,13 @@ DEF_SIGNAL( click2 )
 }
 
 - (void)click2:(id)sender{
-    [self sendUISignal:self.click2 withObject:sender];
+    XYUISignal *signal = [self sendUISignal:self.click2 withObject:sender];
+    NSLogD(@"%@", signal.returnValue);
 }
 
 ON_SIGNAL( signal ){
     NSLogD(@"%@", signal);
+    signal.returnValue = @"click2";
 }
 
 @end

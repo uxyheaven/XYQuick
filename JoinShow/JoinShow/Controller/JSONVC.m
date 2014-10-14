@@ -36,7 +36,8 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"JSONVC_cell"];
     
     _titles = @[
-                @"normalParser"
+                @"normalParser",
+                @"XYJSONParser"
                 ];
 }
 
@@ -140,5 +141,24 @@
 {
     NSString *json = [self jsonStringWithName:@"json0.json"];
     NSLog(@"%@", json);
+}
+-(void) XYJSONParser
+{
+    /*
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSURL *url = [NSURL URLWithString:@"http://api.dribbble.com/shots/43424/rebounds"];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        if (data)
+        {
+            XYJSONParser *shotParser = [XYJSONParser objectWithKey:@"shots" clazz:[Shot class]];
+            [data parseToObjectWithParsers:@[shotParser]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray *shots = shotParser.result;
+                Shot *shot = shots[0];
+                ALERT([@"parser\n" stringByAppendingString:shot.YYJSONString]);
+            });
+        }
+    })
+     */
 }
 @end

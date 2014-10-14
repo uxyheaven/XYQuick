@@ -10,6 +10,6 @@
 
 @interface NSDictionary (XY)
 
-+(NSMutableDictionary *) nonRetainDictionary;
++ (NSMutableDictionary *)nonRetainDictionary;
 
 @end

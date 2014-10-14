@@ -10,6 +10,6 @@
 
 @interface NSSet (XY)
 
-+(NSMutableDictionary *) nonRetainSet;
++ (NSMutableDictionary *)nonRetainSet;
 
 @end

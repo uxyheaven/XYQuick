@@ -293,33 +293,6 @@ DUMMY_CLASS(NSArray_XY);
 	return self;
 }
 
-- (void)insertObjectNoRetain:(id)object atIndex:(NSUInteger)index
-{
-	[self insertObject:object atIndex:index];
-}
-
-- (void)addObjectNoRetain:(NSObject *)object
-{
-	[self addObject:object];
-	//[object release];
-}
-
-- (void)removeObjectNoRelease:(NSObject *)object
-{
-	//[object retain];
-	[self removeObject:object];
-}
-
-- (void)removeAllObjectsNoRelease
-{
-	for ( NSObject * object in self )
-	{
-		//[object retain];
-	}	
-	
-	[self removeAllObjects];
-}
-
 @end
 
 // ----------------------------------

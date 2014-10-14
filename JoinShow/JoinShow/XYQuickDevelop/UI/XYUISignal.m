@@ -378,7 +378,7 @@
         UIViewController *vc = [(UINavigationController *)signal.target topViewController];
         if (vc)
         {
-            [signal forward:vc];
+           // [signal forward:vc];
         }
         else
         {

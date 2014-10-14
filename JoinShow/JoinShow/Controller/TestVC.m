@@ -348,6 +348,14 @@ if (1) { \
     [tempBtn addTarget:self action:@selector(clickTestDao:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"test benchmark" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickTestBenchmark:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
 #pragma mark -btn end
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
@@ -368,6 +376,10 @@ if (1) { \
     
     NSArray *array = @[@"1", @"2"];
     array = [array safeSubarrayWithRange:NSMakeRange(-1, 1)];
+    
+    NSArray *array2 = @[@"1", @"2"];
+    array2 = [array2 tail:2];
+    NSLog(@"%@", array2);
 }
 
 - (void)didReceiveMemoryWarning
@@ -687,6 +699,28 @@ if (1) { \
     
     [dao deleteEntityWithKey:@"c"];
     [dao deleteEntityWithKey:@"brand = '科鲁兹'"];
+}
+
+- (void)clickTestBenchmark:(id)sender
+{
+    PERF_BENCHMARK_BEGIN_(1)
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    for (size_t i = 0; i < 10000; i++)
+    {
+        [mutableArray addObject:@1];
+    }
+    PERF_BENCHMARK_COMMIT
+    
+    PERF_ENTER_(once)
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    for (size_t i = 0; i < 10000; i++)
+    {
+        [mutableArray addObject:@1];
+    }
+    PERF_LEAVE_(once)
+    
+    PERF_ENTER_(null)
+    PERF_LEAVE_(null)
 }
 /////////////////////////// 备注 ///////////////////////////////
 /*

@@ -11,7 +11,7 @@
 
 @implementation NSSet (XY)
 
-+(NSMutableSet *) nonRetainSet{
++ (NSMutableSet *)nonRetainSet{
     CFSetCallBacks callbacks = kCFTypeSetCallBacks;
     callbacks.retain         = __XYRetainNoOp;
     callbacks.release        = __XYReleaseNoOp;

@@ -12,7 +12,23 @@
 
 #define Json_string_options NSJSONReadingAllowFragments
 
+#pragma mark - XYJSONParser
+@interface XYJSONParser : NSObject
+@property(nonatomic, strong) Class clazz;   // 要转换成什么class
+@property(nonatomic, assign) BOOL single;   // 是否单个
+@property(nonatomic, copy) NSString *key; // key
+@property(nonatomic, strong) id result;     // 结果
+@property(nonatomic, readonly) id smartResult;
 
+- (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single;
+
++ (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single;
+
++ (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz;
+
+@end
+
+#pragma mark - XYJSONHelper
 @interface XYJSONHelper : NSObject
 
 @end
@@ -66,11 +82,7 @@
  */
 - (NSDictionary *)XYJSONDictionary;
 
-@end
 
-
-#pragma mark - NSString (XYJSONHelper)
-@interface NSString (XYJSONHelper)
 - (id)toModel:(Class)modelClass;
 
 - (id)toModel:(Class)modelClass forKey:(NSString *)jsonKey;
@@ -79,16 +91,18 @@
 
 - (NSArray *)toModels:(Class)modelClass forKey:(NSString *)jsonKey;
 
+@end
+
+
+#pragma mark - NSString (XYJSONHelper)
+@interface NSString (XYJSONHelper)
+
 - (id)JSONValue;
 
 @end
 
 #pragma mark - NSDictionary (XYJSONHelper)
 @interface NSDictionary (XYJSONHelper)
-/**
- * @brief jsonString
- */
-- (NSString *)XYJSONString;
 
 - (id)__objectForKey:(id)key;
 
@@ -96,44 +110,31 @@
 
 #pragma mark - NSData (XYJSONHelper)
 @interface NSData (XYJSONHelper)
-/**
- * @brief 传入modelClass，返回对应的实例
- */
-- (id)toModel:(Class)modelClass;
 
 /**
- * @brief 传入modelClass和json的key，返回对用的实例
+ *   @brief  通过key拿到json数据
  */
-- (id)toModel:(Class)modelClass forKey:(NSString *)key;
+- (id)valueForJsonKey:(NSString *)key;
 
 /**
- * @brief 传入modelClass，返回对应的实例集合
+ *   @brief  通过key集合拿到对应的key的json数据字典
  */
-- (NSArray *)toModels:(Class)modelClass;
+- (NSDictionary *)dictForJsonKeys:(NSArray *)keys;
 
 /**
- * @brief 传入modelClass和key，返回对应的实例集合
+ *   @brief  解析结果直接在parser的result字段里面，这个方法主要是为了提高解析的效率
+ *   如果一个json中有多个key ex：{用户列表，商品列表、打折列表}那么传3个解析器进来就好了，不会对data进行三次重复的解析操作
+ *   @param  parsers 要解析为json的解析器集合
  */
-- (NSArray *)toModels:(Class)modelClass forKey:(NSString *)key;
 
-/**
- * @brief 返回jsonString
- */
-- (NSString *)XYJSONString;
+- (void)parseToObjectWithParsers:(NSArray *)parsers;
+
+- (id)JSONValue;
 
 @end
 
 #pragma mark - NSArray (XYJSONHelper)
 @interface NSArray (XYJSONHelper)
-/**
- * @brief 返回jsonString
- */
-- (NSString *)XYJSONString;
-
-/**
- * @brief 返回jsonData
- */
-- (NSData *)XYJSONData;
 
 @end
 
