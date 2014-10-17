@@ -36,7 +36,11 @@ typedef void(^UIViewController_block_view) (UIView *view);
  * @param block 点击背景执行的方法, 默认是淡出
  * @return 返回底层的蒙板view
  */
--(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block;
+- (id)showUserGuideViewWithImage:(NSString *)imgName
+                             key:(NSString *)key
+                      alwaysShow:(BOOL)isAlwaysShow
+                           frame:(NSString *)frameString
+                      tapExecute:(UIViewController_block_view)block;
 
 @end
 

@@ -103,13 +103,22 @@
     [self dismissViewControllerAnimated:YES completion:block];
 }
 
--(id) showUserGuideViewWithImage:(NSString *)imgName key:(NSString *)key frame:(NSString *)frameString tapExecute:(UIViewController_block_view)block
+- (id)showUserGuideViewWithImage:(NSString *)imgName
+                             key:(NSString *)key
+                      alwaysShow:(BOOL)isAlwaysShow
+                           frame:(NSString *)frameString
+                      tapExecute:(UIViewController_block_view)block
 {
-    NSInteger isShow = [[NSUserDefaults standardUserDefaults] integerForKey:key];
-    if (isShow == 0)
+    NSString *guideKey = [NSString stringWithFormat:@"_guide_%@", key];
+    NSInteger isShow   = [[NSUserDefaults standardUserDefaults] integerForKey:guideKey];
+    if (isAlwaysShow || isShow == 0)
     {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:key];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        if (isShow != 1)
+        {
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:key];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+
         
         // 用户引导视图
         UIView *userGuideView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_WIDTH, Screen_HEIGHT)];
