@@ -18,14 +18,14 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @property (nonatomic, weak) id target;                  // 被观察的对象的值改变时后的响应方法所在的对象
 @property (nonatomic, assign) SEL selector;             // 被观察的对象的值改变时后的响应方法
-@property (nonatomic, copy) XYObserver_block_sourceObject_new_old block;        // 值改变时执行的block
+@property (nonatomic, copy) XYObserver_block_new_old block;        // 值改变时执行的block
 
-@property (nonatomic, assign) id  sourceObject;         // 被观察的对象
+@property (nonatomic, assign) id sourceObject;         // 被观察的对象
 @property (nonatomic, copy) NSString *keyPath;        // 被观察的对象的keyPath
 
 - (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type;
 
-- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYObserver_block_sourceObject_new_old)block;
+- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYObserver_block_new_old)block;
 
 @end
 
@@ -36,26 +36,27 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     self = [super init];
     if (self)
     {
-        _target = target;
-        _selector = selector;
+        _target       = target;
+        _selector     = selector;
         _sourceObject = sourceObject;
-        _keyPath = keyPath;
-        _type = type;
-        [_sourceObject addObserver:self forKeyPath:keyPath options:XYObserver_newAndNew context:nil];
+        _keyPath      = keyPath;
+        _type         = type;
+        NSKeyValueObservingOptions options = (_type == XYObserverType_new) ? NSKeyValueObservingOptionNew : (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld);
+        [_sourceObject addObserver:self forKeyPath:keyPath options:options context:nil];
     }
     
     return self; 
 }
 
-- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYObserver_block_sourceObject_new_old)block
+- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYObserver_block_new_old)block
 {
     self = [super init];
     if (self)
     {
         _sourceObject = sourceObject;
-        _keyPath = keyPath;
-        _block = block;
-        [_sourceObject addObserver:self forKeyPath:keyPath options:XYObserver_newAndNew context:nil];
+        _keyPath      = keyPath;
+        _block        = block;
+        [_sourceObject addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     
     return self;
@@ -70,26 +71,17 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 #pragma mark NSKeyValueObserving
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {
-    __weak __typeof(self) weakSelf = self;
     if (_block)
     {
-        _block(weakSelf, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
+        _block(change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
         return;
     }
     
     if (_type == XYObserverType_new)
     {
-        XYObserver_action(_target, _selector, change[NSKeyValueChangeNewKey]);
-    }
-    else if (_type == XYObserverType_new_old)
-    {
-        XYObserver_action(_target, _selector, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
-    }
-    else if (_type == XYObserverType_self_new)
-    {
         XYObserver_action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
     }
-    else if (_type == XYObserverType_self_new_old)
+    else if (_type == XYObserverType_new_old)
     {
         XYObserver_action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
     }
@@ -124,26 +116,7 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 - (void)observeWithObject:(id)object property:(NSString*)property
 {
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@New:", property]);
-    if ([self respondsToSelector:aSel])
-    {
-        [self observeWithObject:object
-                        keyPath:property
-                         target:self
-                       selector:aSel
-                        type:XYObserverType_new];
-        return;
-    }
-    
-    aSel = NSSelectorFromString([NSString stringWithFormat:@"%@New:old:", property]);
-    if ([self respondsToSelector:aSel])
-    {
-        [self observeWithObject:object
-                        keyPath:property
-                         target:self selector:aSel
-                        type:XYObserverType_new_old];
-        return;
-    }
+    SEL aSel = nil;
     
     aSel = NSSelectorFromString([NSString stringWithFormat:@"%@In:new:", property]);
     if ([self respondsToSelector:aSel])
@@ -152,7 +125,7 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
                         keyPath:property
                          target:self
                        selector:aSel
-                           type:XYObserverType_self_new];
+                           type:XYObserverType_new];
         return;
     }
     
@@ -163,12 +136,12 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
                         keyPath:property
                          target:self
                        selector:aSel
-                           type:XYObserverType_self_new_old];
+                           type:XYObserverType_new_old];
         return;
     }
 }
 
-- (void)observeWithObject:(id)object property:(NSString*)property block:(XYObserver_block_sourceObject_new_old)block{
+- (void)observeWithObject:(id)object property:(NSString*)property block:(XYObserver_block_new_old)block{
     [self observeWithObject:object keyPath:property block:block];
 }
 
@@ -184,7 +157,7 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     [self.observers setObject:ob forKey:key];
 }
 
-- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYObserver_block_sourceObject_new_old)block
+- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYObserver_block_new_old)block
 {
     NSAssert(block, @"block 必须存在");
     

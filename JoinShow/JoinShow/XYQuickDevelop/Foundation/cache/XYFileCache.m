@@ -21,10 +21,8 @@ DEF_SINGLETON( XYFileCache );
 	self = [super init];
 	if ( self )
 	{
-		self.cacheUser = @"";
-
-		self.cachePath = [NSString stringWithFormat:@"%@/%@/Cache/", [XYSandbox libCachePath], [XYSystemInfo appVersion]];
-        
+       self.cacheUser   = @"";
+       self.cachePath   = [NSString stringWithFormat:@"%@/%@/Cache/", [XYSandbox libCachePath], [XYSystemInfo appVersion]];
        self.maxCacheAge = XYFileCache_fileExpires;
 	}
 	return self;

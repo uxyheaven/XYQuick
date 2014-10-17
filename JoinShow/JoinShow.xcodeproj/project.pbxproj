@@ -152,6 +152,7 @@
 		74BA434E19C17B6200B49E7B /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA434819C17B6200B49E7B /* NSObject+LKModel.m */; };
 		74CD53FA19C28C630069282B /* CarEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD53F919C28C630069282B /* CarEntity.m */; };
 		74CD540B19C2E0930069282B /* XYBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD540A19C2E0930069282B /* XYBaseService.m */; };
+		74FD286619F0FFC9005513B4 /* XYAOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD286519F0FFC9005513B4 /* XYAOP.m */; };
 		8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400D0CB198B353200A5E289 /* NSSet+XY.m */; };
 		84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5B6197E6EBC00718937 /* LKTestModels.m */; };
 		CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE003641947F2F7005AE8C4 /* IndicatorHelper.m */; };
@@ -444,6 +445,8 @@
 		74CD53F919C28C630069282B /* CarEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarEntity.m; sourceTree = "<group>"; };
 		74CD540919C2E0930069282B /* XYBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseService.h; sourceTree = "<group>"; };
 		74CD540A19C2E0930069282B /* XYBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseService.m; sourceTree = "<group>"; };
+		74FD286419F0FFC9005513B4 /* XYAOP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAOP.h; sourceTree = "<group>"; };
+		74FD286519F0FFC9005513B4 /* XYAOP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAOP.m; sourceTree = "<group>"; };
 		8400D0CA198B353200A5E289 /* NSSet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+XY.h"; sourceTree = "<group>"; };
 		8400D0CB198B353200A5E289 /* NSSet+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+XY.m"; sourceTree = "<group>"; };
 		84DBC5B5197E6EBC00718937 /* LKTestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTestModels.h; sourceTree = "<group>"; };
@@ -938,6 +941,8 @@
 				57AB8B491888C9850005A93B /* XYMaterial.m */,
 				74571E4819BEF18300996555 /* XYJSONHelper.h */,
 				74571E4919BEF18300996555 /* XYJSONHelper.m */,
+				74FD286419F0FFC9005513B4 /* XYAOP.h */,
+				74FD286519F0FFC9005513B4 /* XYAOP.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1239,6 +1244,7 @@
 				579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */,
 				57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */,
 				74BA434C19C17B6200B49E7B /* LKDBUtils.m in Sources */,
+				74FD286619F0FFC9005513B4 /* XYAOP.m in Sources */,
 				8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */,
 				5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */,
 				747638FF19C07B93008703A1 /* XYBaseDao.m in Sources */,

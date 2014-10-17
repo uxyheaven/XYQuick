@@ -360,15 +360,10 @@ static const char * __jb_app = NULL;
 {
     return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
+
 + (NSString *)xyVersionKeyWithUser:(NSString *)user
 {
-    if (user && [@"" isEqualToString:user]) {
-        return @"XY_version";
-    }
-    else
-    {
-        return [NSString stringWithFormat:@"XY_version_%@", user];
-    }
+    return (user.length > 0) ? [NSString stringWithFormat:@"XY_version_%@", user] : @"XY_version";
 }
 
 + (BOOL)isFirstRun
@@ -401,7 +396,8 @@ static const char * __jb_app = NULL;
     if ([self isFirstRun])
     {
         return YES;
-    } else
+    }
+    else
     {
         return [[NSUserDefaults standardUserDefaults] floatForKey:[self xyVersionKeyWithUser:user]] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
     }

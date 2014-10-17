@@ -11,25 +11,20 @@
 #pragma mark - #define
 #define KVO_NAME( __name )					__TEXT( __name )
 
-#define	ON_KVO_1_( __property )     - (void)__property##New:(id)newValue
-#define	ON_KVO_2_( __property )     - (void)__property##New:(id)newValue old:(id)oldValue
-#define	ON_KVO_3_( __property )     - (void)__property##In:(id)sourceObject new:(id)newValue
-#define	ON_KVO_4_( __property )     - (void)__property##In:(id)sourceObject new:(id)newValue old:(id)oldValue
-
+#define	ON_KVO_1_( __property, __sourceObject, __newValue )     \
+    - (void)__property##In:(id)sourceObject new:(id)newValue
+#define	ON_KVO_2_( __property, __sourceObject, __newValue, __oldValue )     \
+    - (void)__property##In:(id)sourceObject new:(id)newValue old:(id)oldValue
 
 #undef	NSObject_observers
 #define NSObject_observers	"NSObject.XYObserve.observers"
 
-#define XYObserver_newAndNew (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
-
 typedef enum {
     XYObserverType_new = 1,         // 参数只有new
     XYObserverType_new_old,         // 参数有new,old
-    XYObserverType_self_new,        // 参数有self,new
-    XYObserverType_self_new_old,    // 参数有self,new,old
 }XYObserverType;
 
-typedef void(^XYObserver_block_sourceObject_new_old)(id sourceObject, id newValue, id oldValue);
+typedef void(^XYObserver_block_new_old)(id newValue, id oldValue);
 
 
 #pragma mark - XYObserver
@@ -46,22 +41,12 @@ typedef void(^XYObserver_block_sourceObject_new_old)(id sourceObject, id newValu
  * api parameters 说明
  *
  * sourceObject 被观察的对象
- 
  * keyPath 被观察的属性keypath
- 
  * target 默认是self
- 
- * selector @selector(propertyNew:)
-            @selector(propertyNew:old:)
-            @selector(propertyIn:new:)
-            @selector(propertyIn:new:old:)
- 
- * type 根据selector自动赋值
- 
  * block selector, block二选一
  */
 - (void)observeWithObject:(id)sourceObject property:(NSString*)property;
-- (void)observeWithObject:(id)sourceObject property:(NSString*)property block:(XYObserver_block_sourceObject_new_old)block;
+- (void)observeWithObject:(id)sourceObject property:(NSString*)property block:(XYObserver_block_new_old)block;
 
 - (void)removeObserverWithObject:(id)sourceObject property:(NSString *)property;
 - (void)removeObserverWithObject:(id)sourceObject;

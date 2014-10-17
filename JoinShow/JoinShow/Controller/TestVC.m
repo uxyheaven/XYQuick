@@ -362,8 +362,8 @@ if (1) { \
     
     //[self someTest];
     [self observeWithObject:self property:KVO_NAME(testKVO)];
-    [self observeWithObject:self property:KVO_NAME(testKVO2) block:^(id sourceObject, id newValue, id oldValue) {
-        NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
+    [self observeWithObject:self property:KVO_NAME(testKVO2) block:^(id newValue, id oldValue) {
+        NSLogD(@"new:%@ old:%@", newValue, oldValue);
     }];
     
     [self registerNotification:NOTIFICATION_NAME(aaa)];
@@ -397,10 +397,12 @@ if (1) { \
     self.testKVO2 = self.testKVO2 + 1;
     self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
     
-    // 观察array
+    // 观察array 搜 Mutable Collections
+    /*
     [self willChangeValueForKey:@"testArrayKVO"];
     [self.testArrayKVO addObject:@"a"];
     [self didChangeValueForKey:@"testArrayKVO"];
+     */
 }
 
 - (IBAction)clickBtn2:(id)sender
@@ -770,11 +772,13 @@ void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPo
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
  */
-ON_KVO_4_( testKVO ) {
+ON_KVO_2_( testKVO, sourceObject, newValue, oldValue )
+{
      NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
 
-ON_NOTIFICATION_1_( aaa ){
+ON_NOTIFICATION_1_( aaa, notification )
+{
     NSLogD(@"%@", notification.userInfo);
 }
 

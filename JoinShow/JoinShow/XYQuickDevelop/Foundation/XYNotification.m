@@ -32,9 +32,9 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     self = [super init];
     if (self)
     {
-        _name = name;
-        _sender = sender;
-        _target = target;
+        _name     = name;
+        _sender   = sender;
+        _target   = target;
         _selector = selector;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleNotification:)                                                            name:name                                                            object:sender];
@@ -48,9 +48,9 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
     self = [super init];
     if (self)
     {
-        _name = name;
+        _name   = name;
         _sender = sender;
-        _block = block;
+        _block  = block;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleNotification:)                                                            name:name                                                            object:sender];
     }
@@ -82,7 +82,7 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
 
 @dynamic notifications;
 
--(id) notifications{
+- (id)notifications{
     id object = objc_getAssociatedObject(self, NSObject_notifications);
     
     if (nil == object)
