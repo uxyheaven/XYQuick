@@ -8,6 +8,7 @@
 
 #import "XYAOP.h"
 #import <objc/runtime.h>
+#import <objc/message.h>
 
 typedef enum {
     AOPAspectInspectorTypeBefore = 0,
@@ -48,6 +49,8 @@ DEF_SINGLETON(XYAOP);
         IMP implementation;
         NSMethodSignature *methodSignature = [aClass instanceMethodSignatureForSelector:aSelector];
         implementation = class_getMethodImplementation(aClass, aSelector);
+        
+        
     }
 }
 
@@ -72,5 +75,20 @@ DEF_SINGLETON(XYAOP);
 {
     NSString *string = [NSString stringWithFormat:@"__%@_%@", NSStringFromClass(aClass), NSStringFromSelector(selector)];
     return NSSelectorFromString(string);
+}
+#pragma mark - Interceptor registration
+// 恢复被拦截的方法的imp
+- (void)restoreOriginalMethodWithClass:(Class)aClass selector:(SEL)aSelector {
+    Method method = class_getInstanceMethod(aClass, aSelector);
+    IMP implementation = class_getMethodImplementation([self class], [self extendedSelectorWithClass:aClass selector:aSelector]);
+    method_setImplementation(method, implementation);
+}
+
+// 把某方法的imp置空, 以便转发失败,
+- (void)interceptMethodWithClass:(Class)aClass selector:(SEL)aSelector {
+    Method method = class_getInstanceMethod(aClass, aSelector);
+    IMP implementation = (IMP)_objc_msgForward;
+    // Change the implementation
+    method_setImplementation(method, implementation);
 }
 @end
