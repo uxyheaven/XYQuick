@@ -78,8 +78,7 @@ DUMMY_CLASS(UIView_XY);
 /////////////////////////////////////////////////////////////
 - (void)addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha
 {
-    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
-    tmpView.tag = UIView_shadeTag;
+    UIView *tmpView = [self shadeView];
     if (aColor)
     {
         tmpView.backgroundColor = aColor;
@@ -95,8 +94,7 @@ DUMMY_CLASS(UIView_XY);
 }
 - (void)addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha
 {
-    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
-    tmpView.tag = UIView_shadeTag;
+    UIView *tmpView = [self shadeView];
     if (aColor)
     {
         tmpView.backgroundColor = aColor;
@@ -126,14 +124,20 @@ DUMMY_CLASS(UIView_XY);
 }
 
 - (UIView *)shadeView{
-    return [self viewWithTag:UIView_shadeTag];
+    UIView * view = [self viewWithTag:UIView_shadeTag];
+    if (view == nil) {
+        view = [[UIView alloc] initWithFrame:self.bounds];
+        view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        view.tag = UIView_shadeTag;
+    }
+    
+    return view;
 }
 
 // 增加毛玻璃背景
 - (void)addBlurWithTarget:(id)target action:(SEL)action level:(int)lv
 {
-    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
-    tmpView.tag = UIView_shadeTag;
+    UIView *tmpView = [self shadeView];
     [self addSubview:tmpView];
     tmpView.alpha = 0;
   //  BACKGROUND_BEGIN
@@ -154,8 +158,7 @@ DUMMY_CLASS(UIView_XY);
 
 - (void)addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv
 {
-    UIView *tmpView = [[UIView alloc] initWithFrame:self.bounds];
-    tmpView.tag = UIView_shadeTag;
+    UIView *tmpView = [self shadeView];
     UIImage *img = [[self snapshot] stackBlur:lv];
     tmpView.layer.contents = (id)img.CGImage;
     [self addSubview:tmpView];
