@@ -216,7 +216,7 @@ static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
 - (id)XY_valueForUndefinedKey:(NSString *)key
 {
 #ifdef DEBUG
-    NSLog(@"%@ undefinedKey %@", self.class, key);
+   // NSLog(@"%@ undefinedKey %@", self.class, key);
 #endif
     return nil;
 }
@@ -224,7 +224,7 @@ static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
 - (void)XY_setValue:(id)value forUndefinedKey:(NSString *)key
 {
 #ifdef DEBUG
-    NSLog(@"%@ undefinedKey %@ and value is %@", self.class, key, value);
+   // NSLog(@"%@ undefinedKey %@ and value is %@", self.class, key, value);
 #endif
 }
 
