@@ -25,6 +25,8 @@ XYObjectCache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefau
 
 XYJSONHelper json to object , object to json
 
+XYAOP 面向切面编程
+
 ##### Extension
 一大堆category
 

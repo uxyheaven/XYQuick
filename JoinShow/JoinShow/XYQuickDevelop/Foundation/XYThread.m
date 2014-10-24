@@ -5,7 +5,8 @@
 //  Created by Heaven on 13-7-10.
 //
 //
-#import "XYPerformance.h"
+
+#import "XYCommonDefine.h"
 #import "XYThread.h"
 
 #pragma mark -

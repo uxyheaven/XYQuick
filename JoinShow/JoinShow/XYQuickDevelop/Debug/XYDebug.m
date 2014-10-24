@@ -19,9 +19,6 @@
 #undef	XYDebug_key_hookDealloc
 #define XYDebug_key_hookDealloc	"XYDebug.hookDealloc"
 
-static void (*__sendEvent)( id, SEL, UIEvent * );
-
-
 #pragma mark - UIWindow
 @interface UIWindow(XYDebugPrivate)
 - (void)mySendEvent:(UIEvent *)event;
@@ -40,9 +37,8 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
 	static BOOL __swizzled = NO;
 	if ( NO == __swizzled )
 	{
-        Method method = XY_swizzleInstanceMethod([UIWindow class], @selector(sendEvent:), @selector(mySendEvent:));
-        __sendEvent = (void *)method_getImplementation( method );
-        
+        XY_swizzleInstanceMethod([UIWindow class], @selector(sendEvent:), @selector(mySendEvent:));
+
         __swizzled = YES;
 	}
 #endif
@@ -66,11 +62,7 @@ static void (*__sendEvent)( id, SEL, UIEvent * );
             }
         }
 	}
-    
-    if ( __sendEvent )
-    {
-        __sendEvent( self, _cmd, event );
-    }
+    [self mySendEvent:event];
 }
 
 @end

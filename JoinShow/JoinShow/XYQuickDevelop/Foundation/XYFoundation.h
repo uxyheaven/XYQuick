@@ -40,3 +40,6 @@
 
 // json to object , object to json
 #import "XYJSONHelper.h"
+
+// aop
+#import "XYAOP.h"

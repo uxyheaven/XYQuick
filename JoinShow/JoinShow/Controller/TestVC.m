@@ -356,6 +356,14 @@ if (1) { \
     [tempBtn addTarget:self action:@selector(clickTestBenchmark:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"NSInvocation" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickTestNSInvocation:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
 #pragma mark -btn end
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
@@ -646,7 +654,7 @@ if (1) { \
 - (void)clickUserGuide:(id)sender
 {
     NSString *key = [NSString stringWithFormat:@"guide_%d", arc4random()]  ;
-    [self showUserGuideViewWithImage:@"bg_trends.png" key:key frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
+    [self showUserGuideViewWithImage:@"bg_trends.png" key:key alwaysShow:YES frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
 }
 
 - (void)clickHookDealloc:(id)sender
@@ -724,6 +732,69 @@ if (1) { \
     PERF_ENTER_(null)
     PERF_LEAVE_(null)
 }
+- (void)clickTestNSInvocation:(id)sender
+{
+    {
+        // 类方法
+        NSString *string = nil;
+        
+        //初始化NSMethodSignature对象
+        NSMethodSignature *sig = [NSString methodSignatureForSelector:@selector(stringWithString:)];
+        
+        //初始化NSInvocation对象
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+        
+        //设置执行目标对象
+        [invocation setTarget:[NSString class]];
+        
+        //设置执行的selector
+        [invocation setSelector:@selector(stringWithString:)];
+        
+        //设置参数
+        NSString *argString = @"test method";
+        [invocation setArgument:&argString atIndex:2];
+        
+        //执行方法
+        [invocation retainArguments];
+        [invocation invoke];
+        
+        //获取返回值
+        [invocation getReturnValue:&string];
+        
+        NSLog(@"执行结果 ====%@",string);
+    }
+    
+    
+    {
+        // 实例方法
+        NSString *string = [NSString stringWithFormat:@"我是一个string"];
+        NSLog(@"1=%@",string);
+        SEL subStringSel = @selector(substringFromIndex:);
+        
+        //初始化NSMethodSignature对象
+        NSMethodSignature *methodSignature = [[NSString class] instanceMethodSignatureForSelector:subStringSel];
+        
+        //初始化NSInvocation对象
+        NSInvocation *myInvocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+        
+        //设置target
+        [myInvocation setTarget:string];
+        
+        //设置selector
+        [myInvocation setSelector:subStringSel];
+        
+        //设置参数
+        int arg1 =  2;
+        [myInvocation setArgument:&arg1 atIndex:2];//参数从2开始，index 为0表示target，1为_cmd
+        
+        //获取结果
+        NSString *resultString = nil;
+        [myInvocation invoke];
+        [myInvocation getReturnValue:&resultString];
+        NSLog(@"2=%@",resultString);
+    }
+}
+
 /////////////////////////// 备注 ///////////////////////////////
 /*
 void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {
