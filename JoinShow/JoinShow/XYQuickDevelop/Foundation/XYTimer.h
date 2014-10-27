@@ -13,7 +13,7 @@
 #define TIMER_NAME( __name )					__TEXT( __name )
 
 #undef	ON_TIMER
-#define ON_TIMER( __name ) \
+#define ON_TIMER( __name, __timer, __duration ) \
         - (void)__name##TimerHandle:(XYTimer *)timer duration:(NSTimeInterval)duration
 
 #undef	NSObject_XYTimers
