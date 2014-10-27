@@ -12,6 +12,13 @@
 
 #define Json_string_options NSJSONReadingAllowFragments
 
+
+/*
+ 在kvc中, 字串 可以被转化成基本的 数值类型,
+ 所以在设计实体数据类的时候,如果属性是int bool float double, 无论服务器的值是字串还是数值,都可以转换成数值类型
+ */
+
+
 #pragma mark - XYJSONParser
 @interface XYJSONParser : NSObject
 @property(nonatomic, strong) Class clazz;   // 要转换成什么class
