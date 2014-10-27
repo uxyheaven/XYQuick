@@ -54,8 +54,8 @@ XYViewControllerManager UIViewController 管理类
 
 第三方库的扩展在同目录的Extension里,如
 
-* RequestHelper 网络通讯类.
-
+* RequestHelper 网络通讯类
+* XYBaseDao 范化的本地dao类
 ---
 
 ## Installation

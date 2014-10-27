@@ -260,6 +260,7 @@ DEF_SINGLETON(XYAOP);
     [self interceptMethodWithClass:aClass selector:aSelector];
 }
 
+// 快速消息转发, 若该方法返回值对象非nil或非self，则向该返回对象重新发送消息。
 - (id)baseClassForwardingTargetForSelector:(SEL)aSelector
 {
     if (![self respondsToSelector:aSelector])
@@ -274,6 +275,7 @@ DEF_SINGLETON(XYAOP);
     return [XYAOP sharedInstance];
 }
 
+// 标准消息转发
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
     return [[self currentClass] instanceMethodSignatureForSelector:aSelector];
