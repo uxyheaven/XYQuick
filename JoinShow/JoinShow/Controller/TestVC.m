@@ -26,6 +26,7 @@
 #import "GirlEntity.h"
 #import "XYBaseDao.h"
 #import "CarEntity.h"
+#import "AopTestM.h"
 
 #define MultiPlatform( __xib ) \
 (NSString *)^(void){ \
@@ -362,6 +363,14 @@ if (1) { \
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
     [tempBtn setTitle:@"NSInvocation" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickTestNSInvocation:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"AOP" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickTestAop:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
 #pragma mark -btn end
@@ -795,23 +804,45 @@ if (1) { \
     }
 }
 
-/////////////////////////// 备注 ///////////////////////////////
-/*
-void objc_setAssociatedObject(id object, void *key, id value, objc_AssociationPolicy policy) {
-    if (UseGC) {
-        //这部分是有垃圾回收机制的实现，我们不用管
-        if ((policy & OBJC_ASSOCIATION_COPY_NONATOMIC) == OBJC_ASSOCIATION_COPY_NONATOMIC) {
-            value = objc_msgSend(value, @selector(copy));
-        }
-        auto_zone_set_associative_ref(gc_zone, object, key, value);
-    } else {
-        //这是引用计数机制部分的实现
-        // Note, creates a retained reference in non-GC.
-        _object_set_associative_reference(object, key, value, policy);
-    }
+- (void)clickTestAop:(id)sender
+{
+    AopTestM *test = [[AopTestM alloc] init];
+    NSLog(@"run1");
+    [test sumA:1 andB:2];
+    
+    NSString *before = [XYAOP interceptClass:[AopTestM class] beforeExecutingSelector:@selector(sumA:andB:) usingBlock:^(NSInvocation *invocation) {
+        int a = 3;
+        int b = 4;
+        
+        [invocation setArgument:&a atIndex:2];
+        [invocation setArgument:&b atIndex:3];
+        
+        NSLog(@"berore fun. a = %d, b = %d", a , b);
+    }];
+    
+    NSString *after =  [XYAOP interceptClass:[AopTestM class] afterExecutingSelector:@selector(sumA:andB:) usingBlock:^(NSInvocation *invocation) {
+        int a;
+        int b;
+        NSString *str;
+        
+        [invocation getArgument:&a atIndex:2];
+        [invocation getArgument:&b atIndex:3];
+        [invocation getReturnValue:&str];
+        
+        NSLog(@"berore fun. a = %d, b = %d, sum = %@", a , b, str);
+    }];
+    
+    NSLog(@"run2");
+    [test sumA:1 andB:2];
+    
+    [XYAOP removeInterceptorWithIdentifier:before];
+    [XYAOP removeInterceptorWithIdentifier:after];
+    
+    NSLog(@"run3");
+    [test sumA:1 andB:2];
 }
- */
 
+/////////////////////////// 备注 ///////////////////////////////
 // 自动布局
 /*
 - (void)loadView

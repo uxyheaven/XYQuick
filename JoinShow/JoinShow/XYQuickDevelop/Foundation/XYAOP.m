@@ -94,6 +94,23 @@ DEF_SINGLETON(XYAOP);
     return identifier;
 }
 
++ (NSString *)interceptClass:(Class)aClass beforeExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block
+{
+    return [[self sharedInstance] interceptClass:aClass beforeExecutingSelector:selector usingBlock:block];
+}
++ (NSString *)interceptClass:(Class)aClass afterExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block
+{
+    return [[self sharedInstance] interceptClass:aClass afterExecutingSelector:selector usingBlock:block];
+}
++ (NSString *)interceptClass:(Class)aClass insteadExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block
+{
+    return [[self sharedInstance] interceptClass:aClass insteadExecutingSelector:selector usingBlock:block];
+}
+
++ (void)removeInterceptorWithIdentifier:(NSString *)identifier
+{
+    return [[self sharedInstance] removeInterceptorWithIdentifier:identifier];
+}
 
 - (NSString *)interceptClass:(Class)aClass beforeExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block
 {
@@ -111,7 +128,8 @@ DEF_SINGLETON(XYAOP);
 }
 
 #pragma mark - Helper methods
-- (NSString *)keyWithClass:(Class)aClass selector:(SEL)selector {
+- (NSString *)keyWithClass:(Class)aClass selector:(SEL)selector
+{
     return [NSString stringWithFormat:@"__%@_%@", NSStringFromClass(aClass), NSStringFromSelector(selector)];
 }
 

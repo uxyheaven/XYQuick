@@ -13,14 +13,10 @@ typedef void(^XYAOP_block)(NSInvocation *invocation);
 
 @interface XYAOP : NSObject
 
-AS_SINGLETON(XYAOP)
++ (NSString *)interceptClass:(Class)aClass beforeExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block;
++ (NSString *)interceptClass:(Class)aClass afterExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block;
++ (NSString *)interceptClass:(Class)aClass insteadExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block;
 
-- (NSString *)interceptClass:(Class)aClass beforeExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block;
-- (NSString *)interceptClass:(Class)aClass afterExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block;
-- (NSString *)interceptClass:(Class)aClass insteadExecutingSelector:(SEL)selector usingBlock:(XYAOP_block)block;
-
-- (void)removeInterceptorWithIdentifier:(NSString *)identifier;
-
-
++ (void)removeInterceptorWithIdentifier:(NSString *)identifier;
 
 @end
