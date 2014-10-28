@@ -120,7 +120,8 @@ DEF_SINGLETON(XYAOP);
     return NSSelectorFromString([self keyWithClass:aClass selector:selector]);
 }
 
-- (NSString *)identifierWithClass:(Class)aClass selector:(SEL)aSelector dictionary:(NSDictionary *)dictionary {
+- (NSString *)identifierWithClass:(Class)aClass selector:(SEL)aSelector dictionary:(NSDictionary *)dictionary
+{
     return [NSString stringWithFormat:@"%@ | %@ | %p", NSStringFromClass(aClass), NSStringFromSelector(aSelector), dictionary];
 }
 
@@ -139,13 +140,14 @@ DEF_SINGLETON(XYAOP);
 }
 #pragma mark - Interceptor registration
 // 恢复被拦截的方法的imp
-- (void)restoreOriginalMethodWithClass:(Class)aClass selector:(SEL)aSelector {
+- (void)restoreOriginalMethodWithClass:(Class)aClass selector:(SEL)aSelector
+{
     Method method      = class_getInstanceMethod(aClass, aSelector);
     IMP implementation = class_getMethodImplementation([self class], [self extendedSelectorWithClass:aClass selector:aSelector]);
     method_setImplementation(method, implementation);
 }
 
-// 把某方法的imp置空, 以便转发失败,
+// 把某方法的imp置空, 这样就走转发流程
 - (void)interceptMethodWithClass:(Class)aClass selector:(SEL)aSelector
 {
     Method method      = class_getInstanceMethod(aClass, aSelector);
@@ -266,7 +268,7 @@ DEF_SINGLETON(XYAOP);
     if (![self respondsToSelector:aSelector])
     {
         SEL fSelNew = [[XYAOP sharedInstance] extendedSelectorWithClass:[self class] selector:@selector(forwardingTargetForSelector:)];
-        
+        // return objc_msgSend([XYAOP sharedInstance], fSelNew);
         return [[XYAOP sharedInstance] performSelector:fSelNew];
     }
     
