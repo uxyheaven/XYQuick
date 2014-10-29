@@ -18,7 +18,7 @@
 
 - (void)loadFromDB;
 
-+(NSString *) primaryKeyAndDESC;
++ (NSString *)primaryKeyAndDESC;
 
 @end
 
