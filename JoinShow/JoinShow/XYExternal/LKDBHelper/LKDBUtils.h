@@ -44,7 +44,7 @@
 #   define LKErrorLog(...)
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 || __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_6
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 || __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_7
 #define LKDBWeak weak
 #else
 #define LKDBWeak unsafe_unretained
@@ -69,6 +69,20 @@ static NSString* const LKSQL_Convert_BlobType    =   @"";
 static NSString* const LKSQL_Mapping_Inherit          =   @"LKDBInherit";
 static NSString* const LKSQL_Mapping_Binding          =   @"LKDBBinding";
 static NSString* const LKSQL_Mapping_UserCalculate    =   @"LKDBUserCalculate";
+
+static NSString* const LKDB_TypeKey = @"DB_Type";
+
+static NSString* const LKDB_TypeKey_Model = @"DB_Type_Model";
+static NSString* const LKDB_TypeKey_JSON = @"DB_Type_JSON";
+static NSString* const LKDB_TypeKey_Combo = @"DB_Type_Combo";
+static NSString* const LKDB_TypeKey_Date = @"DB_Type_Date";
+
+static NSString* const LKDB_ValueKey = @"DB_Value";
+
+static NSString* const LKDB_TableNameKey = @"DB_TableName";
+static NSString* const LKDB_ClassKey = @"DB_Class";
+static NSString* const LKDB_RowIdKey = @"DB_RowId";
+static NSString* const LKDB_PValueKey = @"DB_PKeyValue";
 
 ///Object-c type converted to SQLite type  把Object-c 类型 转换为sqlite 类型
 extern NSString* LKSQLTypeFromObjcType(NSString *objcType);

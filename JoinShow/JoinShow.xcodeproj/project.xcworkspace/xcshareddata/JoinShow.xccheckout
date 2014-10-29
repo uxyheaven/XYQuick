@@ -14,7 +14,7 @@
 		<string>https://github.com/uxyheaven/XYQuickDevelop.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>JoinShow/JoinShow.xcodeproj/project.xcworkspace</string>
+	<string>JoinShow/JoinShow.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>13EB1A6736AA77EF1B8604A459832DC276DDBF4C</key>

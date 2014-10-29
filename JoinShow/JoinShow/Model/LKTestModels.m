@@ -10,6 +10,20 @@
 
 @implementation LKTest
 
+//重载选择 使用的LKDBHelper
++(LKDBHelper *)getUsingLKDBHelper
+{
+    static LKDBHelper* db;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString* dbpath = [NSHomeDirectory() stringByAppendingPathComponent:@"asd/asd.db"];
+        db = [[LKDBHelper alloc]initWithDBPath:dbpath];
+        //or
+        //        db = [[LKDBHelper alloc]init];
+    });
+    return db;
+}
+
 //在类 初始化的时候
 +(void)initialize
 {
@@ -27,28 +41,28 @@
     //[self setUserCalculateForPTN:@"NSDictionary"];
     
     //enable own calculations
-    [self setUserCalculateForCN:@"address"];
+    //[self setUserCalculateForCN:@"address"];
     
     //enable the column binding property name
     [self setTableColumnName:@"MyAge" bindingPropertyName:@"age"];
     [self setTableColumnName:@"MyDate" bindingPropertyName:@"date"];
-    
-    //You can create a table here
-    //[[self getUsingLKDBHelper] createTableWithModelClass:self];
 }
 
-//重载可以选择 使用的LKDBHelper
-+(LKDBHelper *)getUsingLKDBHelper
++(void)dbDidAlterTable:(LKDBHelper *)helper tableName:(NSString *)tableName addColumns:(NSArray *)columns
 {
-    static LKDBHelper* db;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString* dbpath = [NSHomeDirectory() stringByAppendingPathComponent:@"asd/asd.db"];
-        db = [[LKDBHelper alloc]initWithDBPath:dbpath];
-    });
-    return db;
+    for (int i=0; i<columns.count; i++)
+    {
+        LKDBProperty* p = [columns objectAtIndex:i];
+        if([p.propertyName isEqualToString:@"error"])
+        {
+            [helper executeDB:^(FMDatabase *db) {
+                NSString* sql = [NSString stringWithFormat:@"update %@ set error = name",tableName];
+                [db executeUpdate:sql];
+            }];
+        }
+    }
+    LKErrorLog(@"your know %@",columns);
 }
-
 
 // 将要插入数据库
 +(BOOL)dbWillInsert:(NSObject *)entity
@@ -98,7 +112,7 @@
     else if([property.propertyName isEqualToString:@"date"])
     {
         // if you use unique,this property will also become the primary key
-//        property.isUnique = YES;
+        //        property.isUnique = YES;
         property.checkValue = @"MyDate > '2000-01-01 00:00:00'";
         property.length = 30;
     }
@@ -108,18 +122,18 @@
 +(NSDictionary *)getTableMapping
 {
     return nil;
-//    return @{@"name":LKSQL_Mapping_Inherit,
-//             @"MyAge":@"age",
-//             @"img":LKSQL_Mapping_Inherit,
-//             @"MyDate":@"date",
-//             
-//             // version 2 after add
-//             @"color":LKSQL_Mapping_Inherit,
-//             
-//             //version 3 after add
-//             @"address":LKSQL_Mapping_UserCalculate,
-//             @"error":LKSQL_Mapping_Inherit
-//             };
+    //    return @{@"name":LKSQL_Mapping_Inherit,
+    //             @"MyAge":@"age",
+    //             @"img":LKSQL_Mapping_Inherit,
+    //             @"MyDate":@"date",
+    //
+    //             // version 2 after add
+    //             @"color":LKSQL_Mapping_Inherit,
+    //
+    //             //version 3 after add
+    //             @"address":LKSQL_Mapping_UserCalculate,
+    //             @"error":LKSQL_Mapping_Inherit
+    //             };
 }
 //主键
 +(NSString *)getPrimaryKey
@@ -135,31 +149,7 @@
 {
     return @"LKTestTable";
 }
-//表版本
-+(int)getTableVersion
-{
-    return 3;
-}
-//升级
-+(LKTableUpdateType)tableUpdateForOldVersion:(int)oldVersion newVersion:(int)newVersion
-{
-    //..... eh...  upgrade for table
-    switch (oldVersion) {
-        case 1:
-        {
-//            [self updateToDBWithSet:@"blah blah" where:nil];
-        }
-        case 2:
-        {
-//            [self deleteWithWhere:@"blah blah"];
-        }
-            break;
-    }
-    return LKTableUpdateTypeCustom;
-}
 @end
-
-
 @implementation LKTestForeign
 +(LKDBHelper *)getUsingLKDBHelper
 {
@@ -176,10 +166,6 @@
 +(BOOL)isContainParent
 {
     return YES;
-}
-+(int)getTableVersion
-{
-    return 1;
 }
 @end
 

@@ -26,6 +26,8 @@
 @property BOOL isGirl;
 
 @property(strong,nonatomic)LKTestForeign* address;
+@property(strong,nonatomic)NSArray* blah;
+@property(strong,nonatomic)NSDictionary* hoho;
 
 @property char like;
 
@@ -52,6 +54,7 @@
 
 @property CGRect size;
 @property CGPoint point;
+@property NSRange range;
 @end
 
 
