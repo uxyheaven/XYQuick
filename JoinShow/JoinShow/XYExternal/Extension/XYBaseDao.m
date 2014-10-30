@@ -35,8 +35,8 @@
     self = [super init];
     if (self)
     {
-        _entityClass = aClass;
-        _globalHelper = [LKDBHelper getUsingLKDBHelper];
+        _entityClass  = aClass;
+        _globalHelper = [aClass getUsingLKDBHelper];
         // 创建表
       //  [_globalHelper createTableWithModelClass:[_entityClass class]];
     }

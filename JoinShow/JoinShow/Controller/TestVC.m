@@ -829,7 +829,7 @@ if (1) { \
         [invocation getArgument:&b atIndex:3];
         [invocation getReturnValue:&str];
         
-        NSLog(@"berore fun. a = %d, b = %d, sum = %@", a , b, str);
+        NSLog(@"after fun. a = %d, b = %d, sum = %@", a , b, str);
     }];
     
     NSLog(@"run2");
