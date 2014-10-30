@@ -47,7 +47,8 @@
     
     self.items = @[@{@"title":@"点击动画", @"sel" : @"clickMuhud"},
                    @{@"title":@"AnalyzingJsonWithNull", @"sel" : @"clickAnalyzingJson"},
-                   @{@"title":@"XYTabbarController", @"sel" : @"clickXYTabbarController"}];
+                   @{@"title":@"XYTabbarController", @"sel" : @"clickXYTabbarController"},
+                   @{@"title":@"frameBuilder", @"sel" : @"clickFrameBuilder"}];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"test_cell"];
 }
@@ -224,16 +225,53 @@
     
     UISignalVC *vc3 = [[UISignalVC alloc] init];
     
-    
     NSArray *array = @[vc1, vc2, vc3];
-    NSArray *items = @[@{@"text": @"DemoViewController1", @"normal": @"icon_facebook.png", @"selected" : @"icon_google.png"},
-                       @{@"text": @"vc2", @"normal": @"icon_twitter.png", @"selected" : @"icon_google.png"},
-                        @{@"text": @"vc3", @"normal": @"icon_tencent.png", @"selected" : @"icon_google.png"}];
+    NSArray *items = @[
+  @{@"text": @"DemoViewController1", @"normal": @"icon_facebook.png", @"selected" : @"icon_google.png"},
+  @{@"text": @"vc2", @"normal": @"icon_twitter.png", @"selected" : @"icon_google.png"},
+  @{@"text": @"vc3", @"normal": @"icon_tencent.png", @"selected" : @"icon_google.png"}
+  ];
     
     XYTabBarController *tabBarController = [[XYTabBarController alloc] initWithViewControllers:array items:items] ;
     
     [self presentViewController:tabBarController animated:YES completion:nil];
 
+}
+- (void)clickFrameBuilder
+{
+    DemoViewController *vc = [[DemoViewController alloc] init];
+    vc.name = @"vc";
+    vc.viewDidLoadBlock = ^(UIViewController *vc){
+        vc.view.backgroundColor = [UIColor whiteColor];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+        view.backgroundColor = [UIColor lightGrayColor];
+        [vc.view addSubview:view];
+        [view.po_frameBuilder centerInSuperview];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+        label.backgroundColor = [UIColor yellowColor];
+        label.textColor = [UIColor blueColor];
+        label.text = @"left 10";
+        [view addSubview:label];
+        [label.po_frameBuilder alignLeftInSuperviewWithInset:10];
+        
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
+        label2.backgroundColor = [UIColor yellowColor];
+        label2.textColor = [UIColor blueColor];
+        label2.text = @"depend";
+        [view addSubview:label2];
+        [[label2.po_frameBuilder alignRightOfView:label offset:-label.width] alignToBottomOfView:label offset:15];
+        
+        
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+        label.backgroundColor = [UIColor yellowColor];
+        label.textColor = [UIColor blueColor];
+        label.text = @"bottom 10 right 10";
+        [view addSubview:label];
+        [[label.po_frameBuilder alignToBottomInSuperviewWithInset:10] alignRightInSuperviewWithInset:10];
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 ON_SIGNAL( signal ){
