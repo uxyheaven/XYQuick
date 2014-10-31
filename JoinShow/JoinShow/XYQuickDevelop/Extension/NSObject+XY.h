@@ -61,7 +61,8 @@
 
 #pragma mark- category AutoCoding
 // copy frome https://github.com/nicklockwood/AutoCoding
-// 序列化
+// 序列化 2.2
+//
 @interface NSObject (AutoCoding) <NSSecureCoding>
 
 //coding

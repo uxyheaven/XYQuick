@@ -141,6 +141,7 @@
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
+		7444D7291A03593C00B57529 /* AutoCodingEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7444D7281A03593C00B57529 /* AutoCodingEntity.m */; };
 		74571E4A19BEF18300996555 /* XYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74571E4919BEF18300996555 /* XYJSONHelper.m */; };
 		747638FF19C07B93008703A1 /* XYBaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 747638FE19C07B93008703A1 /* XYBaseDao.m */; };
 		7476390219C08121008703A1 /* XYBaseNetDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476390119C08121008703A1 /* XYBaseNetDao.m */; };
@@ -423,6 +424,8 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
+		7444D7271A03593C00B57529 /* AutoCodingEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCodingEntity.h; sourceTree = "<group>"; };
+		7444D7281A03593C00B57529 /* AutoCodingEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCodingEntity.m; sourceTree = "<group>"; };
 		74571E4819BEF18300996555 /* XYJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYJSONHelper.h; sourceTree = "<group>"; };
 		74571E4919BEF18300996555 /* XYJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYJSONHelper.m; sourceTree = "<group>"; };
 		747638FD19C07B93008703A1 /* XYBaseDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseDao.h; sourceTree = "<group>"; };
@@ -548,6 +551,8 @@
 				57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */,
 				57E7857617DE459E0056C589 /* ConfigManager.h */,
 				57E7857717DE459E0056C589 /* ConfigManager.m */,
+				7444D7271A03593C00B57529 /* AutoCodingEntity.h */,
+				7444D7281A03593C00B57529 /* AutoCodingEntity.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1220,6 +1225,7 @@
 				572E7CB218385C690018179D /* NSDictionary+RequestEncoding.m in Sources */,
 				577952DA1909727E00F95459 /* XYBaseModel.m in Sources */,
 				74571E4A19BEF18300996555 /* XYJSONHelper.m in Sources */,
+				7444D7291A03593C00B57529 /* AutoCodingEntity.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
 				57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */,
 				578ED6A3193DB08C00585D4B /* XYNotification.m in Sources */,

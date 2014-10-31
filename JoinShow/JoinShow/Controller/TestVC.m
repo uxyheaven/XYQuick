@@ -27,6 +27,7 @@
 #import "XYBaseDao.h"
 #import "CarEntity.h"
 #import "AopTestM.h"
+#import "AutoCodingEntity.h"
 
 #define MultiPlatform( __xib ) \
 (NSString *)^(void){ \
@@ -371,6 +372,22 @@ if (1) { \
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
     [tempBtn setTitle:@"AOP" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickTestAop:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"AutoCodingSave" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickAutoCodingSave:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"AutoCodingLoad" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickAutoCodingLoad:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
 #pragma mark -btn end
@@ -842,6 +859,49 @@ if (1) { \
     [test sumA:1 andB:2];
 }
 
+- (void)clickAutoCodingSave:(id)sender
+{
+    AutoCodingEntity *entity = [[AutoCodingEntity alloc] init];
+    entity.str = [NSString stringWithFormat:@"%@", [NSDate date].stringCache];
+    entity.f = 0.1f;
+    entity.i = 10001;
+    entity.b = YES;
+    entity.num = @1;
+    
+    AutoCodingEntityOther *other = [[AutoCodingEntityOther alloc] init];
+    other.i = 1;
+    
+    entity.objc = other;
+    
+    AutoCodingEntity *entity2 = [[AutoCodingEntity alloc] init];
+    entity2.str = [NSString stringWithFormat:@"%@", [NSDate date].stringCache];
+    entity2.f = 0.2f;
+    entity2.i = 10002;
+    entity2.b = NO;
+    entity2.num = @2;
+    
+    AutoCodingEntityOther *other2 = [[AutoCodingEntityOther alloc] init];
+    other2.i = 2;
+    
+    entity2.objc = other2;
+    
+    AutoCodingEntityList *list = [[AutoCodingEntityList alloc] init];
+    list.array = [@[entity, entity2] mutableCopy];
+    
+    PERF_ENTER_(save)
+    NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/AutoCodingFileData"];
+    [list writeToFile:path atomically:YES];
+    PERF_LEAVE_(save)
+}
+
+- (void)clickAutoCodingLoad:(id)sender
+{
+    PERF_ENTER_(load)
+    NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/AutoCodingFileData"];
+    AutoCodingEntityList *list = [AutoCodingEntityList objectWithContentsOfFile:path];
+    PERF_LEAVE_(load)
+    NSLog(@"%@", list);
+}
 /////////////////////////// 备注 ///////////////////////////////
 // 自动布局
 /*
