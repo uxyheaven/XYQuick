@@ -195,7 +195,7 @@
     selector      = NSSelectorFromString(selectorName);
 
     selectorName2 = [NSString stringWithFormat:@"handleUISignal_%@:", signalMethod];
-    selector2     = NSSelectorFromString(selectorName);
+    selector2     = NSSelectorFromString(selectorName2);
     
     if ( [_target respondsToSelector:selector] )
     {

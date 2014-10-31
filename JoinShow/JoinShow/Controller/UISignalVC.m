@@ -139,15 +139,15 @@ DEF_SIGNAL( click3 )
 ON_SIGNAL( signal ){
     NSLogD(@"%@", signal);
 }
-/*
+
 ON_SIGNAL2(click1, signal){
     NSLogD(@"%@", signal);
 }
-*/
+/*
 ON_SIGNAL3(Signal1, click1, signal){
     NSLogD(@"%@", signal);
 }
-
+*/
 ON_SIGNAL3(Signal2, click2, signal){
     NSLogD(@"%@", signal);
 }
