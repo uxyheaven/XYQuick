@@ -20,7 +20,7 @@ DEF_SIGNAL( click1 )
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor blueColor];
-        Signal2 *view = [[Signal2_child alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+        Signal2 *view = [[Signal2 alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
         [self addSubview:view];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -145,6 +145,10 @@ ON_SIGNAL2(click1, signal){
 }
 */
 ON_SIGNAL3(Signal1, click1, signal){
+    NSLogD(@"%@", signal);
+}
+
+ON_SIGNAL3(Signal2, click2, signal){
     NSLogD(@"%@", signal);
 }
 
