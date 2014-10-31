@@ -892,6 +892,11 @@ if (1) { \
     NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/AutoCodingFileData"];
     [list writeToFile:path atomically:YES];
     PERF_LEAVE_(save)
+    
+    PERF_ENTER_(fileCache_save)
+    XYFileCache *fileCache = [[XYFileCache alloc] init];
+    [fileCache setObject:list forKey:@"AutoCodingList"];
+    PERF_LEAVE_(fileCache_save)
 }
 
 - (void)clickAutoCodingLoad:(id)sender
@@ -901,6 +906,13 @@ if (1) { \
     AutoCodingEntityList *list = [AutoCodingEntityList objectWithContentsOfFile:path];
     PERF_LEAVE_(load)
     NSLog(@"%@", list);
+    
+    PERF_ENTER_(fileCache_load)
+    XYFileCache *fileCache = [[XYFileCache alloc] init];
+    AutoCodingEntityList *list2 = [fileCache objectForKey:@"AutoCodingList" objectClass:[AutoCodingEntityList class]];
+    PERF_LEAVE_(fileCache_load)
+    
+    NSLog(@"%@", list2);
 }
 /////////////////////////// 备注 ///////////////////////////////
 // 自动布局

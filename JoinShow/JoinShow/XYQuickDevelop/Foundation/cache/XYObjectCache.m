@@ -84,22 +84,7 @@ DEF_SINGLETON(XYObjectCache)
 
 	if ( fullPath )
 	{
-        if ([self.objectClass isSubclassOfClass:[UIImage class]])
-        {
-            anObject = [[UIImage alloc] initWithContentsOfFile:fullPath];
-        }
-        else if ([self.objectClass isSubclassOfClass:[NSData class]])
-        {
-            anObject = [[NSData alloc] initWithContentsOfFile:fullPath];
-        }
-        else if ([self.objectClass isSubclassOfClass:[NSString class]])
-        {
-            anObject = [[NSString alloc] initWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
-        }
-        else if (1)
-        {
-            anObject = [[NSData alloc] initWithContentsOfFile:fullPath];
-        }
+        anObject = [self.fileCache objectForKey:fullPath objectClass:_objectClass];
         
 		id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
 		if ( nil == cachedObject && anObject != cachedObject )
@@ -156,12 +141,12 @@ DEF_SINGLETON(XYObjectCache)
         FOREGROUND_BEGIN
         [self saveToMemory:anObject forKey:key];
         BACKGROUND_BEGIN
-        [self saveToData:[anObject dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forKey:key];
+        [self saveToData:anObject forKey:key];
         BACKGROUND_COMMIT
         FOREGROUND_COMMIT
     } else {
         // 同步
-        [self saveToData:[anObject dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES] forKey:key];
+        [self saveToData:anObject forKey:key];
         [self saveToMemory:anObject forKey:key];
     }
 }

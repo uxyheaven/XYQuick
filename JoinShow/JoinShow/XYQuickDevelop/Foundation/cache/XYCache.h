@@ -21,3 +21,6 @@
 #import "XYUserDefaults.h"
 // Keychain
 #import "XYKeychain.h"
+
+// 归档
+#import "XYAutoCoding.h"

@@ -10,7 +10,7 @@
 #import "XYCommon.h"
 #import "XYSystemInfo.h"
 #import "XYSandbox.h"
-#import "NSObject+XY.h"
+#import "XYAutoCoding.h"
 
 @implementation XYFileCache
 
@@ -69,6 +69,13 @@ DEF_SINGLETON( XYFileCache );
 - (void)removeOverdueFiles{
 
 }
+
+- (id)objectForKey:(id)key objectClass:(Class)aClass
+{
+    // 用的是AutoCoding里的方法
+    return [aClass objectWithContentsOfFile:[self fileNameForKey:key]];
+}
+
 #pragma mark - XYCacheProtocol
 - (BOOL)hasObjectForKey:(id)key
 {
@@ -77,6 +84,7 @@ DEF_SINGLETON( XYFileCache );
 
 - (id)objectForKey:(id)key
 {
+    // 建议用 objectForKey:objectClass: 可以直接返回对象
 	return [NSData dataWithContentsOfFile:[self fileNameForKey:key]];
 }
 
@@ -86,16 +94,11 @@ DEF_SINGLETON( XYFileCache );
 	{
 		[self removeObjectForKey:key];
 	}
-	else
-	{
-		NSData * data = [object asNSData];
-		if ( data )
-		{
-			[data writeToFile:[self fileNameForKey:key]
-					  options:NSDataWritingAtomic
-						error:NULL];
-		}
-	}
+    else
+    {
+        // 用的是AutoCoding里的方法
+        [object writeToFile:[self fileNameForKey:key] atomically:YES];
+    }
 }
 
 - (void)removeObjectForKey:(NSString *)key
@@ -114,12 +117,12 @@ DEF_SINGLETON( XYFileCache );
 
 - (id)objectForKeyedSubscript:(id)key
 {
-	return [self objectForKey:key];
+	return nil;
 }
 
 - (void)setObject:(id)obj forKeyedSubscript:(id)key
 {
-	[self setObject:obj forKey:key];
+    ;
 }
 
 @end

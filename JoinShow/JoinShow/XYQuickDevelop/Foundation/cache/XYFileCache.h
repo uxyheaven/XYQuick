@@ -21,6 +21,9 @@
 AS_SINGLETON( XYFileCache );
 
 - (NSString *)fileNameForKey:(NSString *)key;
+
+- (id)objectForKey:(id)key objectClass:(Class)aClass;
+
 #pragma mark - todo
 //- (void)removeOverdueFiles;
 
