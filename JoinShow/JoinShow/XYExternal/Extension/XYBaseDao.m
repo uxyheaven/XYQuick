@@ -38,7 +38,7 @@
         _entityClass  = aClass;
         _globalHelper = [aClass getUsingLKDBHelper];
         // 创建表
-      //  [_globalHelper createTableWithModelClass:[_entityClass class]];
+        [_globalHelper createTableWithModelClass:[_entityClass class]];
     }
     return self;
 }
