@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-@protocol XYCacheProtocol <NSObject>
+@protocol XYCacheProtocol
 
 - (BOOL)hasObjectForKey:(id)key;
 

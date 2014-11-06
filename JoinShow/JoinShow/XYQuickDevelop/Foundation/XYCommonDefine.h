@@ -56,24 +56,15 @@ dispatch_once( &once_##__name , ^{
 /**************************************************************/
 // delegate 委托
 // arm64下失效,具体看https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaTouch64BitGuide/ConvertingYourAppto64-Bit/ConvertingYourAppto64-Bit.html
-/*
-#define DelegateSelf( __fun ) \
-if (_delegate && [_delegate respondsToSelector:@selector( __fun )]) { \
-    [_delegate __x self];} 
- */
-#define DelegateSelf( __fun ) Delegate( __fun, self)
 
-/*
-#define Delegate( __x ) \
-if (_delegate && [_delegate respondsToSelector:@selector(__x)]) { \
-[_delegate __x];} 
- */
-#pragma mark - to  delegate被注册KVO时,isa会变, 判断delegate被释放?
-#define Delegate( __fun, ...) \
-if (_delegate && [_delegate respondsToSelector:@selector( __fun )]) \
+#define DelegateSelf( __sel ) Delegate( __sel, self)
+
+// delegate被注册KVO时,isa会变, 判断delegate被释放?
+#define Delegate( __sel, ...) \
+if (_delegate && [_delegate respondsToSelector:__sel]) \
 { \
-    __actionXY_return_void = objc_msgSend; \
-    objc_msgSend(_delegate, @selector( __fun ), ## __VA_ARGS__); \
+    __actionXY_return_void = (void (*)(id, SEL, ...)) objc_msgSend; \
+    __actionXY_return_void(_delegate, __sel, ## __VA_ARGS__); \
 }
 
 /**************************************************************/

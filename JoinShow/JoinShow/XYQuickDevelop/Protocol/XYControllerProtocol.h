@@ -6,10 +6,9 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 //#import "XYControllerProtocol.h"
 
-@protocol XYControllerProtocol <NSObject>
+@protocol XYControllerProtocol
 
 @optional
 // 选择子控制器

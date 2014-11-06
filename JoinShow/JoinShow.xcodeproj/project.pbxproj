@@ -141,6 +141,7 @@
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
+		741498341A08C11F007F593C /* XYBaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 741498331A08C11F007F593C /* XYBaseDataSource.m */; };
 		7433B2CF1A0365D2000472A9 /* XYAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7433B2CE1A0365D2000472A9 /* XYAutoCoding.m */; };
 		7444D7291A03593C00B57529 /* AutoCodingEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7444D7281A03593C00B57529 /* AutoCodingEntity.m */; };
 		74571E4A19BEF18300996555 /* XYJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74571E4919BEF18300996555 /* XYJSONHelper.m */; };
@@ -286,7 +287,6 @@
 		578FBFE2183AFA8B0083A952 /* AnimationVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationVC2.m; sourceTree = "<group>"; };
 		57901EBA17E6C26E00B8E8FF /* remark */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = remark; sourceTree = "<group>"; };
 		5791A7E918051E7C009A1003 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		5793DCEC18E50EEE00764DC2 /* XYControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYControllerProtocol.h; sourceTree = "<group>"; };
 		579426B31856D6DC0049B426 /* EntityBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityBaseModel.h; sourceTree = "<group>"; };
 		579426B41856D6DC0049B426 /* EntityBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityBaseModel.m; sourceTree = "<group>"; };
 		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
@@ -425,6 +425,10 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
+		741498301A08BAD7007F593C /* XYProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYProtocol.h; sourceTree = "<group>"; };
+		741498311A08BB75007F593C /* XYControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYControllerProtocol.h; sourceTree = "<group>"; };
+		741498321A08C11F007F593C /* XYBaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseDataSource.h; sourceTree = "<group>"; };
+		741498331A08C11F007F593C /* XYBaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseDataSource.m; sourceTree = "<group>"; };
 		7433B2CD1A0365D2000472A9 /* XYAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAutoCoding.h; sourceTree = "<group>"; };
 		7433B2CE1A0365D2000472A9 /* XYAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAutoCoding.m; sourceTree = "<group>"; };
 		7444D7271A03593C00B57529 /* AutoCodingEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCodingEntity.h; sourceTree = "<group>"; };
@@ -833,7 +837,6 @@
 			isa = PBXGroup;
 			children = (
 				57D4451918B5C573006C597A /* XYBaseClass.h */,
-				5793DCEC18E50EEE00764DC2 /* XYControllerProtocol.h */,
 				5707C1EC19123A36003986DC /* XYViewControllerManager.h */,
 				5707C1ED19123A36003986DC /* XYViewControllerManager.m */,
 				57D4451318B59A12006C597A /* XYBaseViewController.h */,
@@ -844,6 +847,8 @@
 				577952D91909727E00F95459 /* XYBaseModel.m */,
 				7485396219A58BB6004D8B66 /* XYBaseListData.h */,
 				7485396319A58BB6004D8B66 /* XYBaseListData.m */,
+				741498321A08C11F007F593C /* XYBaseDataSource.h */,
+				741498331A08C11F007F593C /* XYBaseDataSource.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -864,6 +869,7 @@
 		57DB879D183349A60015CC5A /* XYQuickDevelop */ = {
 			isa = PBXGroup;
 			children = (
+				7414982F1A08BABB007F593C /* Protocol */,
 				57D4451218B59A04006C597A /* BaseClass */,
 				576E87CD1855D20F00C7A724 /* Debug */,
 				57DB879E183349A60015CC5A /* Extension */,
@@ -1028,6 +1034,15 @@
 				74CD540A19C2E0930069282B /* XYBaseService.m */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7414982F1A08BABB007F593C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				741498301A08BAD7007F593C /* XYProtocol.h */,
+				741498311A08BB75007F593C /* XYControllerProtocol.h */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		747FB30D1A00D5C7004B557B /* LKDBHelper */ = {
@@ -1261,6 +1276,7 @@
 				57DB87DD183349A60015CC5A /* NSNumber+XY.m in Sources */,
 				57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */,
 				572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */,
+				741498341A08C11F007F593C /* XYBaseDataSource.m in Sources */,
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
 				747FB3181A00D5C7004B557B /* LKDB+Mapping.m in Sources */,

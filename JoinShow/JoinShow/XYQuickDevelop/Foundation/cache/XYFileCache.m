@@ -72,8 +72,15 @@ DEF_SINGLETON( XYFileCache );
 
 - (id)objectForKey:(id)key objectClass:(Class)aClass
 {
-    // 用的是AutoCoding里的方法
-    return [aClass objectWithContentsOfFile:[self fileNameForKey:key]];
+    if (aClass != nil)
+    {
+        // 用的是AutoCoding里的方法
+        return [aClass objectWithContentsOfFile:[self fileNameForKey:key]];
+    }
+    else
+    {
+        return [self objectForKey:key];
+    }
 }
 
 #pragma mark - XYCacheProtocol

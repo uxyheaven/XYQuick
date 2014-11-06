@@ -24,6 +24,8 @@
 // 界面
 #import "XYUI.h"
 
+// 协议
+#import "XYProtocol.h"
 
 #if (1 != __XYQuick_Framework__)
 // 第三方

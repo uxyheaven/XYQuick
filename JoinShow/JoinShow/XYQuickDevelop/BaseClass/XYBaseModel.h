@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XYBaseDataSource.h"
 
-@interface XYBaseModel : NSObject
+@interface XYBaseModel : NSObject <XYDataSourceDelegate>
+
+
+// 读取数据
+- (void)loadDataWith:(XYBaseDataSource *)dataGet;
 
 
 #pragma mark - m 对 c
