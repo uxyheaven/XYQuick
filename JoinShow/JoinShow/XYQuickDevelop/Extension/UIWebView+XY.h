@@ -13,4 +13,10 @@
 // 清理网页,如果isCleanCache = YES, 就连NSURLCache,Disk,Memory也清理
 - (void)clean:(BOOL)isCleanCache;
 
+//获取当前页面的html
+- (NSString*)innerHTML;
+
+// 获取userAgent
+- (NSString*)userAgent;
+
 @end

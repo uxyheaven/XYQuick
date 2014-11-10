@@ -113,17 +113,6 @@ typedef enum {
 
 
 /**
- * @brief 提取视图层次结构的方法
- * @param aView 要提取的视图
- * @param indent 层次 请给0值
- * @param outstring 保存层次的字符串
- */
-+ (void)dumpView: (UIView *) aView atIndent: (int) indent into:(NSMutableString *)outstring;
-// 打印视图层次结构
-+ (NSString *) displayViews: (UIView *) aView;
-
-
-/**
  * @brief 正则表达式分析字符串的方法
  * @param analyseString  返回NSString数组. analyseStringToRange:返回range数组
  * @param str 被分析的字符串

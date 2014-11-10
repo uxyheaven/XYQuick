@@ -143,6 +143,8 @@
 #pragma mark - NSArray (XYJSONHelper)
 @interface NSArray (XYJSONHelper)
 
+- (NSArray *)toModels:(Class)modelClass;
+
 @end
 
 

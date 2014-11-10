@@ -24,4 +24,15 @@
     }
 }
 
+
+- (NSString*)innerHTML
+{
+    return [self stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
+}
+
+- (NSString*)userAgent
+{
+    return [self stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];;
+}
+
 @end
