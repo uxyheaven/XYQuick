@@ -11,19 +11,24 @@
 #define NSNullObjects @[@"",@0,@{},@[]]
 
 @implementation NSNull (XY_InternalNullExtention)
-/*
--(NSMethodSignature*) methodSignatureForSelector:(SEL)selector
+
+- (NSMethodSignature*)methodSignatureForSelector:(SEL)selector
 {
-    NSMethodSignature* signature = [super methodSignatureForSelector:selector];
-    if (!signature) {
-        for (NSObject *object in NSNullObjects) {
+    NSMethodSignature *signature = [super methodSignatureForSelector:selector];
+    
+    if (!signature)
+    {
+        for (NSObject *object in NSNullObjects)
+        {
             signature = [object methodSignatureForSelector:selector];
-            if (signature) {
+            if (signature)
+            {
                 break;
             }
         }
         
     }
+    
     return signature;
 }
 
@@ -31,8 +36,10 @@
 {
     SEL aSelector = [anInvocation selector];
     
-    for (NSObject *object in NSNullObjects) {
-        if ([object respondsToSelector:aSelector]) {
+    for (NSObject *object in NSNullObjects)
+    {
+        if ([object respondsToSelector:aSelector])
+        {
             [anInvocation invokeWithTarget:object];
             return;
         }
@@ -40,5 +47,5 @@
     
     [self doesNotRecognizeSelector:aSelector];
 }
- */
+
 @end
