@@ -19,28 +19,6 @@
 typedef	XYCommon *			(^XYCommonBlockTest)( id first, ... );
 typedef	XYCommonBlockTest	(^XYCommonContextBlock)( id context );
 XYCommonBlockTest	__getTestBlock( id context );
-/** 
- * @brief 移魂大法
- * @param c 类
- * @param original 原方法
- * @param replacement 劫持后的方法
- */
-static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
-{
-    Method a = class_getInstanceMethod(c, original);
-    Method b = class_getInstanceMethod(c, replacement);
-    // class_addMethod 为该类增加一个新方法
-    if (class_addMethod(c, original, method_getImplementation(b), method_getTypeEncoding(b)))
-    {
-        // 替换类方法的实现指针
-        class_replaceMethod(c, replacement, method_getImplementation(a), method_getTypeEncoding(a));
-    }
-    else
-    {
-        // 交换2个方法的实现指针
-        method_exchangeImplementations(a, b);
-    }
-}
 
 
 @interface XYCommon : NSObject{

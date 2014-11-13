@@ -37,8 +37,8 @@
 	static BOOL __swizzled = NO;
 	if ( NO == __swizzled )
 	{
-        XY_swizzleInstanceMethod([UIWindow class], @selector(sendEvent:), @selector(mySendEvent:));
-
+        [XYRuntime swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(mySendEvent:)];
+        
         __swizzled = YES;
 	}
 #endif

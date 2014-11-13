@@ -8,6 +8,7 @@
 
 #import "XYBaseViewController.h"
 #import "XYCommon.h"
+#import "XYRuntime.h"
 
 #pragma mark - api
 // 对外的接口
@@ -31,10 +32,10 @@
 
 + (void)load
 {
-    XY_swizzleInstanceMethod([UIViewController class], @selector(loadView), @selector(xy__loadView));
-    XY_swizzleInstanceMethod([UIViewController class], @selector(viewDidLoad), @selector(xy__viewDidLoad));
-    XY_swizzleInstanceMethod([UIViewController class], NSSelectorFromString(@"dealloc"), @selector(xy__dealloc));
-    XY_swizzleInstanceMethod([UIViewController class], @selector(didReceiveMemoryWarning), @selector(xy__didReceiveMemoryWarning));
+    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(loadView) replacementSel:@selector(xy__loadView)];
+    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(viewDidLoad) replacementSel:@selector(xy__viewDidLoad)];
+    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:NSSelectorFromString(@"dealloc") replacementSel:@selector(xy__dealloc)];
+    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(didReceiveMemoryWarning) replacementSel:@selector(xy__didReceiveMemoryWarning)];
 }
 
 - (void)xy__loadView
