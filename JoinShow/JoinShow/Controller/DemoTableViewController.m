@@ -48,7 +48,8 @@
                       @{@"title": @"Image", @"className": @"ImageVC"},
                       @{@"title": @"Keyboard", @"className": @"KeyboardVC"},
                       @{@"title": @"Business", @"className": @"BusinessVC"},
-                      @{@"title": @"UISignal", @"className" : @"UISignalVC"}
+                      @{@"title": @"UISignal", @"className" : @"UISignalVC"},
+                      @{@"title": @"BlackMagic", @"className": @"BlackMagicVC"}
                       ];
     }
     return self;

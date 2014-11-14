@@ -46,3 +46,7 @@
 
 // runtime
 #import "XYRuntime.h"
+
+
+// 黑魔法
+#import "XYBlackMagic.h"
