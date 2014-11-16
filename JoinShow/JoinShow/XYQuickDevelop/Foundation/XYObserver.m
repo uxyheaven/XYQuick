@@ -178,7 +178,9 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     NSString *prefix = [NSString stringWithFormat:@"%@", object];
     [self.observers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([key hasPrefix:prefix])
+        {
             [self.observers removeObjectForKey:key];
+        }
     }];
 }
 

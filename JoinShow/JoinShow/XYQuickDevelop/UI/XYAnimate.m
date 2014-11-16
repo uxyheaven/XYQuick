@@ -50,9 +50,6 @@
 {
     return [self delay:delay duration:duration option:0 animate:step];
 }
-- (void)dealloc
-{
-}
 
 + (void) runBlock:(XYAnimateStepBlock)block afterDelay:(NSTimeInterval)delay
 {
@@ -165,10 +162,7 @@
     
     return self;
 }
-- (void)dealloc
-{
-    NSLogDD
-}
+
 - (id)addStep:(XYAnimateStep *)aStep
 {
     if (aStep && self != aStep)
@@ -242,26 +236,25 @@
 
 #pragma mark - XYAnimateParallelStep
 @implementation XYAnimateParallelStep
-+(id) animate{
++ (id)animate
+{
     return [[self alloc] init];
 }
 - (id)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _steps = [[NSMutableArray alloc] initWithCapacity:5];
     }
     return self;
 }
--(id) addStep:(XYAnimateStep *)aStep{
-    if (aStep && self != aStep) {
+- (id)addStep:(XYAnimateStep *)aStep{
+    if (aStep && self != aStep)
+    {
 		[(NSMutableArray *)_steps insertObject:aStep atIndex:0];
 	}
     return self;
-}
-- (void)dealloc
-{
-    NSLogDD
 }
 
 - (void) setDelay:(NSTimeInterval)delay {

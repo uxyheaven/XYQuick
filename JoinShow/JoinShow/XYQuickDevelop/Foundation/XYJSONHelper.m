@@ -154,7 +154,7 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
         
 #ifdef DEBUG
-        if (error != nil) NSLog(@"%@", error);
+        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
 #endif
         
         if (!error)
@@ -572,7 +572,7 @@ const char *property_getTypeString(objc_property_t property) {
     id result = [NSJSONSerialization JSONObjectWithData:self options:Json_string_options error:&error];
     
 #ifdef DEBUG
-    if (error != nil) NSLog(@"%@", error);
+    if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
 #endif
     
     if (error != nil)
@@ -704,7 +704,7 @@ const char *property_getTypeString(objc_property_t property) {
         NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:kNilOptions error:&error];
         
 #ifdef DEBUG
-        if (error != nil) NSLog(@"%@", error);
+        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
 #endif
         
         if (!error)

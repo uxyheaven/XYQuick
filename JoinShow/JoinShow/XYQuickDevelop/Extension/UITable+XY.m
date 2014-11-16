@@ -14,7 +14,10 @@
 + (CGFloat)heightForRowWithData:(id)aData
 {
     if (aData == nil)
+    {
         return -1;
+    }
+    
     
     return 44;
 }

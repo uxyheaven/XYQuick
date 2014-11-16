@@ -11,6 +11,8 @@
 #import "XYPrecompile.h"
 
 #import "XYPerformance.h"
+
+#pragma mark -
 /*
  * 说明 仅在debug下才显示nslog
  */

@@ -67,7 +67,7 @@
 @interface NSObject(XYUISignalResponder)
 
 // 是否响应Signal
-- (BOOL)isUISignalResponder;
+//- (BOOL)isUISignalResponder;
 
 @end
 

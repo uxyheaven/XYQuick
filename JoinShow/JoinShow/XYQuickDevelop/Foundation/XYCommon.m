@@ -66,18 +66,24 @@
 // 文档目录，需要ITUNES同步备份的数据存这里
 + (NSString *)dataFileDocPath:(NSString *)file{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    if (file) {
+    if (file)
+    {
         return [NSString stringWithFormat:@"%@/%@",[paths objectAtIndex:0], file];
-    }else{
+    }
+    else
+    {
         return [paths objectAtIndex:0];
     }
 }
 // 配置目录，配置文件存这里
 + (NSString *)dataFileLibPrefPath:(NSString *)file{
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (file) {
+    if (file)
+    {
         return [NSString stringWithFormat:@"%@/Preference/%@",[paths objectAtIndex:0], file];
-    }else{
+    }
+    else
+    {
         return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Preference"];
     }
 }
@@ -148,7 +154,9 @@
     rangeMark.length = str.length - iStart;
     
     rangeMark = [str rangeOfString:strMark options:NSLiteralSearch range:rangeMark];
-    if(rangeMark.length == 0) return rangeMark;
+    if(rangeMark.length == 0)
+        return rangeMark;
+    
     switch (operation)
     {
         case MarkOption_middle:
@@ -191,7 +199,9 @@
     }
     
     rangeMarkB = [str rangeOfString:strEnd options:NSLiteralSearch range:rangeMarkB];
-    if(rangeMarkB.length == 0) return rangeMarkB;
+    if(rangeMarkB.length == 0)
+        return rangeMarkB;
+    
     NSRange rangeTmp;
     rangeTmp.location = rangeMarkA.location;
     rangeTmp.length = rangeMarkB.location - rangeMarkA.location + rangeMarkB.length;

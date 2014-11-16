@@ -100,7 +100,7 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 - (void)animationShake;
 
 // 返回所在的vc
-- (UIViewController *)viewController;
+- (UIViewController *)currentViewController;
 
 @end
 

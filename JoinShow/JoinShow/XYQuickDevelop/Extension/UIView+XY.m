@@ -442,38 +442,22 @@ DUMMY_CLASS(UIView_XY);
 {
     CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     //设置抖动幅度
-    shake.fromValue = [NSNumber numberWithFloat:-0.1];
-    shake.toValue = [NSNumber numberWithFloat:+0.1];
-    shake.duration = 0.06;
-    shake.autoreverses = YES; //是否重复
-    shake.repeatCount = 3;
+    shake.fromValue    = [NSNumber numberWithFloat:-0.1];
+    shake.toValue      = [NSNumber numberWithFloat:+0.1];
+    shake.duration     = 0.06;
+    shake.autoreverses = YES;//是否重复
+    shake.repeatCount  = 3;
     [self.layer addAnimation:shake forKey:@"XYShake"];
 }
 
-- (UIViewController *)viewController
+- (UIViewController *)currentViewController
 {
-    /*
-	UIView * view = self;
-	while ( nil != view ) {
-		if ( nil == view.superview )
-			break;
-        
-		view = view.superview;
-	}
-    
-	UIResponder * nextResponder = [view nextResponder];
-	if ( [nextResponder isKindOfClass:[UIViewController class]] ) {
-		return (UIViewController *)nextResponder;
-	}
-	
-	return nil;
-    */
-    
     id viewController = [self nextResponder];
-    UIView *view = self;
+    UIView *view      = self;
+    
     while (viewController && ![viewController isKindOfClass:[UIViewController class]])
     {
-        view = [view superview];
+        view           = [view superview];
         viewController = [view nextResponder];
     }
     

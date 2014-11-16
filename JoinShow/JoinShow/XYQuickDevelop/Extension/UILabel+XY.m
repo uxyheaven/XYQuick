@@ -37,7 +37,8 @@
         {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, self.bounds.size.height);
         }
-    }else if (type == UILabelResizeType_constantWidth)
+    }
+    else if (type == UILabelResizeType_constantWidth)
     {
         // 宽不变
         size = [self estimateUISizeByWidth:self.bounds.size.width];
@@ -51,8 +52,10 @@
 
 - (CGSize)estimateUISizeByBound:(CGSize)bound
 {
-	if ( nil == self.text || 0 == self.text.length )
-		return CGSizeZero;
+    if ( nil == self.text || 0 == self.text.length )
+    {
+        return CGSizeZero;
+    }
     
 	return MB_MULTILINE_TEXTSIZE(self.text, self.font, bound, self.lineBreakMode);
 }
@@ -60,7 +63,10 @@
 - (CGSize)estimateUISizeByWidth:(CGFloat)width
 {
 	if ( nil == self.text || 0 == self.text.length )
-		return CGSizeMake( width, 0.0f );
+    {
+        return CGSizeMake( width, 0.0f );
+    }
+		
     
 	if ( self.numberOfLines )
 	{
@@ -75,7 +81,9 @@
 - (CGSize)estimateUISizeByHeight:(CGFloat)height
 {
 	if ( nil == self.text || 0 == self.text.length )
-		return CGSizeMake( 0.0f, height );
+    {
+        return CGSizeMake( 0.0f, height );
+    }
     
 	return MB_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(999999.0f, height), self.lineBreakMode);
 }

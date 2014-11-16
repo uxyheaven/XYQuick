@@ -79,7 +79,7 @@
             NSInteger tag       = sourceView.tag;// .lowercaseString;
 
             NSString *selector  = nil;
-			if ( nameSpace)
+			if ( nameSpace )
             {
 				selector = [NSString stringWithFormat:@"%@_%ld", nameSpace, tag];
 			}
@@ -301,14 +301,30 @@
     if (superView)
     {
         [signal forward:superView];
-    }else{
+    }
+    else
+    {
         // 到顶了
-        UIViewController *vc = [signal.source viewController];
+        UIViewController *vc = [signal.source __currentViewController];
         if (vc)
         {
             [signal forward:vc];
         }
     }
+}
+
+- (UIViewController *)__currentViewController
+{
+    id viewController = [self nextResponder];
+    UIView *view      = self;
+    
+    while (viewController && ![viewController isKindOfClass:[UIViewController class]])
+    {
+        view           = [view superview];
+        viewController = [view nextResponder];
+    }
+    
+    return viewController;
 }
 
 @end
@@ -361,10 +377,10 @@
     
 	if ( signal )
     {
-		signal.source = source ? source : self;
-		signal.target = self;
-		signal.name = name;
-		signal.object = object;
+        signal.source = source ? source : self;
+        signal.target = self;
+        signal.name   = name;
+        signal.object = object;
 		
 		[signal send];
 	}
@@ -431,7 +447,7 @@
 	
 	if ( [self.source isKindOfClass:[UIView class]] )
     {
-		return [(UIView *)self.source viewController];
+		return [(UIView *)self.source __currentViewController];
 	}
     else if ( [self.source isKindOfClass:[UIViewController class]] )
     {
