@@ -14,7 +14,7 @@
 
 #undef	ON_TIMER
 #define ON_TIMER( __name, __timer, __duration ) \
-        - (void)__name##TimerHandle:(XYTimer *)timer duration:(NSTimeInterval)duration
+        - (void)__name##TimerHandle:(XYTimer *)__timer duration:(NSTimeInterval)__duration
 
 #undef	NSObject_XYTimers
 #define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
