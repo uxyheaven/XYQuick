@@ -11,8 +11,9 @@
 #import "NSObject+XY.h"
 
 DUMMY_CLASS(UIView_XY);
-#undef	UIView_key_tapBlock
-#define UIView_key_tapBlock	"UIView.tapBlock"
+
+#define UIView_key_tapBlock       "UIView.tapBlock"
+#define UIView_key_longPressBlock "UIView.longPressBlock"
 
 @implementation UIView (XY)
 
@@ -51,7 +52,7 @@ DUMMY_CLASS(UIView_XY);
 }
 - (void)removeTapGesture
 {
-    for (UIGestureRecognizer * gesture in self.gestureRecognizers)
+    for (UIGestureRecognizer *gesture in self.gestureRecognizers)
 	{
 		if ([gesture isKindOfClass:[UITapGestureRecognizer class]])
 		{
@@ -67,14 +68,45 @@ DUMMY_CLASS(UIView_XY);
     
     objc_setAssociatedObject(self, UIView_key_tapBlock, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
+
 - (void)actionTap
 {
     UIViewCategoryNormalBlock block = objc_getAssociatedObject(self, UIView_key_tapBlock);
     
     if (block)
+    {
         block(self);
+    }
 }
 
+- (void)addLongPressGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
+{
+    UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(actionLongPress)];
+    [self addGestureRecognizer:tap];
+    
+    objc_setAssociatedObject(self, UIView_key_longPressBlock, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void)removeLongPressGesture
+{
+    for (UIGestureRecognizer *gesture in self.gestureRecognizers)
+    {
+        if ([gesture isKindOfClass:[UILongPressGestureRecognizer class]])
+        {
+            [self removeGestureRecognizer:gesture];
+        }
+    }
+}
+
+- (void)actionLongPress
+{
+    UIViewCategoryNormalBlock block = objc_getAssociatedObject(self, UIView_key_tapBlock);
+    
+    if (block)
+    {
+        block(self);
+    }
+}
 /////////////////////////////////////////////////////////////
 - (void)addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha
 {

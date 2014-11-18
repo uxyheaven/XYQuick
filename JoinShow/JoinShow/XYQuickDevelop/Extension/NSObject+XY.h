@@ -56,6 +56,10 @@
 - (void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
 - (id)blockForEventWithIdentifier:(NSString *)identifier;
 
+#pragma mark- copy
+// 基于NSKeyArchive.如果 self导入XYAutoCoding.h,可用与自定义对象
+- (id)deepCopy1;
+
 @end
 
 

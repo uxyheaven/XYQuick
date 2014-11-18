@@ -22,8 +22,10 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 // 增加手势
 - (void)addTapGestureWithTarget:(id)target action:(SEL)action;
 - (void)addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock;
-
 - (void)removeTapGesture;
+
+- (void)addLongPressGestureWithBlock:(UIViewCategoryNormalBlock)aBlock;
+- (void)removeLongPressGesture;
 
 // 增加背景阴影
 - (void)addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha;

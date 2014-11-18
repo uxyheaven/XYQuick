@@ -59,7 +59,7 @@ DEF_SINGLETON( XYFileCache );
     
     if (time + self.maxCacheAge < 0)
     {
-        pathName = nil;
+        //pathName = nil;
         [[NSFileManager defaultManager] removeItemAtPath:pathName error:nil];
     }
     

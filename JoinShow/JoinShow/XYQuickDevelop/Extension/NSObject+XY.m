@@ -417,6 +417,11 @@ static void (*__dealloc)( id, SEL);
     return [dic objectForKey:identifier];
 }
 
+#pragma mark- copy
+- (id)deepCopy1
+{
+    return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+}
 @end
 
 
