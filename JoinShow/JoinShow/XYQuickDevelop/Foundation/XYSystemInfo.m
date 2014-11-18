@@ -399,17 +399,17 @@ static const char * __jb_app = NULL;
     }
     else
     {
-        return [[NSUserDefaults standardUserDefaults] floatForKey:[self xyVersionKeyWithUser:user]] == [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:[self xyVersionKeyWithUser:user]] isEqualToString:[self appVersion]];
     }
 }
 + (void)setFirstRunWithUser:(NSString *)user
 {
-    [[NSUserDefaults standardUserDefaults] setFloat:-1 forKey:[self xyVersionKeyWithUser:user]];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 + (void)setNotFirstRunWithUser:(NSString *)user
 {
-    [[NSUserDefaults standardUserDefaults] setFloat:[self floatVersion] forKey:[self xyVersionKeyWithUser:user]];
+    [[NSUserDefaults standardUserDefaults] setObject:[self appVersion] forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end
