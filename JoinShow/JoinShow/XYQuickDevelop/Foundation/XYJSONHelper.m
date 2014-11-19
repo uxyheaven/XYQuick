@@ -453,7 +453,10 @@ const char *property_getTypeString(objc_property_t property) {
         NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[XYJSONObject count]];
         [XYJSONObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             id model = [NSData objectForModelClass:modelClass fromDict:obj withJSONKeyDict:dic];
-            [models addObject:model];
+            if (model)
+            {
+                [models addObject:model];
+            }
         }];
         
         return models;
@@ -485,7 +488,11 @@ const char *property_getTypeString(objc_property_t property) {
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:array.count];
     NSDictionary   *dic    = [modelClass XYJSONKeyDict];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [models addObject:[self objectForModelClass:modelClass fromDict:obj withJSONKeyDict:dic]];
+        id model = [self objectForModelClass:modelClass fromDict:obj withJSONKeyDict:dic];
+        if (model)
+        {
+            [models addObject:model];
+        }
     }];
     return models;
 }
@@ -723,7 +730,10 @@ const char *property_getTypeString(objc_property_t property) {
         NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[self count]];
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             id model = [NSData objectForModelClass:modelClass fromDict:obj withJSONKeyDict:dic];
-            [models addObject:model];
+            if (model)
+            {
+                [models addObject:model];
+            }
         }];
         return models;
     }
