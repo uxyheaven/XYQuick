@@ -63,6 +63,8 @@ DEF_SINGLETON( XYFileCache );
         [[NSFileManager defaultManager] removeItemAtPath:pathName error:nil];
     }
     
+    NSAssert(pathName.length > 0, @"路径得有");
+    
 	return pathName;
 }
 
