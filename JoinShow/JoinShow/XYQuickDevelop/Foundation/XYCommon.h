@@ -166,9 +166,9 @@ typedef enum {
  * @brief 版本号比大小, Version format[X.X.X]
  * @param oldVersion 旧版本号
  * @param newVersion 新版本号
- * @return 比较oldVersion和newVersion，如果oldVersion比newVersion旧，则返回YES，否则NO
+ * @return 比较oldVersion和newVersion, NSOrderedAscending 左边比右边的小
  */
-+ (BOOL)compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion;
++ (NSComparisonResult)compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion;
 
 
 #pragma mark - to do

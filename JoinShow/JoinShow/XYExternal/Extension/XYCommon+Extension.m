@@ -244,9 +244,9 @@ static MBProgressHUD *HUD = nil;
             localVersion = aVersion;
         }
         
-        BOOL b = [self compareVersionFromOldVersion:localVersion newVersion:versionAppStore];
+        NSComparisonResult re = [self compareVersionFromOldVersion:localVersion newVersion:versionAppStore];
         
-        if (b)
+        if (re == NSOrderedAscending)
         {
             if (blockLocalIsOld)
                 blockLocalIsOld(versionAppStore);

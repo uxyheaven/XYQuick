@@ -499,28 +499,9 @@
 }
 
 /***************************************************************/
-+ (BOOL) compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion
++ (NSComparisonResult)compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion
 {
-    NSArray *oldV = [oldVersion componentsSeparatedByString:@"."];
-    NSArray *newV = [newVersion componentsSeparatedByString:@"."];
-    
-    if (oldV.count == newV.count)
-    {
-        for (NSInteger i = 0; i < oldV.count; i++)
-        {
-            NSInteger old = [(NSString *)[oldV objectAtIndex:i] integerValue];
-            NSInteger new = [(NSString *)[newV objectAtIndex:i] integerValue];
-            if (old < new)
-            {
-                return YES;
-            }
-        }
-        return NO;
-    }
-    else
-    {
-        return NO;
-    }
+    return [oldVersion compare:newVersion options:NSNumericSearch];
 }
 /***************************************************************/
 
