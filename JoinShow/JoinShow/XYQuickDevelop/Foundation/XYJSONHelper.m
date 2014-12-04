@@ -9,6 +9,8 @@
 
 #import "XYJSONHelper.h"
 
+#define kNSObjectProtocolProperties @[@"hash", @"superclass", @"description", @"debugDescription"]
+
 #pragma mark - interface
 
 #pragma mark - static
@@ -108,7 +110,7 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         {
             [dictionary setValuesForKeysWithDictionary:[[self superclass] XYJSONKeyDict]];
         }
-
+        
         XY_swizzleInstanceMethod(self, @selector(valueForUndefinedKey:), @selector(XY_valueForUndefinedKey:));
         XY_swizzleInstanceMethod(self, @selector(setValue:forUndefinedKey:), @selector(XY_setValue:forUndefinedKey:));
         NSArray *properties = [self xyPropertiesOfClass:[self class]];
@@ -123,6 +125,12 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
                 [dictionary setObject:obj forKey:obj];
             }
         }];
+        
+        if ([self conformsToProtocol:@protocol(NSObject)])
+        {
+            [dictionary removeObjectsForKeys:kNSObjectProtocolProperties];
+        }
+        
         [XY_JSON_OBJECT_KEYDICTS setObject:dictionary forKey:YYObjectKey];
     }
     return dictionary;
@@ -152,14 +160,17 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
     {
         NSError *error;
         NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
-        
-#ifdef DEBUG
-        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
-#endif
-        
         if (!error)
             return jsonData;
     }
+#ifdef DEBUG
+    else
+    {
+        NSError *error;
+        [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
+        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
+    }
+#endif
     return self.XYJSONDictionary.XYJSONData;
 }
 
@@ -216,7 +227,7 @@ static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
 - (id)XY_valueForUndefinedKey:(NSString *)key
 {
 #ifdef DEBUG
-   // NSLog(@"%@ undefinedKey %@", self.class, key);
+    // NSLog(@"%@ undefinedKey %@", self.class, key);
 #endif
     return nil;
 }
@@ -224,7 +235,7 @@ static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
 - (void)XY_setValue:(id)value forUndefinedKey:(NSString *)key
 {
 #ifdef DEBUG
-   // NSLog(@"%@ undefinedKey %@ and value is %@", self.class, key, value);
+    // NSLog(@"%@ undefinedKey %@ and value is %@", self.class, key, value);
 #endif
 }
 
@@ -317,7 +328,7 @@ static void XY_swizzleInstanceMethod(Class c, SEL original, SEL replacement) {
 {
     NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
     NSDateFormatter *dateFormatter = threadDictionary[@"jsonDateFormatter"];
-
+    
     if(!dateFormatter)
     {
         @synchronized(self)
@@ -446,7 +457,7 @@ const char *property_getTypeString(objc_property_t property) {
     id XYJSONObject   = [self XYJSONObjectForKey:key];
     if (XYJSONObject == nil)
         return nil;
-
+    
     NSDictionary *dic = [modelClass XYJSONKeyDict];
     if ([XYJSONObject isKindOfClass:[NSArray class]])
     {
@@ -709,16 +720,19 @@ const char *property_getTypeString(objc_property_t property) {
     {
         NSError *error;
         NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:kNilOptions error:&error];
-        
-#ifdef DEBUG
-        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
-#endif
-        
         if (!error)
         {
             return jsonData;
         }
     }
+#ifdef DEBUG
+    else
+    {
+        NSError *error;
+        [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
+        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
+    }
+#endif
     return nil;
 }
 

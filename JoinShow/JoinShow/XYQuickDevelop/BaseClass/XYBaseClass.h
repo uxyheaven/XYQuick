@@ -18,4 +18,10 @@
 //#import "XYBaseView.h"
 //#import "XYBaseModel.h"
 
+// 生成器基类
+#import "XYBaseBuilder.h"
+
+// 模块基类
+#import "XYAppModule.h"
+
 #endif

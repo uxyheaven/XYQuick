@@ -122,6 +122,8 @@
 		57DB87EB183349A60015CC5A /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C6183349A60015CC5A /* XYTimer.m */; };
 		57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CA183349A60015CC5A /* AutoSizeView.m */; };
 		57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */; };
+		57DC76FC1A3008840046B519 /* XYBaseBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DC76FB1A3008840046B519 /* XYBaseBuilder.m */; };
+		57DC76FF1A3020D90046B519 /* XYAppModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DC76FE1A3020D90046B519 /* XYAppModule.m */; };
 		57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0373188E1AA1002422D4 /* XYFileCache.m */; };
 		57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0375188E1AA1002422D4 /* XYMemoryCache.m */; };
 		57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF037C188E1CFF002422D4 /* XYObjectCache.m */; };
@@ -393,6 +395,10 @@
 		57DB87D7183349A60015CC5A /* XYUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUI.h; sourceTree = "<group>"; };
 		57DB87D8183349A60015CC5A /* XYPrecompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPrecompile.h; sourceTree = "<group>"; };
 		57DB87D9183349A60015CC5A /* XYQuickDevelop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuickDevelop.h; sourceTree = "<group>"; };
+		57DC76FA1A3008840046B519 /* XYBaseBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseBuilder.h; sourceTree = "<group>"; };
+		57DC76FB1A3008840046B519 /* XYBaseBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseBuilder.m; sourceTree = "<group>"; };
+		57DC76FD1A3020D90046B519 /* XYAppModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModule.h; sourceTree = "<group>"; };
+		57DC76FE1A3020D90046B519 /* XYAppModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAppModule.m; sourceTree = "<group>"; };
 		57DF0371188E1AA1002422D4 /* XYCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCacheProtocol.h; sourceTree = "<group>"; };
 		57DF0372188E1AA1002422D4 /* XYFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFileCache.h; sourceTree = "<group>"; };
 		57DF0373188E1AA1002422D4 /* XYFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFileCache.m; sourceTree = "<group>"; };
@@ -860,6 +866,10 @@
 				7485396319A58BB6004D8B66 /* XYBaseListData.m */,
 				741498321A08C11F007F593C /* XYBaseDataSource.h */,
 				741498331A08C11F007F593C /* XYBaseDataSource.m */,
+				57DC76FA1A3008840046B519 /* XYBaseBuilder.h */,
+				57DC76FB1A3008840046B519 /* XYBaseBuilder.m */,
+				57DC76FD1A3020D90046B519 /* XYAppModule.h */,
+				57DC76FE1A3020D90046B519 /* XYAppModule.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1213,6 +1223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57DC76FF1A3020D90046B519 /* XYAppModule.m in Sources */,
 				57A15003191E251000B00281 /* SimpleAudioEngine.m in Sources */,
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				572E7CB818385C690018179D /* Reachability.m in Sources */,
@@ -1227,6 +1238,7 @@
 				57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */,
 				57403240190FA76700C82B23 /* FMResultSet.m in Sources */,
 				57DB87EA183349A60015CC5A /* XYThread.m in Sources */,
+				57DC76FC1A3008840046B519 /* XYBaseBuilder.m in Sources */,
 				572E7CB418385C690018179D /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 				578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */,
 				57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */,
