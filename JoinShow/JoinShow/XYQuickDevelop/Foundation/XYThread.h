@@ -37,13 +37,6 @@
 //
 #pragma mark -
 
-#undef	FOREGROUND_BEGIN
-#undef	FOREGROUND_BEGIN_(x)
-#undef	FOREGROUND_COMMIT
-#undef	BACKGROUND_BEGIN
-#undef	BACKGROUND_BEGIN_(x)
-#undef	BACKGROUND_COMMIT
-
 #define FOREGROUND_BEGIN		[XYGCD enqueueForeground:^{
 #define FOREGROUND_BEGIN_(x)	[XYGCD enqueueForegroundWithDelay:(dispatch_time_t)x block:^{
 #define FOREGROUND_COMMIT		}];
@@ -52,16 +45,34 @@
 #define BACKGROUND_BEGIN_(x)	[XYGCD enqueueBackgroundWithDelay:(dispatch_time_t)x block:^{
 #define BACKGROUND_COMMIT		}];
 
+#define BACKGROUND_IOFILE_BEGIN         [XYGCD enqueueBackgroundIOFile:^{
+#define BACKGROUND_IOFILE_BEGIN_(x)     [XYGCD enqueueBackgroundIOFileWithDelay:(dispatch_time_t)x block:^{
+#define BACKGROUND_IOFILE_COMMIT        }];
+
 #pragma mark -
+
+@class XYGCD;
+typedef XYGCD * (^XY_GCD_block)( dispatch_block_t block );
 
 @interface XYGCD : NSObject
 
+AS_SINGLETON( XYGCD )
+
+@property (nonatomic, readonly) XY_GCD_block	MAIN;
+@property (nonatomic, readonly) XY_GCD_block	FORK;
+@property (nonatomic, readonly) XY_GCD_block	FORK_IO_FILE;
+
 + (dispatch_queue_t)foreQueue;
 + (dispatch_queue_t)backQueue;
++ (dispatch_queue_t)backIOFileQueue;
 
 + (void)enqueueForeground:(dispatch_block_t)block;
-+ (void)enqueueBackground:(dispatch_block_t)block;
 + (void)enqueueForegroundWithDelay:(dispatch_time_t)ms block:(dispatch_block_t)block;
+
++ (void)enqueueBackground:(dispatch_block_t)block;
 + (void)enqueueBackgroundWithDelay:(dispatch_time_t)ms block:(dispatch_block_t)block;
+
++ (void)enqueueBackgroundIOFile:(dispatch_block_t)block;
++ (void)enqueueBackgroundIOFileWithDelay:(dispatch_time_t)ms block:(dispatch_block_t)block;
 
 @end

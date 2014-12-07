@@ -11,6 +11,14 @@
 #import "XYSystemInfo.h"
 #import "XYSandbox.h"
 #import "XYAutoCoding.h"
+#import "XYThread.h"
+
+@interface XYFileCache ()
+{
+    NSFileManager *_fileManager;
+}
+
+@end
 
 @implementation XYFileCache
 
@@ -18,58 +26,60 @@ DEF_SINGLETON( XYFileCache );
 
 - (id)init
 {
-	self = [super init];
-	if ( self )
-	{
-       self.cacheUser   = @"";
-       self.cachePath   = [NSString stringWithFormat:@"%@/%@/Cache/", [XYSandbox libCachePath], [XYSystemInfo appVersion]];
-       self.maxCacheAge = XYFileCache_fileExpires;
-	}
-	return self;
+    return [self initWithNamespace:@"default"];
 }
 
+- (id)initWithNamespace:(NSString *)ns
+{
+    NSAssert(ns.length > 0, @"Namespace 必须得有");
+    
+    self = [super init];
+    if ( self )
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        _diskCachePath = [paths[0] stringByAppendingPathComponent:ns];
+        
+        _maxCacheAge = XYFileCache_fileExpires;
+        
+        _fileManager = [NSFileManager defaultManager];
+        
+#if TARGET_OS_IPHONE
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(cleanDisk)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(backgroundCleanDisk)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
+#endif
+        
+    }
+    return self;
+}
 - (void)dealloc
 {
-	[NSObject cancelPreviousPerformRequestsWithTarget:self];
-}
 
+}
+#pragma mark- 
 - (NSString *)fileNameForKey:(NSString *)key
 {
-	NSString *pathName = nil;
-	if ( self.cacheUser && [self.cacheUser length] )
+	NSString *pathName = _diskCachePath;
+    
+	if ( NO == [_fileManager fileExistsAtPath:pathName] )
 	{
-		pathName = [self.cachePath stringByAppendingFormat:@"%@/", self.cacheUser];
-	}
-	else
-	{
-		pathName = self.cachePath;
-	}
-	
-	if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:pathName] )
-	{
-		[[NSFileManager defaultManager] createDirectoryAtPath:pathName
+		[_fileManager createDirectoryAtPath:pathName
 								  withIntermediateDirectories:YES
 												   attributes:nil
 														error:NULL];
 	}
     
-    pathName = [pathName stringByAppendingString:key];
-    
-    NSTimeInterval time = [[[[NSFileManager defaultManager] attributesOfItemAtPath:pathName error:nil] fileModificationDate] timeIntervalSinceNow];
-    
-    if (time + self.maxCacheAge < 0)
-    {
-        //pathName = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:pathName error:nil];
-    }
+    pathName = [pathName stringByAppendingPathComponent:key];
     
     NSAssert(pathName.length > 0, @"路径得有");
     
 	return pathName;
-}
-
-- (void)removeOverdueFiles{
-
 }
 
 - (id)objectForKey:(id)key objectClass:(Class)aClass
@@ -85,10 +95,169 @@ DEF_SINGLETON( XYFileCache );
     }
 }
 
+// 清除当前 XYFileCache 所有的文件
+- (void)clearDisk
+{
+    [self clearDiskOnCompletion:nil];
+}
+- (void)clearDiskOnCompletion:(void (^)(void))completion
+{
+    BACKGROUND_IOFILE_BEGIN
+    {
+        [_fileManager removeItemAtPath:_diskCachePath error:NULL];
+        [_fileManager createDirectoryAtPath:_diskCachePath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+        if (completion)
+        {
+            FOREGROUND_BEGIN
+            {
+                completion();
+            }
+            FOREGROUND_COMMIT
+        }
+    }
+    BACKGROUND_IOFILE_COMMIT
+}
+// 清除当前 XYFileCache 所有过期的文件
+- (void)cleanDisk
+{
+     [self cleanDiskWithCompletionBlock:nil];
+}
+- (void)cleanDiskWithCompletionBlock:(void (^)(void))completion
+{
+    BACKGROUND_IOFILE_BEGIN
+    {
+        NSURL *diskCacheURL = [NSURL fileURLWithPath:_diskCachePath isDirectory:YES];
+        NSArray *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
+        
+        // This enumerator prefetches useful properties for our cache files.
+        NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtURL:diskCacheURL
+                                                   includingPropertiesForKeys:resourceKeys
+                                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                 errorHandler:NULL];
+        
+        NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-_maxCacheAge];
+        NSMutableDictionary *cacheFiles = [NSMutableDictionary dictionary];
+        NSUInteger currentCacheSize = 0;
+        
+        // Enumerate all of the files in the cache directory.  This loop has two purposes:
+        //
+        //  1. Removing files that are older than the expiration date.
+        //  2. Storing file attributes for the size-based cleanup pass.
+        NSMutableArray *urlsToDelete = [[NSMutableArray alloc] init];
+        for (NSURL *fileURL in fileEnumerator)
+        {
+            NSDictionary *resourceValues = [fileURL resourceValuesForKeys:resourceKeys error:NULL];
+            
+            // Skip directories.
+            if ([resourceValues[NSURLIsDirectoryKey] boolValue])
+            {
+                continue;
+            }
+            
+            // Remove files that are older than the expiration date;
+            NSDate *modificationDate = resourceValues[NSURLContentModificationDateKey];
+            if ([[modificationDate laterDate:expirationDate] isEqualToDate:expirationDate])
+            {
+                [urlsToDelete addObject:fileURL];
+                continue;
+            }
+            
+            // Store a reference to this file and account for its total size.
+            NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
+            currentCacheSize += [totalAllocatedSize unsignedIntegerValue];
+            [cacheFiles setObject:resourceValues forKey:fileURL];
+        }
+        
+        for (NSURL *fileURL in urlsToDelete)
+        {
+            [_fileManager removeItemAtURL:fileURL error:nil];
+        }
+        
+        // If our remaining disk cache exceeds a configured maximum size, perform a second
+        // size-based cleanup pass.  We delete the oldest files first.
+        if (self.maxCacheSize > 0 && currentCacheSize > self.maxCacheSize) {
+            // Target half of our maximum cache size for this cleanup pass.
+            const NSUInteger desiredCacheSize = self.maxCacheSize / 2;
+            
+            // Sort the remaining cache files by their last modification time (oldest first).
+            NSArray *sortedFiles = [cacheFiles keysSortedByValueWithOptions:NSSortConcurrent
+                                                            usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                                                                return [obj1[NSURLContentModificationDateKey] compare:obj2[NSURLContentModificationDateKey]];
+                                                            }];
+            
+            // Delete files until we fall below our desired cache size.
+            for (NSURL *fileURL in sortedFiles) {
+                if ([_fileManager removeItemAtURL:fileURL error:nil]) {
+                    NSDictionary *resourceValues = cacheFiles[fileURL];
+                    NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
+                    currentCacheSize -= [totalAllocatedSize unsignedIntegerValue];
+                    
+                    if (currentCacheSize < desiredCacheSize) {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (completion)
+        {
+            FOREGROUND_BEGIN
+                completion();
+            FOREGROUND_COMMIT
+        }
+    }
+    BACKGROUND_IOFILE_COMMIT
+}
+
+- (NSUInteger)getSize
+{
+    __block NSUInteger size = 0;
+    dispatch_sync([XYGCD backIOFileQueue], ^{
+        NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:_diskCachePath];
+        for (NSString *fileName in fileEnumerator)
+        {
+            NSString *filePath  = [_diskCachePath stringByAppendingPathComponent:fileName];
+            NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
+            size += [attrs fileSize];
+        }
+    });
+    return size;
+}
+
+- (NSUInteger)getDiskCount
+{
+    __block NSUInteger count = 0;
+    dispatch_sync([XYGCD backIOFileQueue], ^{
+        NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:_diskCachePath];
+        count = [[fileEnumerator allObjects] count];
+    });
+    return count;
+}
+#pragma mark-
+- (void)backgroundCleanDisk
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        // Clean up any unfinished task business by marking where you
+        // stopped or ending the task outright.
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    // Start the long-running task and return immediately.
+    [self cleanDiskWithCompletionBlock:^{
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+}
+
 #pragma mark - XYCacheProtocol
 - (BOOL)hasObjectForKey:(id)key
 {
-	return [[NSFileManager defaultManager] fileExistsAtPath:[self fileNameForKey:key]];
+	return [_fileManager fileExistsAtPath:[self fileNameForKey:key]];
 }
 
 - (id)objectForKey:(id)key
@@ -112,16 +281,12 @@ DEF_SINGLETON( XYFileCache );
 
 - (void)removeObjectForKey:(NSString *)key
 {
-	[[NSFileManager defaultManager] removeItemAtPath:[self fileNameForKey:key] error:nil];
+	[_fileManager removeItemAtPath:[self fileNameForKey:key] error:nil];
 }
 
 - (void)removeAllObjects
 {
-	[[NSFileManager defaultManager] removeItemAtPath:_cachePath error:NULL];
-	[[NSFileManager defaultManager] createDirectoryAtPath:_cachePath
-							  withIntermediateDirectories:YES
-											   attributes:nil
-													error:NULL];
+    [self clearDisk];
 }
 
 - (id)objectForKeyedSubscript:(id)key

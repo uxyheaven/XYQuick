@@ -19,6 +19,10 @@ static void blockCleanUp(__strong void(^*block)(void)) {
     __strong void(^block)(void) __attribute__((cleanup(blockCleanUp), unused)) = ^
 
 
+#define keypath2(OBJ, PATH) \
+(((void)(NO && ((void)OBJ.PATH, NO)), # PATH))
+
+
 #pragma mark - XYBlackMagic
 @interface XYBlackMagic : NSObject
 

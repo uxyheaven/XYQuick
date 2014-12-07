@@ -27,12 +27,10 @@ DEF_SINGLETON(XYObjectCache)
 	self = [super init];
 	if ( self )
 	{
-		_memoryCache = [[XYMemoryCache alloc] init];
+		_memoryCache = [XYMemoryCache sharedInstance];
 		_memoryCache.clearWhenMemoryLow = YES;
         
-		_fileCache = [[XYFileCache alloc] init];
-		_fileCache.cachePath = [NSString stringWithFormat:@"%@/ObjectCache/", [XYSandbox libCachePath]];
-		_fileCache.cacheUser = @"";
+		_fileCache = [XYFileCache sharedInstance];
 	}
 	return self;
 }
@@ -43,7 +41,6 @@ DEF_SINGLETON(XYObjectCache)
 
 - (void)registerObjectClass:(Class)aClass{
     _objectClass = aClass;
-    _fileCache.cachePath = [NSString stringWithFormat:@"%@/%@/", [XYSandbox libCachePath], NSStringFromClass(_objectClass)];
 }
 
 - (BOOL)hasCachedForKey:(NSString *)string
