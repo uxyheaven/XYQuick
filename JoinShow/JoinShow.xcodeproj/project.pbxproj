@@ -354,6 +354,7 @@
 		57D4FF491822275400E10954 /* BusinessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessVC.m; sourceTree = "<group>"; };
 		57D4FF4B18222E2700E10954 /* RubyChinaNodeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyChinaNodeEntity.h; sourceTree = "<group>"; };
 		57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyChinaNodeEntity.m; sourceTree = "<group>"; };
+		57D582871A399D0500C760C7 /* XYMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMenuItem.h; sourceTree = "<group>"; };
 		57DB86B0183339560015CC5A /* XYExternalPrecompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternalPrecompile.h; sourceTree = "<group>"; };
 		57DB879F183349A60015CC5A /* NSArray+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XY.h"; sourceTree = "<group>"; };
 		57DB87A0183349A60015CC5A /* NSArray+XY.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSArray+XY.mm"; sourceTree = "<group>"; };
@@ -870,6 +871,7 @@
 				57DC76FB1A3008840046B519 /* XYBaseBuilder.m */,
 				57DC76FD1A3020D90046B519 /* XYAppModule.h */,
 				57DC76FE1A3020D90046B519 /* XYAppModule.m */,
+				57D582871A399D0500C760C7 /* XYMenuItem.h */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1137,7 +1139,7 @@
 				ORGANIZATIONNAME = Heaven;
 				TargetAttributes = {
 					57B3FFE5177AD9BC00775FC9 = {
-						DevelopmentTeam = NYSSA4N746;
+						DevelopmentTeam = 926D22PQMW;
 					};
 				};
 			};

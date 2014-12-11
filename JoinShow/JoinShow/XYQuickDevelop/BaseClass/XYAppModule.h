@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol XYMenuItem;
+#import "XYMenuItem.h"
 
 @interface XYAppModule : NSObject
 
