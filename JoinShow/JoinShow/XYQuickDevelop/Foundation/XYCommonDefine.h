@@ -94,8 +94,10 @@ DUMMY_CLASS(UIColor+YYAdd)
 // block 安全self
 #if __has_feature(objc_arc)
 // arc
-#define DEF_WEAKSELF    __weak __typeof(self) weakSelf = self;
-#define DEF_WEAKSELF_( __CLASSNAME__ )      __weak typeof( __CLASSNAME__ *) weakSelf = self;
+#define DEF_WEAKSELF                        __weak __typeof(self) weakSelf = self;
+//#define DEF_WEAKSELF_( __CLASSNAME__ )      __weak typeof( __CLASSNAME__ *) weakSelf = self;
+#define DEF_STRONGSELF                      __strong __typeof(weakSelf) self = weakSelf;
+//#define DEF_STRONGSELF_( __CLASSNAME__ )    __strong __typeof( __CLASSNAME__ *) strongSelf = weakSelf;
 #else
 // mrc
 #define DEF_WEAKSELF     __block typeof(id) weakSelf = self;

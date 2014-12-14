@@ -90,19 +90,21 @@
 
 - (IBAction)clickDownload:(id)sender {
     NSString *locPath = [XYCommon dataFilePath:@"3.0.dmg" ofType:filePathOption_documents];
-    DEF_WEAKSELF_(NetworkVC)
+    DEF_WEAKSELF
     Downloader *down = [self.httpClient3 download:NetworkVC_downloadLink
                                                   to:locPath
                                               params:nil
                                     breakpointResume:YES];
     
     [down progress:^(double progress) {
+        DEF_STRONGSELF
         NSLogD(@"%.2f", progress*100.0);
-        [weakSelf progressDownload].progress = progress;
-        [weakSelf labPregress].text = [NSString stringWithFormat:@"%.1f", progress * 100];
+        [self progressDownload].progress = progress;
+        [self labPregress].text = [NSString stringWithFormat:@"%.1f", progress * 100];
     }];
     [down succeed:^(HttpRequest *op) {
-        [weakSelf progressDownload].progress = 0;
+        DEF_STRONGSELF
+        [self progressDownload].progress = 0;
         SHOWMSG(nil, @"Download succeed", @"ok");
     } failed:^(HttpRequest *op, NSError *err) {
         NSLog(@"Request error : %@", [err localizedDescription]);
