@@ -229,14 +229,14 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
 
 /**************************************************************/
 // No-ops for non-retaining objects.
-static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
-static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
+//static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
+//static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 /**************************************************************/
 // 方法定义
 //void (*__actionXY)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
-void (*__actionXY_return_void)(id, SEL, ...);
-id (*__actionXY_return_id)(id, SEL, ...);
+//void (*__actionXY_return_void)(id, SEL, ...);
+//id (*__actionXY_return_id)(id, SEL, ...);
 
 /**************************************************************/
 // 国际化

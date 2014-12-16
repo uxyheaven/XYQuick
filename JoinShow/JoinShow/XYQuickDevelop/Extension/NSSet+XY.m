@@ -9,6 +9,9 @@
 #import "NSSet+XY.h"
 #import "XYCommonDefine.h"
 
+static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
+static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
+
 @implementation NSSet (XY)
 
 + (NSMutableSet *)nonRetainSet{
