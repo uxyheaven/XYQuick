@@ -162,7 +162,7 @@
     static dispatch_once_t once;
     static XYFileCache *cache;
     dispatch_once(&once, ^ {
-        cache = [[XYFileCache alloc] init];
+        cache = [[XYFileCache alloc] initWithNamespace:@"XYFileDataSource"];
     });
     
     return cache;

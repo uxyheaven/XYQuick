@@ -894,7 +894,7 @@ if (1) { \
     PERF_LEAVE_(save)
     
     PERF_ENTER_(fileCache_save)
-    XYFileCache *fileCache = [[XYFileCache alloc] init];
+    XYFileCache *fileCache = [XYFileCache sharedInstance];
     [fileCache setObject:list forKey:@"AutoCodingList"];
     PERF_LEAVE_(fileCache_save)
 }
@@ -908,7 +908,7 @@ if (1) { \
     NSLog(@"%@", list);
     
     PERF_ENTER_(fileCache_load)
-    XYFileCache *fileCache = [[XYFileCache alloc] init];
+    XYFileCache *fileCache = [XYFileCache sharedInstance];
     AutoCodingEntityList *list2 = [fileCache objectForKey:@"AutoCodingList" objectClass:[AutoCodingEntityList class]];
     PERF_LEAVE_(fileCache_load)
     

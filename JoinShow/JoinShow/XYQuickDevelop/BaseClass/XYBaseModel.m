@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         
-        _fileCache = [[XYFileCache alloc] init];
+        _fileCache = [XYFileCache sharedInstance];
     }
     
     return self;
