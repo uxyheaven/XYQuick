@@ -16,7 +16,4 @@
 - (void)removeObjectForKey:(id)key;
 - (void)removeAllObjects;
 
-- (id)objectForKeyedSubscript:(id)key;
-- (void)setObject:(id)obj forKeyedSubscript:(id)key;
-
 @end

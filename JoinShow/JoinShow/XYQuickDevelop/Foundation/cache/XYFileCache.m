@@ -289,14 +289,4 @@ DEF_SINGLETON( XYFileCache );
     [self clearDisk];
 }
 
-- (id)objectForKeyedSubscript:(id)key
-{
-	return nil;
-}
-
-- (void)setObject:(id)obj forKeyedSubscript:(id)key
-{
-    ;
-}
-
 @end

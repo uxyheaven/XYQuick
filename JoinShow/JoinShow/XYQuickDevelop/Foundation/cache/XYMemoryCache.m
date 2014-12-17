@@ -100,16 +100,6 @@ DEF_SINGLETON( XYMemoryCache );
 	_cachedCount = 0;
 }
 
-- (id)objectForKeyedSubscript:(id)key
-{
-	return [self objectForKey:key];
-}
-
-- (void)setObject:(id)obj forKeyedSubscript:(id)key
-{
-	[self setObject:obj forKey:key];
-}
-
 #pragma mark -
 
 - (void)handleMemoryCacheNotification:(NSNotification *)notification

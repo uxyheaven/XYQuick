@@ -20,4 +20,16 @@ AS_SINGLETON( XYMemoryCache );
 @property (atomic, strong   ) NSMutableArray      *cacheKeys;
 @property (atomic, strong   ) NSMutableDictionary *cacheObjs;
 
+
+// XYCacheProtocol 协议方法
+- (BOOL)hasObjectForKey:(id)key;
+
+- (id)objectForKey:(id)key;
+- (void)setObject:(id)object forKey:(id)key;
+
+- (void)removeObjectForKey:(id)key;
+- (void)removeAllObjects;
+
+//
+
 @end

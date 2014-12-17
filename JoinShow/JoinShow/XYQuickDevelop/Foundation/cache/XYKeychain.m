@@ -251,30 +251,6 @@ DEF_SINGLETON( XYKeychain )
 	// TODO:
 }
 
-- (id)objectForKeyedSubscript:(id)key
-{
-	if ( nil == key || NO == [key isKindOfClass:[NSString class]] )
-		return nil;
-    
-	return [self readValueForKey:key andDomain:nil];
-}
-
-- (void)setObject:(id)obj forKeyedSubscript:(id)key
-{
-	if ( nil == key || NO == [key isKindOfClass:[NSString class]] )
-		return;
-	
-	if ( nil == obj )
-	{
-		[self deleteValueForKey:key andDomain:nil];
-	}
-	else
-	{
-		[self writeValue:obj forKey:key andDomain:nil];
-	}
-}
-
-
 @end
 
 @implementation NSObject(XYKeychain)

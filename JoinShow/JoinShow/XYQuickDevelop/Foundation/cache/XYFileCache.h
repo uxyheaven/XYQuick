@@ -39,4 +39,12 @@ AS_SINGLETON( XYFileCache );
 - (NSUInteger)getSize;
 // 返回cache 数量
 - (NSUInteger)getDiskCount;
+
+// XYCacheProtocol 协议方法
+- (BOOL)hasObjectForKey:(id)key;
+- (id)objectForKey:(id)key;
+- (void)setObject:(id)object forKey:(id)key;
+
+//
+
 @end
