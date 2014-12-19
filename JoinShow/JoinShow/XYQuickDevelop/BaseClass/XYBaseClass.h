@@ -21,7 +21,16 @@
 // 生成器基类
 #import "XYBaseBuilder.h"
 
+
+#pragma mark- Protocol
+
 // 模块基类
-#import "XYAppModule.h"
+#import "XYAppModuleProtocol.h"
+
+#import "XYMenuItem.h"
+
+#import "XYControllerProtocol.h"
+
+#import "XYViewControllerProtocol.h"
 
 #endif

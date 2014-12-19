@@ -123,7 +123,6 @@
 		57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CA183349A60015CC5A /* AutoSizeView.m */; };
 		57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87CE183349A60015CC5A /* XYKeyboardHelper.m */; };
 		57DC76FC1A3008840046B519 /* XYBaseBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DC76FB1A3008840046B519 /* XYBaseBuilder.m */; };
-		57DC76FF1A3020D90046B519 /* XYAppModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DC76FE1A3020D90046B519 /* XYAppModule.m */; };
 		57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0373188E1AA1002422D4 /* XYFileCache.m */; };
 		57DF0377188E1AA1002422D4 /* XYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF0375188E1AA1002422D4 /* XYMemoryCache.m */; };
 		57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF037C188E1CFF002422D4 /* XYObjectCache.m */; };
@@ -157,7 +156,6 @@
 		747FB31A1A00D5C7004B557B /* LKDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FB3131A00D5C7004B557B /* LKDBUtils.m */; };
 		747FB31B1A00D5C7004B557B /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FB3151A00D5C7004B557B /* NSObject+LKDBHelper.m */; };
 		747FB31C1A00D5C7004B557B /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FB3171A00D5C7004B557B /* NSObject+LKModel.m */; };
-		7485396419A58BB6004D8B66 /* XYBaseListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7485396319A58BB6004D8B66 /* XYBaseListData.m */; };
 		74CD53FA19C28C630069282B /* CarEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD53F919C28C630069282B /* CarEntity.m */; };
 		74CD540B19C2E0930069282B /* XYBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD540A19C2E0930069282B /* XYBaseService.m */; };
 		74FD286619F0FFC9005513B4 /* XYAOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD286519F0FFC9005513B4 /* XYAOP.m */; };
@@ -398,8 +396,6 @@
 		57DB87D9183349A60015CC5A /* XYQuickDevelop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuickDevelop.h; sourceTree = "<group>"; };
 		57DC76FA1A3008840046B519 /* XYBaseBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseBuilder.h; sourceTree = "<group>"; };
 		57DC76FB1A3008840046B519 /* XYBaseBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseBuilder.m; sourceTree = "<group>"; };
-		57DC76FD1A3020D90046B519 /* XYAppModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModule.h; sourceTree = "<group>"; };
-		57DC76FE1A3020D90046B519 /* XYAppModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAppModule.m; sourceTree = "<group>"; };
 		57DF0371188E1AA1002422D4 /* XYCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCacheProtocol.h; sourceTree = "<group>"; };
 		57DF0372188E1AA1002422D4 /* XYFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFileCache.h; sourceTree = "<group>"; };
 		57DF0373188E1AA1002422D4 /* XYFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFileCache.m; sourceTree = "<group>"; };
@@ -421,6 +417,9 @@
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseVC.h; sourceTree = "<group>"; };
 		57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseVC.m; sourceTree = "<group>"; };
+		57F7FA2E1A43C2AF00BF75C4 /* XYControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYControllerProtocol.h; sourceTree = "<group>"; };
+		57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerProtocol.h; sourceTree = "<group>"; };
+		57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
 		57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_TestDic.plist; sourceTree = "<group>"; };
 		57FC192C17DEBF8F00B5E6F9 /* DataLiteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLiteVC.h; sourceTree = "<group>"; };
 		57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataLiteVC.m; sourceTree = "<group>"; };
@@ -465,8 +464,6 @@
 		747FB3151A00D5C7004B557B /* NSObject+LKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKDBHelper.m"; sourceTree = "<group>"; };
 		747FB3161A00D5C7004B557B /* NSObject+LKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LKModel.h"; sourceTree = "<group>"; };
 		747FB3171A00D5C7004B557B /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
-		7485396219A58BB6004D8B66 /* XYBaseListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseListData.h; sourceTree = "<group>"; };
-		7485396319A58BB6004D8B66 /* XYBaseListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseListData.m; sourceTree = "<group>"; };
 		74CD53F819C28C630069282B /* CarEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarEntity.h; sourceTree = "<group>"; };
 		74CD53F919C28C630069282B /* CarEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarEntity.m; sourceTree = "<group>"; };
 		74CD540919C2E0930069282B /* XYBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseService.h; sourceTree = "<group>"; };
@@ -863,15 +860,14 @@
 				577952D61909718A00F95459 /* XYBaseView.m */,
 				577952D81909727E00F95459 /* XYBaseModel.h */,
 				577952D91909727E00F95459 /* XYBaseModel.m */,
-				7485396219A58BB6004D8B66 /* XYBaseListData.h */,
-				7485396319A58BB6004D8B66 /* XYBaseListData.m */,
 				741498321A08C11F007F593C /* XYBaseDataSource.h */,
 				741498331A08C11F007F593C /* XYBaseDataSource.m */,
 				57DC76FA1A3008840046B519 /* XYBaseBuilder.h */,
 				57DC76FB1A3008840046B519 /* XYBaseBuilder.m */,
-				57DC76FD1A3020D90046B519 /* XYAppModule.h */,
-				57DC76FE1A3020D90046B519 /* XYAppModule.m */,
 				57D582871A399D0500C760C7 /* XYMenuItem.h */,
+				57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */,
+				57F7FA2E1A43C2AF00BF75C4 /* XYControllerProtocol.h */,
+				57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1225,7 +1221,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57DC76FF1A3020D90046B519 /* XYAppModule.m in Sources */,
 				57A15003191E251000B00281 /* SimpleAudioEngine.m in Sources */,
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				572E7CB818385C690018179D /* Reachability.m in Sources */,
@@ -1291,7 +1286,6 @@
 				57DF0376188E1AA1002422D4 /* XYFileCache.m in Sources */,
 				576E87D01855D23F00C7A724 /* XYDebug.m in Sources */,
 				577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */,
-				7485396419A58BB6004D8B66 /* XYBaseListData.m in Sources */,
 				5740323B190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */,
