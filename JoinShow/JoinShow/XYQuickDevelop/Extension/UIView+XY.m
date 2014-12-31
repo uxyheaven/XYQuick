@@ -19,12 +19,12 @@ DUMMY_CLASS(UIView_XY);
 
 // objc_setAssociatedObject 对象在dealloc会自动释放
 /*
-- (void)UIView_dealloc{
-    objc_removeAssociatedObjects(self);
-    XY_swizzleInstanceMethod([self class], @selector(UIView_dealloc), @selector(dealloc));
+ - (void)UIView_dealloc{
+ objc_removeAssociatedObjects(self);
+ XY_swizzleInstanceMethod([self class], @selector(UIView_dealloc), @selector(dealloc));
 	[self dealloc];
-}
-*/
+ }
+ */
 
 + (void)load
 {
@@ -53,12 +53,12 @@ DUMMY_CLASS(UIView_XY);
 - (void)removeTapGesture
 {
     for (UIGestureRecognizer *gesture in self.gestureRecognizers)
-	{
-		if ([gesture isKindOfClass:[UITapGestureRecognizer class]])
-		{
-			[self removeGestureRecognizer:gesture];
-		}
-	}
+    {
+        if ([gesture isKindOfClass:[UITapGestureRecognizer class]])
+        {
+            [self removeGestureRecognizer:gesture];
+        }
+    }
 }
 
 - (void)addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
@@ -121,7 +121,7 @@ DUMMY_CLASS(UIView_XY);
     }
     tmpView.alpha = aAlpha;
     [self addSubview:tmpView];
-
+    
     [tmpView addTapGestureWithTarget:target action:action];
 }
 - (void)addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha
@@ -172,15 +172,15 @@ DUMMY_CLASS(UIView_XY);
     UIView *tmpView = [self shadeView];
     [self addSubview:tmpView];
     tmpView.alpha = 0;
-  //  BACKGROUND_BEGIN
+    //  BACKGROUND_BEGIN
     UIImage *img = [[self snapshot] stackBlur:lv];
- //   FOREGROUND_BEGIN
+    //   FOREGROUND_BEGIN
     tmpView.layer.contents = (id)img.CGImage;
     [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         tmpView.alpha = 1;
     } completion:nil];
- //   FOREGROUND_COMMIT
- //   BACKGROUND_COMMIT
+    //   FOREGROUND_COMMIT
+    //   BACKGROUND_COMMIT
     [tmpView addTapGestureWithTarget:target action:action];
 }
 - (void)addBlurWithTarget:(id)target action:(SEL)action
@@ -252,13 +252,22 @@ DUMMY_CLASS(UIView_XY);
 /////////////////////////////////////////////////////////////
 - (UIActivityIndicatorView *)activityIndicatorViewShow
 {
-    UIActivityIndicatorView *aView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    aView.center = CGPointMake(self.bounds.size.width * .5, self.bounds.size.height * .5);
-    aView.tag = UIView_activityIndicatorViewTag;
+    UIActivityIndicatorView *aView = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
+    if (aView == nil)
+    {
+        aView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        aView.center = CGPointMake(self.bounds.size.width * .5, self.bounds.size.height * .5);
+        aView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        aView.tag = UIView_activityIndicatorViewTag;
+    }
+    
     [self addSubview:aView];
     [aView startAnimating];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(activityResetFrame:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    aView.alpha = 0;
+    [UIView animateWithDuration:.35 animations:^{
+        aView.alpha = 1;
+    }];
     
     return aView;
 }
@@ -269,15 +278,15 @@ DUMMY_CLASS(UIView_XY);
     if (aView)
     {
         [aView stopAnimating];
-        [aView removeFromSuperview];
+        aView.alpha = 1;
+        
+        [UIView animateWithDuration:.35 animations:^{
+            aView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [aView removeFromSuperview];
+        }];
+        
     }
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-- (void)activityResetFrame:(NSNotification *)notification
-{
-    UIActivityIndicatorView *view = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
-    view.center = CGPointMake(self.superview.bounds.size.width / 2, self.superview.bounds.size.height / 2);
 }
 /////////////////////////////////////////////////////////////
 - (UIImage *)snapshot
