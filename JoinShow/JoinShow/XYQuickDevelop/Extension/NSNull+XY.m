@@ -16,17 +16,16 @@
 {
     NSMethodSignature *signature = [super methodSignatureForSelector:selector];
     
-    if (!signature)
+    if (signature != nil)
+        return signature;
+    
+    for (NSObject *object in NSNullObjects)
     {
-        for (NSObject *object in NSNullObjects)
+        signature = [object methodSignatureForSelector:selector];
+        if (signature)
         {
-            signature = [object methodSignatureForSelector:selector];
-            if (signature)
-            {
-                break;
-            }
+            break;
         }
-        
     }
     
     return signature;

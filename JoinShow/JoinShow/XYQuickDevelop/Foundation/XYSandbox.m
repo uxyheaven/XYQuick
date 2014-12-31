@@ -261,19 +261,18 @@ DEF_SINGLETON( XYSandbox )
 }
 
 + (BOOL)skipFileBackupForItemAtURL:(NSURL*)URL{
-    if (![[NSFileManager defaultManager] fileExistsAtPath: [URL path]])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[URL path]])
         return NO;
     
     // iOS <= 5.0.1
     //if (&NSURLIsExcludedFromBackupKey == nil) {
     
-    const char* filePath = [[URL path] fileSystemRepresentation];
-    
-    const char* attrName = "com.apple.MobileBackup";
-    u_int8_t attrValue = 1;
-    
+    const char *filePath = [[URL path] fileSystemRepresentation];
+    const char *attrName = "com.apple.MobileBackup";
+    u_int8_t attrValue   = 1;
     int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
-    return result == 0;
+    
+    return (result == 0);
     //}
     
     // 官方给的代码但是实际上真的是很废，一点用都没有，只用前面那段的就行了，别用下面的

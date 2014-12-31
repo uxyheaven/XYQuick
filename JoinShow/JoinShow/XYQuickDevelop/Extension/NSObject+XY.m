@@ -334,13 +334,15 @@ static void (*__dealloc)( id, SEL);
 }
 
 #pragma mark- Object
-- (id)tempObject{
+- (id)tempObject
+{
     id object = objc_getAssociatedObject(self, NSObject_key_tempObject);
     
     return object;
 }
 
-- (void)setTempObject:(id)tempObject{
+- (void)setTempObject:(id)tempObject
+{
     [self willChangeValueForKey:@"tempObject"];
     objc_setAssociatedObject(self, NSObject_key_tempObject, tempObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"tempObject"];
