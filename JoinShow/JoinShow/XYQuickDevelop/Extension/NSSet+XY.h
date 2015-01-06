@@ -12,4 +12,11 @@
 
 + (NSMutableDictionary *)nonRetainSet;
 
+
+@end
+
+@interface NSMutableSet (XY)
+
+- (NSSet *)immutable;
+
 @end

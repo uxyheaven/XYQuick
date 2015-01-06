@@ -13,3 +13,9 @@
 + (NSMutableDictionary *)nonRetainDictionary;
 
 @end
+
+@interface NSMutableDictionary (XY)
+
+- (NSDictionary *)immutable;
+
+@end

@@ -440,7 +440,7 @@ static BOOL configured = FALSE;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self audioSessionSetActive:NO];
 	[audioSourceChannels release];
-	[super dealloc];NSNotificationQueue
+	[super dealloc];
 }
 
 /** Retrieves the audio source for the specified channel */

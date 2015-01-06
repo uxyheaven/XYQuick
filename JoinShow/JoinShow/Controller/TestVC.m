@@ -390,6 +390,15 @@ if (1) { \
     [tempBtn addTarget:self action:@selector(clickAutoCodingLoad:) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
+    
+    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    tempBtn.backgroundColor = [UIColor lightGrayColor];
+    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
+    [tempBtn setTitle:@"ArrayCopy" forState:UIControlStateNormal];
+    [tempBtn addTarget:self action:@selector(clickArrayCopy:) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:tempBtn];
+    btnOffsetY += 64;
+    
 #pragma mark -btn end
     
     scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
@@ -913,6 +922,36 @@ if (1) { \
     PERF_LEAVE_(fileCache_load)
     
     NSLog(@"%@", list2);
+}
+- (void)clickArrayCopy:(id)sender
+{
+    NSMutableArray *array1 = [@[] mutableCopy];
+    NSMutableArray *array2 = [@[] mutableCopy];
+    
+    PERF_ENTER_(init)
+    for (int i = 0; i < 10000000; i++)
+    {
+        [array1 addObject:@(i)];
+        [array2 addObject:@(i)];
+    }
+    PERF_LEAVE_(init)
+    
+    PERF_ENTER_(copy)
+    NSArray *array3 = [array1 copy];
+    PERF_LEAVE_(copy)
+    NSLog(@"%@", [array3 class]);
+    
+    PERF_ENTER_(arrayWithArray)
+    NSArray *array4 = [NSArray arrayWithArray:array1];
+    PERF_LEAVE_(arrayWithArray)
+    NSLog(@"%@", [array4 class]);
+    
+    PERF_ENTER_(immutable)
+    NSArray *array5 = [array2 immutable];
+    PERF_LEAVE_(immutable)
+    NSLog(@"%@", [array5 class]);
+    // objc_msgSend(array3, @selector(addObject:), @"a");
+    // [array3 addObject:@"3"];
 }
 /////////////////////////// 备注 ///////////////////////////////
 // 自动布局

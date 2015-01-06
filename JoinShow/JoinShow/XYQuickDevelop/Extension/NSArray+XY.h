@@ -50,6 +50,8 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 - (NSMutableArray *)keepHead:(NSUInteger)n;
 - (NSMutableArray *)keepTail:(NSUInteger)n;
 
+// 把自己转变成不可变的(可能有bug)
+- (NSArray *)immutable;
 /*
 - (void)insertObjectNoRetain:(id)anObject atIndex:(NSUInteger)index;
 - (void)addObjectNoRetain:(NSObject *)obj;

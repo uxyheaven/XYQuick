@@ -8,6 +8,7 @@
 
 #import "NSDictionary+XY.h"
 #import "XYCommonDefine.h"
+#import <objc/runtime.h>
 
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
@@ -24,3 +25,15 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 }
 
 @end
+
+@implementation NSMutableDictionary (XY)
+
+- (NSDictionary *)immutable
+{
+    object_setClass(self, [NSDictionary class]);
+    return self;
+}
+
+@end
+
+

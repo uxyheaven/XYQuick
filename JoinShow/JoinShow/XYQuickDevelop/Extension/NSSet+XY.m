@@ -8,6 +8,7 @@
 
 #import "NSSet+XY.h"
 #import "XYCommonDefine.h"
+#import <objc/runtime.h>
 
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
@@ -20,6 +21,17 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     callbacks.release        = __XYReleaseNoOp;
     
     return  (__bridge_transfer NSMutableSet*)CFSetCreateMutable(nil, 0, &callbacks);
+}
+
+
+@end
+
+@implementation NSMutableSet (XY)
+
+- (NSSet *)immutable
+{
+    object_setClass(self, [NSSet class]);
+    return self;
 }
 
 @end

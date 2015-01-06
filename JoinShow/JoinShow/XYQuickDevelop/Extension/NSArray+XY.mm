@@ -296,6 +296,11 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
+- (NSArray *)immutable
+{
+    object_setClass(self, [NSArray class]);
+    return self;
+}
 @end
 
 // ----------------------------------
