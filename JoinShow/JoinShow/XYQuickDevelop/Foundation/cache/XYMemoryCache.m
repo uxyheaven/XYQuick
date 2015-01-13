@@ -48,7 +48,6 @@ DEF_SINGLETON( XYMemoryCache );
 - (void)setClearWhenMemoryLow:(BOOL)clearWhenMemoryLow
 {
     if (_clearWhenMemoryLow != clearWhenMemoryLow)
-        
         return;
     
     if (clearWhenMemoryLow == YES)
