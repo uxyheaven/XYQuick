@@ -14,11 +14,12 @@
 
 AS_SINGLETON( XYMemoryCache );
 
-@property (nonatomic, assign) BOOL                clearWhenMemoryLow;
-@property (nonatomic, assign) NSUInteger          maxCacheCount;
-@property (nonatomic, assign) NSUInteger          cachedCount;
-@property (atomic, strong   ) NSMutableArray      *cacheKeys;
-@property (atomic, strong   ) NSMutableDictionary *cacheObjs;
+@property (nonatomic, assign) BOOL clearWhenMemoryLow;  // default is YES
+@property (nonatomic, assign) NSUInteger maxCacheCount;
+
+@property (nonatomic, assign, readonly) NSUInteger cachedCount;
+@property (atomic, strong, readonly) NSMutableArray *cacheKeys;
+@property (atomic, strong, readonly) NSMutableDictionary *cacheObjs;
 
 
 // XYCacheProtocol 协议方法

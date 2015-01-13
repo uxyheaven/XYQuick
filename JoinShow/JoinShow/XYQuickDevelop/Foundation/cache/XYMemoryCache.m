@@ -45,6 +45,39 @@ DEF_SINGLETON( XYMemoryCache );
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)setClearWhenMemoryLow:(BOOL)clearWhenMemoryLow
+{
+    if (_clearWhenMemoryLow != clearWhenMemoryLow)
+        
+        return;
+    
+    if (clearWhenMemoryLow == YES)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMemoryCacheNotification:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+    }
+    
+    _clearWhenMemoryLow = clearWhenMemoryLow;
+}
+
+- (void)setMaxCacheCount:(NSUInteger)maxCacheCount
+{    
+    while ( _cachedCount > maxCacheCount )
+    {
+        NSString * tempKey = [_cacheKeys objectAtIndex:0];
+        
+        [_cacheObjs removeObjectForKey:tempKey];
+        [_cacheKeys removeObjectAtIndex:0];
+        
+        _cachedCount -= 1;
+    }
+    
+    _maxCacheCount = maxCacheCount;
+}
+
 #pragma mark - XYCacheProtocol
 
 - (BOOL)hasObjectForKey:(id)key
