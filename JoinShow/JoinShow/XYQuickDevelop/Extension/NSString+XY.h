@@ -32,7 +32,7 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 @property (nonatomic, readonly, copy  ) NSString             *SHA1;
 
-
+// url相关
 - (NSArray *)allURLs;
 
 - (NSString *)urlByAppendingDict:(NSDictionary *)params;
@@ -49,6 +49,8 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 - (NSString *)URLEncoding;
 - (NSString *)URLDecoding;
+
+- (NSMutableDictionary *)dictionaryFromQueryComponents;
 
 // 去掉首尾的空格和换行
 - (NSString *)trim;
@@ -85,10 +87,10 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 #pragma mark - 额外的检测
 // 包含一个字符和数字
-- (BOOL) isHasCharacterAndNumber;
+- (BOOL)isHasCharacterAndNumber;
 // 昵称
-- (BOOL) isNickname;
-- (BOOL) isTelephone2;
+- (BOOL)isNickname;
+- (BOOL)isTelephone2;
 
 - (NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset;
 - (NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset endOffset:(NSUInteger *)endOffset;

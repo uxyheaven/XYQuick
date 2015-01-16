@@ -378,6 +378,26 @@ DUMMY_CLASS(NSString_XY);
     return [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+- (NSMutableDictionary *)dictionaryFromQueryComponents
+{
+    NSMutableDictionary *queryComponents = [NSMutableDictionary dictionary];
+    for(NSString *keyValuePairString in [self componentsSeparatedByString:@"&"])
+    {
+        NSArray *keyValuePairArray = [keyValuePairString componentsSeparatedByString:@"="];
+        if ([keyValuePairArray count] < 2) continue; // Verify that there is at least one key, and at least one value.  Ignore extra = signs
+        NSString *key = [[keyValuePairArray objectAtIndex:0] URLDecoding];
+        NSString *value = [[keyValuePairArray objectAtIndex:1] URLDecoding];
+        NSMutableArray *results = [queryComponents objectForKey:key]; // URL spec says that multiple values are allowed per key
+        if(!results) // First object
+        {
+            results = [NSMutableArray arrayWithCapacity:1];
+            [queryComponents setObject:results forKey:key];
+        }
+        [results addObject:value];
+    }
+    return queryComponents;
+}
+
 - (NSString *)MD5
 {
 	NSData * value;
