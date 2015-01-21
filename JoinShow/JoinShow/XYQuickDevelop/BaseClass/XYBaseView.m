@@ -8,6 +8,24 @@
 
 #import "XYBaseView.h"
 
+#pragma mark - def
+
+#pragma mark - override
+
+#pragma mark - api
+
+#pragma mark - private
+
+#pragma mark - model event
+#pragma mark 1 notification
+#pragma mark 2 KVO
+
+#pragma mark - view event
+#pragma mark 1 target-action
+#pragma mark 2 delegate dataSource protocol
+
+#pragma mark -
+
 @implementation XYBaseView
 
 -(id) initWithFrame:(CGRect)frame

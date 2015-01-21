@@ -9,24 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface XYBaseView : UIView
+#pragma mark- as
 
-#pragma mark- data
-// 定义data
+#pragma mark- model
 
 #pragma mark- view
-// 定义view
 
-#pragma mark - v对c
-// 1 target-action
-
-// 2 delegate(should, will, did)
-//@property (nonatomic, weak) id delegate;
-// 3 dataSource(count, data at)
-//@property (nonatomic, weak) id dataSource;
-
-
-#pragma mark- c直接调用
-// Outlet
-
+#pragma mark- api
 
 @end

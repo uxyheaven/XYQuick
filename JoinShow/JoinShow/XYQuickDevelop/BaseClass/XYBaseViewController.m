@@ -10,19 +10,19 @@
 #import "XYCommon.h"
 #import "XYRuntime.h"
 
-#pragma mark - api
-// 对外的接口
+#pragma mark - def
 
-#pragma mark - rewrite
-// 额外的重写的父类的方法
+#pragma mark - override
+
+#pragma mark - api
 
 #pragma mark - private
 
-#pragma mark - 响应 model 的地方
+#pragma mark - model event
 #pragma mark 1 notification
 #pragma mark 2 KVO
 
-#pragma mark - 响应 view 的地方
+#pragma mark - view event
 #pragma mark 1 target-action
 #pragma mark 2 delegate dataSource protocol
 

@@ -32,7 +32,7 @@ DEF_SINGLETON( XYGCD )
         // 串行队列
         _backQueue       = dispatch_queue_create( "com.XY.taskQueue", DISPATCH_QUEUE_SERIAL );
         // todo dispatch_barrier_async(<#dispatch_queue_t queue#>, <#^(void)block#>)
-        _backIOFileQueue = dispatch_queue_create( "com.XY.taskQueue", DISPATCH_QUEUE_SERIAL );
+        _backIOFileQueue = dispatch_queue_create( "com.XY.ioTaskQueue", DISPATCH_QUEUE_SERIAL );
 	}
 	
 	return self;

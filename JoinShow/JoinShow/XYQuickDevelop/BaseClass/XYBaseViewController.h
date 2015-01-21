@@ -70,12 +70,12 @@
 typedef UIViewController XYBaseViewController;
 
 @interface UIViewController (base)
+#pragma mark- as
+
 #pragma mark- model
-// 定义model
 
 #pragma mark- view
-// 定义view
 
 #pragma mark- api
-// 定义api
+
 @end
