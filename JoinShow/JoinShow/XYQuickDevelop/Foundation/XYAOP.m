@@ -295,11 +295,12 @@ DEF_SINGLETON(XYAOP);
     return [XYAOP sharedInstance];
 }
 
-// 标准消息转发
+// 标准消息转发 1
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
     return [[self currentClass] instanceMethodSignatureForSelector:aSelector];
 }
+// 标准消息转发 2
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
     anInvocation.target = [self currentObject];
