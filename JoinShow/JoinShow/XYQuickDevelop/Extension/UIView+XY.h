@@ -68,6 +68,8 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 - (void)removeSubviewWithTag:(NSInteger)tag;
 - (void)removeSubviewExceptTag:(NSInteger)tag;
 
+// 是否显示在屏幕上
+- (BOOL)isDisplayedInScreen;
 
 #pragma mark -todo attribute
 - (void)showDataWithDic:(NSDictionary *)dic;
