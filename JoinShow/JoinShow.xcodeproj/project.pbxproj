@@ -42,6 +42,7 @@
 		5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403236190FA76700C82B23 /* FMDatabasePool.m */; };
 		5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403238190FA76700C82B23 /* FMDatabaseQueue.m */; };
 		57403240190FA76700C82B23 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740323A190FA76700C82B23 /* FMResultSet.m */; };
+		5745421F1AA1657D00E453DA /* XYSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5745421E1AA1657D00E453DA /* XYSignal.m */; };
 		5749BF8419BF480900D676CC /* JSONVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5749BF8319BF480900D676CC /* JSONVC.m */; };
 		5749BF8619BF4DEB00D676CC /* json0.json in Resources */ = {isa = PBXBuildFile; fileRef = 5749BF8519BF4DEB00D676CC /* json0.json */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
@@ -244,6 +245,8 @@
 		57403239190FA76700C82B23 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		5740323A190FA76700C82B23 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		5742C1F017F7BF3C00065083 /* XYExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternal.h; sourceTree = "<group>"; };
+		5745421D1AA1657C00E453DA /* XYSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSignal.h; sourceTree = "<group>"; };
+		5745421E1AA1657D00E453DA /* XYSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSignal.m; sourceTree = "<group>"; };
 		5749BF8219BF480900D676CC /* JSONVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONVC.h; sourceTree = "<group>"; };
 		5749BF8319BF480900D676CC /* JSONVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONVC.m; sourceTree = "<group>"; };
 		5749BF8519BF4DEB00D676CC /* json0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json0.json; sourceTree = "<group>"; };
@@ -1000,6 +1003,8 @@
 				577ACC7C190A30470053C9CE /* XYTabBar.m */,
 				579E68A1192EFA4C00EECAB4 /* XYUISignal.h */,
 				579E68A2192EFA4C00EECAB4 /* XYUISignal.m */,
+				5745421D1AA1657C00E453DA /* XYSignal.h */,
+				5745421E1AA1657D00E453DA /* XYSignal.m */,
 				57DB87D7183349A60015CC5A /* XYUI.h */,
 			);
 			path = UI;
@@ -1334,6 +1339,7 @@
 				577952D71909718A00F95459 /* XYBaseView.m in Sources */,
 				5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */,
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
+				5745421F1AA1657D00E453DA /* XYSignal.m in Sources */,
 				57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */,
 				743B1AA11A15DCB800CEA246 /* BlackMagicVC.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
