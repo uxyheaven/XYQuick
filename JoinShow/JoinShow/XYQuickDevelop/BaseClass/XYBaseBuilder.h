@@ -6,19 +6,43 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
+// 建造者模式
 #import <Foundation/Foundation.h>
 
-// 生成器基类
+/*
+@protocol XYBaseBuilder <NSObject>
+// 返回对象是否成功构建,在这里做条件判断
+- (BOOL)isBuildRight;
+@end
+*/
+
+// 建造者基类, 抽象的建造者
 @interface XYBaseBuilder : NSObject
 
-// 生成生成器
-+ (id)builderWithClass:(Class)clazz;
-+ (id)builderWithClassName:(NSString *)clazzName;
+/**
+ * @brief 生成产品
+ * @param clazz 产品的类
+ * @param block builder构造的block
+ * @return 返回产品
+ */
++ (id)productWithClass:(Class)clazz builder:(void(^)(id builder))block;
 
-// 生成对象
+/**
+ * @brief 生成产品
+ * @param block builder构造的block, 需要在这里返回产品的实例
+ * @return 返回产品
+ */
++ (id)productWithBuilder:(id(^)(id builder))block;
+
+
+// 生成产品, 请override这个方法做验证
 - (id)build;
 
-// 此方法在build中被调用, 重写此方法实现对象属性的赋值,细节的调整
-- (id)buildAnObject:(id)anObject;
-
 @end
+
+
+/* 待解决id问题再实现
+@interface NSObject (UXYBuilder)
++ (id)objectWithUXYBuilder:(void(^)(id builder))block;
+@end
+*/

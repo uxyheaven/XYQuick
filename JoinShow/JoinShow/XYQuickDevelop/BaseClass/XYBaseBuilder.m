@@ -12,6 +12,7 @@
 
 //@property (nonatomic, copy) NSString *clazzName;
 @property (nonatomic, strong) Class clazz;
+@property (nonatomic, strong) id object;
 
 @end
 
@@ -34,21 +35,52 @@
     return builder;
 }
 
++ (id)productWithClass:(Class)clazz builder:(void(^)(id builder))block
+{
+    NSParameterAssert(clazz);
+    NSParameterAssert(block);
+    
+    XYBaseBuilder *builder = [[self alloc] init];
+    builder.clazz = clazz;
+    block(builder);
+    
+    return [builder build];
+}
 
++ (id)productWithBuilder:(id(^)(id builder))block
+{
+    NSParameterAssert(block);
+    
+    XYBaseBuilder *builder = [[self alloc] init];
+    builder.object = block(builder);
+    
+    return [builder build];
+}
 - (id)build
 {
-    if (_clazz == nil)
-        return nil;
-    
-    id anObject = [[_clazz alloc] init];
-    [self buildAnObject:anObject];
+    id anObject = _object ?: [[_clazz alloc] init];
     
     return anObject;
 }
 
-- (id)buildAnObject:(id)anObject
-{
-    return anObject;
-}
 
 @end
+
+/*
+ @implementation NSObject (UXYBuilder)
+ 
+ + (id)objectWithUXYBuilder:(void(^)(id builder))block
+ {
+ XYBaseBuilder *builder = [[self alloc] init];
+ builder.clazz = self;
+ block(builder);
+ 
+ return [builder build];
+ }
+ @end
+ */
+
+
+
+
+
