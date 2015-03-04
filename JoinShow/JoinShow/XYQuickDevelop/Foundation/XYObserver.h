@@ -33,6 +33,8 @@ typedef void(^XYObserver_block_new_old)(id newValue, id oldValue);
 @end
 
 #pragma mark - NSObject (XYObserve)
+
+// 注意这里是 self 持有了观察者, 在 self 销毁的时候, 取消所有的观察
 @interface NSObject (XYObserver)
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *observers;

@@ -13,6 +13,11 @@
 
 @implementation XYSignal
 
++ (id)signalWithName:(NSString *)name
+{
+    
+}
+
 @end
 
 #pragma mark- UXYSignalHandler
@@ -21,30 +26,35 @@
 
 @dynamic uxy_nextSignalHandler;
 
-- (UXYSignalResponse *)uxy_SignalExcute:(UXYSignalRequest *)request
+- (void)uxy_performSignal:(XYSignal *)signal
 {
-    return nil;
+    
 }
 
-- (UXYSignalResponse *)signalHandleMessage:(UXYSignalRequest *)request
+- (void)uxy_handleSignal:(XYSignal *)signal
 {
-    UXYSignalResponse *response = nil;
+    [self uxy_performSignal:signal];
     
-    response = [self uxy_SignalExcute:request];
+    if (signal.isDead == YES)
+    {
+        return;
+    }
+    
+    if (signal.isReach == YES)
+    {
+        return;
+    }
     
     id next = self.uxy_nextSignalHandler ?: [self uxy_defaultNextSignalHandler];
     if (next)
     {
-        request.jump++;
-        UXYSignalResponse *nextResponse = [next signalHandleMessage:request];
-        response = response ?: nextResponse;
+        signal.jump++;
+        [next uxy_handleSignal:signal];
     }
     else
     {
-        request.isReach = YES;
+        signal.isReach = YES;
     }
-    
-    return response;
 }
 
 - (void)setUxy_NextSignalHandler:(id)nextSignalHandler

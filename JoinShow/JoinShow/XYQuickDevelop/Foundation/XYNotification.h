@@ -26,6 +26,7 @@ typedef void(^XYNotification_block)(NSNotification *notification);
 @end
 
 #pragma mark - NSObject (XYNotification)
+// 注意这里 self 自己可能是被观察者; 也可能 self 持有了观察者, 在self 销毁的时候, 取消所有的观察
 @interface NSObject (XYNotification)
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *notifications;
