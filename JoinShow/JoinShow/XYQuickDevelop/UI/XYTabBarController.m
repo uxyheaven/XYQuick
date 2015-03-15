@@ -184,8 +184,9 @@
     [self addChildViewController:targetViewController];
     [_contentView addSubview:targetViewController.view];
     
-    if ([targetViewController isKindOfClass:[UINavigationController class]]) {
-        UIViewController<XYTabBarControllerProtocol> *vc = ((UINavigationController *)targetViewController).topViewController;
+    if ([targetViewController isKindOfClass:[UINavigationController class]])
+    {
+        UIViewController<XYTabBarControllerProtocol> *vc = (UIViewController<XYTabBarControllerProtocol> *)((UINavigationController *)targetViewController).topViewController;
         if ([vc respondsToSelector:@selector(tabBarController:didSelectViewController:)])
         {
             [vc tabBarController:self didSelectViewController:[self.viewControllers objectAtIndex:index]];
@@ -217,7 +218,7 @@
     
     if ([targetViewController isKindOfClass:[UINavigationController class]])
     {
-        UIViewController<XYTabBarControllerProtocol> *vc = ((UINavigationController *)targetViewController).topViewController;
+        UIViewController<XYTabBarControllerProtocol> *vc = (UIViewController<XYTabBarControllerProtocol> *)((UINavigationController *)targetViewController).topViewController;
         if ([vc respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
         {
             return [vc tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];

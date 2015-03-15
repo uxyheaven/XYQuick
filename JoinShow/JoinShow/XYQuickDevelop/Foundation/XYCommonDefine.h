@@ -264,6 +264,16 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
             dispatch_async(dispatch_get_main_queue(), block);\
     }
 /**************************************************************/
+// todo宏
+#define STRINGIFY(S) #S
+#define DEFER_STRINGIFY(S) STRINGIFY(S)
+#define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
+#define FORMATTED_MESSAGE(MSG) "[TODO-" DEFER_STRINGIFY(__COUNTER__) "] " MSG " \n" \
+DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
+#define KEYWORDIFY try {} @catch (...) {}
+// 最终使用下面的宏
+#define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
+/**************************************************************/
 #pragma mark -end
 /*
 #define NavigationBar_HEIGHT 44

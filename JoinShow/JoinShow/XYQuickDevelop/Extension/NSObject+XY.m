@@ -37,7 +37,6 @@
 
 DUMMY_CLASS(NSObject_XY);
 
-static void (*__dealloc)( id, SEL);
 
 @interface NSObject(XYPrivate)
 - (void)myDealloc;

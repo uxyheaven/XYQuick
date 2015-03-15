@@ -420,7 +420,6 @@
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseVC.h; sourceTree = "<group>"; };
 		57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseVC.m; sourceTree = "<group>"; };
-		57F7FA2E1A43C2AF00BF75C4 /* XYControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYControllerProtocol.h; sourceTree = "<group>"; };
 		57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerProtocol.h; sourceTree = "<group>"; };
 		57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
 		57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_TestDic.plist; sourceTree = "<group>"; };
@@ -869,7 +868,6 @@
 				57DC76FB1A3008840046B519 /* XYBaseBuilder.m */,
 				57D582871A399D0500C760C7 /* XYMenuItem.h */,
 				57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */,
-				57F7FA2E1A43C2AF00BF75C4 /* XYControllerProtocol.h */,
 				57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */,
 			);
 			path = BaseClass;

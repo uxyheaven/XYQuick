@@ -72,7 +72,7 @@
     
     // Configure the cell...
    NSDictionary *dic = [self getCellDataIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d %@", indexPath.row, [dic objectForKey:@"title"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld %@", (long)indexPath.row, [dic objectForKey:@"title"]];
     cell.imageView.image = [dic objectForKey:@"img"];
     
     return cell;
@@ -130,7 +130,8 @@
 }
 
  */
--(NSDictionary *) getCellDataIndex:(int)i{
+-(NSDictionary *) getCellDataIndex:(NSInteger)i
+{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     switch (i) {
         case 0:

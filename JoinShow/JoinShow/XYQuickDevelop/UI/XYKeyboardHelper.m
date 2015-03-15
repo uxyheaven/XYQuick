@@ -303,7 +303,7 @@ DEF_SINGLETON(XYKeyboardHelper)
         //Negative
         else
         {
-            CGFloat disturbDistance;
+            CGFloat disturbDistance = 0;
             
             //Calculating disturbed distance
             switch (rootController.interfaceOrientation)

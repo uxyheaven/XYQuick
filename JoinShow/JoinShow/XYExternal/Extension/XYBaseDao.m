@@ -8,6 +8,7 @@
 
 #import "XYBaseDao.h"
 #import "LKDBHelper.h"
+#import "XYCommonDefine.h"
 
 @interface XYBaseDao ()
 @property (nonatomic, weak) LKDBHelper *globalHelper;
@@ -108,7 +109,7 @@
     }
     else if (1)
     {
-#pragma mark- todo  多主键种类判断
+        @TODO("多主键种类判断");
         where = @"";
     }
     
