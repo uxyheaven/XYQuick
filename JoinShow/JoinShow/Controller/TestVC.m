@@ -440,12 +440,8 @@ if (1) { \
     self.testKVO2 = self.testKVO2 + 1;
     self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
     
-    // 观察array 搜 Mutable Collections
-    /*
-    [self willChangeValueForKey:@"testArrayKVO"];
-    [self.testArrayKVO addObject:@"a"];
-    [self didChangeValueForKey:@"testArrayKVO"];
-     */
+    // 观察array
+   // [[self mutableArrayValueForKey:@"testArrayKVO"] addObject:@"a"];
 }
 
 - (IBAction)clickBtn2:(id)sender
@@ -954,32 +950,7 @@ if (1) { \
     // [array3 addObject:@"3"];
 }
 /////////////////////////// 备注 ///////////////////////////////
-// 自动布局
-/*
-- (void)loadView
-{
-    //initalize
-    AutoSizeView *view = [[AutoSizeView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 108.0)];
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 64.0) style:UITableViewStylePlain];
-    
-    //config view
-    [view setBackgroundColor:[UIColor colorWithWhite:47.0/255.0 alpha:1.0]];
-    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [tableView setDelegate:self];
-    [tableView setDataSource:self];
-    [tableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-    tableView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-    
-    // assige view
-    self.view = view;
-    self.tableView = tableView;
-    [view release];
-    [tableView release];
-    
-    //addsubview
-    [self.view addSubview:self.tableView];
-}
-*/
+
 /*
 - (void)testKVOIn:(id)sourceObject new:(id)newValue old:(id)oldValue{
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
@@ -994,6 +965,7 @@ ON_NOTIFICATION_1_( aaa, notification )
 {
     NSLogD(@"%@", notification.userInfo);
 }
+
 
 #pragma mark - XYTimer
 @end

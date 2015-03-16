@@ -1,9 +1,9 @@
 //
 //  BaseViewController.h
-//  MyLib
+//  JoinShow
 //
-//  Created by jax on 13-9-2.
-//  Copyright (c) 2013年 Bao. All rights reserved.
+//  Created by Heaven on 13-9-2.
+//  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
 #import "XYPrecompile.h"
@@ -69,7 +69,7 @@
 #pragma mark -
 typedef UIViewController XYBaseViewController;
 
-@interface UIViewController (base)
+@interface UIViewController (XYBase)
 #pragma mark- as
 
 #pragma mark- model

@@ -34,7 +34,7 @@
 #pragma mark- c直接调用
 // Outlet
 // item: @{@"normal" :img1, @"highlighted" :img2, @"selected" :img3, @"disabled":img4, @"text": text}
-- (id) initWithFrame:(CGRect)frame items:(NSArray *)items;
+- (id)initWithFrame:(CGRect)frame items:(NSArray *)items;
 - (void)selectTabAtIndex:(NSInteger)index;
 - (void)setBackgroundImage:(UIImage *)img;
 

@@ -15,7 +15,7 @@
 
 @protocol XYTabBarControllerDelegate;
 
-@interface XYTabBarController : XYBaseViewController<XYTabBarDelegate>
+@interface XYTabBarController : UIViewController<XYTabBarDelegate>
 
 #pragma mark- model
 // 定义model
@@ -36,7 +36,7 @@
 
 
 // item: @{@"normal" :img1, @"highlighted" :img2, @"selected" :img3, @"disabled":img4, @"text": text}
--(id) initWithViewControllers:(NSArray *)vcs items:(NSArray *)items;
+- (id)initWithViewControllers:(NSArray *)vcs items:(NSArray *)items;
 
 // 可以重载这个方法, 自定义item的位置和图片文字尺寸
 - (void)setupItem:(UIButton *)item index:(NSInteger)index;
@@ -51,7 +51,7 @@
 #pragma mark- XYTabBarControllerProtocol
 @protocol XYTabBarControllerProtocol <NSObject>
 @optional
--(BOOL) tabBarController:(XYTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
+- (BOOL)tabBarController:(XYTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
 - (void)tabBarController:(XYTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
 @end
 

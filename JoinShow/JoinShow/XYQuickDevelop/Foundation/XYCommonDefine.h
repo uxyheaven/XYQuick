@@ -9,15 +9,15 @@
 // 单例模式
 #undef	AS_SINGLETON
 #define AS_SINGLETON( __class ) \
-+ (__class *)sharedInstance;
++ (instancetype)sharedInstance;
 //+ (void) purgeSharedInstance;
 
 #undef	DEF_SINGLETON
 #define DEF_SINGLETON( __class ) \
-+ (__class *)sharedInstance \
++ (instancetype)sharedInstance \
 { \
     static dispatch_once_t once; \
-    static __class * __singleton__; \
+    static id __singleton__; \
     dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
     return __singleton__; \
 }

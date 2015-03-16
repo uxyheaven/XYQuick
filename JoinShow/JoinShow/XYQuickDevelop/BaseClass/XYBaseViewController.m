@@ -1,9 +1,9 @@
 //
 //  BaseViewController.m
-//  MyLib
+//  JoinShow
 //
-//  Created by jax on 13-9-2.
-//  Copyright (c) 2013年 Bao. All rights reserved.
+//  Created by Heaven on 13-9-2.
+//  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
 #import "XYBaseViewController.h"
@@ -28,7 +28,7 @@
 
 #pragma mark -
 
-@implementation UIViewController (base)
+@implementation UIViewController (XYBase)
 
 + (void)load
 {

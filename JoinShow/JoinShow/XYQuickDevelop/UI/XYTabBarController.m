@@ -19,7 +19,7 @@
 
 @implementation XYTabBarController
 
--(id) initWithViewControllers:(NSArray *)vcs items:(NSArray *)items
+- (id)initWithViewControllers:(NSArray *)vcs items:(NSArray *)items
 {
     self = [super init];
     if (self)
@@ -151,7 +151,7 @@
     [super viewDidDisappear:animated];
 }
 
--(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -212,7 +212,7 @@
 #pragma mark 2 delegate
 
 #pragma mark XYTabBarDelegate
--(BOOL) tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index
+- (BOOL)tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index
 {
     UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers objectAtIndex:index];
     
@@ -251,7 +251,7 @@ ON_SIGNAL( signal ){
 
 @implementation UIViewController (XYTabBarController)
 
--(XYTabBarController *) xyTabBarController
+- (XYTabBarController *)xyTabBarController
 {
     UIViewController *vc = self.parentViewController;
     while (vc)
