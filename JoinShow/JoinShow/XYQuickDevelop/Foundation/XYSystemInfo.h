@@ -27,15 +27,15 @@
 #define IOS3_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
 
 #define SYSTEM_VERSION_EQUAL_TO(v) \
-    ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v) \
-    ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) \
-    ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN(v) \
-    ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) \
-    ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #define IOS7_OR_EARLIER		( !IOS8_OR_LATER )
 #define IOS6_OR_EARLIER		( !IOS7_OR_LATER )
@@ -43,8 +43,6 @@
 #define IOS4_OR_EARLIER		( !IOS5_OR_LATER )
 #define IOS3_OR_EARLIER		( !IOS4_OR_LATER )
 
-#define IS_SCREEN_55_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1080, 1920), [[UIScreen mainScreen] currentMode].size) : NO)
-#define IS_SCREEN_47_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
 #define IS_SCREEN_4_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define IS_SCREEN_35_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 
@@ -58,8 +56,6 @@
 
 #define IS_SCREEN_4_INCH	(NO)
 #define IS_SCREEN_35_INCH	(NO)
-#define IS_SCREEN_47_INCH	(NO)
-#define IS_SCREEN_55_INCH	(NO)
 
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 
@@ -91,6 +87,10 @@
 + (BOOL)isPhone35;
 + (BOOL)isPhoneRetina35;
 + (BOOL)isPhoneRetina4;
++ (BOOL)isPhoneRetina47;//iphone6缩放模式分辨率同iphone5
++ (BOOL)isPhoneRetina55;
++ (BOOL)isPhoneRetina55Scale;
+
 + (BOOL)isPad;
 + (BOOL)isPadRetina;
 + (BOOL)isScreenSize:(CGSize)size;
