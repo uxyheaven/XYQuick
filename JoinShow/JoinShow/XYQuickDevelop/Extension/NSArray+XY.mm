@@ -154,6 +154,14 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return [block copy];
 }
 
+- (void)safeAddObject:(id)anObject
+{
+    if ( anObject )
+    {
+        [self addObject:anObject];
+    }
+}
+
 + (NSMutableArray *)nonRetainingArray
 {
     CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;

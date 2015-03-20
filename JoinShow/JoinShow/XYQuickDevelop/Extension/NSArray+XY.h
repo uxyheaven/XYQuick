@@ -35,6 +35,8 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 @property (nonatomic, readonly, copy) NSMutableArrayAppendBlock	APPEND;
 
+- (void)safeAddObject:(id)anObject;
+
 + (NSMutableArray *)nonRetainingArray;
 
 - (NSMutableArray *)pushHead:(NSObject *)obj;
