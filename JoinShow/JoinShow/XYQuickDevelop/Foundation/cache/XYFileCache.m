@@ -376,8 +376,8 @@ DEF_SINGLETON(XYFileCacheBackgroundClean)
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *path = dic[@"path"];
-    NSUInteger maxCacheAge = [dic[@"NSInteger maxCacheAge"] intValue];
-    NSInteger maxCacheSize = [dic[@"NSInteger maxCacheSize"] doubleValue];
+    NSTimeInterval maxCacheAge = [dic[@"maxCacheAge"] doubleValue];
+    NSUInteger maxCacheSize = [dic[@"maxCacheSize"] integerValue];
     
     NSURL *diskCacheURL = [NSURL fileURLWithPath:path isDirectory:YES];
     NSArray *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
