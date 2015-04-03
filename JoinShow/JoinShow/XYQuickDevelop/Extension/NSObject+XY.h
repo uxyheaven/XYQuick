@@ -60,6 +60,13 @@
 // 基于NSKeyArchive.如果 self导入XYAutoCoding.h,可用与自定义对象
 - (id)deepCopy1;
 
+#pragma mark- associated
+- (id)getAssociatedObjectForKey:(const char *)key;
+- (id)copyAssociatedObject:(id)obj forKey:(const char *)key;
+- (id)retainAssociatedObject:(id)obj forKey:(const char *)key;
+- (id)assignAssociatedObject:(id)obj forKey:(const char *)key;
+- (void)removeAssociatedObjectForKey:(const char *)key;
+- (void)removeAllAssociatedObjects;
 @end
 
 
