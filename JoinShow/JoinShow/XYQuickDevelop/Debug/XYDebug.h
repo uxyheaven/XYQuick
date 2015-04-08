@@ -50,9 +50,7 @@
 @end
 
 #pragma mark - XYDebug
-@interface XYDebug : NSObject
-
-AS_SINGLETON(XYDebug)
+@interface XYDebug : NSObject __AS_SINGLETON
 
 + (NSArray *)callstack:(NSUInteger)depth;
 

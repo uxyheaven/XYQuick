@@ -13,9 +13,8 @@
 #undef	DEFAULT_MAX_COUNT
 #define DEFAULT_MAX_COUNT	(48)
 
-@implementation XYMemoryCache
+@implementation XYMemoryCache __DEF_SINGLETON
 
-DEF_SINGLETON( XYMemoryCache );
 
 - (id)init
 {

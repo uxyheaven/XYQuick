@@ -13,10 +13,7 @@
 @property (nonatomic, strong, readonly) NSMutableDictionary *viewControllerSetupBlocks; // 创建viewControllers的block
 @end
 
-@implementation XYViewControllerManager
-
-
-DEF_SINGLETON(XYViewControllerManager)
+@implementation XYViewControllerManager __DEF_SINGLETON
 
 - (instancetype)init
 {

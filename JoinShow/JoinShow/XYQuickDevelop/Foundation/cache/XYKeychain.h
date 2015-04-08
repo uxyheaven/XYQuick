@@ -9,11 +9,9 @@
 #import "XYPrecompile.h"
 #import "XYCacheProtocol.h"
 
-@interface XYKeychain : NSObject <XYCacheProtocol>
+@interface XYKeychain : NSObject <XYCacheProtocol> __AS_SINGLETON
 
 @property (nonatomic, copy) NSString * defaultDomain;
-
-AS_SINGLETON( XYKeychain );
 
 + (void)setDefaultDomain:(NSString *)domain;
 

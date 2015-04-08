@@ -28,10 +28,7 @@ static NSString *const AOPAspectCurrentObjectKey = @"XYAOPAspectCurrentObjectKey
 @end
 
 
-@implementation XYAOP
-
-
-DEF_SINGLETON(XYAOP);
+@implementation XYAOP __DEF_SINGLETON
 
 - (instancetype)init
 {

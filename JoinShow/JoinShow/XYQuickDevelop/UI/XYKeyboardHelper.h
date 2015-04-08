@@ -34,9 +34,7 @@
 #define XYKeyboardHelper_DefaultDistance 10.0
 
 
-@interface XYKeyboardHelper : NSObject
-
-AS_SINGLETON(XYKeyboardHelper)
+@interface XYKeyboardHelper : NSObject __AS_SINGLETON
 
 @property(nonatomic, assign) CGFloat keyboardDistanceFromTextField; // can't be less than zero. Default is 10.0
 @property(nonatomic, assign) BOOL isEnabled;

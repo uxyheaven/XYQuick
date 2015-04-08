@@ -71,13 +71,12 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
  * 说明
  * XYTicker 采用用一个CADisplayLink计时, 不用的时候需要手动移除观察
  */
-@interface XYTicker : NSObject
+@interface XYTicker : NSObject __AS_SINGLETON
 
 @property (nonatomic, weak, readonly  ) CADisplayLink  *timer;
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp;
 @property (nonatomic, assign          ) NSTimeInterval interval;
 
-AS_SINGLETON( XYTicker )
 
 - (void)addReceiver:(NSObject *)obj;
 - (void)removeReceiver:(NSObject *)obj;

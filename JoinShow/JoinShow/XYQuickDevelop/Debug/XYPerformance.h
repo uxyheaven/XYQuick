@@ -102,9 +102,8 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 
 #pragma mark -
 
-@interface XYPerformance : NSObject
+@interface XYPerformance : NSObject __AS_SINGLETON
 
-AS_SINGLETON( XYPerformance );
 
 @property (nonatomic, readonly, strong) NSMutableDictionary     *records;
 @property (nonatomic, strong) NSMutableDictionary               *tags;

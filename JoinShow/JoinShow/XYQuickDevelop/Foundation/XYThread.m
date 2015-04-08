@@ -19,9 +19,7 @@
 
 @end
 
-@implementation XYGCD
-
-DEF_SINGLETON( XYGCD )
+@implementation XYGCD __DEF_SINGLETON
 
 - (id)init
 {

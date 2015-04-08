@@ -57,9 +57,7 @@
 @class XYGCD;
 typedef XYGCD * (^XY_GCD_block)( dispatch_block_t block );
 
-@interface XYGCD : NSObject
-
-AS_SINGLETON( XYGCD )
+@interface XYGCD : NSObject __AS_SINGLETON
 
 @property (nonatomic, readonly) XY_GCD_block	MAIN;
 @property (nonatomic, readonly) XY_GCD_block	FORK;

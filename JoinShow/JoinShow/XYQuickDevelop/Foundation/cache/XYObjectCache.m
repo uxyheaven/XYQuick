@@ -18,9 +18,7 @@
 
 @end
 
-@implementation XYObjectCache
-
-DEF_SINGLETON(XYObjectCache)
+@implementation XYObjectCache __DEF_SINGLETON
 
 -(id) init
 {

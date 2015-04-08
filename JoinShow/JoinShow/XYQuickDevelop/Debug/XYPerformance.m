@@ -18,10 +18,7 @@
 
 #pragma mark -
 
-@implementation XYPerformance
-
-DEF_SINGLETON( XYPerformance );
-
+@implementation XYPerformance __DEF_SINGLETON
 
 - (id)init
 {

@@ -207,9 +207,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @end
 
-@implementation XYTicker
-
-DEF_SINGLETON( XYTicker )
+@implementation XYTicker __DEF_SINGLETON
 
 - (instancetype)init
 {

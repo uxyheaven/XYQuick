@@ -12,8 +12,22 @@
 + (instancetype)sharedInstance;
 //+ (void) purgeSharedInstance;
 
+#undef	__AS_SINGLETON
+#define __AS_SINGLETON    \
++ (instancetype)sharedInstance;
+
 #undef	DEF_SINGLETON
 #define DEF_SINGLETON( __class ) \
++ (instancetype)sharedInstance \
+{ \
+    static dispatch_once_t once; \
+    static id __singleton__; \
+    dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
+    return __singleton__; \
+}
+
+#undef	__DEF_SINGLETON
+#define __DEF_SINGLETON \
 + (instancetype)sharedInstance \
 { \
     static dispatch_once_t once; \

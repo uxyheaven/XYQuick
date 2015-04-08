@@ -24,9 +24,7 @@
 @end
 
 
-@implementation XYKeychain
-
-DEF_SINGLETON( XYKeychain )
+@implementation XYKeychain __DEF_SINGLETON
 
 @synthesize defaultDomain = _defaultDomain;
 

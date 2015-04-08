@@ -69,9 +69,7 @@
 
 @end
 
-@implementation XYKeyboardHelper
-
-DEF_SINGLETON(XYKeyboardHelper)
+@implementation XYKeyboardHelper __DEF_SINGLETON
 
 -(id) init
 {

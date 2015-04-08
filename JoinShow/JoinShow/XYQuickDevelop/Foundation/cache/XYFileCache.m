@@ -14,9 +14,8 @@
 #import "XYThread.h"
 
 #pragma mark- XYFileCacheBackgroundClean
-@interface XYFileCacheBackgroundClean : NSObject
+@interface XYFileCacheBackgroundClean : NSObject __AS_SINGLETON
 
-AS_SINGLETON(XYFileCacheBackgroundClean)
 @property (nonatomic ,strong) NSMutableDictionary *fileCacheInfos;
 
 - (void)setFileCacheInfo:(NSDictionary *)dic forKey:(NSString *)key;
@@ -32,9 +31,7 @@ AS_SINGLETON(XYFileCacheBackgroundClean)
 
 @end
 
-@implementation XYFileCache
-
-DEF_SINGLETON( XYFileCache );
+@implementation XYFileCache __DEF_SINGLETON
 
 - (id)init
 {
@@ -299,9 +296,7 @@ DEF_SINGLETON( XYFileCache );
 
 
 #pragma mark- XYFileCacheBackgroundClean
-@implementation XYFileCacheBackgroundClean
-
-DEF_SINGLETON(XYFileCacheBackgroundClean)
+@implementation XYFileCacheBackgroundClean __DEF_SINGLETON
 
 - (instancetype)init
 {

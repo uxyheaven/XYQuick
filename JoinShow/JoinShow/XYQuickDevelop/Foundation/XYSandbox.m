@@ -20,9 +20,7 @@
 }
 @end
 
-@implementation XYSandbox
-
-DEF_SINGLETON( XYSandbox )
+@implementation XYSandbox __DEF_SINGLETON
 
 @dynamic appPath;
 @dynamic docPath;

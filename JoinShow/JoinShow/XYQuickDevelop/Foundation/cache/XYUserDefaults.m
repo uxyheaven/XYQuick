@@ -9,9 +9,7 @@
 #import "XYUserDefaults.h"
 
 
-@implementation XYUserDefaults
-
-DEF_SINGLETON( XYUserDefaults )
+@implementation XYUserDefaults __DEF_SINGLETON
 
 - (BOOL)hasObjectForKey:(id)key
 {
