@@ -9,6 +9,7 @@
 #import "XYTimer.h"
 #import "NSDictionary+XY.h"
 #import "NSArray+XY.h"
+#import "NSObject+XY.h"
 
 
 void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
@@ -52,12 +53,6 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     XYTimer_action(_target, _selector, self, ti);
 }
 
-
-- (void)dealloc
-{
-
-}
-
 @end
 
 
@@ -93,15 +88,14 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 @dynamic XYtimers;
 
--(NSMutableDictionary *) XYtimers
+- (NSMutableDictionary *)XYtimers
 {
-    id object = objc_getAssociatedObject(self, NSObject_XYTimers);
+    id object = [self getAssociatedObjectForKey:NSObject_XYTimers];
     
     if (nil == object)
     {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
-        objc_setAssociatedObject(self, NSObject_XYTimers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
+        [self retainAssociatedObject:dic forKey:NSObject_XYTimers];
         return dic;
     }
     

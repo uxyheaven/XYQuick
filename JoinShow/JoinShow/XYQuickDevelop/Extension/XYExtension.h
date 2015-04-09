@@ -31,5 +31,6 @@
 #import "UITable+XY.h"
 #import "UIWebView+XY.h"
 #import "UIButton+XY.h"
+#import "UINavigationBar+XY.h"
 
 #import "UIViewController+XY.h"

@@ -8,6 +8,7 @@
 
 #import "UIControl+XY.h"
 #import "XYPrecompile.h"
+#import "NSObject+XY.h"
 
 #undef	UIControl_key_events
 #define UIControl_key_events	"UIControl.events"
@@ -70,7 +71,7 @@ DUMMY_CLASS(UIControl_XY);
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self removeHandlerForEvent:[UIControl eventWithName:key]];
         }];
-        objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_ASSIGN);
+        [self assignAssociatedObject:nil forKey:UIControl_key_events];
     }
 }
 - (void)removeHandlerForEvent:(UIControlEvents)event
@@ -82,7 +83,7 @@ DUMMY_CLASS(UIControl_XY);
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self retainAssociatedObject:opreations forKey:UIControl_key_events];
     }
     
     [opreations removeObjectForKey:methodName];
@@ -98,7 +99,7 @@ DUMMY_CLASS(UIControl_XY);
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self retainAssociatedObject:opreations forKey:UIControl_key_events];
     }
     
     [opreations setObject:[block copy] forKey:methodName];

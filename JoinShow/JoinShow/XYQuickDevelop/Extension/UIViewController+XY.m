@@ -11,6 +11,7 @@
 #import "XYSystemInfo.h"
 #import "UIImage+XY.h"
 #import "UIControl+XY.h"
+#import "NSObject+XY.h"
 
 #undef	UIViewController_key_parameters
 #define UIViewController_key_parameters	"UIViewController.parameters"
@@ -19,17 +20,15 @@
 
 @dynamic parameters;
 
--(id) parameters
+- (id)parameters
 {
-    id object = objc_getAssociatedObject(self, UIViewController_key_parameters);
-    
-    return object;
+    return [self getAssociatedObjectForKey:UIViewController_key_parameters];
 }
 
 - (void)setParameters:(id)anObject
 {
     [self willChangeValueForKey:@"parameters"];
-    objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self retainAssociatedObject:anObject forKey:UIViewController_key_parameters];
     [self didChangeValueForKey:@"parameters"];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570787841AD6A1760091FFAB /* UINavigationBar+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 570787831AD6A1760091FFAB /* UINavigationBar+XY.m */; };
 		5707C1EE19123A36003986DC /* XYViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5707C1ED19123A36003986DC /* XYViewControllerManager.m */; };
 		570C3A7E1845C65E0077D010 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7D1845C65E0077D010 /* AudioToolbox.framework */; };
 		570C3A801845C6700077D010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7F1845C6700077D010 /* CoreGraphics.framework */; };
@@ -177,6 +178,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		570787821AD6A1760091FFAB /* UINavigationBar+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+XY.h"; sourceTree = "<group>"; };
+		570787831AD6A1760091FFAB /* UINavigationBar+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+XY.m"; sourceTree = "<group>"; };
 		5707C1EC19123A36003986DC /* XYViewControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerManager.h; sourceTree = "<group>"; };
 		5707C1ED19123A36003986DC /* XYViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYViewControllerManager.m; sourceTree = "<group>"; };
 		570C3A7D1845C65E0077D010 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -905,6 +908,8 @@
 			isa = PBXGroup;
 			children = (
 				57DB87B5183349A60015CC5A /* XYExtension.h */,
+				57DB87A7183349A60015CC5A /* NSObject+XY.h */,
+				57DB87A8183349A60015CC5A /* NSObject+XY.m */,
 				57A808CD1908EF9F0080E33C /* NSNull+XY.h */,
 				57A808CE1908EF9F0080E33C /* NSNull+XY.m */,
 				57DB879F183349A60015CC5A /* NSArray+XY.h */,
@@ -919,8 +924,6 @@
 				57DB87A4183349A60015CC5A /* NSDate+XY.m */,
 				57DB87A5183349A60015CC5A /* NSNumber+XY.h */,
 				57DB87A6183349A60015CC5A /* NSNumber+XY.m */,
-				57DB87A7183349A60015CC5A /* NSObject+XY.h */,
-				57DB87A8183349A60015CC5A /* NSObject+XY.m */,
 				57DB87A9183349A60015CC5A /* NSString+XY.h */,
 				57DB87AA183349A60015CC5A /* NSString+XY.m */,
 				577CF80818AE0BD700421CC2 /* UIColor+XY.h */,
@@ -945,6 +948,8 @@
 				578D14CE187536690071448C /* UITable+XY.m */,
 				57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */,
 				57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */,
+				570787821AD6A1760091FFAB /* UINavigationBar+XY.h */,
+				570787831AD6A1760091FFAB /* UINavigationBar+XY.m */,
 				57A808CA1908BDA90080E33C /* UIViewController+XY.h */,
 				57A808CB1908BDA90080E33C /* UIViewController+XY.m */,
 			);
@@ -1314,6 +1319,7 @@
 				57DB87E0183349A60015CC5A /* UIActionSheet+XY.m in Sources */,
 				57A15001191E251000B00281 /* CDOpenALSupport.m in Sources */,
 				57DB87DF183349A60015CC5A /* NSString+XY.m in Sources */,
+				570787841AD6A1760091FFAB /* UINavigationBar+XY.m in Sources */,
 				57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */,
 				5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */,
 				57FC192E17DEBF8F00B5E6F9 /* DataLiteVC.m in Sources */,

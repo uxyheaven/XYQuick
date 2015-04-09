@@ -21,6 +21,7 @@
 
 #import "UIActionSheet+XY.h"
 #import "XYPrecompile.h"
+#import "NSObject+XY.h"
 
 DUMMY_CLASS(UIActionSheet_XY);
 
@@ -28,44 +29,45 @@ DUMMY_CLASS(UIActionSheet_XY);
 - (void)handlerClickedButton:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self copyAssociatedObject:aBlock forKey:UIActionSheet_key_clicked];
 }
 - (void)handlerCancel:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self copyAssociatedObject:aBlock forKey:UIActionSheet_key_cancel];
 }
 - (void)handlerWillPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self copyAssociatedObject:aBlock forKey:UIActionSheet_key_willPresent];
 }
 - (void)handlerDidPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self copyAssociatedObject:aBlock forKey:UIActionSheet_key_didPresent];
 }
 - (void)handlerWillDismiss:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self copyAssociatedObject:aBlock forKey:UIActionSheet_key_willDismiss];
 }
 - (void)handlerDidDismiss:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self copyAssociatedObject:aBlock forKey:UIActionSheet_key_didDismiss];
 }
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIActionSheet_block_self_index block = objc_getAssociatedObject(self, UIActionSheet_key_clicked);
+    UIActionSheet_block_self_index block = [self getAssociatedObjectForKey:UIActionSheet_key_clicked];
     
     if (block)
         block(actionSheet, buttonIndex);
 }
+
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-    UIActionSheet_block_self block = objc_getAssociatedObject(self, UIActionSheet_key_cancel);
+    UIActionSheet_block_self block = [self getAssociatedObjectForKey:UIActionSheet_key_cancel];
     
     if (block)
         block(actionSheet);
@@ -73,7 +75,7 @@ DUMMY_CLASS(UIActionSheet_XY);
 
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet
 {
-    UIActionSheet_block_self block = objc_getAssociatedObject(self, UIActionSheet_key_willPresent);
+    UIActionSheet_block_self block = [self getAssociatedObjectForKey:UIActionSheet_key_willPresent];
     
     if (block)
         block(actionSheet);
@@ -81,7 +83,7 @@ DUMMY_CLASS(UIActionSheet_XY);
 
 - (void)didPresentActionSheet:(UIActionSheet *)actionSheet
 {
-    UIActionSheet_block_self block = objc_getAssociatedObject(self, UIActionSheet_key_didPresent);
+    UIActionSheet_block_self block = [self getAssociatedObjectForKey:UIActionSheet_key_didPresent];
     
     if (block)
         block(actionSheet);
@@ -89,7 +91,7 @@ DUMMY_CLASS(UIActionSheet_XY);
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    UIActionSheet_block_self_index block = objc_getAssociatedObject(self, UIActionSheet_key_willDismiss);
+    UIActionSheet_block_self_index block = [self getAssociatedObjectForKey:UIActionSheet_key_willDismiss];
     
     if (block)
         block(actionSheet, buttonIndex);
@@ -97,7 +99,7 @@ DUMMY_CLASS(UIActionSheet_XY);
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    UIActionSheet_block_self_index block = objc_getAssociatedObject(self, UIActionSheet_key_didDismiss);
+    UIActionSheet_block_self_index block = [self getAssociatedObjectForKey:UIActionSheet_key_didDismiss];
     
     if (block)
         block(actionSheet, buttonIndex);

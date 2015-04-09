@@ -9,6 +9,7 @@
 #import "NSDate+XY.h"
 #import "XYPrecompile.h"
 #import "XYCommon.h"
+#import "NSObject+XY.h"
 
 DUMMY_CLASS(NSDate_XY);
 
@@ -175,7 +176,8 @@ DUMMY_CLASS(NSDate_XY);
 	return [NSDate date];
 }
 
--(NSDate *) dateAfterDay:(int)day{
+- (NSDate *)dateAfterDay:(int)day
+{
     NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
     [componentsToAdd setDay:day];
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -184,14 +186,16 @@ DUMMY_CLASS(NSDate_XY);
     return dateAfterDay;
 }
 
-- (NSInteger) distanceInDaysToDate:(NSDate *)aDate{
+- (NSInteger)distanceInDaysToDate:(NSDate *)aDate
+{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dateComponents = [calendar components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
     return [dateComponents day];
 }
 ///////////////////////////
--(NSString *) stringCache{
-    NSString *str = (NSString *)objc_getAssociatedObject(self, NSDate_key_stringCache);
+- (NSString *)stringCache
+{
+    NSString *str = (NSString *)[self getAssociatedObjectForKey:NSDate_key_stringCache];
     if (str == nil)
     {
        return [self resetStringCache];
@@ -204,7 +208,7 @@ DUMMY_CLASS(NSDate_XY);
     NSDateFormatter *dateFormatter = [XYCommon dateFormatterByUTC];
     NSString *str                  = [dateFormatter stringFromDate:self];
     
-    objc_setAssociatedObject(self, NSDate_key_stringCache, str, OBJC_ASSOCIATION_COPY);
+    [self copyAssociatedObject:str forKey:NSDate_key_stringCache];
     
     return str;
 }

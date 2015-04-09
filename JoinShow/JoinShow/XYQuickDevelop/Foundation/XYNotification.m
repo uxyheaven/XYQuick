@@ -8,6 +8,7 @@
 
 #import "XYNotification.h"
 #import "XYPrecompile.h"
+#import "NSObject+XY.h"
 
 void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
@@ -82,13 +83,14 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
 
 @dynamic notifications;
 
-- (id)notifications{
-    id object = objc_getAssociatedObject(self, NSObject_notifications);
+- (id)notifications
+{
+    id object = [self getAssociatedObjectForKey:NSObject_notifications];
     
     if (nil == object)
     {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
-        objc_setAssociatedObject(self, NSObject_notifications, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
+        [self retainAssociatedObject:dic forKey:NSObject_notifications];
         return dic;
     }
     

@@ -8,6 +8,7 @@
 
 #import "XYObserver.h"
 #import "XYPrecompile.h"
+#import "NSObject+XY.h"
 
 void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
@@ -102,12 +103,12 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 - (id)observers
 {
-    id object = objc_getAssociatedObject(self, NSObject_observers);
+    id object = [self getAssociatedObjectForKey:NSObject_observers];
     
     if (nil == object)
     {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:8];
-        objc_setAssociatedObject(self, NSObject_observers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
+        [self retainAssociatedObject:dic forKey:NSObject_observers];
         return dic;
     }
     
