@@ -20,7 +20,7 @@
 
 @implementation XYObjectCache __DEF_SINGLETON
 
--(id) init
+- (id)init
 {
 	self = [super init];
 	if ( self )
@@ -33,17 +33,14 @@
 	return self;
 }
 
-- (void)dealloc
+- (void)registerObjectClass:(Class)aClass
 {
-}
-
-- (void)registerObjectClass:(Class)aClass{
     _objectClass = aClass;
 }
 
 - (BOOL)hasCachedForKey:(NSString *)string
 {
-	NSString * cacheKey = [string MD5String];
+	NSString * cacheKey = [string uxyMD5String];
 	
 	BOOL flag = [self.memoryCache hasObjectForKey:cacheKey];
 	if ( NO == flag )
@@ -56,14 +53,14 @@
 
 - (BOOL)hasFileCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [key MD5String];
+	NSString * cacheKey = [key uxyMD5String];
 	
 	return [self.fileCache hasObjectForKey:cacheKey];
 }
 
 - (BOOL)hasMemoryCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [key MD5String];
+	NSString * cacheKey = [key uxyMD5String];
 	
 	return [self.memoryCache hasObjectForKey:cacheKey];
 }
@@ -72,7 +69,7 @@
 {
   //  PERF_ENTER
 	
-	NSString *cacheKey = [key MD5String];
+	NSString *cacheKey = [key uxyMD5String];
 	id anObject = nil;
     
 	NSString *fullPath = [self.fileCache fileNameForKey:cacheKey];
@@ -98,7 +95,7 @@
 {
   //  PERF_ENTER
 	
-	NSString *cacheKey = [key MD5String];
+	NSString *cacheKey = [key uxyMD5String];
 	id anObject = nil;
 	
 	NSObject *object = [self.memoryCache objectForKey:cacheKey];
@@ -149,7 +146,7 @@
 - (void)saveToMemory:(id)anObject forKey:(NSString *)string
 {
   //  PERF_ENTER
-	NSString *cacheKey = [string MD5String];
+	NSString *cacheKey = [string uxyMD5String];
 	id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
 	if ( nil == cachedObject && anObject != cachedObject )
 	{
@@ -161,7 +158,7 @@
 - (void)saveToData:(NSData *)data forKey:(NSString *)string
 {
   //  PERF_ENTER
-	NSString *cacheKey = [string MD5String];
+	NSString *cacheKey = [string uxyMD5String];
 	[self.fileCache setObject:data forKey:cacheKey];
   //  PERF_LEAVE
 }
@@ -169,7 +166,7 @@
 - (void)deleteObjectForKey:(NSString *)string
 {
   //  PERF_ENTER
-	NSString *cacheKey = [string MD5String];
+	NSString *cacheKey = [string uxyMD5String];
 	
 	[self.memoryCache removeObjectForKey:cacheKey];
 	[self.fileCache removeObjectForKey:cacheKey];

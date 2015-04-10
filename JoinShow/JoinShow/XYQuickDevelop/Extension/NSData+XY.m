@@ -8,18 +8,14 @@
 
 #import "NSData+XY.h"
 #import "XYPrecompile.h"
-
+#import <StoreKit/StoreKit.h>
 DUMMY_CLASS(NSData_XY);
 
 @implementation NSData (XY)
 
-@dynamic SHA1String;
-@dynamic SHA1Data;
-
-@dynamic MD5String;
-@dynamic MD5Data;
-
-- (NSString *)MD5String
+@dynamic uxySHA1String;
+@dynamic uxySHA1Data;
+- (NSString *)uxyMD5String
 {
     uint8_t	digest[CC_MD5_DIGEST_LENGTH + 1] = { 0 };
     
@@ -37,7 +33,7 @@ DUMMY_CLASS(NSData_XY);
     return [NSString stringWithUTF8String:(const char *)hex];
 }
 
-- (NSData *)MD5Data
+- (NSData *)uxyMD5Data
 {
     uint8_t	digest[CC_MD5_DIGEST_LENGTH + 1] = { 0 };
     
@@ -46,7 +42,9 @@ DUMMY_CLASS(NSData_XY);
     return [NSData dataWithBytes:digest length:CC_MD5_DIGEST_LENGTH];
 }
 
-- (NSString *)SHA1String
+@dynamic uxyMD5String;
+@dynamic uxyMD5Data;
+- (NSString *)uxySHA1String
 {
     uint8_t	digest[CC_SHA1_DIGEST_LENGTH + 1] = { 0 };
     
@@ -64,7 +62,7 @@ DUMMY_CLASS(NSData_XY);
     return [NSString stringWithUTF8String:(const char *)hex];
 }
 
-- (NSData *)SHA1Data
+- (NSData *)uxySHA1Data
 {
     uint8_t	digest[CC_SHA1_DIGEST_LENGTH + 1] = { 0 };
     
@@ -73,7 +71,8 @@ DUMMY_CLASS(NSData_XY);
     return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
-- (NSString *)BASE64Encrypted
+@dynamic uxyBASE64Encrypted;
+- (NSString *)uxyBASE64Encrypted
 {
     static char * __base64EncodingTable = (char *)"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     

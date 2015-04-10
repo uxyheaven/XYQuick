@@ -17,39 +17,31 @@ DUMMY_CLASS(NSString_XY);
 
 @implementation NSString (XY)
 
-@dynamic SHA1String;
-@dynamic SHA1Data;
-
-@dynamic MD5String;
-@dynamic MD5Data;
-
-@dynamic BASE64Encrypted;
-
-@dynamic data;
-
-@dynamic date;
-
-- (NSString *)MD5String
+// 这里有依赖了
+@dynamic uxySHA1String;
+@dynamic uxySHA1Data;
+- (NSString *)uxyMD5String
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] MD5String];
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxyMD5String];
+}
+- (NSData *)uxyMD5Data
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxyMD5Data];
 }
 
-- (NSData *)MD5Data
+@dynamic uxyMD5String;
+@dynamic uxyMD5Data;
+- (NSString *)uxySHA1String
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] MD5Data];
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxySHA1String];
+}
+- (NSData *)uxySHA1Data
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxySHA1Data];
 }
 
-- (NSString *)SHA1String
-{
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] SHA1String];
-}
-
-- (NSData *)SHA1Data
-{
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] SHA1Data];
-}
-
-- (NSData *)BASE64Decrypted
+@dynamic uxyBASE64Decrypted;
+- (NSData *)uxyBASE64Decrypted
 {
     static char * __base64EncodingTable = (char *)"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     static char * __base64DecodingTable = nil;
@@ -150,12 +142,14 @@ DUMMY_CLASS(NSString_XY);
     return [NSData dataWithBytesNoCopy:bytes length:length];
 }
 
-- (NSData *)data
+@dynamic uxyData;
+- (NSData *)uxyData
 {
 	return [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
 }
 
-- (NSDate *)date
+@dynamic uxyDate;
+- (NSDate *)uxyDate
 {
 	NSTimeZone * local = [NSTimeZone localTimeZone];
 	
@@ -169,7 +163,6 @@ DUMMY_CLASS(NSString_XY);
 	return [NSDate dateWithTimeInterval:(3600 + [local secondsFromGMT])
 							  sinceDate:[dateFormatter dateFromString:text]];
 }
-
 
 - (NSArray *)allURLs
 {

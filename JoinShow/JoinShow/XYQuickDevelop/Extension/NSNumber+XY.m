@@ -14,9 +14,9 @@ DUMMY_CLASS(NSNumber_XY);
 
 @implementation NSNumber (XY)
 
-@dynamic dateValue;
+@dynamic uxyDateValue;
 
-- (NSDate *)dateValue
+- (NSDate *)uxyDateValue
 {
 	return [NSDate dateWithTimeIntervalSince1970:self.doubleValue];
 }

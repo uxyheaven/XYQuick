@@ -15,17 +15,17 @@
 
 @interface NSString (XY)
 
-@property (nonatomic, readonly, strong) NSData * MD5Data;
-@property (nonatomic, readonly, copy) NSString * MD5String;
+@property (nonatomic, readonly, strong) NSData *uxyMD5Data;
+@property (nonatomic, readonly, copy) NSString *uxyMD5String;
 
-@property (nonatomic, readonly, strong) NSData *SHA1Data;
-@property (nonatomic, readonly, copy) NSString *SHA1String;
+@property (nonatomic, readonly, strong) NSData *uxySHA1Data;
+@property (nonatomic, readonly, copy) NSString *uxySHA1String;
 
-@property (nonatomic, readonly, copy) NSString *BASE64Encrypted;
+@property (nonatomic, readonly, copy) NSString *uxyBASE64Decrypted;
 
-@property (nonatomic, readonly, strong) NSData *data;
+@property (nonatomic, readonly, strong) NSData *uxyData;
 
-@property (nonatomic, readonly, strong) NSDate *date;
+@property (nonatomic, readonly, strong) NSDate *uxyDate;
 
 // url相关
 - (NSArray *)allURLs;
