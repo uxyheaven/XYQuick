@@ -10,27 +10,22 @@
 
 #pragma mark -
 
-typedef NSString *			(^NSStringAppendBlock)( id format, ... );
-typedef NSString *			(^NSStringReplaceBlock)( NSString * string, NSString * string2 );
-
-typedef NSMutableString *	(^NSMutableStringAppendBlock)( id format, ... );
-typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSString * string2 );
 
 #pragma mark -
 
 @interface NSString (XY)
 
-@property (nonatomic, readonly, copy  ) NSStringAppendBlock  APPEND;
-@property (nonatomic, readonly, copy  ) NSStringAppendBlock  LINE;
-@property (nonatomic, readonly, copy  ) NSStringReplaceBlock REPLACE;
+@property (nonatomic, readonly, strong) NSData * MD5Data;
+@property (nonatomic, readonly, copy) NSString * MD5String;
 
-@property (nonatomic, readonly, copy  ) NSString             *MD5;
-@property (nonatomic, readonly, strong) NSData               *MD5Data;
+@property (nonatomic, readonly, strong) NSData *SHA1Data;
+@property (nonatomic, readonly, copy) NSString *SHA1String;
 
-@property (nonatomic, readonly, strong) NSData               *data;
-@property (nonatomic, readonly, strong) NSDate               *date;
+@property (nonatomic, readonly, copy) NSString *BASE64Encrypted;
 
-@property (nonatomic, readonly, copy  ) NSString             *SHA1;
+@property (nonatomic, readonly, strong) NSData *data;
+
+@property (nonatomic, readonly, strong) NSDate *date;
 
 // url相关
 - (NSArray *)allURLs;
@@ -127,12 +122,4 @@ typedef NSMutableString *	(^NSMutableStringReplaceBlock)( NSString * string, NSS
 
 
 #pragma mark -
-
-@interface NSMutableString(BeeExtension)
-
-@property (nonatomic, readonly, copy) NSMutableStringAppendBlock	APPEND;
-@property (nonatomic, readonly, copy) NSMutableStringAppendBlock	LINE;
-@property (nonatomic, readonly, copy) NSMutableStringReplaceBlock	REPLACE;
-
-@end
 

@@ -79,11 +79,6 @@ if (1) { \
     
     // PRINT_CALLSTACK(64);
     
-    NSMutableString *str4 = [NSMutableString string];
-    NSString *str5 = str4.APPEND(@"%@%@", @"c", @"b");
-    NSLogD(@"%@", str5);
-    
-    
 #pragma mark - next
     NSString *strLen = @"a";
     NSLogD(@"%ld", (long)[strLen getLength2]);

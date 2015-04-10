@@ -109,7 +109,27 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return [self subarrayWithRange:NSMakeRange(range.location, range.length)];
 }
 
-- (NSInteger)indexOfString:(NSString *)string{
+- (NSArray *)safeSubarrayFromIndex:(NSUInteger)index
+{
+    if ( 0 == self.count )
+        return [NSArray array];
+    
+    if ( index >= self.count )
+        return [NSArray array];
+    
+    return [self safeSubarrayWithRange:NSMakeRange(index, self.count - index)];
+}
+
+- (NSArray *)safeSubarrayWithCount:(NSUInteger)count
+{
+    if ( 0 == self.count )
+        return [NSArray array];
+    
+    return [self safeSubarrayWithRange:NSMakeRange(0, count)];
+}
+
+- (NSInteger)indexOfString:(NSString *)string
+{
     if (string == nil || string.length < 1)
     {
         return NSNotFound;

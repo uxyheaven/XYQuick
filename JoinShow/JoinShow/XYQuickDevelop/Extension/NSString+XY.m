@@ -17,17 +17,138 @@ DUMMY_CLASS(NSString_XY);
 
 @implementation NSString (XY)
 
-@dynamic data;
-@dynamic date;
+@dynamic SHA1String;
+@dynamic SHA1Data;
 
-@dynamic MD5;
+@dynamic MD5String;
 @dynamic MD5Data;
 
-@dynamic SHA1;
+@dynamic BASE64Encrypted;
 
-@dynamic APPEND;
-@dynamic LINE;
-@dynamic REPLACE;
+@dynamic data;
+
+@dynamic date;
+
+- (NSString *)MD5String
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] MD5String];
+}
+
+- (NSData *)MD5Data
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] MD5Data];
+}
+
+- (NSString *)SHA1String
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] SHA1String];
+}
+
+- (NSData *)SHA1Data
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] SHA1Data];
+}
+
+- (NSData *)BASE64Decrypted
+{
+    static char * __base64EncodingTable = (char *)"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    static char * __base64DecodingTable = nil;
+    
+    // copy from THREE20
+    
+    if ( 0 == [self length] )
+    {
+        return [NSData data];
+    }
+    
+    if ( NULL == __base64DecodingTable )
+    {
+        __base64DecodingTable = (char *)malloc( 256 );
+        if ( NULL == __base64DecodingTable )
+        {
+            return nil;
+        }
+        
+        memset( __base64DecodingTable, CHAR_MAX, 256 );
+        
+        for ( int i = 0; i < 64; i++)
+        {
+            __base64DecodingTable[(short)__base64EncodingTable[i]] = (char)i;
+        }
+    }
+    
+    const char * characters = [self cStringUsingEncoding:NSASCIIStringEncoding];
+    if ( NULL == characters )     //  Not an ASCII string!
+    {
+        return nil;
+    }
+    
+    char * bytes = (char *)malloc( ([self length] + 3) * 3 / 4 );
+    if ( NULL == bytes )
+    {
+        return nil;
+    }
+    
+    NSUInteger length = 0;
+    NSUInteger i = 0;
+    
+    while ( 1 )
+    {
+        char	buffer[4] = { 0 };
+        short	bufferLength = 0;
+        
+        for ( bufferLength = 0; bufferLength < 4; i++ )
+        {
+            if ( characters[i] == '\0' )
+            {
+                break;
+            }
+            
+            if ( isspace(characters[i]) || characters[i] == '=' )
+            {
+                continue;
+            }
+            
+            buffer[bufferLength] = __base64DecodingTable[(short)characters[i]];
+            if ( CHAR_MAX == buffer[bufferLength++] )
+            {
+                free(bytes);
+                return nil;
+            }
+        }
+        
+        if ( 0 == bufferLength )
+        {
+            break;
+        }
+        
+        if ( 1 == bufferLength )
+        {
+            // At least two characters are needed to produce one byte!
+            
+            free(bytes);
+            return nil;
+        }
+        
+        //  Decode the characters in the buffer to bytes.
+        
+        bytes[length++] = (char)((buffer[0] << 2) | (buffer[1] >> 4));
+        
+        if (bufferLength > 2)
+        {
+            bytes[length++] = (char)((buffer[1] << 4) | (buffer[2] >> 2));
+        }
+        
+        if (bufferLength > 3)
+        {
+            bytes[length++] = (char)((buffer[2] << 6) | buffer[3]);
+        }
+    }
+    
+    realloc( bytes, length );
+    
+    return [NSData dataWithBytesNoCopy:bytes length:length];
+}
 
 - (NSData *)data
 {
@@ -49,60 +170,6 @@ DUMMY_CLASS(NSString_XY);
 							  sinceDate:[dateFormatter dateFromString:text]];
 }
 
-- (NSStringAppendBlock)APPEND
-{
-	NSStringAppendBlock block = ^ NSString * ( id first, ... )
-	{
-		va_list args;
-		va_start( args, first );
-        
-		NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
-		
-		NSMutableString * copy = [self mutableCopy];
-		[copy appendString:append];
-        
-		va_end( args );
-		
-		return copy;
-	};
-    
-	return [block copy];
-}
-
-- (NSStringAppendBlock)LINE
-{
-	NSStringAppendBlock block = ^ NSString * ( id first, ... )
-	{
-		NSMutableString * copy = [self mutableCopy];
-        
-		if ( first )
-		{
-			va_list args;
-			va_start( args, first );
-			
-			NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
-			[copy appendString:append];
-            
-			va_end( args );
-		}
-        
-		[copy appendString:@"\n"];
-        
-		return copy;
-	};
-	
-	return [block copy];
-}
-
-- (NSStringReplaceBlock)REPLACE
-{
-	NSStringReplaceBlock block = ^ NSString * ( NSString * string1, NSString * string2 )
-	{
-		return [self stringByReplacingOccurrencesOfString:string1 withString:string2];
-	};
-	
-	return [block copy];
-}
 
 - (NSArray *)allURLs
 {
@@ -398,65 +465,6 @@ DUMMY_CLASS(NSString_XY);
     return queryComponents;
 }
 
-- (NSString *)MD5
-{
-	NSData * value;
-	
-	value = [NSData dataWithBytes:[self UTF8String] length:[self length]];
-	value = [value MD5];
-    
-	if ( value )
-	{
-		char			tmp[16];
-		unsigned char *	hex = (unsigned char *)malloc( 2048 + 1 );
-		unsigned char *	bytes = (unsigned char *)[value bytes];
-		unsigned long	length = [value length];
-		
-		hex[0] = '\0';
-		
-		for ( unsigned long i = 0; i < length; ++i )
-		{
-			sprintf( tmp, "%02X", bytes[i] );
-			strcat( (char *)hex, tmp );
-		}
-		
-		NSString * result = [NSString stringWithUTF8String:(const char *)hex];
-		free( hex );
-		return result;
-	}
-	else
-	{
-		return nil;
-	}
-}
-
-- (NSData *)MD5Data
-{
-	// TODO:
-	return nil;
-}
-
-// thanks to @uxyheaven
-- (NSString *)SHA1
-{
-    const char *	cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *		data = [NSData dataWithBytes:cstr length:self.length];
-    
-    uint8_t			digest[CC_SHA1_DIGEST_LENGTH] = { 0 };
-	CC_LONG			digestLength = (CC_LONG)data.length;
-    
-    CC_SHA1( data.bytes, digestLength, digest );
-    
-    NSMutableString * output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
-	
-    for ( int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++ )
-	{
-		[output appendFormat:@"%02x", digest[i]];
-	}
-    
-    return output;
-}
-
 - (NSString *)trim
 {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -740,7 +748,8 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
-- (NSInteger)getLength{
+- (NSInteger)getLength
+{
     NSInteger strLength = 0;
     char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
     for (NSInteger i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++)
@@ -749,14 +758,16 @@ DUMMY_CLASS(NSString_XY);
         {
             p++;
             strLength++;
-        } else
+        }
+        else
         {
             p++;
         }
     }
     return strLength;
 }
-- (NSInteger)getLength2{
+- (NSInteger)getLength2
+{
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSData *data = [self dataUsingEncoding:enc];
     return [data length];
@@ -776,12 +787,14 @@ DUMMY_CLASS(NSString_XY);
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
 }
 
-- (void)erasure{
+- (void)erasure
+{
     char *string = (char *)CFStringGetCStringPtr((CFStringRef)self, CFStringGetSystemEncoding());
     memset(string, 0, [self length]);
 }
 
-- (NSString*)stringByInitials{
+- (NSString*)stringByInitials
+{
     NSMutableString *result = [NSMutableString string];
     [self enumerateSubstringsInRange:NSMakeRange(0, self.length) options:NSStringEnumerationByWords | NSStringEnumerationLocalized usingBlock:^(NSString *word, NSRange wordRange, NSRange enclosingWordRange, BOOL *stop1) {
         __block NSString *firstLetter = nil;
@@ -796,7 +809,8 @@ DUMMY_CLASS(NSString_XY);
     return result;
 }
 
-- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font{
+- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font
+{
     CGSize expectedLabelSize = CGSizeZero;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -822,67 +836,3 @@ DUMMY_CLASS(NSString_XY);
 @end
 
 #pragma mark -
-
-@implementation NSMutableString(BeeExtension)
-
-@dynamic APPEND;
-@dynamic LINE;
-@dynamic REPLACE;
-
-- (NSMutableStringAppendBlock)APPEND
-{
-	NSMutableStringAppendBlock block = ^ NSMutableString * ( id first, ... )
-	{
-		va_list args;
-		va_start( args, first );
-		
-		NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
-		[self appendString:append];
-		
-		va_end( args );
-        
-		return self;
-	};
-	
-	return [block copy] ;
-}
-
-- (NSMutableStringAppendBlock)LINE
-{
-	NSMutableStringAppendBlock block = ^ NSMutableString * ( id first, ... )
-	{
-		if ( first )
-		{
-			va_list args;
-			va_start( args, first );
-			
-			NSString * append = [[NSString alloc] initWithFormat:first arguments:args];
-			[(NSMutableString *)self appendString:append];
-			
-			va_end( args );
-		}
-		
-		[(NSMutableString *)self appendString:@"\n"];
-        
-		return self;
-	};
-	
-	return [block copy] ;
-}
-
-- (NSMutableStringReplaceBlock)REPLACE
-{
-	NSMutableStringReplaceBlock block = ^ NSMutableString * ( NSString * string1, NSString * string2 )
-	{
-		[self replaceOccurrencesOfString:string1
-							  withString:string2
-								 options:NSCaseInsensitiveSearch
-								   range:NSMakeRange(0, self.length)];
-		
-		return self;
-	};
-	
-	return [block copy] ;
-}
-
-@end

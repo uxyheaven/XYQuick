@@ -43,7 +43,7 @@
 
 - (BOOL)hasCachedForKey:(NSString *)string
 {
-	NSString * cacheKey = [string MD5];
+	NSString * cacheKey = [string MD5String];
 	
 	BOOL flag = [self.memoryCache hasObjectForKey:cacheKey];
 	if ( NO == flag )
@@ -56,14 +56,14 @@
 
 - (BOOL)hasFileCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [key MD5];
+	NSString * cacheKey = [key MD5String];
 	
 	return [self.fileCache hasObjectForKey:cacheKey];
 }
 
 - (BOOL)hasMemoryCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [key MD5];
+	NSString * cacheKey = [key MD5String];
 	
 	return [self.memoryCache hasObjectForKey:cacheKey];
 }
@@ -72,10 +72,10 @@
 {
   //  PERF_ENTER
 	
-	NSString *	cacheKey = [key MD5];
+	NSString *cacheKey = [key MD5String];
 	id anObject = nil;
     
-	NSString * fullPath = [self.fileCache fileNameForKey:cacheKey];
+	NSString *fullPath = [self.fileCache fileNameForKey:cacheKey];
 
 	if ( fullPath )
 	{
@@ -98,10 +98,10 @@
 {
   //  PERF_ENTER
 	
-	NSString *	cacheKey = [key MD5];
+	NSString *cacheKey = [key MD5String];
 	id anObject = nil;
 	
-	NSObject * object = [self.memoryCache objectForKey:cacheKey];
+	NSObject *object = [self.memoryCache objectForKey:cacheKey];
 	if ( object && [object isKindOfClass:self.objectClass] )
 	{
 		anObject = (id)object;
@@ -149,36 +149,30 @@
 - (void)saveToMemory:(id)anObject forKey:(NSString *)string
 {
   //  PERF_ENTER
-	
-	NSString * cacheKey = [string MD5];
+	NSString *cacheKey = [string MD5String];
 	id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
 	if ( nil == cachedObject && anObject != cachedObject )
 	{
 		[self.memoryCache setObject:anObject forKey:cacheKey];
 	}
-	
   //  PERF_LEAVE
 }
 
 - (void)saveToData:(NSData *)data forKey:(NSString *)string
 {
   //  PERF_ENTER
-	
-	NSString * cacheKey = [string MD5];
+	NSString *cacheKey = [string MD5String];
 	[self.fileCache setObject:data forKey:cacheKey];
-	
   //  PERF_LEAVE
 }
 
 - (void)deleteObjectForKey:(NSString *)string
 {
   //  PERF_ENTER
-	
-	NSString * cacheKey = [string MD5];
+	NSString *cacheKey = [string MD5String];
 	
 	[self.memoryCache removeObjectForKey:cacheKey];
 	[self.fileCache removeObjectForKey:cacheKey];
-	
  //   PERF_LEAVE
 }
 
