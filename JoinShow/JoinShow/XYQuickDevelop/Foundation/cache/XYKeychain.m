@@ -80,7 +80,7 @@
 		}
 	}
 	
-	domain = [domain stringByAppendingString:[XYSystemInfo appIdentifier]];
+	domain = [domain stringByAppendingString:[[XYSystemInfo sharedInstance] bundleIdentifier]];
     
 	NSArray * keys = [[NSArray alloc] initWithObjects: (__bridge NSString *) kSecClass, kSecAttrAccount, kSecAttrService, nil];
 	NSArray * objects = [[NSArray alloc] initWithObjects: (__bridge NSString *) kSecClassGenericPassword, key, domain, nil];
@@ -150,7 +150,7 @@
 		}
 	}
 	
-	domain = [domain stringByAppendingString:[XYSystemInfo appIdentifier]];
+	domain = [domain stringByAppendingString:[[XYSystemInfo sharedInstance] bundleIdentifier]];
     
 	OSStatus status = 0;
 	
@@ -214,7 +214,7 @@
 		}
 	}
 	
-	domain = [domain stringByAppendingString:[XYSystemInfo appIdentifier]];
+	domain = [domain stringByAppendingString:[[XYSystemInfo sharedInstance] bundleIdentifier]];
     
 	NSArray * keys = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClass, kSecAttrAccount, kSecAttrService, kSecReturnAttributes, nil];
 	NSArray * objects = [[NSArray alloc] initWithObjects:(__bridge NSString *)kSecClassGenericPassword, key, domain, kCFBooleanTrue, nil];

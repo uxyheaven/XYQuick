@@ -7,53 +7,53 @@
 //
 
 #import "XYSystemInfo.h"
-@implementation XYSystemInfo
+@implementation XYSystemInfo __DEF_SINGLETON
 
-+ (NSString *)OSVersion
+- (NSString *)osVersion
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     return [NSString stringWithFormat:@"%@ %@", [UIDevice currentDevice].systemName, [UIDevice currentDevice].systemVersion];
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#else
     return nil;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#endif
 }
 
-+ (NSString *)appVersion
+- (NSString *)bundleVersion
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR || TARGET_OS_MAC)
-    NSString * value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    if ( nil == value || 0 == value.length )
-    {
-        value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersion"];
-    }
-    return value;
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+#else
     return nil;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#endif
 }
 
-+ (NSString *)appIdentifier
+- (NSString *)bundleShortVersion
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR || TARGET_OS_MAC)
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+#else
+    return nil;
+#endif
+}
+
+- (NSString *)bundleIdentifier
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    static NSString * __identifier = nil;
-    if ( nil == __identifier )
-    {
-        __identifier = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
-    }
-    return __identifier;
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return @"";
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+#else
+    return nil;
+#endif
 }
 
-+ (NSString *)appSchema
+- (NSString *)urlSchema
 {
-    return [self appSchema:nil];
+    return [self urlSchemaWithName:nil];
 }
 
-+ (NSString *)appSchema:(NSString *)name
+- (NSString *)urlSchemaWithName:(NSString *)name
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
     NSArray * array = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"];
     for ( NSDictionary * dict in array )
     {
@@ -85,47 +85,40 @@
     }
     
     return nil;
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+#else
+    
     return nil;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+#endif
 }
 
-+ (NSString *)deviceModel
+- (NSString *)deviceModel
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     return [UIDevice currentDevice].model;
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#else
     return nil;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#endif
 }
 
-+ (NSString *)deviceUUID
+- (NSString *)deviceUUID
 {
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR || TARGET_OS_MAC)
     Class openUDID = NSClassFromString( @"OpenUDID" );
     if ( openUDID )
     {
-#pragma mark todo
-        //return [openUDID value];
-        return nil;
+        return objc_msgSend(openUDID, @selector(value));
     }
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    else
+    {
+        return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    }
+}
+
+- (BOOL)isJailBroken
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     
-    return nil;
-}
-
-+ (BOOL) isRetina
-{
-    return [UIScreen mainScreen].scale == 2;
-}
-
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-static const char * __jb_app = NULL;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-
-+ (BOOL)isJailBroken NS_AVAILABLE_IOS(4_0)
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     static const char * __jb_apps[] =
     {
         "/Application/Cydia.app",
@@ -137,244 +130,91 @@ static const char * __jb_app = NULL;
         NULL
     };
     
-    __jb_app = NULL;
-    
     // method 1
+    
     for ( int i = 0; __jb_apps[i]; ++i )
     {
         if ( [[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithUTF8String:__jb_apps[i]]] )
         {
-            __jb_app = __jb_apps[i];
             return YES;
         }
     }
     
     // method 2
+    
     if ( [[NSFileManager defaultManager] fileExistsAtPath:@"/private/var/lib/apt/"] )
     {
         return YES;
     }
     
     // method 3
+    
+    //#ifdef __IPHONE_8_0
+    //
+    //	if ( 0 == posix_spawn("ls") )
+    //	{
+    //		return YES;
+    //	}
+    //
+    //#else
+    
     if ( 0 == system("ls") )
     {
         return YES;
     }
+    
+    //#endif
+    
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     
     return NO;
 }
 
-+ (NSString *)jailBreaker NS_AVAILABLE_IOS(4_0)
-{
-#if (TARGET_OS_IPHONE)
-    if ( __jb_app )
-    {
-        return [NSString stringWithUTF8String:__jb_app];
-    }
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    
-    return @"";
-}
-
-+ (BOOL)isDevicePhone
+- (BOOL)runningOnPhone
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    NSString * deviceType = [UIDevice currentDevice].model;
     
+    NSString * deviceType = [UIDevice currentDevice].model;
     if ( [deviceType rangeOfString:@"iPhone" options:NSCaseInsensitiveSearch].length > 0 ||
         [deviceType rangeOfString:@"iPod" options:NSCaseInsensitiveSearch].length > 0 ||
         [deviceType rangeOfString:@"iTouch" options:NSCaseInsensitiveSearch].length > 0 )
     {
         return YES;
     }
+    
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     
     return NO;
 }
 
-+ (BOOL)isDevicePad
+- (BOOL)runningOnPad
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    NSString * deviceType = [UIDevice currentDevice].model;
     
+    NSString * deviceType = [UIDevice currentDevice].model;
     if ( [deviceType rangeOfString:@"iPad" options:NSCaseInsensitiveSearch].length > 0 )
     {
         return YES;
     }
+    
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
     
     return NO;
 }
 
-+ (BOOL)requiresPhoneOS
+- (BOOL)requiresPhoneOS
 {
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
     return [[[NSBundle mainBundle].infoDictionary objectForKey:@"LSRequiresIPhoneOS"] boolValue];
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isPhone
-{
-    if ( [self isPhone35] || [self isPhoneRetina35] || [self isPhoneRetina4] )
-    {
-        return YES;
-    }
+    
+#else
     
     return NO;
-}
-
-+ (BOOL)isPhone35
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [self isDevicePad] )
-    {
-        if ( [self requiresPhoneOS] && [self isPad] )
-        {
-            return YES;
-        }
-        
-        return NO;
-    }
-    else
-    {
-        return [XYSystemInfo isScreenSize:CGSizeMake(320, 480)];
-    }
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isPhoneRetina35
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [self isDevicePad] )
-    {
-        if ( [self requiresPhoneOS] && [self isPadRetina] )
-        {
-            return YES;
-        }
-        
-        return NO;
-    }
-    else
-    {
-        return [XYSystemInfo isScreenSize:CGSizeMake(640, 960)];
-    }
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isPhoneRetina4
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [self isDevicePad] )
-    {
-        return NO;
-    }
-    else
-    {
-        return [XYSystemInfo isScreenSize:CGSizeMake(640, 1136)];
-    }
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-
-+ (BOOL)isPhoneRetina47;
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [self isDevicePad] )
-    {
-        return NO;
-    }
-    else
-    {
-        return [XYSystemInfo isScreenSize:CGSizeMake(750, 1334)];
-    }
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isPhoneRetina55;
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [self isDevicePad] )
-    {
-        return NO;
-    }
-    else
-    {
-        return [XYSystemInfo isScreenSize:CGSizeMake(1242, 2208)];
-    }
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isPhoneRetina55Scale
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [self isDevicePad] )
-    {
-        return NO;
-    }
-    else
-    {
-        return [XYSystemInfo isScreenSize:CGSizeMake(1125, 2001)];
-    }
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-
-
-+ (BOOL)isPad
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return [XYSystemInfo isScreenSize:CGSizeMake(768, 1024)];
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isPadRetina
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return [XYSystemInfo isScreenSize:CGSizeMake(1536, 2048)];
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-}
-
-+ (BOOL)isScreenSize:(CGSize)size
-{
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    if ( [UIScreen instancesRespondToSelector:@selector(currentMode)] )
-    {
-        CGSize size2 = CGSizeMake( size.height, size.width );
-        CGSize screenSize = [UIScreen mainScreen].currentMode.size;
-        
-        if ( CGSizeEqualToSize(size, screenSize) || CGSizeEqualToSize(size2, screenSize) )
-        {
-            return YES;
-        }
-    }
     
-    return NO;
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-    return NO;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#endif
 }
-
-//////////////////////////////
-+ (NSString *)localHost
+- (NSString *)localHost
 {
     NSString *address = @"error";
     struct ifaddrs *interfaces = NULL;
@@ -406,43 +246,297 @@ static const char * __jb_app = NULL;
     return address;
 }
 
-//////////////////
-+ (float)floatVersion
+#pragma mark- 屏幕相关
+- (BOOL)isRetina
+{
+    return [UIScreen mainScreen].scale > 1;
+}
+- (BOOL)isScreenPhone
+{
+    if ( [self isScreen320x480] || [self isScreen640x960] || [self isScreen640x1136] )
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)isScreen320x480
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    if ( [self runningOnPad] )
+    {
+        if ( [self requiresPhoneOS] && [self isScreen768x1024] )
+        {
+            return YES;
+        }
+        
+        return NO;
+    }
+    else
+    {
+        return [self isScreenSizeEqualTo:CGSizeMake(320, 480)];
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreen640x960
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    if ( [self runningOnPad] )
+    {
+        return NO;
+    }
+    else
+    {
+        return [self isScreenSizeEqualTo:CGSizeMake(640, 960)];
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreen640x1136
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    if ( [self runningOnPad] )
+    {
+        return NO;
+    }
+    else
+    {
+        return [self isScreenSizeEqualTo:CGSizeMake(640, 1136)];
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreen750x1334
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    if ( [self runningOnPad] )
+    {
+        return NO;
+    }
+    else
+    {
+        return [self isScreenSizeEqualTo:CGSizeMake(750, 1334)];
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreen1242x2208
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    if ( [self runningOnPad] )
+    {
+        return NO;
+    }
+    else
+    {
+        return [self isScreenSizeEqualTo:CGSizeMake(1242, 2208)];
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreen1125x2001
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    if ( [self runningOnPad] )
+    {
+        return NO;
+    }
+    else
+    {
+        return [self isScreenSizeEqualTo:CGSizeMake(1125, 2001)];
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreenPad
+{
+    if ( [self isScreen768x1024] || [self isScreen1536x2048] )
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)isScreen768x1024
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    return [self isScreenSizeEqualTo:CGSizeMake(768, 1024)];
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreen1536x2048
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    return [self isScreenSizeEqualTo:CGSizeMake(1536, 2048)];
+    
+#endif
+    
+    return NO;
+}
+
+- (CGSize)screenSize
+{
+    return [UIScreen mainScreen].currentMode.size;
+}
+
+- (BOOL)isScreenSizeEqualTo:(CGSize)size
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    CGSize size2 = CGSizeMake( size.height, size.width );
+    CGSize screenSize = [UIScreen mainScreen].currentMode.size;
+    
+    if ( CGSizeEqualToSize(size, screenSize) || CGSizeEqualToSize(size2, screenSize) )
+    {
+        return YES;
+    }
+    
+#endif
+    
+    return NO;
+}
+- (BOOL)isScreenSizeSmallerThan:(CGSize)size
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    CGSize size2 = CGSizeMake( size.height, size.width );
+    CGSize screenSize = [UIScreen mainScreen].currentMode.size;
+    
+    if ( (size.width > screenSize.width && size.height > screenSize.height) ||
+        (size2.width > screenSize.width && size2.height > screenSize.height) )
+    {
+        return YES;
+    }
+    
+#endif
+    
+    return NO;
+}
+
+- (BOOL)isScreenSizeBiggerThan:(CGSize)size
+{
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+    
+    CGSize size2 = CGSizeMake( size.height, size.width );
+    CGSize screenSize = [UIScreen mainScreen].currentMode.size;
+    
+    if ( (size.width < screenSize.width && size.height < screenSize.height) ||
+        (size2.width < screenSize.width && size2.height < screenSize.height) )
+    {
+        return YES;
+    }
+    
+#endif
+    
+    return NO;
+}
+
+#pragma mark- 版本判断相关
+- (BOOL)isOsVersionOrEarlier:(NSString *)ver
+{
+    if ( [[self osVersion] compare:ver] != NSOrderedDescending )
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (BOOL)isOsVersionOrLater:(NSString *)ver
+{
+    if ( [[self osVersion] compare:ver] != NSOrderedAscending )
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (BOOL)isOsVersionEqualTo:(NSString *)ver
+{
+    if ( NSOrderedSame == [[self osVersion] compare:ver] )
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }	
+}
+
+#pragma mark- 启动相关
+- (float)floatVersion
 {
     return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
 }
 
-+ (NSString *)xyVersionKeyWithUser:(NSString *)user
+- (NSString *)xyVersionKeyWithUser:(NSString *)user
 {
     return (user.length > 0) ? [NSString stringWithFormat:@"XY_version_%@", user] : @"XY_version";
 }
 
-+ (BOOL)isFirstRun
+- (BOOL)isFirstRun
 {
     return [self isFirstRunWithUser:nil];
 }
 
-+ (BOOL)isFirstRunCurrentVersion
+- (BOOL)isFirstRunCurrentVersion
 {
     return [self isFirstRunCurrentVersionWithUser:nil];
 }
 
-+ (void)setFirstRun
+- (void)setFirstRun
 {
     [self setFirstRunWithUser:nil];
 }
 
-+ (void)setNotFirstRun
+- (void)setNotFirstRun
 {
     [self setNotFirstRunWithUser:nil];
 }
 
 
-+ (BOOL)isFirstRunWithUser:(NSString *)user
+- (BOOL)isFirstRunWithUser:(NSString *)user
 {
     return ([[NSUserDefaults standardUserDefaults] valueForKey:[self xyVersionKeyWithUser:user]] == nil);
 }
-+ (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user
+- (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user
 {
     if ([self isFirstRun])
     {
@@ -450,17 +544,18 @@ static const char * __jb_app = NULL;
     }
     else
     {
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:[self xyVersionKeyWithUser:user]] isEqualToString:[self appVersion]];
+        return [[[NSUserDefaults standardUserDefaults] objectForKey:[self xyVersionKeyWithUser:user]] isEqualToString:[self bundleVersion]];
     }
 }
-+ (void)setFirstRunWithUser:(NSString *)user
+- (void)setFirstRunWithUser:(NSString *)user
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+ (void)setNotFirstRunWithUser:(NSString *)user
+- (void)setNotFirstRunWithUser:(NSString *)user
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[self appVersion] forKey:[self xyVersionKeyWithUser:user]];
+    [[NSUserDefaults standardUserDefaults] setObject:[self bundleVersion] forKey:[self xyVersionKeyWithUser:user]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 @end

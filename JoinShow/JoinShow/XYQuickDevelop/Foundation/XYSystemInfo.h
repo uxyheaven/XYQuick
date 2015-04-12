@@ -5,7 +5,7 @@
 //  Created by Heaven on 13-9-23.
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
-//  Copy from bee Framework
+//  Copy from Samurai Framework
 
 // 系统信息
 
@@ -14,99 +14,82 @@
 #undef Screen_HEIGHT
 #define Screen_HEIGHT  [[UIScreen mainScreen] bounds].size.height
 
-
 #pragma mark -
 
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#define IOS8_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"8.0"]
+#define IOS7_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"7.0"]
+#define IOS6_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"6.0"]
+#define IOS5_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"5.0"]
+#define IOS4_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"4.0"]
 
-#define IOS8_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"8.0"] != NSOrderedAscending )
-#define IOS7_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
-#define IOS6_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"6.0"] != NSOrderedAscending )
-#define IOS5_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"5.0"] != NSOrderedAscending )
-#define IOS4_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"4.0"] != NSOrderedAscending )
-#define IOS3_OR_LATER		( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
-
-#define SYSTEM_VERSION_EQUAL_TO(v) \
-([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v) \
-([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) \
-([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v) \
-([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) \
-([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
-
-#define IOS7_OR_EARLIER		( !IOS8_OR_LATER )
-#define IOS6_OR_EARLIER		( !IOS7_OR_LATER )
-#define IOS5_OR_EARLIER		( !IOS6_OR_LATER )
-#define IOS4_OR_EARLIER		( !IOS5_OR_LATER )
-#define IOS3_OR_EARLIER		( !IOS4_OR_LATER )
-
-#define IS_SCREEN_4_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-#define IS_SCREEN_35_INCH	([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
-
-#else	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-
-#define IOS7_OR_LATER		(NO)
-#define IOS6_OR_LATER		(NO)
-#define IOS5_OR_LATER		(NO)
-#define IOS4_OR_LATER		(NO)
-#define IOS3_OR_LATER		(NO)
-
-#define IS_SCREEN_4_INCH	(NO)
-#define IS_SCREEN_35_INCH	(NO)
-
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+#define IOS8_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"8.0"]
+#define IOS7_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"7.0"]
+#define IOS6_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"6.0"]
+#define IOS5_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"5.0"]
+#define IOS4_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"4.0"]
 
 #import "XYPrecompile.h"
 
-@interface XYSystemInfo : NSObject
+@interface XYSystemInfo : NSObject __AS_SINGLETON
 
-+ (NSString *)OSVersion;
-+ (NSString *)appVersion;
-+ (NSString *)appIdentifier;
-+ (NSString *)appSchema;
-+ (NSString *)appSchema:(NSString *)name;
-+ (NSString *)deviceModel;
-+ (NSString *)deviceUUID;
+#pragma mark- app,设备相关
+- (NSString *)osVersion;
+- (NSString *)bundleVersion;
+- (NSString *)bundleShortVersion;
+- (NSString *)bundleIdentifier;
+- (NSString *)urlSchema;
+- (NSString *)urlSchemaWithName:(NSString *)name;
+- (NSString *)deviceModel;
+- (NSString *)deviceUUID;
 
-// 是否retina屏
-+ (BOOL)isRetina;
+// 返回本机ip地址
+- (NSString *)localHost;
 
 // 是否越狱
-+ (BOOL)isJailBroken		NS_AVAILABLE_IOS(4_0);
-+ (NSString *)jailBreaker	NS_AVAILABLE_IOS(4_0);
+- (BOOL)isJailBroken		NS_AVAILABLE_IOS(4_0);
 
-+ (BOOL)isDevicePhone;
-+ (BOOL)isDevicePad;
+// 在ip设备上运行
+- (BOOL)runningOnPhone;
+// 在ipad设备上运行
+- (BOOL)runningOnPad;
 
-+ (BOOL)requiresPhoneOS;
+- (BOOL)requiresPhoneOS;
 
-+ (BOOL)isPhone;
-+ (BOOL)isPhone35;
-+ (BOOL)isPhoneRetina35;
-+ (BOOL)isPhoneRetina4;
-+ (BOOL)isPhoneRetina47;//iphone6缩放模式分辨率同iphone5
-+ (BOOL)isPhoneRetina55;
-+ (BOOL)isPhoneRetina55Scale;
+#pragma mark- 屏幕相关
+- (CGSize)screenSize;
+- (BOOL)isScreenPhone;
+- (BOOL)isScreen320x480;    // 这个是历史了
+- (BOOL)isScreen640x960;    // ip4s
+- (BOOL)isScreen640x1136;   // ip5 ip5s ip6放大模式
+- (BOOL)isScreen750x1334;   // ip6
+- (BOOL)isScreen1242x2208;  // ip6p
+- (BOOL)isScreen1125x2001;  // ip6p放大模式
 
-+ (BOOL)isPad;
-+ (BOOL)isPadRetina;
-+ (BOOL)isScreenSize:(CGSize)size;
+- (BOOL)isScreenPad;
+- (BOOL)isScreen768x1024;
+- (BOOL)isScreen1536x2048;
 
-//////////////////////////////
-// 返回本机ip地址
-+ (NSString *)localHost;
+// 是否retina屏
+- (BOOL)isRetina;
 
-+ (BOOL)isFirstRun;
-+ (BOOL)isFirstRunCurrentVersion;
-+ (void)setFirstRun;
-+ (void)setNotFirstRun;
+- (BOOL)isScreenSizeSmallerThan:(CGSize)size;
+- (BOOL)isScreenSizeBiggerThan:(CGSize)size;
+- (BOOL)isScreenSizeEqualTo:(CGSize)size;
 
-+ (BOOL)isFirstRunWithUser:(NSString *)user;
-+ (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user;
-+ (void)setFirstRunWithUser:(NSString *)user;
-+ (void)setNotFirstRunWithUser:(NSString *)user;
+#pragma mark- 版本判断相关
+- (BOOL)isOsVersionOrEarlier:(NSString *)ver;
+- (BOOL)isOsVersionOrLater:(NSString *)ver;
+- (BOOL)isOsVersionEqualTo:(NSString *)ver;
+
+#pragma mark- 启动相关
+- (BOOL)isFirstRun;
+- (BOOL)isFirstRunCurrentVersion;
+- (void)setFirstRun;
+- (void)setNotFirstRun;
+
+- (BOOL)isFirstRunWithUser:(NSString *)user;
+- (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user;
+- (void)setFirstRunWithUser:(NSString *)user;
+- (void)setNotFirstRunWithUser:(NSString *)user;
 
 @end

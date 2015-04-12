@@ -27,6 +27,12 @@
 #pragma mark 2 delegate dataSource protocol
 
 #pragma mark -
+@interface UIViewController (XYBase_private)
+
+// 某些vc(UITableViewController)加载的时候不执行loadView方法
+@property (nonatomic, assign) BOOL isLoadedLoadView;
+
+@end
 
 @implementation UIViewController (XYBase)
 
@@ -42,29 +48,13 @@
 {
     [self xy__loadView];
     
-    if ([self respondsToSelector:@selector(createFields)])
-        [self performSelector:@selector(createFields)];
-    
-    if ([self respondsToSelector:@selector(createViews)])
-        [self performSelector:@selector(createViews)];
-    
-    if ([self respondsToSelector:@selector(enterBackground)])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    }
-    
-    if ([self respondsToSelector:@selector(enterForeground)])
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
-    }
-    
-    if ([self respondsToSelector:@selector(createEvents)])
-        [self performSelector:@selector(createEvents)];
+    [self __handleLoadView];
 }
 
 - (void)xy__dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
     
     if ([self respondsToSelector:@selector(destroyEvents)])
         [self performSelector:@selector(destroyEvents)];
@@ -80,6 +70,8 @@
 
 - (void)xy__viewDidLoad
 {
+    [self __handleLoadView];
+    
     if ([self respondsToSelector:@selector(loadData)])
         [self performSelector:@selector(loadData)];
     
@@ -97,9 +89,44 @@
     [self xy__didReceiveMemoryWarning];
 }
 
+#pragma mark - private
+- (void)__handleLoadView
+{
+    if (self.isLoadedLoadView)
+        return;
+    
+    self.isLoadedLoadView = YES;
 
+    if ([self respondsToSelector:@selector(createFields)])
+        [self performSelector:@selector(createFields)];
+    
+    if ([self respondsToSelector:@selector(createViews)])
+        [self performSelector:@selector(createViews)];
+    
+    if ([self respondsToSelector:@selector(enterBackground)])
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    if ([self respondsToSelector:@selector(enterForeground)])
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    if ([self respondsToSelector:@selector(createEvents)])
+        [self performSelector:@selector(createEvents)];
+}
 @end
 
+@implementation UIViewController(XYBase_private)
+
+@dynamic isLoadedLoadView;
+
+- (BOOL)isLoadedLoadView
+{
+    return [objc_getAssociatedObject(self, "VC.isLoadedLoadView") boolValue];
+}
+- (void)setIsLoadedLoadView:(BOOL)isLoadedLoadView
+{
+    objc_setAssociatedObject(self, "VC.isLoadedLoadView", @(isLoadedLoadView), OBJC_ASSOCIATION_ASSIGN);
+}
+@end
 
 
 
