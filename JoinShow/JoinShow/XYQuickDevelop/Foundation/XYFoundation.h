@@ -47,6 +47,11 @@
 // runtime
 #import "XYRuntime.h"
 
-
 // 黑魔法
 #import "XYBlackMagic.h"
+
+// 网络可达性
+#import "XYReachability.h"
+
+
+

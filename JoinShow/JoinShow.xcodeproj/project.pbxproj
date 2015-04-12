@@ -137,6 +137,7 @@
 		57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */; };
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
+		57F6A9D61ADA705000C66300 /* XYReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6A9D51ADA705000C66300 /* XYReachability.m */; };
 		57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */; };
 		57FC192E17DEBF8F00B5E6F9 /* DataLiteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */; };
 		57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */; };
@@ -423,6 +424,8 @@
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseVC.h; sourceTree = "<group>"; };
 		57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseVC.m; sourceTree = "<group>"; };
+		57F6A9D41ADA705000C66300 /* XYReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYReachability.h; sourceTree = "<group>"; };
+		57F6A9D51ADA705000C66300 /* XYReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYReachability.m; sourceTree = "<group>"; };
 		57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerProtocol.h; sourceTree = "<group>"; };
 		57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
 		57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_TestDic.plist; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 				747522361A14CCC300D3344D /* XYRuntime.m */,
 				743B1A9C1A15DB3700CEA246 /* XYBlackMagic.h */,
 				743B1A9D1A15DB3700CEA246 /* XYBlackMagic.m */,
+				57F6A9D41ADA705000C66300 /* XYReachability.h */,
+				57F6A9D51ADA705000C66300 /* XYReachability.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1256,6 +1261,7 @@
 				5740323C190FA76700C82B23 /* FMDatabase.m in Sources */,
 				CEE003651947F2F7005AE8C4 /* IndicatorHelper.m in Sources */,
 				747FB3191A00D5C7004B557B /* LKDBHelper.m in Sources */,
+				57F6A9D61ADA705000C66300 /* XYReachability.m in Sources */,
 				57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
 				57FC73DE1934C15300FA8C36 /* XYObserver.m in Sources */,
