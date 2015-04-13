@@ -253,7 +253,7 @@
 }
 - (BOOL)isScreenPhone
 {
-    if ( [self isScreen320x480] || [self isScreen640x960] || [self isScreen640x1136] )
+	if ( [self isScreen320x480] || [self isScreen640x960] || [self isScreen640x1136] || [self isScreen750x1334] || [self isScreen1242x2208] || [self isScreen1125x2001] )
     {
         return YES;
     }
