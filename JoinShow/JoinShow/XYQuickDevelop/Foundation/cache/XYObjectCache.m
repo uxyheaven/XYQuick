@@ -128,15 +128,17 @@
 }
 
 - (void)saveObject:(id)anObject forKey:(NSString *)key async:(BOOL)async{
-    if (async) {
+    if (async)
+    {
         // 异步
-        FOREGROUND_BEGIN
         [self saveToMemory:anObject forKey:key];
-        BACKGROUND_BEGIN
-        [self saveToData:anObject forKey:key];
-        BACKGROUND_COMMIT
-        FOREGROUND_COMMIT
-    } else {
+        dispatch_async_background_concurrent( ^{
+            [self saveToData:anObject forKey:key];
+        });
+        
+    }
+    else
+    {
         // 同步
         [self saveToData:anObject forKey:key];
         [self saveToMemory:anObject forKey:key];

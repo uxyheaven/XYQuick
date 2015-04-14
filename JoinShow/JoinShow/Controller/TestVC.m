@@ -520,12 +520,12 @@ if (1) { \
     [hub addTapGestureWithBlock:^(UIView *view){
         HIDDENMBProgressHUD
     }];
-    BACKGROUND_BEGIN
-    sleep(3);
-    FOREGROUND_BEGIN
-    HIDDENMBProgressHUD
-    FOREGROUND_COMMIT
-    BACKGROUND_COMMIT
+    dispatch_async_background_concurrent( ^{
+       sleep(3);
+        dispatch_async_foreground( ^{
+           HIDDENMBProgressHUD
+        });
+    });
 }
 - (void)clickNewGirl:(id)sender
 {

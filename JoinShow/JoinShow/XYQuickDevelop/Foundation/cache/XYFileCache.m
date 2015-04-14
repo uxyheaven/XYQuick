@@ -107,8 +107,7 @@
 }
 - (void)clearDiskOnCompletion:(void (^)(void))completion
 {
-    BACKGROUND_IOFILE_BEGIN
-    {
+    dispatch_async_background_writeFile( ^{
         [_fileManager removeItemAtPath:_diskCachePath error:NULL];
         [_fileManager createDirectoryAtPath:_diskCachePath
                 withIntermediateDirectories:YES
@@ -116,14 +115,11 @@
                                       error:NULL];
         if (completion)
         {
-            FOREGROUND_BEGIN
-            {
+            dispatch_async_foreground( ^{
                 completion();
-            }
-            FOREGROUND_COMMIT
+            });
         }
-    }
-    BACKGROUND_IOFILE_COMMIT
+    });
 }
 // 清除当前 XYFileCache 所有过期的文件
 - (void)cleanDisk
@@ -132,8 +128,7 @@
 }
 - (void)cleanDiskWithCompletionBlock:(void (^)(void))completion
 {
-    BACKGROUND_IOFILE_BEGIN
-    {
+    dispatch_async([XYGCD sharedInstance].backIOFileQueue, ^{
         NSLogD(@"i 0");
         NSURL *diskCacheURL = [NSURL fileURLWithPath:_diskCachePath isDirectory:YES];
         NSArray *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
@@ -212,19 +207,18 @@
         if (completion)
         {
             NSLogD(@"i 5");
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async_foreground( ^{
                 NSLogD(@"i 6");
                 completion();
             });
         }
-    }
-    BACKGROUND_IOFILE_COMMIT
+    });
 }
 
 - (NSUInteger)getSize
 {
     __block NSUInteger size = 0;
-    dispatch_sync([XYGCD backIOFileQueue], ^{
+    dispatch_sync([XYGCD sharedInstance].backIOFileQueue, ^{
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:_diskCachePath];
         for (NSString *fileName in fileEnumerator)
         {
@@ -239,7 +233,7 @@
 - (NSUInteger)getDiskCount
 {
     __block NSUInteger count = 0;
-    dispatch_sync([XYGCD backIOFileQueue], ^{
+    dispatch_sync([XYGCD sharedInstance].backIOFileQueue, ^{
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:_diskCachePath];
         count = [[fileEnumerator allObjects] count];
     });
@@ -350,19 +344,17 @@
 
 - (void)cleanDiskWithCompletionBlock:(void (^)(void))completion
 {
-    BACKGROUND_IOFILE_BEGIN
-    {
+    dispatch_async_background_writeFile( ^{
         [_fileCacheInfos enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self cleanDiskWithFileCacheInfo:obj];
         }];
-    }
-    
-    if (completion) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completion();
-        });
-    }
-    BACKGROUND_IOFILE_COMMIT
+        if (completion)
+        {
+            dispatch_async_foreground( ^{
+                completion();
+            });
+        }
+    });
 }
 
 - (void)cleanDiskWithFileCacheInfo:(NSDictionary *)dic

@@ -43,9 +43,9 @@
     [self.view addSubview:textView];
     self.tv = textView;
 
-    BACKGROUND_BEGIN
+    dispatch_async_background_concurrent( ^{
     [self test];
-    BACKGROUND_COMMIT
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,13 +56,13 @@
 
 -(void)add:(NSString*)txt
 {
-    FOREGROUND_BEGIN
+    dispatch_async_foreground( ^{
         [_ms appendString:@"\n"];
         [_ms appendString:txt];
         [_ms appendString:@"\n"];
         
         self.tv.text = _ms;
-   FOREGROUND_COMMIT
+    });
 }
 #define addText(fmt, ...) [self add:[NSString stringWithFormat:fmt,##__VA_ARGS__]]
 
