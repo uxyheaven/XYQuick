@@ -118,7 +118,6 @@
 		57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B0183349A60015CC5A /* UIImage+XY.m */; };
 		57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B4183349A60015CC5A /* UIView+XY.m */; };
 		57DB87E5183349A60015CC5A /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87B8183349A60015CC5A /* XYCommon.m */; };
-		57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87BB183349A60015CC5A /* XYDataLite.m */; };
 		57DB87E9183349A60015CC5A /* XYSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C2183349A60015CC5A /* XYSystemInfo.m */; };
 		57DB87EA183349A60015CC5A /* XYThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C4183349A60015CC5A /* XYThread.m */; };
 		57DB87EB183349A60015CC5A /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB87C6183349A60015CC5A /* XYTimer.m */; };
@@ -139,7 +138,6 @@
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
 		57F6A9D61ADA705000C66300 /* XYReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6A9D51ADA705000C66300 /* XYReachability.m */; };
 		57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */; };
-		57FC192E17DEBF8F00B5E6F9 /* DataLiteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */; };
 		57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */; };
 		57FC73DE1934C15300FA8C36 /* XYObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DD1934C15300FA8C36 /* XYObserver.m */; };
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
@@ -385,8 +383,6 @@
 		57DB87B7183349A60015CC5A /* XYCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommon.h; sourceTree = "<group>"; };
 		57DB87B8183349A60015CC5A /* XYCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYCommon.m; sourceTree = "<group>"; };
 		57DB87B9183349A60015CC5A /* XYCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommonDefine.h; sourceTree = "<group>"; };
-		57DB87BA183349A60015CC5A /* XYDataLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDataLite.h; sourceTree = "<group>"; };
-		57DB87BB183349A60015CC5A /* XYDataLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDataLite.m; sourceTree = "<group>"; };
 		57DB87BC183349A60015CC5A /* XYFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFoundation.h; sourceTree = "<group>"; };
 		57DB87C1183349A60015CC5A /* XYSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSystemInfo.h; sourceTree = "<group>"; };
 		57DB87C2183349A60015CC5A /* XYSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSystemInfo.m; sourceTree = "<group>"; };
@@ -429,8 +425,6 @@
 		57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerProtocol.h; sourceTree = "<group>"; };
 		57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
 		57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_TestDic.plist; sourceTree = "<group>"; };
-		57FC192C17DEBF8F00B5E6F9 /* DataLiteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLiteVC.h; sourceTree = "<group>"; };
-		57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataLiteVC.m; sourceTree = "<group>"; };
 		57FC73D91934C0D200FA8C36 /* NSDictionary+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+XY.h"; sourceTree = "<group>"; };
 		57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+XY.m"; sourceTree = "<group>"; };
 		57FC73DC1934C15300FA8C36 /* XYObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserver.h; sourceTree = "<group>"; };
@@ -536,8 +530,6 @@
 				578FBFE2183AFA8B0083A952 /* AnimationVC2.m */,
 				5722182617DB365B003504E8 /* NetworkVC.h */,
 				5722182717DB365B003504E8 /* NetworkVC.m */,
-				57FC192C17DEBF8F00B5E6F9 /* DataLiteVC.h */,
-				57FC192D17DEBF8F00B5E6F9 /* DataLiteVC.m */,
 				57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */,
 				57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */,
 				57808336181A11A6000F349B /* ImageVC.h */,
@@ -967,8 +959,6 @@
 				57DB87B9183349A60015CC5A /* XYCommonDefine.h */,
 				57DB87B7183349A60015CC5A /* XYCommon.h */,
 				57DB87B8183349A60015CC5A /* XYCommon.m */,
-				57DB87BA183349A60015CC5A /* XYDataLite.h */,
-				57DB87BB183349A60015CC5A /* XYDataLite.m */,
 				57FC73DC1934C15300FA8C36 /* XYObserver.h */,
 				57FC73DD1934C15300FA8C36 /* XYObserver.m */,
 				578ED6A1193DB08C00585D4B /* XYNotification.h */,
@@ -1326,9 +1316,7 @@
 				57A15001191E251000B00281 /* CDOpenALSupport.m in Sources */,
 				57DB87DF183349A60015CC5A /* NSString+XY.m in Sources */,
 				570787841AD6A1760091FFAB /* UINavigationBar+XY.m in Sources */,
-				57DB87E6183349A60015CC5A /* XYDataLite.m in Sources */,
 				5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */,
-				57FC192E17DEBF8F00B5E6F9 /* DataLiteVC.m in Sources */,
 				5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */,
 				57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */,
 				7433B2CF1A0365D2000472A9 /* XYAutoCoding.m in Sources */,

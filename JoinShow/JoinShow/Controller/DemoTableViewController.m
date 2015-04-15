@@ -43,7 +43,6 @@
                       @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
                       @{@"title": @"JSON", @"className": @"JSONVC"},
                       @{@"title": @"Network", @"className": @"NetworkVC"},
-                      @{@"title": @"DataLite", @"className": @"DataLiteVC"},
                       @{@"title": @"Database", @"className": @"DatabaseVC"},
                       @{@"title": @"Image", @"className": @"ImageVC"},
                       @{@"title": @"Keyboard", @"className": @"KeyboardVC"},

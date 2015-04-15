@@ -20,9 +20,6 @@
 // 定时器
 #import "XYTimer.h"
 
-// 轻量级数据持久化
-#import "XYDataLite.h"
-
 // 系统信息
 #import "XYSystemInfo.h"
 
