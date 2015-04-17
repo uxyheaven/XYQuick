@@ -29,8 +29,6 @@
 
 #import "XYMenuItem.h"
 
-#import "XYControllerProtocol.h"
-
 #import "XYViewControllerProtocol.h"
 
 #endif

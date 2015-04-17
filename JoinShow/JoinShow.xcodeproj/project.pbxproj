@@ -436,8 +436,6 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
-		741498301A08BAD7007F593C /* XYProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYProtocol.h; sourceTree = "<group>"; };
-		741498311A08BB75007F593C /* XYControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYControllerProtocol.h; sourceTree = "<group>"; };
 		741498321A08C11F007F593C /* XYBaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseDataSource.h; sourceTree = "<group>"; };
 		741498331A08C11F007F593C /* XYBaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseDataSource.m; sourceTree = "<group>"; };
 		7433B2CD1A0365D2000472A9 /* XYAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAutoCoding.h; sourceTree = "<group>"; };
@@ -887,7 +885,6 @@
 		57DB879D183349A60015CC5A /* XYQuickDevelop */ = {
 			isa = PBXGroup;
 			children = (
-				7414982F1A08BABB007F593C /* Protocol */,
 				57D4451218B59A04006C597A /* BaseClass */,
 				576E87CD1855D20F00C7A724 /* Debug */,
 				57DB879E183349A60015CC5A /* Extension */,
@@ -1060,15 +1057,6 @@
 				74CD540A19C2E0930069282B /* XYBaseService.m */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		7414982F1A08BABB007F593C /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				741498301A08BAD7007F593C /* XYProtocol.h */,
-				741498311A08BB75007F593C /* XYControllerProtocol.h */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		747FB30D1A00D5C7004B557B /* LKDBHelper */ = {

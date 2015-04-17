@@ -128,7 +128,7 @@
 }
 - (void)cleanDiskWithCompletionBlock:(void (^)(void))completion
 {
-    dispatch_async([XYGCD sharedInstance].backIOFileQueue, ^{
+    dispatch_async([XYGCD sharedInstance].writeFileQueue, ^{
         NSLogD(@"i 0");
         NSURL *diskCacheURL = [NSURL fileURLWithPath:_diskCachePath isDirectory:YES];
         NSArray *resourceKeys = @[NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey];
@@ -218,7 +218,7 @@
 - (NSUInteger)getSize
 {
     __block NSUInteger size = 0;
-    dispatch_sync([XYGCD sharedInstance].backIOFileQueue, ^{
+    dispatch_sync([XYGCD sharedInstance].writeFileQueue, ^{
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:_diskCachePath];
         for (NSString *fileName in fileEnumerator)
         {
@@ -233,7 +233,7 @@
 - (NSUInteger)getDiskCount
 {
     __block NSUInteger count = 0;
-    dispatch_sync([XYGCD sharedInstance].backIOFileQueue, ^{
+    dispatch_sync([XYGCD sharedInstance].writeFileQueue, ^{
         NSDirectoryEnumerator *fileEnumerator = [_fileManager enumeratorAtPath:_diskCachePath];
         count = [[fileEnumerator allObjects] count];
     });

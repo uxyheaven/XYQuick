@@ -14,8 +14,9 @@
 @interface XYGCD()
 
 @property (nonatomic, strong) dispatch_queue_t foreQueue;
-@property (nonatomic, strong) dispatch_queue_t backQueue;
-@property (nonatomic, strong) dispatch_queue_t backIOFileQueue;
+@property (nonatomic, strong) dispatch_queue_t backSerialQueue;
+@property (nonatomic, strong) dispatch_queue_t backConcurrentQueue;
+@property (nonatomic, strong) dispatch_queue_t writeFileQueue;
 
 @end
 
@@ -26,11 +27,10 @@
 	self = [super init];
 	if ( self )
 	{
-        _foreQueue       = dispatch_get_main_queue();
-        // 串行队列
-        _backQueue       = dispatch_queue_create( "com.XY.taskQueue", DISPATCH_QUEUE_SERIAL );
-        // todo dispatch_barrier_async(<#dispatch_queue_t queue#>, <#^(void)block#>)
-        _backIOFileQueue = dispatch_queue_create( "com.XY.ioTaskQueue", DISPATCH_QUEUE_SERIAL );
+        _foreQueue           = dispatch_get_main_queue();
+        _backSerialQueue     = dispatch_queue_create( "com.XY.backSerialQueue", DISPATCH_QUEUE_SERIAL );
+        _backConcurrentQueue = dispatch_queue_create( "com.XY.backConcurrentQueue", DISPATCH_QUEUE_CONCURRENT );
+        _writeFileQueue      = dispatch_queue_create( "com.XY.writeFileQueue", DISPATCH_QUEUE_SERIAL );
 	}
 	
 	return self;
