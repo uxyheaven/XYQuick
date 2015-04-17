@@ -10,7 +10,7 @@
 #import "XYPrecompile.h"
 #import "NSObject+XY.h"
 
-void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
 
 
 #pragma mark - XYNotification
@@ -67,7 +67,7 @@ void (*XYNotification_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSe
         return;
     }
     
-    XYNotification_action(_target, _selector, notification);
+    XYNotification_action1(_target, _selector, notification);
 }
 
 - (void)dealloc

@@ -403,6 +403,7 @@ if (1) { \
     [self observeWithObject:self property:KVO_NAME(testKVO2) block:^(id newValue, id oldValue) {
         NSLogD(@"new:%@ old:%@", newValue, oldValue);
     }];
+    [self observeWithObject:self property:KVO_NAME(testKVO_BOOL)];
     
     [self registerNotification:NOTIFICATION_NAME(aaa)];
     [self registerNotification:NOTIFICATION_NAME(bbb) block:^(NSNotification *notification) {
@@ -431,6 +432,8 @@ if (1) { \
     // kvo
     self.testKVO = self.testKVO + 1;
    // [self setValue:@99 forKeyPath:@"testKVO"];
+    
+    self.testKVO_BOOL = !self.testKVO_BOOL;
     
     self.testKVO2 = self.testKVO2 + 1;
     self.myGirl.name = [NSString stringWithFormat:@"%d", self.testKVO];
@@ -954,6 +957,11 @@ if (1) { \
 ON_KVO_2_( testKVO, sourceObject, newValue, oldValue )
 {
      NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
+}
+
+ON_KVO_2_( testKVO_BOOL, sourceObject, newValue, oldValue )
+{
+    NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
 
 ON_NOTIFICATION_1_( aaa, notification )

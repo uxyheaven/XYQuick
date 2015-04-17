@@ -10,7 +10,8 @@
 #import "XYPrecompile.h"
 #import "NSObject+XY.h"
 
-void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+void (*XYObserver_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
+void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
 
 #pragma mark - XYObserver
 @interface XYObserver ()
@@ -80,11 +81,11 @@ void (*XYObserver_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     
     if (_type == XYObserverType_new)
     {
-        XYObserver_action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
+        XYObserver_action2(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
     }
     else if (_type == XYObserverType_new_old)
     {
-        XYObserver_action(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
+        XYObserver_action3(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey] , change[NSKeyValueChangeOldKey]);
     }
 }
 
