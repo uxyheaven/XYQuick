@@ -199,15 +199,6 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-    // Block AlertView
-    tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    tempBtn.backgroundColor = [UIColor lightGrayColor];
-    tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
-    [tempBtn setTitle:@"Block AlertView" forState:UIControlStateNormal];
-    [tempBtn addTarget:self action:@selector(clickBtnBlockAlertView:) forControlEvents:UIControlEventTouchUpInside];
-    [scroll addSubview:tempBtn];
-    btnOffsetY += 64;
-    
     // Block ActionSheet
     tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.backgroundColor = [UIColor lightGrayColor];
@@ -500,13 +491,7 @@ if (1) { \
 {
     [self.view addShadeWithTarget:self action:@selector(closeShade) color:nil alpha:0.7];
 }
-- (IBAction)clickBtnBlockAlertView:(id)sender {
-    UIAlertView *alertView = [self showMessage:NO title:@"title" message:@"msg" cancelButtonTitle:@"cancel" otherButtonTitles:@"1",@"2", nil];
-    [alertView handlerClickedButton:^(UIAlertView *alertView, NSInteger btnIndex) {
-        NSLogD(@"%ld", (long)btnIndex);
-    }];
-    [alertView showWithDuration:3];
-}
+
 
 - (IBAction)clickBtnBlockActionSheet:(id)sender
 {

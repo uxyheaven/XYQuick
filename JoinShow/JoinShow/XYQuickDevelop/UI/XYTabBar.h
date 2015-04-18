@@ -6,10 +6,11 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "XYBaseView.h"
+#import <UIKit/UIKit.h>
+
 @protocol XYTabBarDelegate;
 
-@interface XYTabBar : XYBaseView
+@interface XYTabBar : UIView
 
 #pragma mark- data
 // 定义data

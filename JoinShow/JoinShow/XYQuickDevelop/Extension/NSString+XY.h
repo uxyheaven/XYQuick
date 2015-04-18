@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //  Copy from bee Framework
 
-#import "XYPrecompile.h"
+#import <Foundation/Foundation.h>
 
 #pragma mark -
 

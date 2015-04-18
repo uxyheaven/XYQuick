@@ -5,6 +5,11 @@
 //  Copyright (c) 2012年 Heaven. All rights reserved.
 //
 
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
 /**************************************************************/
 // 单例模式
 #undef	AS_SINGLETON

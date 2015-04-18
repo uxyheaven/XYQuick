@@ -32,9 +32,6 @@
 - (NSDictionary *)asNSDictionary;
 - (NSMutableDictionary *)asNSMutableDictionary;
 
-#pragma mark - message box
-- (UIAlertView *)showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
-
 #pragma mark- copy
 // 基于NSKeyArchive.如果 self导入XYAutoCoding.h,可用与自定义对象
 - (id)deepCopy1;

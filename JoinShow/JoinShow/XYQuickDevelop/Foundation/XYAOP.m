@@ -10,6 +10,8 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
+NSString * (*AOPAspectAction)(id, SEL) = (NSString * (*)(id, SEL)) objc_msgSend;
+
 typedef enum {
     AOPAspectInspectorTypeBefore  = 0,
     AOPAspectInspectorTypeInstead = 1,
@@ -283,8 +285,7 @@ static NSString *const AOPAspectCurrentObjectKey = @"XYAOPAspectCurrentObjectKey
     if (![self respondsToSelector:aSelector])
     {
         SEL fSelNew = [[XYAOP sharedInstance] extendedSelectorWithClass:[self class] selector:@selector(forwardingTargetForSelector:)];
-        // return objc_msgSend([XYAOP sharedInstance], fSelNew);
-        return [[XYAOP sharedInstance] performSelector:fSelNew];
+        return AOPAspectAction([XYAOP sharedInstance], fSelNew);
     }
     
     [[XYAOP sharedInstance] setCurrentObject:self];

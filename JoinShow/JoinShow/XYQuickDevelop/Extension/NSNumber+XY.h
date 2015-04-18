@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #undef	__INT
 #define __INT( __x )			[NSNumber numberWithInteger:(NSInteger)__x]
 

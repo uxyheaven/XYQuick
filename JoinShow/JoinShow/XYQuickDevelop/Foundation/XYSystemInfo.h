@@ -8,6 +8,8 @@
 //  Copy from Samurai Framework
 
 // 系统信息
+#import <Foundation/Foundation.h>
+#import "XYCommonDefine.h"
 
 #undef Screen_WIDTH
 #define Screen_WIDTH   [[UIScreen mainScreen] bounds].size.width
@@ -16,19 +18,22 @@
 
 #pragma mark -
 
+#define IOS9_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"9.0"]
 #define IOS8_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"8.0"]
 #define IOS7_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"7.0"]
 #define IOS6_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"6.0"]
 #define IOS5_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"5.0"]
 #define IOS4_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"4.0"]
 
+#define IOS9_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"9.0"]
 #define IOS8_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"8.0"]
 #define IOS7_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"7.0"]
 #define IOS6_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"6.0"]
 #define IOS5_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"5.0"]
 #define IOS4_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"4.0"]
 
-#import "XYPrecompile.h"
+
+
 
 @interface XYSystemInfo : NSObject __AS_SINGLETON
 

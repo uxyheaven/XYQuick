@@ -43,7 +43,6 @@
 		5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403236190FA76700C82B23 /* FMDatabasePool.m */; };
 		5740323F190FA76700C82B23 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 57403238190FA76700C82B23 /* FMDatabaseQueue.m */; };
 		57403240190FA76700C82B23 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5740323A190FA76700C82B23 /* FMResultSet.m */; };
-		5745421F1AA1657D00E453DA /* XYSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 5745421E1AA1657D00E453DA /* XYSignal.m */; };
 		5749BF8419BF480900D676CC /* JSONVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5749BF8319BF480900D676CC /* JSONVC.m */; };
 		5749BF8619BF4DEB00D676CC /* json0.json in Resources */ = {isa = PBXBuildFile; fileRef = 5749BF8519BF4DEB00D676CC /* json0.json */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
@@ -52,8 +51,6 @@
 		576E87D01855D23F00C7A724 /* XYDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87CF1855D23F00C7A724 /* XYDebug.m */; };
 		576E87D31855E77200C7A724 /* XYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E87D21855E77200C7A724 /* XYPerformance.m */; };
 		5771FF2F183A162900B24FE5 /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5771FF2E183A162900B24FE5 /* XYAnimate.m */; };
-		577952D71909718A00F95459 /* XYBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 577952D61909718A00F95459 /* XYBaseView.m */; };
-		577952DA1909727E00F95459 /* XYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 577952D91909727E00F95459 /* XYBaseModel.m */; };
 		577ACC7A190A2DD70053C9CE /* XYTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577ACC79190A2DD70053C9CE /* XYTabBarController.m */; };
 		577ACC7D190A30470053C9CE /* XYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 577ACC7C190A30470053C9CE /* XYTabBar.m */; };
 		577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577CF80618ADE6A200421CC2 /* UIView+XY_coordinate.m */; };
@@ -67,7 +64,7 @@
 		578D81D2188E4E8900E0058E /* XYKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 578D81D1188E4E8900E0058E /* XYKeychain.m */; };
 		578ED6A3193DB08C00585D4B /* XYNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 578ED6A2193DB08C00585D4B /* XYNotification.m */; };
 		578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 578FBFE2183AFA8B0083A952 /* AnimationVC2.m */; };
-		57901EBB17E6C26E00B8E8FF /* remark in Resources */ = {isa = PBXBuildFile; fileRef = 57901EBA17E6C26E00B8E8FF /* remark */; };
+		57901EBB17E6C26E00B8E8FF /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 57901EBA17E6C26E00B8E8FF /* readme.txt */; };
 		5791A7EA18051E7C009A1003 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5791A7E918051E7C009A1003 /* CoreMotion.framework */; };
 		579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 579426B41856D6DC0049B426 /* EntityBaseModel.m */; };
 		579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579B3A3418EBDCF8001650C6 /* DemoViewController.m */; };
@@ -80,7 +77,6 @@
 		57A808CC1908BDA90080E33C /* UIViewController+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CB1908BDA90080E33C /* UIViewController+XY.m */; };
 		57A808CF1908EF9F0080E33C /* NSNull+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808CE1908EF9F0080E33C /* NSNull+XY.m */; };
 		57A808D21908F2BE0080E33C /* JsonTestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A808D11908F2BE0080E33C /* JsonTestEntity.m */; };
-		57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B491888C9850005A93B /* XYMaterial.m */; };
 		57AB8B581888E1E60005A93B /* XYSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AB8B571888E1E60005A93B /* XYSandbox.m */; };
 		57AC6F651845C610003B0817 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AC6F641845C610003B0817 /* ImageIO.framework */; };
 		57AC6F671845C620003B0817 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AC6F661845C620003B0817 /* SystemConfiguration.framework */; };
@@ -138,13 +134,17 @@
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
 		57F6A9D61ADA705000C66300 /* XYReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6A9D51ADA705000C66300 /* XYReachability.m */; };
 		57FAD5371AE2288100F074B4 /* XYMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD5361AE2288100F074B4 /* XYMulticastDelegate.m */; };
+		57FAD6F81AE236A600F074B4 /* XYBaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD6F71AE236A600F074B4 /* XYBaseDataSource.m */; };
+		57FAD6FB1AE236D600F074B4 /* XYSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD6FA1AE236D600F074B4 /* XYSignal.m */; };
+		57FAD6FE1AE2388000F074B4 /* XYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD6FD1AE2388000F074B4 /* XYBaseModel.m */; };
+		57FAD9231AE248E100F074B4 /* XYMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD9221AE248E100F074B4 /* XYMaterial.m */; };
+		57FAD9281AE2494C00F074B4 /* XYBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD9251AE2494C00F074B4 /* XYBaseView.m */; };
 		57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */; };
 		57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */; };
 		57FC73DE1934C15300FA8C36 /* XYObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DD1934C15300FA8C36 /* XYObserver.m */; };
 		57FFF3C31818B2D700977CB5 /* UmengManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3BF1818B2D700977CB5 /* UmengManager.m */; };
 		57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C01818B2D700977CB5 /* RequestHelper.m */; };
 		57FFF3C91818B40F00977CB5 /* XYCommon+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */; };
-		741498341A08C11F007F593C /* XYBaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 741498331A08C11F007F593C /* XYBaseDataSource.m */; };
 		7433B2CF1A0365D2000472A9 /* XYAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7433B2CE1A0365D2000472A9 /* XYAutoCoding.m */; };
 		743B1A9E1A15DB3700CEA246 /* XYBlackMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 743B1A9D1A15DB3700CEA246 /* XYBlackMagic.m */; };
 		743B1AA11A15DCB800CEA246 /* BlackMagicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 743B1AA01A15DCB800CEA246 /* BlackMagicVC.m */; };
@@ -159,7 +159,6 @@
 		747FB31B1A00D5C7004B557B /* NSObject+LKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FB3151A00D5C7004B557B /* NSObject+LKDBHelper.m */; };
 		747FB31C1A00D5C7004B557B /* NSObject+LKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FB3171A00D5C7004B557B /* NSObject+LKModel.m */; };
 		74CD53FA19C28C630069282B /* CarEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD53F919C28C630069282B /* CarEntity.m */; };
-		74CD540B19C2E0930069282B /* XYBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CD540A19C2E0930069282B /* XYBaseService.m */; };
 		74FD286619F0FFC9005513B4 /* XYAOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FD286519F0FFC9005513B4 /* XYAOP.m */; };
 		8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400D0CB198B353200A5E289 /* NSSet+XY.m */; };
 		84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DBC5B6197E6EBC00718937 /* LKTestModels.m */; };
@@ -248,8 +247,6 @@
 		57403239190FA76700C82B23 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		5740323A190FA76700C82B23 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		5742C1F017F7BF3C00065083 /* XYExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternal.h; sourceTree = "<group>"; };
-		5745421D1AA1657C00E453DA /* XYSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSignal.h; sourceTree = "<group>"; };
-		5745421E1AA1657D00E453DA /* XYSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSignal.m; sourceTree = "<group>"; };
 		5749BF8219BF480900D676CC /* JSONVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONVC.h; sourceTree = "<group>"; };
 		5749BF8319BF480900D676CC /* JSONVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONVC.m; sourceTree = "<group>"; };
 		5749BF8519BF4DEB00D676CC /* json0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json0.json; sourceTree = "<group>"; };
@@ -265,10 +262,6 @@
 		576E87D21855E77200C7A724 /* XYPerformance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPerformance.m; sourceTree = "<group>"; };
 		5771FF2D183A162900B24FE5 /* XYAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAnimate.h; sourceTree = "<group>"; };
 		5771FF2E183A162900B24FE5 /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
-		577952D51909718A00F95459 /* XYBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseView.h; sourceTree = "<group>"; };
-		577952D61909718A00F95459 /* XYBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseView.m; sourceTree = "<group>"; };
-		577952D81909727E00F95459 /* XYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseModel.h; sourceTree = "<group>"; };
-		577952D91909727E00F95459 /* XYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseModel.m; sourceTree = "<group>"; };
 		577ACC78190A2DD70053C9CE /* XYTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTabBarController.h; sourceTree = "<group>"; };
 		577ACC79190A2DD70053C9CE /* XYTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTabBarController.m; sourceTree = "<group>"; };
 		577ACC7B190A30470053C9CE /* XYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTabBar.h; sourceTree = "<group>"; };
@@ -294,7 +287,7 @@
 		578ED6A2193DB08C00585D4B /* XYNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNotification.m; sourceTree = "<group>"; };
 		578FBFE1183AFA8B0083A952 /* AnimationVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationVC2.h; sourceTree = "<group>"; };
 		578FBFE2183AFA8B0083A952 /* AnimationVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationVC2.m; sourceTree = "<group>"; };
-		57901EBA17E6C26E00B8E8FF /* remark */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = remark; sourceTree = "<group>"; };
+		57901EBA17E6C26E00B8E8FF /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		5791A7E918051E7C009A1003 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		579426B31856D6DC0049B426 /* EntityBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityBaseModel.h; sourceTree = "<group>"; };
 		579426B41856D6DC0049B426 /* EntityBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityBaseModel.m; sourceTree = "<group>"; };
@@ -318,8 +311,6 @@
 		57A808CE1908EF9F0080E33C /* NSNull+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+XY.m"; sourceTree = "<group>"; };
 		57A808D01908F2BE0080E33C /* JsonTestEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonTestEntity.h; sourceTree = "<group>"; };
 		57A808D11908F2BE0080E33C /* JsonTestEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonTestEntity.m; sourceTree = "<group>"; };
-		57AB8B481888C9850005A93B /* XYMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMaterial.h; sourceTree = "<group>"; };
-		57AB8B491888C9850005A93B /* XYMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMaterial.m; sourceTree = "<group>"; };
 		57AB8B561888E1E60005A93B /* XYSandbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSandbox.h; sourceTree = "<group>"; };
 		57AB8B571888E1E60005A93B /* XYSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSandbox.m; sourceTree = "<group>"; };
 		57AC6F641845C610003B0817 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -358,7 +349,6 @@
 		57D4FF491822275400E10954 /* BusinessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessVC.m; sourceTree = "<group>"; };
 		57D4FF4B18222E2700E10954 /* RubyChinaNodeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyChinaNodeEntity.h; sourceTree = "<group>"; };
 		57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyChinaNodeEntity.m; sourceTree = "<group>"; };
-		57D582871A399D0500C760C7 /* XYMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMenuItem.h; sourceTree = "<group>"; };
 		57DB86B0183339560015CC5A /* XYExternalPrecompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYExternalPrecompile.h; sourceTree = "<group>"; };
 		57DB879F183349A60015CC5A /* NSArray+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XY.h"; sourceTree = "<group>"; };
 		57DB87A0183349A60015CC5A /* NSArray+XY.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSArray+XY.mm"; sourceTree = "<group>"; };
@@ -424,9 +414,20 @@
 		57F6A9D41ADA705000C66300 /* XYReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYReachability.h; sourceTree = "<group>"; };
 		57F6A9D51ADA705000C66300 /* XYReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYReachability.m; sourceTree = "<group>"; };
 		57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerProtocol.h; sourceTree = "<group>"; };
-		57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
 		57FAD5351AE2288100F074B4 /* XYMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMulticastDelegate.h; sourceTree = "<group>"; };
 		57FAD5361AE2288100F074B4 /* XYMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMulticastDelegate.m; sourceTree = "<group>"; };
+		57FAD6F61AE236A600F074B4 /* XYBaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseDataSource.h; sourceTree = "<group>"; };
+		57FAD6F71AE236A600F074B4 /* XYBaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseDataSource.m; sourceTree = "<group>"; };
+		57FAD6F91AE236D600F074B4 /* XYSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSignal.h; sourceTree = "<group>"; };
+		57FAD6FA1AE236D600F074B4 /* XYSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSignal.m; sourceTree = "<group>"; };
+		57FAD6FC1AE2388000F074B4 /* XYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseModel.h; sourceTree = "<group>"; };
+		57FAD6FD1AE2388000F074B4 /* XYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseModel.m; sourceTree = "<group>"; };
+		57FAD9211AE248E100F074B4 /* XYMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMaterial.h; sourceTree = "<group>"; };
+		57FAD9221AE248E100F074B4 /* XYMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMaterial.m; sourceTree = "<group>"; };
+		57FAD9241AE2494C00F074B4 /* XYBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseView.h; sourceTree = "<group>"; };
+		57FAD9251AE2494C00F074B4 /* XYBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseView.m; sourceTree = "<group>"; };
+		57FAD9261AE2494C00F074B4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
+		57FAD9271AE2494C00F074B4 /* XYMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMenuItem.h; sourceTree = "<group>"; };
 		57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_TestDic.plist; sourceTree = "<group>"; };
 		57FC73D91934C0D200FA8C36 /* NSDictionary+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+XY.h"; sourceTree = "<group>"; };
 		57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+XY.m"; sourceTree = "<group>"; };
@@ -439,8 +440,6 @@
 		57FFF3C51818B35900977CB5 /* ExternalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalExtension.h; sourceTree = "<group>"; };
 		57FFF3C71818B40F00977CB5 /* XYCommon+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XYCommon+Extension.h"; sourceTree = "<group>"; };
 		57FFF3C81818B40F00977CB5 /* XYCommon+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XYCommon+Extension.m"; sourceTree = "<group>"; };
-		741498321A08C11F007F593C /* XYBaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseDataSource.h; sourceTree = "<group>"; };
-		741498331A08C11F007F593C /* XYBaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseDataSource.m; sourceTree = "<group>"; };
 		7433B2CD1A0365D2000472A9 /* XYAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAutoCoding.h; sourceTree = "<group>"; };
 		7433B2CE1A0365D2000472A9 /* XYAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAutoCoding.m; sourceTree = "<group>"; };
 		743B1A9C1A15DB3700CEA246 /* XYBlackMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBlackMagic.h; sourceTree = "<group>"; };
@@ -469,8 +468,6 @@
 		747FB3171A00D5C7004B557B /* NSObject+LKModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LKModel.m"; sourceTree = "<group>"; };
 		74CD53F819C28C630069282B /* CarEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarEntity.h; sourceTree = "<group>"; };
 		74CD53F919C28C630069282B /* CarEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarEntity.m; sourceTree = "<group>"; };
-		74CD540919C2E0930069282B /* XYBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBaseService.h; sourceTree = "<group>"; };
-		74CD540A19C2E0930069282B /* XYBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseService.m; sourceTree = "<group>"; };
 		74FD286419F0FFC9005513B4 /* XYAOP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAOP.h; sourceTree = "<group>"; };
 		74FD286519F0FFC9005513B4 /* XYAOP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAOP.m; sourceTree = "<group>"; };
 		8400D0CA198B353200A5E289 /* NSSet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+XY.h"; sourceTree = "<group>"; };
@@ -828,6 +825,7 @@
 				57DB879D183349A60015CC5A /* XYQuickDevelop */,
 				5742C18717F7BF3C00065083 /* XYExternal */,
 				57D5B88417B8ABBB009212F7 /* AppDelegate */,
+				57FAD6041AE234E000F074B4 /* Laboratory */,
 				57B3FFF0177AD9BC00775FC9 /* Supporting Files */,
 			);
 			path = JoinShow;
@@ -844,7 +842,7 @@
 				57B3FFFB177AD9BC00775FC9 /* Default.png */,
 				57B3FFFD177AD9BC00775FC9 /* Default@2x.png */,
 				57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */,
-				57901EBA17E6C26E00B8E8FF /* remark */,
+				57901EBA17E6C26E00B8E8FF /* readme.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -857,16 +855,8 @@
 				5707C1ED19123A36003986DC /* XYViewControllerManager.m */,
 				57D4451318B59A12006C597A /* XYBaseViewController.h */,
 				57D4451418B59A12006C597A /* XYBaseViewController.m */,
-				577952D51909718A00F95459 /* XYBaseView.h */,
-				577952D61909718A00F95459 /* XYBaseView.m */,
-				577952D81909727E00F95459 /* XYBaseModel.h */,
-				577952D91909727E00F95459 /* XYBaseModel.m */,
-				741498321A08C11F007F593C /* XYBaseDataSource.h */,
-				741498331A08C11F007F593C /* XYBaseDataSource.m */,
 				57DC76FA1A3008840046B519 /* XYBaseBuilder.h */,
 				57DC76FB1A3008840046B519 /* XYBaseBuilder.m */,
-				57D582871A399D0500C760C7 /* XYMenuItem.h */,
-				57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */,
 				57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */,
 			);
 			path = BaseClass;
@@ -971,8 +961,6 @@
 				57DB87C6183349A60015CC5A /* XYTimer.m */,
 				57AB8B561888E1E60005A93B /* XYSandbox.h */,
 				57AB8B571888E1E60005A93B /* XYSandbox.m */,
-				57AB8B481888C9850005A93B /* XYMaterial.h */,
-				57AB8B491888C9850005A93B /* XYMaterial.m */,
 				74571E4819BEF18300996555 /* XYJSONHelper.h */,
 				74571E4919BEF18300996555 /* XYJSONHelper.m */,
 				74FD286419F0FFC9005513B4 /* XYAOP.h */,
@@ -1003,8 +991,6 @@
 				577ACC7C190A30470053C9CE /* XYTabBar.m */,
 				579E68A1192EFA4C00EECAB4 /* XYUISignal.h */,
 				579E68A2192EFA4C00EECAB4 /* XYUISignal.m */,
-				5745421D1AA1657C00E453DA /* XYSignal.h */,
-				5745421E1AA1657D00E453DA /* XYSignal.m */,
 				57DB87D7183349A60015CC5A /* XYUI.h */,
 			);
 			path = UI;
@@ -1040,6 +1026,26 @@
 			path = cache;
 			sourceTree = "<group>";
 		};
+		57FAD6041AE234E000F074B4 /* Laboratory */ = {
+			isa = PBXGroup;
+			children = (
+				57FAD6F61AE236A600F074B4 /* XYBaseDataSource.h */,
+				57FAD6F71AE236A600F074B4 /* XYBaseDataSource.m */,
+				57FAD6FC1AE2388000F074B4 /* XYBaseModel.h */,
+				57FAD6FD1AE2388000F074B4 /* XYBaseModel.m */,
+				57FAD6F91AE236D600F074B4 /* XYSignal.h */,
+				57FAD6FA1AE236D600F074B4 /* XYSignal.m */,
+				57FAD9211AE248E100F074B4 /* XYMaterial.h */,
+				57FAD9221AE248E100F074B4 /* XYMaterial.m */,
+				57FAD9241AE2494C00F074B4 /* XYBaseView.h */,
+				57FAD9251AE2494C00F074B4 /* XYBaseView.m */,
+				57FAD9261AE2494C00F074B4 /* XYAppModuleProtocol.h */,
+				57FAD9271AE2494C00F074B4 /* XYMenuItem.h */,
+			);
+			name = Laboratory;
+			path = XYExternal/Laboratory;
+			sourceTree = "<group>";
+		};
 		57FFF3BE1818B29F00977CB5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1058,8 +1064,6 @@
 				747638FE19C07B93008703A1 /* XYBaseDao.m */,
 				7476390019C08121008703A1 /* XYBaseNetDao.h */,
 				7476390119C08121008703A1 /* XYBaseNetDao.m */,
-				74CD540919C2E0930069282B /* XYBaseService.h */,
-				74CD540A19C2E0930069282B /* XYBaseService.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1182,7 +1186,7 @@
 				57293C7B1824C42F007BF087 /* bg_trends.png in Resources */,
 				57DF99E1190AF5070036B85D /* icon_google.png in Resources */,
 				57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */,
-				57901EBB17E6C26E00B8E8FF /* remark in Resources */,
+				57901EBB17E6C26E00B8E8FF /* readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,7 +1229,6 @@
 				84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */,
 				57DB87E1183349A60015CC5A /* UIAlertView+XY.m in Sources */,
 				57DB87E2183349A60015CC5A /* UIImage+XY.m in Sources */,
-				57AB8B4A1888C9850005A93B /* XYMaterial.m in Sources */,
 				57A15002191E251000B00281 /* CocosDenshion.m in Sources */,
 				57DB87EE183349A60015CC5A /* XYKeyboardHelper.m in Sources */,
 				57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */,
@@ -1264,7 +1267,7 @@
 				57DB87EC183349A60015CC5A /* AutoSizeView.m in Sources */,
 				57DB87EB183349A60015CC5A /* XYTimer.m in Sources */,
 				572E7CB218385C690018179D /* NSDictionary+RequestEncoding.m in Sources */,
-				577952DA1909727E00F95459 /* XYBaseModel.m in Sources */,
+				57FAD6F81AE236A600F074B4 /* XYBaseDataSource.m in Sources */,
 				74571E4A19BEF18300996555 /* XYJSONHelper.m in Sources */,
 				7444D7291A03593C00B57529 /* AutoCodingEntity.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
@@ -1290,13 +1293,13 @@
 				74FD286619F0FFC9005513B4 /* XYAOP.m in Sources */,
 				8400D0CC198B353200A5E289 /* NSSet+XY.m in Sources */,
 				5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */,
+				57FAD6FE1AE2388000F074B4 /* XYBaseModel.m in Sources */,
 				747638FF19C07B93008703A1 /* XYBaseDao.m in Sources */,
 				572E7CB718385C690018179D /* MKNetworkOperation.m in Sources */,
 				572E7CB518385C690018179D /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				57DB87DD183349A60015CC5A /* NSNumber+XY.m in Sources */,
 				57D4451518B59A12006C597A /* XYBaseViewController.m in Sources */,
 				572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */,
-				741498341A08C11F007F593C /* XYBaseDataSource.m in Sources */,
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
 				747FB3181A00D5C7004B557B /* LKDB+Mapping.m in Sources */,
@@ -1320,17 +1323,16 @@
 				743B1A9E1A15DB3700CEA246 /* XYBlackMagic.m in Sources */,
 				57A15000191E251000B00281 /* CDAudioManager.m in Sources */,
 				57DB87DC183349A60015CC5A /* NSDate+XY.m in Sources */,
-				74CD540B19C2E0930069282B /* XYBaseService.m in Sources */,
+				57FAD9281AE2494C00F074B4 /* XYBaseView.m in Sources */,
+				57FAD6FB1AE236D600F074B4 /* XYSignal.m in Sources */,
 				57DB87DB183349A60015CC5A /* NSData+XY.m in Sources */,
 				57DF037D188E1CFF002422D4 /* XYObjectCache.m in Sources */,
 				578D14CF187536690071448C /* UITable+XY.m in Sources */,
 				572E7CB618385C690018179D /* MKNetworkEngine.m in Sources */,
 				57DB87DE183349A60015CC5A /* NSObject+XY.m in Sources */,
 				57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */,
-				577952D71909718A00F95459 /* XYBaseView.m in Sources */,
 				5740323E190FA76700C82B23 /* FMDatabasePool.m in Sources */,
 				57DB87DA183349A60015CC5A /* NSArray+XY.mm in Sources */,
-				5745421F1AA1657D00E453DA /* XYSignal.m in Sources */,
 				57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */,
 				743B1AA11A15DCB800CEA246 /* BlackMagicVC.m in Sources */,
 				572E7CAF18385C690018179D /* NSAlert+MKNetworkKitAdditions.m in Sources */,
@@ -1338,6 +1340,7 @@
 				577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
 				57FAD5371AE2288100F074B4 /* XYMulticastDelegate.m in Sources */,
+				57FAD9231AE248E100F074B4 /* XYMaterial.m in Sources */,
 				576E87D31855E77200C7A724 /* XYPerformance.m in Sources */,
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
 				747FB31B1A00D5C7004B557B /* NSObject+LKDBHelper.m in Sources */,

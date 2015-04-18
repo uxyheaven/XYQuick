@@ -8,7 +8,8 @@
 
 #import "NSData+XY.h"
 #import "XYPrecompile.h"
-#import <StoreKit/StoreKit.h>
+
+
 DUMMY_CLASS(NSData_XY);
 
 @implementation NSData (XY)

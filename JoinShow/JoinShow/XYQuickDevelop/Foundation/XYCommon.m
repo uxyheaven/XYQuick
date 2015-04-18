@@ -144,7 +144,7 @@
 }
 
 /***************************************************************/
-+ (NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
++ (NSRange)rangeOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
 {
     int option = 0;
     NSRange rangeMark = {0, 0};
@@ -209,20 +209,20 @@
     return rangeTmp;
 }
 
-+ (NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd operation:(int)operation;
++ (NSRange)rangeOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd operation:(int)operation;
 {
     // NSString *strMark = nil;
     NSRange rangeMark;
     return rangeMark;
 }
-+ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation
++ (NSMutableArray *)rangeArrayOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation
 {
     return [XYCommon rangeArrayOfString:str pointStart:iStart start:strStart end:strEnd mark:strMark operation:operation everyStringExecuteBlock:nil];
 }
-+ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block
++ (NSMutableArray *)rangeArrayOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    int i = 0;
+    NSUInteger i = 0;
     while (i != -1)
     {
         NSRange range = [self rangeOfString:str pointStart:i start:strStart end:strEnd mark:strMark operation:operation];
@@ -239,10 +239,10 @@
     return array;
 }
 /***************************************************************/
-+ (NSString *) getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location{
++ (NSString *)getValueInANonAttributeXMLNode:(NSString *)str key:(NSString *)akey location:(int)location{
     NSString *str1 = [NSString stringWithFormat:@"<%@>", akey];
     NSString *str2 = [NSString stringWithFormat:@"</%@>", akey];
-    static int i = 0;
+    static NSUInteger i = 0;
     if (XYCommon_lastLocation == location)
     {
         //   NSLogD(@"%s,%d", __FUNCTION__, str.length - akey.length*2);

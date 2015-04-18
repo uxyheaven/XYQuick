@@ -7,8 +7,6 @@
 //  copy by https://github.com/podio/ios-view-frame-builder
 
 #import <UIKit/UIKit.h>
-// #define po_frameBuilder xy_frameBuilder
-// #define POViewFrameBuilder XYViewFrameBuilder
 
 typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
     POViewFrameBuilderDirectionRight = 0,

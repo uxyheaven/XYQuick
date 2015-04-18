@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 // kvo 的封装
-#import "XYPrecompile.h"
+#import <Foundation/Foundation.h>
 
 #pragma mark - #define
 #define KVO_NAME( __name )					__TEXT( __name )

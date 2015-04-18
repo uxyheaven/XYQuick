@@ -6,14 +6,12 @@
 //
 //
 
+#import <UIKit/UIKit.h>
+
 #define UIView_shadeTag 26601
 #define UIView_activityIndicatorViewTag 26602
 
 #define UIView_animation_instant 0.15
-
-#import "XYUI.h"
-#import "XYFoundation.h"
-#import "XYPrecompile.h"
 
 typedef void(^UIViewCategoryNormalBlock)(UIView *view);
 typedef void(^UIViewCategoryAnimationBlock)(void);

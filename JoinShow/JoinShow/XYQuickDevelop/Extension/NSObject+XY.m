@@ -41,34 +41,7 @@ DUMMY_CLASS(NSObject_XY);
 
 
 #pragma mark - hook
-/*
-+ (void)hookDealloc{
-    static BOOL __swizzled = NO;
-	if ( NO == __swizzled )
-	{
-        Method method = XY_swizzleInstanceMethod([NSObject class], @selector(dealloc), @selector(myDealloc));
-        __dealloc = (void *)method_getImplementation( method );
-        
-        __swizzled = YES;
-	}
-}
-- (void)myDealloc{
-        if ([self respondsToSelector:@selector(delegate)]
-            && (![self isKindOfClass:[CAAnimation class]])) {
-            //  [self performSelector:@selector(setDelegate:) withObject:nil];
-            objc_msgSend(self, @selector(setDelegate:), nil);
-        }
-    
-    // [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // 无用
-    // [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    // [self removeAllObserver];
-    
-    if ( __dealloc ){
-        __dealloc( self, _cmd );
-    }
-}
- */
+
 #pragma mark - perform
 
 #pragma mark - property
@@ -304,7 +277,9 @@ DUMMY_CLASS(NSObject_XY);
 }
 
 #pragma mark - message box
-- (UIAlertView *)showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION{
+/*
+- (UIAlertView *)showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION
+ {
     UIAlertView *alter = [[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:aCancel otherButtonTitles:nil];
     
     va_list args;
@@ -325,6 +300,7 @@ DUMMY_CLASS(NSObject_XY);
     
     return alter;
 }
+*/
 
 #pragma mark- copy
 - (id)deepCopy1

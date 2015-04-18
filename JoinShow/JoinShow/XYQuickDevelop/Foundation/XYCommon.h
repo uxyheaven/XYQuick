@@ -7,6 +7,8 @@
 //
 
 // 一大堆零散的方法
+// 这个类要慢慢废弃
+
 #import "XYPrecompile.h"
 
 @class MBProgressHUD;
@@ -72,9 +74,9 @@ typedef enum {
  * @param block 每一个字符串都执行该block
  * @return 范围
  */
-+ (NSRange) rangeOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
-+ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
-+ (NSMutableArray *) rangeArrayOfString:(NSString *)str pointStart:(int)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block;
++ (NSRange)rangeOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
++ (NSMutableArray *)rangeArrayOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
++ (NSMutableArray *)rangeArrayOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation everyStringExecuteBlock:(void(^)(NSRange rangeEvery))block;
 
 
 

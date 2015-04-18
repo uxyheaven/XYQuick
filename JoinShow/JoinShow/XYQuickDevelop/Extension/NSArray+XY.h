@@ -8,6 +8,7 @@
 //  Copy from bee Framework http://www.bee-framework.com
 
 #pragma mark -
+#import <Foundation/Foundation.h>
 
 typedef NSMutableArray *	(^NSArrayAppendBlock)( id obj );
 typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );

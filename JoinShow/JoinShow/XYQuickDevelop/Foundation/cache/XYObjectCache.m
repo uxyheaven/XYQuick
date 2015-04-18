@@ -10,6 +10,7 @@
 #import "XYCache.h"
 #import "XYSandbox.h"
 #import "XYExtension.h"
+#import "XYThread.h"
 
 @interface XYObjectCache()
 {

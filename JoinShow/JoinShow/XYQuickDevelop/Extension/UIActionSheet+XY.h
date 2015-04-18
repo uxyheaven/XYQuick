@@ -6,7 +6,8 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "XYPrecompile.h"
+#import <UIKit/UIKit.h>
+
 typedef void(^UIActionSheet_block_self_index)(UIActionSheet *actionSheet, NSInteger btnIndex);
 typedef void(^UIActionSheet_block_self)(UIActionSheet *actionSheet);
 

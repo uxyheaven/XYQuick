@@ -1,51 +1,33 @@
 #{XY} QuickDevelop
 
-{XY} 快速开发框架是一个常用方法与常用第三方库的集合.封装了网络请求,数据持久化,数据缓存（文件缓存,内存缓存）,kvo,Notification,delegate,动画,图片处理,常用Controller,常用View.
+{XY} 快速开发框架是一个常用方法与常用第三方库的集合.封装了网络请求,数据持久化,数据缓存（文件缓存,内存缓存）,kvo,Notification,delegate,动画,图片处理,自定义了ViewController生命周期.
 
 * 本库采用ARC
-* demo的代码很不全,有些许问题,待下个版本重构
 
 ### XYQuickDevelop
 库的代码
 
 ##### Foundation
-XYTimer 定时器类
-
-XYDataLite 轻量形数据持久化, 基于NSUserDefaults
-
-XYObserver KVO的封装
-
-XYNotification NSNotification的封装
-
-XYSandbox 沙箱路径
-
-XYSystemInfo 系统信息
-
-XYObjectCache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults,归档
-
-XYJSONHelper json to object , object to json
-
-XYAOP 面向切面编程
-
+* XYTimer 定时器类
+* XYObserver KVO的封装
+* XYNotification NSNotification的封装
+* XYSandbox 沙箱路径
+* XYSystemInfo 系统信息
+* XYObjectCache 对象缓存类,包含内存缓存,文件缓存,Keychain,UserDefaults
+* XYJSONHelper json to object , object to json
+* XYAOP 面向切面编程
 ##### Extension
 一大堆category
 
 ##### UI
-
-XYKeyboardHelper 弹出键盘时,移动所编辑的控件的通用解决方案
-
-XYAnimate UIView动画的封装
-
-XYTabBarController 自定义的UITabBarController
-
-XYUISignal 封装的UIView的event传递类
+* XYKeyboardHelper 弹出键盘时,移动所编辑的控件的通用解决方案
+* XYAnimate UIView动画的封装
+* XYTabBarController 自定义的UITabBarController
+* XYUISignal 封装的UIView的event传递类
 
 ##### BaseClass
-XYBaseViewController UIViewController基类
-
-XYBaseTableViewController UITableViewController基类
-
-XYViewControllerManager UIViewController 管理类
+* XYBaseViewController UIViewController基类,自定义了ViewController的生命周期
+* XYViewControllerManager UIViewController 管理类
 
 
 ### XYExternal
@@ -56,19 +38,20 @@ XYViewControllerManager UIViewController 管理类
 * RequestHelper 网络通讯类
 * XYBaseDao 范化的本地dao类
 
----
+### Laboratory
 
+这里是一个实验室,不需要关心这里的代码
+
+---
 ## Installation
 * 本库基于ARC
 * 拷贝XYQuickDevelop到项目里
-* 根据需要拷贝XYExternal到项目里
+* 根据需要拷贝XYExternal到项目里,或者干脆不用这些类
 * 在XYExternalPrecompile.h关闭不需要的第三方库
 //* 根据说明设置文件 -fobjc-arc 或 -fno-objc-arc
 * 添加本库以及第三方需要的framework
 * 在需要用的文件或者pch里 `#import "XYQuickDevelop.h", #import "XYExternal.h"`
 * 在 `XYPrecompile.h ,XYExternalPrecompile.h` 开启或者关闭需要的编译选项()
-
-
 
 ---
 ### External 使用的第三方库
@@ -90,13 +73,11 @@ XYViewControllerManager UIViewController 管理类
 * arc
 * 网络请求
 
-
 #### LKDBHelper
 * arc
 * 基于FMDB(ARC,MRC兼容)
 * sqlite 数据库全自动操作
 
----
 #### MBProgressHUD
 * (ARC,MRC兼容)
 * 进度指示器

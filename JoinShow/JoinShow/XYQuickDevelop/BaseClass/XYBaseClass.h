@@ -25,9 +25,8 @@
 #pragma mark- Protocol
 
 // 模块基类
-#import "XYAppModuleProtocol.h"
-
-#import "XYMenuItem.h"
+//#import "XYAppModuleProtocol.h"
+//#import "XYMenuItem.h"
 
 #import "XYViewControllerProtocol.h"
 

@@ -9,6 +9,7 @@
 #import "XYUISignal.h"
 #import "UIView+XY.h"
 
+id (*XYUISignalPerformSelector)(id, SEL, id) = (id (*)(id, SEL, id)) objc_msgSend;
 
 #undef	XYUISignal_NAMESPACE
 #define XYUISignal_NAMESPACE	"UIView.nameSpace"
@@ -211,11 +212,11 @@
     
     if ( [_target respondsToSelector:selector] )
     {
-        [_target performSelector:selector withObject:self];
+        XYUISignalPerformSelector(_target, selector, self);
     }
     else if ( [_target respondsToSelector:selector2] )
     {
-        [_target performSelector:selector2 withObject:self];
+        XYUISignalPerformSelector(_target, selector2, self);
     }
     else if ( [_target respondsToSelector:@selector(handleUISignal:)] )
     {

@@ -7,6 +7,8 @@
 //
 
 #import "XYSystemInfo.h"
+#import "XYPrecompile.h"
+
 @implementation XYSystemInfo __DEF_SINGLETON
 
 - (NSString *)osVersion
@@ -107,7 +109,8 @@
     Class openUDID = NSClassFromString( @"OpenUDID" );
     if ( openUDID )
     {
-        return objc_msgSend(openUDID, @selector(value));
+        NSString * (*action)(id, SEL) = (NSString * (*)(id, SEL)) objc_msgSend;
+        return action(openUDID, @selector(value));
     }
     else
     {

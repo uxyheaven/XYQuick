@@ -9,6 +9,7 @@
 #import "UIControl+XY.h"
 #import "XYPrecompile.h"
 #import "NSObject+XY.h"
+#import "XYCommonDefine.h"
 
 #undef	UIControl_key_events
 #define UIControl_key_events	"UIControl.events"

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #define SECOND	(1)
 #define MINUTE	(60 * SECOND)
 #define HOUR	(60 * MINUTE)

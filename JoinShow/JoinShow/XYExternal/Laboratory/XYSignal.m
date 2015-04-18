@@ -15,7 +15,7 @@
 
 + (id)signalWithName:(NSString *)name
 {
-    
+    return nil;
 }
 
 - (BOOL)send
@@ -46,6 +46,8 @@
             signalMethod    = (NSString *)[array objectAtIndex:2];
         }
     }
+    
+    return YES;
 }
 @end
 
