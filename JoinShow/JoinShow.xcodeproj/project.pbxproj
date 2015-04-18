@@ -137,6 +137,7 @@
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
 		57F6A9D61ADA705000C66300 /* XYReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F6A9D51ADA705000C66300 /* XYReachability.m */; };
+		57FAD5371AE2288100F074B4 /* XYMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD5361AE2288100F074B4 /* XYMulticastDelegate.m */; };
 		57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */; };
 		57FC73DB1934C0D200FA8C36 /* NSDictionary+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */; };
 		57FC73DE1934C15300FA8C36 /* XYObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FC73DD1934C15300FA8C36 /* XYObserver.m */; };
@@ -424,6 +425,8 @@
 		57F6A9D51ADA705000C66300 /* XYReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYReachability.m; sourceTree = "<group>"; };
 		57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYViewControllerProtocol.h; sourceTree = "<group>"; };
 		57F7FA4E1A44207800BF75C4 /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
+		57FAD5351AE2288100F074B4 /* XYMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMulticastDelegate.h; sourceTree = "<group>"; };
+		57FAD5361AE2288100F074B4 /* XYMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMulticastDelegate.m; sourceTree = "<group>"; };
 		57FB837F17E2F3CD004B70B6 /* default_TestDic.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default_TestDic.plist; sourceTree = "<group>"; };
 		57FC73D91934C0D200FA8C36 /* NSDictionary+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+XY.h"; sourceTree = "<group>"; };
 		57FC73DA1934C0D200FA8C36 /* NSDictionary+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+XY.m"; sourceTree = "<group>"; };
@@ -980,6 +983,8 @@
 				743B1A9D1A15DB3700CEA246 /* XYBlackMagic.m */,
 				57F6A9D41ADA705000C66300 /* XYReachability.h */,
 				57F6A9D51ADA705000C66300 /* XYReachability.m */,
+				57FAD5351AE2288100F074B4 /* XYMulticastDelegate.h */,
+				57FAD5361AE2288100F074B4 /* XYMulticastDelegate.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1332,6 +1337,7 @@
 				57DB87E4183349A60015CC5A /* UIView+XY.m in Sources */,
 				577CF80718ADE6A200421CC2 /* UIView+XY_coordinate.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
+				57FAD5371AE2288100F074B4 /* XYMulticastDelegate.m in Sources */,
 				576E87D31855E77200C7A724 /* XYPerformance.m in Sources */,
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
 				747FB31B1A00D5C7004B557B /* NSObject+LKDBHelper.m in Sources */,

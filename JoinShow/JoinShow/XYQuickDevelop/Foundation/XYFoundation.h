@@ -50,5 +50,6 @@
 // 网络可达性
 #import "XYReachability.h"
 
-
+// 多播委托
+#import "XYMulticastDelegate.h"
 
