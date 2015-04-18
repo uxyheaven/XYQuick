@@ -61,7 +61,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 }
 
 
-@implementation XYReachability
+@implementation XYReachability __DEF_SINGLETON
 
 #pragma mark - Class Constructor Methods
 

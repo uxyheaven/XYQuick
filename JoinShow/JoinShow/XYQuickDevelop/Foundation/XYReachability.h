@@ -30,7 +30,7 @@ typedef void (^XYNetworkReachable)(XYReachability * reachability);
 typedef void (^XYNetworkUnreachable)(XYReachability * reachability);
 
 
-@interface XYReachability : NSObject
+@interface XYReachability : NSObject __AS_SINGLETON
 
 @property (nonatomic, copy) XYNetworkReachable    reachableBlock;   //  this is called on a background thread
 @property (nonatomic, copy) XYNetworkUnreachable  unreachableBlock; //  this is called on a background thread
