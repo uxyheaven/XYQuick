@@ -212,11 +212,11 @@ id (*XYUISignalPerformSelector)(id, SEL, id) = (id (*)(id, SEL, id)) objc_msgSen
     
     if ( [_target respondsToSelector:selector] )
     {
-        XYUISignalPerformSelector(_target, selector, self);
+        [_target performSelector:selector withObject:self];
     }
     else if ( [_target respondsToSelector:selector2] )
     {
-        XYUISignalPerformSelector(_target, selector2, self);
+        [_target performSelector:selector2 withObject:self];
     }
     else if ( [_target respondsToSelector:@selector(handleUISignal:)] )
     {
