@@ -7,7 +7,7 @@
 // thanks AOP-for-Objective-C
 
 #import <Foundation/Foundation.h>
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 
 typedef void(^XYAOP_block)(NSInvocation *invocation);
 

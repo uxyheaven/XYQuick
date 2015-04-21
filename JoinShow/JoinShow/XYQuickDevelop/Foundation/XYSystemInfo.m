@@ -7,7 +7,7 @@
 //
 
 #import "XYSystemInfo.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 @implementation XYSystemInfo __DEF_SINGLETON
 

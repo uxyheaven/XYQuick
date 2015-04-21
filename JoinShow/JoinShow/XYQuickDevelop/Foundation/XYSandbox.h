@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 @interface XYSandbox : NSObject __AS_SINGLETON
 

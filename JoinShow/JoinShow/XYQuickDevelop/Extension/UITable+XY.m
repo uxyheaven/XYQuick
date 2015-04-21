@@ -7,7 +7,7 @@
 //
 
 #import "UITable+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 @implementation UITableViewCell (XY)
 

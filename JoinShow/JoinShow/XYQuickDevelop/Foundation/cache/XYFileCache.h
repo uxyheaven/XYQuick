@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYCacheProtocol.h"
 
 #define XYFileCache_fileExpires  7 * 24 * 60 * 60

@@ -28,7 +28,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYFoundation.h"
 
 #define XYKeyboardHelper_DefaultDistance 10.0

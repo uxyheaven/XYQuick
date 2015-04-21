@@ -6,18 +6,18 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 // 网络请求类
-#import <UIKit/UIKit.h>
 #import "RequestHelper.h"
+#import "XYPredefine.h"
 
-@interface HTTPClient : RequestHelper
-AS_SINGLETON(HTTPClient)
+@interface HTTPClient : RequestHelper __AS_SINGLETON
+
 @end
 
 /////////
-@interface HTTPClient2 : RequestHelper
-AS_SINGLETON(HTTPClient2)
+@interface HTTPClient2 : RequestHelper __AS_SINGLETON
+
 @end
 
-@interface HTTPClient3 : DownloadHelper
-AS_SINGLETON(HTTPClient3)
+@interface HTTPClient3 : DownloadHelper __AS_SINGLETON
+
 @end

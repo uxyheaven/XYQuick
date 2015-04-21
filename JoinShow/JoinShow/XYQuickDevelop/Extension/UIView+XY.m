@@ -8,7 +8,7 @@
 
 #import "UIView+XY.h"
 #import <objc/runtime.h>
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 #import "XYSystemInfo.h"
 #import "UIImage+XY.h"
 #import "NSObject+XY.h"

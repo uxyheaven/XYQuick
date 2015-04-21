@@ -7,7 +7,7 @@
 //
 
 // 预编译
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 // 调试
 #import "XYDebug.h"

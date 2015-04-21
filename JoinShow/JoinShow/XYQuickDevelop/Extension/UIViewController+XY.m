@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYSystemInfo.h"
 #import "UIImage+XY.h"
 #import "UIControl+XY.h"

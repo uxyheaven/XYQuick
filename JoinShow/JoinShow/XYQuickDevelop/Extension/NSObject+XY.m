@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYFoundation.h"
 //#import "XYExtension.h"
 

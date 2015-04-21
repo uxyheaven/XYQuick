@@ -8,7 +8,7 @@
 
 
 #import "UIImage+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "NSString+XY.h"
 #import "XYSystemInfo.h"
 

@@ -8,9 +8,7 @@
 
 #import "HTTPClient.h"
 
-@implementation HTTPClient
-
-DEF_SINGLETON(HTTPClient)
+@implementation HTTPClient __DEF_SINGLETON
 
 - (instancetype)init
 {
@@ -26,9 +24,7 @@ DEF_SINGLETON(HTTPClient)
 
 /////
 
-@implementation HTTPClient2
-
-DEF_SINGLETON(HTTPClient2)
+@implementation HTTPClient2 __DEF_SINGLETON
 
 - (instancetype)init
 {
@@ -42,9 +38,7 @@ DEF_SINGLETON(HTTPClient2)
 
 @end
 
-@implementation HTTPClient3
-
-DEF_SINGLETON(HTTPClient3)
+@implementation HTTPClient3 __DEF_SINGLETON
 
 - (instancetype)init
 {

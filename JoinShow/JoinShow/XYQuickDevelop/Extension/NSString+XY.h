@@ -7,9 +7,7 @@
 //  Copy from bee Framework
 
 #import <Foundation/Foundation.h>
-
-#pragma mark -
-
+#import <UIKit/UIKit.h>
 
 #pragma mark -
 

@@ -8,115 +8,28 @@
 
 // 性能分析
 
-//////////////////////////////////////////////////////////////////
-//	 ______    ______    ______
-//	/\  __ \  /\  ___\  /\  ___\
-//	\ \  __<  \ \  __\_ \ \  __\_
-//	 \ \_____\ \ \_____\ \ \_____\
-//	  \/_____/  \/_____/  \/_____/
-//
-//
-//	Copyright (c) 2013-2014, {Bee} open source community
-//	http://www.bee-framework.com
-//
-//
-//	Permission is hereby granted, free of charge, to any person obtaining a
-//	copy of this software and associated documentation files (the "Software"),
-//	to deal in the Software without restriction, including without limitation
-//	the rights to use, copy, modify, merge, publish, distribute, sublicense,
-//	and/or sell copies of the Software, and to permit persons to whom the
-//	Software is furnished to do so, subject to the following conditions:
-//
-//	The above copyright notice and this permission notice shall be included in
-//	all copies or substantial portions of the Software.
-//
-//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-//	IN THE SOFTWARE.
-//
-
-
-#import "XYPrecompile.h"
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 
 #pragma mark -
 
 #if (1 ==  __XY_PERFORMANCE__)
 
-#define PERF_TAG( __X )		[NSString stringWithFormat:@"%s", __X]
-#define PERF_TAG1( __X )	[NSString stringWithFormat:@"enter %s", __X]
-#define PERF_TAG2( __X )	[NSString stringWithFormat:@"leave %s", __X]
+    #define	PERF_TIME( block )			{ _PERF_ENTER(__PRETTY_FUNCTION__, __LINE__); block; _PERF_LEAVE(__PRETTY_FUNCTION__, __LINE__); }
+    #define	PERF_ENTER_( __tag)         [[XYPerformance sharedInstance] enter:__tag];
+    #define	PERF_LEAVE_( __tag)         [[XYPerformance sharedInstance] leave:__tag];
 
-#define	PERF_MARK( __X ) \
-    [XYPerformance markTag:PERF_TAG(#__X)];
+#else
 
-#define	PERF_TIME( __X1, __X2 ) \
-    [XYPerformance betweenTag:PERF_TAG(#__X1) andTag:PERF_TAG(#__X2)]
-
-#define PERF_ENTER \
-    [XYPerformance markTag:PERF_TAG1("")];
-
-#define PERF_ENTER_( __X ) \
-    [XYPerformance markTag:PERF_TAG1(#__X)];
-
-#define PERF_LEAVE \
-    [XYPerformance markTag:PERF_TAG2("")]; \
-    [XYPerformance recordName:PERF_TAG("") andTime:[XYPerformance betweenTag:PERF_TAG1("") andTag:PERF_TAG2("")]];
-
-#define PERF_LEAVE_( __X ) \
-    [XYPerformance markTag:PERF_TAG2(#__X)]; \
-    [XYPerformance recordName:PERF_TAG(#__X) andTime:[XYPerformance betweenTag:PERF_TAG1(#__X) andTag:PERF_TAG2(#__X)]];
-
-extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
-
-#define PERF_BENCHMARK_BEGIN_( __REPEAT )   \
-    int times = __REPEAT;   \
-    uint64_t t = dispatch_benchmark(times, ^{  \
-    @autoreleasepool {
-
-#define PERF_BENCHMARK_COMMIT \
-        } \
-    }); \
-    float f = t / 1000000000.0;    \
-    NSLog(@"%s times = %d; Avg Runtime = %.6f(s)", __func__, times, f);
-
-#else	// #if (1 ==  __XY_PERFORMANCE__)
-
-#define	PERF_MARK( __TAG )
-#define	PERF_TIME( __TAG1, __TAG2 )	(0.0f)
-
-#define PERF_ENTER
-#define PERF_LEAVE
-
-#define PERF_ENTER_( __X )
-#define PERF_LEAVE_( __X )
-
-#define PERF_BENCHMARK_ENTER_( __REPEAT )
-#define PERF_BENCHMARK_LEAVE
-
-#endif	// #if (1 ==  __XY_PERFORMANCE__)
+    #define	PERF_TIME( block )				{ block }
+    #define	PERF_ENTER_( __tag)
+    #define	PERF_LEAVE_( __tag)
+#endif
 
 #pragma mark -
 
 @interface XYPerformance : NSObject __AS_SINGLETON
 
-
-@property (nonatomic, readonly, strong) NSMutableDictionary     *records;
-@property (nonatomic, strong) NSMutableDictionary               *tags;
-
-+ (double)timestamp;
-
-+ (double)markTag:(NSString *)tag;
-+ (double)betweenTag:(NSString *)tag1 andTag:(NSString *)tag2;
-+ (double)betweenTag:(NSString *)tag1 andTag:(NSString *)tag2 shouldRemove:(BOOL)remove;
-
-+ (void)watchClass:(Class)clazz;
-+ (void)watchClass:(Class)clazz andSelector:(SEL)selector;
-
-+ (void)recordName:(NSString *)name andTime:(NSTimeInterval)time;
+- (void)enter:(NSString *)tag;
+- (void)leave:(NSString *)tag;
 
 @end

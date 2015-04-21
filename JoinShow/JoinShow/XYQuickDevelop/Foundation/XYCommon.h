@@ -9,7 +9,7 @@
 // 一大堆零散的方法
 // 这个类要慢慢废弃
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 @class MBProgressHUD;
 @class ASIHTTPRequest;

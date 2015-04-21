@@ -26,8 +26,9 @@
     */
     [XYCommon dateFormatter];
 #pragma mark - some test
-  //  NSLogD(@"start");
-  //  NSLogDD;
+#if (1 == __XYDEBUG_UNITTESTING__)
+    [[XYUnitTest sharedInstance] run];
+#endif
     return YES;
 }
 

@@ -8,12 +8,10 @@
 
 #import "ConfigManager.h"
 
-@implementation ConfigManager
+@implementation ConfigManager __DEF_SINGLETON
 
-DEF_SINGLETON(ConfigManager)
-
-
--(NSString *) Strtest2{
+-(NSString *) Strtest2
+{
     [[NSUserDefaults standardUserDefaults] objectForKey:@"a"];
 }
 @end

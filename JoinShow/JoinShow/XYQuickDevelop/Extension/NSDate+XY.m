@@ -7,7 +7,7 @@
 //
 
 #import "NSDate+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYCommon.h"
 #import "NSObject+XY.h"
 

@@ -677,7 +677,7 @@ if (1) { \
     label.text = @"3秒后移除";
     label.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:label];
-    [XYDebug hookObject:label whenDeallocLogString:@"over"];
+    [XYDebugToy hookObject:label whenDeallocLogString:@"over"];
     [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:3];
 }
 
@@ -727,24 +727,29 @@ if (1) { \
 
 - (void)clickTestBenchmark:(id)sender
 {
-    PERF_BENCHMARK_BEGIN_(1)
-    NSMutableArray *mutableArray = [NSMutableArray array];
-    for (size_t i = 0; i < 10000; i++)
+    PERF_ENTER_(@"1")
     {
-        [mutableArray addObject:@1];
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        for (size_t i = 0; i < 10000; i++)
+        {
+            [mutableArray addObject:@1];
+        }
     }
-    PERF_BENCHMARK_COMMIT
+    PERF_ENTER_(@"1")
     
-    PERF_ENTER_(once)
-    NSMutableArray *mutableArray = [NSMutableArray array];
-    for (size_t i = 0; i < 10000; i++)
+    PERF_ENTER_(@"once")
     {
-        [mutableArray addObject:@1];
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        for (size_t i = 0; i < 10000; i++)
+        {
+            [mutableArray addObject:@1];
+        }
     }
-    PERF_LEAVE_(once)
     
-    PERF_ENTER_(null)
-    PERF_LEAVE_(null)
+    PERF_LEAVE_(@"once")
+    
+    PERF_ENTER_(@"null")
+    PERF_LEAVE_(@"null")
 }
 - (void)clickTestNSInvocation:(id)sender
 {
@@ -876,29 +881,29 @@ if (1) { \
     AutoCodingEntityList *list = [[AutoCodingEntityList alloc] init];
     list.array = [@[entity, entity2] mutableCopy];
     
-    PERF_ENTER_(save)
+    PERF_ENTER_(@"save")
     NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/AutoCodingFileData"];
     [list writeToFile:path atomically:YES];
-    PERF_LEAVE_(save)
+    PERF_LEAVE_(@"save")
     
-    PERF_ENTER_(fileCache_save)
+    PERF_ENTER_(@"fileCache_save")
     XYFileCache *fileCache = [XYFileCache sharedInstance];
     [fileCache setObject:list forKey:@"AutoCodingList"];
-    PERF_LEAVE_(fileCache_save)
+    PERF_LEAVE_(@"fileCache_save")
 }
 
 - (void)clickAutoCodingLoad:(id)sender
 {
-    PERF_ENTER_(load)
+    PERF_ENTER_(@"load")
     NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/AutoCodingFileData"];
     AutoCodingEntityList *list = [AutoCodingEntityList objectWithContentsOfFile:path];
-    PERF_LEAVE_(load)
+    PERF_LEAVE_(@"load")
     NSLog(@"%@", list);
     
-    PERF_ENTER_(fileCache_load)
+    PERF_ENTER_(@"fileCache_load")
     XYFileCache *fileCache = [XYFileCache sharedInstance];
     AutoCodingEntityList *list2 = [fileCache objectForKey:@"AutoCodingList" objectClass:[AutoCodingEntityList class]];
-    PERF_LEAVE_(fileCache_load)
+    PERF_LEAVE_(@"fileCache_load")
     
     NSLog(@"%@", list2);
 }
@@ -907,27 +912,27 @@ if (1) { \
     NSMutableArray *array1 = [@[] mutableCopy];
     NSMutableArray *array2 = [@[] mutableCopy];
     
-    PERF_ENTER_(init)
+    PERF_ENTER_(@"init")
     for (int i = 0; i < 10000000; i++)
     {
         [array1 addObject:@(i)];
         [array2 addObject:@(i)];
     }
-    PERF_LEAVE_(init)
+    PERF_LEAVE_(@"init")
     
-    PERF_ENTER_(copy)
+    PERF_ENTER_(@"copy")
     NSArray *array3 = [array1 copy];
-    PERF_LEAVE_(copy)
+    PERF_LEAVE_(@"copy")
     NSLog(@"%@", [array3 class]);
     
-    PERF_ENTER_(arrayWithArray)
+    PERF_ENTER_(@"arrayWithArray")
     NSArray *array4 = [NSArray arrayWithArray:array1];
-    PERF_LEAVE_(arrayWithArray)
+    PERF_LEAVE_(@"arrayWithArray")
     NSLog(@"%@", [array4 class]);
     
-    PERF_ENTER_(immutable)
+    PERF_ENTER_(@"immutable")
     NSArray *array5 = [array2 immutable];
-    PERF_LEAVE_(immutable)
+    PERF_LEAVE_(@"immutable")
     NSLog(@"%@", [array5 class]);
     // objc_msgSend(array3, @selector(addObject:), @"a");
     // [array3 addObject:@"3"];

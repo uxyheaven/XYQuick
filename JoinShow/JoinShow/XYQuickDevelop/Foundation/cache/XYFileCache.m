@@ -12,6 +12,7 @@
 #import "XYSandbox.h"
 #import "XYAutoCoding.h"
 #import "XYThread.h"
+#import "XYDebug.h"
 
 #pragma mark- XYFileCacheBackgroundClean
 @interface XYFileCacheBackgroundClean : NSObject __AS_SINGLETON

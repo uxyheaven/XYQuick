@@ -7,7 +7,7 @@
 //
 
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYCacheProtocol.h"
 
 @interface XYMemoryCache : NSObject <XYCacheProtocol> __AS_SINGLETON

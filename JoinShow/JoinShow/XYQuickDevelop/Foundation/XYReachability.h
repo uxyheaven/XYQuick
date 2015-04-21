@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 
 // 通知
 extern NSString *const XYNotification_ReachabilityChanged;

@@ -10,7 +10,7 @@
 #import "NSObject+XY.h"
 #import "NSData+XY.h"
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYCommon.h"
 
 DUMMY_CLASS(NSString_XY);

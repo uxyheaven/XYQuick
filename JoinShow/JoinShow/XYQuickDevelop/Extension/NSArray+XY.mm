@@ -8,7 +8,7 @@
 //  Copy from bee Framework http://www.bee-framework.com
 
 #import "NSArray+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 // ----------------------------------
 // Source code

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 // cache协议
 #import "XYCacheProtocol.h"
 // 内存缓存

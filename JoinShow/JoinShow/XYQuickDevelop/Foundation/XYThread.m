@@ -6,7 +6,7 @@
 //
 //
 
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 #import "XYThread.h"
 
 #pragma mark -

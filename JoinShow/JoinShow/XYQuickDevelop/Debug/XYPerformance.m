@@ -14,6 +14,7 @@
 {
 
 }
+@property (nonatomic, strong) NSMutableDictionary *tags;
 @end
 
 #pragma mark -
@@ -22,70 +23,42 @@
 
 - (id)init
 {
-	self = [super init];
-	if ( self )
-	{
-		_records = [[NSMutableDictionary alloc] init];
-		_tags = [[NSMutableDictionary alloc] init];
-	}
-	return self;
+    self = [super init];
+    if ( self )
+    {
+        _tags = [[NSMutableDictionary alloc] init];
+    }
+    return self;
 }
 
-- (void)dealloc
+- (void)enter:(NSString *)tag
 {
+    NSNumber * time = [NSNumber numberWithDouble:CACurrentMediaTime()];
+    NSString * name = [NSString stringWithFormat:@"%@ enter", tag];
+    
+    [_tags setObject:time forKey:name];
 }
 
-+ (double)timestamp
+- (void)leave:(NSString *)tag
 {
-	return CACurrentMediaTime();
+    @autoreleasepool
+    {
+        NSString * name1 = [NSString stringWithFormat:@"%@ enter", tag];
+        NSString * name2 = [NSString stringWithFormat:@"%@ leave", tag];
+        
+        CFTimeInterval time1 = [[_tags objectForKey:name1] doubleValue];
+        CFTimeInterval time2 = CACurrentMediaTime();
+        
+        [_tags removeObjectForKey:name1];
+        [_tags removeObjectForKey:name2];
+        
+        [self recordName:tag andTime:fabs(time2 - time1)];
+    }
 }
 
-+ (double)markTag:(NSString *)tag
+- (void)recordName:(NSString *)name andTime:(NSTimeInterval)time
 {
-	double curr = [[NSDate date] timeIntervalSince1970];
-	
-	NSNumber * time = [NSNumber numberWithDouble:curr];
-	[[XYPerformance sharedInstance].tags setObject:time forKey:tag];
-	
-	return curr;
-}
-
-+ (double)betweenTag:(NSString *)tag1 andTag:(NSString *)tag2
-{
-	return [self betweenTag:tag1 andTag:tag2 shouldRemove:YES];
-}
-
-+ (double)betweenTag:(NSString *)tag1 andTag:(NSString *)tag2 shouldRemove:(BOOL)remove
-{
-	NSNumber * time1 = [[XYPerformance sharedInstance].tags objectForKey:tag1];
-	NSNumber * time2 = [[XYPerformance sharedInstance].tags objectForKey:tag2];
-	
-	if ( nil == time1 || nil == time2 ) return 0.0;
-	
-	double time = fabs( [time2 doubleValue] - [time1 doubleValue] );
-	
-	if ( remove )
-	{
-		[[XYPerformance sharedInstance].tags removeObjectForKey:tag1];
-		[[XYPerformance sharedInstance].tags removeObjectForKey:tag2];
-	}
-	
-	return time;
-}
-
-+ (void)watchClass:(Class)clazz
-{
-	[self watchClass:clazz andSelector:nil];
-}
-
-+ (void)watchClass:(Class)clazz andSelector:(SEL)selector
-{
-	// TODO:
-}
-
-+ (void)recordName:(NSString *)name andTime:(NSTimeInterval)time
-{
-	NSLog( @"%s '%@' = %.6f(s)", __PRETTY_FUNCTION__, name, time );
+	NSLog( @"Time '%@' = %.0f(ms)", name, time );
 }
 
 @end

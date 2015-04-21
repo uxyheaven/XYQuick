@@ -7,13 +7,11 @@
 //
 // 指示器帮助类
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 // MBProgressHUD指示器
 #import "MBProgressHUD.h"
 
-@interface IndicatorHelper : NSObject
-
-AS_SINGLETON(IndicatorHelper)
+@interface IndicatorHelper : NSObject __AS_SINGLETON
 
 // 返回一个indicatorView
 + (id)indicatorView;

@@ -9,9 +9,7 @@
 #import "IndicatorHelper.h"
 #import "XYExternal.h"
 
-@implementation IndicatorHelper
-
-DEF_SINGLETON(IndicatorHelper)
+@implementation IndicatorHelper __DEF_SINGLETON
 
 + (id)originalIndicator
 {

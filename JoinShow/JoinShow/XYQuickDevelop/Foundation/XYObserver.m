@@ -7,7 +7,7 @@
 //
 
 #import "XYObserver.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "NSObject+XY.h"
 
 void (*XYObserver_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;

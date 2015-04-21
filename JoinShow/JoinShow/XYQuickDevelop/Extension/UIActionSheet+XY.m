@@ -20,7 +20,7 @@
 #define UIActionSheet_key_didDismiss	"UIActionSheet.sidDismiss"
 
 #import "UIActionSheet+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "NSObject+XY.h"
 
 DUMMY_CLASS(UIActionSheet_XY);

@@ -12,9 +12,9 @@
 #import "XYQuickDevelop.h"
 #endif
 
-@interface ConfigManager : NSObject
+#import "XYPredefine.h"
 
-AS_SINGLETON(ConfigManager)
+@interface ConfigManager : NSObject __AS_SINGLETON
 
 @property (nonatomic,  strong) NSString *StrTest;
 

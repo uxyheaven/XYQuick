@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "XYCacheProtocol.h"
 
 @interface XYKeychain : NSObject <XYCacheProtocol> __AS_SINGLETON

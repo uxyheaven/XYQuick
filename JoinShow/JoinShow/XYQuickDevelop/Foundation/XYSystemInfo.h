@@ -9,7 +9,7 @@
 
 // 系统信息
 #import <Foundation/Foundation.h>
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 
 #undef Screen_WIDTH
 #define Screen_WIDTH   [[UIScreen mainScreen] bounds].size.width

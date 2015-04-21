@@ -8,6 +8,7 @@
 
 #import "XYBaseDao.h"
 #import "LKDBHelper.h"
+#import "XYPredefine.h"
 #import "XYCommonDefine.h"
 
 @interface XYBaseDao ()

@@ -7,7 +7,7 @@
 //
 
 #import "XYNotification.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 #import "NSObject+XY.h"
 
 void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;

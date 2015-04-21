@@ -7,7 +7,7 @@
 //
 
 #import "NSData+XY.h"
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 
 DUMMY_CLASS(NSData_XY);

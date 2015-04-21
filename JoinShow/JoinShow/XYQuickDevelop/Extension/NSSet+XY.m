@@ -7,7 +7,7 @@
 //
 
 #import "NSSet+XY.h"
-#import "XYCommonDefine.h"
+#import "XYPredefine.h"
 #import <objc/runtime.h>
 
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }

@@ -9,6 +9,7 @@
 #import "XYKeychain.h"
 #import "XYExtension.h"
 #import "XYSystemInfo.h"
+#import "XYDebug.h"
 
 #undef	DEFAULT_DOMAIN
 #define DEFAULT_DOMAIN	@"XYKeychain"

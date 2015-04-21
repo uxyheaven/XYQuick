@@ -7,7 +7,7 @@
 //
 //  Copy from bee Framework
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 @class XYMemoryCache;
 @class XYFileCache;

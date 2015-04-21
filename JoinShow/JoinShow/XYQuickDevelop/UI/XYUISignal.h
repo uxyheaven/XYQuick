@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //  Copy from bee Framework
 
-#import "XYPrecompile.h"
+#import "XYPredefine.h"
 
 // 职责链模式(chain of responsibility)
 #pragma mark - #define

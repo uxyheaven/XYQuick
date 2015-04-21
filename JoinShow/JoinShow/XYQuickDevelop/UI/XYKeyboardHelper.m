@@ -103,11 +103,9 @@
         /*Registering for textView notification*/
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewdDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:nil];
-        NSLogD(@"Keyboard Helper enabled");
     }
     else
     {
-        NSLogD(@"Keyboard Helper already enabled");
     }
 }
 
@@ -119,11 +117,9 @@
         self.isEnabled = NO;
         self.keyboardDistanceFromTextField = XYKeyboardHelper_DefaultDistance;
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-        NSLogD(@"Keyboard Helper disabled");
     }
     else
     {
-        NSLogD(@"Keyboard Manger already disabled");
     }
 }
 #pragma mark - Helper Animation function
@@ -149,7 +145,6 @@
 // Keyboard Will hide. So setting rootViewController to it's default frame.
 - (void)keyboardWillHide:(NSNotification*)aNotification
 {
-    NSLogDD
     //Boolean to know keyboard is showing/hiding
     isKeyboardShowing = NO;
     

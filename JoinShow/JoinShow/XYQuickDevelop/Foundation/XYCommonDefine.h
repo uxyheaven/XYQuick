@@ -10,62 +10,6 @@
     #import <Foundation/Foundation.h>
 #endif
 
-/**************************************************************/
-// 单例模式
-#undef	AS_SINGLETON
-#define AS_SINGLETON( __class ) \
-+ (instancetype)sharedInstance;
-//+ (void) purgeSharedInstance;
-
-#undef	__AS_SINGLETON
-#define __AS_SINGLETON    \
-+ (instancetype)sharedInstance;
-
-#undef	DEF_SINGLETON
-#define DEF_SINGLETON( __class ) \
-+ (instancetype)sharedInstance \
-{ \
-    static dispatch_once_t once; \
-    static id __singleton__; \
-    dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
-    return __singleton__; \
-}
-
-#undef	__DEF_SINGLETON
-#define __DEF_SINGLETON \
-+ (instancetype)sharedInstance \
-{ \
-    static dispatch_once_t once; \
-    static id __singleton__; \
-    dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
-    return __singleton__; \
-}
-
-/**************************************************************/
-// 执行一次
-#undef	XY_ONCE_BEGIN
-#define XY_ONCE_BEGIN( __name ) \
-static dispatch_once_t once_##__name; \
-dispatch_once( &once_##__name , ^{
-
-#undef	XY_ONCE_END
-#define XY_ONCE_END		});
-
-
-/**************************************************************/
-// GCD 多线程
-#define Common_MainFun(aFun) dispatch_async( dispatch_get_main_queue(), ^(void){aFun;} );
-#define Common_MainBlock(block) dispatch_async( dispatch_get_main_queue(), block );
-
-#define Common_BackGroundBlock(block) dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block );
-#define Common_BackGroundFun(aFun) dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){aFun;} );
-
-/**************************************************************/
-// block
-#pragma mark -todo
-//typedef void (^BasicBlock)(void);
-
-/**************************************************************/
 // 宏定义字符串 转NSString, __TEXT( __x )
 #undef __TEXT
 #undef __TEXT_intermediary
@@ -79,12 +23,13 @@ dispatch_once( &once_##__name , ^{
 #define DelegateSelf( __sel ) Delegate( __sel, self)
 
 // delegate被注册KVO时,isa会变, 判断delegate被释放?
+// arm64下面 objc_msgSend不能用__VA_ARGS__了
 #define Delegate( __sel, ...) \
-if (_delegate && [_delegate respondsToSelector:__sel]) \
-{ \
-    __actionXY_return_void = (void (*)(id, SEL, ...)) objc_msgSend; \
-    __actionXY_return_void(_delegate, __sel, ## __VA_ARGS__); \
-}
+        if (_delegate && [_delegate respondsToSelector:__sel]) \
+        { \
+                __actionXY_return_void = (void (*)(id, SEL, ...)) objc_msgSend; \
+                __actionXY_return_void(_delegate, __sel, ## __VA_ARGS__); \
+        }
 
 /**************************************************************/
 // NSUserDefaults
@@ -98,16 +43,7 @@ if (_delegate && [_delegate respondsToSelector:__sel]) \
 @implementation DUMMY_CLASS_##UNIQUE_NAME @end
 #endif
 
-//使用示例:
-//UIColor+YYAdd.m
-/*
-#import "UIColor+YYAdd.h"
-DUMMY_CLASS(UIColor+YYAdd)
 
-@implementation UIColor(YYAdd)
-...
-@end
- */
 
 /**************************************************************/
 // block 安全self
