@@ -185,7 +185,7 @@
                                                                    error:nil];
         if ( NO == ret )
         {
-            NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
+            NSLog(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
             return;
         }
     }

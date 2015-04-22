@@ -242,10 +242,6 @@
 
 #pragma mark 3 dataSource
 
-ON_SIGNAL( signal ){
-    NSLogD(@"%@", signal);
-}
-
 @end
 
 

@@ -40,4 +40,6 @@
 + (NSArray *)uxy_methods;
 + (NSArray *)uxy_methodsWithPrefix:(NSString *)prefix;
 
++ (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName;
+
 @end

@@ -42,13 +42,6 @@ typedef enum {
  */
 + (NSString *)dataFilePath:(NSString *)file ofType:(FilePathOption)kType;
 
-/** 
- * @brief 创建目录, 已经移植到XYSandbox
- * @param aPath 目录路径
- */
-+ (void)createDirectoryAtPath:(NSString *)aPath;
-
-
 /**
  * @brief Unicode格式的字符串编码转成中文的方法(如\u7E8C)转换成中文, unicode编码以\u开头, 已经移植到NSString(XY)
  * @param unicodeStr 需要被转的字符串

@@ -24,11 +24,8 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     */
-    [XYCommon dateFormatter];
 #pragma mark - some test
-#if (1 == __XYDEBUG_UNITTESTING__)
-    [[XYUnitTest sharedInstance] run];
-#endif
+
     return YES;
 }
 

@@ -114,21 +114,7 @@
         return [[paths objectAtIndex:0] stringByAppendingFormat:@"/tmp"];
     }
 }
-/***************************************************************/
-+ (void)createDirectoryAtPath:(NSString *)aPath{
-    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:NULL] )
-    {
-        BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:aPath
-                                             withIntermediateDirectories:YES
-                                                              attributes:nil
-                                                                   error:nil];
-        if ( NO == ret )
-        {
-            NSLogD(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
-            return;
-        }
-    }
-}
+
 /***************************************************************/
 + (NSString *) replaceUnicode:(NSString *)unicodeStr
 {
