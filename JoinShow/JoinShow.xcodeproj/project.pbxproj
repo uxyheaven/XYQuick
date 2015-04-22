@@ -16,8 +16,8 @@
 		571CBA5817C6FCC0007CB842 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA4F17C6FCC0007CB842 /* Storyboard.storyboard */; };
 		571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5217C6FCC0007CB842 /* Test2View.m */; };
 		571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5417C6FCC0007CB842 /* TestView.m */; };
-		571CCA251AE7754000015764 /* XYAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CCA241AE7754000015764 /* XYAppController.m */; };
 		571CCA2F1AE77AA100015764 /* XYClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CCA2E1AE77AA100015764 /* XYClassLoader.m */; };
+		571CCAEF1AE796E800015764 /* XYAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CCAEE1AE796E800015764 /* XYAppController.m */; };
 		5722182817DB365B003504E8 /* NetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5722182717DB365B003504E8 /* NetworkVC.m */; };
 		57245D5F18696F5900736D5D /* UIControl+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57245D5E18696F5900736D5D /* UIControl+XY.m */; };
 		57293C7B1824C42F007BF087 /* bg_trends.png in Resources */ = {isa = PBXBuildFile; fileRef = 57293C7A1824C42F007BF087 /* bg_trends.png */; };
@@ -195,10 +195,10 @@
 		571CBA5217C6FCC0007CB842 /* Test2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2View.m; sourceTree = "<group>"; };
 		571CBA5317C6FCC0007CB842 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		571CBA5417C6FCC0007CB842 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
-		571CCA231AE7754000015764 /* XYAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppController.h; sourceTree = "<group>"; };
-		571CCA241AE7754000015764 /* XYAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAppController.m; sourceTree = "<group>"; };
 		571CCA2D1AE77AA100015764 /* XYClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYClassLoader.h; sourceTree = "<group>"; };
 		571CCA2E1AE77AA100015764 /* XYClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYClassLoader.m; sourceTree = "<group>"; };
+		571CCAED1AE796E800015764 /* XYAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppController.h; sourceTree = "<group>"; };
+		571CCAEE1AE796E800015764 /* XYAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAppController.m; sourceTree = "<group>"; };
 		5722182617DB365B003504E8 /* NetworkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkVC.h; sourceTree = "<group>"; };
 		5722182717DB365B003504E8 /* NetworkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkVC.m; sourceTree = "<group>"; };
 		57245D5D18696F5900736D5D /* UIControl+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+XY.h"; sourceTree = "<group>"; };
@@ -871,8 +871,6 @@
 				57DC76FA1A3008840046B519 /* XYBaseBuilder.h */,
 				57DC76FB1A3008840046B519 /* XYBaseBuilder.m */,
 				57F7FA2F1A43C6A100BF75C4 /* XYViewControllerProtocol.h */,
-				571CCA231AE7754000015764 /* XYAppController.h */,
-				571CCA241AE7754000015764 /* XYAppController.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1046,6 +1044,8 @@
 		57FAD6041AE234E000F074B4 /* Laboratory */ = {
 			isa = PBXGroup;
 			children = (
+				571CCAED1AE796E800015764 /* XYAppController.h */,
+				571CCAEE1AE796E800015764 /* XYAppController.m */,
 				57FAD6F61AE236A600F074B4 /* XYBaseDataSource.h */,
 				57FAD6F71AE236A600F074B4 /* XYBaseDataSource.m */,
 				57FAD6FC1AE2388000F074B4 /* XYBaseModel.h */,
@@ -1306,6 +1306,7 @@
 				577CF80A18AE0BD700421CC2 /* UIColor+XY.m in Sources */,
 				5740323B190FA76700C82B23 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				572E7CBB18385C690018179D /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				571CCAEF1AE796E800015764 /* XYAppController.m in Sources */,
 				579426B51856D6DC0049B426 /* EntityBaseModel.m in Sources */,
 				57FFF3C41818B2D700977CB5 /* RequestHelper.m in Sources */,
 				74FD286619F0FFC9005513B4 /* XYAOP.m in Sources */,
@@ -1337,7 +1338,6 @@
 				7433B2CF1A0365D2000472A9 /* XYAutoCoding.m in Sources */,
 				57548402181F4629008F9355 /* KeyboardVC.m in Sources */,
 				747FB31A1A00D5C7004B557B /* LKDBUtils.m in Sources */,
-				571CCA251AE7754000015764 /* XYAppController.m in Sources */,
 				5707C1EE19123A36003986DC /* XYViewControllerManager.m in Sources */,
 				575694861883D9C4004C2C74 /* GirlEntity.m in Sources */,
 				743B1A9E1A15DB3700CEA246 /* XYBlackMagic.m in Sources */,
