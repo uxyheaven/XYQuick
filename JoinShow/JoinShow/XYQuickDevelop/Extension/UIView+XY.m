@@ -69,12 +69,12 @@ DUMMY_CLASS(UIView_XY);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];
     [self addGestureRecognizer:tap];
     
-    [self copyAssociatedObject:aBlock forKey:UIView_key_tapBlock];
+    [self uxy_copyAssociatedObject:aBlock forKey:UIView_key_tapBlock];
 }
 
 - (void)actionTap
 {
-    UIViewCategoryNormalBlock block = [self getAssociatedObjectForKey:UIView_key_tapBlock];
+    UIViewCategoryNormalBlock block = [self uxy_getAssociatedObjectForKey:UIView_key_tapBlock];
     
     if (block)
     {
@@ -87,7 +87,7 @@ DUMMY_CLASS(UIView_XY);
     UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(actionLongPress)];
     [self addGestureRecognizer:tap];
     
-    [self copyAssociatedObject:aBlock forKey:UIView_key_longPressBlock];
+    [self uxy_copyAssociatedObject:aBlock forKey:UIView_key_longPressBlock];
 }
 
 - (void)removeLongPressGesture

@@ -69,7 +69,7 @@
 	{
 		NSUInteger	offset = 0;
 		
-		domain	= [key substringFromIndex:0 untilCharset:[NSCharacterSet characterSetWithCharactersInString:@"/"] endOffset:&offset];
+		domain	= [key uxy_substringFromIndex:0 untilCharset:[NSCharacterSet characterSetWithCharactersInString:@"/"] endOffset:&offset];
 		key		= [key substringFromIndex:offset];
 	}
     
@@ -134,7 +134,7 @@
 	{
 		NSUInteger	offset = 0;
 		
-		domain	= [key substringFromIndex:0 untilCharset:[NSCharacterSet characterSetWithCharactersInString:@"/"] endOffset:&offset];
+		domain	= [key uxy_substringFromIndex:0 untilCharset:[NSCharacterSet characterSetWithCharactersInString:@"/"] endOffset:&offset];
 		key		= [key substringFromIndex:offset];
 	}
     
@@ -203,7 +203,7 @@
 	{
 		NSUInteger	offset = 0;
 		
-		domain	= [key substringFromIndex:0 untilCharset:[NSCharacterSet characterSetWithCharactersInString:@"/"] endOffset:&offset];
+		domain	= [key uxy_substringFromIndex:0 untilCharset:[NSCharacterSet characterSetWithCharactersInString:@"/"] endOffset:&offset];
 		key		= [key substringFromIndex:offset];
 	}
     

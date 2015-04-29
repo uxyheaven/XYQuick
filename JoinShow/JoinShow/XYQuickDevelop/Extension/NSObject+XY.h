@@ -37,36 +37,36 @@
 - (id)deepCopy1;
 
 #pragma mark- associated
-- (id)getAssociatedObjectForKey:(const char *)key;
-- (id)copyAssociatedObject:(id)obj forKey:(const char *)key;
-- (id)retainAssociatedObject:(id)obj forKey:(const char *)key;
-- (id)assignAssociatedObject:(id)obj forKey:(const char *)key;
-- (void)removeAssociatedObjectForKey:(const char *)key;
-- (void)removeAllAssociatedObjects;
+- (id)uxy_getAssociatedObjectForKey:(const char *)key;
+- (id)uxy_copyAssociatedObject:(id)obj forKey:(const char *)key;
+- (id)uxy_retainAssociatedObject:(id)obj forKey:(const char *)key;
+- (id)uxy_assignAssociatedObject:(id)obj forKey:(const char *)key;
+- (void)uxy_removeAssociatedObjectForKey:(const char *)key;
+- (void)uxy_removeAllAssociatedObjects;
 
 @end
 
 #pragma mark - FlyweightTransmit
 @protocol FlyweightTransmit
 
-@property (nonatomic, strong) id                tempObject;
+@property (nonatomic, strong) id uxy_tempObject;
 
 // send object
 // handle block with default identifier is @"sendObject".
-- (void)receiveObject:(void(^)(id object))aBlock;
-- (void)sendObject:(id)anObject;
+- (void)uxy_receiveObject:(void(^)(id object))aBlock;
+- (void)uxy_sendObject:(id)anObject;
 
 //tag can't be nil
-- (void)receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier;
-- (void)sendObject:(id)anObject withIdentifier:(NSString *)identifier;
+- (void)uxy_receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier;
+- (void)uxy_sendObject:(id)anObject withIdentifier:(NSString *)identifier;
 
 // handle block with default identifier is @"EventBlock".
-- (void)handlerDefaultEventWithBlock:(id)aBlock;
-- (id)blockForDefaultEvent;
+- (void)uxy_handlerDefaultEventWithBlock:(id)aBlock;
+- (id)uxy_blockForDefaultEvent;
 
 // 设置一个block作为回调
-- (void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
-- (id)blockForEventWithIdentifier:(NSString *)identifier;
+- (void)uxy_handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier;
+- (id)uxy_blockForEventWithIdentifier:(NSString *)identifier;
 
 @end
 

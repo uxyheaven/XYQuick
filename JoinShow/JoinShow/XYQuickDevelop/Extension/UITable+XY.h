@@ -11,14 +11,14 @@
 @interface UITableViewCell (XY)
 
 // 子类需要重新此方法
-+ (CGFloat)heightForRowWithData:(id)aData;
++ (CGFloat)uxy_heightForRowWithData:(id)aData;
 
-- (void)layoutSubviewsWithDic:(NSMutableDictionary *)dic;
+- (void)uxy_layoutSubviewsWithDic:(NSMutableDictionary *)dic;
 
 @end
 
 @interface UITableView (XY)
 
-- (void)reloadData:(BOOL)animated;
+- (void)uxy_reloadData:(BOOL)animated;
 
 @end

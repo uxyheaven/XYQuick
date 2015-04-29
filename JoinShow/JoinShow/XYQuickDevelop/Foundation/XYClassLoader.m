@@ -10,7 +10,7 @@
 
 @implementation NSObject(XYClassLoader)
 
-+ (void)classAutoLoad
++ (void)uxy_classAutoLoad
 {
 }
 
@@ -36,10 +36,8 @@
             NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
             
             [invocation setTarget:classType];
-            [invocation setSelector:@selector(classAutoLoad)];
+            [invocation setSelector:@selector(uxy_classAutoLoad)];
             [invocation invoke];
-            
-            //			[classType classAutoLoad];
         }
     }
     

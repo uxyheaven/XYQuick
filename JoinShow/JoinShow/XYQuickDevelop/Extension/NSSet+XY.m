@@ -15,7 +15,8 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @implementation NSSet (XY)
 
-+ (NSMutableSet *)nonRetainSet{
++ (NSMutableSet *)uxy_nonRetainSet
+{
     CFSetCallBacks callbacks = kCFTypeSetCallBacks;
     callbacks.retain         = __XYRetainNoOp;
     callbacks.release        = __XYReleaseNoOp;
@@ -27,11 +28,5 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 @end
 
 @implementation NSMutableSet (XY)
-
-- (NSSet *)immutable
-{
-    object_setClass(self, [NSSet class]);
-    return self;
-}
 
 @end

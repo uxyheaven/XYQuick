@@ -165,7 +165,7 @@
     return height;
      */
     //NSLogD(@"%@", indexPath);
-    float f = [UITableViewCell heightForRowWithData:@"test"];
+    float f = [UITableViewCell uxy_heightForRowWithData:@"test"];
     return f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,6 +191,6 @@
     vc.title = [sender objectForKey:@"title"];
 }
 - (void)clickRight:(id)sender{
-    [self.tableView reloadData:YES];
+    [self.tableView uxy_reloadData:YES];
 }
 @end

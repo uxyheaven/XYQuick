@@ -18,30 +18,30 @@ DUMMY_CLASS(NSString_XY);
 @implementation NSString (XY)
 
 // 这里有依赖了
-@dynamic uxySHA1String;
-@dynamic uxySHA1Data;
-- (NSString *)uxyMD5String
+@dynamic uxy_SHA1String;
+@dynamic uxy_SHA1Data;
+- (NSString *)uxy_MD5String
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxyMD5String];
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_MD5String];
 }
-- (NSData *)uxyMD5Data
+- (NSData *)uxy_MD5Data
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxyMD5Data];
-}
-
-@dynamic uxyMD5String;
-@dynamic uxyMD5Data;
-- (NSString *)uxySHA1String
-{
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxySHA1String];
-}
-- (NSData *)uxySHA1Data
-{
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxySHA1Data];
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_MD5Data];
 }
 
-@dynamic uxyBASE64Decrypted;
-- (NSData *)uxyBASE64Decrypted
+@dynamic uxy_MD5String;
+@dynamic uxy_MD5Data;
+- (NSString *)uxy_SHA1String
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_SHA1String];
+}
+- (NSData *)uxy_SHA1Data
+{
+    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_SHA1Data];
+}
+
+@dynamic uxy_BASE64Decrypted;
+- (NSData *)uxy_BASE64Decrypted
 {
     static char * __base64EncodingTable = (char *)"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     static char * __base64DecodingTable = nil;
@@ -142,14 +142,14 @@ DUMMY_CLASS(NSString_XY);
     return [NSData dataWithBytesNoCopy:bytes length:length];
 }
 
-@dynamic uxyData;
-- (NSData *)uxyData
+@dynamic uxy_data;
+- (NSData *)uxy_data
 {
 	return [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
 }
 
-@dynamic uxyDate;
-- (NSDate *)uxyDate
+@dynamic uxy_date;
+- (NSDate *)uxy_date
 {
 	NSTimeZone * local = [NSTimeZone localTimeZone];
 	
@@ -164,7 +164,7 @@ DUMMY_CLASS(NSString_XY);
 							  sinceDate:[dateFormatter dateFromString:text]];
 }
 
-- (NSArray *)allURLs
+- (NSArray *)uxy_allURLs
 {
 	NSMutableArray * array = [NSMutableArray array];
 	
@@ -224,30 +224,30 @@ DUMMY_CLASS(NSString_XY);
 	return array;
 }
 
-+ (NSString *)queryStringFromDictionary:(NSDictionary *)dict
++ (NSString *)uxy_queryStringFromDictionary:(NSDictionary *)dict
 {
-    return [self queryStringFromDictionary:dict encoding:YES];
+    return [self uxy_queryStringFromDictionary:dict encoding:YES];
 }
 
-+ (NSString *)queryStringFromDictionary:(NSDictionary *)dict encoding:(BOOL)encoding
++ (NSString *)uxy_queryStringFromDictionary:(NSDictionary *)dict encoding:(BOOL)encoding
 {
     NSMutableArray * pairs = [NSMutableArray array];
 	for ( NSString * key in dict.allKeys )
 	{
 		NSString * value = [((NSObject *)[dict objectForKey:key]) asNSString];
-		NSString * urlEncoding = encoding ? [value URLEncoding] : value;
+		NSString * urlEncoding = encoding ? [value uxy_URLEncoding] : value;
 		[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, urlEncoding]];
 	}
 	
 	return [pairs componentsJoinedByString:@"&"];
 }
 
-+ (NSString *)queryStringFromArray:(NSArray *)array
++ (NSString *)uxy_queryStringFromArray:(NSArray *)array
 {
-    return [self queryStringFromArray:array encoding:YES];
+    return [self uxy_queryStringFromArray:array encoding:YES];
 }
 
-+ (NSString *)queryStringFromArray:(NSArray *)array encoding:(BOOL)encoding
++ (NSString *)uxy_queryStringFromArray:(NSArray *)array encoding:(BOOL)encoding
 {
 	NSMutableArray *pairs = [NSMutableArray array];
 	
@@ -285,14 +285,14 @@ DUMMY_CLASS(NSString_XY);
 			continue;
 		}
 		
-		NSString * urlEncoding = encoding ? [value URLEncoding] : value;
+		NSString * urlEncoding = encoding ? [value uxy_URLEncoding] : value;
 		[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, urlEncoding]];
 	}
 	
 	return [pairs componentsJoinedByString:@"&"];
 }
 
-+ (NSString *)queryStringFromKeyValues:(id)first, ...
++ (NSString *)uxy_queryStringFromKeyValues:(id)first, ...
 {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 	
@@ -312,36 +312,36 @@ DUMMY_CLASS(NSString_XY);
 		[dict setObject:value forKey:key];
 	}
 	va_end( args );
-	return [NSString queryStringFromDictionary:dict];
+	return [NSString uxy_queryStringFromDictionary:dict];
 }
 
-- (NSString *)urlByAppendingDict:(NSDictionary *)params
+- (NSString *)uxy_urlByAppendingDict:(NSDictionary *)params
 {
-    return [self urlByAppendingDict:params encoding:YES];
+    return [self uxy_urlByAppendingDict:params encoding:YES];
 }
 
-- (NSString *)urlByAppendingDict:(NSDictionary *)params encoding:(BOOL)encoding
-{
-    NSURL * parsedURL = [NSURL URLWithString:self];
-	NSString * queryPrefix = parsedURL.query ? @"&" : @"?";
-	NSString * query = [NSString queryStringFromDictionary:params encoding:encoding];
-	return [NSString stringWithFormat:@"%@%@%@", self, queryPrefix, query];
-}
-
-- (NSString *)urlByAppendingArray:(NSArray *)params
-{
-    return [self urlByAppendingArray:params encoding:YES];
-}
-
-- (NSString *)urlByAppendingArray:(NSArray *)params encoding:(BOOL)encoding
+- (NSString *)uxy_urlByAppendingDict:(NSDictionary *)params encoding:(BOOL)encoding
 {
     NSURL * parsedURL = [NSURL URLWithString:self];
 	NSString * queryPrefix = parsedURL.query ? @"&" : @"?";
-	NSString * query = [NSString queryStringFromArray:params encoding:encoding];
+	NSString * query = [NSString uxy_queryStringFromDictionary:params encoding:encoding];
 	return [NSString stringWithFormat:@"%@%@%@", self, queryPrefix, query];
 }
 
-- (NSString *)urlByAppendingKeyValues:(id)first, ...
+- (NSString *)uxy_urlByAppendingArray:(NSArray *)params
+{
+    return [self uxy_urlByAppendingArray:params encoding:YES];
+}
+
+- (NSString *)uxy_urlByAppendingArray:(NSArray *)params encoding:(BOOL)encoding
+{
+    NSURL * parsedURL = [NSURL URLWithString:self];
+	NSString * queryPrefix = parsedURL.query ? @"&" : @"?";
+	NSString * query = [NSString uxy_queryStringFromArray:params encoding:encoding];
+	return [NSString stringWithFormat:@"%@%@%@", self, queryPrefix, query];
+}
+
+- (NSString *)uxy_urlByAppendingKeyValues:(id)first, ...
 {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 	
@@ -361,45 +361,45 @@ DUMMY_CLASS(NSString_XY);
 		[dict setObject:value forKey:key];
 	}
     va_end( args );
-	return [self urlByAppendingDict:dict];
+	return [self uxy_urlByAppendingDict:dict];
 }
 
-- (BOOL)empty
+- (BOOL)uxy_empty
 {
 	return [self length] > 0 ? NO : YES;
 }
 
-- (BOOL)notEmpty
+- (BOOL)uxy_notEmpty
 {
 	return [self length] > 0 ? YES : NO;
 }
 
-- (BOOL)eq:(NSString *)other
+- (BOOL)uxy_eq:(NSString *)other
 {
 	return [self isEqualToString:other];
 }
 
-- (BOOL)equal:(NSString *)other
+- (BOOL)uxy_equal:(NSString *)other
 {
 	return [self isEqualToString:other];
 }
 
-- (BOOL)is:(NSString *)other
+- (BOOL)uxy_is:(NSString *)other
 {
 	return [self isEqualToString:other];
 }
 
-- (BOOL)isNot:(NSString *)other
+- (BOOL)uxy_isNot:(NSString *)other
 {
 	return NO == [self isEqualToString:other];
 }
 
 - (BOOL)isValueOf:(NSArray *)array
 {
-	return [self isValueOf:array caseInsens:NO];
+	return [self uxy_isValueOf:array caseInsens:NO];
 }
 
-- (BOOL)isValueOf:(NSArray *)array caseInsens:(BOOL)caseInsens
+- (BOOL)uxy_isValueOf:(NSArray *)array caseInsens:(BOOL)caseInsens
 {
 	NSStringCompareOptions option = caseInsens ? NSCaseInsensitiveSearch : 0;
 	
@@ -415,7 +415,7 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
-- (NSString *)URLEncoding
+- (NSString *)uxy_URLEncoding
 {
     CFStringRef aCFString = CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault,
                                                                     (CFStringRef)self,
@@ -428,7 +428,7 @@ DUMMY_CLASS(NSString_XY);
 	return result;
 }
 
-- (NSString *)URLDecoding
+- (NSString *)uxy_URLDecoding
 {
 	NSMutableString * string = [NSMutableString stringWithString:self];
     [string replaceOccurrencesOfString:@"+"
@@ -438,15 +438,15 @@ DUMMY_CLASS(NSString_XY);
     return [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (NSMutableDictionary *)dictionaryFromQueryComponents
+- (NSMutableDictionary *)uxy_dictionaryFromQueryComponents
 {
     NSMutableDictionary *queryComponents = [NSMutableDictionary dictionary];
     for(NSString *keyValuePairString in [self componentsSeparatedByString:@"&"])
     {
         NSArray *keyValuePairArray = [keyValuePairString componentsSeparatedByString:@"="];
         if ([keyValuePairArray count] < 2) continue; // Verify that there is at least one key, and at least one value.  Ignore extra = signs
-        NSString *key = [[keyValuePairArray objectAtIndex:0] URLDecoding];
-        NSString *value = [[keyValuePairArray objectAtIndex:1] URLDecoding];
+        NSString *key = [[keyValuePairArray objectAtIndex:0] uxy_URLDecoding];
+        NSString *value = [[keyValuePairArray objectAtIndex:1] uxy_URLDecoding];
         NSMutableArray *results = [queryComponents objectForKey:key]; // URL spec says that multiple values are allowed per key
         if(!results) // First object
         {
@@ -458,12 +458,12 @@ DUMMY_CLASS(NSString_XY);
     return queryComponents;
 }
 
-- (NSString *)trim
+- (NSString *)uxy_trim
 {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-- (NSString *)unwrap
+- (NSString *)uxy_unwrap
 {
 	if ( self.length >= 2 )
 	{
@@ -481,7 +481,7 @@ DUMMY_CLASS(NSString_XY);
 	return self;
 }
 
-- (NSString *)repeat:(NSUInteger)count
+- (NSString *)uxy_repeat:(NSUInteger)count
 {
 	if ( 0 == count )
 		return @"";
@@ -496,20 +496,21 @@ DUMMY_CLASS(NSString_XY);
 	return text;
 }
 
-- (NSString *)normalize
+- (NSString *)uxy_normalize
 {
 	return [self stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
 }
 
 
-- (BOOL)isNormal{
+- (BOOL)uxy_isNormal
+{
     NSString *regex = @"([^%&',;=!~?$]+)";
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
 	
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)isUserName
+- (BOOL)uxy_isUserName
 {
 	NSString *		regex = @"(^[A-Za-z0-9]{3,20}$)";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -517,7 +518,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL) isChineseUserName
+- (BOOL)uxy_isChineseUserName
 {
 	NSString *		regex = @"(^[A-Za-z0-9\u4e00-\u9fa5]{3,20}$)";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -525,7 +526,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)isPassword
+- (BOOL)uxy_isPassword
 {
 	NSString *		regex = @"(^[A-Za-z0-9]{6,20}$)";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -533,7 +534,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)isEmail
+- (BOOL)uxy_isEmail
 {
 	NSString *		regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -541,7 +542,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)isUrl
+- (BOOL)uxy_isUrl
 {
     NSString *		regex = @"http(s)?:\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- .\\/?%&=]*)?";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -549,7 +550,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)isIPAddress
+- (BOOL)uxy_isIPAddress
 {
 	NSArray *			components = [self componentsSeparatedByString:@"."];
 	NSCharacterSet *	invalidCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
@@ -579,7 +580,7 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
-- (BOOL)isTelephone
+- (BOOL)uxy_isTelephone
 {
     NSString * MOBILE = @"^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$";
     NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}$";
@@ -600,17 +601,17 @@ DUMMY_CLASS(NSString_XY);
 }
 
 ////////////////////
-- (BOOL)isHasCharacterAndNumber{
+- (BOOL)uxy_isHasCharacterAndNumber
+{
     BOOL isExistDigit = [self rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound;
-    
     BOOL isExistLetter = [self rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound;
     
     return isExistDigit && isExistLetter;
 }
-- (BOOL)isNickname{
-    if (self == nil) {
+- (BOOL)uxy_isNickname
+{
+    if (self == nil)
 		return NO;
-	}
     
     NSString *regex = @"^[a-zA-Z0-9_\u4E00-\u9FFF-]{1,12}+$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
@@ -619,7 +620,8 @@ DUMMY_CLASS(NSString_XY);
     return isMatch;
 }
 
-- (BOOL)isTelephone2{
+- (BOOL)uxy_isTelephone2
+{
     if (self == nil)
         return NO;
 
@@ -650,12 +652,12 @@ DUMMY_CLASS(NSString_XY);
 }
 ///////////////////
 
-- (NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset
+- (NSString *)uxy_substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset
 {
-	return [self substringFromIndex:from untilCharset:charset endOffset:NULL];
+	return [self uxy_substringFromIndex:from untilCharset:charset endOffset:NULL];
 }
 
-- (NSString *)substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset endOffset:(NSUInteger *)endOffset
+- (NSString *)uxy_substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset endOffset:(NSUInteger *)endOffset
 {
 	if ( 0 == self.length )
 		return nil;
@@ -687,14 +689,14 @@ DUMMY_CLASS(NSString_XY);
 }
 
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-- (CGSize)sizeWithFont:(UIFont *)font byWidth:(CGFloat)width
+- (CGSize)uxy_sizeWithFont:(UIFont *)font byWidth:(CGFloat)width
 {
 	return [self sizeWithFont:font
 			constrainedToSize:CGSizeMake(width, 999999.0f)
 				lineBreakMode:UILineBreakModeWordWrap];
 }
 
-- (CGSize)sizeWithFont:(UIFont *)font byHeight:(CGFloat)height
+- (CGSize)uxy_sizeWithFont:(UIFont *)font byHeight:(CGFloat)height
 {
 	return [self sizeWithFont:font
 			constrainedToSize:CGSizeMake(999999.0f, height)
@@ -702,7 +704,7 @@ DUMMY_CLASS(NSString_XY);
 }
 #endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 
-+ (NSString *)fromResource:(NSString *)resName
++ (NSString *)uxy_fromResource:(NSString *)resName
 {
 	NSString *	extension = [resName pathExtension];
 	NSString *	fullName = [resName substringToIndex:(resName.length - extension.length - 1)];
@@ -711,7 +713,7 @@ DUMMY_CLASS(NSString_XY);
 	return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 }
 
-- (BOOL)match:(NSString *)expression
+- (BOOL)uxy_match:(NSString *)expression
 {
 	NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:expression
 																			options:NSRegularExpressionCaseInsensitive
@@ -728,7 +730,7 @@ DUMMY_CLASS(NSString_XY);
 	return YES;
 }
 
-- (BOOL)matchAnyOf:(NSArray *)array
+- (BOOL)uxy_matchAnyOf:(NSArray *)array
 {
 	for ( NSString * str in array )
 	{
@@ -741,7 +743,7 @@ DUMMY_CLASS(NSString_XY);
 	return NO;
 }
 
-- (NSInteger)getLength
+- (NSInteger)uxy_getLength
 {
     NSInteger strLength = 0;
     char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
@@ -759,14 +761,14 @@ DUMMY_CLASS(NSString_XY);
     }
     return strLength;
 }
-- (NSInteger)getLength2
+- (NSInteger)uxy_getLength2
 {
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSData *data = [self dataUsingEncoding:enc];
     return [data length];
 }
 
-- (NSString *)replaceUnicode
+- (NSString *)uxy_replaceUnicode
 {
     NSString *tempStr1 = [self stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
     NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
@@ -780,13 +782,13 @@ DUMMY_CLASS(NSString_XY);
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
 }
 
-- (void)erasure
+- (void)uxy_erasure
 {
     char *string = (char *)CFStringGetCStringPtr((CFStringRef)self, CFStringGetSystemEncoding());
     memset(string, 0, [self length]);
 }
 
-- (NSString*)stringByInitials
+- (NSString*)uxy_stringByInitials
 {
     NSMutableString *result = [NSMutableString string];
     [self enumerateSubstringsInRange:NSMakeRange(0, self.length) options:NSStringEnumerationByWords | NSStringEnumerationLocalized usingBlock:^(NSString *word, NSRange wordRange, NSRange enclosingWordRange, BOOL *stop1) {
@@ -802,7 +804,7 @@ DUMMY_CLASS(NSString_XY);
     return result;
 }
 
-- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font
+- (CGSize)uxy_calculateSize:(CGSize)size font:(UIFont *)font
 {
     CGSize expectedLabelSize = CGSizeZero;
     
@@ -812,7 +814,9 @@ DUMMY_CLASS(NSString_XY);
         NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
         
         expectedLabelSize = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-    } else {
+    }
+    else
+    {
         expectedLabelSize = [self sizeWithFont:font
                              constrainedToSize:size
                                  lineBreakMode:NSLineBreakByWordWrapping];
@@ -821,7 +825,7 @@ DUMMY_CLASS(NSString_XY);
     return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
 }
 
-- (NSTimeInterval) displayTime
+- (NSTimeInterval)uxy_displayTime
 {
     return MAX((float)self.length * 0.1 + 2, 2);
 }

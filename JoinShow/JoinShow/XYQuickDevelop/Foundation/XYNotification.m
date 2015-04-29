@@ -85,12 +85,12 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
 
 - (id)notifications
 {
-    id object = [self getAssociatedObjectForKey:NSObject_notifications];
+    id object = [self uxy_getAssociatedObjectForKey:NSObject_notifications];
     
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        [self retainAssociatedObject:dic forKey:NSObject_notifications];
+        [self uxy_retainAssociatedObject:dic forKey:NSObject_notifications];
         return dic;
     }
     

@@ -12,9 +12,9 @@
 
 
 // NavigationBar 变色 透明 尺寸 等方法 copy from https://github.com/ltebean/LTNavigationBar
-- (void)xy_setBackgroundColor:(UIColor *)backgroundColor;
-- (void)xy_setContentAlpha:(CGFloat)alpha;
-- (void)xy_setTranslationY:(CGFloat)translationY;
-- (void)xy_reset;
+- (void)uxy_setBackgroundColor:(UIColor *)backgroundColor;
+- (void)uxy_setContentAlpha:(CGFloat)alpha;
+- (void)uxy_setTranslationY:(CGFloat)translationY;
+- (void)uxy_reset;
 
 @end

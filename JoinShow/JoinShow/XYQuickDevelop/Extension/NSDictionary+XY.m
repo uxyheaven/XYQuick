@@ -15,7 +15,8 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @implementation NSDictionary (XY)
 
-+ (NSMutableDictionary *)nonRetainDictionary{
++ (NSMutableDictionary *)uxy_nonRetainDictionary
+{
     CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
     CFDictionaryValueCallBacks callbacks  = kCFTypeDictionaryValueCallBacks;
     callbacks.retain                      = __XYRetainNoOp;
@@ -27,12 +28,6 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 @end
 
 @implementation NSMutableDictionary (XY)
-
-- (NSDictionary *)immutable
-{
-    object_setClass(self, [NSDictionary class]);
-    return self;
-}
 
 @end
 

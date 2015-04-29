@@ -10,12 +10,10 @@
 
 @interface NSDictionary (XY)
 
-+ (NSMutableDictionary *)nonRetainDictionary;
++ (NSMutableDictionary *)uxy_nonRetainDictionary;
 
 @end
 
 @interface NSMutableDictionary (XY)
-
-- (NSDictionary *)immutable;
 
 @end

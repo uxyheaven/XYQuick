@@ -142,6 +142,8 @@
 // Meta macro
 // ----------------------------------
 
+#ifndef	macro_first
+
 #define macro_first(...)									macro_first_( __VA_ARGS__, 0 )
 #define macro_first_( A, ... )								A
 
@@ -179,6 +181,8 @@
 #define macro_string( A )									macro_string_( A )
 #define macro_string_( A )									@(#A)
 
+#endif
+
 // ----------------------------------
 // Category
 // ----------------------------------
@@ -192,6 +196,7 @@
  ...
  @end
  */
+
 #ifndef DUMMY_CLASS
 #define DUMMY_CLASS(UNIQUE_NAME) \
         @interface DUMMY_CLASS_##UNIQUE_NAME : NSObject @end \

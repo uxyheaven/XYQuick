@@ -10,12 +10,12 @@
 
 @interface NSData (XY)
 
-@property (nonatomic, readonly, strong) NSData *uxyMD5Data;
-@property (nonatomic, readonly, copy) NSString *uxyMD5String;
+@property (nonatomic, readonly, strong) NSData *uxy_MD5Data;
+@property (nonatomic, readonly, copy) NSString *uxy_MD5String;
 
-@property (nonatomic, readonly, strong) NSData *uxySHA1Data;
-@property (nonatomic, readonly, copy) NSString *uxySHA1String;
+@property (nonatomic, readonly, strong) NSData *uxy_SHA1Data;
+@property (nonatomic, readonly, copy) NSString *uxy_SHA1String;
 
-@property (nonatomic, readonly, copy) NSString *uxyBASE64Encrypted;
+@property (nonatomic, readonly, copy) NSString *uxy_BASE64Encrypted;
 
 @end

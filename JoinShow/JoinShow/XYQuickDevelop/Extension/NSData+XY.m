@@ -14,9 +14,9 @@ DUMMY_CLASS(NSData_XY);
 
 @implementation NSData (XY)
 
-@dynamic uxySHA1String;
-@dynamic uxySHA1Data;
-- (NSString *)uxyMD5String
+@dynamic uxy_SHA1String;
+@dynamic uxy_SHA1Data;
+- (NSString *)uxy_MD5String
 {
     uint8_t	digest[CC_MD5_DIGEST_LENGTH + 1] = { 0 };
     
@@ -34,7 +34,7 @@ DUMMY_CLASS(NSData_XY);
     return [NSString stringWithUTF8String:(const char *)hex];
 }
 
-- (NSData *)uxyMD5Data
+- (NSData *)uxy_MD5Data
 {
     uint8_t	digest[CC_MD5_DIGEST_LENGTH + 1] = { 0 };
     
@@ -43,9 +43,9 @@ DUMMY_CLASS(NSData_XY);
     return [NSData dataWithBytes:digest length:CC_MD5_DIGEST_LENGTH];
 }
 
-@dynamic uxyMD5String;
-@dynamic uxyMD5Data;
-- (NSString *)uxySHA1String
+@dynamic uxy_MD5String;
+@dynamic uxy_MD5Data;
+- (NSString *)uxy_SHA1String
 {
     uint8_t	digest[CC_SHA1_DIGEST_LENGTH + 1] = { 0 };
     
@@ -63,7 +63,7 @@ DUMMY_CLASS(NSData_XY);
     return [NSString stringWithUTF8String:(const char *)hex];
 }
 
-- (NSData *)uxySHA1Data
+- (NSData *)uxy_SHA1Data
 {
     uint8_t	digest[CC_SHA1_DIGEST_LENGTH + 1] = { 0 };
     
@@ -72,8 +72,8 @@ DUMMY_CLASS(NSData_XY);
     return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
-@dynamic uxyBASE64Encrypted;
-- (NSString *)uxyBASE64Encrypted
+@dynamic uxy_BASE64Encrypted;
+- (NSString *)uxy_BASE64Encrypted
 {
     static char * __base64EncodingTable = (char *)"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     

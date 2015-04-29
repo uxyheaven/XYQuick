@@ -25,8 +25,8 @@
 
 @interface NSNumber (XY)
 
-@property (nonatomic, readonly, strong) NSDate *uxyDateValue;
+@property (nonatomic, readonly, strong) NSDate *uxy_dateValue;
 
-- (NSString *)stringWithDateFormat:(NSString *)format;
+- (NSString *)uxy_stringWithDateFormat:(NSString *)format;
 
 @end

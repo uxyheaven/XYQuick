@@ -14,9 +14,9 @@ DUMMY_CLASS(NSNumber_XY);
 
 @implementation NSNumber (XY)
 
-@dynamic uxyDateValue;
+@dynamic uxy_dateValue;
 
-- (NSDate *)uxyDateValue
+- (NSDate *)uxy_dateValue
 {
 	return [NSDate dateWithTimeIntervalSince1970:self.doubleValue];
 }
@@ -33,7 +33,7 @@ DUMMY_CLASS(NSNumber_XY);
 	
 #else
 	// thanks @lancy, changed: "NSDate depend on NSNumber" to "NSNumber depend on NSDate"
-	return [[NSDate dateWithTimeIntervalSince1970:[self doubleValue]] stringWithDateFormat:format];
+	return [[NSDate dateWithTimeIntervalSince1970:[self doubleValue]] uxy_stringWithDateFormat:format];
 #endif
 }
 

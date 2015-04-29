@@ -104,12 +104,12 @@ void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id)
 
 - (id)observers
 {
-    id object = [self getAssociatedObjectForKey:NSObject_observers];
+    id object = [self uxy_getAssociatedObjectForKey:NSObject_observers];
     
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        [self retainAssociatedObject:dic forKey:NSObject_observers];
+        [self uxy_retainAssociatedObject:dic forKey:NSObject_observers];
         return dic;
     }
     

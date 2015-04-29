@@ -11,7 +11,7 @@
 @implementation UIWebView (XY)
 
 
-- (void)clean:(BOOL)isCleanCache
+- (void)uxy_clean:(BOOL)isCleanCache
 {
     [self loadHTMLString:@"" baseURL:nil];
     [self stopLoading];
@@ -25,12 +25,12 @@
 }
 
 
-- (NSString*)innerHTML
+- (NSString*)uxy_innerHTML
 {
     return [self stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
 }
 
-- (NSString*)userAgent
+- (NSString*)uxy_userAgent
 {
     return [self stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];;
 }

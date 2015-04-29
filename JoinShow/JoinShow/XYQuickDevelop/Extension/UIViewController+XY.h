@@ -13,18 +13,18 @@ typedef void(^UIViewController_block_view) (UIView *view);
 
 @interface UIViewController (XY)
 
-@property (nonatomic, strong) id parameters; // 参数
+@property (nonatomic, strong) id uxy_parameters; // 参数
 
 // 导航
-- (void)pushVC:(NSString *)vcName;
-- (void)pushVC:(NSString *)vcName object:(id)object;
-- (void)popVC;
+- (void)uxy_pushVC:(NSString *)vcName;
+- (void)uxy_pushVC:(NSString *)vcName object:(id)object;
+- (void)uxy_popVC;
 
 // 模态 带导航控制器
-- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName;
-- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName object:(id)object succeed:(UIViewController_block_void)block;
-- (void)dismissModalVC;
-- (void)dismissModalVCWithSucceed:(UIViewController_block_void)block;
+- (void)uxy_modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName;
+- (void)uxy_modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName object:(id)object succeed:(UIViewController_block_void)block;
+- (void)uxy_dismissModalVC;
+- (void)uxy_dismissModalVCWithSucceed:(UIViewController_block_void)block;
 
 #define UserGuide_tag 30912
 
@@ -36,16 +36,16 @@ typedef void(^UIViewController_block_view) (UIView *view);
  * @param block 点击背景执行的方法, 默认是淡出
  * @return 返回底层的蒙板view
  */
-- (id)showUserGuideViewWithImage:(NSString *)imgName
-                             key:(NSString *)key
-                      alwaysShow:(BOOL)isAlwaysShow
-                           frame:(NSString *)frameString
-                      tapExecute:(UIViewController_block_view)block;
+- (id)uxy_showUserGuideViewWithImage:(NSString *)imgName
+                                 key:(NSString *)key
+                          alwaysShow:(BOOL)isAlwaysShow
+                               frame:(NSString *)frameString
+                          tapExecute:(UIViewController_block_view)block;
 
 @end
 
 @protocol XYSwitchControllerProtocol <NSObject>
 
--(id) initWithObject:(id)object;
+- (id)initWithObject:(id)object;
 
 @end

@@ -23,23 +23,9 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @implementation NSArray(XY)
 
-@dynamic APPEND;
-@dynamic mutableArray;
+@dynamic uxy_mutableArray;
 
-- (NSArrayAppendBlock)APPEND
-{
-	NSArrayAppendBlock block = ^ NSMutableArray * ( id obj )
-	{
-		NSMutableArray * array = [NSMutableArray arrayWithArray:self];
-		[array addObject:obj];
-        
-		return array;
-	};
-	
-	return [block copy];
-}
-
-- (NSArray *)head:(NSUInteger)count
+- (NSArray *)uxy_head:(NSUInteger)count
 {
 	if ( [self count] < count )
 	{
@@ -59,7 +45,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	}
 }
 
-- (NSArray *)tail:(NSUInteger)count
+- (NSArray *)uxy_tail:(NSUInteger)count
 {	
 //	if ( [self count] < count )
 //	{
@@ -84,7 +70,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return [self subarrayWithRange:range];
 }
 
-- (id)safeObjectAtIndex:(NSInteger)index
+- (id)uxy_safeObjectAtIndex:(NSInteger)index
 {
 	if ( index < 0 )
 		return nil;
@@ -95,7 +81,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return [self objectAtIndex:index];
 }
 
-- (NSArray *)safeSubarrayWithRange:(NSRange)range
+- (NSArray *)uxy_safeSubarrayWithRange:(NSRange)range
 {
 	if ( 0 == self.count )
 		return nil;
@@ -109,7 +95,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return [self subarrayWithRange:NSMakeRange(range.location, range.length)];
 }
 
-- (NSArray *)safeSubarrayFromIndex:(NSUInteger)index
+- (NSArray *)uxy_safeSubarrayFromIndex:(NSUInteger)index
 {
     if ( 0 == self.count )
         return [NSArray array];
@@ -117,18 +103,18 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     if ( index >= self.count )
         return [NSArray array];
     
-    return [self safeSubarrayWithRange:NSMakeRange(index, self.count - index)];
+    return [self uxy_safeSubarrayWithRange:NSMakeRange(index, self.count - index)];
 }
 
-- (NSArray *)safeSubarrayWithCount:(NSUInteger)count
+- (NSArray *)uxy_safeSubarrayWithCount:(NSUInteger)count
 {
     if ( 0 == self.count )
         return [NSArray array];
     
-    return [self safeSubarrayWithRange:NSMakeRange(0, count)];
+    return [self uxy_safeSubarrayWithRange:NSMakeRange(0, count)];
 }
 
-- (NSInteger)indexOfString:(NSString *)string
+- (NSInteger)uxy_indexOfString:(NSString *)string
 {
     if (string == nil || string.length < 1)
     {
@@ -149,7 +135,8 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     
     return NSNotFound;
 }
-- (NSMutableArray *)mutableArray
+
+- (NSMutableArray *)uxy_mutableArray
 {
 	return [NSMutableArray arrayWithArray:self];
 }
@@ -161,20 +148,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @implementation NSMutableArray(XY)
 
-@dynamic APPEND;
-
-- (NSMutableArrayAppendBlock)APPEND
-{
-	NSMutableArrayAppendBlock block = ^ NSMutableArray * ( id obj )
-	{
-		[self addObject:obj];
-		return self;
-	};
-	
-	return [block copy];
-}
-
-- (void)safeAddObject:(id)anObject
+- (void)uxy_safeAddObject:(id)anObject
 {
     if ( anObject )
     {
@@ -182,7 +156,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     }
 }
 
-+ (NSMutableArray *)nonRetainingArray
++ (NSMutableArray *)uxy_nonRetainingArray
 {
     CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
     callbacks.retain           = __XYRetainNoOp;
@@ -191,7 +165,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     return (__bridge_transfer NSMutableArray *)CFArrayCreateMutable(nil, 0, &callbacks);
 }
 
-- (NSMutableArray *)pushHead:(NSObject *)obj
+- (NSMutableArray *)uxy_pushHead:(NSObject *)obj
 {
 	if ( obj )
 	{
@@ -201,7 +175,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)pushHeadN:(NSArray *)all
+- (NSMutableArray *)uxy_pushHeadN:(NSArray *)all
 {
 	if ( [all count] )
 	{	
@@ -214,7 +188,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)popTail
+- (NSMutableArray *)uxy_popTail
 {
 	if ( [self count] > 0 )
 	{
@@ -224,7 +198,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)popTailN:(NSUInteger)n
+- (NSMutableArray *)uxy_popTailN:(NSUInteger)n
 {
 	if ( [self count] > 0 )
 	{
@@ -245,7 +219,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)pushTail:(NSObject *)obj
+- (NSMutableArray *)uxy_pushTail:(NSObject *)obj
 {
 	if ( obj )
 	{
@@ -255,7 +229,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)pushTailN:(NSArray *)all
+- (NSMutableArray *)uxy_pushTailN:(NSArray *)all
 {
 	if ( [all count] )
 	{
@@ -265,7 +239,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)popHead
+- (NSMutableArray *)uxy_popHead
 {
 	if ( [self count] )
 	{
@@ -275,7 +249,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)popHeadN:(NSUInteger)n
+- (NSMutableArray *)uxy_popHeadN:(NSUInteger)n
 {
 	if ( [self count] > 0 )
 	{
@@ -296,7 +270,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)keepHead:(NSUInteger)n
+- (NSMutableArray *)uxy_keepHead:(NSUInteger)n
 {
 	if ( [self count] > n )
 	{
@@ -310,7 +284,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSMutableArray *)keepTail:(NSUInteger)n
+- (NSMutableArray *)uxy_keepTail:(NSUInteger)n
 {
 	if ( [self count] > n )
 	{
@@ -324,10 +298,11 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSArray *)immutable
+- (NSArray *)uxy_immutable
 {
-    object_setClass(self, [NSArray class]);
-    return self;
+//    object_setClass(self, [NSArray class]);
+//    return self;
+    return [self copy];
 }
 @end
 

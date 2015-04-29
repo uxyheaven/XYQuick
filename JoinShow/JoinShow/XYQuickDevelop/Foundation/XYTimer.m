@@ -90,12 +90,12 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 
 - (NSMutableDictionary *)XYtimers
 {
-    id object = [self getAssociatedObjectForKey:NSObject_XYTimers];
+    id object = [self uxy_getAssociatedObjectForKey:NSObject_XYTimers];
     
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
-        [self retainAssociatedObject:dic forKey:NSObject_XYTimers];
+        [self uxy_retainAssociatedObject:dic forKey:NSObject_XYTimers];
         return dic;
     }
     
@@ -208,7 +208,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
     self = [super init];
     if (self) {
         _interval = 1.0 / 8.0;
-        _receivers = [NSMutableArray nonRetainingArray];
+        _receivers = [NSMutableArray uxy_nonRetainingArray];
     }
     return self;
 }

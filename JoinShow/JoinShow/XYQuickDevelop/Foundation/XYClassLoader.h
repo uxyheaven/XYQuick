@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject(XYClassLoader)
-+ (void)classAutoLoad;
++ (void)uxy_classAutoLoad;
 @end
 
 #pragma mark -

@@ -24,62 +24,62 @@ DUMMY_CLASS(NSDate_XY);
 
 
 #pragma mark -
-@dynamic year;
-- (NSInteger)year
+@dynamic uxy_year;
+- (NSInteger)uxy_year
 {
 	return [[NSCalendar currentCalendar] components:NSYearCalendarUnit
 										   fromDate:self].year;
 }
 
-@dynamic month;
-- (NSInteger)month
+@dynamic uxy_month;
+- (NSInteger)uxy_month
 {
 	return [[NSCalendar currentCalendar] components:NSMonthCalendarUnit
 										   fromDate:self].month;
 }
 
-@dynamic day;
-- (NSInteger)day
+@dynamic uxy_day;
+- (NSInteger)uxy_day
 {
 	return [[NSCalendar currentCalendar] components:NSDayCalendarUnit
 										   fromDate:self].day;
 }
 
-@dynamic hour;
-- (NSInteger)hour
+@dynamic uxy_hour;
+- (NSInteger)uxy_hour
 {
 	return [[NSCalendar currentCalendar] components:NSHourCalendarUnit
 										   fromDate:self].hour;
 }
 
-@dynamic minute;
-- (NSInteger)minute
+@dynamic uxy_minute;
+- (NSInteger)uxy_minute
 {
 	return [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit
 										   fromDate:self].minute;
 }
 
-@dynamic second;
-- (NSInteger)second
+@dynamic uxy_second;
+- (NSInteger)uxy_second
 {
 	return [[NSCalendar currentCalendar] components:NSSecondCalendarUnit
 										   fromDate:self].second;
 }
 
-@dynamic weekday;
-- (NSInteger)weekday
+@dynamic uxy_weekday;
+- (NSInteger)uxy_weekday
 {
 	return [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit
 										   fromDate:self].weekday;
 }
 
-@dynamic stringWeekday;
-- (NSString *)stringWeekday
+@dynamic uxy_stringWeekday;
+- (NSString *)uxy_stringWeekday
 {
-    return XY_weekdays[self.weekday - 1];
+    return XY_weekdays[self.uxy_weekday - 1];
 }
 
-- (NSString *)stringWithDateFormat:(NSString *)format
+- (NSString *)uxy_stringWithDateFormat:(NSString *)format
 {
 #if 0
 	
@@ -100,7 +100,7 @@ DUMMY_CLASS(NSDate_XY);
 #endif
 }
 
-- (NSString *)timeAgo
+- (NSString *)uxy_timeAgo
 {
 	NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:self];
 	
@@ -145,22 +145,22 @@ DUMMY_CLASS(NSDate_XY);
 	return years <= 1 ? @"1年前" : [NSString stringWithFormat:@"%d年前", years];
 }
 
-+ (long long)timeStamp
++ (long long)uxy_timeStamp
 {
 	return (long long)[[NSDate date] timeIntervalSince1970];
 }
 
-+ (NSDate *)dateWithString:(NSString *)string
++ (NSDate *)uxy_dateWithString:(NSString *)string
 {
     return nil;
 }
 
-+ (NSDate *)now
++ (NSDate *)uxy_now
 {
 	return [NSDate date];
 }
 
-- (NSDate *)dateAfterDay:(int)day
+- (NSDate *)uxy_dateAfterDay:(int)day
 {
     NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
     [componentsToAdd setDay:day];
@@ -170,7 +170,7 @@ DUMMY_CLASS(NSDate_XY);
     return dateAfterDay;
 }
 
-- (NSInteger)distanceInDaysToDate:(NSDate *)aDate
+- (NSInteger)uxy_distanceInDaysToDate:(NSDate *)aDate
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *dateComponents = [calendar components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
@@ -178,29 +178,29 @@ DUMMY_CLASS(NSDate_XY);
 }
 
 ///////////////////////////
-@dynamic stringCache;
-- (NSString *)stringCache
+@dynamic uxy_stringCache;
+- (NSString *)uxy_stringCache
 {
-    NSString *str = (NSString *)[self getAssociatedObjectForKey:NSDate_key_stringCache];
+    NSString *str = (NSString *)[self uxy_getAssociatedObjectForKey:NSDate_key_stringCache];
     if (str == nil)
     {
-        return [self resetStringCache];
+        return [self uxy_resetStringCache];
     }
     
     return str;
 }
 
-- (NSString *)resetStringCache
+- (NSString *)uxy_resetStringCache
 {
     NSDateFormatter *dateFormatter = [XYCommon dateFormatterByUTC];
     NSString *str                  = [dateFormatter stringFromDate:self];
     
-    [self copyAssociatedObject:str forKey:NSDate_key_stringCache];
+    [self uxy_copyAssociatedObject:str forKey:NSDate_key_stringCache];
     
     return str;
 }
 
-- (NSDate *)localTime
+- (NSDate *)uxy_localTime
 {
     // NSTimeZone *zone = [NSTimeZone systemTimeZone];
     NSTimeZone *zone   = [NSTimeZone localTimeZone];
@@ -211,15 +211,15 @@ DUMMY_CLASS(NSDate_XY);
 }
 
 #pragma mark - private
-+ (NSCalendar *)AZ_currentCalendar
++ (NSCalendar *)uxy_currentCalendar
 {
     // 你使用NSThread的threadDictionary方法来检索一个NSMutableDictionary对象，你可以在它里面添加任何线程需要的键。每个线程都维护了一个键-值的字典，它可以在线程里面的任何地方被访问。你可以使用该字典来保存一些信息，这些信息在整个线程的执行过程中都保持不变。
     NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
-    NSCalendar *currentCalendar     = [dictionary objectForKey:@"AZ_currentCalendar"];
+    NSCalendar *currentCalendar     = [dictionary objectForKey:@"uxy_currentCalendar"];
     if (currentCalendar == nil)
     {
         currentCalendar = [NSCalendar currentCalendar];
-        [dictionary setObject:currentCalendar forKey:@"AZ_currentCalendar"];
+        [dictionary setObject:currentCalendar forKey:@"uxy_currentCalendar"];
     }
     
     return currentCalendar;

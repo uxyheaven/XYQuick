@@ -41,7 +41,7 @@
 
 - (BOOL)hasCachedForKey:(NSString *)string
 {
-	NSString * cacheKey = [string uxyMD5String];
+	NSString * cacheKey = [string uxy_MD5String];
 	
 	BOOL flag = [self.memoryCache hasObjectForKey:cacheKey];
 	if ( NO == flag )
@@ -54,14 +54,14 @@
 
 - (BOOL)hasFileCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [key uxyMD5String];
+	NSString * cacheKey = [key uxy_MD5String];
 	
 	return [self.fileCache hasObjectForKey:cacheKey];
 }
 
 - (BOOL)hasMemoryCachedForKey:(NSString *)key
 {
-	NSString * cacheKey = [key uxyMD5String];
+	NSString * cacheKey = [key uxy_MD5String];
 	
 	return [self.memoryCache hasObjectForKey:cacheKey];
 }
@@ -70,7 +70,7 @@
 {
   //  PERF_ENTER
 	
-	NSString *cacheKey = [key uxyMD5String];
+	NSString *cacheKey = [key uxy_MD5String];
 	id anObject = nil;
     
 	NSString *fullPath = [self.fileCache fileNameForKey:cacheKey];
@@ -96,7 +96,7 @@
 {
   //  PERF_ENTER
 	
-	NSString *cacheKey = [key uxyMD5String];
+	NSString *cacheKey = [key uxy_MD5String];
 	id anObject = nil;
 	
 	NSObject *object = [self.memoryCache objectForKey:cacheKey];
@@ -149,7 +149,7 @@
 - (void)saveToMemory:(id)anObject forKey:(NSString *)string
 {
   //  PERF_ENTER
-	NSString *cacheKey = [string uxyMD5String];
+	NSString *cacheKey = [string uxy_MD5String];
 	id cachedObject = (id)[self.memoryCache objectForKey:cacheKey];
 	if ( nil == cachedObject && anObject != cachedObject )
 	{
@@ -161,7 +161,7 @@
 - (void)saveToData:(NSData *)data forKey:(NSString *)string
 {
   //  PERF_ENTER
-	NSString *cacheKey = [string uxyMD5String];
+	NSString *cacheKey = [string uxy_MD5String];
 	[self.fileCache setObject:data forKey:cacheKey];
   //  PERF_LEAVE
 }
@@ -169,7 +169,7 @@
 - (void)deleteObjectForKey:(NSString *)string
 {
   //  PERF_ENTER
-	NSString *cacheKey = [string uxyMD5String];
+	NSString *cacheKey = [string uxy_MD5String];
 	
 	[self.memoryCache removeObjectForKey:cacheKey];
 	[self.fileCache removeObjectForKey:cacheKey];

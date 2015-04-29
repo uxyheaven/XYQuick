@@ -27,12 +27,13 @@
 
 @implementation UILabel (XY)
 
-- (void)resize:(UILabelResizeType)type{
+- (void)uxy_resize:(UILabelResizeType)type
+{
     CGSize size;
     if (type == UILabelResizeType_constantHeight)
     {
         // 高不变
-        size = [self estimateUISizeByHeight:self.bounds.size.height];
+        size = [self uxy_estimateUISizeByHeight:self.bounds.size.height];
         if (!CGSizeEqualToSize(CGSizeZero, size))
         {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, self.bounds.size.height);
@@ -41,7 +42,7 @@
     else if (type == UILabelResizeType_constantWidth)
     {
         // 宽不变
-        size = [self estimateUISizeByWidth:self.bounds.size.width];
+        size = [self uxy_estimateUISizeByWidth:self.bounds.size.width];
         if (!CGSizeEqualToSize(CGSizeZero, size))
         {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, size.height);
@@ -50,7 +51,7 @@
     }
 }
 
-- (CGSize)estimateUISizeByBound:(CGSize)bound
+- (CGSize)uxy_estimateUISizeByBound:(CGSize)bound
 {
     if ( nil == self.text || 0 == self.text.length )
     {
@@ -60,7 +61,7 @@
 	return MB_MULTILINE_TEXTSIZE(self.text, self.font, bound, self.lineBreakMode);
 }
 
-- (CGSize)estimateUISizeByWidth:(CGFloat)width
+- (CGSize)uxy_estimateUISizeByWidth:(CGFloat)width
 {
 	if ( nil == self.text || 0 == self.text.length )
     {
@@ -78,7 +79,7 @@
 	}
 }
 
-- (CGSize)estimateUISizeByHeight:(CGFloat)height
+- (CGSize)uxy_estimateUISizeByHeight:(CGFloat)height
 {
 	if ( nil == self.text || 0 == self.text.length )
     {

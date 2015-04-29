@@ -13,25 +13,25 @@
 
 - (UIView *)overlay
 {
-    return [self getAssociatedObjectForKey:"xy.navigationBar.overlay"];
+    return [self uxy_getAssociatedObjectForKey:"xy.navigationBar.overlay"];
 }
 
 - (void)setOverlay:(UIView *)overlay
 {
-    [self retainAssociatedObject:overlay forKey:"xy.navigationBar.overlay"];
+    [self uxy_retainAssociatedObject:overlay forKey:"xy.navigationBar.overlay"];
 }
 
 - (UIImage *)emptyImage
 {
-    return [self getAssociatedObjectForKey:"xy.navigationBar.image"];
+    return [self uxy_getAssociatedObjectForKey:"xy.navigationBar.image"];
 }
 
 - (void)setEmptyImage:(UIImage *)image
 {
-    [self retainAssociatedObject:image forKey:"xy.navigationBar.image"];
+    [self uxy_retainAssociatedObject:image forKey:"xy.navigationBar.image"];
 }
 
-- (void)xy_setBackgroundColor:(UIColor *)backgroundColor
+- (void)uxy_setBackgroundColor:(UIColor *)backgroundColor
 {
     if (self.overlay == nil)
     {
@@ -51,14 +51,14 @@
     self.transform = CGAffineTransformMakeTranslation(0, translationY);
 }
 
-- (void)xy_setContentAlpha:(CGFloat)alpha
+- (void)uxy_setContentAlpha:(CGFloat)alpha
 {
     if (self.overlay == nil)
     {
-        [self xy_setBackgroundColor:self.barTintColor];
+        [self uxy_setBackgroundColor:self.barTintColor];
     }
     
-    [self setAlpha:alpha forSubviewsOfView:self];
+    [self uxy_setAlpha:alpha forSubviewsOfView:self];
     
     if (alpha == 1)
     {
@@ -71,7 +71,7 @@
     }
 }
 
-- (void)setAlpha:(CGFloat)alpha forSubviewsOfView:(UIView *)view
+- (void)uxy_setAlpha:(CGFloat)alpha forSubviewsOfView:(UIView *)view
 {
     for (UIView *subview in view.subviews)
     {
@@ -80,11 +80,11 @@
             continue;
         }
         subview.alpha = alpha;
-        [self setAlpha:alpha forSubviewsOfView:subview];
+        [self uxy_setAlpha:alpha forSubviewsOfView:subview];
     }
 }
 
-- (void)xy_reset
+- (void)uxy_reset
 {
     [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self setShadowImage:nil];

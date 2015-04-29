@@ -388,12 +388,12 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	NSString *	imageName = [array objectAtIndex:0];
     
 	imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
-	imageName = imageName.unwrap.trim;
+	imageName = imageName.uxy_unwrap.uxy_trim;
     
 	if ( [imageName hasPrefix:@"url("] && [imageName hasSuffix:@")"] )
 	{
 		NSRange range = NSMakeRange( 4, imageName.length - 5 );
-		imageName = [imageName substringWithRange:range].trim;
+		imageName = [imageName substringWithRange:range].uxy_trim;
 	}
     
 	UIImage * image = nil;
@@ -429,7 +429,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	{
 		for ( __strong NSString * attr in [array subarrayWithRange:NSMakeRange(1, array.count - 1)] )
 		{
-			attr = attr.trim.unwrap;
+			attr = attr.uxy_trim.uxy_unwrap;
 			
 			if ( NSOrderedSame == [attr compare:@"stretch" options:NSCaseInsensitiveSearch] ||
 				NSOrderedSame == [attr compare:@"stretched" options:NSCaseInsensitiveSearch] )

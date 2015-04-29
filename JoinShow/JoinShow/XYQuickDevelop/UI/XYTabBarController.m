@@ -7,7 +7,6 @@
 //
 
 #import "XYTabBarController.h"
-#import "XYUISignal.h"
 
 @interface XYTabBarController ()
 

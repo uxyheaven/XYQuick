@@ -11,18 +11,17 @@
 
 @implementation UITableViewCell (XY)
 
-+ (CGFloat)heightForRowWithData:(id)aData
++ (CGFloat)uxy_heightForRowWithData:(id)aData
 {
     if (aData == nil)
     {
         return -1;
     }
-    
-    
+
     return 44;
 }
 
-- (void)layoutSubviewsWithDic:(NSMutableDictionary *)dic
+- (void)uxy_layoutSubviewsWithDic:(NSMutableDictionary *)dic
 {
     
 }
@@ -32,7 +31,7 @@
 
 @implementation UITableView (XY)
 
-- (void)reloadData:(BOOL)animated
+- (void)uxy_reloadData:(BOOL)animated
 {
     [self reloadData];
     

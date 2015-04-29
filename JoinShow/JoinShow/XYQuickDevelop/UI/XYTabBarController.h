@@ -7,7 +7,6 @@
 //
 
 #pragma mark -todo 待优化
-#import "XYBaseClass.h"
 #import "XYTabBar.h"
 
 #pragma mark-

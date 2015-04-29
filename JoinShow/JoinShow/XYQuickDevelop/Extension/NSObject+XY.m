@@ -309,14 +309,14 @@ DUMMY_CLASS(NSObject_XY);
 }
 
 #pragma mark- associated
-- (id)getAssociatedObjectForKey:(const char *)key
+- (id)uxy_getAssociatedObjectForKey:(const char *)key
 {
     const char * propName = key;
     id currValue = objc_getAssociatedObject( self, propName );
     return currValue;
 }
 
-- (id)copyAssociatedObject:(id)obj forKey:(const char *)key
+- (id)uxy_copyAssociatedObject:(id)obj forKey:(const char *)key
 {
     const char * propName = key;
     id oldValue = objc_getAssociatedObject( self, propName );
@@ -324,7 +324,7 @@ DUMMY_CLASS(NSObject_XY);
     return oldValue;
 }
 
-- (id)retainAssociatedObject:(id)obj forKey:(const char *)key;
+- (id)uxy_retainAssociatedObject:(id)obj forKey:(const char *)key;
 {
     const char * propName = key;
     id oldValue = objc_getAssociatedObject( self, propName );
@@ -332,7 +332,7 @@ DUMMY_CLASS(NSObject_XY);
     return oldValue;
 }
 
-- (id)assignAssociatedObject:(id)obj forKey:(const char *)key
+- (id)uxy_assignAssociatedObject:(id)obj forKey:(const char *)key
 {
     const char * propName = key;
     id oldValue = objc_getAssociatedObject( self, propName );
@@ -340,13 +340,13 @@ DUMMY_CLASS(NSObject_XY);
     return oldValue;
 }
 
-- (void)removeAssociatedObjectForKey:(const char *)key
+- (void)uxy_removeAssociatedObjectForKey:(const char *)key
 {
     const char * propName = key;
     objc_setAssociatedObject( self, propName, nil, OBJC_ASSOCIATION_ASSIGN );
 }
 
-- (void)removeAllAssociatedObjects
+- (void)uxy_removeAllAssociatedObjects
 {
     objc_removeAssociatedObjects( self );
 }
@@ -355,41 +355,41 @@ DUMMY_CLASS(NSObject_XY);
 
 #pragma mark - FlyweightTransmit
 #undef	NSObject_key_tempObject
-#define NSObject_key_tempObject	"NSObject.tempObject"
+#define NSObject_key_tempObject	"UXY.NSObject.tempObject"
 #undef	NSObject_key_objectDic
-#define NSObject_key_objectDic	"NSObject.objectDic"
+#define NSObject_key_objectDic	"UXY.NSObject.objectDic"
 #undef	NSObject_key_EventBlockDic
-#define NSObject_key_EventBlockDic	"NSObject.eventBlockDic"
+#define NSObject_key_EventBlockDic	"UXY.NSObject.eventBlockDic"
 
 @interface NSObject (FlyweightTransmit)
 @end
 
 @implementation NSObject (FlyweightTransmit)
 
-- (id)tempObject
+- (id)uxy_tempObject
 {
     id object = objc_getAssociatedObject(self, NSObject_key_tempObject);
     
     return object;
 }
 
-- (void)setTempObject:(id)tempObject
+- (void)setUxy_tempObject:(id)tempObject
 {
     [self willChangeValueForKey:@"tempObject"];
     objc_setAssociatedObject(self, NSObject_key_tempObject, tempObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"tempObject"];
 }
 
-- (void)receiveObject:(void(^)(id object))aBlock
+- (void)uxy_receiveObject:(void(^)(id object))aBlock
 {
-    [self receiveObject:aBlock withIdentifier:@"sendObject"];
+    [self uxy_receiveObject:aBlock withIdentifier:@"sendObject"];
 }
-- (void)sendObject:(id)anObject
+- (void)uxy_sendObject:(id)anObject
 {
-    [self sendObject:anObject withIdentifier:@"sendObject"];
+    [self uxy_sendObject:anObject withIdentifier:@"sendObject"];
 }
 
-- (void)receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier
+- (void)uxy_receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_objectDic);
@@ -402,7 +402,7 @@ DUMMY_CLASS(NSObject_XY);
     [dic setObject:[aBlock copy] forKey:identifier];
 }
 
-- (void)sendObject:(id)anObject withIdentifier:(NSString *)identifier
+- (void)uxy_sendObject:(id)anObject withIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     
@@ -416,17 +416,17 @@ DUMMY_CLASS(NSObject_XY);
     aBlock(anObject);
 }
 
-- (void)handlerDefaultEventWithBlock:(id)block
+- (void)uxy_handlerDefaultEventWithBlock:(id)block
 {
-    [self handlerEventWithBlock:block withIdentifier:@"EventBlock"];
+    [self uxy_handlerEventWithBlock:block withIdentifier:@"EventBlock"];
 }
 
-- (id)blockForDefaultEvent
+- (id)uxy_blockForDefaultEvent
 {
-    return [self blockForEventWithIdentifier:@"EventBlock"];
+    return [self uxy_blockForEventWithIdentifier:@"EventBlock"];
 }
 
-- (void)handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier
+- (void)uxy_handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_EventBlockDic);
@@ -439,7 +439,7 @@ DUMMY_CLASS(NSObject_XY);
     [dic setObject:[aBlock copy] forKey:identifier];
 }
 
-- (id)blockForEventWithIdentifier:(NSString *)identifier
+- (id)uxy_blockForEventWithIdentifier:(NSString *)identifier
 {
     NSAssert(identifier != nil, @"identifier can't be nil.");
     NSDictionary *dic = objc_getAssociatedObject(self, NSObject_key_EventBlockDic);

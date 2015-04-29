@@ -10,13 +10,11 @@
 
 @interface NSSet (XY)
 
-+ (NSMutableDictionary *)nonRetainSet;
++ (NSMutableDictionary *)uxy_nonRetainSet;
 
 
 @end
 
 @interface NSMutableSet (XY)
-
-- (NSSet *)immutable;
 
 @end

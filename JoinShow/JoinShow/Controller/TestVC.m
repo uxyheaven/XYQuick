@@ -668,7 +668,7 @@ if (1) { \
 - (void)clickUserGuide:(id)sender
 {
     NSString *key = [NSString stringWithFormat:@"guide_%d", arc4random()]  ;
-    [self showUserGuideViewWithImage:@"bg_trends.png" key:key alwaysShow:YES frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
+    [self uxy_showUserGuideViewWithImage:@"bg_trends.png" key:key alwaysShow:YES frame:@"{{100, 200}, {50, 50}}" tapExecute:nil];
 }
 
 - (void)clickHookDealloc:(id)sender

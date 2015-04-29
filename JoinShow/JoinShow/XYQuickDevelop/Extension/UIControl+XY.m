@@ -21,7 +21,8 @@ DUMMY_CLASS(UIControl_XY);
 
 @implementation UIControl (XY)
 
-+ (void) load{
++ (void)load
+{
     XY_DicControlEventString = @{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
                                  @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
                                  @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
@@ -64,6 +65,7 @@ DUMMY_CLASS(UIControl_XY);
                                  @"UIControlEventAllEvents": @(UIControlEventAllEvents)
                                  };
 }
+
 - (void)dealloc
 {
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
@@ -72,9 +74,10 @@ DUMMY_CLASS(UIControl_XY);
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self removeHandlerForEvent:[UIControl eventWithName:key]];
         }];
-        [self assignAssociatedObject:nil forKey:UIControl_key_events];
+        [self uxy_assignAssociatedObject:nil forKey:UIControl_key_events];
     }
 }
+
 - (void)removeHandlerForEvent:(UIControlEvents)event
 {
     
@@ -84,7 +87,7 @@ DUMMY_CLASS(UIControl_XY);
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self retainAssociatedObject:opreations forKey:UIControl_key_events];
+        [self uxy_retainAssociatedObject:opreations forKey:UIControl_key_events];
     }
     
     [opreations removeObjectForKey:methodName];
@@ -100,7 +103,7 @@ DUMMY_CLASS(UIControl_XY);
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self retainAssociatedObject:opreations forKey:UIControl_key_events];
+        [self uxy_retainAssociatedObject:opreations forKey:UIControl_key_events];
     }
     
     [opreations setObject:[block copy] forKey:methodName];

@@ -16,19 +16,17 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 #pragma mark -
 
 @interface NSArray(XY)
-#pragma mark todo bug:
-@property (nonatomic, readonly, copy) NSArrayAppendBlock			APPEND;
-@property (nonatomic, readonly, strong) NSMutableArray *			mutableArray;
+@property (nonatomic, readonly, strong) NSMutableArray *uxy_mutableArray;
 
-- (NSArray *)head:(NSUInteger)count;
-- (NSArray *)tail:(NSUInteger)count;
+- (NSArray *)uxy_head:(NSUInteger)count;
+- (NSArray *)uxy_tail:(NSUInteger)count;
 
-- (id)safeObjectAtIndex:(NSInteger)index;
-- (NSArray *)safeSubarrayWithRange:(NSRange)range;
-- (NSArray *)safeSubarrayFromIndex:(NSUInteger)index;
-- (NSArray *)safeSubarrayWithCount:(NSUInteger)count;
+- (id)uxy_safeObjectAtIndex:(NSInteger)index;
+- (NSArray *)uxy_safeSubarrayWithRange:(NSRange)range;
+- (NSArray *)uxy_safeSubarrayFromIndex:(NSUInteger)index;
+- (NSArray *)uxy_safeSubarrayWithCount:(NSUInteger)count;
 
-- (NSInteger)indexOfString:(NSString *)string;
+- (NSInteger)uxy_indexOfString:(NSString *)string;
 
 @end
 
@@ -36,32 +34,24 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 @interface NSMutableArray(XY)
 
-@property (nonatomic, readonly, copy) NSMutableArrayAppendBlock	APPEND;
+- (void)uxy_safeAddObject:(id)anObject;
 
-- (void)safeAddObject:(id)anObject;
++ (NSMutableArray *)uxy_nonRetainingArray;
 
-+ (NSMutableArray *)nonRetainingArray;
+- (NSMutableArray *)uxy_pushHead:(NSObject *)obj;
+- (NSMutableArray *)uxy_pushHeadN:(NSArray *)all;
+- (NSMutableArray *)uxy_popTail;
+- (NSMutableArray *)uxy_popTailN:(NSUInteger)n;
 
-- (NSMutableArray *)pushHead:(NSObject *)obj;
-- (NSMutableArray *)pushHeadN:(NSArray *)all;
-- (NSMutableArray *)popTail;
-- (NSMutableArray *)popTailN:(NSUInteger)n;
+- (NSMutableArray *)uxy_pushTail:(NSObject *)obj;
+- (NSMutableArray *)uxy_pushTailN:(NSArray *)all;
+- (NSMutableArray *)uxy_popHead;
+- (NSMutableArray *)uxy_popHeadN:(NSUInteger)n;
 
-- (NSMutableArray *)pushTail:(NSObject *)obj;
-- (NSMutableArray *)pushTailN:(NSArray *)all;
-- (NSMutableArray *)popHead;
-- (NSMutableArray *)popHeadN:(NSUInteger)n;
-
-- (NSMutableArray *)keepHead:(NSUInteger)n;
-- (NSMutableArray *)keepTail:(NSUInteger)n;
+- (NSMutableArray *)uxy_keepHead:(NSUInteger)n;
+- (NSMutableArray *)uxy_keepTail:(NSUInteger)n;
 
 // 把自己转变成不可变的(可能有bug)
-- (NSArray *)immutable;
-/*
-- (void)insertObjectNoRetain:(id)anObject atIndex:(NSUInteger)index;
-- (void)addObjectNoRetain:(NSObject *)obj;
-- (void)removeObjectNoRelease:(NSObject *)obj;
-- (void)removeAllObjectsNoRelease;
-*/
+- (NSArray *)uxy_immutable;
 
 @end

@@ -18,25 +18,25 @@
 
 @implementation UIViewController (XY)
 
-@dynamic parameters;
+@dynamic uxy_parameters;
 
-- (id)parameters
+- (id)uxy_parameters
 {
     return [self getAssociatedObjectForKey:UIViewController_key_parameters];
 }
 
-- (void)setParameters:(id)anObject
+- (void)setUxy_parameters:(id)anObject
 {
     [self willChangeValueForKey:@"parameters"];
     [self retainAssociatedObject:anObject forKey:UIViewController_key_parameters];
     [self didChangeValueForKey:@"parameters"];
 }
 
-- (void)pushVC:(NSString *)vcName
+- (void)uxy_pushVC:(NSString *)vcName
 {
-    [self pushVC:vcName object:nil];
+    [self uxy_pushVC:vcName object:nil];
 }
-- (void)pushVC:(NSString *)vcName object:(id)object
+- (void)uxy_pushVC:(NSString *)vcName object:(id)object
 {
     Class class = NSClassFromString(vcName);
     NSAssert(class != nil, @"Class 必须存在");
@@ -49,23 +49,23 @@
     else
     {
         vc = [[NSClassFromString(vcName) alloc] init];
-        vc.parameters = object;
+        vc.uxy_parameters = object;
     }
 
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)popVC
+- (void)uxy_popVC
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName
+- (void)uxy_modalVC:(NSString *)vcName withNavigationVC:(NSString *)navName
 {
-    [self modalVC:vcName withNavigationVC:navName object:nil succeed:nil];
+    [self uxy_modalVC:vcName withNavigationVC:navName object:nil succeed:nil];
 }
 
-- (void)modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block
+- (void)uxy_modalVC:(NSString *)vcName withNavigationVC:(NSString *)nvcName object:(id)object succeed:(UIViewController_block_void)block
 {
     Class class = NSClassFromString(vcName);
     NSAssert(class != nil, @"Class 必须存在");
@@ -79,7 +79,7 @@
     else
     {
         vc = [[NSClassFromString(vcName) alloc] init];
-        vc.parameters = object;
+        vc.uxy_parameters = object;
     }
     
     UINavigationController *nvc = nil;
@@ -94,19 +94,20 @@
     [self presentViewController:vc animated:YES completion:block];
 }
 
-- (void)dismissModalVC
+- (void)uxy_dismissModalVC
 {
-    [self dismissModalVCWithSucceed:nil];
+    [self uxy_dismissModalVCWithSucceed:nil];
 }
-- (void)dismissModalVCWithSucceed:(UIViewController_block_void)block{
+- (void)uxy_dismissModalVCWithSucceed:(UIViewController_block_void)block
+{
     [self dismissViewControllerAnimated:YES completion:block];
 }
 
-- (id)showUserGuideViewWithImage:(NSString *)imgName
-                             key:(NSString *)key
-                      alwaysShow:(BOOL)isAlwaysShow
-                           frame:(NSString *)frameString
-                      tapExecute:(UIViewController_block_view)block
+- (id)uxy_showUserGuideViewWithImage:(NSString *)imgName
+                                 key:(NSString *)key
+                          alwaysShow:(BOOL)isAlwaysShow
+                               frame:(NSString *)frameString
+                          tapExecute:(UIViewController_block_view)block
 {
     NSString *guideKey = [NSString stringWithFormat:@"_guide_%@", key];
     NSInteger isShow   = [[NSUserDefaults standardUserDefaults] integerForKey:guideKey];
