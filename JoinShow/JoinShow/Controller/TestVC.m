@@ -81,11 +81,11 @@ if (1) { \
     
 #pragma mark - next
     NSString *strLen = @"a";
-    NSLogD(@"%ld", (long)[strLen getLength2]);
+    NSLogD(@"%ld", (long)[strLen uxy_getLength2]);
     strLen = @"啊a";
-    NSLogD(@"%ld", (long)[strLen getLength2]);
+    NSLogD(@"%ld", (long)[strLen uxy_getLength2]);
     strLen = @"你好,世界.";
-    NSLogD(@"%ld", (long)[strLen getLength2]);
+    NSLogD(@"%ld", (long)[strLen uxy_getLength2]);
     
 #pragma mark - next
     
@@ -96,7 +96,7 @@ if (1) { \
     NSLogD(@"%@", array2);
     
     NSString *str = [NSString stringWithFormat:@"%d", 123123];
-    [str erasure];
+    [str uxy_erasure];
     NSLogD(@"%@", str);
 
 }
@@ -405,10 +405,10 @@ if (1) { \
    // __getTestBlock(@"1");
     
     NSArray *array = @[@"1", @"2"];
-    array = [array safeSubarrayWithRange:NSMakeRange(-1, 1)];
+    array = [array uxy_safeSubarrayWithRange:NSMakeRange(-1, 1)];
     
     NSArray *array2 = @[@"1", @"2"];
-    array2 = [array2 tail:2];
+    array2 = [array2 uxy_tail:2];
     NSLog(@"%@", array2);
 }
 
@@ -855,7 +855,7 @@ if (1) { \
 - (void)clickAutoCodingSave:(id)sender
 {
     AutoCodingEntity *entity = [[AutoCodingEntity alloc] init];
-    entity.str = [NSString stringWithFormat:@"%@", [NSDate date].stringCache];
+    entity.str = [NSString stringWithFormat:@"%@", [NSDate date].uxy_stringCache];
     entity.f = 0.1f;
     entity.i = 10001;
     entity.b = YES;
@@ -867,7 +867,7 @@ if (1) { \
     entity.objc = other;
     
     AutoCodingEntity *entity2 = [[AutoCodingEntity alloc] init];
-    entity2.str = [NSString stringWithFormat:@"%@", [NSDate date].stringCache];
+    entity2.str = [NSString stringWithFormat:@"%@", [NSDate date].uxy_stringCache];
     entity2.f = 0.2f;
     entity2.i = 10002;
     entity2.b = NO;
@@ -931,7 +931,7 @@ if (1) { \
     NSLog(@"%@", [array4 class]);
     
     PERF_ENTER_(@"immutable")
-    NSArray *array5 = [array2 immutable];
+    NSArray *array5 = [array2 uxy_immutable];
     PERF_LEAVE_(@"immutable")
     NSLog(@"%@", [array5 class]);
     // objc_msgSend(array3, @selector(addObject:), @"a");

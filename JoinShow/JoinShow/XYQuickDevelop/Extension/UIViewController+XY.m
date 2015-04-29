@@ -22,13 +22,13 @@
 
 - (id)uxy_parameters
 {
-    return [self getAssociatedObjectForKey:UIViewController_key_parameters];
+    return [self uxy_getAssociatedObjectForKey:UIViewController_key_parameters];
 }
 
 - (void)setUxy_parameters:(id)anObject
 {
     [self willChangeValueForKey:@"parameters"];
-    [self retainAssociatedObject:anObject forKey:UIViewController_key_parameters];
+    [self uxy_retainAssociatedObject:anObject forKey:UIViewController_key_parameters];
     [self didChangeValueForKey:@"parameters"];
 }
 
