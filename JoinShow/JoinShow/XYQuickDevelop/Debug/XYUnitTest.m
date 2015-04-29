@@ -221,28 +221,28 @@
 
 #if (1 == __XYDEBUG_UNITTESTING__)
 
-TEST_CASE( Core, UnitTest )
+UXY_TEST_CASE( Core, UnitTest )
 {
     //	TODO( "test case" )
 }
 
-DESCRIBE( test1 )
+UXY_DESCRIBE( test1 )
 {
-    EXPECTED( 1 == 1 );
-    EXPECTED( [@"123" isEqualToString:@"123"] );
+    UXY_EXPECTED( 1 == 1 );
+    UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
 }
 
-DESCRIBE( test2 )
+UXY_DESCRIBE( test2 )
 {
-    EXPECTED( 1 == 1 );
-    EXPECTED( [@"123" isEqualToString:@"123"] );
+    UXY_EXPECTED( 1 == 1 );
+    UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
 }
 
-DESCRIBE( test3 )
+UXY_DESCRIBE( test3 )
 {
-    EXPECTED( [@"123" isEqualToString:@"123456"] );
+    UXY_EXPECTED( [@"123" isEqualToString:@"123456"] );
 }
 
-TEST_CASE_END
+UXY_TEST_CASE_END
 
 #endif
