@@ -162,9 +162,7 @@
 - (void)saveToDBProcess{
     UILabel *label = (UILabel *)[self.view viewWithTag:4 + 10000];
     label.textColor = [UIColor redColor];
-    PERF_ENTER_( saveAllToDB )
     [self.model saveAllToDB];
-    PERF_LEAVE_( saveAllToDB )
 }
 - (void)refreshUI{
     UILabel *label = (UILabel *)[self.view viewWithTag:5 + 10000];
