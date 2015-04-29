@@ -131,6 +131,7 @@
 		57DF99E1190AF5070036B85D /* icon_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DF190AF5070036B85D /* icon_google.png */; };
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
+		57E9B3E51AF12AD60080E946 /* XYModuleCooperative.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E9B3E41AF12AD60080E946 /* XYModuleCooperative.m */; };
 		57EBFF3E192082C900916B80 /* UIButton+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EBFF3D192082C900916B80 /* UIButton+XY.m */; };
 		57F439CC18C6BE6700DAFFD8 /* UIWebView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F439CB18C6BE6700DAFFD8 /* UIWebView+XY.m */; };
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
@@ -414,6 +415,8 @@
 		57DF99E0190AF5070036B85D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		57E9B3E31AF12AD60080E946 /* XYModuleCooperative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYModuleCooperative.h; sourceTree = "<group>"; };
+		57E9B3E41AF12AD60080E946 /* XYModuleCooperative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYModuleCooperative.m; sourceTree = "<group>"; };
 		57EBFF3C192082C900916B80 /* UIButton+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XY.h"; sourceTree = "<group>"; };
 		57EBFF3D192082C900916B80 /* UIButton+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XY.m"; sourceTree = "<group>"; };
 		57F439CA18C6BE6700DAFFD8 /* UIWebView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+XY.h"; sourceTree = "<group>"; };
@@ -1056,6 +1059,8 @@
 				57FAD9221AE248E100F074B4 /* XYMaterial.m */,
 				57FAD9241AE2494C00F074B4 /* XYBaseView.h */,
 				57FAD9251AE2494C00F074B4 /* XYBaseView.m */,
+				57E9B3E31AF12AD60080E946 /* XYModuleCooperative.h */,
+				57E9B3E41AF12AD60080E946 /* XYModuleCooperative.m */,
 				57FAD9261AE2494C00F074B4 /* XYAppModuleProtocol.h */,
 				57FAD9271AE2494C00F074B4 /* XYMenuItem.h */,
 			);
@@ -1321,6 +1326,7 @@
 				572E7CB118385C690018179D /* NSDate+RFC1123.m in Sources */,
 				571CCA2F1AE77AA100015764 /* XYClassLoader.m in Sources */,
 				578922911859A3120005CC27 /* Test2Model.m in Sources */,
+				57E9B3E51AF12AD60080E946 /* XYModuleCooperative.m in Sources */,
 				572E7CB018385C690018179D /* NSData+MKBase64.m in Sources */,
 				747FB3181A00D5C7004B557B /* LKDB+Mapping.m in Sources */,
 				57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */,
