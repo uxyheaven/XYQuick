@@ -40,9 +40,9 @@
 }
 
 // 注册一个数据标识
-- (void)registerDataIdentifier:(NSString *)identifier target:(id <XYModuleCooperativeProtocol>)target
+- (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYModuleCooperativeProtocol>)receiver
 {
-    if ([target conformsToProtocol:@protocol(XYModuleCooperativeProtocol)])
+    if ([receiver conformsToProtocol:@protocol(XYModuleCooperativeProtocol)])
         return;
     
     XYModuleCooperativeInterface *mi = _moduleInterfaces[identifier];
@@ -51,11 +51,31 @@
         mi = [[XYModuleCooperativeInterface alloc] init];
     }
     
-    mi.target = target;
+    mi.receiver = receiver;
     mi.identifier = identifier;
     
     _moduleInterfaces[identifier] = mi;
 }
+
+- (void)registerDataIdentifier:(NSString *)identifier receiverClassName:(NSString *)className
+{
+    Class clazz = NSClassFromString(className);
+    
+    if (clazz == nil)
+        return;
+    
+    XYModuleCooperativeInterface *mi = _moduleInterfaces[identifier];
+    if (mi == nil)
+    {
+        mi = [[XYModuleCooperativeInterface alloc] init];
+    }
+    
+    mi.receiverClass = clazz;
+    mi.identifier = identifier;
+    
+    _moduleInterfaces[identifier] = mi;
+}
+
 
 // 获取数据
 - (XYModuleCooperativeEvent *)invocationDataIndentifier:(NSString *)identifier
@@ -74,7 +94,7 @@
         return event;
     }
     
-    if (mi.target == nil)
+    if (mi.receiver == nil)
     {
         event.error = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:(NSDictionary *)@"XCModuleCooperativeInterface == nil"];
         event.completedBlock(event);
@@ -82,11 +102,17 @@
     }
     
     NSString *tmpIndentifer = mi.identifier;
+    id target = mi.receiver;
+    if (target == nil && [mi.receiverClass resolveClassMethod:@selector(sharedInstance)])
+    {
+        target = [mi.receiverClass sharedInstance];
+        mi.receiver = target;
+    }
     
-    NSMethodSignature *signature = [[mi.target class] methodSignatureForSelector:@selector(XYModuleCooperativeWithDataIdentifier:event:)];
+    NSMethodSignature *signature = [[target class] methodSignatureForSelector:@selector(XYModuleCooperativeWithDataIdentifier:event:)];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     
-    [invocation setTarget:mi.target];
+    [invocation setTarget:target];
     [invocation setSelector:@selector(XYModuleCooperativeWithDataIdentifier:event:)];
     [invocation setArgument:&tmpIndentifer atIndex:2];
     [invocation setArgument:&event atIndex:3];

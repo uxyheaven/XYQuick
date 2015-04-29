@@ -22,7 +22,8 @@ typedef void(^XYModuleCooperativeCompletedBlock)(XYModuleCooperativeEvent *event
 
 // 模块合作接口
 @interface XYModuleCooperativeInterface :NSObject
-@property (nonatomic, weak) id target;
+@property (nonatomic, weak) id receiver;
+@property (nonatomic, assign) Class receiverClass;
 @property (nonatomic, copy) NSString *identifier;
 @end
 
@@ -44,7 +45,8 @@ typedef void(^XYModuleCooperativeCompletedBlock)(XYModuleCooperativeEvent *event
 @interface XYModuleCooperative : NSObject __AS_SINGLETON
 
 // 注册一个数据标识
-- (void)registerDataIdentifier:(NSString *)identifier target:(id <XYModuleCooperativeProtocol>)target;
+- (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYModuleCooperativeProtocol>)receiver;
+- (void)registerDataIdentifier:(NSString *)identifier receiverClassName:(NSString *)className;
 
 // 获取数据
 - (XYModuleCooperativeEvent *)invocationDataIndentifier:(NSString *)identifier
