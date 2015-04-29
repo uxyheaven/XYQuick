@@ -16,8 +16,6 @@
 
 #pragma mark - api
 
-#pragma mark - private
-
 #pragma mark - model event
 #pragma mark 1 notification
 #pragma mark 2 KVO
@@ -25,6 +23,9 @@
 #pragma mark - view event
 #pragma mark 1 target-action
 #pragma mark 2 delegate dataSource protocol
+
+#pragma mark - private
+#pragma mark - get / set
 
 #pragma mark -
 @interface UIViewController (XYBase_private)
