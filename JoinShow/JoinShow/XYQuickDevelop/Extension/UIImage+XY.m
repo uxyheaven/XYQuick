@@ -88,17 +88,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 
 @implementation UIImage (XY)
 
-+ (UIImage *)image:(NSString *)resourceName{
-    UIImage *img = nil;
-    if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-        img = [[UIImage imageNamed:resourceName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    }
-    else {
-        img = [UIImage imageNamed:resourceName];
-    }
-    return img;
-}
-
 + (UIImage *)imageWithFile:(NSString *)path{
     UIImage *img = nil;
     
@@ -111,6 +100,47 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return img;
 }
 
++ (UIImage *)imageWithFileName:(NSString *)name
+{
+    NSString *extension = @"png";
+    
+    NSArray *components = [name componentsSeparatedByString:@"."];
+    if ([components count] >= 2)
+    {
+        NSUInteger lastIndex = components.count - 1;
+        extension = [components objectAtIndex:lastIndex];
+        name = [name substringToIndex:(name.length-(extension.length+1))];
+    }
+    
+    // 如果为Retina屏幕且存在对应图片，则返回Retina图片，否则查找普通图片
+    if ([UIScreen mainScreen].scale == 2.0)
+    {
+        name = [name stringByAppendingString:@"@2x"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        if (path != nil)
+        {
+            return [UIImage imageWithContentsOfFile:path];
+        }
+    }
+    
+    if ([UIScreen mainScreen].scale == 3.0)
+    {
+        name = [name stringByAppendingString:@"@3x"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        if (path != nil)
+        {
+            return [UIImage imageWithContentsOfFile:path];
+        }
+    }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+    if (path)
+    {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+    
+    return nil;
+}
 //等比例缩放
 - (UIImage *)scaleToSize:(CGSize)size
 {

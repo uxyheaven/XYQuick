@@ -17,10 +17,11 @@
 @interface UIImage (XY)
 
 // 加载图片
-// used: imageNamed
-+ (UIImage *)image:(NSString *)resourceName;
+
 // used: imageWithContentsOfFile
 + (UIImage *)imageWithFile:(NSString *)path;
+// used: imageWithContentsOfFile 自动带有2x 3x等后缀
++ (UIImage *)imageWithFileName:(NSString *)name;
 
 - (UIImage *)transprent;
 
