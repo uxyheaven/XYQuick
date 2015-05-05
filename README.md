@@ -30,7 +30,7 @@
 * XYViewControllerManager UIViewController 管理类
 
 
-### XYExternal
+### XYVender
 所有的第三方库在这里,
 
 第三方库的扩展在同目录的Extension里,如
@@ -40,7 +40,7 @@
 
 ### Laboratory
 
-这里是一个实验室,不需要关心这里的代码
+这里是一个实验室,里面有一些写着玩的代码
 
 ---
 ## Installation

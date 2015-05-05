@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>48B47784-FF74-495E-9E80-FBFFBADB4926</string>
+	<string>BDF46E25-4968-492A-95AE-14239DD51DE6</string>
 	<key>IDESourceControlProjectName</key>
 	<string>JoinShow</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/uxyheaven/XYQuickDevelop.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>JoinShow.xcworkspace</string>
+	<string>JoinShow.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>13EB1A6736AA77EF1B8604A459832DC276DDBF4C</key>
-		<string>..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/uxyheaven/XYQuickDevelop.git</string>
