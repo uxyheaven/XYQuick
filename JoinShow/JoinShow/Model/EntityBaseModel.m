@@ -8,6 +8,7 @@
 
 #import "EntityBaseModel.h"
 #import "XYQuickDevelop.h"
+#import "XYExternal.h"
 
 @interface EntityBaseModel ()
 

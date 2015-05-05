@@ -394,7 +394,7 @@ DUMMY_CLASS(NSString_XY);
 	return NO == [self isEqualToString:other];
 }
 
-- (BOOL)isValueOf:(NSArray *)array
+- (BOOL)uxy_isValueOf:(NSArray *)array
 {
 	return [self uxy_isValueOf:array caseInsens:NO];
 }

@@ -13,22 +13,26 @@
 // ----------------------------------
 // on-off
 // ----------------------------------
+
 // 打包
-#define __XYQuick_Framework__       (0)
+#define __XYQuick_Framework__       (1)
 
-// 调试
-#define __XYDEBUG__                 (1)
-// 单元测试
-#define __XYDEBUG_UNITTESTING__     (1)
-// 点击区域红色边框
-#define __XYDEBUG__SHOWBORDER__     (1)
-// 性能测试
-#define __XY_PERFORMANCE__          (1)
+#ifdef DEBUG
 
-#define __XY_DEVELOPMENT__          (1)
+    #define __XYDEBUG__                             (1)     // 调试
+    #define __XY_PERFORMANCE__                      (1)     // 性能测试
+    #define __XYUISIGNAL_USED_CALLPATH__            (1)     // XYUISIGNAL
+    #define __XYDEBUG__SHOWBORDER__                 (1)     // 点击区域红色边框
+    #define __XYDEBUG_UNITTESTING__                 (1)     // 单元测试
+#else
 
-// XYUISIGNAL
-#define __XYUISIGNAL_USED_CALLPATH__         (1)
+    #define __XYDEBUG__                             (0)
+    #define __XY_PERFORMANCE__                      (0)
+    #define __XYUISIGNAL_USED_CALLPATH__            (0)
+    #define __XYDEBUG__SHOWBORDER__                 (0)
+    #define __XYDEBUG_UNITTESTING__                 (0)
+
+#endif
 
 
 #define __TimeOut__ON__             (0)

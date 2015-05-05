@@ -23,8 +23,3 @@
 
 // 界面
 #import "XYUI.h"
-
-#if (1 != __XYQuick_Framework__)
-// 第三方
-#import "XYExternal.h"
-#endif

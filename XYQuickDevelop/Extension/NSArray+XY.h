@@ -16,7 +16,6 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 #pragma mark -
 
 @interface NSArray(XY)
-@property (nonatomic, readonly, strong) NSMutableArray *uxy_mutableArray;
 
 - (NSArray *)uxy_head:(NSUInteger)count;
 - (NSArray *)uxy_tail:(NSUInteger)count;

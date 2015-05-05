@@ -36,16 +36,6 @@
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults]
 
 /**************************************************************/
-// Use dummy class for category in static library.
-#ifndef DUMMY_CLASS
-#define DUMMY_CLASS(UNIQUE_NAME) \
-@interface DUMMY_CLASS_##UNIQUE_NAME : NSObject @end \
-@implementation DUMMY_CLASS_##UNIQUE_NAME @end
-#endif
-
-
-
-/**************************************************************/
 // block 安全self
 #if __has_feature(objc_arc)
 // arc

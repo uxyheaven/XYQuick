@@ -7,12 +7,7 @@
 //
 
 #import "TestVC2.h"
-
-#if (1 == __XYQuick_Framework__)
-#import <XYQuick/XYQuickDevelop.h>
-#else
 #import "XYQuickDevelop.h"
-#endif
 
 #import "DemoViewController.h"
 #import "UISignalVC.h"

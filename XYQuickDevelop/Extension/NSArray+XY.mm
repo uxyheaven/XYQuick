@@ -23,8 +23,6 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @implementation NSArray(XY)
 
-@dynamic uxy_mutableArray;
-
 - (NSArray *)uxy_head:(NSUInteger)count
 {
 	if ( [self count] < count )
@@ -46,28 +44,8 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 }
 
 - (NSArray *)uxy_tail:(NSUInteger)count
-{	
-//	if ( [self count] < count )
-//	{
-//		return self;
-//	}
-//	else
-//	{
-//        NSMutableArray * tempFeeds = [NSMutableArray array];
-//		
-//        for ( NSUInteger i = 0; i < count; i++ )
-//		{
-//            [tempFeeds insertObject:[self objectAtIndex:[self count] - i] atIndex:0];
-//        }
-//
-//		return tempFeeds;
-//	}
-
-// thansk @lancy, changed: NSArray tail: count
-
-	NSRange range = NSMakeRange( self.count - count, count );
-    
-	return [self subarrayWithRange:range];
+{
+	return [self subarrayWithRange:NSMakeRange( self.count - count, count )];
 }
 
 - (id)uxy_safeObjectAtIndex:(NSInteger)index
@@ -134,11 +112,6 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     }
     
     return NSNotFound;
-}
-
-- (NSMutableArray *)uxy_mutableArray
-{
-	return [NSMutableArray arrayWithArray:self];
 }
 
 @end

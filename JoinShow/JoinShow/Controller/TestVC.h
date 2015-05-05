@@ -8,11 +8,8 @@
 
 // 此页面 测试用
 
-#if (1 == __XYQuick_Framework__)
-#import <XYQuick/XYQuickDevelop.h>
-#else
 #import "XYQuickDevelop.h"
-#endif
+
 
 @class XYObserve;
 @class TestView;

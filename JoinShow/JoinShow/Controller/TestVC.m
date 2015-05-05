@@ -7,16 +7,12 @@
 //
 
 #import "TestVC.h"
+#import "XYQuickDevelop.h"
+
 //#import "UIView+Test.h"
 #import "TestView.h"
 #import "Test2View.h"
 #import "PaintCodeView.h"
-
-#if (1 == __XYQuick_Framework__)
-#import <XYQuick/XYQuickDevelop.h>
-#else
-#import "XYQuickDevelop.h"
-#endif
 
 #import <Social/SocialDefines.h>
 #import "XYExternal.h"

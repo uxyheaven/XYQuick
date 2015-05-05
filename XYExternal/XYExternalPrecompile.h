@@ -13,10 +13,6 @@
 
 #endif
 
-// XYQuick是否打包
-#define __XYQuick_Build__           (0)
-
-
 // 第三方支持
 #define __USED_FMDatabase__         (1)
 #define __USED_LKDBHelper__         (1)
@@ -29,13 +25,9 @@
 #define __USED_MBProgressHUD__      (1)
 #define __USED_SVPullToRefresh__    (1)
 
+
 #if (1 == __USED_Statistics__)
 #define UMENG
 #endif
 
-#if (1 == __XYQuick_Build__)
-#define XYQuick_Framework
-#import <XYQuick/XYQuickDevelop.h>
-#else
 #import "XYQuickDevelop.h"
-#endif
