@@ -154,7 +154,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     timer.start_at = [date timeIntervalSince1970];
     timer.duration = 0;
     timer.block = block;
-    timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer:) userInfo:nil repeats:repeat];
+    timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
     XYTimerContainer *container = [[XYTimerContainer alloc] initWithXYTimer:timer];

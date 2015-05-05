@@ -46,7 +46,7 @@
     self.overlay.backgroundColor = backgroundColor;
 }
 
-- (void)xy_setTranslationY:(CGFloat)translationY
+- (void)uxy_setTranslationY:(CGFloat)translationY
 {
     self.transform = CGAffineTransformMakeTranslation(0, translationY);
 }

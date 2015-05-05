@@ -21,7 +21,7 @@ DUMMY_CLASS(NSNumber_XY);
 	return [NSDate dateWithTimeIntervalSince1970:self.doubleValue];
 }
 
-- (NSString *)stringWithDateFormat:(NSString *)format
+- (NSString *)uxy_stringWithDateFormat:(NSString *)format
 {
 #if 0
 	NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
