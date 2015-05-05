@@ -10,7 +10,6 @@
 // 用时需要从此类继承,并重写defaultSettings方法
 
 
-#import "XYVender.h"
 #import "MKNetworkKit.h"
 
 //////////////////        MKNetworkOperation (XY)        ////////////////////

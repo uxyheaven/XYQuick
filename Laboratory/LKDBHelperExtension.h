@@ -6,10 +6,6 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "XYVenderPrecompile.h"
-
-#if (1 == __USED_LKDBHelper__)
-
 #define XY_LKDBHelper_loadCount 20
 
 #import "LKDBHelper.h"
@@ -28,4 +24,3 @@
 + (id)loadFromDBWithClass:(Class)modelClass;
 
 @end
-#endif

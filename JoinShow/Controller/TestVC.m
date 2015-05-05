@@ -8,7 +8,6 @@
 
 #import "TestVC.h"
 #import "XYQuickDevelop.h"
-#import "XYVender.h"
 
 //#import "UIView+Test.h"
 #import "TestView.h"
@@ -465,7 +464,6 @@ if (1) { \
         [av speakUtterance:utterance];
     }else{
         NSLogD(@"2")
-        SHOWMBProgressHUD(@"only show on IOS7", nil, nil, NO, 2)
     }
     
 }
@@ -473,14 +471,14 @@ if (1) { \
 - (IBAction)clickOnce:(id)sender
 {
     XY_ONCE_BEGIN(a)
-    SHOWMBProgressHUD(@"only show once", nil, nil, NO, 2)
+
     XY_ONCE_END
 }
 
 - (IBAction)clickOnce2:(id)sender
 {
     XY_ONCE_BEGIN(b)
-    SHOWMBProgressHUD(@"only show once2", nil, nil, NO, 2)
+
     XY_ONCE_END
 }
 - (IBAction)clickBtnShade:(id)sender
@@ -500,16 +498,7 @@ if (1) { \
 
 - (IBAction)clickBtnSHOWMBProgressHUDIndeterminate:(id)sender
 {
-    MBProgressHUD *hub = SHOWMBProgressHUDIndeterminate(@"title", @"message", NO)
-    [hub addTapGestureWithBlock:^(UIView *view){
-        HIDDENMBProgressHUD
-    }];
-    dispatch_async_background_concurrent( ^{
-       sleep(3);
-        dispatch_async_foreground( ^{
-           HIDDENMBProgressHUD
-        });
-    });
+   //
 }
 - (void)clickNewGirl:(id)sender
 {

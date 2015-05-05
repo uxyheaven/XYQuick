@@ -9,7 +9,7 @@
 #import "NetworkVC.h"
 
 #import "XYQuickDevelop.h"
-#import "XYVender.h"
+#import "RequestHelper.h"
 #import "HTTPClient.h"
 
 @interface NetworkVC ()
@@ -126,7 +126,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    SHOWMBProgressHUD(@"Message", @"Please used MKNetworkKit.", nil, YES, 3);
     
 }
 - (IBAction)clickGet:(id)sender {

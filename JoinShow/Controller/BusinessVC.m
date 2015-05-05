@@ -8,9 +8,8 @@
 
 #import "BusinessVC.h"
 #import "EntityBaseModel.h"
-
-#import "XYVender.h"
-
+#import "RequestHelper.h"
+#import "LKDBHelperExtension.h"
 #import "RubyChinaNodeEntity.h"
 
 @interface BusinessVC ()
@@ -109,7 +108,6 @@
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
     NSString *str = [anObject XYJSONString];
-    SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
 }
 
 
@@ -139,7 +137,6 @@
         NSString *str = [NSString stringWithFormat:@"Request error : %@", [err localizedDescription]];
         NSLogD(@"%@", str);
         
-        // SHOWMBProgressHUD(@"Message", str, nil, NO, 3);
         [self loadFromDBProcess];
     }];
     
@@ -170,7 +167,6 @@
     
     if (self.model && self.model.count > 0) {
         NSString *str = [[self.model objectAtIndex:0] XYJSONString];
-        SHOWMBProgressHUD(@"Data", str, nil, NO, 3);
     }
 }
 - (void)loadFromDBProcess{

@@ -7,7 +7,7 @@
 //
 
 #import "IndicatorHelper.h"
-#import "XYVender.h"
+#import "MBProgressHUD.h"
 
 @implementation IndicatorHelper __DEF_SINGLETON
 

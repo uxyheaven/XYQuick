@@ -7,8 +7,9 @@
 //
 
 #import "LKDBHelperExtension.h"
-#if (1 == __USED_LKDBHelper__)
+
 #import "NSObject+LKModel.h"
+#import "NSObject+XY.h"
 
 @implementation NSObject(XY_LKDBHelper)
 
@@ -98,4 +99,3 @@
 }
 
 @end
-#endif

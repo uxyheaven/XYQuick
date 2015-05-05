@@ -16,8 +16,7 @@
  */
 
 #import "RequestHelper.h"
-#import "XYJSONHelper.h"
-#if (1 ==  __USED_MKNetworkKit__)
+#import "XYQuickDevelop.h"
 
 @interface RequestHelper()
 
@@ -25,7 +24,8 @@
 
 @implementation RequestHelper
 
-+ (id)defaultSettings{
++ (id)defaultSettings
+{
     // 参考
     RequestHelper *eg = [[RequestHelper alloc] initWithHostName:@"www.webxml.com.cn" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
     
@@ -47,27 +47,29 @@
 
 - (void)dealloc
 {
-    NSLogDD
 }
 
 
-- (HttpRequest *)get:(NSString *)path{
+- (HttpRequest *)get:(NSString *)path
+{
     return [self get:path params:nil];
 }
 - (HttpRequest *)get:(NSString *)path
-              params:(id)anObject{
+              params:(id)anObject
+{
     return [self request:path params:anObject method:requestHelper_get];
 }
 
 - (HttpRequest *)post:(NSString *)path
-               params:(id)anObject{
+               params:(id)anObject
+{
     return [self request:path params:anObject method:requestHelper_post];
 }
 
 - (HttpRequest *)request:(NSString *)path
                   params:(id)anObject
-                  method:(HTTPMethod)httpMethod{
-    
+                  method:(HTTPMethod)httpMethod
+{
     NSString *strHttpMethod = nil;
     
     if (httpMethod == requestHelper_get)
@@ -115,7 +117,8 @@
 
 
 #pragma mark- Image
-+ (id)webImageEngine{
++ (id)webImageEngine
+{
     static dispatch_once_t once;
     static MKNetworkEngine * __singleton__;
     dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } );
@@ -123,7 +126,8 @@
     return __singleton__;
 }
 
-+ (NSString *)generateAccessTokenWithObject:(id)anObject{
++ (NSString *)generateAccessTokenWithObject:(id)anObject
+{
     NSDictionary *dic = anObject;
     NSString *link = [dic objectForKey:@"link"];
     NSString *uuid = [XYCommon UUID];
@@ -132,7 +136,8 @@
     return str1;
 }
 
-- (id)submit:(HttpRequest *)op{
+- (id)submit:(HttpRequest *)op
+{
     if (op != nil)
     {
         if ([op.HTTPMethod isEqualToString:@"GET"])
@@ -154,14 +159,16 @@
 @implementation MKNetworkOperation (XY)
 
 // if forceReload == YES, 先读缓存,然后发请求,blockS响应2次, 只支持GET
-- (id)submitInQueue:(RequestHelper *)requests{
+- (id)submitInQueue:(RequestHelper *)requests
+{
     // 非下载请求
     [requests enqueueOperation:self forceReload:NO];
     
     return self;
 }
 
-- (id) uploadFiles:(NSDictionary *)name_path{
+- (id)uploadFiles:(NSDictionary *)name_path
+{
     if (name_path)
     {
         [name_path enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -174,7 +181,8 @@
 
 // 请重载此方法实现自己的通用解析方法
 - (id)succeed:(RequestHelper_normalRequestSucceedBlock)blockS
-       failed:(RequestHelper_normalRequestFailedBlock)blockF{
+       failed:(RequestHelper_normalRequestFailedBlock)blockF
+{
     [self addCompletionHandler:blockS errorHandler:blockF];
     
     return self;
@@ -199,7 +207,8 @@
     _downloadHelper = downloadHelper;
 }
 */
-- (id)submitInQueue:(DownloadHelper *)requests{
+- (id)submitInQueue:(DownloadHelper *)requests
+{
     NSString *str = self.toFile;
     if (str && [requests isKindOfClass:[DownloadHelper class]])
     {
@@ -215,7 +224,8 @@
     
     return self;
 }
-- (id) progress:(RequestHelper_downloadRequestProgressBlock)blockP{
+- (id) progress:(RequestHelper_downloadRequestProgressBlock)blockP
+{
     if (blockP)
     {
         [self onDownloadProgressChanged:blockP];
@@ -224,8 +234,8 @@
     return self;
 }
 - (id)succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
-       failed:(RequestHelper_downloadRequestFailedBlock)blockF{
-    
+       failed:(RequestHelper_downloadRequestFailedBlock)blockF
+{
     [self addCompletionHandler:^(HttpRequest *operation) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *error = nil;
@@ -268,7 +278,8 @@
         
         if (blockS)
             blockS(operation);
-    }errorHandler:^(HttpRequest *errorOp, NSError *err) {
+    }
+                  errorHandler:^(HttpRequest *errorOp, NSError *err) {
         [((Downloader*)errorOp).downloadHelper.downloadArray removeObject:((Downloader*)errorOp)];
         
         if (blockF)
@@ -279,7 +290,6 @@
 }
 - (void)dealloc
 {
-    NSLogDD
     [self.downloadHelper.downloadArray removeObject:self];
 }
 
@@ -287,7 +297,8 @@
 
 #pragma mark - DownloadHelper
 @implementation DownloadHelper
-+ (id)defaultSettings{
++ (id)defaultSettings
+{
     // 参考
     DownloadHelper *eg = [[DownloadHelper alloc] initWithHostName:nil];
     [eg setup];
@@ -295,7 +306,8 @@
     return eg;
 }
 
-- (void)setup{
+- (void)setup
+{
     [self registerOperationSubclass:[Downloader class]];
     if (self.downloadArray == nil)
     {
@@ -305,8 +317,9 @@
 
 - (void)dealloc
 {
-    NSLogDD
+
 }
+
 - (Downloader *)download:(NSString *)remoteURL
                       to:(NSString*)filePath
                   params:(id)anObject
@@ -427,13 +440,15 @@
 
 - (void)cancelAllDownloads
 {
-    for (HttpRequest *tempOP in self.downloadArray) {
+    for (HttpRequest *tempOP in self.downloadArray)
+    {
         [tempOP cancel];
     }
     [self.downloadArray removeAllObjects];
 }
 
-- (void)emptyTempFile{
+- (void)emptyTempFile
+{
     NSString *tempDoucment = NSTemporaryDirectory();
     NSString *tempFilePath = [tempDoucment stringByAppendingPathComponent:@"tempdownload"];
     [[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
@@ -444,7 +459,8 @@
     return self.downloadArray;
 }
 
-- (Downloader *) getADownloadWithString:(NSString *)string{
+- (Downloader *)getADownloadWithString:(NSString *)string
+{
     Downloader *op = nil;
     for (Downloader *tempOP in self.downloadArray)
     {
@@ -458,7 +474,8 @@
     return op;
 }
 
-- (id)submit:(Downloader *)op{
+- (id)submit:(Downloader *)op
+{
     NSString *str = op.toFile;
     if (str)
     {
@@ -474,4 +491,3 @@
 #pragma mark KVO for network Queue
 
 @end
-#endif
