@@ -12,7 +12,7 @@
 #import "NSObject+XY.h"
 
 
-void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
+void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NSTimeInterval))objc_msgSend;
 
 #pragma mark - XYTimer
 @interface XYTimer ()
@@ -108,7 +108,7 @@ void (*XYTimer_action)(id, SEL, ...) = (void (*)(id, SEL, ...))objc_msgSend;
 }
 
 
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
+-(NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
 {
     NSAssert(name.length > 1, @"name 不能为空");
     
