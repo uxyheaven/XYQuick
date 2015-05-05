@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABBC020B8AB0D98A15CBBA49"
+               BlueprintIdentifier = "03FAA88A535F056AF120698E"
                BuildableName = "libPods-JoinShowTests-LKDBHelper.a"
                BlueprintName = "Pods-JoinShowTests-LKDBHelper"
                ReferencedContainer = "container:Pods.xcodeproj">
