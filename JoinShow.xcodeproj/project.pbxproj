@@ -62,7 +62,6 @@
 		5708A9931AF8991A000607AB /* XYSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8EE1AF8991A000607AB /* XYSystemInfo.m */; };
 		5708A9941AF8991A000607AB /* XYThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8F01AF8991A000607AB /* XYThread.m */; };
 		5708A9951AF8991A000607AB /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8F21AF8991A000607AB /* XYTimer.m */; };
-		5708A9961AF8991A000607AB /* AutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8F61AF8991A000607AB /* AutoSizeView.m */; };
 		5708A9971AF8991A000607AB /* XYAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8F81AF8991A000607AB /* XYAnimate.m */; };
 		5708A9981AF8991A000607AB /* XYKeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8FA1AF8991A000607AB /* XYKeyboardHelper.m */; };
 		5708A9991AF8991A000607AB /* XYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8FC1AF8991A000607AB /* XYTabBar.m */; };
@@ -277,8 +276,6 @@
 		5708A8F01AF8991A000607AB /* XYThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYThread.m; sourceTree = "<group>"; };
 		5708A8F11AF8991A000607AB /* XYTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTimer.h; sourceTree = "<group>"; };
 		5708A8F21AF8991A000607AB /* XYTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTimer.m; sourceTree = "<group>"; };
-		5708A8F51AF8991A000607AB /* AutoSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSizeView.h; sourceTree = "<group>"; };
-		5708A8F61AF8991A000607AB /* AutoSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSizeView.m; sourceTree = "<group>"; };
 		5708A8F71AF8991A000607AB /* XYAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAnimate.h; sourceTree = "<group>"; };
 		5708A8F81AF8991A000607AB /* XYAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAnimate.m; sourceTree = "<group>"; };
 		5708A8F91AF8991A000607AB /* XYKeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKeyboardHelper.h; sourceTree = "<group>"; };
@@ -634,7 +631,6 @@
 		5708A8F31AF8991A000607AB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5708A8F41AF8991A000607AB /* AutoSizeView */,
 				5708A8F71AF8991A000607AB /* XYAnimate.h */,
 				5708A8F81AF8991A000607AB /* XYAnimate.m */,
 				5708A8F91AF8991A000607AB /* XYKeyboardHelper.h */,
@@ -648,15 +644,6 @@
 				5708A9011AF8991A000607AB /* XYUISignal.m */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		5708A8F41AF8991A000607AB /* AutoSizeView */ = {
-			isa = PBXGroup;
-			children = (
-				5708A8F51AF8991A000607AB /* AutoSizeView.h */,
-				5708A8F61AF8991A000607AB /* AutoSizeView.m */,
-			);
-			path = AutoSizeView;
 			sourceTree = "<group>";
 		};
 		5708A9041AF8991A000607AB /* XYVender */ = {
@@ -1162,7 +1149,6 @@
 				5708A9691AF8991A000607AB /* XYDebugToy.m in Sources */,
 				5708A9A01AF8991A000607AB /* IndicatorHelper.m in Sources */,
 				5708A9911AF8991A000607AB /* XYRuntime.m in Sources */,
-				5708A9961AF8991A000607AB /* AutoSizeView.m in Sources */,
 				5708A9891AF8991A000607AB /* XYBlackMagic.m in Sources */,
 				5708A9971AF8991A000607AB /* XYAnimate.m in Sources */,
 				5708A98F1AF8991A000607AB /* XYObserver.m in Sources */,
