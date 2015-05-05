@@ -88,18 +88,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 
 @implementation UIImage (XY)
 
-+ (UIImage *)imageWithFile:(NSString *)path{
-    UIImage *img = nil;
-    
-    if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-        img = [[UIImage imageWithContentsOfFile:path] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    }
-    else {
-        img = [UIImage imageWithContentsOfFile:path];
-    }
-    return img;
-}
-
 + (UIImage *)imageWithFileName:(NSString *)name
 {
     NSString *extension = @"png";

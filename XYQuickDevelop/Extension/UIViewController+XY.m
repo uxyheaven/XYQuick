@@ -127,12 +127,8 @@
         // 用户引导背景图
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:userGuideView.bounds];
         imageView.tag = UserGuide_tag;
-        UIImage *image = LoadImage_nocache(imgName, nil);
-        if (image == nil)
-        {
-            image = LoadImage_cache(imgName);
-        }
-        
+        UIImage *image = [UIImage imageWithFileName:imgName];
+
         if ([frameString isEqualToString:@"full"] || frameString.length == 0)
         {
             imageView.image = image;

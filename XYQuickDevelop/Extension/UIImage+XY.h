@@ -11,8 +11,6 @@
 
 /**************************************************************/
 // UIImage
-#define LoadImage_cache(_pointer) [UIImage image:_pointer]
-#define LoadImage_nocache(file, ext) [UIImage imageWithFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
     
 @interface UIImage (XY)
 

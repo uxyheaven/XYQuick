@@ -113,7 +113,7 @@ if (1) { \
     // 旋转
     UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.frame = CGRectMake(100, btnOffsetY, 100, 100);
-    [tempBtn setBackgroundImage:LoadImage_cache(@"bg.jpg") forState:UIControlStateNormal];
+    [tempBtn setBackgroundImage:[UIImage imageWithFileName:@"bg.jpg"] forState:UIControlStateNormal];
     // [tempBtn setImageEdgeInsets:UIEdgeInsetsMake(00,00,50,00)];
     [tempBtn setTitle:@"title" forState:UIControlStateNormal];
     [tempBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
@@ -647,21 +647,21 @@ if (1) { \
 - (void)clickCrossfade:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
     [btn animationCrossfadeWithDuration:5];
 }
 
 - (void)clickCube:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
     [btn animationCubeWithDuration:5 direction:kCATransitionFromRight];
 }
 
 - (void)clickOglFlip:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    [btn setImage:LoadImage_cache(@"headportrait.jpg") forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
     [btn animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
 }
 

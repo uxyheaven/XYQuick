@@ -165,21 +165,21 @@
         case 4:
         {
             [dic setObject:@"stretched" forKey:@"title"];
-            UIImage *tempImg = [LoadImage_cache(@"user_currentstandings.png") stretched];
+            UIImage *tempImg = [[UIImage imageWithFileName:@"user_currentstandings.png"] stretched];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 5:
         {
             [dic setObject:@"stretched(UIEdgeInsetsMake)" forKey:@"title"];
-            UIImage *tempImg = [LoadImage_cache(@"user_currentstandings.png") stretched:UIEdgeInsetsMake(12, 1, 2, 2)];
+            UIImage *tempImg = [[UIImage imageWithFileName:@"user_currentstandings.png"] stretched:UIEdgeInsetsMake(12, 1, 2, 2)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 6:
         {
             [dic setObject:@"grayscale" forKey:@"title"];
-            UIImage *tempImg = [LoadImage_cache(@"image.png") grayscale];
+            UIImage *tempImg = [[UIImage imageWithFileName:@"image.png"] grayscale];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
@@ -229,21 +229,21 @@
         case 13:
         {
             [dic setObject:@"original" forKey:@"title"];
-            UIImage *tempImg = LoadImage_cache(@"image.png");
+            UIImage *tempImg = [UIImage imageWithFileName:@"image.png"];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 14:
         {
             [dic setObject:@"Tint : orangeColor" forKey:@"title"];
-            UIImage *tempImg = [LoadImage_cache(@"image.png") imageWithTintColor:[UIColor orangeColor]];
+            UIImage *tempImg = [[UIImage imageWithFileName:@"image.png"] imageWithTintColor:[UIColor orangeColor]];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 15:
         {
             [dic setObject:@"GradientTint : orangeColor" forKey:@"title"];
-            UIImage *tempImg = [LoadImage_cache(@"image.png") imageWithGradientTintColor:[UIColor orangeColor]];
+            UIImage *tempImg = [[UIImage imageWithFileName:@"image.png"] imageWithGradientTintColor:[UIColor orangeColor]];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
