@@ -44,10 +44,12 @@ typedef void(^XYModuleCooperativeCompletedBlock)(XYModuleCooperativeEvent *event
 
 @interface XYModuleCooperative : NSObject __AS_SINGLETON
 
+#pragma mark- 注册相关
 // 注册一个数据标识
 - (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYModuleCooperativeProtocol>)receiver;
 - (void)registerDataIdentifier:(NSString *)identifier receiverClassName:(NSString *)className;
 
+#pragma mark- 获取相关
 // 获取数据
 - (XYModuleCooperativeEvent *)invocationDataIndentifier:(NSString *)identifier
                                          completedBlock:(XYModuleCooperativeCompletedBlock)block;
