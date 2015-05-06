@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XYPredefine.h"
+#import "XYQuick_Predefine.h"
 
 // AppDelegate流程控制类
 @interface XYAppController : NSObject __AS_SINGLETON

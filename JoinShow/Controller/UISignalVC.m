@@ -102,7 +102,7 @@ DEF_SIGNAL( click3 )
     self.view.backgroundColor = [UIColor whiteColor];
     Signal1 *view = [[Signal1 alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
     [self.view addSubview:view];
-    [view.po_frameBuilder alignToTopInSuperviewWithInset:66];
+    [view.uxy_frameBuilder alignToTopInSuperviewWithInset:66];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame = CGRectMake(0, 320, 44, 44);

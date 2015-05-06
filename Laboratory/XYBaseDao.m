@@ -8,7 +8,7 @@
 
 #import "XYBaseDao.h"
 #import "LKDBHelper.h"
-#import "XYPredefine.h"
+#import "XYQuick_Predefine.h"
 #import "XYCommonDefine.h"
 
 @interface XYBaseDao ()
@@ -110,7 +110,7 @@
     }
     else if (1)
     {
-        @TODO("多主键种类判断");
+        TODO("多主键种类判断");
         where = @"";
     }
     

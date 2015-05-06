@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 
 @interface BusinessVC : XYBaseViewController

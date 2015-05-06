@@ -7,7 +7,7 @@
 //
 
 #import "AnimationVC2.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 @interface AnimationVC2 ()
 
 @end
@@ -49,7 +49,6 @@
 }
 - (void)dealloc
 {
-    NSLogDD
 }
 
 - (void)clickPlay1{

@@ -8,7 +8,7 @@
 
 #import "NetworkVC.h"
 
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 #import "RequestHelper.h"
 #import "HTTPClient.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import "TestVC.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 //#import "UIView+Test.h"
 #import "TestView.h"
@@ -626,7 +626,7 @@ if (1) { \
    // label.font = [UIFont fontWithName:@"AppleColorEmoji" size:12.0];
     label.text = @"This is a smiley \ue415 face";
     [self.view addSubview:label];
-    [label.po_frameBuilder centerInSuperview];
+    [label.uxy_frameBuilder centerInSuperview];
 }
 
 - (void)clickCrossfade:(id)sender

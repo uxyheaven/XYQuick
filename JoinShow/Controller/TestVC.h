@@ -8,9 +8,6 @@
 
 // 此页面 测试用
 
-#import "XYQuickDevelop.h"
-
-
 @class XYObserve;
 @class TestView;
 @class GirlEntity;

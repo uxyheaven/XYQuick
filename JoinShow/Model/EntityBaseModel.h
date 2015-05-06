@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 @class RequestHelper;
 @class LKDBHelper;

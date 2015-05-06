@@ -7,7 +7,7 @@
 //
 // 指示器帮助类
 
-#import "XYPredefine.h"
+#import "XYQuick_Predefine.h"
 // MBProgressHUD指示器
 #import "MBProgressHUD.h"
 

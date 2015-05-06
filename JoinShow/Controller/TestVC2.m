@@ -7,7 +7,7 @@
 //
 
 #import "TestVC2.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 #import "DemoViewController.h"
 #import "UISignalVC.h"
@@ -241,21 +241,21 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
         view.backgroundColor = [UIColor lightGrayColor];
         [vc.view addSubview:view];
-        [view.po_frameBuilder centerInSuperview];
+        [view.uxy_frameBuilder centerInSuperview];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
         label.backgroundColor = [UIColor yellowColor];
         label.textColor = [UIColor blueColor];
         label.text = @"left 10";
         [view addSubview:label];
-        [label.po_frameBuilder alignLeftInSuperviewWithInset:10];
+        [label.uxy_frameBuilder alignLeftInSuperviewWithInset:10];
         
         UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 20)];
         label2.backgroundColor = [UIColor yellowColor];
         label2.textColor = [UIColor blueColor];
         label2.text = @"depend";
         [view addSubview:label2];
-        [[label2.po_frameBuilder alignRightOfView:label offset:-label.width] alignToBottomOfView:label offset:15];
+        [[label2.uxy_frameBuilder alignRightOfView:label offset:-label.width] alignToBottomOfView:label offset:15];
         
         
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
@@ -263,7 +263,7 @@
         label.textColor = [UIColor blueColor];
         label.text = @"bottom 10 right 10";
         [view addSubview:label];
-        [[label.po_frameBuilder alignToBottomInSuperviewWithInset:10] alignRightInSuperviewWithInset:10];
+        [[label.uxy_frameBuilder alignToBottomInSuperviewWithInset:10] alignRightInSuperviewWithInset:10];
     };
     
     [self.navigationController pushViewController:vc animated:YES];

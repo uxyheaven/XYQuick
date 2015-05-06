@@ -135,7 +135,7 @@
         }
     } failed:^(HttpRequest *op, NSError *err) {
         NSString *str = [NSString stringWithFormat:@"Request error : %@", [err localizedDescription]];
-        NSLogD(@"%@", str);
+        NSLog(@"%@", str);
         
         [self loadFromDBProcess];
     }];

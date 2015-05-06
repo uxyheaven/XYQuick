@@ -7,7 +7,7 @@
 //
 
 #import "EntityBaseModel.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 #import "LKDBHelperExtension.h"
 #import "RequestHelper.h"
 

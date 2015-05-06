@@ -7,7 +7,7 @@
 //
 
 #import "ImageVC.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 
 @interface ImageVC ()

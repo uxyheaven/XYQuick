@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F79BB1AB1B63468A0E7C822F"
+               BlueprintIdentifier = "CD27F115788F7677CAAE60F5"
                BuildableName = "libPods-JoinShow-SVPullToRefresh.a"
                BlueprintName = "Pods-JoinShow-SVPullToRefresh"
                ReferencedContainer = "container:Pods.xcodeproj">

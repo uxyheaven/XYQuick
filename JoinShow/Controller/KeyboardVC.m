@@ -7,7 +7,7 @@
 //
 
 #import "KeyboardVC.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 
 @interface KeyboardVC ()

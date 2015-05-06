@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 @interface ConfigManager : NSObject __AS_SINGLETON
 

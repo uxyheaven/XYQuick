@@ -7,7 +7,7 @@
 //
 
 #import "TestView.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 @implementation TestView
 
@@ -39,11 +39,11 @@
 }
 */
 
--(void)dealloc{
-    NSLogDD
+-(void)dealloc
+{
 }
 
 - (void)test{
-    NSLogD(@"%@", [self class]);
+    NSLog(@"%@", [self class]);
 }
 @end

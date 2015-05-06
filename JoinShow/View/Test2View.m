@@ -7,7 +7,7 @@
 //
 
 #import "Test2View.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 
 @implementation Test2View

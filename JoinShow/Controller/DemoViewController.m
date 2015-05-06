@@ -8,7 +8,7 @@
 
 #import "DemoViewController.h"
 
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 
 

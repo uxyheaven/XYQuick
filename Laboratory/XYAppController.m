@@ -90,7 +90,7 @@ BOOL __applicationDidFinishLaunchingWithOptions(id self, SEL _cmd, UIApplication
 {
     [[XYClassLoader classLoader] loadClasses:@[
                                                ]];
-#if (1 == __XYDEBUG_UNITTESTING__)
+#if (1 == __XY_DEBUG_UNITTESTING__)
     [[XYUnitTest sharedInstance] run];
 #endif
 }

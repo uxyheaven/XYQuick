@@ -16,7 +16,7 @@
  */
 
 #import "RequestHelper.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 @interface RequestHelper()
 

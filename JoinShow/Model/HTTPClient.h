@@ -7,7 +7,7 @@
 //
 // 网络请求类
 #import "RequestHelper.h"
-#import "XYPredefine.h"
+#import "XYQuick_Predefine.h"
 
 @interface HTTPClient : RequestHelper __AS_SINGLETON
 

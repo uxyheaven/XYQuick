@@ -5,8 +5,7 @@
 //  Copyright (c) 2015年 heaven. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "XYPredefine.h"
+#import "XYQuick_Predefine.h"
 
 @class XYModuleCooperativeInterface;
 @class XYModuleCooperativeEvent;

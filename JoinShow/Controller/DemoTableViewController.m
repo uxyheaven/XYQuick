@@ -7,7 +7,7 @@
 //
 
 #import "DemoTableViewController.h"
-#import "XYQuickDevelop.h"
+#import "XYQuick.h"
 
 @interface DemoTableViewController ()
 
