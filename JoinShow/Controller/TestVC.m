@@ -239,7 +239,7 @@ if (1) { \
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     
-    TestView *testView = [[PaintCodeView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)];
+    TestView *testView = (TestView *)[[PaintCodeView alloc] initWithFrame:CGRectMake(10, btnOffsetY, 200, 200)];
     _testView = testView;
     [scroll addSubview:testView];
      btnOffsetY += 220;
@@ -562,15 +562,13 @@ if (1) { \
 }
 - (void)clickNSDateFormatter:(id)sender
 {
-    NSDateFormatter *formatter1 = [XYCommon dateFormatter];
-    NSDateFormatter *formatter2 = [XYCommon dateFormatterTemp];
-    NSDateFormatter *formatter3 = [XYCommon dateFormatterByUTC];
+    NSDateFormatter *formatter1 = [NSDate uxy_dateFormatter];
+    NSDateFormatter *formatter3 = [NSDate uxy_dateFormatterByUTC];
     
     NSDate *date = [NSDate date];
     NSString *str1 = [formatter1 stringFromDate:date];
-    NSString *str2 = [formatter2 stringFromDate:date];
     NSString *str3 = [formatter3 stringFromDate:date];
-    NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@", str1, str2, str3];
+    NSString *str = [NSString stringWithFormat:@"%@\n%@\n", str1, str3];
     SHOWMSG(nil, str, @"cancel");
 }
 - (void)talk2
