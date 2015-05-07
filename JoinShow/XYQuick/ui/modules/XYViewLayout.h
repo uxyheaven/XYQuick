@@ -97,18 +97,18 @@ typedef NS_ENUM(NSUInteger, XYViewFrameBuilderDirection) {
 
 @interface UIView (uxy_positioning)
 
-@property (nonatomic, assign) CGFloat   x;
-@property (nonatomic, assign) CGFloat   y;
-@property (nonatomic, assign) CGFloat   width;
-@property (nonatomic, assign) CGFloat   height;
-@property (nonatomic, assign) CGPoint   origin;
-@property (nonatomic, assign) CGSize    size;
-@property (nonatomic, assign) CGFloat   bottom;
-@property (nonatomic, assign) CGFloat   right;
-@property (nonatomic, assign) CGFloat   centerX;
-@property (nonatomic, assign) CGFloat   centerY;
-@property (nonatomic, weak, readonly) UIView *lastSubviewOnX;
-@property (nonatomic, weak, readonly) UIView *lastSubviewOnY;
+@property (nonatomic, assign) CGFloat   uxy_x;
+@property (nonatomic, assign) CGFloat   uxy_y;
+@property (nonatomic, assign) CGFloat   uxy_width;
+@property (nonatomic, assign) CGFloat   uxy_height;
+@property (nonatomic, assign) CGPoint   uxy_origin;
+@property (nonatomic, assign) CGSize    uxy_size;
+@property (nonatomic, assign) CGFloat   uxy_bottom;
+@property (nonatomic, assign) CGFloat   uxy_right;
+@property (nonatomic, assign) CGFloat   uxy_centerX;
+@property (nonatomic, assign) CGFloat   uxy_centerY;
+@property (nonatomic, weak, readonly) UIView *uxy_lastSubviewOnX;
+@property (nonatomic, weak, readonly) UIView *uxy_lastSubviewOnY;
 
 @end
 

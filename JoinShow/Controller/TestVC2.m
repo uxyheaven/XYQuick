@@ -255,7 +255,7 @@
         label2.textColor = [UIColor blueColor];
         label2.text = @"depend";
         [view addSubview:label2];
-        [[label2.uxy_frameBuilder alignRightOfView:label offset:-label.width] alignToBottomOfView:label offset:15];
+        [[label2.uxy_frameBuilder alignRightOfView:label offset:-label.uxy_width] alignToBottomOfView:label offset:15];
         
         
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];

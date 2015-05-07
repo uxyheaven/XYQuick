@@ -583,130 +583,130 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 
 @implementation UIView (uxy_positioning)
 
-@dynamic x;
-@dynamic y;
-@dynamic width;
-@dynamic height;
-@dynamic origin;
-@dynamic size;
+@dynamic uxy_x;
+@dynamic uxy_y;
+@dynamic uxy_width;
+@dynamic uxy_height;
+@dynamic uxy_origin;
+@dynamic uxy_size;
 
 // Setters
-- (void)setX:(CGFloat)x
+- (void)setUxy_x:(CGFloat)x
 {
     CGRect r        = self.frame;
     r.origin.x      = x;
     self.frame      = r;
 }
 
-- (void)setY:(CGFloat)y
+- (void)setUxy_y:(CGFloat)y
 {
     CGRect r        = self.frame;
     r.origin.y      = y;
     self.frame      = r;
 }
 
-- (void)setWidth:(CGFloat)width
+- (void)setUxy_width:(CGFloat)width
 {
     CGRect r        = self.frame;
     r.size.width    = width;
     self.frame      = r;
 }
 
-- (void)setHeight:(CGFloat)height
+- (void)setUxy_height:(CGFloat)height
 {
     CGRect r        = self.frame;
     r.size.height   = height;
     self.frame      = r;
 }
 
-- (void)setOrigin:(CGPoint)origin
+- (void)setUxy_origin:(CGPoint)origin
 {
-    self.x          = origin.x;
-    self.y          = origin.y;
+    self.uxy_x          = origin.x;
+    self.uxy_y          = origin.y;
 }
 
-- (void)setSize:(CGSize)size
+- (void)setUxy_size:(CGSize)size
 {
-    self.width      = size.width;
-    self.height     = size.height;
+    self.uxy_width      = size.width;
+    self.uxy_height     = size.height;
 }
 
-- (void)setRight:(CGFloat)right
+- (void)setUxy_right:(CGFloat)right
 {
     CGRect frame = self.frame;
     frame.origin.x = right - frame.size.width;
     self.frame = frame;
 }
 
-- (void)setBottom:(CGFloat)bottom
+- (void)setUxy_bottom:(CGFloat)bottom
 {
     CGRect frame = self.frame;
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
 }
 
-- (void)setCenterX:(CGFloat)centerX
+- (void)setUxy_centerX:(CGFloat)centerX
 {
     self.center = CGPointMake(centerX, self.center.y);
 }
 
-- (void)setCenterY:(CGFloat)centerY
+- (void)setUxy_centerY:(CGFloat)centerY
 {
     self.center = CGPointMake(self.center.x, centerY);
 }
 
 // Getters
-- (CGFloat)x
+- (CGFloat)uxy_x
 {
     return self.frame.origin.x;
 }
 
-- (CGFloat)y
+- (CGFloat)uxy_y
 {
     return self.frame.origin.y;
 }
 
-- (CGFloat)width
+- (CGFloat)uxy_width
 {
     return self.frame.size.width;
 }
 
-- (CGFloat)height
+- (CGFloat)uxy_height
 {
     return self.frame.size.height;
 }
 
-- (CGPoint)origin
+- (CGPoint)uxy_origin
 {
-    return CGPointMake(self.x, self.y);
+    return CGPointMake(self.uxy_x, self.uxy_y);
 }
 
-- (CGSize)size
+- (CGSize)uxy_size
 {
-    return CGSizeMake(self.width, self.height);
+    return CGSizeMake(self.uxy_width, self.uxy_height);
 }
 
-- (CGFloat)right
+- (CGFloat)uxy_right
 {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (CGFloat)bottom
+- (CGFloat)uxy_bottom
 {
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (CGFloat)centerX
+- (CGFloat)uxy_centerX
 {
     return self.center.x;
 }
 
-- (CGFloat)centerY
+- (CGFloat)uxy_centerY
 {
     return self.center.y;
 }
 
-- (UIView *)lastSubviewOnX
+- (UIView *)uxy_lastSubviewOnX
 {
     if (self.subviews.count > 0)
     {
@@ -714,7 +714,7 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
         
         for(UIView *v in self.subviews)
         {
-            if(v.x > outView.x)
+            if(v.uxy_x > outView.uxy_x)
                 outView = v;
         }
         
@@ -724,7 +724,7 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return nil;
 }
 
-- (UIView *)lastSubviewOnY
+- (UIView *)uxy_lastSubviewOnY
 {
     if(self.subviews.count > 0)
     {
@@ -732,7 +732,7 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
         
         for(UIView *v in self.subviews)
         {
-            if(v.y > outView.y)
+            if(v.uxy_y > outView.uxy_y)
                 outView = v;
         }
         
