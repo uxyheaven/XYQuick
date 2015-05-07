@@ -74,7 +74,6 @@
 		57DF99E1190AF5070036B85D /* icon_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DF190AF5070036B85D /* icon_google.png */; };
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
-		57EC21531AFBC35100179FB5 /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC20D01AFBC35100179FB5 /* NSArray+XY.m */; };
 		57EC21541AFBC35100179FB5 /* NSData+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC20D21AFBC35100179FB5 /* NSData+XY.m */; };
 		57EC21551AFBC35100179FB5 /* NSDate+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC20D41AFBC35100179FB5 /* NSDate+XY.m */; };
 		57EC21561AFBC35100179FB5 /* NSDictionary+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC20D61AFBC35100179FB5 /* NSDictionary+XY.m */; };
@@ -263,7 +262,6 @@
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		57EC20CF1AFBC35100179FB5 /* NSArray+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XY.h"; sourceTree = "<group>"; };
-		57EC20D01AFBC35100179FB5 /* NSArray+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XY.m"; sourceTree = "<group>"; };
 		57EC20D11AFBC35100179FB5 /* NSData+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+XY.h"; sourceTree = "<group>"; };
 		57EC20D21AFBC35100179FB5 /* NSData+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+XY.m"; sourceTree = "<group>"; };
 		57EC20D31AFBC35100179FB5 /* NSDate+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+XY.h"; sourceTree = "<group>"; };
@@ -699,7 +697,6 @@
 			isa = PBXGroup;
 			children = (
 				57EC20CF1AFBC35100179FB5 /* NSArray+XY.h */,
-				57EC20D01AFBC35100179FB5 /* NSArray+XY.m */,
 				57EC20D11AFBC35100179FB5 /* NSData+XY.h */,
 				57EC20D21AFBC35100179FB5 /* NSData+XY.m */,
 				57EC20D31AFBC35100179FB5 /* NSDate+XY.h */,
@@ -1139,7 +1136,6 @@
 				57EC21551AFBC35100179FB5 /* NSDate+XY.m in Sources */,
 				577F732B1AF92DF30071FD0B /* RequestHelper.m in Sources */,
 				57EC21661AFBC35100179FB5 /* XYCommon.m in Sources */,
-				57EC21531AFBC35100179FB5 /* NSArray+XY.m in Sources */,
 				577F732C1AF92DF30071FD0B /* XYBaseDao.m in Sources */,
 				57EC217B1AFBC35100179FB5 /* UIColor+XY.m in Sources */,
 				57EC21781AFBC35100179FB5 /* UIActionSheet+XY.m in Sources */,
