@@ -8,6 +8,6 @@ Pod::Spec.new do |s|
   s.author           = { "uxyheaven" => "uxyheaven@163.com" }  
   s.platform         = :ios, '7.0'
   s.source           = { :git => "https://github.com/uxyheaven/XYQuickDevelop.git", :tag => version } 
-  s.source_files     = 'XYQuickDevelop/*'  , 'XYQuick/*/*' , 'XYQuick/*/*/*', 'XYQuick/*/*/*/*'
+  s.source_files     = 'XYQuick/*'  , 'XYQuick/*/*' , 'XYQuick/*/*/*', 'XYQuick/*/*/*/*'
   s.requires_arc     = true  
 end
