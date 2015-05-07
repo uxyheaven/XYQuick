@@ -7,7 +7,6 @@
 //
 
 #import "XYUISignal.h"
-#import "UIView+XY.h"
 
 #undef	XYUISignal_NAMESPACE
 #define XYUISignal_NAMESPACE	"UIView.nameSpace"

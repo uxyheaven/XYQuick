@@ -131,6 +131,7 @@
 		57EC218A1AFBC35100179FB5 /* XYViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC214C1AFBC35100179FB5 /* XYViewControllerManager.m */; };
 		57EC218B1AFBC35100179FB5 /* XYViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC214E1AFBC35100179FB5 /* XYViewLayout.m */; };
 		57EC218C1AFBC35100179FB5 /* XYQuick_UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC21501AFBC35100179FB5 /* XYQuick_UI.m */; };
+		57EC218E1AFBCE7A00179FB5 /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC218D1AFBCE7A00179FB5 /* NSArray+XY.m */; };
 		57F509B81AF92BF7000E733F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57F509B71AF92BF7000E733F /* README.md */; };
 		57F690DA17E6CE7B00D9A437 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */; };
 		57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F690DC17E6CFBF00D9A437 /* DatabaseVC.m */; };
@@ -383,6 +384,7 @@
 		57EC21501AFBC35100179FB5 /* XYQuick_UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYQuick_UI.m; sourceTree = "<group>"; };
 		57EC21511AFBC35100179FB5 /* XYQuick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick.h; sourceTree = "<group>"; };
 		57EC21521AFBC35100179FB5 /* XYQuick_Predefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick_Predefine.h; sourceTree = "<group>"; };
+		57EC218D1AFBCE7A00179FB5 /* NSArray+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XY.m"; sourceTree = "<group>"; };
 		57F509B71AF92BF7000E733F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		57F690DB17E6CFBF00D9A437 /* DatabaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseVC.h; sourceTree = "<group>"; };
@@ -697,6 +699,7 @@
 			isa = PBXGroup;
 			children = (
 				57EC20CF1AFBC35100179FB5 /* NSArray+XY.h */,
+				57EC218D1AFBCE7A00179FB5 /* NSArray+XY.m */,
 				57EC20D11AFBC35100179FB5 /* NSData+XY.h */,
 				57EC20D21AFBC35100179FB5 /* NSData+XY.m */,
 				57EC20D31AFBC35100179FB5 /* NSDate+XY.h */,
@@ -1133,6 +1136,7 @@
 				5708A9621AF8991A000607AB /* XYBaseView.m in Sources */,
 				57EC21891AFBC35100179FB5 /* XYTabBarController.m in Sources */,
 				57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */,
+				57EC218E1AFBCE7A00179FB5 /* NSArray+XY.m in Sources */,
 				57EC21551AFBC35100179FB5 /* NSDate+XY.m in Sources */,
 				577F732B1AF92DF30071FD0B /* RequestHelper.m in Sources */,
 				57EC21661AFBC35100179FB5 /* XYCommon.m in Sources */,
