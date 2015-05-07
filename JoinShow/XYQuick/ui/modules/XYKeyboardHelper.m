@@ -533,10 +533,6 @@
     
     if (self)
     {
-        //#ifndef __IPHONE_7_0
-        [self setSegmentedControlStyle:UISegmentedControlStyleBar];
-        //#endif
-        
         [self setMomentary:YES];
         [self addTarget:self action:@selector(segmentedControlHandler:) forControlEvents:UIControlEventValueChanged];
         
