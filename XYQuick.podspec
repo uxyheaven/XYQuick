@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|  
-  version            = "0.5.6"
+  version            = "0.5.7"
   s.name             = "XYQuick"  
   s.version          = version  
   s.summary          = "A quick develop utility on iOS."  
@@ -12,22 +12,22 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
 
   s.subspec 'core' do |ss|
-    core.source_files  = 'XYQuick/core/**/*'
+    ss.source_files  = 'XYQuick/core/**/*'
   end
 
   s.subspec 'debug' do |ss|
-    core.source_files  = 'XYQuick/debug/**/*'
+    ss.source_files  = 'XYQuick/debug/**/*'
   end
 
   s.subspec 'event' do |ss|
-    core.source_files  = 'XYQuick/event/**/*'
+    ss.source_files  = 'XYQuick/event/**/*'
   end
 
   s.subspec 'ui' do |ss|
-    core.source_files  = 'XYQuick/ui/**/*'
+    ss.source_files  = 'XYQuick/ui/**/*'
   end
 
   s.subspec 'header' do |ss|
-    core.source_files  = 'XYQuick/*'
+    ss.source_files  = 'XYQuick/*'
   end
 end
