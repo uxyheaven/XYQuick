@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|  
-  version            = "0.5.10"
+  version            = "0.5.11"
   s.name             = "XYQuick"  
   s.version          = version  
   s.summary          = "A quick develop utility on iOS."  
@@ -20,22 +20,17 @@ Pod::Spec.new do |s|
     ss.dependency 'XYQuick/header'
   end
 
-  s.subspec 'debug' do |ss|
-    ss.source_files  = 'XYQuick/debug/**/*'
+  s.subspec 'ui' do |ss|
+    ss.source_files  = 'XYQuick/ui/**/*'
     ss.dependency 'XYQuick/header'
     ss.dependency 'XYQuick/core'
   end
 
-  s.subspec 'event' do |ss|
+    s.subspec 'event' do |ss|
     ss.source_files  = 'XYQuick/event/**/*'
     ss.dependency 'XYQuick/header'
     ss.dependency 'XYQuick/core'
     ss.dependency 'XYQuick/ui'
   end
 
-  s.subspec 'ui' do |ss|
-    ss.source_files  = 'XYQuick/ui/**/*'
-    ss.dependency 'XYQuick/header'
-    ss.dependency 'XYQuick/core'
-  end
 end

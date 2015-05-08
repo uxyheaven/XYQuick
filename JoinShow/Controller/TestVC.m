@@ -599,7 +599,7 @@ if (1) { \
 - (void)clickStringCache:(id)sender
 {
     static int iKey = 0;
-    
+    /*
     XYObjectCache *cache = [XYObjectCache sharedInstance];
     [cache registerObjectClass:[NSString class]];
     NSString *key = [NSString stringWithFormat:@"%d", iKey];
@@ -617,6 +617,7 @@ if (1) { \
     [cache saveObject:str forKey:key];
     
     NSLogD(@"%@", str);
+     */
 }
 - (void)clickEmoji:(id)sender
 {

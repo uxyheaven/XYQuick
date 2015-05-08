@@ -10,8 +10,6 @@
 
 #import "XYMemoryCache.h"           // 内存缓存
 #import "XYFileCache.h"             // 文件缓存
-#import "XYObjectCache.h"           // 数据缓存
 
 #import "XYUserDefaults.h"          // UserDefaults
-#import "XYKeychain.h"              // Keychain
 #import "XYAutoCoding.h"            // 归档

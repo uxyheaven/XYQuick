@@ -30,11 +30,7 @@
 // Modules
 #import "XYPerformance.h"                   // 性能分析
 #import "XYDebugToy.h"                      // 一些debug用的小工具
-#import "XYUnitTest.h"                      // 单元测试
 
 // Extensions
 
 #pragma mark -
-@interface XYQuick_Debug : NSObject
-
-@end
