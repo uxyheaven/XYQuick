@@ -10,21 +10,38 @@
 
 // 职责链模式(chain of responsibility)
 #pragma mark - #define
-#define AS_SIGNAL( __name )					AS_STATIC_PROPERTY( __name )
-#define DEF_SIGNAL( __name )				DEF_STATIC_PROPERTY3( __name, @"signal", [self description] )
+#undef	AS_SIGNAL
+#define AS_SIGNAL( __name ) \
+        - (NSString *)__name; \
+        + (NSString *)__name;
 
+#undef	DEF_SIGNAL
+#define DEF_SIGNAL( __name )    \
+        - (NSString *)__name \
+        { \
+            return (NSString *)[[self class] __name]; \
+        } \
+        + (NSString *)__name \
+        { \
+            static NSString * __local = nil; \
+            if ( nil == __local ) \
+            { \
+                __local = [NSString stringWithFormat:@"%@.%@.%s", @"signal", [self description], #__name]; \
+            } \
+        return XY_RETAIN(__local); \
+}
 
 #undef	ON_SIGNAL
 #define ON_SIGNAL( __signal ) \
-- (void)handleUISignal:(XYUISignal *)__signal
+        - (void)handleUISignal:(XYUISignal *)__signal
 
 #undef	ON_SIGNAL2
 #define ON_SIGNAL2( __filter, __signal ) \
-- (void)handleUISignal_##__filter:(XYUISignal *)__signal
+        - (void)handleUISignal_##__filter:(XYUISignal *)__signal
 
 #undef	ON_SIGNAL3
 #define ON_SIGNAL3( __class, __name, __signal ) \
-- (void)handleUISignal_##__class##_##__name:(XYUISignal *)__signal
+        - (void)handleUISignal_##__class##_##__name:(XYUISignal *)__signal
 
 
 #pragma mark - XYUISignal : NSObject

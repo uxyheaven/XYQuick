@@ -79,98 +79,7 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
 
 /**************************************************************/
 // property
-#undef	AS_STATIC_PROPERTY
-#define AS_STATIC_PROPERTY( __name ) \
-- (NSString *)__name; \
-+ (NSString *)__name;
 
-#undef	DEF_STATIC_PROPERTY
-#define DEF_STATIC_PROPERTY( __name ) \
-- (NSString *)__name \
-{ \
-    return (NSString *)[[self class] __name]; \
-} \
-+ (NSString *)__name \
-{ \
-    static NSString * __local = nil; \
-    if ( nil == __local ) \
-    { \
-        __local = [NSString stringWithFormat:@"%s", #__name]; \
-    } \
-    return XY_RETAIN(__local); \
-}
-
-#undef	DEF_STATIC_PROPERTY2
-#define DEF_STATIC_PROPERTY2( __name, __prefix ) \
-- (NSString *)__name \
-{ \
-    return (NSString *)[[self class] __name]; \
-} \
-+ (NSString *)__name \
-{ \
-    static NSString * __local = nil; \
-    if ( nil == __local ) \
-    { \
-        __local = [NSString stringWithFormat:@"%@.%s", __prefix, #__name]; \
-    } \
-    return XY_RETAIN(__local); \
-}
-
-
-#undef	DEF_STATIC_PROPERTY3
-#define DEF_STATIC_PROPERTY3( __name, __prefix, __prefix2 ) \
-- (NSString *)__name \
-{ \
-    return (NSString *)[[self class] __name]; \
-} \
-+ (NSString *)__name \
-{ \
-    static NSString * __local = nil; \
-    if ( nil == __local ) \
-    { \
-        __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__name]; \
-    } \
-    return XY_RETAIN(__local); \
-}
-
-#undef	DEF_STATIC_PROPERTY4
-#define DEF_STATIC_PROPERTY4( __name, __value, __prefix, __prefix2 ) \
-- (NSString *)__name \
-{ \
-    return (NSString *)[[self class] __name]; \
-} \
-+ (NSString *)__name \
-{ \
-    static NSString * __local = nil; \
-    if ( nil == __local ) \
-    { \
-        __local = [NSString stringWithFormat:@"%@.%@.%s", __prefix, __prefix2, #__value]; \
-    } \
-    return XY_RETAIN(__local); \
-}
-
-#undef	AS_STATIC_PROPERTY_INT
-#define AS_STATIC_PROPERTY_INT( __name ) \
-- (NSInteger)__name; \
-+ (NSInteger)__name;
-
-#undef	DEF_STATIC_PROPERTY_INT
-#define DEF_STATIC_PROPERTY_INT( __name, __value ) \
-- (NSInteger)__name \
-{ \
-    return (NSInteger)[[self class] __name]; \
-} \
-+ (NSInteger)__name \
-{ \
-    return __value; \
-}
-
-
-#undef	AS_INT
-#define AS_INT	AS_STATIC_PROPERTY_INT
-
-#undef	DEF_INT
-#define DEF_INT	DEF_STATIC_PROPERTY_INT
 
 /**************************************************************/
 // No-ops for non-retaining objects.
@@ -209,7 +118,19 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
             dispatch_async(dispatch_get_main_queue(), block);\
     }
 /**************************************************************/
+// 链式调用
+#define AS_CHAIN_METHOD(__blockType, __methodName)  \
+        - (__blockType)UI;
 
+#define DEF_CHAIN_METHOD(__blockType, __methodName, __propertyName) \
+        - (__blockType)__methodName \
+        {   \
+            __blockType block = ^ id (id __propertyName){ \
+            self.__propertyName = __propertyName;  \
+            return self;    \
+        };  \
+            return block;   \
+        }
 /**************************************************************/
 #pragma mark -end
 /*
