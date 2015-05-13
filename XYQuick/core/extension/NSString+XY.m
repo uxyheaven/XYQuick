@@ -405,7 +405,6 @@ DUMMY_CLASS(NSString_XY);
                                                                     (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                     kCFStringEncodingUTF8 );
 	NSString * result = (NSString *)CFBridgingRelease(aCFString);
-    CFRelease(aCFString);
     
 	return result;
 }
