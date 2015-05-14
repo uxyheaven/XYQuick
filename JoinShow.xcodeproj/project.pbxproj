@@ -260,6 +260,8 @@
 		57DF99E0190AF5070036B85D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		57ECA4A31B04701000C47AF0 /* XYChainMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChainMethod.h; sourceTree = "<group>"; };
+		57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
 		57F509B71AF92BF7000E733F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		57F56EF51AFC86FD00298D7E /* NSArray+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XY.h"; sourceTree = "<group>"; };
 		57F56EF61AFC86FD00298D7E /* NSArray+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XY.m"; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 				57F56F371AFC86FD00298D7E /* event */,
 				57F56F431AFC86FD00298D7E /* ui */,
 				57F56F711AFC86FD00298D7E /* XYQuick.h */,
+				57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */,
 				57F56F721AFC86FD00298D7E /* XYQuick_Predefine.h */,
 			);
 			path = XYQuick;
@@ -732,6 +735,7 @@
 				57F56F231AFC86FD00298D7E /* XYCommon.h */,
 				57F56F241AFC86FD00298D7E /* XYCommon.m */,
 				57F56F251AFC86FD00298D7E /* XYCommonDefine.h */,
+				57ECA4A31B04701000C47AF0 /* XYChainMethod.h */,
 				57F56F261AFC86FD00298D7E /* XYFoundation.h */,
 				57F56F271AFC86FD00298D7E /* XYJSONHelper.h */,
 				57F56F281AFC86FD00298D7E /* XYJSONHelper.m */,

@@ -20,9 +20,13 @@
 #import "XYReachability.h"              // 网络可达性
 #import "XYBaseBuilder.h"               // 通用建造者
 
-#import "XYCache.h"                     // 缓存
+#import "XYCommonDefine.h"
+#import "XYCommon.h"                    // 待分解
 
+#import "XYCache.h"                     // 缓存
 #import "XYQuick_Debug.h"               // 测试
+
+#import "XYChainMethod.h"               // 链式方法调用
 
 // Extensions
 #import "NSObject+XY.h"
@@ -31,6 +35,9 @@
 #import "NSString+XY.h"
 #import "NSData+XY.h"
 #import "NSDate+XY.h"
+
+
+
 
 @interface XYQuick_Core : NSObject
 

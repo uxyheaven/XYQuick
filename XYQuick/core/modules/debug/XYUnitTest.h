@@ -18,7 +18,7 @@
 
 // 测试的方法
 #define	UXY_DESCRIBE( ... ) \
-        - (void) macro_concat( runTest_, __LINE__ )
+        - (void) metamacro_concat( runTest_, __LINE__ )
 
 #define UXY_REPEAT( __n ) \
         for ( int __i_##__LINE__ = 0; __i_##__LINE__ < __n; ++__i_##__LINE__ )

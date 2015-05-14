@@ -104,33 +104,21 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
 // 主线程下同步会造成死锁
 #undef dispatch_main_sync_safe
 #define dispatch_main_sync_safe(block)\
-    if ([NSThread isMainThread]) {\
-        block();\
-    } else {\
-        dispatch_sync(dispatch_get_main_queue(), block);\
-    }
+        if ([NSThread isMainThread]) {\
+            block();\
+        } else {\
+            dispatch_sync(dispatch_get_main_queue(), block);\
+        }
 
 #undef dispatch_main_async_safe
 #define dispatch_main_async_safe(block)\
-    if ([NSThread isMainThread]) {\
-        block();\
-    } else {\
+        if ([NSThread isMainThread]) {\
+            block();\
+        } else {\
             dispatch_async(dispatch_get_main_queue(), block);\
-    }
-/**************************************************************/
-// 链式调用
-#define AS_CHAIN_METHOD(__blockType, __methodName)  \
-        - (__blockType)UI;
-
-#define DEF_CHAIN_METHOD(__blockType, __methodName, __propertyName) \
-        - (__blockType)__methodName \
-        {   \
-            __blockType block = ^ id (id __propertyName){ \
-            self.__propertyName = __propertyName;  \
-            return self;    \
-        };  \
-            return block;   \
         }
+/**************************************************************/
+
 /**************************************************************/
 #pragma mark -end
 /*
