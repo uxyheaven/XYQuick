@@ -26,9 +26,9 @@
 
 - (void)setUxy_parameters:(id)anObject
 {
-    [self willChangeValueForKey:@"parameters"];
+    [self willChangeValueForKey:@"uxy_parameters"];
     [self uxy_retainAssociatedObject:anObject forKey:UIViewController_key_parameters];
-    [self didChangeValueForKey:@"parameters"];
+    [self didChangeValueForKey:@"uxy_parameters"];
 }
 
 - (void)uxy_pushVC:(NSString *)vcName

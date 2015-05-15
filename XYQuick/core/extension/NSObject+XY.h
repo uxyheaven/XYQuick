@@ -46,8 +46,8 @@
 
 @end
 
-#pragma mark - FlyweightTransmit
-@protocol FlyweightTransmit
+#pragma mark - UXYFlyweightTransmit
+@protocol UXYFlyweightTransmit
 
 @property (nonatomic, strong) id uxy_tempObject;
 

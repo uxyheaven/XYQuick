@@ -352,7 +352,7 @@ DUMMY_CLASS(NSObject_XY);
 
 @end
 
-#pragma mark - FlyweightTransmit
+#pragma mark - UXYFlyweightTransmit
 #undef	NSObject_key_tempObject
 #define NSObject_key_tempObject	"UXY.NSObject.tempObject"
 #undef	NSObject_key_objectDic
@@ -360,10 +360,10 @@ DUMMY_CLASS(NSObject_XY);
 #undef	NSObject_key_EventBlockDic
 #define NSObject_key_EventBlockDic	"UXY.NSObject.eventBlockDic"
 
-@interface NSObject (FlyweightTransmit)
+@interface NSObject (UXYFlyweightTransmit)
 @end
 
-@implementation NSObject (FlyweightTransmit)
+@implementation NSObject (UXYFlyweightTransmit)
 
 - (id)uxy_tempObject
 {
