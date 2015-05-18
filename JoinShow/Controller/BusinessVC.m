@@ -107,7 +107,7 @@
     RubyChinaNodeEntity *anObject = [[RubyChinaNodeEntity alloc] init];
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
-    NSString *str = [anObject XYJSONString];
+    NSString *str = [anObject uxy_jsonString];
 }
 
 
@@ -146,7 +146,7 @@
     UILabel *label = (UILabel *)[self.view viewWithTag:3 + 10000];
     label.textColor = [UIColor redColor];
     
-    self.model = [str toModels:[RubyChinaNodeEntity class]];
+    self.model = [str uxy_toModels:[RubyChinaNodeEntity class]];
     
     [self performSelector:@selector(refreshUI) withObject:nil afterDelay:1];
     
@@ -166,7 +166,7 @@
     label.textColor = [UIColor redColor];
     
     if (self.model && self.model.count > 0) {
-        NSString *str = [[self.model objectAtIndex:0] XYJSONString];
+        NSString *str = [[self.model objectAtIndex:0] uxy_jsonString];
     }
 }
 - (void)loadFromDBProcess{

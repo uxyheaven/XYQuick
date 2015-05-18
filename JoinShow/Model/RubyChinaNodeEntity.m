@@ -7,7 +7,7 @@
 //
 
 #import "RubyChinaNodeEntity.h"
-#import "XYJSONHelper.h"
+#import "XYJsonHelper.h"
 
 @implementation RubyChinaNodeEntity
 - (void)dealloc
@@ -20,7 +20,7 @@
 + (void)initialize
 {
     if (self == [RubyChinaNodeEntity class]){
-        [self bindXYJSONKey:@"id" toProperty:@"nodeID"];
+        [self uxy_bindJsonKey:@"id" toProperty:@"nodeID"];
     }
 }
 

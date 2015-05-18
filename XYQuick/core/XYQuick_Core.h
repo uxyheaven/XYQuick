@@ -13,7 +13,7 @@
 #import "XYTimer.h"                     // 定时器
 #import "XYSystemInfo.h"                // 系统信息
 #import "XYSandbox.h"                   // 沙箱
-#import "XYJSONHelper.h"                // json to object , object to json
+#import "XYJsonHelper.h"                // json to object , object to json
 #import "XYAOP.h"                       // aop
 #import "XYRuntime.h"                   // runtime
 #import "XYBlackMagic.h"                // 黑魔法

@@ -12,7 +12,7 @@
 * XYSandbox 	// 沙箱路径
 * XYSystemInfo //	系统信息
 * cache         // 对象缓存,包含内存缓存, 文件缓存, UserDefaults
-* XYJSONHelper 	// json to object , object to json
+* XYJsonHelper 	// json to object , object to json
 * XYAOP // 面向切面编程
 
 #### UI

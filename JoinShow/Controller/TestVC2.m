@@ -176,7 +176,7 @@
 }";
     NSLogD(@"%@", json);
     
-    JsonTestEntity *objc = [json toModel:[JsonTestEntity class]];
+    JsonTestEntity *objc = [json uxy_toModel:[JsonTestEntity class]];
     NSLogD(@"%@", objc);
 }
 
