@@ -19,6 +19,7 @@
 #import "XYBlackMagic.h"                // 黑魔法
 #import "XYReachability.h"              // 网络可达性
 #import "XYBaseBuilder.h"               // 通用建造者
+#import "XYUnitTest.h"                  // 单元测试
 
 #import "XYCommonDefine.h"
 #import "XYCommon.h"                    // 待分解
