@@ -32,8 +32,6 @@
 #define IOS4_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"4.0"]
 
 
-
-
 @interface XYSystemInfo : NSObject __AS_SINGLETON
 
 #pragma mark- app,设备相关

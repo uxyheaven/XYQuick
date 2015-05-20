@@ -8,6 +8,10 @@
 
 #import "XYSystemInfo.h"
 
+@interface XYSystemInfo()
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
+@end
+
 @implementation XYSystemInfo __DEF_SINGLETON
 
 - (NSString *)osVersion
@@ -503,9 +507,13 @@
 }
 
 #pragma mark- 启动相关
-- (NSUserDefaults *)__userDefaults
+- (NSUserDefaults *)userDefaults
 {
-   return [[NSUserDefaults alloc] initWithSuiteName:@"firstrun"];
+    if (_userDefaults == nil)
+    {
+        _userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"firstrun"];
+    }
+    return _userDefaults;
 }
 
 - (NSString *)__eventKeyWithUser:(NSString *)user event:(NSString *)event
@@ -519,34 +527,27 @@
 
 - (BOOL)isFirstRunWithUser:(NSString *)user event:(NSString *)event
 {
-    return ([self.__userDefaults valueForKey:[self __eventKeyWithUser:user event:event]] == nil);
+    return ([self.userDefaults valueForKey:[self __eventKeyWithUser:user event:event]] == nil);
 }
 
 - (BOOL)isFirstRunAtCurrentVersionWithUser:(NSString *)user event:(NSString *)event
 {
-    NSString *value = [self.__userDefaults valueForKey:[self __eventKeyWithUser:user event:event]];
+    NSString *value = [self.userDefaults valueForKey:[self __eventKeyWithUser:user event:event]];
     
-    if (value)
-    {
-        return YES;
-    }
-    else
-    {
-        return [value isEqualToString:[self bundleVersion]];
-    }
+    return (value != nil) ?: [value isEqualToString:[self bundleVersion]];
 }
 
 - (void)resetFirstRun:(BOOL)isFirst user:(NSString *)user event:(NSString *)event
 {
     if (isFirst)
     {
-        [self.__userDefaults removeObjectForKey:[self __eventKeyWithUser:user event:event]];
+        [self.userDefaults removeObjectForKey:[self __eventKeyWithUser:user event:event]];
     }
     else
     {
-        [self.__userDefaults setObject:[self bundleVersion] forKey:[self __eventKeyWithUser:user event:event]];
+        [self.userDefaults setObject:[self bundleVersion] forKey:[self __eventKeyWithUser:user event:event]];
     }
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.userDefaults synchronize];
 }
 @end
