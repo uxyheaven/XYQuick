@@ -86,11 +86,6 @@
 - (NSString *)uxy_substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset;
 - (NSString *)uxy_substringFromIndex:(NSUInteger)from untilCharset:(NSCharacterSet *)charset endOffset:(NSUInteger *)endOffset;
 
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-- (CGSize)uxy_sizeWithFont:(UIFont *)font byWidth:(CGFloat)width;
-- (CGSize)uxy_sizeWithFont:(UIFont *)font byHeight:(CGFloat)height;
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-
 + (NSString *)uxy_fromResource:(NSString *)resName;
 
 // 中英文混排，获取字符串长度

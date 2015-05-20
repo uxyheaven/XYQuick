@@ -85,15 +85,9 @@
 - (BOOL)isOsVersionOrLater:(NSString *)ver;
 - (BOOL)isOsVersionEqualTo:(NSString *)ver;
 
-#pragma mark- 启动相关
-- (BOOL)isFirstRun;
-- (BOOL)isFirstRunCurrentVersion;
-- (void)setFirstRun;
-- (void)setNotFirstRun;
-
-- (BOOL)isFirstRunWithUser:(NSString *)user;
-- (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user;
-- (void)setFirstRunWithUser:(NSString *)user;
-- (void)setNotFirstRunWithUser:(NSString *)user;
+#pragma mark- 第一次启动相关
+- (BOOL)isFirstRunWithUser:(NSString *)user event:(NSString *)event;
+- (BOOL)isFirstRunAtCurrentVersionWithUser:(NSString *)user event:(NSString *)event;
+- (void)resetFirstRun:(BOOL)isFirst user:(NSString *)user event:(NSString *)event;
 
 @end

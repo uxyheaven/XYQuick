@@ -669,28 +669,12 @@ DUMMY_CLASS(NSString_XY);
 	}
 }
 
-#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-- (CGSize)uxy_sizeWithFont:(UIFont *)font byWidth:(CGFloat)width
-{
-	return [self sizeWithFont:font
-			constrainedToSize:CGSizeMake(width, 999999.0f)
-				lineBreakMode:UILineBreakModeWordWrap];
-}
-
-- (CGSize)uxy_sizeWithFont:(UIFont *)font byHeight:(CGFloat)height
-{
-	return [self sizeWithFont:font
-			constrainedToSize:CGSizeMake(999999.0f, height)
-				lineBreakMode:UILineBreakModeWordWrap];
-}
-#endif	// #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-
 + (NSString *)uxy_fromResource:(NSString *)resName
 {
-	NSString *	extension = [resName pathExtension];
-	NSString *	fullName = [resName substringToIndex:(resName.length - extension.length - 1)];
+	NSString *extension = [resName pathExtension];
+	NSString *fullName = [resName substringToIndex:(resName.length - extension.length - 1)];
     
-	NSString * path = [[NSBundle mainBundle] pathForResource:fullName ofType:extension];
+	NSString *path = [[NSBundle mainBundle] pathForResource:fullName ofType:extension];
 	return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 }
 

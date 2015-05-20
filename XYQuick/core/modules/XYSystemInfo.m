@@ -503,61 +503,50 @@
 }
 
 #pragma mark- 启动相关
-- (float)floatVersion
+- (NSUserDefaults *)__userDefaults
 {
-    return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] floatValue];
+   return [[NSUserDefaults alloc] initWithSuiteName:@"firstrun"];
 }
 
-- (NSString *)xyVersionKeyWithUser:(NSString *)user
+- (NSString *)__eventKeyWithUser:(NSString *)user event:(NSString *)event
 {
-    return (user.length > 0) ? [NSString stringWithFormat:@"XY_version_%@", user] : @"XY_version";
-}
-
-- (BOOL)isFirstRun
-{
-    return [self isFirstRunWithUser:nil];
-}
-
-- (BOOL)isFirstRunCurrentVersion
-{
-    return [self isFirstRunCurrentVersionWithUser:nil];
-}
-
-- (void)setFirstRun
-{
-    [self setFirstRunWithUser:nil];
-}
-
-- (void)setNotFirstRun
-{
-    [self setNotFirstRunWithUser:nil];
+    NSString *strUser  = user ?: @"uxyz";
+    NSString *strEvent = event ?: @"uxye";
+    
+    return [NSString stringWithFormat:@"uxy_ver_%@_%@", strUser, strEvent];
 }
 
 
-- (BOOL)isFirstRunWithUser:(NSString *)user
+- (BOOL)isFirstRunWithUser:(NSString *)user event:(NSString *)event
 {
-    return ([[NSUserDefaults standardUserDefaults] valueForKey:[self xyVersionKeyWithUser:user]] == nil);
+    return ([self.__userDefaults valueForKey:[self __eventKeyWithUser:user event:event]] == nil);
 }
-- (BOOL)isFirstRunCurrentVersionWithUser:(NSString *)user
+
+- (BOOL)isFirstRunAtCurrentVersionWithUser:(NSString *)user event:(NSString *)event
 {
-    if ([self isFirstRun])
+    NSString *value = [self.__userDefaults valueForKey:[self __eventKeyWithUser:user event:event]];
+    
+    if (value)
     {
         return YES;
     }
     else
     {
-        return [[[NSUserDefaults standardUserDefaults] objectForKey:[self xyVersionKeyWithUser:user]] isEqualToString:[self bundleVersion]];
+        return [value isEqualToString:[self bundleVersion]];
     }
 }
-- (void)setFirstRunWithUser:(NSString *)user
-{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self xyVersionKeyWithUser:user]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-- (void)setNotFirstRunWithUser:(NSString *)user
-{
-    [[NSUserDefaults standardUserDefaults] setObject:[self bundleVersion] forKey:[self xyVersionKeyWithUser:user]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
+- (void)resetFirstRun:(BOOL)isFirst user:(NSString *)user event:(NSString *)event
+{
+    if (isFirst)
+    {
+        [self.__userDefaults removeObjectForKey:[self __eventKeyWithUser:user event:event]];
+    }
+    else
+    {
+        [self.__userDefaults setObject:[self bundleVersion] forKey:[self __eventKeyWithUser:user event:event]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end
