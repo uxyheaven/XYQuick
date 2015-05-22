@@ -40,7 +40,7 @@
 {
     for (int i = 0; i < indent; i++) [outstring appendString:@"--"];
     
-    [outstring appendFormat:@"[%2d] %@\n tag:%ld frame:%@\n", indent, [[aView class] description], aView.tag, NSStringFromCGRect(aView.frame)];
+    [outstring appendFormat:@"[%2d] %@\n tag:%ld frame:%@\n", indent, [[aView class] description], (long)aView.tag, NSStringFromCGRect(aView.frame)];
     
     for (UIView *view in [aView subviews]) [self dumpView:view atIndent:indent + 1 into:outstring];
 }

@@ -9,8 +9,20 @@
 
 #import "UIImage+XY.h"
 #import "XYQuick_Predefine.h"
-#import "NSString+XY.h"
+
 #import "XYSystemInfo.h"
+#import "XYMemoryCache.h"
+
+#import "NSString+XY.h"
+
+
+@interface XYImageCache : XYMemoryCache __AS_SINGLETON
+
+@end
+
+@implementation XYImageCache __DEF_SINGLETON
+
+@end
 
 DUMMY_CLASS(UIImage_XY);
 
@@ -129,6 +141,74 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     
     return nil;
 }
+
++ (UIImage *)imageNamed:(NSString *)name useCache:(BOOL)useCache
+{
+    if (YES == useCache)
+    {
+        if (XY_USE_SYSTEM_IMAGE_CACHE)
+        {
+            
+            return [UIImage imageNamed:name];
+        }
+        else
+        {
+            UIImage * image = [[XYImageCache sharedInstance] objectForKey:[NSString stringWithFormat:@"Application-%@",name]];
+            if (image)
+            {
+                return image;
+                
+            }
+            else
+            {
+                image = [UIImage imageNamed:name useCache:NO];
+                if (image)
+                {
+                    [[XYImageCache sharedInstance] setObject:image forKey:[NSString stringWithFormat:@"Application-%@",name]];
+                }
+                
+                return image;
+            }
+        }
+    }
+    else
+    {
+        if (![name hasSuffix:@".png"] && ![name hasSuffix:@".jpg"])
+        {
+            name = [name stringByAppendingString:@".png"];
+        }
+        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:nil];
+        if (!path)
+        {
+            NSArray *tmp = [name componentsSeparatedByString:@"."];
+            if (tmp.count > 0)
+            {
+                NSMutableString *string = [[NSMutableString alloc] initWithString:[tmp objectAtIndex:0]];
+                [string appendString:@"@3x"];
+                if (tmp.count == 2)
+                {
+                    [string appendFormat:@".%@", [tmp objectAtIndex:1]];
+                }
+                path = [[NSBundle mainBundle] pathForResource:string ofType:nil];
+                if (!path)
+                {
+                    NSMutableString * string = [[NSMutableString alloc] initWithString:[tmp objectAtIndex:0]];
+                    [string appendString:@"@2x"];
+                    if (tmp.count == 2)
+                    {
+                        [string appendFormat:@".%@", [tmp objectAtIndex:1]];
+                    }
+                    path = [[NSBundle mainBundle] pathForResource:string ofType:nil];
+                }
+            }
+        }
+        
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        image = [UIImage imageWithCGImage:image.CGImage scale:3 orientation:image.imageOrientation];
+        return image;
+    }
+}
+
 //等比例缩放
 - (UIImage *)scaleToSize:(CGSize)size
 {

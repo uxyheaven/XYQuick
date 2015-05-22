@@ -74,6 +74,7 @@
 		57DF99E1190AF5070036B85D /* icon_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DF190AF5070036B85D /* icon_google.png */; };
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
+		57EA863C1B0EDD7600D3A592 /* XYFlyweightTransmit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */; };
 		57F509B81AF92BF7000E733F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57F509B71AF92BF7000E733F /* README.md */; };
 		57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF61AFC86FD00298D7E /* NSArray+XY.m */; };
 		57F56F741AFC86FD00298D7E /* NSData+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF81AFC86FD00298D7E /* NSData+XY.m */; };
@@ -260,6 +261,8 @@
 		57DF99E0190AF5070036B85D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFlyweightTransmit.h; sourceTree = "<group>"; };
+		57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFlyweightTransmit.m; sourceTree = "<group>"; };
 		57ECA4A31B04701000C47AF0 /* XYChainMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChainMethod.h; sourceTree = "<group>"; };
 		57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
 		57F509B71AF92BF7000E733F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -807,6 +810,8 @@
 				57F56F3E1AFC86FD00298D7E /* XYObserver.m */,
 				57F56F3F1AFC86FD00298D7E /* XYUISignal.h */,
 				57F56F401AFC86FD00298D7E /* XYUISignal.m */,
+				57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */,
+				57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -1072,6 +1077,7 @@
 				5789228E1859A3040005CC27 /* Test1Model.m in Sources */,
 				57F56FA21AFC86FD00298D7E /* XYAnimate.m in Sources */,
 				57F56F771AFC86FD00298D7E /* NSNull+XY.m in Sources */,
+				57EA863C1B0EDD7600D3A592 /* XYFlyweightTransmit.m in Sources */,
 				57F56F801AFC86FD00298D7E /* XYDebugToy.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
 				575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */,

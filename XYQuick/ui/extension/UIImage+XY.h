@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreMedia/CoreMedia.h>
 
+#define XY_USE_SYSTEM_IMAGE_CACHE NO
 /**************************************************************/
 // UIImage
     
@@ -18,6 +19,10 @@
 
 // used: imageWithContentsOfFile 自动带有2x 3x等后缀
 + (UIImage *)imageWithFileName:(NSString *)name;
+
+// todo
+// 加载图片,自己控制释放用缓存
+//+ (UIImage *)imageNamed:(NSString *)name useCache:(BOOL)useCache;
 
 - (UIImage *)transprent;
 
