@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "57B3000B177AD9BC00775FC9"
-               BuildableName = "JoinShowTests.octest"
+               BuildableName = "JoinShowTests.xctest"
                BlueprintName = "JoinShowTests"
                ReferencedContainer = "container:JoinShow.xcodeproj">
             </BuildableReference>

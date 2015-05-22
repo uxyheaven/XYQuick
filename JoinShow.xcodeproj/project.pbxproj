@@ -52,7 +52,6 @@
 		57AE2ED418D2AA8C009F0481 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 57AE2ED318D2AA8C009F0481 /* image.png */; };
 		57B08683193046C800D2B26D /* user_currentstandings.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B08682193046C800D2B26D /* user_currentstandings.png */; };
 		57B30000177AD9BC00775FC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */; };
-		57B3000E177AD9BC00775FC9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */; };
 		57B3000F177AD9BC00775FC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3FFE9177AD9BC00775FC9 /* UIKit.framework */; };
 		57B30010177AD9BC00775FC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B3FFEB177AD9BC00775FC9 /* Foundation.framework */; };
 		57B30018177AD9BC00775FC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57B30016177AD9BC00775FC9 /* InfoPlist.strings */; };
@@ -230,7 +229,6 @@
 		57AE2ED318D2AA8C009F0481 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		57B08682193046C800D2B26D /* user_currentstandings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_currentstandings.png; sourceTree = "<group>"; };
 		57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoinShowTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		57B30015177AD9BC00775FC9 /* JoinShowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoinShowTests-Info.plist"; sourceTree = "<group>"; };
 		57B30017177AD9BC00775FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		57B30019177AD9BC00775FC9 /* JoinShowTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinShowTests.h; sourceTree = "<group>"; };
@@ -408,7 +406,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57B3000E177AD9BC00775FC9 /* SenTestingKit.framework in Frameworks */,
 				57B3000F177AD9BC00775FC9 /* UIKit.framework in Frameworks */,
 				57B30010177AD9BC00775FC9 /* Foundation.framework in Frameworks */,
 			);
@@ -626,7 +623,6 @@
 				57BE89B817AA525200FCD864 /* AVFoundation.framework */,
 				57B3FFE9177AD9BC00775FC9 /* UIKit.framework */,
 				57B3FFEB177AD9BC00775FC9 /* Foundation.framework */,
-				57B3000D177AD9BC00775FC9 /* SenTestingKit.framework */,
 				72F378355FAF65C8EDCF5028 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -911,7 +907,7 @@
 			name = JoinShowTests;
 			productName = JoinShowTests;
 			productReference = 57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		57B3FFE5177AD9BC00775FC9 /* JoinShow */ = {
 			isa = PBXNativeTarget;
@@ -938,7 +934,7 @@
 		57B3FFDE177AD9BC00775FC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0630;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Heaven;
 				TargetAttributes = {
@@ -1300,13 +1296,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JoinShow/JoinShow-Prefix.pch";
 				INFOPLIST_FILE = "JoinShowTests/JoinShowTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1318,13 +1314,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JoinShow/JoinShow-Prefix.pch";
 				INFOPLIST_FILE = "JoinShowTests/JoinShowTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
