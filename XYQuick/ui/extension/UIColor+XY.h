@@ -10,8 +10,8 @@
 
 /**************************************************************/
 //  RGB颜色
-#define kRGB(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
-#define UIColorFromHEX(hexValue) [UIColor colorFromHex:hexValue]
+#define XY_UIColorFromRGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define XY_UIColorFromHEXWithAlpha(__hex, __alpha) [UIColor colorFromHex:__hex alpha:__alpha]
 
 @interface UIColor (XY)
 
@@ -22,7 +22,7 @@
 + (instancetype)colorFromHexString:(NSString *)hexString;
 
 // 返回一个十六进制表示的颜色: 0xFF0000
-+ (instancetype)colorFromHex:(int)hex;
++ (instancetype)colorFromHex:(NSInteger)hex alpha:(CGFloat)alpha;
 
 // 返回颜色的十六进制string
 - (NSString *)hexString;
