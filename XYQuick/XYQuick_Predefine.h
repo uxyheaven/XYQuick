@@ -108,28 +108,24 @@
 // 单例模式
 #undef	__AS_SINGLETON
 #define __AS_SINGLETON    \
-        + (instancetype)sharedInstance;
-//+ (void) purgeSharedInstance;
-
-#undef	DEF_SINGLETON
-#define DEF_SINGLETON( __class ) \
-        + (instancetype)sharedInstance \
-        { \
-            static dispatch_once_t once; \
-            static id __singleton__; \
-            dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
-            return __singleton__; \
-        }
+        + (instancetype)sharedInstance; \
+        + (void)purgeSharedInstance;
 
 #undef	__DEF_SINGLETON
 #define __DEF_SINGLETON \
+        static dispatch_once_t __singletonToken;     \
+        static id __singleton__;    \
         + (instancetype)sharedInstance \
         { \
-            static dispatch_once_t once; \
-            static id __singleton__; \
-            dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } ); \
+            dispatch_once( &__singletonToken, ^{ __singleton__ = [[self alloc] init]; } ); \
             return __singleton__; \
+        }   \
+        + (void)purgeSharedInstance \
+        {   \
+            __singleton__ = nil;    \
+            __singletonToken = 0; \
         }
+
 
 // 执行一次
 #undef	XY_ONCE_BEGIN

@@ -8,8 +8,6 @@
 
 #import "Test1Model.h"
 
-@implementation Test1Model
-
-DEF_SINGLETON(Test1Model)
+@implementation Test1Model __DEF_SINGLETON
 
 @end
