@@ -61,7 +61,6 @@
 #if (1 == __XY_DEBUG_SHOWBORDER__)
 // uiview点击时 加边框
 @interface UIWindow(XYDebug)
-+ (void)hookSendEvent;
 @end
 
 

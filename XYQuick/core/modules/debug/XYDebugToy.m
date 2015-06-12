@@ -66,8 +66,8 @@
 
 @interface XYDebug()
 
-@property (nonatomic, readonly) int64_t				manualBytes;
-@property (nonatomic, readonly) NSMutableArray *	manualBlocks;
+@property (nonatomic, readonly) int64_t manualBytes;
+@property (nonatomic, strong) NSMutableArray * manualBlocks;
 @end
 
 @implementation XYDebug __DEF_SINGLETON
@@ -150,7 +150,7 @@
         if ( block )
         {
             _manualBytes += 50 * M;
-            [_manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
+            [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
         }
         else
         {
@@ -161,13 +161,13 @@
 
 - (void)freeAll
 {
-    for ( NSNumber * block in _manualBlocks )
+    for ( NSNumber * block in self.manualBlocks )
     {
         void * ptr = (void *)[block unsignedLongLongValue];
         NSZoneFree( NSDefaultMallocZone(), ptr );
     }
     
-    [_manualBlocks removeAllObjects];
+    [self.manualBlocks removeAllObjects];
 }
 
 - (void)alloc50M
@@ -181,22 +181,27 @@
     if ( block )
     {
         _manualBytes += 50 * M;
-        [_manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
+        [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
     }
 }
 
 - (void)free50M
 {
-    NSNumber * block = [_manualBlocks lastObject];
+    NSNumber * block = [self.manualBlocks lastObject];
     if ( block )
     {
         void * ptr = (void *)[block unsignedLongLongValue];
         NSZoneFree( NSDefaultMallocZone(), ptr );
         
-        [_manualBlocks removeLastObject];
+        [self.manualBlocks removeLastObject];
     }
 }
 
+#pragma mark - get set
+- (NSMutableArray *)manualBlocks
+{
+    return _manualBlocks ?: (_manualBlocks = [@[] mutableCopy], _manualBlocks);
+}
 
 @end
 

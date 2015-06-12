@@ -228,7 +228,7 @@
 		57AC6F681845C630003B0817 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		57AE2ED318D2AA8C009F0481 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		57B08682193046C800D2B26D /* user_currentstandings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_currentstandings.png; sourceTree = "<group>"; };
-		57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoinShowTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57B3000C177AD9BC00775FC9 /* JoinShowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoinShowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B30015177AD9BC00775FC9 /* JoinShowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoinShowTests-Info.plist"; sourceTree = "<group>"; };
 		57B30017177AD9BC00775FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		57B30019177AD9BC00775FC9 /* JoinShowTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinShowTests.h; sourceTree = "<group>"; };
@@ -603,7 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				57B3FFE6177AD9BC00775FC9 /* JoinShow.app */,
-				57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */,
+				57B3000C177AD9BC00775FC9 /* JoinShowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -906,7 +906,7 @@
 			);
 			name = JoinShowTests;
 			productName = JoinShowTests;
-			productReference = 57B3000C177AD9BC00775FC9 /* JoinShowTests.octest */;
+			productReference = 57B3000C177AD9BC00775FC9 /* JoinShowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		57B3FFE5177AD9BC00775FC9 /* JoinShow */ = {
