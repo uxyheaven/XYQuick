@@ -57,9 +57,9 @@
 
 #pragma mark - XYDebug
 
-#define K	(1024)
-#define M	(K * 1024)
-#define G	(M * 1024)
+#define XY_KB	(1024)
+#define XY_MB	(XY_KB * 1024)
+#define XY_GB	(XY_MB * 1024)
 
 #undef	MAX_CALLSTACK_DEPTH
 #define MAX_CALLSTACK_DEPTH	(64)
@@ -138,18 +138,14 @@
     
     for ( ;; )
     {
-        if ( _manualBytes + 50 * M >= total )
+        if ( _manualBytes + 50 * XY_MB >= total )
             break;
         
-        void * block = NSZoneCalloc( NSDefaultMallocZone(), 50, M );
-        if ( nil == block )
-        {
-            block = NSZoneMalloc( NSDefaultMallocZone(), 50 * M );
-        }
+        void *block = malloc(50 * XY_MB);
         
         if ( block )
         {
-            _manualBytes += 50 * M;
+            _manualBytes += 50 * XY_MB;
             [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
         }
         else
@@ -161,10 +157,10 @@
 
 - (void)freeAll
 {
-    for ( NSNumber * block in self.manualBlocks )
+    for ( NSNumber *block in self.manualBlocks )
     {
-        void * ptr = (void *)[block unsignedLongLongValue];
-        NSZoneFree( NSDefaultMallocZone(), ptr );
+        void *ptr = (void *)[block unsignedLongLongValue];
+        free(ptr);
     }
     
     [self.manualBlocks removeAllObjects];
@@ -172,26 +168,21 @@
 
 - (void)alloc50M
 {
-    void * block = NSZoneCalloc( NSDefaultMallocZone(), 50, M );
-    if ( nil == block )
-    {
-        block = NSZoneMalloc( NSDefaultMallocZone(), 50 * M );
-    }
-    
+    void *block = malloc(50 * XY_MB);
     if ( block )
     {
-        _manualBytes += 50 * M;
+        _manualBytes += 50 * XY_MB;
         [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
     }
 }
 
 - (void)free50M
 {
-    NSNumber * block = [self.manualBlocks lastObject];
+    NSNumber *block = [self.manualBlocks lastObject];
     if ( block )
     {
-        void * ptr = (void *)[block unsignedLongLongValue];
-        NSZoneFree( NSDefaultMallocZone(), ptr );
+        void *ptr = (void *)[block unsignedLongLongValue];
+        free(ptr);
         
         [self.manualBlocks removeLastObject];
     }
