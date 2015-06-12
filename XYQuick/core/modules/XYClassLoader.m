@@ -32,7 +32,7 @@
         {
             fprintf( stderr, "  Loading class '%s'\n", [[classType description] UTF8String] );
             
-            NSMethodSignature * signature = [classType methodSignatureForSelector:@selector(classAutoLoad)];
+            NSMethodSignature * signature = [classType methodSignatureForSelector:@selector(uxy_classAutoLoad)];
             NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
             
             [invocation setTarget:classType];
