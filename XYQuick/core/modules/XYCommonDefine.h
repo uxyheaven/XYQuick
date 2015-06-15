@@ -118,6 +118,9 @@ static __inline__ CGPoint CGRectCenter( CGRect rect ) {
             dispatch_async(dispatch_get_main_queue(), block);\
         }
 /**************************************************************/
+// 循环跳出
+#define XY_LOOP_LIMIT_( __maxCount )    \
+        { NSUInteger __xy_count; if (__xy_count++ > __maxCount) { break; } }
 
 /**************************************************************/
 #pragma mark -end
