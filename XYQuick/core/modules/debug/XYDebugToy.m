@@ -60,6 +60,7 @@
 #define XY_KB	(1024)
 #define XY_MB	(XY_KB * 1024)
 #define XY_GB	(XY_MB * 1024)
+#define XYDebug_memory_step 20
 
 #undef	MAX_CALLSTACK_DEPTH
 #define MAX_CALLSTACK_DEPTH	(64)
@@ -80,6 +81,7 @@
         NSLog(@"%@", callstack);
     }
 }
+
 + (NSArray *)callstack:(NSUInteger)depth
 {
     NSMutableArray * array = [[NSMutableArray alloc] init];
@@ -130,22 +132,22 @@
 #endif
 }
 
-- (void)allocAll
+- (void)allocAllMemory
 {
-    NSProcessInfo *		progress = [NSProcessInfo processInfo];
-    unsigned long long	total = [progress physicalMemory];
+    NSProcessInfo *progress  = [NSProcessInfo processInfo];
+    unsigned long long total = [progress physicalMemory];
     //	NSUInteger			total = NSRealMemoryAvailable();
     
     for ( ;; )
     {
-        if ( _manualBytes + 50 * XY_MB >= total )
+        if ( _manualBytes + XYDebug_memory_step * XY_MB >= total )
             break;
         
-        void *block = malloc(50 * XY_MB);
+        void *block = malloc(XYDebug_memory_step * XY_MB);
         
         if ( block )
         {
-            _manualBytes += 50 * XY_MB;
+            _manualBytes += XYDebug_memory_step * XY_MB;
             [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
         }
         else
@@ -155,7 +157,7 @@
     }
 }
 
-- (void)freeAll
+- (void)freeAllMemory
 {
     for ( NSNumber *block in self.manualBlocks )
     {
@@ -166,17 +168,17 @@
     [self.manualBlocks removeAllObjects];
 }
 
-- (void)alloc50M
+- (void)allocMemory:(NSInteger)MB
 {
-    void *block = malloc(50 * XY_MB);
+    void *block = malloc(MB * XY_MB);
     if ( block )
     {
-        _manualBytes += 50 * XY_MB;
+        _manualBytes += MB * XY_MB;
         [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
     }
 }
 
-- (void)free50M
+- (void)freeLastMemory
 {
     NSNumber *block = [self.manualBlocks lastObject];
     if ( block )

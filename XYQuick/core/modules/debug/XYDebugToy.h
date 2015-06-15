@@ -44,15 +44,15 @@
 @interface XYDebug : NSObject __AS_SINGLETON
 
 + (NSArray *)callstack:(NSUInteger)depth;
-
 + (void)printCallstack:(NSUInteger)depth;
+
 + (void)breakPoint;
 
-- (void)allocAll;
-- (void)freeAll;
-
-- (void)alloc50M;
-- (void)free50M;
+// memory
+- (void)allocAllMemory;
+- (void)freeAllMemory;
+- (void)allocMemory:(NSInteger)MB;
+- (void)freeLastMemory;
 
 @end;
 
