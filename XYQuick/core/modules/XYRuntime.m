@@ -8,9 +8,7 @@
 
 #import "XYRuntime.h"
 
-
 @implementation XYRuntime
-
 
 + (void)swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
 {
@@ -92,9 +90,57 @@
     return methodNames;
 }
 
++ (NSArray *)uxy_methodsUntilClass:(Class)baseClass
+{
+    NSMutableArray * methodNames = [[NSMutableArray alloc] init];
+    
+    Class thisClass = self;
+    
+    baseClass = baseClass ?: [NSObject class];
+    
+    while ( NULL != thisClass )
+    {
+        unsigned int	methodCount = 0;
+        Method *		methodList = class_copyMethodList( thisClass, &methodCount );
+        
+        for ( unsigned int i = 0; i < methodCount; ++i )
+        {
+            SEL selector = method_getName( methodList[i] );
+            if ( selector )
+            {
+                const char * cstrName = sel_getName(selector);
+                if ( NULL == cstrName )
+                    continue;
+                
+                NSString * selectorName = [NSString stringWithUTF8String:cstrName];
+                if ( NULL == selectorName )
+                    continue;
+                
+                [methodNames addObject:selectorName];
+            }
+        }
+        
+        free( methodList );
+        
+        thisClass = class_getSuperclass( thisClass );
+        
+        if ( nil == thisClass || baseClass == thisClass )
+        {
+            break;
+        }
+    }
+    
+    return methodNames;
+}
+
 + (NSArray *)uxy_methodsWithPrefix:(NSString *)prefix
 {
-    NSArray *methods = [self uxy_methods];
+    return [self uxy_methodsWithPrefix:prefix untilClass:[self superclass]];
+}
+
++ (NSArray *)uxy_methodsWithPrefix:(NSString *)prefix untilClass:(Class)baseClass
+{
+    NSArray * methods = [self uxy_methodsUntilClass:baseClass];
     
     if ( nil == methods || 0 == methods.count )
     {
@@ -106,9 +152,9 @@
         return methods;
     }
     
-    NSMutableArray *result = [[NSMutableArray alloc] init];
+    NSMutableArray * result = [[NSMutableArray alloc] init];
     
-    for ( NSString *selectorName in methods )
+    for ( NSString * selectorName in methods )
     {
         if ( NO == [selectorName hasPrefix:prefix] )
         {
@@ -125,6 +171,90 @@
     return result;
 }
 
+#pragma mark -
++ (NSArray *)uxy_properties
+{
+    return [self uxy_propertiesUntilClass:[self superclass]];
+}
+
++ (NSArray *)uxy_propertiesUntilClass:(Class)baseClass
+{
+    NSMutableArray * propertyNames = [[NSMutableArray alloc] init];
+    
+    Class thisClass = self;
+    
+    baseClass = baseClass ?: [NSObject class];
+    
+    while ( NULL != thisClass )
+    {
+        unsigned int		propertyCount = 0;
+        objc_property_t *	propertyList = class_copyPropertyList( thisClass, &propertyCount );
+        
+        for ( unsigned int i = 0; i < propertyCount; ++i )
+        {
+            const char * cstrName = property_getName( propertyList[i] );
+            if ( NULL == cstrName )
+                continue;
+            
+            NSString * propName = [NSString stringWithUTF8String:cstrName];
+            if ( NULL == propName )
+                continue;
+            
+            [propertyNames addObject:propName];
+        }
+        
+        free( propertyList );
+        
+        thisClass = class_getSuperclass( thisClass );
+        
+        if ( nil == thisClass || baseClass == thisClass )
+        {
+            break;
+        }
+    }
+    
+    return propertyNames;
+}
+
++ (NSArray *)uxy_propertiesWithPrefix:(NSString *)prefix
+{
+    return [self uxy_propertiesWithPrefix:prefix untilClass:[self superclass]];
+}
+
++ (NSArray *)uxy_propertiesWithPrefix:(NSString *)prefix untilClass:(Class)baseClass
+{
+    NSArray * properties = [self uxy_propertiesUntilClass:baseClass];
+    
+    if ( nil == properties || 0 == properties.count )
+    {
+        return nil;
+    }
+    
+    if ( nil == prefix )
+    {
+        return properties;
+    }
+    
+    NSMutableArray * result = [[NSMutableArray alloc] init];
+    
+    for ( NSString * propName in properties )
+    {
+        if ( NO == [propName hasPrefix:prefix] )
+        {
+            continue;
+        }
+        
+        [result addObject:propName];
+    }
+    
+    [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2];
+    }];
+    
+    return result;
+}
+
+#pragma mark -
 + (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName
 {
     NSMutableArray *results = [[NSMutableArray alloc] init];
