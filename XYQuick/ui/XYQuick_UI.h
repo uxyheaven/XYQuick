@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // Modules
+#import "XYUIDefine.h"                  // 一些ui相关宏定义
 #import "XYAnimate.h"                   // 普通动画
 #import "XYKeyboardHelper.h"            // Keyboard偏移通用解决方案
 #import "XYTabBarController.h"          // TabBarController

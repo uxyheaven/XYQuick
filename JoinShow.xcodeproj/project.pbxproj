@@ -257,6 +257,7 @@
 		57DF99DC190AF4B10036B85D /* icon_twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_twitter.png; sourceTree = "<group>"; };
 		57DF99DF190AF5070036B85D /* icon_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_google.png; sourceTree = "<group>"; };
 		57DF99E0190AF5070036B85D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
+		57E37B8B1B418AD900FA32FA /* XYUIDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYUIDefine.h; sourceTree = "<group>"; };
 		57E7857617DE459E0056C589 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFlyweightTransmit.h; sourceTree = "<group>"; };
@@ -874,6 +875,7 @@
 				57F56F6C1AFC86FD00298D7E /* XYViewControllerManager.m */,
 				57F56F6D1AFC86FD00298D7E /* XYViewLayout.h */,
 				57F56F6E1AFC86FD00298D7E /* XYViewLayout.m */,
+				57E37B8B1B418AD900FA32FA /* XYUIDefine.h */,
 			);
 			path = modules;
 			sourceTree = "<group>";
