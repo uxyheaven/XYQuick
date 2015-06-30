@@ -20,7 +20,6 @@
 
 @end
 
-
 #pragma mark -
 
 #undef	uxy_class
@@ -33,20 +32,24 @@
 
 @interface NSObject (uxyRuntime)
 
+// class
 + (NSArray *)uxy_subClasses;
++ (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName;
 
+// method
 + (NSArray *)uxy_methods;
 + (NSArray *)uxy_methodsWithPrefix:(NSString *)prefix;
 + (NSArray *)uxy_methodsUntilClass:(Class)baseClass;
 + (NSArray *)uxy_methodsWithPrefix:(NSString *)prefix untilClass:(Class)baseClass;
 
++ (void *)uxy_replaceSelector:(SEL)sel1 withSelector:(SEL)sel2;
+
+// property
 + (NSArray *)uxy_properties;
 + (NSArray *)uxy_propertiesUntilClass:(Class)baseClass;
 + (NSArray *)uxy_propertiesWithPrefix:(NSString *)prefix;
 + (NSArray *)uxy_propertiesWithPrefix:(NSString *)prefix untilClass:(Class)baseClass;
 
-+ (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName;
 
-+ (void *)uxy_replaceSelector:(SEL)sel1 withSelector:(SEL)sel2;
 
 @end

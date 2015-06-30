@@ -52,6 +52,26 @@
     return results;
 }
 
+#pragma mark -
++ (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName
+{
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    Protocol * protocol = NSProtocolFromString(protocolName);
+    for ( NSString *className in [self __loadedClassNames] )
+    {
+        Class classType = NSClassFromString( className );
+        if ( classType == self )
+            continue;
+        
+        if ( NO == [classType conformsToProtocol:protocol] )
+            continue;
+        
+        [results addObject:[classType description]];
+    }
+    
+    return results;
+}
+
 + (NSArray *)uxy_methods
 {
     NSMutableArray *methodNames = [[NSMutableArray alloc] init];
@@ -174,6 +194,19 @@
 }
 
 #pragma mark -
++ (void *)uxy_replaceSelector:(SEL)sel1 withSelector:(SEL)sel2
+{
+    Method method  = class_getInstanceMethod( self, sel1 );
+    
+    IMP implement  = (IMP)method_getImplementation( method );
+    IMP implement2 = class_getMethodImplementation( self, sel2 );
+    
+    method_setImplementation( method, implement2 );
+    
+    return (void *)implement;
+}
+
+#pragma mark -
 + (NSArray *)uxy_properties
 {
     return [self uxy_propertiesUntilClass:[self superclass]];
@@ -254,39 +287,6 @@
     }];
     
     return result;
-}
-
-#pragma mark -
-+ (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName
-{
-    NSMutableArray *results = [[NSMutableArray alloc] init];
-    Protocol * protocol = NSProtocolFromString(protocolName);
-    for ( NSString *className in [self __loadedClassNames] )
-    {
-        Class classType = NSClassFromString( className );
-        if ( classType == self )
-            continue;
-        
-        if ( NO == [classType conformsToProtocol:protocol] )
-            continue;
-        
-        [results addObject:[classType description]];
-    }
-    
-    return results;
-}
-
-#pragma mark -
-+ (void *)uxy_replaceSelector:(SEL)sel1 withSelector:(SEL)sel2
-{
-    Method method  = class_getInstanceMethod( self, sel1 );
-
-    IMP implement  = (IMP)method_getImplementation( method );
-    IMP implement2 = class_getMethodImplementation( self, sel2 );
-    
-    method_setImplementation( method, implement2 );
-    
-    return (void *)implement;
 }
 
 #pragma mark - private
