@@ -40,6 +40,21 @@
 #undef	BB
 #define BB						[XYDebug breakPoint];
 
+// 验证
+#define UXY_ASSERT_RETURN_ON_RELEASE( __condition, __desc, ... ) \
+        metamacro_if_eq(0, metamacro_argcount(__VA_ARGS__)) \
+        (UXY_ASSERT_1(__condition, __desc, __VA_ARGS__))    \
+        (UXY_ASSERT_2(__condition, __desc, __VA_ARGS__))
+
+#define UXY_ASSERT_1( __condition, __desc ) \
+        if ( !(__condition) ) asm("int3");   \
+        else return;
+
+#define UXY_ASSERT_2( __condition, __desc, __returnedValue ) \
+        if ( !(__condition) ) asm("int3");   \
+        else return __returnedValue;
+
+
 // 这个类名字需要在想下
 @interface XYDebug : NSObject __AS_SINGLETON
 
@@ -47,6 +62,7 @@
 + (void)printCallstack:(NSUInteger)depth;
 
 + (void)breakPoint;
++ (void)breakPointOnDebug;
 
 // memory
 - (void)allocAllMemory;

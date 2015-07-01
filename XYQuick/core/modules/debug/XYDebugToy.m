@@ -132,6 +132,12 @@
 #endif
 }
 
++ (void)breakPointOnDebug
+{
+#ifdef DEBUG
+    asm("int3");
+#endif
+}
 - (void)allocAllMemory
 {
     NSProcessInfo *progress  = [NSProcessInfo processInfo];

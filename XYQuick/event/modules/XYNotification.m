@@ -27,7 +27,7 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
 
 @implementation XYNotification
 
--(instancetype) initWithName:(NSString *)name sender:(id)sender target:(id)target selector:(SEL)selector;
+- (instancetype)initWithName:(NSString *)name sender:(id)sender target:(id)target selector:(SEL)selector;
 {
     self = [super init];
     if (self)
@@ -43,7 +43,7 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
     return self;
 }
 
--(instancetype) initWithName:(NSString *)name sender:(id)sender block:(XYNotification_block)block
+- (instancetype)initWithName:(NSString *)name sender:(id)sender block:(XYNotification_block)block
 {
     self = [super init];
     if (self)

@@ -18,8 +18,10 @@
 #define AS_CHAIN_METHOD(__blockType, __methodName)  \
         - (__blockType)__methodName;
 
-#define DEF_CHAIN_METHOD(__blockType, __methodName, ...) \
-metamacro_if_eq(1, metamacro_argcount(__VA_ARGS__))(CHAIN_METHOD_1(__blockType, __methodName, __VA_ARGS__))(CHAIN_METHOD_2(__blockType, __methodName, __VA_ARGS__))
+#define DEF_CHAIN_METHOD(__blockType, __methodName, ...)            \
+        metamacro_if_eq(1, metamacro_argcount(__VA_ARGS__))         \
+        (CHAIN_METHOD_1(__blockType, __methodName, __VA_ARGS__))    \
+        (CHAIN_METHOD_2(__blockType, __methodName, __VA_ARGS__))
 
 
 // ----------------------------------
