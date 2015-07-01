@@ -29,6 +29,13 @@
 {
     [_target performSelectorInBackground:_action withObject:nil];
 }
+
+- (BOOL)isEqual:(id)object
+{
+    XYEventVO *vo = object;
+    
+    return [_event isEqualToString:vo.event] && (_target == vo.target) && (_action == vo.action);
+}
 @end
 
 #pragma mark-
@@ -158,20 +165,14 @@ UXY_TEST_CASE( Core, XYEventCenter )
 
 UXY_DESCRIBE( test1 )
 {
-    //  UXY_EXPECTED( 1 == 1 );
-    //  UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
-   // [[XYEventCenter defaultCenter] sendActionsForEvents:@"1"];
+    XYEventCenter *center = [XYEventCenter defaultCenter];
+    [center addTarget:self action:@selector(doSomething) forEvents:@"a"];
+    [center sendActionsForEvents:@"a"];
 }
 
 UXY_DESCRIBE( test2 )
 {
-    //  UXY_EXPECTED( 1 == 1 );
-    //  UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
-    XYEventCenter *center = [XYEventCenter defaultCenter];
-    [center addTarget:self action:@selector(doSomething) forEvents:@"a"];
-    [center sendActionsForEvents:@"a"];
-    [center sendActionsForEvents:@"a"];
-    [center sendActionsForEvents:@"a"];
+
 }
 
 UXY_DESCRIBE( test3 )
