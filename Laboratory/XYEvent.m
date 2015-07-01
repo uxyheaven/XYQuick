@@ -90,39 +90,39 @@
     return __singleton__;
 }
 
-- (void)addTarget:(id)target action:(SEL)action forEvents:(NSString *)events
+- (void)addTarget:(id)target action:(SEL)action forEvent:(NSString *)event
 {
 #ifdef DEBUG
     NSAssert((target != nil), @"error");
     NSAssert([target respondsToSelector:action], @"error");
-    NSAssert((events.length != 0), @"error");
+    NSAssert((event.length != 0), @"error");
 #else
     if (target == nil) return;
     if (![target respondsToSelector:action]) return;
     if (events.length == 0) return;
 #endif
     
-    NSMutableArray *mArray = self.eventInfos[events] ?: [@[] mutableCopy];
+    NSMutableArray *mArray = self.eventInfos[event] ?: [@[] mutableCopy];
     
     XYEventVO *vo = [[XYEventVO alloc] init];
     vo.target = target;
     vo.action = action;
-    vo.event = events;
+    vo.event = event;
     
     ((XYEventVO *)[mArray lastObject]).nextResponder = vo;
     
     [mArray addObject:vo];
-    self.eventInfos[events] = mArray;
+    self.eventInfos[event] = mArray;
 }
 
-- (void)sendActionsForEvents:(NSString *)events
+- (void)sendActionsForEvent:(NSString *)event
 {
 #ifdef DEBUG
-    NSAssert((events.length != 0), @"error");
+    NSAssert((event.length != 0), @"error");
 #else
-    if (events.length == 0) return;
+    if (event.length == 0) return;
 #endif
-    NSMutableArray *mArray = self.eventInfos[events];
+    NSMutableArray *mArray = self.eventInfos[event];
     [mArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XYEventVO *vo = obj;
         XYEventOperation *op = [[XYEventOperation alloc] initWithEventVO:vo time:1];
@@ -166,8 +166,8 @@ UXY_TEST_CASE( Core, XYEventCenter )
 UXY_DESCRIBE( test1 )
 {
     XYEventCenter *center = [XYEventCenter defaultCenter];
-    [center addTarget:self action:@selector(doSomething) forEvents:@"a"];
-    [center sendActionsForEvents:@"a"];
+    [center addTarget:self action:@selector(doSomething) forEvent:@"a"];
+    [center sendActionsForEvent:@"a"];
 }
 
 UXY_DESCRIBE( test2 )

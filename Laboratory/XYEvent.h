@@ -12,7 +12,7 @@
 
 + (instancetype)defaultCenter;
 
-- (void)addTarget:(id)target action:(SEL)action forEvents:(NSString *)events;
-- (void)sendActionsForEvents:(NSString *)events;
+- (void)addTarget:(id)target action:(SEL)action forEvent:(NSString *)event;
+- (void)sendActionsForEvent:(NSString *)event;
 
 @end
