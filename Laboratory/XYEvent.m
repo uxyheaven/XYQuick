@@ -10,20 +10,20 @@
 #import "XYQuick.h"
 
 #pragma mark -XYEventVO
-@interface XYEventVO : NSObject
+@interface XYActionVO : NSObject
 
 @property (nonatomic, copy) NSString *event;
 @property (nonatomic, strong) id target;        // 先用strong测试, 记得修改
 @property (nonatomic, assign) SEL action;
 @property (nonatomic, copy) void(^block)(void);
 
-@property (nonatomic, weak) XYEventVO *nextResponder;
+@property (nonatomic, weak) XYActionVO *nextResponder;
 
 - (void)invoke;
 
 @end
 
-@implementation XYEventVO
+@implementation XYActionVO
 
 - (void)invoke
 {
@@ -32,7 +32,7 @@
 
 - (BOOL)isEqual:(id)object
 {
-    XYEventVO *vo = object;
+    XYActionVO *vo = object;
     
     return [_event isEqualToString:vo.event] && (_target == vo.target) && (_action == vo.action);
 }
@@ -40,14 +40,14 @@
 
 #pragma mark-
 
-@interface XYEventOperation : NSOperation
+@interface XYActionOperation : NSOperation
 @property (nonatomic, copy, readonly) NSString *mark;
 @property (nonatomic, assign) NSTimeInterval second;
-@property (nonatomic, strong) XYEventVO *vo;
+@property (nonatomic, strong) XYActionVO *vo;
 @end
 
-@implementation XYEventOperation
-- (instancetype)initWithEventVO:(XYEventVO *)vo time:(NSTimeInterval)second
+@implementation XYActionOperation
+- (instancetype)initWithEventVO:(XYActionVO *)vo time:(NSTimeInterval)second
 {
     self = [super init];
     if (self) {
@@ -75,7 +75,7 @@
 #pragma mark -XYEventCenter
 @interface XYEventCenter ()
 
-@property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property (nonatomic, strong) NSOperationQueue *actionQueue;
 @property (nonatomic, strong) NSMutableDictionary *eventInfos;
 
 @end
@@ -104,12 +104,12 @@
     
     NSMutableArray *mArray = self.eventInfos[event] ?: [@[] mutableCopy];
     
-    XYEventVO *vo = [[XYEventVO alloc] init];
+    XYActionVO *vo = [[XYActionVO alloc] init];
     vo.target = target;
     vo.action = action;
     vo.event = event;
     
-    ((XYEventVO *)[mArray lastObject]).nextResponder = vo;
+    ((XYActionVO *)[mArray lastObject]).nextResponder = vo;
     
     [mArray addObject:vo];
     self.eventInfos[event] = mArray;
@@ -124,21 +124,21 @@
 #endif
     NSMutableArray *mArray = self.eventInfos[event];
     [mArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        XYEventVO *vo = obj;
-        XYEventOperation *op = [[XYEventOperation alloc] initWithEventVO:vo time:1];
-        [self.operationQueue addOperation:op];
+        XYActionVO *vo = obj;
+        XYActionOperation *op = [[XYActionOperation alloc] initWithEventVO:vo time:1];
+        [self.actionQueue addOperation:op];
     }];
 }
 
 #pragma mark- getter setter
-- (NSOperationQueue *)operationQueue
+- (NSOperationQueue *)actionQueue
 {
-    if (_operationQueue == nil)
+    if (_actionQueue == nil)
     {
-        _operationQueue = [[NSOperationQueue alloc] init];
-        _operationQueue.maxConcurrentOperationCount = 5;
+        _actionQueue = [[NSOperationQueue alloc] init];
+        _actionQueue.maxConcurrentOperationCount = 5;
     };
-    return _operationQueue;
+    return _actionQueue;
 }
 - (NSMutableDictionary *)eventInfos
 {
