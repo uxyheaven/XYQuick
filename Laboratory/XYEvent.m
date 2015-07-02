@@ -99,7 +99,7 @@
 #else
     if (target == nil) return;
     if (![target respondsToSelector:action]) return;
-    if (events.length == 0) return;
+    if (event.length == 0) return;
 #endif
     
     NSMutableArray *mArray = self.eventInfos[event] ?: [@[] mutableCopy];
