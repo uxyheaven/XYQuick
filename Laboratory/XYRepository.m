@@ -1,18 +1,18 @@
 //
-//  XCModuleCooperative.m
+//  XCRepository.m
 //  xcar
 //
 //  Created by heaven on 15/4/29.
 //  Copyright (c) 2015年 heaven. All rights reserved.
 //
 
-#import "XYModuleCooperative.h"
+#import "XYRepository.h"
 
 
-@implementation XYModuleCooperativeInterface
+@implementation XYRepositoryInterface
 @end
 
-@implementation XYModuleCooperativeEvent
+@implementation XYRepositoryEvent
 
 - (void)dealloc
 {
@@ -22,13 +22,13 @@
 @end
 
 
-@interface XYModuleCooperative ()
+@interface XYRepository ()
 
 @property (nonatomic, strong) NSMutableDictionary *moduleInterfaces;
 
 @end
 
-@implementation XYModuleCooperative __DEF_SINGLETON
+@implementation XYRepository __DEF_SINGLETON
 
 - (instancetype)init
 {
@@ -40,15 +40,15 @@
 }
 
 // 注册一个数据标识
-- (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYModuleCooperativeProtocol>)receiver
+- (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver
 {
-    if ([receiver conformsToProtocol:@protocol(XYModuleCooperativeProtocol)])
+    if ([receiver conformsToProtocol:@protocol(XYRepositoryProtocol)])
         return;
     
-    XYModuleCooperativeInterface *mi = _moduleInterfaces[identifier];
+    XYRepositoryInterface *mi = _moduleInterfaces[identifier];
     if (mi == nil)
     {
-        mi = [[XYModuleCooperativeInterface alloc] init];
+        mi = [[XYRepositoryInterface alloc] init];
     }
     
     mi.receiver = receiver;
@@ -64,10 +64,10 @@
     if (clazz == nil)
         return;
     
-    XYModuleCooperativeInterface *mi = _moduleInterfaces[identifier];
+    XYRepositoryInterface *mi = _moduleInterfaces[identifier];
     if (mi == nil)
     {
-        mi = [[XYModuleCooperativeInterface alloc] init];
+        mi = [[XYRepositoryInterface alloc] init];
     }
     
     mi.receiverClass = clazz;
@@ -78,25 +78,25 @@
 
 
 // 获取数据
-- (XYModuleCooperativeEvent *)invocationDataIndentifier:(NSString *)identifier
-                                         completedBlock:(XYModuleCooperativeCompletedBlock)block
+- (XYRepositoryEvent *)invocationDataIndentifier:(NSString *)identifier
+                                         completedBlock:(XYRepositoryCompletedBlock)block
 {
-    XYModuleCooperativeInterface *mi = _moduleInterfaces[identifier];
-    XYModuleCooperativeEvent *event = [[XYModuleCooperativeEvent alloc] init];
+    XYRepositoryInterface *mi = _moduleInterfaces[identifier];
+    XYRepositoryEvent *event = [[XYRepositoryEvent alloc] init];
     event.interface = mi;
     event.completedBlock = block;
     // NSError *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:nil];
     
     if (mi == nil)
     {
-        event.error = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:(NSDictionary *)@"XCModuleCooperativeInterface == nil"];
+        event.error = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:(NSDictionary *)@"XCRepositoryInterface == nil"];
         event.completedBlock(event);
         return event;
     }
     
     if (mi.receiver == nil)
     {
-        event.error = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:(NSDictionary *)@"XCModuleCooperativeInterface == nil"];
+        event.error = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:(NSDictionary *)@"XCRepositoryInterface == nil"];
         event.completedBlock(event);
         return event;
     }
@@ -109,11 +109,11 @@
         mi.receiver = target;
     }
     
-    NSMethodSignature *signature = [[target class] methodSignatureForSelector:@selector(XYModuleCooperativeWithDataIdentifier:event:)];
+    NSMethodSignature *signature = [[target class] methodSignatureForSelector:@selector(XYRepositoryWithDataIdentifier:event:)];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     
     [invocation setTarget:target];
-    [invocation setSelector:@selector(XYModuleCooperativeWithDataIdentifier:event:)];
+    [invocation setSelector:@selector(XYRepositoryWithDataIdentifier:event:)];
     [invocation setArgument:&tmpIndentifer atIndex:2];
     [invocation setArgument:&event atIndex:3];
     [invocation invoke];
