@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#define SECOND	(1)
-#define MINUTE	(60 * SECOND)
-#define HOUR	(60 * MINUTE)
-#define DAY		(24 * HOUR)
-#define MONTH	(30 * DAY)
+#define __XY_SECOND	(1)
+#define __XY_MINUTE	(60 * __XY_SECOND)
+#define __XY_HOUR	(60 * __XY_MINUTE)
+#define __XY_DAY    (24 * __XY_HOUR)
+#define __XY_MONTH	(30 * __XY_DAY)
 
 static NSArray *XY_weekdays = nil;
 

@@ -13,6 +13,10 @@
 + (instancetype)defaultCenter;
 
 - (void)addTarget:(id)target action:(SEL)action forEvent:(NSString *)event;
+- (void)removeTarget:(id)target action:(SEL)action forEvent:(NSString *)event;
+- (void)removeAllEventsAtTarget:(id)target;
+
+- (void)sendAction:(SEL)action to:(id)target forEvent:(NSString *)event;
 - (void)sendActionsForEvent:(NSString *)event;
 
 @end

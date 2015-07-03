@@ -18,7 +18,7 @@
 typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 
 // 模块合作接口
-@interface XYRepositoryInterface :NSObject
+@interface XYRepositoryInterface : NSObject
 @property (nonatomic, weak) id receiver;
 @property (nonatomic, assign) Class receiverClass;
 @property (nonatomic, copy) NSString *identifier;
@@ -41,14 +41,21 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 // 资源库
 @interface XYRepository : NSObject __AS_SINGLETON
 
-#pragma mark- 注册相关
+#pragma mark - 注册相关
 // 注册一个数据标识
-- (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver;
-- (void)registerDataIdentifier:(NSString *)identifier receiverClassName:(NSString *)className;
+- (void)registerDataAtIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver;
+- (void)registerDataAtIdentifier:(NSString *)identifier receiverClassName:(NSString *)className;
 
-#pragma mark- 获取相关
+#pragma mark - 获取相关
 // 获取数据
 - (XYRepositoryEvent *)invocationDataIndentifier:(NSString *)identifier
                                   completedBlock:(XYRepositoryCompletedBlock)block;
+
+/*
+#pragma mark - 聚合 curd
+- (void)addAggregate:(id)ggregate indentifier:(NSString *)identifier;
+- (void)removeAggregateAtIdentifier:(NSString *)identifer;
+- (id)aggregateAtIdentifier:(NSString *)identifer;
+*/
 
 @end

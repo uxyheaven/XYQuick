@@ -103,16 +103,82 @@
 #endif
     
     NSMutableArray *mArray = self.eventInfos[event] ?: [@[] mutableCopy];
+    self.eventInfos[event] = mArray;
+    
+    BOOL contain = NO;
+    for (XYActionVO *tmpVO in mArray)
+    {
+         if (tmpVO.target == target && tmpVO.action == action)
+         {
+             contain = YES;
+             break;
+         }
+    }
+    if (contain) return;
     
     XYActionVO *vo = [[XYActionVO alloc] init];
     vo.target = target;
     vo.action = action;
     vo.event = event;
     
-    ((XYActionVO *)[mArray lastObject]).nextResponder = vo;
-    
+   // ((XYActionVO *)[mArray lastObject]).nextResponder = vo;
     [mArray addObject:vo];
-    self.eventInfos[event] = mArray;
+}
+
+- (void)removeTarget:(id)target action:(SEL)action forEvent:(NSString *)event
+{
+#ifdef DEBUG
+    NSAssert((target != nil), @"error");
+    NSAssert([target respondsToSelector:action], @"error");
+    NSAssert((event.length != 0), @"error");
+#else
+    if (target == nil) return;
+    if (![target respondsToSelector:action]) return;
+    if (event.length == 0) return;
+#endif
+    
+    NSMutableArray *mArray = self.eventInfos[event];
+    if (mArray.count < 1) return;
+    
+    [mArray enumerateObjectsUsingBlock:^(XYActionVO *vo, NSUInteger idx, BOOL *stop) {
+        if (vo.target == target && vo.action == action)
+        {
+            [mArray removeObject:vo];
+        }
+    }];
+}
+
+- (void)removeAllEventsAtTarget:(id)target
+{
+    [self.eventInfos enumerateKeysAndObjectsUsingBlock:^(id key, NSMutableArray *mArray, BOOL *stop) {
+        [mArray enumerateObjectsUsingBlock:^(XYActionVO *vo, NSUInteger idx, BOOL *stop) {
+            if (vo.target == target)
+            {
+                [mArray removeObject:vo];
+            }
+        }];
+    }];
+}
+
+- (void)sendAction:(SEL)action to:(id)target forEvent:(NSString *)event
+{
+#ifdef DEBUG
+    NSAssert((target != nil), @"error");
+    NSAssert([target respondsToSelector:action], @"error");
+    NSAssert((event.length != 0), @"error");
+#else
+    if (target == nil) return;
+    if (![target respondsToSelector:action]) return;
+    if (event.length == 0) return;
+#endif
+    NSMutableArray *mArray = self.eventInfos[event];
+    [mArray enumerateObjectsUsingBlock:^(XYActionVO *vo, NSUInteger idx, BOOL *stop) {
+        if (vo.target == target && vo.action == action)
+        {
+            XYActionOperation *op = [[XYActionOperation alloc] initWithEventVO:vo time:1];
+            [self.actionQueue addOperation:op];
+        }
+    }];
 }
 
 - (void)sendActionsForEvent:(NSString *)event
@@ -130,13 +196,15 @@
     }];
 }
 
-#pragma mark- getter setter
+#pragma mark - private
+
+#pragma mark - getter setter
 - (NSOperationQueue *)actionQueue
 {
     if (_actionQueue == nil)
     {
         _actionQueue = [[NSOperationQueue alloc] init];
-        _actionQueue.maxConcurrentOperationCount = 5;
+        _actionQueue.maxConcurrentOperationCount = 3;
     };
     return _actionQueue;
 }
@@ -167,17 +235,23 @@ UXY_DESCRIBE( test1 )
 {
     XYEventCenter *center = [XYEventCenter defaultCenter];
     [center addTarget:self action:@selector(doSomething) forEvent:@"a"];
-    [center sendActionsForEvent:@"a"];
+   // [center sendActionsForEvent:@"a"];
 }
 
 UXY_DESCRIBE( test2 )
 {
-
+    XYEventCenter *center = [XYEventCenter defaultCenter];
+    [center addTarget:self action:@selector(doSomething) forEvent:@"a"];
+    [center removeTarget:self action:@selector(doSomething) forEvent:@"a"];
 }
 
 UXY_DESCRIBE( test3 )
 {
     // UXY_EXPECTED( [@"123" isEqualToString:@"123456"] );
+    XYEventCenter *center = [XYEventCenter defaultCenter];
+    [center addTarget:self action:@selector(doSomething) forEvent:@"a"];
+    [center addTarget:self action:@selector(doSomething) forEvent:@"a"];
+    [center removeAllEventsAtTarget:self];
 }
 
 - (void)doSomething

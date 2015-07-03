@@ -40,7 +40,7 @@
 }
 
 // 注册一个数据标识
-- (void)registerDataIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver
+- (void)registerDataAtIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver
 {
     if ([receiver conformsToProtocol:@protocol(XYRepositoryProtocol)])
         return;
@@ -57,7 +57,7 @@
     _moduleInterfaces[identifier] = mi;
 }
 
-- (void)registerDataIdentifier:(NSString *)identifier receiverClassName:(NSString *)className
+- (void)registerDataAtIdentifier:(NSString *)identifier receiverClassName:(NSString *)className
 {
     Class clazz = NSClassFromString(className);
     

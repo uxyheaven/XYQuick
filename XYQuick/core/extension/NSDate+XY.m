@@ -103,44 +103,44 @@ DUMMY_CLASS(NSDate_XY);
 {
 	NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:self];
 	
-	if (delta < 1 * MINUTE)
+	if (delta < 1 * __XY_MINUTE)
 	{
 		return @"刚刚";
 	}
-	else if (delta < 2 * MINUTE)
+	else if (delta < 2 * __XY_MINUTE)
 	{
 		return @"1分钟前";
 	}
-	else if (delta < 45 * MINUTE)
+	else if (delta < 45 * __XY_MINUTE)
 	{
-		int minutes = floor((double)delta/MINUTE);
+		int minutes = floor((double)delta / __XY_MINUTE);
 		return [NSString stringWithFormat:@"%d分钟前", minutes];
 	}
-	else if (delta < 90 * MINUTE)
+	else if (delta < 90 * __XY_MINUTE)
 	{
 		return @"1小时前";
 	}
-	else if (delta < 24 * HOUR)
+	else if (delta < 24 * __XY_HOUR)
 	{
-		int hours = floor((double)delta/HOUR);
+		int hours = floor((double)delta /__XY_HOUR);
 		return [NSString stringWithFormat:@"%d小时前", hours];
 	}
-	else if (delta < 48 * HOUR)
+	else if (delta < 48 * __XY_HOUR)
 	{
 		return @"昨天";
 	}
-	else if (delta < 30 * DAY)
+	else if (delta < 30 * __XY_DAY)
 	{
-		int days = floor((double)delta/DAY);
+		int days = floor((double)delta / __XY_DAY);
 		return [NSString stringWithFormat:@"%d天前", days];
 	}
-	else if (delta < 12 * MONTH)
+	else if (delta < 12 * __XY_MONTH)
 	{
-		int months = floor((double)delta/MONTH);
+		int months = floor((double)delta / __XY_MONTH);
 		return months <= 1 ? @"1个月前" : [NSString stringWithFormat:@"%d个月前", months];
 	}
     
-	int years = floor((double)delta/MONTH/12.0);
+	int years = floor((double)delta / __XY_MONTH / 12.0);
 	return years <= 1 ? @"1年前" : [NSString stringWithFormat:@"%d年前", years];
 }
 
