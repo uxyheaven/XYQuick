@@ -61,11 +61,22 @@
 
 @dynamic uxy_nextSignalHandler;
 
-- (void)uxy_performSignal:(XYSignal *)signal
+- (id)uxy_performSignal:(XYSignal *)signal
 {
-
+    id result;
+    [signal send];
     
+    if (signal.isDead == YES) return;
+    if (signal.isReach == YES) return;
+    
+    id next = self.uxy_nextSignalHandler ?: self.uxy_defaultNextSignalHandler;
+    
+    result = [next uxy_performSignal:signal];
+    
+    return result;
 }
+
+
 /*
 - (void)uxy_sendSignal:(XYSignal *)signal
 {

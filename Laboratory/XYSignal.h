@@ -46,7 +46,7 @@
 @interface NSObject (UXYSignalHandler)
 
 // 处理任务
-- (void)uxy_performSignal:(XYSignal *)signal;
+- (id)uxy_performSignal:(XYSignal *)signal;
 
 @end
 
