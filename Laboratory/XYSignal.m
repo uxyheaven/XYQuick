@@ -20,6 +20,7 @@
 
 - (BOOL)send
 {
+    /*
     NSObject *targetObject = self.target;
     if ( nil == targetObject )
     {
@@ -46,12 +47,15 @@
             signalMethod    = (NSString *)[array objectAtIndex:2];
         }
     }
+     */
     
     return YES;
 }
 @end
 
 #pragma mark- UXYSignalHandler
+@interface NSObject (UXYSignalHandler) <XYSignalTarget>
+@end
 
 @implementation NSObject (UXYSignalHandler)
 
@@ -62,7 +66,7 @@
 
     
 }
-
+/*
 - (void)uxy_sendSignal:(XYSignal *)signal
 {
     [signal send];
@@ -88,6 +92,7 @@
         signal.isReach = YES;
     }
 }
+*/
 
 - (void)setUxy_NextSignalHandler:(id)nextSignalHandler
 {
@@ -114,7 +119,7 @@
 
 - (id)uxy_defaultNextSignalHandler
 {
-    return self.superview ?: [self uxy_currentViewController];
+    return self.superview ?: self.nextResponder;
 }
 
 // 发送一个signal
@@ -133,30 +138,18 @@
     if ( signal )
     {
         signal.sender = sender ?: self;
-        signal.target = self;
+       // signal.target = self;
         signal.name   = name;
         signal.userInfo = userInfo;
     }
     
-    [self uxy_sendSignal:signal];
+  //  [self uxy_sendSignal:signal];
     
     return signal;
 }
 
 #pragma mark- private
-- (UIViewController *)uxy_currentViewController
-{
-    id viewController = [self nextResponder];
-    UIView *view      = self;
-    
-    while (viewController && ![viewController isKindOfClass:[UIViewController class]])
-    {
-        view           = [view superview];
-        viewController = [view nextResponder];
-    }
-    
-    return viewController;
-}
+
 @end
 
 #pragma mark - UIViewController
@@ -181,4 +174,16 @@
 
 @end
 
+#pragma mark -
+@implementation XYSignalBus
+
++ (instancetype)defaultBus
+{
+    static dispatch_once_t once;
+    static id __singleton__;
+    dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } );
+    return __singleton__;
+}
+
+@end
 

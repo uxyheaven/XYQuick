@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark- Request && Response
+#define uxy_handleSignal (__signalName)
+
+#pragma mark - XYSignalTarget
+@protocol XYSignalTarget
+@property (nonatomic, weak) id uxy_nextSignalHandler;
+@property (nonatomic, weak, readonly) id uxy_defaultNextSignalHandler;
+@end
+
+#pragma mark - Request && Response
 @interface XYSignal : NSObject
 
 // Request
@@ -16,7 +24,7 @@
 @property (nonatomic, assign) BOOL isReach;      // 是否触达最后的Handler
 
 @property (nonatomic, weak) id sender;          // 发送者
-@property (nonatomic, weak) id target;          // 接收者
+//@property (nonatomic, weak) id<XYSignalTarget> target;          // 接收者
 
 @property (nonatomic, assign) NSInteger jump;       // 跳转次数
 @property (nonatomic, copy) NSString *name;     // 名字
@@ -36,10 +44,6 @@
 #pragma mark- UXYSignalHandler
 
 @interface NSObject (UXYSignalHandler)
-
-@property (nonatomic, weak) id uxy_nextSignalHandler;
-
-- (id)uxy_defaultNextSignalHandler;
 
 // 处理任务
 - (void)uxy_performSignal:(XYSignal *)signal;
@@ -66,3 +70,16 @@
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
 
 @end
+
+#pragma mark - XYSignalBus
+@interface XYSignalBus : NSObject
+
++ (instancetype)defaultBus;
+
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name;
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
+@end
+
+
+

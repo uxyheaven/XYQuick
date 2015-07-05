@@ -20,3 +20,10 @@
 - (void)sendActionsForEvent:(NSString *)event;
 
 @end
+
+/*
+@protocol XYEvent <NSObject>
+@property (nonatomic, weak) id uxy_nextTarget;
+@property (nonatomic, weak, readonly) id uxy_defaultNextTarget;
+@end
+ */
