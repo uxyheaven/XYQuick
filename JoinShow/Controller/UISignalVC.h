@@ -7,19 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XYQuick.h"
-#import "XYSignal.h"
 
-AS_UXYSINGNAL( signal_name1 )      // 信号1
+#import "XYUISignal.h"
 
-@interface Signal1 : UIView
+@interface UISignal1 : UIView
 
 AS_SIGNAL( click1 )
 
 @end
 
 
-@interface Signal2 : UIView
+@interface UISignal2 : UIView
 
 AS_SIGNAL( click2 )
 
@@ -27,7 +25,7 @@ AS_SIGNAL( click2 )
 
 @end
 
-@interface Signal2_child : Signal2
+@interface UISignal2_child : UISignal2
 
 @end
 

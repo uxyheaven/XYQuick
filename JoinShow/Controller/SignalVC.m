@@ -6,19 +6,18 @@
 //  Copyright (c) 2014年 Heaven. All rights reserved.
 //
 
-#import "UISignalVC.h"
-#import "XYQuick.h"
+#import "SignalVC.h"
 
-@implementation UISignal1
+DEF_UXYSINGNAL( signal_name1 )      // 信号1
 
-DEF_SIGNAL( click1 )
+@implementation Signal1
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor blueColor];
-        UISignal2 *view = [[UISignal2 alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+        Signal2 *view = [[Signal2 alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
         [self addSubview:view];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -32,18 +31,23 @@ DEF_SIGNAL( click1 )
 }
 
 - (void)click1:(id)sender{
-    [self sendUISignal:self.click1 withObject:sender];
+    [self uxy_sendSignalWithName:signal_name1 userInfo:@"aa"];
 }
 
-ON_SIGNAL( signal ){
-    NSLogD(@"%@", signal);
+uxy_handleSignal(signal, signal_name1)
+{
+    NSLogDD;
 }
 
+uxy_handleSignal(signal, name2)
+{
+    signal.isReach = NO;
+    NSLogDD;
+}
 @end
 
-@implementation UISignal2
+@implementation Signal2
 
-DEF_SIGNAL( click2 )
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -60,28 +64,20 @@ DEF_SIGNAL( click2 )
 }
 
 - (void)click2:(id)sender{
-    XYUISignal *signal = [self sendUISignal:self.click2 withObject:sender];
-    NSLogD(@"%@", signal.returnValue);
-}
-
-ON_SIGNAL( signal ){
-    NSLogD(@"%@", signal);
-    signal.returnValue = @"click2";
+    [self uxy_sendSignalWithName:@"name2" userInfo:@"22"];
 }
 
 @end
 
-@implementation UISignal2_child
+@implementation Signal2_child
 
 @end
 
-@interface UISignalVC ()
+@interface SignalVC ()
 
 @end
 
-@implementation UISignalVC
-
-DEF_SIGNAL( click3 )
+@implementation SignalVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -98,7 +94,7 @@ DEF_SIGNAL( click3 )
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    UISignal1 *view = [[UISignal1 alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
+    Signal1 *view = [[Signal1 alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
     [self.view addSubview:view];
     [view.uxy_frameBuilder alignToTopInSuperviewWithInset:66];
     
@@ -134,24 +130,17 @@ DEF_SIGNAL( click3 )
 }
 */
 
-ON_SIGNAL( signal ){
-    NSLogD(@"%@", signal);
+uxy_handleSignal(signal, name2)
+{
+    NSLogDD;
 }
-
-ON_SIGNAL2(click1, signal){
-    NSLogD(@"%@", signal);
-}
-/*
-ON_SIGNAL3(Signal1, click1, signal){
-    NSLogD(@"%@", signal);
-}
-*/
-ON_SIGNAL3(Signal2, click2, signal){
-    NSLogD(@"%@", signal);
+uxy_handleSignal(signal, name3)
+{
+    NSLogDD;
 }
 
 - (void)click3:(id)sender{
-    [self sendUISignal:self.click3 withObject:sender];
+    [self uxy_sendSignalWithName:@"name3" userInfo:@"123"];
 }
 - (void)click4:(id)sender{
 }

@@ -22,6 +22,9 @@
 		571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA5417C6FCC0007CB842 /* TestView.m */; };
 		5722182817DB365B003504E8 /* NetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5722182717DB365B003504E8 /* NetworkVC.m */; };
 		57293C7B1824C42F007BF087 /* bg_trends.png in Resources */ = {isa = PBXBuildFile; fileRef = 57293C7A1824C42F007BF087 /* bg_trends.png */; };
+		572CB1A31B4AF1540005A6B2 /* SignalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 572CB1A21B4AF1540005A6B2 /* SignalVC.m */; };
+		572CB1A61B4AF3240005A6B2 /* XYSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 572CB1A51B4AF3240005A6B2 /* XYSignal.m */; };
+		572CB1A91B4AF3490005A6B2 /* XYUISignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 572CB1A81B4AF3490005A6B2 /* XYUISignal.m */; };
 		5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5733A98E192B0F4300DC78B0 /* UISignalVC.m */; };
 		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
@@ -68,7 +71,6 @@
 		57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E2418EADB4800D84C01 /* TestVC2.m */; };
 		57D4FF4A1822275400E10954 /* BusinessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF491822275400E10954 /* BusinessVC.m */; };
 		57D4FF4D18222E2700E10954 /* RubyChinaNodeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */; };
-		57DCC3AF1B490A5000A7B632 /* XYSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DCC3AE1B490A5000A7B632 /* XYSignal.m */; };
 		57DF99DD190AF4B10036B85D /* icon_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DB190AF4B10036B85D /* icon_facebook.png */; };
 		57DF99DE190AF4B10036B85D /* icon_twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DC190AF4B10036B85D /* icon_twitter.png */; };
 		57DF99E1190AF5070036B85D /* icon_google.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99DF190AF5070036B85D /* icon_google.png */; };
@@ -108,7 +110,6 @@
 		57F56F901AFC86FD00298D7E /* XYMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3A1AFC86FD00298D7E /* XYMulticastDelegate.m */; };
 		57F56F911AFC86FD00298D7E /* XYNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3C1AFC86FD00298D7E /* XYNotification.m */; };
 		57F56F921AFC86FD00298D7E /* XYObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3E1AFC86FD00298D7E /* XYObserver.m */; };
-		57F56F931AFC86FD00298D7E /* XYUISignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F401AFC86FD00298D7E /* XYUISignal.m */; };
 		57F56F941AFC86FD00298D7E /* XYQuick_Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F421AFC86FD00298D7E /* XYQuick_Event.m */; };
 		57F56F951AFC86FD00298D7E /* UIActionSheet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F461AFC86FD00298D7E /* UIActionSheet+XY.m */; };
 		57F56F961AFC86FD00298D7E /* UIAlertView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F481AFC86FD00298D7E /* UIAlertView+XY.m */; };
@@ -181,6 +182,12 @@
 		5722182617DB365B003504E8 /* NetworkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkVC.h; sourceTree = "<group>"; };
 		5722182717DB365B003504E8 /* NetworkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkVC.m; sourceTree = "<group>"; };
 		57293C7A1824C42F007BF087 /* bg_trends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_trends.png; sourceTree = "<group>"; };
+		572CB1A11B4AF1540005A6B2 /* SignalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalVC.h; sourceTree = "<group>"; };
+		572CB1A21B4AF1540005A6B2 /* SignalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignalVC.m; sourceTree = "<group>"; };
+		572CB1A41B4AF3240005A6B2 /* XYSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSignal.h; sourceTree = "<group>"; };
+		572CB1A51B4AF3240005A6B2 /* XYSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSignal.m; sourceTree = "<group>"; };
+		572CB1A71B4AF3490005A6B2 /* XYUISignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUISignal.h; sourceTree = "<group>"; };
+		572CB1A81B4AF3490005A6B2 /* XYUISignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUISignal.m; sourceTree = "<group>"; };
 		5733A98D192B0F4300DC78B0 /* UISignalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISignalVC.h; sourceTree = "<group>"; };
 		5733A98E192B0F4300DC78B0 /* UISignalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISignalVC.m; sourceTree = "<group>"; };
 		5737618518BB586E004E7D46 /* PaintCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintCodeView.h; sourceTree = "<group>"; };
@@ -254,8 +261,6 @@
 		57D4FF491822275400E10954 /* BusinessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessVC.m; sourceTree = "<group>"; };
 		57D4FF4B18222E2700E10954 /* RubyChinaNodeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubyChinaNodeEntity.h; sourceTree = "<group>"; };
 		57D4FF4C18222E2700E10954 /* RubyChinaNodeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubyChinaNodeEntity.m; sourceTree = "<group>"; };
-		57DCC3AD1B490A5000A7B632 /* XYSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSignal.h; sourceTree = "<group>"; };
-		57DCC3AE1B490A5000A7B632 /* XYSignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSignal.m; sourceTree = "<group>"; };
 		57DF99DB190AF4B10036B85D /* icon_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_facebook.png; sourceTree = "<group>"; };
 		57DF99DC190AF4B10036B85D /* icon_twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_twitter.png; sourceTree = "<group>"; };
 		57DF99DF190AF5070036B85D /* icon_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_google.png; sourceTree = "<group>"; };
@@ -337,8 +342,6 @@
 		57F56F3C1AFC86FD00298D7E /* XYNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNotification.m; sourceTree = "<group>"; };
 		57F56F3D1AFC86FD00298D7E /* XYObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserver.h; sourceTree = "<group>"; };
 		57F56F3E1AFC86FD00298D7E /* XYObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObserver.m; sourceTree = "<group>"; };
-		57F56F3F1AFC86FD00298D7E /* XYUISignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYUISignal.h; sourceTree = "<group>"; };
-		57F56F401AFC86FD00298D7E /* XYUISignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUISignal.m; sourceTree = "<group>"; };
 		57F56F411AFC86FD00298D7E /* XYQuick_Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick_Event.h; sourceTree = "<group>"; };
 		57F56F421AFC86FD00298D7E /* XYQuick_Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYQuick_Event.m; sourceTree = "<group>"; };
 		57F56F451AFC86FD00298D7E /* UIActionSheet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+XY.h"; sourceTree = "<group>"; };
@@ -448,8 +451,6 @@
 				5708A8791AF8991A000607AB /* XYBaseDataSource.m */,
 				5708A87A1AF8991A000607AB /* XYBaseModel.h */,
 				5708A87B1AF8991A000607AB /* XYBaseModel.m */,
-				57DCC3AD1B490A5000A7B632 /* XYSignal.h */,
-				57DCC3AE1B490A5000A7B632 /* XYSignal.m */,
 				5708A87C1AF8991A000607AB /* XYBaseView.h */,
 				5708A87D1AF8991A000607AB /* XYBaseView.m */,
 				5708A87E1AF8991A000607AB /* XYMaterial.h */,
@@ -469,6 +470,8 @@
 				57F56FB31AFC8CB100298D7E /* XYObjectCache.m */,
 				57CAE5451B44218D0040585A /* XYEvent.h */,
 				57CAE5461B44218D0040585A /* XYEvent.m */,
+				572CB1A71B4AF3490005A6B2 /* XYUISignal.h */,
+				572CB1A81B4AF3490005A6B2 /* XYUISignal.m */,
 			);
 			path = Laboratory;
 			sourceTree = SOURCE_ROOT;
@@ -505,6 +508,8 @@
 				57D4FF491822275400E10954 /* BusinessVC.m */,
 				5733A98D192B0F4300DC78B0 /* UISignalVC.h */,
 				5733A98E192B0F4300DC78B0 /* UISignalVC.m */,
+				572CB1A11B4AF1540005A6B2 /* SignalVC.h */,
+				572CB1A21B4AF1540005A6B2 /* SignalVC.m */,
 				579B3A3318EBDCF8001650C6 /* DemoViewController.h */,
 				579B3A3418EBDCF8001650C6 /* DemoViewController.m */,
 				5749BF8219BF480900D676CC /* JSONVC.h */,
@@ -810,8 +815,8 @@
 				57F56F3C1AFC86FD00298D7E /* XYNotification.m */,
 				57F56F3D1AFC86FD00298D7E /* XYObserver.h */,
 				57F56F3E1AFC86FD00298D7E /* XYObserver.m */,
-				57F56F3F1AFC86FD00298D7E /* XYUISignal.h */,
-				57F56F401AFC86FD00298D7E /* XYUISignal.m */,
+				572CB1A41B4AF3240005A6B2 /* XYSignal.h */,
+				572CB1A51B4AF3240005A6B2 /* XYSignal.m */,
 				57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */,
 				57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */,
 			);
@@ -1065,7 +1070,6 @@
 				57F56F861AFC86FD00298D7E /* XYClassLoader.m in Sources */,
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				57B3FFF6177AD9BC00775FC9 /* main.m in Sources */,
-				57DCC3AF1B490A5000A7B632 /* XYSignal.m in Sources */,
 				84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */,
 				57F56F851AFC86FD00298D7E /* XYBlackMagic.m in Sources */,
 				57F56FA91AFC86FD00298D7E /* XYQuick_UI.m in Sources */,
@@ -1091,6 +1095,7 @@
 				57F56FA71AFC86FD00298D7E /* XYViewControllerManager.m in Sources */,
 				571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
+				572CB1A91B4AF3490005A6B2 /* XYUISignal.m in Sources */,
 				57F56F9A1AFC86FD00298D7E /* UIImage+XY.m in Sources */,
 				57F56F7E1AFC86FD00298D7E /* XYMemoryCache.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
@@ -1154,13 +1159,14 @@
 				57F56F9C1AFC86FD00298D7E /* UINavigationBar+XY.m in Sources */,
 				5708A9641AF8991A000607AB /* XYRepository.m in Sources */,
 				57F56F951AFC86FD00298D7E /* UIActionSheet+XY.m in Sources */,
-				57F56F931AFC86FD00298D7E /* XYUISignal.m in Sources */,
 				743B1AA11A15DCB800CEA246 /* BlackMagicVC.m in Sources */,
+				572CB1A61B4AF3240005A6B2 /* XYSignal.m in Sources */,
 				57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
 				57F56F8A1AFC86FD00298D7E /* XYRuntime.m in Sources */,
 				57F56F991AFC86FD00298D7E /* UIControl+XY.m in Sources */,
+				572CB1A31B4AF1540005A6B2 /* SignalVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

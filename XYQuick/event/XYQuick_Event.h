@@ -11,10 +11,10 @@
 // todo 统一event
 
 // Modules
-#import "XYUISignal.h"                      // ui信号
+#import "XYSignal.h"                        // 责任链信号
 #import "XYMulticastDelegate.h"             // 多路委托
 #import "XYNotification.h"                  // Notification的封装
-#import "XYObserver.h"                      // kvo的封装
+#import "XYObserver.h"                      // KVO的封装
 #import "XYFlyweightTransmit.h"             // 轻量级的底层往高层传数据
 // Extensions
 

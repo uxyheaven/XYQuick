@@ -57,24 +57,7 @@
         
         return YES;
     }
-    
-    // 2.协议筛选的
-    string = [NSString stringWithFormat:@"__uxy_handleSignal_p_%@:", signal.name];
-    sel = NSSelectorFromString(string);
-    if ([self respondsToSelector:sel])
-    {
-        signal.isReach = YES;
-        NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:sel];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-        [invocation setTarget:self];
-        [invocation setSelector:sel];
-        [invocation setArgument:&signal atIndex:2];
-        [invocation invoke];
-        
-        return YES;
-    }
-    
-    
+
     return NO;
 }
 

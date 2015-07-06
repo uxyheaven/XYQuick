@@ -45,6 +45,7 @@
                       @{@"title": @"Keyboard", @"className": @"KeyboardVC"},
                       @{@"title": @"Business", @"className": @"BusinessVC"},
                       @{@"title": @"UISignal", @"className" : @"UISignalVC"},
+                      @{@"title": @"Signal", @"className" : @"SignalVC"},
                       @{@"title": @"BlackMagic", @"className": @"BlackMagicVC"}
                       ];
     }
