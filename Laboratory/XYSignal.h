@@ -23,7 +23,7 @@
 @property (nonatomic, assign) BOOL isDead;  // 是否结束
 @property (nonatomic, assign) BOOL isReach;      // 是否触达最后的Handler
 
-@property (nonatomic, weak) id sender;          // 发送者
+@property (nonatomic, weak) id<XYSignalTarget> sender;          // 发送者
 //@property (nonatomic, weak) id<XYSignalTarget> target;          // 接收者
 
 @property (nonatomic, assign) NSInteger jump;       // 跳转次数
@@ -56,7 +56,6 @@
 - (XYSignal *)uxy_signalWithName:(NSString *)name;
 
 // 发送一个signal
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name;
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
 
@@ -65,7 +64,6 @@
 
 @interface UIViewController (UXYSignalHandler)
 
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name;
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
 
@@ -76,9 +74,7 @@
 
 + (instancetype)defaultBus;
 
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name;
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
+- (XYSignal *)sendSignal:(XYSignal *)signal;
 @end
 
 

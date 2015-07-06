@@ -66,8 +66,8 @@
     id result;
     [signal send];
     
-    if (signal.isDead == YES) return;
-    if (signal.isReach == YES) return;
+    if (signal.isDead == YES) return nil;
+    if (signal.isReach == YES) return nil;
     
     id next = self.uxy_nextSignalHandler ?: self.uxy_defaultNextSignalHandler;
     
@@ -133,11 +133,6 @@
     return self.superview ?: self.nextResponder;
 }
 
-// 发送一个signal
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name
-{
-   return [self uxy_sendSignalWithName:name userInfo:nil sender:self];
-}
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
 {
    return [self uxy_sendSignalWithName:name userInfo:userInfo sender:self];
@@ -145,16 +140,12 @@
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender
 {
     XYSignal *signal = [[XYSignal alloc] init];
+    signal.sender = sender ?: self;
+    // signal.target = self;
+    signal.name   = name;
+    signal.userInfo = userInfo;
     
-    if ( signal )
-    {
-        signal.sender = sender ?: self;
-       // signal.target = self;
-        signal.name   = name;
-        signal.userInfo = userInfo;
-    }
-    
-  //  [self uxy_sendSignal:signal];
+    [[XYSignalBus defaultBus] sendSignal:signal];
     
     return signal;
 }
@@ -195,6 +186,13 @@
     dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } );
     return __singleton__;
 }
-
+/*
+- (XYSignal *)sendSignal:(XYSignal *)signal
+{
+    id<XYSignalTarget> target = signal.sender;
+    
+    return signal;
+}
+ */
 @end
 
