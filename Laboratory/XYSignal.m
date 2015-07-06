@@ -11,44 +11,35 @@
 
 #define kUXYSignalHandler_key "NSObject.signalHandler.key"
 
+#pragma mark- XYSignal
 @implementation XYSignal
-
-+ (id)signalWithName:(NSString *)name
-{
-    return nil;
-}
-
-- (BOOL)send
-{
-    NSString *string = [NSString stringWithFormat:@"__uxy_handleSignal_%@:", _name];
-    SEL sel = NSSelectorFromString(string);
-    if ([self respondsToSelector:sel])
-    {
-        NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:sel];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-        [invocation setTarget:self];
-        [invocation setSelector:sel];
-        int arg1 =  2;
-        [invocation setArgument:&arg1 atIndex:2];//参数从2开始，index 为0表示target，1为_cmd
-        id resultString = nil;
-        [invocation invoke];
-        [invocation getReturnValue:&resultString];
-    }
-
-
-    return YES;
-}
 @end
 
-#pragma mark- UXYSignalHandler
-@interface NSObject (UXYSignalHandler) <XYSignalTarget>
+#pragma mark- NSObject(__UXYSignalHandler)
+@interface NSObject (__UXYSignalHandler) <XYSignalTarget>
 @property (nonatomic, weak) id uxy_nextSignalHandler;
 @end
 
-@implementation NSObject (UXYSignalHandler)
+@implementation NSObject (__UXYSignalHandler)
 
-@dynamic uxy_nextSignalHandler;
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
+{
+    return [self uxy_sendSignalWithName:name userInfo:userInfo sender:self];
+}
 
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender
+{
+    XYSignal *signal = [[XYSignal alloc] init];
+    signal.sender = sender ?: self;
+    signal.name   = name;
+    signal.userInfo = userInfo;
+    
+    [self __uxy_handleSignal:signal];
+    
+    return signal;
+}
+
+#pragma mark- private
 - (BOOL)__uxy_performSignal:(XYSignal *)signal
 {
     // 1. 普通的
@@ -104,40 +95,20 @@
     return result;
 }
 
-- (void)setUxy_nextSignalHandler:(id)nextSignalHandler
-{
-    objc_setAssociatedObject(self, kUXYSignalHandler_key, nextSignalHandler, OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (id)uxy_nextSignalHandler
-{
-    return objc_getAssociatedObject(self, kUXYSignalHandler_key);
-}
-
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
-{
-    return [self uxy_sendSignalWithName:name userInfo:userInfo sender:self];
-}
-
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender
-{
-    XYSignal *signal = [[XYSignal alloc] init];
-    signal.sender = sender ?: self;
-    signal.name   = name;
-    signal.userInfo = userInfo;
-    
-    [self __uxy_handleSignal:signal];
-    
-    return signal;
-}
-
-#pragma mark- private
-
 - (id)uxy_defaultNextSignalHandler
 {
     return nil;
 }
 
+@dynamic uxy_nextSignalHandler;
+- (void)setUxy_nextSignalHandler:(id)nextSignalHandler
+{
+    objc_setAssociatedObject(self, kUXYSignalHandler_key, nextSignalHandler, OBJC_ASSOCIATION_ASSIGN);
+}
+- (id)uxy_nextSignalHandler
+{
+    return objc_getAssociatedObject(self, kUXYSignalHandler_key);
+}
 @end
 
 #pragma mark - UIView
@@ -150,27 +121,25 @@
 }
 
 #pragma mark- private
-
 @end
 
 #pragma mark - UIViewController
-
 @implementation UIViewController (UXYSignalHandler)
 
 - (id)uxy_defaultNextSignalHandler
 {
-    id defaultNext;
+    id result;
     
     if ([self isKindOfClass:[UINavigationController class]])
     {
-        //defaultNext = [(UINavigationController *)self topViewController];
+        //result = [(UINavigationController *)self topViewController];
     }
     else
     {
-        defaultNext = [self parentViewController];
+        result = [self parentViewController];
     }
     
-    return defaultNext;
+    return result;
 }
 
 @end
