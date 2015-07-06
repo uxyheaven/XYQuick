@@ -9,7 +9,7 @@
 #import "XYQuick_Predefine.h"
 
 #pragma mark - #define
-#define NOTIFICATION_NAME( __name )					__TEXT( __name )
+#define NOTIFICATION_NAME( __name )					uxy_macro_string( __name )
 
 #define	ON_NOTIFICATION_1_( __name, __notification )     \
     - (void)__name##NotificationHandle:(NSNotification *)__notification

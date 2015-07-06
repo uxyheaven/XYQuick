@@ -7,9 +7,10 @@
 //
 // kvo 的封装
 #import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
 
 #pragma mark - #define
-#define KVO_NAME( __name )					__TEXT( __name )
+#define KVO_NAME( __name )					uxy_macro_string( __name )
 
 #define	ON_KVO_1_( __property, __sourceObject, __newValue )     \
     - (void)__property##In:(id)sourceObject new:(id)newValue

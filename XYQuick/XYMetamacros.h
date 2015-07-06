@@ -17,7 +17,7 @@
     ((__VA_ARGS__), true)
 
 /**
- * Returns a string representation of VALUE after full macro expansion.
+ * Returns a string representation of VALUE after full macro expansio#n.
  */
 #define metamacro_stringify(VALUE) \
         metamacro_stringify_(VALUE)

@@ -75,7 +75,7 @@
     }
     
     
-    return YES;
+    return NO;
 }
 
 - (id)__uxy_handleSignal:(XYSignal *)signal

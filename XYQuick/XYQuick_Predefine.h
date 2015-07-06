@@ -87,7 +87,7 @@
 #endif
 
 #ifndef	TODO
-#define TODO( X )			_Pragma(macro_cstr(message("✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖ TODO: " X)))
+#define TODO( X )			_Pragma(uxy_macro_cstr(message("✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖ TODO: " X)))
 #endif
 
 #ifndef	EXTERN_C
@@ -167,13 +167,13 @@
 
 #import "XYMetamacros.h"
 
-#ifndef macro_cstr
+#ifndef uxy_cstr
+// 宏定义字符串 to char, NSString
+#define uxy_macro_cstr( A )                 __uxy_macro_cstr_( A )
+#define __uxy_macro_cstr_( A )              #A
 
-#define macro_cstr( A )										macro_cstr_( A )
-#define macro_cstr_( A )									#A
-
-#define macro_string( A )									macro_string_( A )
-#define macro_string_( A )									@(#A)
+#define uxy_macro_string( A )               __uxy_macro_string_( A )
+#define __uxy_macro_string_( A )            @#A
 
 #endif
 

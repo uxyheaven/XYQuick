@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
 
 #define uxy_handleSignal( __signal, __name ) \
         - (void)__uxy_handleSignal_n_##__name:(XYSignal *)__signal
+
+
+#define uxy_frist #define
+#define AS_UXYSINGNAL( __name )     extern NSString *const __name;
+#define DEF_UXYSINGNAL( __name )    NSString *const __name = uxy_macro_string(__name);
+
+#pragma mark -
 
 #pragma mark - XYSignalTarget
 @protocol XYSignalTarget

@@ -7,8 +7,8 @@
 //
 
 #import "UISignalVC.h"
-#import "XYSignal.h"
 
+DEF_UXYSINGNAL( signal_name1 )      // 信号1
 
 @implementation Signal1
 
@@ -34,14 +34,14 @@ DEF_SIGNAL( click1 )
 
 - (void)click1:(id)sender{
     [self sendUISignal:self.click1 withObject:sender];
-    [self uxy_sendSignalWithName:@"name1" userInfo:@"aa"];
+    [self uxy_sendSignalWithName:signal_name1 userInfo:@"aa"];
 }
 
 ON_SIGNAL( signal ){
     NSLogD(@"%@", signal);
 }
 
-uxy_handleSignal(signal, name1)
+uxy_handleSignal(signal, signal_name1)
 {
     NSLogDD;
 }
