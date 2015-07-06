@@ -7,8 +7,7 @@
 //
 
 #import "UISignalVC.h"
-
-
+#import "XYSignal.h"
 
 
 @implementation Signal1
@@ -35,12 +34,23 @@ DEF_SIGNAL( click1 )
 
 - (void)click1:(id)sender{
     [self sendUISignal:self.click1 withObject:sender];
+    [self uxy_sendSignalWithName:@"name1" userInfo:@"aa"];
 }
 
 ON_SIGNAL( signal ){
     NSLogD(@"%@", signal);
 }
 
+uxy_handleSignal(signal, name1)
+{
+    NSLogDD;
+}
+
+uxy_handleSignal(signal, name2)
+{
+    signal.isReach = NO;
+    NSLogDD;
+}
 @end
 
 @implementation Signal2
@@ -63,6 +73,7 @@ DEF_SIGNAL( click2 )
 
 - (void)click2:(id)sender{
     XYUISignal *signal = [self sendUISignal:self.click2 withObject:sender];
+    [self uxy_sendSignalWithName:@"name2" userInfo:@"22"];
     NSLogD(@"%@", signal.returnValue);
 }
 
@@ -152,12 +163,18 @@ ON_SIGNAL3(Signal2, click2, signal){
     NSLogD(@"%@", signal);
 }
 
+uxy_handleSignal(signal, name2)
+{
+    NSLogDD;
+}
+
 - (void)click3:(id)sender{
     //UILabel *label = [[UILabel alloc] init];
     //self.tempObject = label;
     //[self.view addSubview:label];
    // NSLogD(@"%@", label);
     [self sendUISignal:self.click3 withObject:sender];
+    [self uxy_sendSignalWithName:@"name3" userInfo:@"123"];
 }
 - (void)click4:(id)sender{
     //id temp = self.tempObject;

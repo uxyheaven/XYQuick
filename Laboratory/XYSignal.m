@@ -20,99 +20,115 @@
 
 - (BOOL)send
 {
-    /*
-    NSObject *targetObject = self.target;
-    if ( nil == targetObject )
+    NSString *string = [NSString stringWithFormat:@"__uxy_handleSignal_%@:", _name];
+    SEL sel = NSSelectorFromString(string);
+    if ([self respondsToSelector:sel])
     {
-        return _isReach;
+        NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:sel];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+        [invocation setTarget:self];
+        [invocation setSelector:sel];
+        int arg1 =  2;
+        [invocation setArgument:&arg1 atIndex:2];//参数从2开始，index 为0表示target，1为_cmd
+        id resultString = nil;
+        [invocation invoke];
+        [invocation getReturnValue:&resultString];
     }
-    
-    NSString *selectorName  = nil;
-    SEL selector            = nil;
-    
-    NSString *selectorName2 = nil;
-    SEL selector2           = nil;
-    
-    NSString *signalPrefix  = nil;
-    NSString *signalClass   = nil;
-    NSString *signalMethod  = nil;
-    
-    if ( self.name && [self.name hasPrefix:@"signal."] )
-    {
-        NSArray * array = [self.name componentsSeparatedByString:@"."];
-        if ( array && array.count > 1 )
-        {
-            signalPrefix    = (NSString *)[array objectAtIndex:0];
-            signalClass     = (NSString *)[array objectAtIndex:1];
-            signalMethod    = (NSString *)[array objectAtIndex:2];
-        }
-    }
-     */
-    
+
+
     return YES;
 }
 @end
 
 #pragma mark- UXYSignalHandler
 @interface NSObject (UXYSignalHandler) <XYSignalTarget>
+@property (nonatomic, weak) id uxy_nextSignalHandler;
 @end
 
 @implementation NSObject (UXYSignalHandler)
 
 @dynamic uxy_nextSignalHandler;
 
-- (id)uxy_performSignal:(XYSignal *)signal
+- (BOOL)__uxy_performSignal:(XYSignal *)signal
+{
+    // 1. 普通的
+    NSString *string = [NSString stringWithFormat:@"__uxy_handleSignal_n_%@:", signal.name];
+    SEL sel = NSSelectorFromString(string);
+    if ([self respondsToSelector:sel])
+    {
+        signal.isReach = YES;
+        NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:sel];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+        [invocation setTarget:self];
+        [invocation setSelector:sel];
+        [invocation setArgument:&signal atIndex:2];
+        [invocation invoke];
+        
+        return YES;
+    }
+    
+    // 2.协议筛选的
+    string = [NSString stringWithFormat:@"__uxy_handleSignal_p_%@:", signal.name];
+    sel = NSSelectorFromString(string);
+    if ([self respondsToSelector:sel])
+    {
+        signal.isReach = YES;
+        NSMethodSignature *methodSignature = [[self class] instanceMethodSignatureForSelector:sel];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+        [invocation setTarget:self];
+        [invocation setSelector:sel];
+        [invocation setArgument:&signal atIndex:2];
+        [invocation invoke];
+        
+        return YES;
+    }
+    
+    
+    return YES;
+}
+
+- (id)__uxy_handleSignal:(XYSignal *)signal
 {
     id result;
-    [signal send];
+    signal.jump++;
+    
+    [self __uxy_performSignal:signal];
     
     if (signal.isDead == YES) return nil;
     if (signal.isReach == YES) return nil;
     
     id next = self.uxy_nextSignalHandler ?: self.uxy_defaultNextSignalHandler;
     
-    result = [next uxy_performSignal:signal];
+    result = [next __uxy_handleSignal:signal];
     
     return result;
 }
 
-
-/*
-- (void)uxy_sendSignal:(XYSignal *)signal
-{
-    [signal send];
-    
-    if (signal.isDead == YES)
-    {
-        return;
-    }
-    
-    if (signal.isReach == YES)
-    {
-        return;
-    }
-    
-    id next = self.uxy_nextSignalHandler ?: [self uxy_defaultNextSignalHandler];
-    if (next)
-    {
-        signal.jump++;
-        [next uxy_sendSignal:signal];
-    }
-    else
-    {
-        signal.isReach = YES;
-    }
-}
-*/
-
-- (void)setUxy_NextSignalHandler:(id)nextSignalHandler
+- (void)setUxy_nextSignalHandler:(id)nextSignalHandler
 {
     objc_setAssociatedObject(self, kUXYSignalHandler_key, nextSignalHandler, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id)uxy_NextSignalHandler
+- (id)uxy_nextSignalHandler
 {
     return objc_getAssociatedObject(self, kUXYSignalHandler_key);
+}
+
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
+{
+    return [self uxy_sendSignalWithName:name userInfo:userInfo sender:self];
+}
+
+- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender
+{
+    XYSignal *signal = [[XYSignal alloc] init];
+    signal.sender = sender ?: self;
+    signal.name   = name;
+    signal.userInfo = userInfo;
+    
+    [self __uxy_handleSignal:signal];
+    
+    return signal;
 }
 
 #pragma mark- private
@@ -130,24 +146,7 @@
 
 - (id)uxy_defaultNextSignalHandler
 {
-    return self.superview ?: self.nextResponder;
-}
-
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
-{
-   return [self uxy_sendSignalWithName:name userInfo:userInfo sender:self];
-}
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender
-{
-    XYSignal *signal = [[XYSignal alloc] init];
-    signal.sender = sender ?: self;
-    // signal.target = self;
-    signal.name   = name;
-    signal.userInfo = userInfo;
-    
-    [[XYSignalBus defaultBus] sendSignal:signal];
-    
-    return signal;
+    return self.nextResponder;
 }
 
 #pragma mark- private
@@ -177,8 +176,8 @@
 @end
 
 #pragma mark -
+/*
 @implementation XYSignalBus
-
 + (instancetype)defaultBus
 {
     static dispatch_once_t once;
@@ -186,13 +185,5 @@
     dispatch_once( &once, ^{ __singleton__ = [[self alloc] init]; } );
     return __singleton__;
 }
-/*
-- (XYSignal *)sendSignal:(XYSignal *)signal
-{
-    id<XYSignalTarget> target = signal.sender;
-    
-    return signal;
-}
- */
 @end
-
+ */

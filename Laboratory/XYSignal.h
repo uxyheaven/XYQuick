@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define uxy_handleSignal (__signalName)
+#define uxy_handleSignal( __signal, __name ) \
+        - (void)__uxy_handleSignal_n_##__name:(XYSignal *)__signal
 
 #pragma mark - XYSignalTarget
 @protocol XYSignalTarget
@@ -24,19 +25,13 @@
 @property (nonatomic, assign) BOOL isReach;      // 是否触达最后的Handler
 
 @property (nonatomic, weak) id<XYSignalTarget> sender;          // 发送者
-//@property (nonatomic, weak) id<XYSignalTarget> target;          // 接收者
 
 @property (nonatomic, assign) NSInteger jump;       // 跳转次数
 @property (nonatomic, copy) NSString *name;     // 名字
 @property (nonatomic, strong) id userInfo;        // 请求的参数
 
-@property (nonatomic, copy) NSMutableString *callPath;    // 调用路径
-
 // Response
 @property (nonatomic, strong) id response;       // 返回值
-
-
-+ (id)signalWithName:(NSString *)name;
 
 @end
 
@@ -45,37 +40,24 @@
 
 @interface NSObject (UXYSignalHandler)
 
-// 处理任务
-- (id)uxy_performSignal:(XYSignal *)signal;
-
-@end
-
-@interface UIView (UXYSignalHandler)
-
-// 返回一个signal对象
-- (XYSignal *)uxy_signalWithName:(NSString *)name;
-
-// 发送一个signal
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
 
-
 @end
 
-@interface UIViewController (UXYSignalHandler)
+@interface UIView (UXYSignalHandler)<XYSignalTarget>
+@end
 
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
-- (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
-
+@interface UIViewController (UXYSignalHandler)<XYSignalTarget>
 @end
 
 #pragma mark - XYSignalBus
+// 暂时无用
+/*
 @interface XYSignalBus : NSObject
-
 + (instancetype)defaultBus;
-
-- (XYSignal *)sendSignal:(XYSignal *)signal;
 @end
+ */
 
 
 
