@@ -307,7 +307,29 @@ DUMMY_CLASS(NSObject_XY);
     return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
 }
 
-#pragma mark- associated
+#pragma mark - private
++ (NSDateFormatter *)__uxy_dateFormatterTemp
+{
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = threadDictionary[@"uxy_dateFormatterTemp"];
+    if(!dateFormatter)
+    {
+        @synchronized(self)
+        {
+            if(!dateFormatter)
+            {
+                dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                threadDictionary[@"uxy_dateFormatterTemp"] = dateFormatter;
+            }
+        }
+    }
+    
+    return dateFormatter;
+}
+@end
+
+@implementation NSObject (XY_associated)
 - (id)uxy_getAssociatedObjectForKey:(const char *)key
 {
     const char * propName = key;
@@ -348,27 +370,6 @@ DUMMY_CLASS(NSObject_XY);
 - (void)uxy_removeAllAssociatedObjects
 {
     objc_removeAssociatedObjects( self );
-}
-
-#pragma mark - private
-+ (NSDateFormatter *)__uxy_dateFormatterTemp
-{
-    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-    NSDateFormatter *dateFormatter = threadDictionary[@"uxy_dateFormatterTemp"];
-    if(!dateFormatter)
-    {
-        @synchronized(self)
-        {
-            if(!dateFormatter)
-            {
-                dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                threadDictionary[@"uxy_dateFormatterTemp"] = dateFormatter;
-            }
-        }
-    }
-    
-    return dateFormatter;
 }
 
 @end

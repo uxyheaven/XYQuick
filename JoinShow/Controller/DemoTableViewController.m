@@ -36,10 +36,9 @@
     if (self) {
         NSArray *array = [NSObject uxy_classesWithProtocol:@"ViewControllerDemo"];
         NSMutableArray *mArray = [@[] mutableCopy];
-        for (NSInteger i = 0; i < array.count; i++)
-        {
-            [mArray addObject:@{@"title" : [NSClassFromString(array[i]) title], @"classType" : array[i]}];
-        }
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [mArray addObject:@{@"title" : [NSClassFromString(obj) title], @"classType" : obj}];
+        }];
         self.list = mArray;
     }
     return self;
@@ -58,6 +57,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationController.navigationBar uxy_setBackgroundColor:[UIColor lightGrayColor]];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]  initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickRight:)];
     self.navigationItem.rightBarButtonItem = item;

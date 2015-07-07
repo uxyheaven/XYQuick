@@ -30,9 +30,9 @@
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender
 {
     XYSignal *signal = [[XYSignal alloc] init];
-    signal.sender = sender ?: self;
-    signal.name   = name;
-    signal.userInfo = userInfo;
+    signal.sender    = sender ?: self;
+    signal.name      = name;
+    signal.userInfo  = userInfo;
     
     [self __uxy_handleSignal:signal];
     
