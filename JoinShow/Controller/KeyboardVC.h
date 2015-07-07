@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KeyboardVC : UIViewController <UITextFieldDelegate, UITextViewDelegate>{
+@interface KeyboardVC : UIViewController <UITextFieldDelegate, UITextViewDelegate, ViewControllerDemo>{
      NSInteger selectedTextFieldTag;
 }
 - (IBAction)clickEnable:(id)sender;

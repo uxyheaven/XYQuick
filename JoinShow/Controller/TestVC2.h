@@ -9,7 +9,7 @@
 #pragma -mark todo
 #import <UIKit/UIKit.h>
 
-@interface TestVC2 : UITableViewController
+@interface TestVC2 : UITableViewController<ViewControllerDemo>
 
 @property (nonatomic, strong) NSArray *items;
 

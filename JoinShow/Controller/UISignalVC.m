@@ -83,6 +83,8 @@ ON_SIGNAL( signal ){
 
 DEF_SIGNAL( click3 )
 
+ViewControllerDemoTitle(UISignal)
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

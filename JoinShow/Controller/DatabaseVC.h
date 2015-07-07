@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DatabaseVC : UIViewController
+@interface DatabaseVC : UIViewController<ViewControllerDemo>
 
 @end

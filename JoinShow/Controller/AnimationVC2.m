@@ -14,6 +14,8 @@
 
 @implementation AnimationVC2
 
+ViewControllerDemoTitle(UIView Animation)
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

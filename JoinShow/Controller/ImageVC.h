@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageVC : UITableViewController
+@interface ImageVC : UITableViewController<ViewControllerDemo>
 
 @property (nonatomic, strong) UIImage *originImg;
 

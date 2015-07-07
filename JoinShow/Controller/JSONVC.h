@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JSONVC : UITableViewController
+@interface JSONVC : UITableViewController<ViewControllerDemo>
 
 @end

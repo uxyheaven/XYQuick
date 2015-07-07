@@ -16,6 +16,8 @@
 
 @implementation ImageVC
 
+ViewControllerDemoTitle(Image)
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

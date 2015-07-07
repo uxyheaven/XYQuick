@@ -10,7 +10,7 @@
 #import "XYQuick.h"
 
 
-@interface BusinessVC : XYBaseViewController
+@interface BusinessVC : XYBaseViewController<ViewControllerDemo>
 
 @property (nonatomic, strong) UIButton *btnLoad;
 @property (nonatomic, strong) UIButton *btnStart;

@@ -34,20 +34,13 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.list = @[
-                      @{@"title": @"Something", @"className": @"TestVC"},
-                      @{@"title": @"Something2", @"className": @"TestVC2"},
-                      @{@"title": @"UIView Animation", @"className": @"AnimationVC2"},
-                      @{@"title": @"JSON", @"className": @"JSONVC"},
-                      @{@"title": @"Network", @"className": @"NetworkVC"},
-                      @{@"title": @"Database", @"className": @"DatabaseVC"},
-                      @{@"title": @"Image", @"className": @"ImageVC"},
-                      @{@"title": @"Keyboard", @"className": @"KeyboardVC"},
-                      @{@"title": @"Business", @"className": @"BusinessVC"},
-                      @{@"title": @"UISignal", @"className" : @"UISignalVC"},
-                      @{@"title": @"Signal", @"className" : @"SignalVC"},
-                      @{@"title": @"BlackMagic", @"className": @"BlackMagicVC"}
-                      ];
+        NSArray *array = [NSObject uxy_classesWithProtocol:@"ViewControllerDemo"];
+        NSMutableArray *mArray = [@[] mutableCopy];
+        for (NSInteger i = 0; i < array.count; i++)
+        {
+            [mArray addObject:@{@"title" : [NSClassFromString(array[i]) title], @"classType" : array[i]}];
+        }
+        self.list = mArray;
     }
     return self;
 }
@@ -170,15 +163,14 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     NSDictionary *dic = [self.list objectAtIndex:indexPath.row];
-    
     @try {
         // 故事版加载
-        [self performSegueWithIdentifier:[dic objectForKey:@"className"] sender:dic];
+        [self performSegueWithIdentifier:[dic objectForKey:@"classType"] sender:dic];
     }
     @catch (NSException *exception) {
         NSLog(@"Segue not found: %@", exception);
         
-        UIViewController *vc = [[NSClassFromString([dic objectForKey:@"className"]) alloc] init];
+        UIViewController *vc = [[NSClassFromString([dic objectForKey:@"classType"]) alloc] init];
         vc.title = [dic objectForKey:@"title"];
         [self.navigationController pushViewController:vc animated:YES];
     }

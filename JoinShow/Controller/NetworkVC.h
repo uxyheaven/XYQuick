@@ -14,7 +14,7 @@
 @class HTTPClient3;
 
 @class DownloadRequest;
-@interface NetworkVC : UIViewController
+@interface NetworkVC : UIViewController<ViewControllerDemo>
 
 // get
 @property (nonatomic, weak) HTTPClient *httpClient;

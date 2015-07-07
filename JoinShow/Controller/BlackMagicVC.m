@@ -15,6 +15,8 @@
 
 @implementation BlackMagicVC
 
+ViewControllerDemoTitle(BlackMagic)
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

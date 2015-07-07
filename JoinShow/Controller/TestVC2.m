@@ -21,6 +21,8 @@
 
 @implementation TestVC2
 
+ViewControllerDemoTitle(Something2)
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

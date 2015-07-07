@@ -22,5 +22,5 @@ AS_UXYSINGNAL( signal_name1 )      // 信号1
 @interface Signal2_child : Signal2
 @end
 
-@interface SignalVC : UIViewController
+@interface SignalVC : UIViewController<ViewControllerDemo>
 @end

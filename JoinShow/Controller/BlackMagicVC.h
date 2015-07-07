@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlackMagicVC : UITableViewController
+@interface BlackMagicVC : UITableViewController<ViewControllerDemo>
 
 @property (nonatomic, strong) NSArray *items;
 

@@ -29,7 +29,7 @@ AS_SIGNAL( click2 )
 
 @end
 
-@interface UISignalVC : UIViewController
+@interface UISignalVC : UIViewController<ViewControllerDemo>
 
 AS_SIGNAL( click3 )
 

@@ -11,7 +11,7 @@
 @class XYObserve;
 @class TestView;
 @class GirlEntity;
-@interface TestVC : UIViewController {
+@interface TestVC : UIViewController<ViewControllerDemo> {
     int offset;
     
 }

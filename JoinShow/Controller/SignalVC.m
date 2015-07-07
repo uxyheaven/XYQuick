@@ -79,6 +79,8 @@ uxy_handleSignal(signal, name2)
 
 @implementation SignalVC
 
+ViewControllerDemoTitle(Signal)
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

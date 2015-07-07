@@ -17,6 +17,9 @@
 @end
 
 @implementation NetworkVC
+
+ViewControllerDemoTitle(Network)
+
 #if (1 ==  __USED_MKNetworkKit__)
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

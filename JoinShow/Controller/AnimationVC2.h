@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AnimationVC2 : UIViewController
+@interface AnimationVC2 : UIViewController<ViewControllerDemo>
 
 @end

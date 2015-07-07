@@ -39,6 +39,8 @@ if (1) { \
 
 @implementation TestVC
 
+ViewControllerDemoTitle(Something)
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

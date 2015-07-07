@@ -154,6 +154,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		570068E31B4B6EE6003CA117 /* ViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDemo.h; sourceTree = "<group>"; };
 		5708A8751AF8991A000607AB /* XYAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppController.h; sourceTree = "<group>"; };
 		5708A8761AF8991A000607AB /* XYAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAppController.m; sourceTree = "<group>"; };
 		5708A8771AF8991A000607AB /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
@@ -514,6 +515,7 @@
 				579B3A3418EBDCF8001650C6 /* DemoViewController.m */,
 				5749BF8219BF480900D676CC /* JSONVC.h */,
 				5749BF8319BF480900D676CC /* JSONVC.m */,
+				570068E31B4B6EE6003CA117 /* ViewControllerDemo.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
