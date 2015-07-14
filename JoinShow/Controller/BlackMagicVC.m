@@ -7,7 +7,7 @@
 //
 
 #import "BlackMagicVC.h"
-#import "XYBlackMagic.h"
+#import "XYQuick.h"
 
 @interface BlackMagicVC ()
 

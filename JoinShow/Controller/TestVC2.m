@@ -13,8 +13,6 @@
 #import "UISignalVC.h"
 #import "JsonTestEntity.h"
 
-#import "XYTabBarController.h"
-
 @interface TestVC2 ()
 
 @end
