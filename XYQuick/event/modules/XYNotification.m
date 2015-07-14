@@ -98,7 +98,7 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
 
 - (void)registerNotification:(NSString *)name
 {
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@NotificationHandle:", name]);
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleNotification_%@:", name]);
     if ([self respondsToSelector:aSel])
     {
         [self notificationWihtName:name target:self selector:aSel];

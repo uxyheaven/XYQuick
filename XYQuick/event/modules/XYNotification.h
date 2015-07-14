@@ -11,8 +11,8 @@
 #pragma mark - #define
 #define NOTIFICATION_NAME( __name )					uxy_macro_string( __name )
 
-#define	ON_NOTIFICATION_1_( __name, __notification )     \
-    - (void)__name##NotificationHandle:(NSNotification *)__notification
+#define uxy_handleNotification( __name, __notification ) \
+        - (void)__uxy_handleNotification_##__name:(NSNotification *)__notification
 
 #undef	NSObject_notifications
 #define NSObject_notifications	"NSObject.XYNotification.notifications"

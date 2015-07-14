@@ -12,9 +12,8 @@
 
 #define TIMER_NAME( __name )					__TEXT( __name )
 
-#undef	ON_TIMER
-#define ON_TIMER( __name, __timer, __duration ) \
-        - (void)__name##TimerHandle:(XYTimer *)__timer duration:(NSTimeInterval)__duration
+#define uxy_handleTimer(  __name, __timer, __duration ) \
+        - (void)__uxy_handleTimer_##__name:(XYTimer *)__timer duration:(NSTimeInterval)__duration
 
 #undef	NSObject_XYTimers
 #define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
@@ -59,12 +58,10 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 // CADisplayLink
 // Ticker
 
-
 #pragma mark - #define
 
-#undef	ON_TICK
-#define ON_TICK( __time ) \
-- (void)handleTick:(NSTimeInterval)__time
+#define uxy_handleTick(  __name, __timer, __duration ) \
+        - (void)__uxy_handleTick:(NSTimeInterval)__time
 
 #pragma mark - XYTicker
 /**

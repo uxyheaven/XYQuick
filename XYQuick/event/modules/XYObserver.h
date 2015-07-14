@@ -12,10 +12,17 @@
 #pragma mark - #define
 #define KVO_NAME( __name )					uxy_macro_string( __name )
 
-#define	ON_KVO_1_( __property, __sourceObject, __newValue )     \
-    - (void)__property##In:(id)sourceObject new:(id)newValue
-#define	ON_KVO_2_( __property, __sourceObject, __newValue, __oldValue )     \
-    - (void)__property##In:(id)sourceObject new:(id)newValue old:(id)oldValue
+#define uxy_handleKVO( __property, __sourceObject, ...)            \
+        metamacro_if_eq(1, metamacro_argcount(__VA_ARGS__))         \
+        (__uxy_handleKVO_1(__property, __sourceObject, __VA_ARGS__))    \
+        (__uxy_handleKVO_2(__property, __sourceObject, __VA_ARGS__))
+
+
+#define __uxy_handleKVO_1( __property, __sourceObject, __newValue) \
+        - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue
+
+#define __uxy_handleKVO_2( __property, __sourceObject, __newValue, __oldValue ) \
+        - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue old:(id)oldValue
 
 #undef	NSObject_observers
 #define NSObject_observers	"NSObject.XYObserve.observers"

@@ -61,7 +61,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 
 @property (nonatomic, strong) XYTimer *timer;
 
--(instancetype) initWithXYTimer:(XYTimer *)timer;
+- (instancetype)initWithXYTimer:(XYTimer *)timer;
 
 @end
 
@@ -102,13 +102,13 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     return object;
 }
 
--(NSTimer *) timer:(NSTimeInterval)interval name:(NSString *)name
+- (NSTimer *)timer:(NSTimeInterval)interval name:(NSString *)name
 {
    return [self timer:interval repeat:NO name:name];
 }
 
 
--(NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
+- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
 {
     NSAssert(name.length > 1, @"name 不能为空");
     
@@ -120,18 +120,18 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
         [self cancelTimer:name];
     }
 
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"%@TimerHandle:duration:", name]);
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleTimer_%@:duration:", name]);
     
     NSAssert([self respondsToSelector:aSel], @"selector 必须存在");
     
-    NSDate *date = [NSDate date];
+    NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
-    timer.name = name;
+    timer.name     = name;
     timer.start_at = [date timeIntervalSince1970];
-    timer.target = self;
+    timer.target   = self;
     timer.selector = aSel;
     timer.duration = 0;
-    timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
+    timer.timer    = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
     XYTimerContainer *container = [[XYTimerContainer alloc] initWithXYTimer:timer];
@@ -141,20 +141,20 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     return timer.timer;
 }
 
--(NSTimer *) timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
+- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
 {
     NSString *timerName = (name == nil) ? @"" : name;
     
     NSMutableDictionary *timers = self.XYtimers;
     [self cancelTimer:timerName];
     
-    NSDate *date = [NSDate date];
+    NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
-    timer.name = timerName;
+    timer.name     = timerName;
     timer.start_at = [date timeIntervalSince1970];
     timer.duration = 0;
-    timer.block = block;
-    timer.timer = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
+    timer.block    = block;
+    timer.timer    = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
     [[NSRunLoop mainRunLoop] addTimer:timer.timer forMode:NSRunLoopCommonModes];
     
     XYTimerContainer *container = [[XYTimerContainer alloc] initWithXYTimer:timer];
@@ -180,12 +180,11 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 
 - (void)cancelAllTimer
 {
-    NSMutableDictionary *timers = self.XYtimers;
-    [timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [self.XYtimers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [(XYTimer *)obj stop];
     }];
     
-    [timers removeAllObjects];
+    [self.XYtimers removeAllObjects];
 }
 
 @end
@@ -207,7 +206,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 {
     self = [super init];
     if (self) {
-        _interval = 1.0 / 8.0;
+        _interval  = 1.0 / 8.0;
         _receivers = [NSMutableArray uxy_nonRetainingArray];
     }
     return self;
@@ -242,20 +241,17 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 
 - (void)performTick
 {
-	NSTimeInterval tick = [NSDate timeIntervalSinceReferenceDate];
-	NSTimeInterval elapsed = tick - _timestamp;
+    NSTimeInterval tick    = [NSDate timeIntervalSinceReferenceDate];
+    NSTimeInterval elapsed = tick - _timestamp;
     
 	if ( elapsed >= _interval )
 	{
-		NSArray * array = [NSArray arrayWithArray:_receivers];
-        
-		for ( NSObject * obj in array )
-		{
-			if ( [obj respondsToSelector:@selector(handleTick:)] )
-			{
-				[obj handleTick:elapsed];
-			}
-		}
+        [_receivers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ( [obj respondsToSelector:@selector(__uxy_handleTick:)] )
+            {
+                [obj handleTick:elapsed];
+            }
+        }];
         
 		_timestamp = tick;
 	}

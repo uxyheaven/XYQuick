@@ -13,6 +13,12 @@
 void (*XYObserver_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
 void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
 
+#define __uxy_handleKVO_1( __property, __sourceObject, __newValue) \
+        - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue
+
+#define __uxy_handleKVO_2( __property, __sourceObject, __newValue, __oldValue ) \
+        - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue old:(id)oldValue
+
 #pragma mark - XYObserver
 @interface XYObserver ()
 
@@ -120,7 +126,7 @@ void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id)
 {
     SEL aSel = nil;
     
-    aSel = NSSelectorFromString([NSString stringWithFormat:@"%@In:new:", property]);
+    aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleKVO_%@_in:new:", property]);
     if ([self respondsToSelector:aSel])
     {
         [self observeWithObject:object
@@ -131,7 +137,7 @@ void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id)
         return;
     }
     
-    aSel = NSSelectorFromString([NSString stringWithFormat:@"%@In:new:old:", property]);
+    aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleKVO_%@_in:new:old:", property]);
     if ([self respondsToSelector:aSel])
     {
         [self observeWithObject:object

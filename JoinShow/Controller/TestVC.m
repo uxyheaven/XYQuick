@@ -930,21 +930,20 @@ ViewControllerDemoTitle(Something)
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
  */
-ON_KVO_2_( testKVO, sourceObject, newValue, oldValue )
+uxy_handleKVO( testKVO, sourceObject, newValue, oldValue )
 {
      NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
 
-ON_KVO_2_( testKVO_BOOL, sourceObject, newValue, oldValue )
+uxy_handleKVO( testKVO_BOOL, sourceObject, newValue, oldValue )
 {
     NSLogD(@"obj:%@ new:%@ old:%@", sourceObject, newValue, oldValue);
 }
 
-ON_NOTIFICATION_1_( aaa, notification )
+uxy_handleNotification(aaa, notification)
 {
     NSLogD(@"%@", notification.userInfo);
 }
-
 
 #pragma mark - XYTimer
 @end
