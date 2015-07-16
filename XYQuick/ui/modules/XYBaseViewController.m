@@ -7,7 +7,6 @@
 //
 
 #import "XYBaseViewController.h"
-#import "XYCommon.h"
 #import "XYRuntime.h"
 
 #pragma mark - def

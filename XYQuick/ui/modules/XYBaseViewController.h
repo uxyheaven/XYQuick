@@ -63,7 +63,7 @@
 - (void)uxy_enterBackground;
 // 进入前台时
 - (void)uxy_enterForeground;
-// 已经加载,不在window上的vc, 收到内存警告
+// 已经加载, 不在window上的vc, 收到内存警告
 - (void)uxy_cleanData;
 
 @end
