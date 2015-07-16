@@ -41,31 +41,33 @@
  */
 
 #pragma mark -
-// 创建/销毁页面级变量, model的地方。
-//- (void)uxy_createFields;
-//- (void)uxy_destroyFields;
+
+@protocol XYViewController <NSObject>
+
+@optional
+// 创建/销毁页面级变量, model的地方
+- (void)uxy_createFields;
+- (void)uxy_destroyFields;
 
 // 创建/销毁页面内控件的地方。
-//- (void)uxy_createViews;
-//- (void)uxy_destroyViews;
+- (void)uxy_createViews;
+- (void)uxy_destroyViews;
 
-// 创建/销毁页面内控件事件的地方。
-//- (void)uxy_createEvents;
-//- (void)uxy_destroyEvents;
+// 创建/销毁页面内控件事件的地方
+- (void)uxy_createEvents;
+- (void)uxy_destroyEvents;
 
 // 如果页面加载过程需要读取数据, 则写在这个地方。
-//- (void)uxy_loadData;
-
-#pragma mark -
-// 以下方法的消息已经注册过,需要实现的时候,请直接写
+- (void)uxy_loadData;
 // 进入后台时
-//- (void)uxy_enterBackground;
+- (void)uxy_enterBackground;
 // 进入前台时
-//- (void)uxy_enterForeground;
-// 已经加载,不在window上的vc,收到内存警告
-//- (void)uxy_cleanData;
+- (void)uxy_enterForeground;
+// 已经加载,不在window上的vc, 收到内存警告
+- (void)uxy_cleanData;
 
-#pragma mark -
+@end
+
 typedef UIViewController XYBaseViewController;
 
 @interface UIViewController (XYBase)

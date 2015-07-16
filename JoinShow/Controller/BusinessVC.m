@@ -12,7 +12,7 @@
 #import "LKDBHelperExtension.h"
 #import "RubyChinaNodeEntity.h"
 
-@interface BusinessVC ()
+@interface BusinessVC ()<XYViewController>
 // get
 @property (nonatomic, strong) NSArray *model;
 @property (nonatomic, strong) EntityBaseModel *entityModel;
