@@ -27,10 +27,9 @@
     return self;
 }
 
-- (void)createViews
+- (void)uxy_createViews
 {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIDeviceOrientationPortrait || orientation  == UIInterfaceOrientationPortraitUpsideDown)
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
     {
         // 竖屏
         _contentView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -44,7 +43,7 @@
     }
 }
 
-- (void)loadData
+- (void)uxy_loadData
 {
     if (_firstKey)
     {

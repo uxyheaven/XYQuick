@@ -44,7 +44,7 @@ ViewControllerDemoTitle(Business)
     // Dispose of any resources that can be recreated.
 }
 
-- (void)createFields
+- (void)uxy_createFields
 {
     self.entityModel = [[EntityBaseModel alloc] init];
     RequestHelper *request = [[RequestHelper alloc] initWithHostName:@"www.ruby-china.org" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
@@ -55,36 +55,36 @@ ViewControllerDemoTitle(Business)
     self.entityModel.requestHelper = request;
 }
 
-- (void)destroyFields
+- (void)uxy_destroyFields
 {
     self.entityModel = nil;
 }
 
-- (void)createViews
+- (void)uxy_createViews
 {
     _btnStart = (UIButton *)[self.view viewWithTag:11000];
     
     _btnLoad = (UIButton *)[self.view viewWithTag:11001];
 }
 
-- (void)destroyViews
+- (void)uxy_destroyViews
 {
 
 }
 
-- (void)createEvents
+- (void)uxy_createEvents
 {
     [_btnStart addTarget: self action: @selector(clickStart:) forControlEvents:UIControlEventTouchUpInside];
     [_btnLoad addTarget: self action: @selector(clickLoad:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)destroyEvents
+- (void)uxy_destroyEvents
 {
     
 }
 
 // 如果页面加载过程需要调用MobileAPI，则写在这个地方。
-- (void)loadData
+- (void)uxy_loadData
 {
 
 }
@@ -110,6 +110,7 @@ ViewControllerDemoTitle(Business)
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
     NSString *str = [anObject uxy_jsonString];
+    NSLog(@"%@", str);
 }
 
 
@@ -169,6 +170,7 @@ ViewControllerDemoTitle(Business)
     
     if (self.model && self.model.count > 0) {
         NSString *str = [[self.model objectAtIndex:0] uxy_jsonString];
+        NSLog(@"%@", str);
     }
 }
 - (void)loadFromDBProcess{

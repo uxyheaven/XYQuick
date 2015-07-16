@@ -46,18 +46,18 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (void)createFields
+- (void)uxy_createFields
 {
     _tabBarFrame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
     _contentFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 49);
 }
 
-- (void)destroyFields
+- (void)uxy_destroyFields
 {
 
 }
 
-- (void)createViews
+- (void)uxy_createViews
 {
     _contentView = [[UIView alloc] initWithFrame:_contentFrame];
     [self.view addSubview:_contentView];
@@ -79,22 +79,22 @@
     [_tabBar addSubview:view];
 }
 
-- (void)destroyViews
+- (void)uxy_destroyViews
 {
 
 }
 
-- (void)createEvents
+- (void)uxy_createEvents
 {
     _tabBar.delegate = self;
 }
 
-- (void)destroyEvents
+- (void)uxy_destroyEvents
 {
 
 }
 
-- (void)loadData
+- (void)uxy_loadData
 {
     self.selectedIndex = 0;
 }
