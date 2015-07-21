@@ -103,20 +103,22 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 + (UIImage *)imageWithFileName:(NSString *)name
 {
     NSString *extension = @"png";
+    NSString *imageName = [name copy];
+    NSString *imageFullName = [name copy];
     
-    NSArray *components = [name componentsSeparatedByString:@"."];
+    NSArray *components = [imageName componentsSeparatedByString:@"."];
     if ([components count] >= 2)
     {
         NSUInteger lastIndex = components.count - 1;
         extension = [components objectAtIndex:lastIndex];
-        name = [name substringToIndex:(name.length-(extension.length+1))];
+        imageName = [imageName substringToIndex:(imageName.length - (extension.length + 1))];
     }
     
     // 如果为Retina屏幕且存在对应图片，则返回Retina图片，否则查找普通图片
     if ([UIScreen mainScreen].scale == 2.0)
     {
-        name = [name stringByAppendingString:@"@2x"];
-        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        imageFullName = [imageName stringByAppendingString:@"@2x"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:imageFullName ofType:extension];
         if (path != nil)
         {
             return [UIImage imageWithContentsOfFile:path];
@@ -125,15 +127,15 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     
     if ([UIScreen mainScreen].scale == 3.0)
     {
-        name = [name stringByAppendingString:@"@3x"];
-        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        imageFullName = [imageName stringByAppendingString:@"@3x"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:imageFullName ofType:extension];
         if (path != nil)
         {
             return [UIImage imageWithContentsOfFile:path];
         }
     }
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+    NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:extension];
     if (path)
     {
         return [UIImage imageWithContentsOfFile:path];

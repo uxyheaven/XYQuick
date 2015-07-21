@@ -224,6 +224,16 @@ DUMMY_CLASS(UIView_XY);
     return self;
 }
 
+- (instancetype)rounded2
+{
+    CAShapeLayer *aCircle = [CAShapeLayer layer];
+    aCircle.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.frame.size.height/2].CGPath;
+    aCircle.fillColor = [UIColor blackColor].CGColor;
+    self.layer.mask = aCircle;
+    
+    return self;
+}
+
 - (instancetype)roundedRectWith:(CGFloat)radius{
     self.clipsToBounds = YES;
     self.layer.cornerRadius = radius;

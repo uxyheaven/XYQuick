@@ -45,6 +45,7 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 
 // 圆形
 - (instancetype)rounded;
+- (instancetype)rounded2;
 // 圆角矩形, corners:一个矩形的四个角。
 - (instancetype)roundedRectWith:(CGFloat)radius;
 - (instancetype)roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners;
