@@ -14,16 +14,15 @@ typedef BOOL(^UIAlertView_block_shouldEnableFirstOtherButton)(UIAlertView *alert
 
 @interface UIAlertView (XY)
 
-
-- (void)handlerClickedButton:(UIAlertView_block_self_index)aBlock;
-- (void)handlerCancel:(UIAlertView_block_self)aBlock;
-- (void)handlerWillPresent:(UIAlertView_block_self)aBlock;
-- (void)handlerDidPresent:(UIAlertView_block_self)aBlock;
-- (void)handlerWillDismiss:(UIAlertView_block_self_index)aBlock;
-- (void)handlerDidDismiss:(UIAlertView_block_self_index)aBlock;
-- (void)handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock;
+- (void)uxy_handlerClickedButton:(UIAlertView_block_self_index)aBlock;
+- (void)uxy_handlerCancel:(UIAlertView_block_self)aBlock;
+- (void)uxy_handlerWillPresent:(UIAlertView_block_self)aBlock;
+- (void)uxy_handlerDidPresent:(UIAlertView_block_self)aBlock;
+- (void)uxy_handlerWillDismiss:(UIAlertView_block_self_index)aBlock;
+- (void)uxy_handlerDidDismiss:(UIAlertView_block_self_index)aBlock;
+- (void)uxy_handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock;
 
 // 延时消失
-- (void)showWithDuration:(NSTimeInterval)i;
+- (void)uxy_showWithDuration:(NSTimeInterval)i;
 
 @end

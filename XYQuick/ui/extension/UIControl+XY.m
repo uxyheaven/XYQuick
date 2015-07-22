@@ -71,13 +71,13 @@ DUMMY_CLASS(UIControl_XY);
     if (opreations)
     {
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [self removeHandlerForEvent:[UIControl eventWithName:key]];
+            [self uxy_removeHandlerForEvent:[UIControl eventWithName:key]];
         }];
         [self uxy_assignAssociatedObject:nil forKey:UIControl_key_events];
     }
 }
 
-- (void)removeHandlerForEvent:(UIControlEvents)event
+- (void)uxy_removeHandlerForEvent:(UIControlEvents)event
 {
     
     NSString *methodName = [UIControl eventName:event];
@@ -93,7 +93,7 @@ DUMMY_CLASS(UIControl_XY);
     [self removeTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
 }
 
-- (void)handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block {
+- (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block {
     
     NSString *methodName = [UIControl eventName:event];
     

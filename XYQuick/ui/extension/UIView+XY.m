@@ -47,12 +47,12 @@ DUMMY_CLASS(UIView_XY);
 + (void)timeOut{sleep(arc4random() % 10 + 5);}
 #endif
 
-- (void)addTapGestureWithTarget:(id)target action:(SEL)action
+- (void)uxy_addTapGestureWithTarget:(id)target action:(SEL)action
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
     [self addGestureRecognizer:tap];
 }
-- (void)removeTapGesture
+- (void)uxy_removeTapGesture
 {
     for (UIGestureRecognizer *gesture in self.gestureRecognizers)
     {
@@ -63,7 +63,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
+- (void)uxy_addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];
     [self addGestureRecognizer:tap];
@@ -81,7 +81,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)addLongPressGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
+- (void)uxy_addLongPressGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
 {
     UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(actionLongPress)];
     [self addGestureRecognizer:tap];
@@ -89,7 +89,7 @@ DUMMY_CLASS(UIView_XY);
     [self uxy_copyAssociatedObject:aBlock forKey:UIView_key_longPressBlock];
 }
 
-- (void)removeLongPressGesture
+- (void)uxy_removeLongPressGesture
 {
     for (UIGestureRecognizer *gesture in self.gestureRecognizers)
     {
@@ -110,9 +110,9 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 /////////////////////////////////////////////////////////////
-- (void)addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha
+- (void)uxy_addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha
 {
-    UIView *tmpView = [self shadeView];
+    UIView *tmpView = [self uxy_shadeView];
     if (aColor)
     {
         tmpView.backgroundColor = aColor;
@@ -124,11 +124,11 @@ DUMMY_CLASS(UIView_XY);
     tmpView.alpha = aAlpha;
     [self addSubview:tmpView];
     
-    [tmpView addTapGestureWithTarget:target action:action];
+    [tmpView uxy_addTapGestureWithTarget:target action:action];
 }
-- (void)addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha
+- (void)uxy_addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha
 {
-    UIView *tmpView = [self shadeView];
+    UIView *tmpView = [self uxy_shadeView];
     if (aColor)
     {
         tmpView.backgroundColor = aColor;
@@ -142,10 +142,10 @@ DUMMY_CLASS(UIView_XY);
     
     if (aBlock)
     {
-        [tmpView addTapGestureWithBlock:aBlock];
+        [tmpView uxy_addTapGestureWithBlock:aBlock];
     }
 }
-- (void)removeShade{
+- (void)uxy_removeShade{
     UIView *view = [self viewWithTag:UIView_shadeTag];
     if (view)
     {
@@ -157,7 +157,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (UIView *)shadeView{
+- (UIView *)uxy_shadeView{
     UIView * view = [self viewWithTag:UIView_shadeTag];
     if (view == nil) {
         view = [[UIView alloc] initWithFrame:self.bounds];
@@ -169,13 +169,13 @@ DUMMY_CLASS(UIView_XY);
 }
 
 // 增加毛玻璃背景
-- (void)addBlurWithTarget:(id)target action:(SEL)action level:(int)lv
+- (void)uxy_addBlurWithTarget:(id)target action:(SEL)action level:(int)lv
 {
-    UIView *tmpView = [self shadeView];
+    UIView *tmpView = [self uxy_shadeView];
     [self addSubview:tmpView];
     tmpView.alpha = 0;
     //  BACKGROUND_BEGIN
-    UIImage *img = [[self snapshot] stackBlur:lv];
+    UIImage *img = [[self uxy_snapshot] uxy_stackBlur:lv];
     //   FOREGROUND_BEGIN
     tmpView.layer.contents = (id)img.CGImage;
     [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -183,40 +183,40 @@ DUMMY_CLASS(UIView_XY);
     } completion:nil];
     //   FOREGROUND_COMMIT
     //   BACKGROUND_COMMIT
-    [tmpView addTapGestureWithTarget:target action:action];
+    [tmpView uxy_addTapGestureWithTarget:target action:action];
 }
-- (void)addBlurWithTarget:(id)target action:(SEL)action
+- (void)uxy_addBlurWithTarget:(id)target action:(SEL)action
 {
-    [self addBlurWithTarget:target action:action level:5];
+    [self uxy_addBlurWithTarget:target action:action level:5];
 }
 
-- (void)addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv
+- (void)uxy_addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock level:(int)lv
 {
-    UIView *tmpView = [self shadeView];
-    UIImage *img = [[self snapshot] stackBlur:lv];
+    UIView *tmpView = [self uxy_shadeView];
+    UIImage *img = [[self uxy_snapshot] uxy_stackBlur:lv];
     tmpView.layer.contents = (id)img.CGImage;
     [self addSubview:tmpView];
     
     if (aBlock)
     {
-        [tmpView addTapGestureWithBlock:aBlock];
+        [tmpView uxy_addTapGestureWithBlock:aBlock];
     }
 }
-- (void)addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock
+- (void)uxy_addBlurWithBlock:(UIViewCategoryNormalBlock)aBlock
 {
-    [self addBlurWithBlock:aBlock level:10];
+    [self uxy_addBlurWithBlock:aBlock level:10];
 }
 
 /////////////////////////////////////////////////////////////
-- (instancetype)bg:(NSString *)str
+- (instancetype)uxy_bg:(NSString *)str
 {
-    UIImage *image = [UIImage imageFromString:str];
+    UIImage *image = [UIImage uxy_imageWithFileName:str];
     self.layer.contents = (id) image.CGImage;
     
     return self;
 }
 
-- (instancetype)rounded
+- (instancetype)uxy_rounded
 {
     self.clipsToBounds = YES;
     self.layer.cornerRadius = self.bounds.size.width / 2;
@@ -224,7 +224,7 @@ DUMMY_CLASS(UIView_XY);
     return self;
 }
 
-- (instancetype)rounded2
+- (instancetype)uxy_rounded2
 {
     CAShapeLayer *aCircle = [CAShapeLayer layer];
     aCircle.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.frame.size.height/2].CGPath;
@@ -234,13 +234,13 @@ DUMMY_CLASS(UIView_XY);
     return self;
 }
 
-- (instancetype)roundedRectWith:(CGFloat)radius{
+- (instancetype)uxy_roundedRectWith:(CGFloat)radius{
     self.clipsToBounds = YES;
     self.layer.cornerRadius = radius;
     
     return self;
 }
-- (instancetype)roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners
+- (instancetype)uxy_roundedRectWith:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners
 {
     UIBezierPath * maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
     CAShapeLayer * maskLayer = [[CAShapeLayer alloc] init];
@@ -251,7 +251,7 @@ DUMMY_CLASS(UIView_XY);
     return self;
 }
 
-- (instancetype)borderWidth:(CGFloat)width color:(UIColor *)color
+- (instancetype)uxy_borderWidth:(CGFloat)width color:(UIColor *)color
 {
     self.layer.borderWidth = width;
     if (color)
@@ -262,7 +262,7 @@ DUMMY_CLASS(UIView_XY);
     return self;
 }
 /////////////////////////////////////////////////////////////
-- (UIActivityIndicatorView *)activityIndicatorViewShow
+- (UIActivityIndicatorView *)uxy_activityIndicatorViewShow
 {
     UIActivityIndicatorView *aView = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
     if (aView == nil)
@@ -284,7 +284,7 @@ DUMMY_CLASS(UIView_XY);
     return aView;
 }
 
-- (void)activityIndicatorViewHidden
+- (void)uxy_activityIndicatorViewHidden
 {
     UIActivityIndicatorView *aView = (UIActivityIndicatorView *)[self viewWithTag:UIView_activityIndicatorViewTag];
     if (aView)
@@ -301,7 +301,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 /////////////////////////////////////////////////////////////
-- (UIImage *)snapshot
+- (UIImage *)uxy_snapshot
 {
     UIGraphicsBeginImageContext(self.bounds.size);
     if (IOS7_OR_LATER)
@@ -319,7 +319,7 @@ DUMMY_CLASS(UIView_XY);
     return image;
 }
 
-- (instancetype)rotate:(CGFloat)angle
+- (instancetype)uxy_rotate:(CGFloat)angle
 {
     self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI * angle);
     
@@ -327,7 +327,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 
-- (void)showDataWithDic:(NSDictionary *)dic
+- (void)uxy_showDataWithDic:(NSDictionary *)dic
 {
     if (dic)
     {
@@ -347,7 +347,7 @@ DUMMY_CLASS(UIView_XY);
                 }
                 else if ([obj isKindOfClass:[NSString class]])
                 {
-                    UIImage *tempImg = [UIImage imageFromString:obj];
+                    UIImage *tempImg = [UIImage uxy_imageWithFileName:obj];
                     [tempObj setValue:tempImg forKey:@"image"];
                 }
             }
@@ -365,7 +365,7 @@ DUMMY_CLASS(UIView_XY);
     
 }
 
-- (void)removeFromSuperviewWithCrossfade
+- (void)uxy_removeFromSuperviewWithCrossfade
 {
     self.alpha = 0;
     
@@ -378,7 +378,7 @@ DUMMY_CLASS(UIView_XY);
     [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:.3];
 }
 
-- (void)removeAllSubviews
+- (void)uxy_removeAllSubviews
 {
     for (UIView *temp in self.subviews)
     {
@@ -386,7 +386,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)removeSubviewWithTag:(NSInteger)tag
+- (void)uxy_removeSubviewWithTag:(NSInteger)tag
 {
     for (UIView *temp in self.subviews)
     {
@@ -397,7 +397,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)removeSubviewExceptTag:(NSInteger)tag
+- (void)uxy_removeSubviewExceptTag:(NSInteger)tag
 {
     for (UIView *temp in self.subviews)
     {
@@ -408,7 +408,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (BOOL)isDisplayedInScreen
+- (BOOL)uxy_isDisplayedInScreen
 {
     CGRect screenRect = [UIScreen mainScreen].bounds;
     
@@ -443,7 +443,7 @@ DUMMY_CLASS(UIView_XY);
 }
 
 #pragma mark - animation
-- (void)animationCrossfadeWithDuration:(NSTimeInterval)duration
+- (void)uxy_animationCrossfadeWithDuration:(NSTimeInterval)duration
 {
     //jump through a few hoops to avoid QuartzCore framework dependency
     CAAnimation *animation = [NSClassFromString(@"CATransition") animation];
@@ -453,9 +453,9 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:animation forKey:nil];
 }
 
-- (void)animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(UIViewCategoryAnimationBlock)completion
+- (void)uxy_animationCrossfadeWithDuration:(NSTimeInterval)duration completion:(UIViewCategoryAnimationBlock)completion
 {
-    [self animationCrossfadeWithDuration:duration];
+    [self uxy_animationCrossfadeWithDuration:duration];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -463,7 +463,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction
+- (void)uxy_animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction
 {
     CATransition *transtion = [CATransition animation];
     transtion.duration = duration;
@@ -473,9 +473,9 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
-- (void)animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion
+- (void)uxy_animationCubeWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion
 {
-    [self animationCubeWithDuration:duration direction:direction];
+    [self uxy_animationCubeWithDuration:duration direction:direction];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -483,7 +483,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction
+- (void)uxy_animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction
 {
     CATransition *transtion = [CATransition animation];
     transtion.duration = duration;
@@ -493,9 +493,9 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
-- (void)animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion
+- (void)uxy_animationOglFlipWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(void (^)(void))completion
 {
-    [self animationOglFlipWithDuration:duration direction:direction];
+    [self uxy_animationOglFlipWithDuration:duration direction:direction];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -503,7 +503,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction
+- (void)uxy_animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction
 {
     CATransition *transtion = [CATransition animation];
     transtion.duration = duration;
@@ -513,9 +513,9 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:transtion forKey:@"transtionKey"];
 }
 
-- (void)animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion
+- (void)uxy_animationMoveInWithDuration:(NSTimeInterval)duration direction:(NSString *)direction completion:(UIViewCategoryAnimationBlock)completion
 {
-    [self animationMoveInWithDuration:duration direction:direction];
+    [self uxy_animationMoveInWithDuration:duration direction:direction];
     if (completion)
     {
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC));
@@ -523,7 +523,7 @@ DUMMY_CLASS(UIView_XY);
     }
 }
 
-- (void)animationShake
+- (void)uxy_animationShake
 {
     CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     //设置抖动幅度
@@ -535,7 +535,7 @@ DUMMY_CLASS(UIView_XY);
     [self.layer addAnimation:shake forKey:@"XYShake"];
 }
 
-- (UIViewController *)currentViewController
+- (UIViewController *)uxy_currentViewController
 {
     id viewController = [self nextResponder];
     UIView *view      = self;

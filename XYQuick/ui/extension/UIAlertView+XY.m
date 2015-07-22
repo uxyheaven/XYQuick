@@ -28,38 +28,38 @@ DUMMY_CLASS(UIAlertView_XY);
 
 @implementation UIAlertView (XY)
 
-- (void)handlerClickedButton:(UIAlertView_block_self_index)aBlock
+- (void)uxy_handlerClickedButton:(UIAlertView_block_self_index)aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)handlerCancel:(void (^)(UIAlertView *alertView))aBlock
+- (void)uxy_handlerCancel:(void (^)(UIAlertView *alertView))aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)handlerWillPresent:(void (^)(UIAlertView *alertView))aBlock
+- (void)uxy_handlerWillPresent:(void (^)(UIAlertView *alertView))aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (void)handlerDidPresent:(void (^)(UIAlertView *alertView))aBlock
+- (void)uxy_handlerDidPresent:(void (^)(UIAlertView *alertView))aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)handlerWillDismiss:(UIAlertView_block_self_index)aBlock
+- (void)uxy_handlerWillDismiss:(UIAlertView_block_self_index)aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)handlerDidDismiss:(UIAlertView_block_self_index)aBlock
+- (void)uxy_handlerDidDismiss:(UIAlertView_block_self_index)aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock
+- (void)uxy_handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock
 {
     self.delegate = self;
     objc_setAssociatedObject(self, UIAlertView_key_shouldEnableFirstOtherButton, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -125,7 +125,7 @@ DUMMY_CLASS(UIAlertView_XY);
     return YES;
 }
 
-- (void)showWithDuration:(NSTimeInterval)i
+- (void)uxy_showWithDuration:(NSTimeInterval)i
 {
     [NSTimer scheduledTimerWithTimeInterval:i
                                      target:self

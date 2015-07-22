@@ -26,32 +26,32 @@
 DUMMY_CLASS(UIActionSheet_XY);
 
 @implementation UIActionSheet (XY)
-- (void)handlerClickedButton:(UIActionSheet_block_self_index)aBlock
+- (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
     [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_clicked];
 }
-- (void)handlerCancel:(UIActionSheet_block_self)aBlock
+- (void)uxy_handlerCancel:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
     [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_cancel];
 }
-- (void)handlerWillPresent:(UIActionSheet_block_self)aBlock
+- (void)uxy_handlerWillPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
     [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_willPresent];
 }
-- (void)handlerDidPresent:(UIActionSheet_block_self)aBlock
+- (void)uxy_handlerDidPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
     [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_didPresent];
 }
-- (void)handlerWillDismiss:(UIActionSheet_block_self)aBlock
+- (void)uxy_handlerWillDismiss:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
     [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_willDismiss];
 }
-- (void)handlerDidDismiss:(UIActionSheet_block_self_index)aBlock
+- (void)uxy_handlerDidDismiss:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
     [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_didDismiss];

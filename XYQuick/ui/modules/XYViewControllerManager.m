@@ -114,7 +114,7 @@
     _selectedKey = key;
     
     // 动画效果
-    [self.view animationCrossfadeWithDuration:.3];
+    [self.view uxy_animationCrossfadeWithDuration:.3];
 }
 
 -(UIViewController *)selectedViewController

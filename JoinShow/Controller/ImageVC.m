@@ -68,15 +68,18 @@ ViewControllerDemoTitle(Image)
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.backgroundColor = [UIColor lightGrayColor];
     
     // Configure the cell...
-   NSDictionary *dic = [self getCellDataIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld %@", (long)indexPath.row, [dic objectForKey:@"title"]];
+    NSDictionary *dic = [self getCellDataIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",@(indexPath.row), [dic objectForKey:@"title"]];
     cell.imageView.image = [dic objectForKey:@"img"];
+    cell.imageView.bounds = CGRectMake(0, 0, 70, 70);
     
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 100;
 }
 /*
@@ -142,57 +145,57 @@ ViewControllerDemoTitle(Image)
         }
         case 1:
         {
-            [dic setObject:@"transprent" forKey:@"title"];
-            UIImage *tempImg = [self.originImg transprent];
+            [dic setObject:@"GradientTint : orangeColor" forKey:@"title"];
+            UIImage *tempImg = [[UIImage uxy_imageWithFileName:@"image.png"] uxy_imageWithGradientTintColor:[UIColor orangeColor]];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 2:
         {
             [dic setObject:@"rounded" forKey:@"title"];
-            UIImage *tempImg = [self.originImg rounded];
+            UIImage *tempImg = [self.originImg uxy_rounded];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 3:
         {
             [dic setObject:@"rounded(10, 10, 70, 70)" forKey:@"title"];
-            UIImage *tempImg = [self.originImg rounded:CGRectMake(10, 10, 70, 70)];
+            UIImage *tempImg = [self.originImg uxy_rounded:CGRectMake(10, 10, 70, 70)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 4:
         {
             [dic setObject:@"stretched" forKey:@"title"];
-            UIImage *tempImg = [[UIImage imageWithFileName:@"user_currentstandings.png"] stretched];
+            UIImage *tempImg = [[UIImage uxy_imageWithFileName:@"user_currentstandings.png"] uxy_stretched];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 5:
         {
             [dic setObject:@"stretched(UIEdgeInsetsMake)" forKey:@"title"];
-            UIImage *tempImg = [[UIImage imageWithFileName:@"user_currentstandings.png"] stretched:UIEdgeInsetsMake(12, 1, 2, 2)];
+            UIImage *tempImg = [[UIImage uxy_imageWithFileName:@"user_currentstandings.png"] uxy_stretched:UIEdgeInsetsMake(12, 1, 2, 2)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 6:
         {
             [dic setObject:@"grayscale" forKey:@"title"];
-            UIImage *tempImg = [[UIImage imageWithFileName:@"image.png"] grayscale];
+            UIImage *tempImg = [[UIImage uxy_imageWithFileName:@"image.png"] uxy_grayscale];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 7:
         {
             [dic setObject:@"imageInRect(0, 0, 40, 40)" forKey:@"title"];
-            UIImage *tempImg = [self.originImg imageInRect:CGRectMake(0, 0, 40, 40)];
+            UIImage *tempImg = [self.originImg uxy_imageInRect:CGRectMake(0, 0, 40, 40)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 8:
         {
             [dic setObject:@"scaleToSize(20, 20)" forKey:@"title"];
-            UIImage *tempImg = [self.originImg scaleToSize:CGSizeMake(20, 20)];
+            UIImage *tempImg = [self.originImg uxy_scaleToSize:CGSizeMake(20, 20)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
@@ -200,56 +203,42 @@ ViewControllerDemoTitle(Image)
         {
             [dic setObject:@"merge" forKey:@"title"];
             UIImage *img1 = [UIImage imageNamed:@"p31b0002.png"];
-            UIImage *tempImg = [self.originImg merge:img1];
+            UIImage *tempImg = [self.originImg uxy_merge:img1];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 10:
         {
             [dic setObject:@"roundedRectWith:10" forKey:@"title"];
-            UIImage *tempImg = [self.originImg roundedRectWith:10];
+            UIImage *tempImg = [self.originImg uxy_roundedRectWith:10];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 11:
         {
             [dic setObject:@"roundedRectWith:25 Bottom" forKey:@"title"];
-            UIImage *tempImg = [self.originImg roundedRectWith:25 cornerMask:UIImageRoundedCornerBottomRight | UIImageRoundedCornerBottomLeft];
+            UIImage *tempImg = [self.originImg uxy_roundedRectWith:25 cornerMask:UXYImageRoundedCornerCornerBottomRight | UXYImageRoundedCornerCornerBottomLeft];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 12:
         {
             [dic setObject:@"stackBlur:10" forKey:@"title"];
-            UIImage *tempImg = [self.originImg stackBlur:10];
+            UIImage *tempImg = [self.originImg uxy_stackBlur:10];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 13:
         {
             [dic setObject:@"original" forKey:@"title"];
-            UIImage *tempImg = [UIImage imageWithFileName:@"image.png"];
+            UIImage *tempImg = [UIImage uxy_imageWithFileName:@"image.png"];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }
         case 14:
         {
             [dic setObject:@"Tint : orangeColor" forKey:@"title"];
-            UIImage *tempImg = [[UIImage imageWithFileName:@"image.png"] imageWithTintColor:[UIColor orangeColor]];
-            [dic setObject:tempImg forKey:@"img"];
-            break;
-        }
-        case 15:
-        {
-            [dic setObject:@"GradientTint : orangeColor" forKey:@"title"];
-            UIImage *tempImg = [[UIImage imageWithFileName:@"image.png"] imageWithGradientTintColor:[UIColor orangeColor]];
-            [dic setObject:tempImg forKey:@"img"];
-            break;
-        }
-        case 16:
-        {
-            [dic setObject:@"imageFromString : round" forKey:@"title"];
-            UIImage *tempImg = [UIImage imageFromString:@"image.png round"];
+            UIImage *tempImg = [[UIImage uxy_imageWithFileName:@"image.png"] uxy_imageWithTintColor:[UIColor orangeColor]];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }

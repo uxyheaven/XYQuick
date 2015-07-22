@@ -11,13 +11,13 @@
 @interface UILabel (uxy)
 
 typedef enum {
-    UILabelResizeType_constantHeight = 1,
-    UILabelResizeType_constantWidth,
-} UILabelResizeType;
+    UXYLabelResizeType_constantHeight = 1,
+    UXYLabelResizeType_constantWidth,
+} UXYLabelResizeType;
 
 // 调整UILabel尺寸
-// UILabelResizeType_constantHeight 高度不变
-- (void)uxy_resize:(UILabelResizeType)type;
+// UXYLabelResizeType_constantHeight 高度不变
+- (void)uxy_resize:(UXYLabelResizeType)type;
 
 // 返回估计的尺寸
 - (CGSize)uxy_estimateUISizeByHeight:(CGFloat)height;

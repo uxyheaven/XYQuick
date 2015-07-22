@@ -10,7 +10,7 @@
 
 @implementation UIButton (XY)
 
-- (NSIndexPath *)getTableViewCellIndexPath
+- (NSIndexPath *)uxy_getTableViewCellIndexPath
 {
     UIView *cell = self.superview;
     
@@ -32,7 +32,7 @@
     return indexPath;
 }
 
-- (NSIndexPath *)getTableViewCellIndexPathAtTableView:(UITableView *)tableView{
+- (NSIndexPath *)uxy_getTableViewCellIndexPathAtTableView:(UITableView *)tableView{
     CGPoint point = [self convertPoint:CGPointZero toView:tableView];
     NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:point];
     

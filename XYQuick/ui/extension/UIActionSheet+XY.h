@@ -13,11 +13,11 @@ typedef void(^UIActionSheet_block_self)(UIActionSheet *actionSheet);
 
 @interface UIActionSheet (XY) <UIActionSheetDelegate>
 
-- (void)handlerClickedButton:(UIActionSheet_block_self_index)aBlock;
-- (void)handlerCancel:(UIActionSheet_block_self)aBlock;
-- (void)handlerWillPresent:(UIActionSheet_block_self)aBlock;
-- (void)handlerDidPresent:(UIActionSheet_block_self)aBlock;
-- (void)handlerWillDismiss:(UIActionSheet_block_self)aBlock;
-- (void)handlerDidDismiss:(UIActionSheet_block_self_index)aBlock;
+- (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock;
+- (void)uxy_handlerCancel:(UIActionSheet_block_self)aBlock;
+- (void)uxy_handlerWillPresent:(UIActionSheet_block_self)aBlock;
+- (void)uxy_handlerDidPresent:(UIActionSheet_block_self)aBlock;
+- (void)uxy_handlerWillDismiss:(UIActionSheet_block_self)aBlock;
+- (void)uxy_handlerDidDismiss:(UIActionSheet_block_self_index)aBlock;
 
 @end

@@ -37,7 +37,7 @@
 
 @interface UIControl (XY)
 
-- (void)handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block;
-- (void)removeHandlerForEvent:(UIControlEvents)event;
+- (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block;
+- (void)uxy_removeHandlerForEvent:(UIControlEvents)event;
 
 @end

@@ -27,10 +27,10 @@
 
 @implementation UILabel (XY)
 
-- (void)uxy_resize:(UILabelResizeType)type
+- (void)uxy_resize:(UXYLabelResizeType)type
 {
     CGSize size;
-    if (type == UILabelResizeType_constantHeight)
+    if (type == UXYLabelResizeType_constantHeight)
     {
         // 高不变
         size = [self uxy_estimateUISizeByHeight:self.bounds.size.height];
@@ -39,7 +39,7 @@
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, self.bounds.size.height);
         }
     }
-    else if (type == UILabelResizeType_constantWidth)
+    else if (type == UXYLabelResizeType_constantWidth)
     {
         // 宽不变
         size = [self uxy_estimateUISizeByWidth:self.bounds.size.width];

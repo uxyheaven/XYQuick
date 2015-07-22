@@ -27,7 +27,7 @@
 DUMMY_CLASS(UIImage_XY);
 
 //UIKit坐标系统原点在左上角，y方向向下的（坐标系A），但在Quartz中坐标系原点在左下角，y方向向上的(坐标系B)。图片绘制也是颠倒的。
-static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius, UIImageRoundedCorner cornerMask)
+static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius, UXYImageRoundedCornerCorner cornerMask)
 {
     //原点在左下方，y方向向上。移动到线条2的起点。
     CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
@@ -36,7 +36,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
     
     //如果左上角需要画圆角，画出一个弧线出来。
-    if (cornerMask & UIImageRoundedCornerTopLeft)
+    if (cornerMask & UXYImageRoundedCornerCornerTopLeft)
     {
         //已左上的正方形的右下脚为圆心，半径为radius， 180度到90度画一个弧线，
         CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,
@@ -56,7 +56,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
                             rect.origin.y + rect.size.height);
     
     //画右上角
-    if (cornerMask & UIImageRoundedCornerTopRight)
+    if (cornerMask & UXYImageRoundedCornerCornerTopRight)
     {
         CGContextAddArc(context, rect.origin.x + rect.size.width - radius,
                         rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
@@ -70,7 +70,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + radius);
     
     //画右下角弧线
-    if (cornerMask & UIImageRoundedCornerBottomRight)
+    if (cornerMask & UXYImageRoundedCornerCornerBottomRight)
     {
         CGContextAddArc(context, rect.origin.x + rect.size.width - radius, rect.origin.y + radius,
                         radius, 0.0f, -M_PI / 2, 1);
@@ -84,7 +84,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
     
     //画左下角弧线
-    if (cornerMask & UIImageRoundedCornerBottomLeft)
+    if (cornerMask & UXYImageRoundedCornerCornerBottomLeft)
     {
         CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,
                         -M_PI / 2, M_PI, 1);
@@ -100,7 +100,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 
 @implementation UIImage (XY)
 
-+ (UIImage *)imageWithFileName:(NSString *)name
++ (UIImage *)uxy_imageWithFileName:(NSString *)name
 {
     NSString *extension = @"png";
     NSString *imageName = [name copy];
@@ -212,42 +212,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 
 //等比例缩放
-- (UIImage *)scaleToSize:(CGSize)size
+- (UIImage *)uxy_scaleToSize:(CGSize)size
 {
     UIGraphicsBeginImageContext(size);
     [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
     UIImage * scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return scaledImage;
-}
-
-
-- (UIImage *)transprent
-{
-	CGImageAlphaInfo alpha = CGImageGetAlphaInfo( self.CGImage );
-	
-	if ( kCGImageAlphaFirst == alpha ||
-		kCGImageAlphaLast == alpha ||
-		kCGImageAlphaPremultipliedFirst == alpha ||
-		kCGImageAlphaPremultipliedLast == alpha )
-	{
-		return self;
-	}
-    
-	CGImageRef	imageRef = self.CGImage;
-	size_t		width = CGImageGetWidth(imageRef);
-	size_t		height = CGImageGetHeight(imageRef);
-    
-	CGContextRef context = CGBitmapContextCreate( NULL, width, height, 8, 0, CGImageGetColorSpace(imageRef), kCGBitmapByteOrderDefault|kCGImageAlphaPremultipliedFirst);
-	CGContextDrawImage( context, CGRectMake(0, 0, width, height), imageRef );
-    
-	CGImageRef	resultRef = CGBitmapContextCreateImage( context );
-	UIImage *	result = [UIImage imageWithCGImage:resultRef];
-    
-	CGContextRelease( context );
-	CGImageRelease( resultRef );
-    
-	return result;
 }
 
 - (void)addCircleRectToPath:(CGRect)rect context:(CGContextRef)context
@@ -260,9 +231,9 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextClosePath( context );
     CGContextRestoreGState( context );
 }
-- (UIImage *)rounded
+- (UIImage *)uxy_rounded
 {
-    UIImage * image = [self transprent];
+    UIImage * image = self;
 	if ( nil == image )
 		return nil;
 	
@@ -309,9 +280,9 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return roundedImage;
 }
 
-- (UIImage *)rounded:(CGRect)circleRect
+- (UIImage *)uxy_rounded:(CGRect)circleRect
 {
-    UIImage * image = [self transprent];
+    UIImage * image = self;
 	if ( nil == image )
 		return nil;
 	
@@ -345,7 +316,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     
     return roundedImage;
 }
-- (UIImage *)stretched
+- (UIImage *)uxy_stretched
 {
     //	CGFloat x = floorf(self.size.width / 2.0f);
     //	CGFloat y = floorf(self.size.height / 2.0f);
@@ -355,12 +326,12 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	return [self stretchableImageWithLeftCapWidth:leftCap topCapHeight:topCap];
 }
 
-- (UIImage *)stretched:(UIEdgeInsets)capInsets
+- (UIImage *)uxy_stretched:(UIEdgeInsets)capInsets
 {
     return [self resizableImageWithCapInsets:capInsets];
 }
 
-- (UIImage *)rotate:(CGFloat)angle
+- (UIImage *)uxy_rotate:(CGFloat)angle
 {
 	UIImage *	result = nil;
 	CGSize		imageSize = self.size;
@@ -395,22 +366,22 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return result;
 }
 
-- (UIImage *)rotateCW90
+- (UIImage *)uxy_rotateCW90
 {
-	return [self rotate:270];
+	return [self uxy_rotate:270];
 }
 
-- (UIImage *)rotateCW180
+- (UIImage *)uxy_rotateCW180
 {
-	return [self rotate:180];
+	return [self uxy_rotate:180];
 }
 
-- (UIImage *)rotateCW270
+- (UIImage *)uxy_rotateCW270
 {
-	return [self rotate:90];
+	return [self uxy_rotate:90];
 }
 
-- (UIImage *)grayscale
+- (UIImage *)uxy_grayscale
 {
 	CGSize size = self.size;
 	CGRect rect = CGRectMake(0.0f, 0.0f, self.size.width, self.size.height);
@@ -429,7 +400,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	return image;
 }
 
-- (UIImage *)crop:(CGRect)rect
+- (UIImage *)uxy_crop:(CGRect)rect
 {
     CGImageRef imageRef = self.CGImage;
     CGImageRef newImageRef = CGImageCreateWithImageInRect(imageRef, rect);
@@ -449,17 +420,17 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return image;
 }
 
-- (UIImage *)imageInRect:(CGRect)rect
+- (UIImage *)uxy_imageInRect:(CGRect)rect
 {
-	return [self crop:rect];
+	return [self uxy_crop:rect];
 }
 
-- (UIColor *)patternColor
+- (UIColor *)uxy_patternColor
 {
 	return [UIColor colorWithPatternImage:self];
 }
 
-+ (UIImage *)merge:(NSArray *)images
++ (UIImage *)uxy_merge:(NSArray *)images
 {
 	UIImage * image = nil;
 	
@@ -471,117 +442,14 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 		}
 		else
 		{
-			image = [image merge:otherImage];
+			image = [image uxy_merge:otherImage];
 		}
 	}
 	
 	return image;
 }
-+ (UIImage *)imageFromString:(NSString *)name
-{
-	return [self imageFromString:name atPath:nil];
-}
 
-+ (UIImage *)imageFromString:(NSString *)name atPath:(NSString *)path
-{
-	NSArray *	array = [name componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	NSString *	imageName = [array objectAtIndex:0];
-    
-	imageName = [imageName stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
-	imageName = imageName.uxy_unwrap.uxy_trim;
-    
-	if ( [imageName hasPrefix:@"url("] && [imageName hasSuffix:@")"] )
-	{
-		NSRange range = NSMakeRange( 4, imageName.length - 5 );
-		imageName = [imageName substringWithRange:range].uxy_trim;
-	}
-    
-	UIImage * image = nil;
-	
-	if ( nil == image && imageName )
-	{
-		if ( path )
-		{
-			NSString * fullPath = [NSString stringWithFormat:@"%@/%@", path, imageName];
-            
-			if ( [[NSFileManager defaultManager] fileExistsAtPath:fullPath] )
-			{
-				image = [[UIImage alloc] initWithContentsOfFile:fullPath];
-			}
-		}
-		
-		if ( nil == image )
-		{
-			image = [UIImage imageNamed:imageName];
-		}
-	}
-	
-	if ( nil == image )
-	{
-		return nil;
-	}
-    
-	BOOL grayed = NO;
-	BOOL rounded = NO;
-	BOOL streched = NO;
-	
-	if ( array.count > 1 )
-	{
-		for ( __strong NSString * attr in [array subarrayWithRange:NSMakeRange(1, array.count - 1)] )
-		{
-			attr = attr.uxy_trim.uxy_unwrap;
-			
-			if ( NSOrderedSame == [attr compare:@"stretch" options:NSCaseInsensitiveSearch] ||
-				NSOrderedSame == [attr compare:@"stretched" options:NSCaseInsensitiveSearch] )
-			{
-				streched = YES;
-			}
-			else if ( NSOrderedSame == [attr compare:@"round" options:NSCaseInsensitiveSearch] ||
-					 NSOrderedSame == [attr compare:@"rounded" options:NSCaseInsensitiveSearch] )
-			{
-				rounded = YES;
-			}
-			else if ( NSOrderedSame == [attr compare:@"gray" options:NSCaseInsensitiveSearch] ||
-					 NSOrderedSame == [attr compare:@"grayed" options:NSCaseInsensitiveSearch] ||
-					 NSOrderedSame == [attr compare:@"grayScale" options:NSCaseInsensitiveSearch] ||
-					 NSOrderedSame == [attr compare:@"gray-scale" options:NSCaseInsensitiveSearch] )
-			{
-				grayed = YES;
-			}
-		}
-	}
-	
-	if ( image )
-	{
-		if ( rounded )
-		{
-			image = image.rounded;
-		}
-        
-		if ( grayed )
-		{
-			image = image.grayscale;
-		}
-        
-		if ( streched )
-		{
-			image = image.stretched;
-		}
-	}
-    
-	return image;
-}
-
-+ (UIImage *)imageFromString:(NSString *)name stretched:(UIEdgeInsets)capInsets
-{
-	UIImage * image = [self imageFromString:name];
-	if ( nil == image )
-		return nil;
-    
-	return [image resizableImageWithCapInsets:capInsets];
-}
-
-+ (UIImage *)imageFromVideo:(NSURL *)videoURL atTime:(CMTime)time scale:(CGFloat)scale
++ (UIImage *)uxy_imageFromVideo:(NSURL *)videoURL atTime:(CMTime)time scale:(CGFloat)scale
 {
 	AVURLAsset * asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
     AVAssetImageGenerator * generater = [[AVAssetImageGenerator alloc] initWithAsset:asset];
@@ -597,7 +465,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return thumb;
 }
 
-- (UIImage *)merge:(UIImage *)image
+- (UIImage *)uxy_merge:(UIImage *)image
 {
 	CGSize canvasSize;
 	canvasSize.width = fmaxf( self.size.width, image.size.width );
@@ -624,12 +492,12 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return result;
 }
 
-- (UIImage *)roundedRectWith:(float)radius
+- (UIImage *)uxy_roundedRectWith:(float)radius
 {
-    return [self roundedRectWith:radius cornerMask:UIImageRoundedCornerBottomLeft | UIImageRoundedCornerBottomRight | UIImageRoundedCornerTopLeft | UIImageRoundedCornerTopRight];
+    return [self uxy_roundedRectWith:radius cornerMask:UXYImageRoundedCornerCornerBottomLeft | UXYImageRoundedCornerCornerBottomRight | UXYImageRoundedCornerCornerTopLeft | UXYImageRoundedCornerCornerTopRight];
 }
 
-- (UIImage *)roundedRectWith:(float)radius cornerMask:(UIImageRoundedCorner)cornerMask
+- (UIImage *)uxy_roundedRectWith:(float)radius cornerMask:(UXYImageRoundedCornerCorner)cornerMask
 {
     UIImageView *bkImageViewTmp = [[UIImageView alloc] initWithImage:self];
     
@@ -657,21 +525,22 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return newImage;
 }
 
-- (void)saveAsPngWithPath:(NSString *)path{
-    if ([UIImagePNGRepresentation(self) writeToFile:path atomically:YES]) {
-    }
+- (BOOL)uxy_saveAsPngWithPath:(NSString *)path
+{
+    return [UIImagePNGRepresentation(self) writeToFile:path atomically:YES];
 }
 // compression is 0(most)..1(least)
-- (void)saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality{
-    if ([UIImageJPEGRepresentation(self, quality) writeToFile:path atomically:YES])
-    {
-    }
+- (BOOL)uxy_saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality
+{
+    return [UIImageJPEGRepresentation(self, quality) writeToFile:path atomically:YES];
 }
-- (void)saveAsPhotoWithPath:(NSString *)path{
+
+- (void)uxy_saveAsPhotoWithPath:(NSString *)path
+{
     UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil);
 }
 
-- (UIImage*) stackBlur:(NSUInteger)inradius
+- (UIImage*) uxy_stackBlur:(NSUInteger)inradius
 {
 	if (inradius < 1){
 		return self;
@@ -684,7 +553,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     //	return [other applyBlendFilter:filterOverlay  other:self context:nil];
 	// First get the image into your data buffer
     CGImageRef inImage = self.CGImage;
-    int nbPerCompt = CGImageGetBitsPerPixel(inImage);
+    size_t nbPerCompt = CGImageGetBitsPerPixel(inImage);
     if (nbPerCompt != 32)
     {
         UIImage *tmpImage = [self normalize];
@@ -708,8 +577,8 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 											 );
 	
     // Apply stack blur
-    const int imageWidth  = CGImageGetWidth(inImage);
-	const int imageHeight = CGImageGetHeight(inImage);
+    const size_t imageWidth  = CGImageGetWidth(inImage);
+	const size_t imageHeight = CGImageGetHeight(inImage);
     [self.class applyStackBlurToBuffer:m_PixelBuf
                                  width:imageWidth
                                 height:imageHeight
@@ -727,7 +596,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	return finalImage;
 }
 
-#define SQUARE(i) ((i)*(i))
 inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int) * count); }
 + (void) applyStackBlurToBuffer:(UInt8*)targetBuffer width:(const int)w height:(const int)h withRadius:(NSUInteger)inradius
 {
@@ -738,7 +606,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 	const int wh = w*h;
 	const int div = radius + radius + 1;
 	const int r1 = radius + 1;
-	const int divsum = SQUARE((div+1)>>1);
+	const int divsum = ((div+1)>>1) * ((div+1)>>1);
     
     // Small buffers
 	int stack[div*3];
@@ -969,7 +837,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return result;
 }
 
-- (UIImage *)fixOrientation{
+- (UIImage *)uxy_fixOrientation{
     // No-op if the orientation is already correct
     if (self.imageOrientation == UIImageOrientationUp)
         return self;
@@ -1094,12 +962,12 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 	
 	return self;
 }
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor
+- (UIImage *)uxy_imageWithTintColor:(UIColor *)tintColor
 {
     return [self imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
 }
 
-- (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor
+- (UIImage *)uxy_imageWithGradientTintColor:(UIColor *)tintColor
 {
     return [self imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
 }

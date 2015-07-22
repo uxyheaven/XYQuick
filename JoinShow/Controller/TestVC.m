@@ -110,13 +110,13 @@ ViewControllerDemoTitle(Something)
     // 旋转
     UIButton *tempBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     tempBtn.frame = CGRectMake(100, btnOffsetY, 100, 100);
-    [tempBtn setBackgroundImage:[UIImage imageWithFileName:@"bg.jpg"] forState:UIControlStateNormal];
+    [tempBtn setBackgroundImage:[UIImage uxy_imageWithFileName:@"bg.jpg"] forState:UIControlStateNormal];
     // [tempBtn setImageEdgeInsets:UIEdgeInsetsMake(00,00,50,00)];
     [tempBtn setTitle:@"title" forState:UIControlStateNormal];
     [tempBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
     [tempBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [tempBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 00, 00, 00)];
-    [tempBtn rotate:0.5];
+    [tempBtn uxy_rotate:0.5];
     [scroll addSubview:tempBtn];
     btnOffsetY += 120;
     
@@ -135,7 +135,7 @@ ViewControllerDemoTitle(Something)
     tempBtn.backgroundColor = [UIColor lightGrayColor];
     tempBtn.frame = CGRectMake(10, btnOffsetY, 100, 44);
     [tempBtn setTitle:@"block1" forState:UIControlStateNormal];
-    [tempBtn handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+    [tempBtn uxy_handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
         NSLogD(@"block1:%d", i);
     }];
     [scroll addSubview:tempBtn];
@@ -146,7 +146,7 @@ ViewControllerDemoTitle(Something)
     tempBtn.backgroundColor = [UIColor lightGrayColor];
     tempBtn.frame = CGRectMake(10, btnOffsetY, 100, 44);
     [tempBtn setTitle:@"block2" forState:UIControlStateNormal];
-    [tempBtn handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+    [tempBtn uxy_handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
         NSLogD(@"block2:%d", i);
     }];
     [scroll addSubview:tempBtn];
@@ -219,7 +219,7 @@ ViewControllerDemoTitle(Something)
     tempBtn.backgroundColor = [UIColor lightGrayColor];
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
     [tempBtn setTitle:@"Block UIButton" forState:UIControlStateNormal];
-    [tempBtn handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+    [tempBtn uxy_handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
         NSLogD(@"Block UIButton")
     }];
     [scroll addSubview:tempBtn];
@@ -485,14 +485,14 @@ ViewControllerDemoTitle(Something)
 }
 - (IBAction)clickBtnShade:(id)sender
 {
-    [self.view addShadeWithTarget:self action:@selector(closeShade) color:nil alpha:0.7];
+    [self.view uxy_addShadeWithTarget:self action:@selector(closeShade) color:nil alpha:0.7];
 }
 
 
 - (IBAction)clickBtnBlockActionSheet:(id)sender
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"title" delegate:nil cancelButtonTitle:@"cancel" destructiveButtonTitle:@"destructive" otherButtonTitles:@"other1", @"other2", nil];
-    [actionSheet handlerClickedButton:^(UIActionSheet *actionSheet, NSInteger btnIndex) {
+    [actionSheet uxy_handlerClickedButton:^(UIActionSheet *actionSheet, NSInteger btnIndex) {
         NSLogD(@"%ld", (long)btnIndex);
     }];
     [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
@@ -586,7 +586,7 @@ ViewControllerDemoTitle(Something)
 {
     
     NSDictionary *dic = @{@"label1": @(self.testKVO), @"img1": @"headportrait.jpg"};
-    [_testView showDataWithDic:dic];
+    [_testView uxy_showDataWithDic:dic];
 }
 - (void)clickChangeViewData:(id)sender
 {
@@ -633,22 +633,22 @@ ViewControllerDemoTitle(Something)
 - (void)clickCrossfade:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    [btn setImage:[UIImage imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
-    [btn animationCrossfadeWithDuration:5];
+    [btn setImage:[UIImage uxy_imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
+    [btn uxy_animationCrossfadeWithDuration:5];
 }
 
 - (void)clickCube:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    [btn setImage:[UIImage imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
-    [btn animationCubeWithDuration:5 direction:kCATransitionFromRight];
+    [btn setImage:[UIImage uxy_imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
+    [btn uxy_animationCubeWithDuration:5 direction:kCATransitionFromRight];
 }
 
 - (void)clickOglFlip:(id)sender
 {
     UIButton *btn = (UIButton *)sender;
-    [btn setImage:[UIImage imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
-    [btn animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
+    [btn setImage:[UIImage uxy_imageWithFileName:@"headportrait.jpg"] forState:UIControlStateNormal];
+    [btn uxy_animationOglFlipWithDuration:5 direction:kCATransitionFromTop];
 }
 
 - (void)clickUserGuide:(id)sender

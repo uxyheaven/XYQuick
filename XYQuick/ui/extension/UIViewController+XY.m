@@ -126,7 +126,7 @@
         // 用户引导背景图
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:userGuideView.bounds];
         imageView.tag = UserGuide_tag;
-        UIImage *image = [UIImage imageWithFileName:imgName];
+        UIImage *image = [UIImage uxy_imageWithFileName:imgName];
 
         if ([frameString isEqualToString:@"full"] || frameString.length == 0)
         {
@@ -162,7 +162,7 @@
         // 按钮(作用：隐藏蒙版)
         UIButton *btnHide = [UIButton buttonWithType:UIButtonTypeCustom];
         btnHide.frame = userGuideView.bounds;
-        [btnHide handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
+        [btnHide uxy_handleControlEvent:UIControlEventTouchUpInside withBlock:^(id sender) {
             UIView *bgView = ((UIView *)sender).superview;
             if (block)
             {
