@@ -135,7 +135,7 @@
 + (void)breakPointOnDebug
 {
 #ifdef DEBUG
-    asm("int3");
+    [self breakPoint];
 #endif
 }
 - (void)allocAllMemory
