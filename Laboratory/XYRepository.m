@@ -103,7 +103,7 @@
     
     NSString *tmpIndentifer = mi.identifier;
     id target = mi.receiver;
-    if (target == nil && [mi.receiverClass resolveClassMethod:@selector(sharedInstance)])
+    if (target == nil && [mi.receiverClass respondsToSelector:@selector(sharedInstance)])
     {
         target = [mi.receiverClass sharedInstance];
         mi.receiver = target;
