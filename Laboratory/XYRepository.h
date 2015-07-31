@@ -63,13 +63,6 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
                                   completedBlock:(XYRepositoryCompletedBlock)block;
 */
 
-/*
-#pragma mark - 聚合 curd
-- (void)addAggregate:(id)ggregate indentifier:(NSString *)identifier;
-- (void)removeAggregateAtIdentifier:(NSString *)identifer;
-- (id)aggregateAtIdentifier:(NSString *)identifer;
-*/
-
 + (instancetype)repositoryWithDomain:(NSString *)domain;
 
 - (Aggregate *)aggregateForKey:(NSString *)key;

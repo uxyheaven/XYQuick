@@ -11,7 +11,7 @@
 // MBProgressHUD指示器
 #import "MBProgressHUD.h"
 
-@interface IndicatorHelper : NSObject __AS_SINGLETON
+@interface IndicatorHelper : NSObject uxy_as_singleton
 
 // 返回一个indicatorView
 + (id)indicatorView;

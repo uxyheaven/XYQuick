@@ -10,7 +10,7 @@
 #import "XYQuick_Predefine.h"
 #import "XYCacheProtocol.h"
 
-@interface XYMemoryCache : NSObject <XYCacheProtocol> __AS_SINGLETON
+@interface XYMemoryCache : NSObject <XYCacheProtocol> uxy_as_singleton
 
 @property (nonatomic, assign) BOOL clearWhenMemoryLow;  // default is YES
 @property (nonatomic, assign) NSUInteger maxCacheCount;

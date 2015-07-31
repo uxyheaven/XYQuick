@@ -20,7 +20,7 @@
 
 @end
 
-@implementation XYGCD __DEF_SINGLETON
+@implementation XYGCD uxy_def_singleton
 
 - (id)init
 {

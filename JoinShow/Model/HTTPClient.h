@@ -9,15 +9,15 @@
 #import "RequestHelper.h"
 #import "XYQuick_Predefine.h"
 
-@interface HTTPClient : RequestHelper __AS_SINGLETON
+@interface HTTPClient : RequestHelper uxy_as_singleton
 
 @end
 
 /////////
-@interface HTTPClient2 : RequestHelper __AS_SINGLETON
+@interface HTTPClient2 : RequestHelper uxy_as_singleton
 
 @end
 
-@interface HTTPClient3 : DownloadHelper __AS_SINGLETON
+@interface HTTPClient3 : DownloadHelper uxy_as_singleton
 
 @end

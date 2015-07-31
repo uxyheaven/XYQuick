@@ -62,7 +62,7 @@
 
 
 // 这个类名字需要在想下
-@interface XYDebug : NSObject __AS_SINGLETON
+@interface XYDebug : NSObject uxy_as_singleton
 
 + (NSArray *)callstack:(NSUInteger)depth;
 + (void)printCallstack:(NSUInteger)depth;

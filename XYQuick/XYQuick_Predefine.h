@@ -29,11 +29,6 @@
 
 #endif
 
-
-#define __TimeOut__ON__             (0)
-#define __TimeOut__date__           @"2015-3-10 00:00:00"
-
-
 // ----------------------------------
 // header.h
 // ----------------------------------
@@ -103,13 +98,11 @@
 // Code block
 // ----------------------------------
 // 单例模式
-#undef	__AS_SINGLETON
-#define __AS_SINGLETON    \
+#define uxy_as_singleton    \
         + (instancetype)sharedInstance; \
         + (void)purgeSharedInstance;
 
-#undef	__DEF_SINGLETON
-#define __DEF_SINGLETON \
+#define uxy_def_singleton \
         static dispatch_once_t __singletonToken;     \
         static id __singleton__;    \
         + (instancetype)sharedInstance \
@@ -125,13 +118,11 @@
 
 
 // 执行一次
-#undef	XY_ONCE_BEGIN
-#define XY_ONCE_BEGIN( __name ) \
+#define uxy_once_begin( __name ) \
         static dispatch_once_t once_##__name; \
         dispatch_once( &once_##__name , ^{
 
-#undef	XY_ONCE_END
-#define XY_ONCE_END		});
+#define uxy_once_end		});
 
 // ----------------------------------
 // Category

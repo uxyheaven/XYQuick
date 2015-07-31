@@ -15,19 +15,19 @@
 // public
 // ----------------------------------
 
-#define AS_CHAIN_METHOD(__blockType, __methodName)  \
+#define uxy_as_chainMethod(__blockType, __methodName)  \
         - (__blockType)__methodName;
 
-#define DEF_CHAIN_METHOD(__blockType, __methodName, ...)            \
+#define uxy_def_chainMethod(__blockType, __methodName, ...)            \
         metamacro_if_eq(1, metamacro_argcount(__VA_ARGS__))         \
-        (CHAIN_METHOD_1(__blockType, __methodName, __VA_ARGS__))    \
-        (CHAIN_METHOD_2(__blockType, __methodName, __VA_ARGS__))
+        (__uxy_chainMethod_1(__blockType, __methodName, __VA_ARGS__))    \
+        (__uxy_chainMethod_2(__blockType, __methodName, __VA_ARGS__))
 
 
 // ----------------------------------
 // private
 // ----------------------------------
-#define CHAIN_METHOD_1(__blockType, __methodName, __propertyName) \
+#define __uxy_chainMethod_1(__blockType, __methodName, __propertyName) \
         - (__blockType)__methodName \
         {   \
             __blockType block = ^ id (id __propertyName){ \
@@ -37,7 +37,7 @@
             return block;   \
         }
 
-#define CHAIN_METHOD_2(__blockType, __methodName, __propertyName, __defaultValue) \
+#define __uxy_chainMethod_2(__blockType, __methodName, __propertyName, __defaultValue) \
         - (__blockType)__methodName \
         {   \
             __blockType block = ^ id (void){ \
@@ -46,7 +46,5 @@
         };  \
             return block;   \
         }
-
-
 
 #endif

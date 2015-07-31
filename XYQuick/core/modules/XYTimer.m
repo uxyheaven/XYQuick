@@ -200,7 +200,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 
 @end
 
-@implementation XYTicker __DEF_SINGLETON
+@implementation XYTicker uxy_def_singleton
 
 - (instancetype)init
 {

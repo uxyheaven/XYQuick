@@ -13,7 +13,7 @@
 #undef	DEFAULT_MAX_COUNT
 #define DEFAULT_MAX_COUNT	(48)
 
-@implementation XYMemoryCache __DEF_SINGLETON
+@implementation XYMemoryCache uxy_def_singleton
 
 
 - (id)init

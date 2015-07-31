@@ -8,7 +8,7 @@
 
 #import "XYQuick_Predefine.h"
 
-@interface XYSandbox : NSObject __AS_SINGLETON
+@interface XYSandbox : NSObject uxy_as_singleton
 
 @property (nonatomic, readonly, copy) NSString *	appPath;
 @property (nonatomic, readonly, copy) NSString *	docPath;

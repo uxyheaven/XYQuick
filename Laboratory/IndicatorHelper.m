@@ -9,7 +9,7 @@
 #import "IndicatorHelper.h"
 #import "MBProgressHUD.h"
 
-@implementation IndicatorHelper __DEF_SINGLETON
+@implementation IndicatorHelper uxy_def_singleton
 
 + (id)originalIndicator
 {

@@ -10,7 +10,7 @@
 #import "XYQuick_Predefine.h"
 
 // AppDelegate流程控制类
-@interface XYAppController : NSObject __AS_SINGLETON
+@interface XYAppController : NSObject uxy_as_singleton
 
 // 待补全
 // 单例有问题

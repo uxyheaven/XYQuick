@@ -8,6 +8,6 @@
 
 #import "Test2Model.h"
 
-@implementation Test2Model __DEF_SINGLETON
+@implementation Test2Model uxy_def_singleton
 
 @end

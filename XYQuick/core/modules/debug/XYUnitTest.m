@@ -45,7 +45,7 @@
 @property (nonatomic, strong) NSMutableArray *logs;
 @end
 
-@implementation XYUnitTest __DEF_SINGLETON
+@implementation XYUnitTest uxy_def_singleton
 
 - (id)init
 {

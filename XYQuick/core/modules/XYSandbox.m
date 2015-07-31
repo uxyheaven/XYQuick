@@ -20,7 +20,7 @@
 }
 @end
 
-@implementation XYSandbox __DEF_SINGLETON
+@implementation XYSandbox uxy_def_singleton
 
 @dynamic appPath;
 @dynamic docPath;

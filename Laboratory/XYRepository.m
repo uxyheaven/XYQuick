@@ -26,23 +26,21 @@
 @end
 
 #pragma mark -
-static NSMutableDictionary *repositories;
+static NSMutableDictionary *s_repositories;
 @interface XYRepository ()
 
-@property (nonatomic, strong) NSMutableDictionary *moduleInterfaces;
 @property (nonatomic, strong) NSMutableDictionary *aggregates;
 @property (nonatomic, copy) NSString *domain;
 
 @end
 
-@implementation XYRepository __DEF_SINGLETON
+@implementation XYRepository uxy_def_singleton
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-       // _moduleInterfaces = [@{} mutableCopy];
-        _aggregates = [@{} mutableCopy];
+        
     }
     return self;
 }
@@ -147,12 +145,12 @@ static NSMutableDictionary *repositories;
 
 + (instancetype)repositoryWithDomain:(NSString *)domain
 {
-    UNUSED(repositories      ?: (repositories = [@{} mutableCopy]))
+    UNUSED(s_repositories      ?: (s_repositories = [@{} mutableCopy]))
     NSString *key = domain   ?: @"";
     
-    return repositories[key] ?: ({
-        repositories[key] = [[XYRepository alloc] initWithDomain:key];
-        repositories[key];
+    return s_repositories[key] ?: ({
+        s_repositories[key] = [[XYRepository alloc] initWithDomain:key];
+        s_repositories[key];
     });
 }
 
@@ -163,8 +161,8 @@ static NSMutableDictionary *repositories;
 
 - (void)setAnAggregateRoot:(id)root forKey:(NSString *)key
 {
-    UNUSED(repositories[key] ?: (repositories[key] = [[Aggregate alloc] init]))
-    [repositories[key] setValue:root forKey:@"root"];
+    UNUSED(s_repositories[key] ?: (s_repositories[key] = [[Aggregate alloc] init]))
+    [s_repositories[key] setValue:root forKey:@"root"];
 }
 
 - (void)removeAggregateForKey:(NSString *)key

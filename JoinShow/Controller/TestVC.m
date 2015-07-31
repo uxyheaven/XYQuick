@@ -472,16 +472,16 @@ ViewControllerDemoTitle(Something)
 
 - (IBAction)clickOnce:(id)sender
 {
-    XY_ONCE_BEGIN(a)
+    uxy_once_begin(a)
 
-    XY_ONCE_END
+    uxy_once_end
 }
 
 - (IBAction)clickOnce2:(id)sender
 {
-    XY_ONCE_BEGIN(b)
+    uxy_once_begin(b)
 
-    XY_ONCE_END
+    uxy_once_end
 }
 - (IBAction)clickBtnShade:(id)sender
 {

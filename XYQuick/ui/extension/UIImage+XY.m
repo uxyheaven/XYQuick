@@ -16,11 +16,11 @@
 #import "NSString+XY.h"
 
 
-@interface XYImageCache : XYMemoryCache __AS_SINGLETON
+@interface XYImageCache : XYMemoryCache uxy_as_singleton
 
 @end
 
-@implementation XYImageCache __DEF_SINGLETON
+@implementation XYImageCache uxy_def_singleton
 
 @end
 

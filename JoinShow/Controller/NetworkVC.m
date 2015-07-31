@@ -90,20 +90,20 @@ ViewControllerDemoTitle(Network)
 
 - (IBAction)clickDownload:(id)sender {
     NSString *locPath = [XYCommon dataFilePath:@"3.0.dmg" ofType:filePathOption_documents];
-    DEF_WEAKSELF
+    uxy_def_weakSelf
     Downloader *down = [self.httpClient3 download:NetworkVC_downloadLink
                                                   to:locPath
                                               params:nil
                                     breakpointResume:YES];
     
     [down progress:^(double progress) {
-        DEF_STRONGSELF
+        uxy_def_strongSelf
         NSLogD(@"%.2f", progress*100.0);
         [self progressDownload].progress = progress;
         [self labPregress].text = [NSString stringWithFormat:@"%.1f", progress * 100];
     }];
     [down succeed:^(HttpRequest *op) {
-        DEF_STRONGSELF
+        uxy_def_strongSelf
         [self progressDownload].progress = 0;
         SHOWMSG(nil, @"Download succeed", @"ok");
     } failed:^(HttpRequest *op, NSError *err) {

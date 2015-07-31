@@ -59,7 +59,7 @@
 
 #pragma mark -
 
-@interface XYUnitTest : NSObject __AS_SINGLETON
+@interface XYUnitTest : NSObject uxy_as_singleton
 @property (nonatomic, assign) NSUInteger failedCount;
 @property (nonatomic, assign) NSUInteger succeedCount;
 

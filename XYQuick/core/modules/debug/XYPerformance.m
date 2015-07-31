@@ -19,7 +19,7 @@
 
 #pragma mark -
 
-@implementation XYPerformance __DEF_SINGLETON
+@implementation XYPerformance uxy_def_singleton
 
 - (id)init
 {

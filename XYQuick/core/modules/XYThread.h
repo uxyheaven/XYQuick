@@ -78,7 +78,7 @@
 
 #pragma mark -
 
-@interface XYGCD : NSObject __AS_SINGLETON
+@interface XYGCD : NSObject uxy_as_singleton
 
 // dispatch_get_main_queue()
 @property (nonatomic, strong, readonly) dispatch_queue_t foreQueue;

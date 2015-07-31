@@ -52,7 +52,7 @@
 
 @end
 
-@implementation XYKeyboardHelper __DEF_SINGLETON
+@implementation XYKeyboardHelper uxy_def_singleton
 
 -(id) init
 {

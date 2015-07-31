@@ -8,7 +8,7 @@
 
 #import "ConfigManager.h"
 
-@implementation ConfigManager __DEF_SINGLETON
+@implementation ConfigManager uxy_def_singleton
 
 -(NSString *) Strtest2
 {

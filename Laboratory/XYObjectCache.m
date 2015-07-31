@@ -19,7 +19,7 @@
 
 @end
 
-@implementation XYObjectCache __DEF_SINGLETON
+@implementation XYObjectCache uxy_def_singleton
 
 - (id)init
 {

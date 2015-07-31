@@ -12,7 +12,7 @@
 @class XYMemoryCache;
 @class XYFileCache;
 
-@interface XYObjectCache : NSObject __AS_SINGLETON
+@interface XYObjectCache : NSObject uxy_as_singleton
 
 @property (nonatomic, weak, readonly) Class objectClass;      // 缓存对象的类
 @property (atomic, strong) XYMemoryCache *memoryCache;// 内存缓存

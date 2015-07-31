@@ -8,7 +8,7 @@
 
 #import "XYQuick.h"
 
-@interface ConfigManager : NSObject __AS_SINGLETON
+@interface ConfigManager : NSObject uxy_as_singleton
 
 @property (nonatomic,  strong) NSString *StrTest;
 

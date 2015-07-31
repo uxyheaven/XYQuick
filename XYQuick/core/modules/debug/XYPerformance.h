@@ -27,7 +27,7 @@
 
 #pragma mark -
 
-@interface XYPerformance : NSObject __AS_SINGLETON
+@interface XYPerformance : NSObject uxy_as_singleton
 
 - (void)enter:(NSString *)tag;
 - (void)leave:(NSString *)tag;

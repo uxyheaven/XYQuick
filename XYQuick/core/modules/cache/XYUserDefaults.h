@@ -9,7 +9,7 @@
 #import "XYQuick_Predefine.h"
 #import "XYCacheProtocol.h"
 
-@interface XYUserDefaults : NSObject <XYCacheProtocol> __AS_SINGLETON
+@interface XYUserDefaults : NSObject <XYCacheProtocol> uxy_as_singleton
 
 @end
 

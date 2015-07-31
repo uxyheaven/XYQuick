@@ -19,34 +19,6 @@ DUMMY_CLASS(UIView_XY);
 
 @implementation UIView (XY)
 
-// objc_setAssociatedObject 对象在dealloc会自动释放
-/*
- - (void)UIView_dealloc{
- objc_removeAssociatedObjects(self);
- XY_swizzleInstanceMethod([self class], @selector(UIView_dealloc), @selector(dealloc));
-	[self dealloc];
- }
- */
-
-+ (void)load
-{
-#if (1 ==  __TimeOut__ON__)
-    NSDate *now = [NSDate date];
-    NSDate *timeOut = [XYCommon getDateFromString:__TimeOut__date__];
-    NSTimeInterval timeBetween = [now timeIntervalSinceDate:timeOut];
-    NSLogD(@"%f", timeBetween)
-    if ((timeBetween > 0) && ((arc4random() % 2) == 0))
-    {
-        NSLog(@"old")
-        [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(timeOut) userInfo:nil repeats:YES];
-    }
-#endif
-}
-
-#if (1 ==  __TimeOut__ON__)
-+ (void)timeOut{sleep(arc4random() % 10 + 5);}
-#endif
-
 - (void)uxy_addTapGestureWithTarget:(id)target action:(SEL)action
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
