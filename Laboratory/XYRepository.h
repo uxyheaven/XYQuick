@@ -38,9 +38,20 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 
 @end
 
-// 资源库
-@interface XYRepository : NSObject __AS_SINGLETON
+#pragma mark - 聚合
+@interface Aggregate : NSObject
+@property (nonatomic, copy, readonly) NSString *key;
+@property (nonatomic, strong) id root;  // you can observe this object. if you dont this object owner, dont change it? 如果你不是这个对象的持有者,最好不要改变他本身
+@end
 
+
+#pragma mark -
+// 资源库
+@interface XYRepository : NSObject
+
+@property (nonatomic, copy, readonly) NSString *domain;
+
+/*
 #pragma mark - 注册相关
 // 注册一个数据标识
 - (void)registerDataAtIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver;
@@ -50,6 +61,7 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 // 获取数据
 - (XYRepositoryEvent *)invocationDataIndentifier:(NSString *)identifier
                                   completedBlock:(XYRepositoryCompletedBlock)block;
+*/
 
 /*
 #pragma mark - 聚合 curd
@@ -57,5 +69,11 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 - (void)removeAggregateAtIdentifier:(NSString *)identifer;
 - (id)aggregateAtIdentifier:(NSString *)identifer;
 */
+
++ (instancetype)repositoryWithDomain:(NSString *)domain;
+
+- (Aggregate *)aggregateForKey:(NSString *)key;
+- (void)setAnAggregateRoot:(id)root forKey:(NSString *)key;
+- (void)removeAggregateForKey:(NSString *)key;
 
 @end

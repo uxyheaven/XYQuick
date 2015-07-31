@@ -138,11 +138,6 @@ typedef enum {
 + (void)showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)strCancel;
 
 /**
- * @brief 替换string里面的单引号'为2个单引号'',用于处理SQL问题
- */
-+ (NSString *)StringForSQL:(NSString *)str;
-
-/**
  * @brief  打印内存情况
  * @param mark 标记
  */

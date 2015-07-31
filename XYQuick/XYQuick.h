@@ -1,8 +1,7 @@
-//
-//
 //  Created by Heaven on 12-1-26.
-//  Copyright (c) 2012年 Heaven. All rights reserved.
+//  Copyright (c) 2015年 Heaven. All rights reserved.
 //
+// https://github.com/uxyheaven/XYQuickDevelop
 
 #import "XYQuick_Predefine.h"   // 预编译
 

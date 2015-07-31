@@ -1,9 +1,6 @@
-//
-//  XYPredefine.h
-//
 //  Created by Heaven on 13-5-29.
-//
-//
+//  Copyright (c) 2012年 Heaven. All rights reserved.
+//  https://github.com/uxyheaven/XYQuickDevelop
 
 #ifndef JoinShow_XYPredefine_h
 #define JoinShow_XYPredefine_h

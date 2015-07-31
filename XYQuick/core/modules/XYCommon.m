@@ -393,12 +393,6 @@
 }
 
 /***************************************************************/
-+ (NSString *) StringForSQL:(NSString *)str
-{
-    return [str stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
-}
-
-/***************************************************************/
 + (void)printUsedAndFreeMemoryWithMark:(NSString *)mark
 {
     mach_port_t host_port;

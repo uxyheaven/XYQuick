@@ -21,10 +21,17 @@
 
 @end
 
+#pragma mark -
+@implementation Aggregate
+@end
 
+#pragma mark -
+static NSMutableDictionary *repositories;
 @interface XYRepository ()
 
 @property (nonatomic, strong) NSMutableDictionary *moduleInterfaces;
+@property (nonatomic, strong) NSMutableDictionary *aggregates;
+@property (nonatomic, copy) NSString *domain;
 
 @end
 
@@ -34,11 +41,21 @@
 {
     self = [super init];
     if (self) {
-        _moduleInterfaces = [@{} mutableCopy];
+       // _moduleInterfaces = [@{} mutableCopy];
+        _aggregates = [@{} mutableCopy];
     }
     return self;
 }
 
+- (instancetype)initWithDomain:(NSString *)name
+{
+    self = [self init];
+    if (self) {
+        _domain = name;
+    }
+    return self;
+}
+/*
 // 注册一个数据标识
 - (void)registerDataAtIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver
 {
@@ -103,7 +120,8 @@
     
     NSString *tmpIndentifer = mi.identifier;
     id target = mi.receiver;
-    if (target == nil && [mi.receiverClass respondsToSelector:@selector(sharedInstance)])
+ if (target == nil && [mi.receiverClass respondsToSelector:@selector(sharedInstance)+ (instancetype)repositoryWithDomain:(NSString *)name;
+ - (instancetype)initWithDomain:(NSString *)name;])
     {
         target = [mi.receiverClass sharedInstance];
         mi.receiver = target;
@@ -125,5 +143,32 @@
 
     return event;
 }
+*/
 
++ (instancetype)repositoryWithDomain:(NSString *)domain
+{
+    UNUSED(repositories      ?: (repositories = [@{} mutableCopy]))
+    NSString *key = domain   ?: @"";
+    
+    return repositories[key] ?: ({
+        repositories[key] = [[XYRepository alloc] initWithDomain:key];
+        repositories[key];
+    });
+}
+
+- (Aggregate *)aggregateForKey:(NSString *)key
+{
+    return _aggregates[key];
+}
+
+- (void)setAnAggregateRoot:(id)root forKey:(NSString *)key
+{
+    UNUSED(repositories[key] ?: (repositories[key] = [[Aggregate alloc] init]))
+    [repositories[key] setValue:root forKey:@"root"];
+}
+
+- (void)removeAggregateForKey:(NSString *)key
+{
+    [_aggregates removeObjectForKey:key];
+}
 @end
