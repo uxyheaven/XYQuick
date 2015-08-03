@@ -38,8 +38,8 @@
 + (NSString *)uxy_queryStringFromArray:(NSArray *)array encoding:(BOOL)encoding;;
 + (NSString *)uxy_queryStringFromKeyValues:(id)first, ...;
 
-- (NSString *)uxy_URLEncoding;
-- (NSString *)uxy_URLDecoding;
+- (NSString *)uxy_URLEncoding;      // 编码
+- (NSString *)uxy_URLDecoding;      // 解码
 
 - (NSMutableDictionary *)uxy_dictionaryFromQueryComponents;
 
