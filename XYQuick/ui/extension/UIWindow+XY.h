@@ -10,7 +10,10 @@
 
 @interface UIWindow (XY)
 
-// 返回最顶层的UIViewController
-+ (UIViewController *)uxy_KeyWindowTopMostController;
+// 返回最顶层的 ViewController
++ (UIViewController *)uxy_topViewController;
+
+// 返回优化后的最顶层的ViewController, UITabBarController会取selectedViewController, UINavigationController取visibleViewController
++ (UIViewController*)uxy_optimizedTopViewController;
 
 @end
