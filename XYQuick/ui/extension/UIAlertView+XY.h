@@ -23,6 +23,6 @@ typedef BOOL(^UIAlertView_block_shouldEnableFirstOtherButton)(UIAlertView *alert
 - (void)uxy_handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock;
 
 // 延时消失
-- (void)uxy_showWithDuration:(NSTimeInterval)i;
+- (void)uxy_showWithDuration:(NSTimeInterval)duration;
 
 @end
