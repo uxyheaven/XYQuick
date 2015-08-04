@@ -10,10 +10,10 @@
 
 @interface UITableViewCell (XY)
 
-// 子类需要重新此方法
-+ (CGFloat)uxy_heightForRowWithData:(id)aData;
+// 子类需要重写此方法
++ (CGFloat)uxy_heightForRowWithData:(id)data;
 
-- (void)uxy_layoutSubviewsWithDic:(NSMutableDictionary *)dic;
+- (void)uxy_layoutSubviewsWithDictionary:(NSMutableDictionary *)dictionary;
 
 @end
 

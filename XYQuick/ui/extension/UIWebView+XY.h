@@ -10,13 +10,13 @@
 
 @interface UIWebView (XY)
 
-// 清理网页,如果isCleanCache = YES, 就连NSURLCache,Disk,Memory也清理
+/// 清理网页,如果isCleanCache = YES, 就连NSURLCache,Disk,Memory也清理
 - (void)uxy_clean:(BOOL)isCleanCache;
 
-//获取当前页面的html
+/// 获取当前页面的html
 - (NSString*)uxy_innerHTML;
 
-// 获取userAgent
+/// 获取userAgent
 - (NSString*)uxy_userAgent;
 
 @end

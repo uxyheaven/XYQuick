@@ -10,17 +10,14 @@
 
 @implementation UITableViewCell (XY)
 
-+ (CGFloat)uxy_heightForRowWithData:(id)aData
++ (CGFloat)uxy_heightForRowWithData:(id)data
 {
-    if (aData == nil)
-    {
-        return -1;
-    }
+    if (data == nil) return -1;
 
     return 44;
 }
 
-- (void)uxy_layoutSubviewsWithDic:(NSMutableDictionary *)dic
+- (void)uxy_layoutSubviewsWithDictionary:(NSMutableDictionary *)dictionary
 {
     
 }

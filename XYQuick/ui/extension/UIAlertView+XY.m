@@ -125,17 +125,17 @@ DUMMY_CLASS(UIAlertView_XY);
     return YES;
 }
 
-- (void)uxy_showWithDuration:(NSTimeInterval)i
+- (void)uxy_showWithDuration:(NSTimeInterval)duration
 {
-    [NSTimer scheduledTimerWithTimeInterval:i
+    [NSTimer scheduledTimerWithTimeInterval:duration
                                      target:self
-                                   selector:@selector(xyDismiss)
+                                   selector:@selector(__xyDismiss)
                                    userInfo:self
                                     repeats:NO];
     [self show];
 }
 
-- (void)xyDismiss
+- (void)__xyDismiss
 {
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
