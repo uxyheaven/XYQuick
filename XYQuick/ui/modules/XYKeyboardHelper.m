@@ -115,7 +115,7 @@
 //    }
   //  NSLogD(@"%@", NSStringFromCGRect(frame));
     //Getting topMost ViewController.
-    UIViewController *controller = [UIWindow uxy_topViewController];
+    UIViewController *controller = [UIWindow uxy_visibleViewController];
     
     [UIView animateWithDuration:animationDuration animations:^{
         
@@ -166,7 +166,7 @@
     kbSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
     //Adding Keyboard distance from textField.
-    switch ([UIWindow uxy_topViewController].interfaceOrientation)
+    switch ([UIWindow uxy_visibleViewController].interfaceOrientation)
     {
         case UIInterfaceOrientationLandscapeLeft:
             kbSize.width += _keyboardDistanceFromTextField;
@@ -201,7 +201,7 @@
     //Getting KeyWindow object.
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     //Getting RootViewController's view.
-    UIViewController *rootController = [UIWindow uxy_topViewController];
+    UIViewController *rootController = [UIWindow uxy_visibleViewController];
     
     //Converting Rectangle according to window bounds.
     CGRect textFieldViewRect = [textFieldView.superview convertRect:textFieldView.frame toView:window];
@@ -232,8 +232,8 @@
     }
     
     //Special case.
-    if ([[UIWindow uxy_topViewController] modalPresentationStyle] == UIModalPresentationFormSheet ||
-        [[UIWindow uxy_topViewController] modalPresentationStyle] == UIModalPresentationPageSheet)
+    if ([[UIWindow uxy_visibleViewController] modalPresentationStyle] == UIModalPresentationFormSheet ||
+        [[UIWindow uxy_visibleViewController] modalPresentationStyle] == UIModalPresentationPageSheet)
     {
         //Positive or zero.
         if (move>=0)
@@ -361,7 +361,7 @@
     else
     {
         //keyboard is not showing(At the beginning only). We should save rootViewRect.
-        UIViewController *rootController = [UIWindow uxy_topViewController];
+        UIViewController *rootController = [UIWindow uxy_visibleViewController];
         topViewBeginRect = rootController.view.frame;
     }
 }
