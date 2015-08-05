@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ConfigManager.h"
+#import "XYApplicationWorkspace.h"
 
 @implementation AppDelegate
 
@@ -25,7 +26,8 @@
     [self.window makeKeyAndVisible];
     */
 #pragma mark - some test
-
+    NSArray *array = [[XYApplicationWorkspace alloc] allApplications];
+    
     return YES;
 }
 
