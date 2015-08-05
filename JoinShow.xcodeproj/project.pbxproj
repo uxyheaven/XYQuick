@@ -26,6 +26,7 @@
 		572CB1A61B4AF3240005A6B2 /* XYSignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 572CB1A51B4AF3240005A6B2 /* XYSignal.m */; };
 		572CB1A91B4AF3490005A6B2 /* XYUISignal.m in Sources */ = {isa = PBXBuildFile; fileRef = 572CB1A81B4AF3490005A6B2 /* XYUISignal.m */; };
 		5733A98F192B0F4400DC78B0 /* UISignalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5733A98E192B0F4300DC78B0 /* UISignalVC.m */; };
+		5733D80B1B71EC47009B5F86 /* XYApplicationWorkspace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5733D80A1B71EC47009B5F86 /* XYApplicationWorkspace.m */; };
 		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
@@ -191,6 +192,8 @@
 		572CB1A81B4AF3490005A6B2 /* XYUISignal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYUISignal.m; sourceTree = "<group>"; };
 		5733A98D192B0F4300DC78B0 /* UISignalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISignalVC.h; sourceTree = "<group>"; };
 		5733A98E192B0F4300DC78B0 /* UISignalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISignalVC.m; sourceTree = "<group>"; };
+		5733D8091B71EC47009B5F86 /* XYApplicationWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYApplicationWorkspace.h; sourceTree = "<group>"; };
+		5733D80A1B71EC47009B5F86 /* XYApplicationWorkspace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYApplicationWorkspace.m; sourceTree = "<group>"; };
 		5737618518BB586E004E7D46 /* PaintCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintCodeView.h; sourceTree = "<group>"; };
 		5737618618BB586E004E7D46 /* PaintCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintCodeView.m; sourceTree = "<group>"; };
 		57383F3917D2F5F20001079C /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
@@ -473,6 +476,8 @@
 				57CAE5461B44218D0040585A /* XYEvent.m */,
 				572CB1A71B4AF3490005A6B2 /* XYUISignal.h */,
 				572CB1A81B4AF3490005A6B2 /* XYUISignal.m */,
+				5733D8091B71EC47009B5F86 /* XYApplicationWorkspace.h */,
+				5733D80A1B71EC47009B5F86 /* XYApplicationWorkspace.m */,
 			);
 			path = Laboratory;
 			sourceTree = SOURCE_ROOT;
@@ -1113,6 +1118,7 @@
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
 				74CD53FA19C28C630069282B /* CarEntity.m in Sources */,
 				5708A95F1AF8991A000607AB /* XYAppController.m in Sources */,
+				5733D80B1B71EC47009B5F86 /* XYApplicationWorkspace.m in Sources */,
 				57F56F791AFC86FD00298D7E /* NSObject+XY.m in Sources */,
 				57F56F891AFC86FD00298D7E /* XYReachability.m in Sources */,
 				57CAE5471B44218D0040585A /* XYEvent.m in Sources */,
