@@ -78,6 +78,7 @@
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57EA863C1B0EDD7600D3A592 /* XYFlyweightTransmit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */; };
+		57EE44251B73B007005EF8C0 /* XYClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EE44241B73B007005EF8C0 /* XYClassLoader.m */; };
 		57F509B81AF92BF7000E733F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57F509B71AF92BF7000E733F /* README.md */; };
 		57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF61AFC86FD00298D7E /* NSArray+XY.m */; };
 		57F56F741AFC86FD00298D7E /* NSData+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF81AFC86FD00298D7E /* NSData+XY.m */; };
@@ -98,7 +99,6 @@
 		57F56F831AFC86FD00298D7E /* XYAOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F1C1AFC86FD00298D7E /* XYAOP.m */; };
 		57F56F841AFC86FD00298D7E /* XYBaseBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F1E1AFC86FD00298D7E /* XYBaseBuilder.m */; };
 		57F56F851AFC86FD00298D7E /* XYBlackMagic.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F201AFC86FD00298D7E /* XYBlackMagic.m */; };
-		57F56F861AFC86FD00298D7E /* XYClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F221AFC86FD00298D7E /* XYClassLoader.m */; };
 		57F56F871AFC86FD00298D7E /* XYCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F241AFC86FD00298D7E /* XYCommon.m */; };
 		57F56F881AFC86FD00298D7E /* XYJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F281AFC86FD00298D7E /* XYJsonHelper.m */; };
 		57F56F891AFC86FD00298D7E /* XYReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F2A1AFC86FD00298D7E /* XYReachability.m */; };
@@ -276,6 +276,8 @@
 		57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFlyweightTransmit.m; sourceTree = "<group>"; };
 		57ECA4A31B04701000C47AF0 /* XYChainMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChainMethod.h; sourceTree = "<group>"; };
 		57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
+		57EE44231B73B007005EF8C0 /* XYClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYClassLoader.h; sourceTree = "<group>"; };
+		57EE44241B73B007005EF8C0 /* XYClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYClassLoader.m; sourceTree = "<group>"; };
 		57F509B71AF92BF7000E733F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		57F56EF51AFC86FD00298D7E /* NSArray+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XY.h"; sourceTree = "<group>"; };
 		57F56EF61AFC86FD00298D7E /* NSArray+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XY.m"; sourceTree = "<group>"; };
@@ -318,8 +320,6 @@
 		57F56F1E1AFC86FD00298D7E /* XYBaseBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBaseBuilder.m; sourceTree = "<group>"; };
 		57F56F1F1AFC86FD00298D7E /* XYBlackMagic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYBlackMagic.h; sourceTree = "<group>"; };
 		57F56F201AFC86FD00298D7E /* XYBlackMagic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYBlackMagic.m; sourceTree = "<group>"; };
-		57F56F211AFC86FD00298D7E /* XYClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYClassLoader.h; sourceTree = "<group>"; };
-		57F56F221AFC86FD00298D7E /* XYClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYClassLoader.m; sourceTree = "<group>"; };
 		57F56F231AFC86FD00298D7E /* XYCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommon.h; sourceTree = "<group>"; };
 		57F56F241AFC86FD00298D7E /* XYCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYCommon.m; sourceTree = "<group>"; };
 		57F56F251AFC86FD00298D7E /* XYCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommonDefine.h; sourceTree = "<group>"; };
@@ -450,6 +450,8 @@
 			children = (
 				5708A8751AF8991A000607AB /* XYAppController.h */,
 				5708A8761AF8991A000607AB /* XYAppController.m */,
+				57EE44231B73B007005EF8C0 /* XYClassLoader.h */,
+				57EE44241B73B007005EF8C0 /* XYClassLoader.m */,
 				5708A8771AF8991A000607AB /* XYAppModuleProtocol.h */,
 				5708A8781AF8991A000607AB /* XYBaseDataSource.h */,
 				5708A8791AF8991A000607AB /* XYBaseDataSource.m */,
@@ -747,8 +749,6 @@
 				57F56F1E1AFC86FD00298D7E /* XYBaseBuilder.m */,
 				57F56F1F1AFC86FD00298D7E /* XYBlackMagic.h */,
 				57F56F201AFC86FD00298D7E /* XYBlackMagic.m */,
-				57F56F211AFC86FD00298D7E /* XYClassLoader.h */,
-				57F56F221AFC86FD00298D7E /* XYClassLoader.m */,
 				57F56F231AFC86FD00298D7E /* XYCommon.h */,
 				57F56F241AFC86FD00298D7E /* XYCommon.m */,
 				57F56F251AFC86FD00298D7E /* XYCommonDefine.h */,
@@ -1074,7 +1074,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				57F56F961AFC86FD00298D7E /* UIAlertView+XY.m in Sources */,
-				57F56F861AFC86FD00298D7E /* XYClassLoader.m in Sources */,
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				57B3FFF6177AD9BC00775FC9 /* main.m in Sources */,
 				84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */,
@@ -1094,6 +1093,7 @@
 				57F56F771AFC86FD00298D7E /* NSNull+XY.m in Sources */,
 				57EA863C1B0EDD7600D3A592 /* XYFlyweightTransmit.m in Sources */,
 				57F56F801AFC86FD00298D7E /* XYDebugToy.m in Sources */,
+				57EE44251B73B007005EF8C0 /* XYClassLoader.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
 				575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */,
 				57F56FB41AFC8CB100298D7E /* XYObjectCache.m in Sources */,

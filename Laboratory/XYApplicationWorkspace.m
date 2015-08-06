@@ -7,6 +7,7 @@
 //
 
 #import "XYApplicationWorkspace.h"
+#import "XYQuick.h"
 
 @implementation XYApplicationWorkspace
 
@@ -15,7 +16,25 @@
     Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
     NSObject *workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
     NSArray *array = [workspace performSelector:@selector(allApplications)];
-    NSLog(@"apps: %@", array);
     return array;
 }
 @end
+
+#if (1 == __XY_DEBUG_UNITTESTING__)
+
+UXY_TEST_CASE( Core, XYApplicationWorkspace )
+{
+    //	TODO( "test case" )
+}
+
+UXY_DESCRIBE( test1 )
+{
+    NSArray *array = [[XYApplicationWorkspace alloc] allApplications];
+    NSLog(@"apps: %@", array);
+}
+
+UXY_TEST_CASE_END
+
+#endif
+
+

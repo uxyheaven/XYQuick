@@ -40,7 +40,7 @@ BOOL __applicationDidFinishLaunchingWithOptions(id self, SEL _cmd, UIApplication
 
 @implementation XYAppController uxy_def_singleton
 
-+(void)load
++ (void)load
 {
     XYAppController *appController = [XYAppController sharedInstance];
     NSArray *classes = [NSObject uxy_classesWithProtocol:@"UIApplicationDelegate"];
@@ -90,9 +90,6 @@ BOOL __applicationDidFinishLaunchingWithOptions(id self, SEL _cmd, UIApplication
 {
     [[XYClassLoader classLoader] loadClasses:@[
                                                ]];
-#if (1 == __XY_DEBUG_UNITTESTING__)
-    [[XYUnitTest sharedInstance] run];
-#endif
 }
 #pragma mark-virtual function
 - (void)before_application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

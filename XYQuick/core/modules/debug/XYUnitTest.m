@@ -47,6 +47,36 @@
 
 @implementation XYUnitTest uxy_def_singleton
 
+
+#if (1 == __XY_DEBUG_UNITTESTING__)
+/*
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[NSNotificationCenter defaultCenter] addObserver:[XYUnitTest sharedInstance]
+                                                 selector:@selector(__after_application_didFinishLaunchingWithOptions)
+                                                     name:UIApplicationDidFinishLaunchingNotification
+                                                   object:nil];
+    });
+}
+ */
+
+/*
+ * 1. 调用所有的Framework中的初始化方法
+ * 2. 调用所有的+load方法
+ * 3. 调用C++的静态初始化方及C/C++中的__attribute__(constructor)函数
+ * 4. 调用所有链接到目标文件的framework中的初始化方法
+ */
+__attribute__((constructor)) static void registerUnitTestStart()
+{
+    [[NSNotificationCenter defaultCenter] addObserver:[XYUnitTest sharedInstance]
+                                             selector:@selector(__handleApplicationDidFinishLaunchingWithOptions)
+                                                 name:UIApplicationDidFinishLaunchingNotification
+                                               object:nil];
+}
+#endif
+
 - (id)init
 {
     self = [super init];
@@ -211,6 +241,12 @@
     [_logs removeAllObjects];
 }
 
+#if (1 == __XY_DEBUG_UNITTESTING__)
+- (void)__handleApplicationDidFinishLaunchingWithOptions
+{
+    [[XYUnitTest sharedInstance] run];
+}
+#endif
 @end
 
 // ----------------------------------

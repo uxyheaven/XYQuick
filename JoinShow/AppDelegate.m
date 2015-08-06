@@ -26,7 +26,6 @@
     [self.window makeKeyAndVisible];
     */
 #pragma mark - some test
-    NSArray *array = [[XYApplicationWorkspace alloc] allApplications];
     
     return YES;
 }
