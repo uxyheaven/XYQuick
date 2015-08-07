@@ -30,7 +30,8 @@ UXY_TEST_CASE( Core, XYApplicationWorkspace )
 UXY_DESCRIBE( test1 )
 {
     NSArray *array = [[XYApplicationWorkspace alloc] allApplications];
-    NSLog(@"apps: %@", array);
+    //NSLog(@"apps: %@", array);
+    UXY_EXPECTED(array.count > 0);
 }
 
 UXY_TEST_CASE_END

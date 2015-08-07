@@ -81,7 +81,7 @@ typedef enum {
 - (id)progress:(RequestHelper_downloadRequestProgressBlock)blockP;
 
 // 请重载此方法实现自己的通用解析方法
--(id) succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
+- (id)succeed:(RequestHelper_downloadRequestSucceedBlock)blockS
        failed:(RequestHelper_downloadRequestFailedBlock)blockF;
 @end
 

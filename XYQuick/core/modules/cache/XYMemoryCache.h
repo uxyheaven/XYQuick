@@ -13,7 +13,7 @@
 @interface XYMemoryCache : NSObject <XYCacheProtocol> uxy_as_singleton
 
 @property (nonatomic, assign) BOOL clearWhenMemoryLow;  // default is YES
-@property (nonatomic, assign) NSUInteger maxCacheCount;
+@property (nonatomic, assign) NSUInteger maxCacheCount; // default is 48
 
 @property (nonatomic, assign, readonly) NSUInteger cachedCount;
 @property (atomic, strong, readonly) NSMutableArray *cacheKeys;
