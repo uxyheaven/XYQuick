@@ -8,7 +8,7 @@
 
 #import "SignalVC.h"
 
-DEF_UXYSINGNAL( signal_name1 )      // 信号1
+uxy_def_signal( signal_name1 )      // 信号1
 
 @implementation Signal1
 
