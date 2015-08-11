@@ -4,7 +4,7 @@
 //
 //  Created by Heaven on 14-6-3.
 //  Copyright (c) 2014年 Heaven. All rights reserved.
-// NSNotification 的封装
+//  NSNotification 的封装
 
 #import "XYQuick_Predefine.h"
 
@@ -13,9 +13,6 @@
 
 #define uxy_handleNotification( __name, __notification ) \
         - (void)__uxy_handleNotification_##__name:(NSNotification *)__notification
-
-#undef	NSObject_notifications
-#define NSObject_notifications	"NSObject.XYNotification.notifications"
 
 typedef void(^XYNotification_block)(NSNotification *notification);
 

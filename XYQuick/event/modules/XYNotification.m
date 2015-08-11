@@ -9,8 +9,10 @@
 #import "XYNotification.h"
 #import "NSObject+XY.h"
 
-void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
+#undef	NSObject_notifications
+#define NSObject_notifications	"NSObject.XYNotification.notifications"
 
+void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
 
 #pragma mark - XYNotification
 @interface XYNotification ()
