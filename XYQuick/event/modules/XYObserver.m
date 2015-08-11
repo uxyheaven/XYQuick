@@ -13,11 +13,13 @@
 void (*XYObserver_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
 void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
 
-#define __uxy_handleKVO_1( __property, __sourceObject, __newValue) \
-        - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue
+#undef	NSObject_observers
+#define NSObject_observers	"NSObject.XYObserve.observers"
 
-#define __uxy_handleKVO_2( __property, __sourceObject, __newValue, __oldValue ) \
-        - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue old:(id)oldValue
+typedef enum {
+    XYObserverType_new = 1,         // 参数只有new
+    XYObserverType_new_old,         // 参数有new,old
+}XYObserverType;
 
 #pragma mark - XYObserver
 @interface XYObserver ()

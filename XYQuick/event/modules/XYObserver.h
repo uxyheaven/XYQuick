@@ -24,16 +24,7 @@
 #define __uxy_handleKVO_2( __property, __sourceObject, __newValue, __oldValue ) \
         - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue old:(id)oldValue
 
-#undef	NSObject_observers
-#define NSObject_observers	"NSObject.XYObserve.observers"
-
-typedef enum {
-    XYObserverType_new = 1,         // 参数只有new
-    XYObserverType_new_old,         // 参数有new,old
-}XYObserverType;
-
 typedef void(^XYObserver_block_new_old)(id newValue, id oldValue);
-
 
 #pragma mark - XYObserver
 @interface XYObserver : NSObject
