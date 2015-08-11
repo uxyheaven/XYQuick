@@ -7,7 +7,7 @@
 ### XYQuickDevelop
 #### core
 * XYTimer 		// 定时器类
-* XYObserver 	// KVO的封装
+* XYKVO 	// KVO的封装
 * XYNotification 	// NSNotification的封装
 * XYSandbox 	// 沙箱路径
 * XYSystemInfo //	系统信息
@@ -19,7 +19,7 @@
 * XYMulticastDelegate 	// 多路委托
 * XYSignal				// 责任链信号
 * XYNotification		// Notification的封装
-* XYObserver			// KVO的封装
+* XYKVO			// KVO的封装
 * XYFlyweightTransmit	// 轻量级的底层往高层传数据
 
 #### ui

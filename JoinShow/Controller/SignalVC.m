@@ -8,8 +8,6 @@
 
 #import "SignalVC.h"
 
-uxy_def_signal( signal_name1 )      // 信号1
-
 @implementation Signal1
 
 - (instancetype)initWithFrame:(CGRect)frame

@@ -10,7 +10,7 @@
 #import "XYQuick.h"
 #import "XYSignal.h"
 
-uxy_as_signal( signal_name1 )      // 信号1
+uxy_as_def_signal( signal_name1 )      // 信号1
 
 @interface Signal1 : UIView
 @end

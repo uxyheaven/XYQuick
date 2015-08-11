@@ -24,17 +24,17 @@
 #define __uxy_handleKVO_2( __property, __sourceObject, __newValue, __oldValue ) \
         - (void)__uxy_handleKVO_##__property##_in:(id)sourceObject new:(id)newValue old:(id)oldValue
 
-typedef void(^XYObserver_block_new_old)(id newValue, id oldValue);
+typedef void(^XYKVO_block_new_old)(id newValue, id oldValue);
 
-#pragma mark - XYObserver
-@interface XYObserver : NSObject
+#pragma mark - XYKVO
+@interface XYKVO : NSObject
 
 @end
 
 #pragma mark - NSObject (XYObserve)
 
 // 注意这里是 self 持有了观察者, 在 self 销毁的时候, 取消所有的观察
-@interface NSObject (XYObserver)
+@interface NSObject (XYKVO)
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *observers;
 
@@ -47,7 +47,7 @@ typedef void(^XYObserver_block_new_old)(id newValue, id oldValue);
  * block selector, block二选一
  */
 - (void)observeWithObject:(id)sourceObject property:(NSString*)property;
-- (void)observeWithObject:(id)sourceObject property:(NSString*)property block:(XYObserver_block_new_old)block;
+- (void)observeWithObject:(id)sourceObject property:(NSString*)property block:(XYKVO_block_new_old)block;
 
 - (void)removeObserverWithObject:(id)sourceObject property:(NSString *)property;
 - (void)removeObserverWithObject:(id)sourceObject;

@@ -6,42 +6,42 @@
 //  Copyright (c) 2013年 Heaven. All rights reserved.
 //
 
-#import "XYObserver.h"
+#import "XYKVO.h"
 #import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
-void (*XYObserver_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
-void (*XYObserver_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
+void (*XYKVO_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
+void (*XYKVO_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
 
 #undef	NSObject_observers
 #define NSObject_observers	"NSObject.XYObserve.observers"
 
 typedef enum {
-    XYObserverType_new = 1,         // 参数只有new
-    XYObserverType_new_old,         // 参数有new,old
-}XYObserverType;
+    XYKVOType_new = 1,         // 参数只有new
+    XYKVOType_new_old,         // 参数有new,old
+}XYKVOType;
 
-#pragma mark - XYObserver
-@interface XYObserver ()
+#pragma mark - XYKVO
+@interface XYKVO ()
 
-@property (nonatomic, assign) XYObserverType type;      // 观察者的类型
+@property (nonatomic, assign) XYKVOType type;      // 观察者的类型
 
 @property (nonatomic, weak) id target;                  // 被观察的对象的值改变时后的响应方法所在的对象
 @property (nonatomic, assign) SEL selector;             // 被观察的对象的值改变时后的响应方法
-@property (nonatomic, copy) XYObserver_block_new_old block;        // 值改变时执行的block
+@property (nonatomic, copy) XYKVO_block_new_old block;        // 值改变时执行的block
 
 @property (nonatomic, assign) id sourceObject;         // 被观察的对象
 @property (nonatomic, copy) NSString *keyPath;        // 被观察的对象的keyPath
 
-- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type;
+- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYKVOType)type;
 
-- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYObserver_block_new_old)block;
+- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYKVO_block_new_old)block;
 
 @end
 
-@implementation XYObserver
+@implementation XYKVO
 
-- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type
+- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYKVOType)type
 {
     self = [super init];
     if (self)
@@ -51,14 +51,14 @@ typedef enum {
         _sourceObject = sourceObject;
         _keyPath      = keyPath;
         _type         = type;
-        NSKeyValueObservingOptions options = (_type == XYObserverType_new) ? NSKeyValueObservingOptionNew : (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld);
+        NSKeyValueObservingOptions options = (_type == XYKVOType_new) ? NSKeyValueObservingOptionNew : (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld);
         [_sourceObject addObserver:self forKeyPath:keyPath options:options context:nil];
     }
     
     return self; 
 }
 
-- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYObserver_block_new_old)block
+- (instancetype)initWithSourceObject:(id)sourceObject keyPath:(NSString*)keyPath block:(XYKVO_block_new_old)block
 {
     self = [super init];
     if (self)
@@ -87,26 +87,26 @@ typedef enum {
         return;
     }
     
-    if (_type == XYObserverType_new)
+    if (_type == XYKVOType_new)
     {
-        XYObserver_action2(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
+        XYKVO_action2(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey]);
     }
-    else if (_type == XYObserverType_new_old)
+    else if (_type == XYKVOType_new_old)
     {
-        XYObserver_action3(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey] , change[NSKeyValueChangeOldKey]);
+        XYKVO_action3(_target, _selector, _sourceObject, change[NSKeyValueChangeNewKey] , change[NSKeyValueChangeOldKey]);
     }
 }
 
 @end
 
-#pragma mark - NSObject (XYObserverPrivate)
-@interface NSObject (XYObserverPrivate)
+#pragma mark - NSObject (XYKVOPrivate)
+@interface NSObject (XYKVOPrivate)
 
-- (void)observeWithObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type;
+- (void)observeWithObject:(id)sourceObject keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYKVOType)type;
 
 @end
 
-@implementation NSObject (XYObserver)
+@implementation NSObject (XYKVO)
 
 @dynamic observers;
 
@@ -135,7 +135,7 @@ typedef enum {
                         keyPath:property
                          target:self
                        selector:aSel
-                           type:XYObserverType_new];
+                           type:XYKVOType_new];
         return;
     }
     
@@ -146,32 +146,32 @@ typedef enum {
                         keyPath:property
                          target:self
                        selector:aSel
-                           type:XYObserverType_new_old];
+                           type:XYKVOType_new_old];
         return;
     }
 }
 
-- (void)observeWithObject:(id)object property:(NSString*)property block:(XYObserver_block_new_old)block{
+- (void)observeWithObject:(id)object property:(NSString*)property block:(XYKVO_block_new_old)block{
     [self observeWithObject:object keyPath:property block:block];
 }
 
-- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYObserverType)type
+- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector type:(XYKVOType)type
 {
     NSAssert([target respondsToSelector:selector], @"selector 必须存在");
     NSAssert(keyPath.length > 0, @"property 必须存在");
     NSAssert(object, @"被观察的对象object 必须存在");
     
-    XYObserver *ob = [[XYObserver alloc] initWithSourceObject:object keyPath:keyPath target:target selector:selector type:type];
+    XYKVO *ob = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath target:target selector:selector type:type];
 
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, keyPath];
     [self.observers setObject:ob forKey:key];
 }
 
-- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYObserver_block_new_old)block
+- (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYKVO_block_new_old)block
 {
     NSAssert(block, @"block 必须存在");
     
-    XYObserver *ob = [[XYObserver alloc] initWithSourceObject:object keyPath:keyPath block:block];
+    XYKVO *ob = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath block:block];
     
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, keyPath];
     [self.observers setObject:ob forKey:key];

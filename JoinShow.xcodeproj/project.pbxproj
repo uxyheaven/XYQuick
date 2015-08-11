@@ -110,7 +110,7 @@
 		57F56F8F1AFC86FD00298D7E /* XYQuick_Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F361AFC86FD00298D7E /* XYQuick_Core.m */; };
 		57F56F901AFC86FD00298D7E /* XYMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3A1AFC86FD00298D7E /* XYMulticastDelegate.m */; };
 		57F56F911AFC86FD00298D7E /* XYNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3C1AFC86FD00298D7E /* XYNotification.m */; };
-		57F56F921AFC86FD00298D7E /* XYObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3E1AFC86FD00298D7E /* XYObserver.m */; };
+		57F56F921AFC86FD00298D7E /* XYKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F3E1AFC86FD00298D7E /* XYKVO.m */; };
 		57F56F941AFC86FD00298D7E /* XYQuick_Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F421AFC86FD00298D7E /* XYQuick_Event.m */; };
 		57F56F951AFC86FD00298D7E /* UIActionSheet+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F461AFC86FD00298D7E /* UIActionSheet+XY.m */; };
 		57F56F961AFC86FD00298D7E /* UIAlertView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56F481AFC86FD00298D7E /* UIAlertView+XY.m */; };
@@ -344,8 +344,8 @@
 		57F56F3A1AFC86FD00298D7E /* XYMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYMulticastDelegate.m; sourceTree = "<group>"; };
 		57F56F3B1AFC86FD00298D7E /* XYNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYNotification.h; sourceTree = "<group>"; };
 		57F56F3C1AFC86FD00298D7E /* XYNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNotification.m; sourceTree = "<group>"; };
-		57F56F3D1AFC86FD00298D7E /* XYObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObserver.h; sourceTree = "<group>"; };
-		57F56F3E1AFC86FD00298D7E /* XYObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObserver.m; sourceTree = "<group>"; };
+		57F56F3D1AFC86FD00298D7E /* XYKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYKVO.h; sourceTree = "<group>"; };
+		57F56F3E1AFC86FD00298D7E /* XYKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYKVO.m; sourceTree = "<group>"; };
 		57F56F411AFC86FD00298D7E /* XYQuick_Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick_Event.h; sourceTree = "<group>"; };
 		57F56F421AFC86FD00298D7E /* XYQuick_Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYQuick_Event.m; sourceTree = "<group>"; };
 		57F56F451AFC86FD00298D7E /* UIActionSheet+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+XY.h"; sourceTree = "<group>"; };
@@ -820,8 +820,8 @@
 				57F56F3A1AFC86FD00298D7E /* XYMulticastDelegate.m */,
 				57F56F3B1AFC86FD00298D7E /* XYNotification.h */,
 				57F56F3C1AFC86FD00298D7E /* XYNotification.m */,
-				57F56F3D1AFC86FD00298D7E /* XYObserver.h */,
-				57F56F3E1AFC86FD00298D7E /* XYObserver.m */,
+				57F56F3D1AFC86FD00298D7E /* XYKVO.h */,
+				57F56F3E1AFC86FD00298D7E /* XYKVO.m */,
 				572CB1A41B4AF3240005A6B2 /* XYSignal.h */,
 				572CB1A51B4AF3240005A6B2 /* XYSignal.m */,
 				57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */,
@@ -1145,7 +1145,7 @@
 				57F56F751AFC86FD00298D7E /* NSDate+XY.m in Sources */,
 				57F56F831AFC86FD00298D7E /* XYAOP.m in Sources */,
 				577F732B1AF92DF30071FD0B /* RequestHelper.m in Sources */,
-				57F56F921AFC86FD00298D7E /* XYObserver.m in Sources */,
+				57F56F921AFC86FD00298D7E /* XYKVO.m in Sources */,
 				57F56FA11AFC86FD00298D7E /* UIWindow+XY.m in Sources */,
 				577F732C1AF92DF30071FD0B /* XYBaseDao.m in Sources */,
 				57F56FA31AFC86FD00298D7E /* XYBaseViewController.m in Sources */,

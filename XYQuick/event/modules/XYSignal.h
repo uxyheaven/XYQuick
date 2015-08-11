@@ -15,10 +15,8 @@
 
 #pragma mark -
 // 声明 定义
-#define uxy_as_signal( __name )     \
-        extern NSString *const __name;
-#define uxy_def_signal( __name )    \
-        NSString *const __name = uxy_macro_string(__name);
+#define uxy_as_def_signal( __name )    \
+        static NSString *const __name = uxy_macro_string(__name);
 
 #pragma mark -
 
