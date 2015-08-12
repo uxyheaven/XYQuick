@@ -283,23 +283,23 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 + (NSString *)__uxy_propertyConformsToProtocol:(Protocol *)protocol propertyName:(NSString *)propertyName
 {
     NSString *typeName = [self typeOfPropertyNamed:propertyName];
-    if ([typeName isKindOfClass:[NSString class]])
+    if (!typeName) return nil;
+    
+    typeName      = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
+    typeName      = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    
+    NSRange range = [typeName rangeOfString:@"Array"];
+    if (range.location != NSNotFound)
     {
-        typeName      = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
-        typeName      = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-        NSRange range = [typeName rangeOfString:@"Array"];
-        if (range.location != NSNotFound)
+        // nsarray对象符合自动绑定协议的
+        NSRange beginRange = [typeName rangeOfString:@"<"];
+        NSRange endRange   = [typeName rangeOfString:@">"];
+        if (beginRange.location != NSNotFound && endRange.location != NSNotFound)
         {
-            // nsarray对象符合自动绑定协议的
-            NSRange beginRange = [typeName rangeOfString:@"<"];
-            NSRange endRange   = [typeName rangeOfString:@">"];
-            if (beginRange.location != NSNotFound && endRange.location != NSNotFound)
+            NSString *protocalName = [typeName substringWithRange:NSMakeRange(beginRange.location + beginRange.length, endRange.location - beginRange.location - 1)];
+            if (NSClassFromString(protocalName))
             {
-                NSString *protocalName = [typeName substringWithRange:NSMakeRange(beginRange.location + beginRange.length, endRange.location - beginRange.location - 1)];
-                if (NSClassFromString(protocalName))
-                {
-                    return protocalName;
-                }
+                return protocalName;
             }
         }
     }
@@ -316,11 +316,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 + (NSString *)typeOfPropertyNamed:(NSString *)name
 {
     objc_property_t property = class_getProperty(self, [name UTF8String]);
-    if (property == NULL)
-    {
-        return (NULL);
-    }
-    return [NSString stringWithUTF8String:(property_getTypeString(property))];
+    return property ? [NSString stringWithUTF8String:(property_getTypeString(property))] : nil;
 }
 @end
 
