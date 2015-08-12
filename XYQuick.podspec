@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|  
-  version            = "0.5.21"
+  version            = "0.5.22"
   s.name             = "XYQuick"  
   s.version          = version  
   s.summary          = "A quick develop utility on iOS."  
@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }  
   s.author           = { "uxyheaven" => "uxyheaven@163.com" }  
   s.platform         = :ios, '7.0'
-  s.source           = { :git => "https://github.com/uxyheaven/XYQuickDevelop.git", :tag => version } 
+  s.source           = { :git => "https://github.com/uxyheaven/XYQuick.git", :tag => version } 
   #s.source_files     = 'XYQuick/*'
   s.requires_arc     = true
 

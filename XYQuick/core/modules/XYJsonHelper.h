@@ -39,13 +39,13 @@
 #pragma mark - XYJsonAutoBinding
 /**
  * 通过 Protocol 免去NSArray 手动bind
- * @protocol AudioPartModel @end
  * @interface AudioPartModel : NSObject <XYJsonAutoBinding>
+ * @protocol AudioPartModel @end
  * @property(strong, nonatomic) NSArray	<AudioPartModel> *audioParts;
  *
  * 通过 Protocol 免去id 手动bind
  * @interface Man : NSObject <XYJsonAutoBinding> @end
- * @property(strong, nonatomic) Man <XYJsonAutoBinding> *man;
+ * @property(strong, nonatomic) Man *man;
  */
 @protocol XYJsonAutoBinding
 @end
