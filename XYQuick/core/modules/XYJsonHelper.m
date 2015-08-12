@@ -285,8 +285,8 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
     NSString *typeName = [self typeOfPropertyNamed:propertyName];
     if (!typeName) return nil;
     
-    typeName      = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
-    typeName      = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     
     // nsarray对象符合自动绑定协议的
     NSRange range = [typeName rangeOfString:@"Array"];
