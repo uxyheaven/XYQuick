@@ -288,10 +288,11 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
     typeName      = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
     typeName      = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     
+    // nsarray对象符合自动绑定协议的
     NSRange range = [typeName rangeOfString:@"Array"];
     if (range.location != NSNotFound)
     {
-        // nsarray对象符合自动绑定协议的
+        // todo, array对象里有多个协议
         NSRange beginRange = [typeName rangeOfString:@"<"];
         NSRange endRange   = [typeName rangeOfString:@">"];
         if (beginRange.location != NSNotFound && endRange.location != NSNotFound)
@@ -304,9 +305,9 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
         }
     }
     
+    // 普通对象符合自动绑定协议的
     if ([NSClassFromString(typeName) conformsToProtocol:protocol])
     {
-        // 普通对象符合自动绑定协议的
         return typeName;
     }
     
