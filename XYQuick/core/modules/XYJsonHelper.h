@@ -36,16 +36,18 @@
 @interface XYJsonHelper : NSObject
 @end
 
-#pragma mark - XYJsonHelperProtocol
-@protocol XYJsonHelperProtocol
-/*
+#pragma mark - XYJsonAutoBinding
+/**
  * 通过 Protocol 免去NSArray 手动bind
- * @interface AudioPartModel : NSObject <XYJsonHelperProtocol>
- *
+ * @protocol AudioPartModel @end
+ * @interface AudioPartModel : NSObject <XYJsonAutoBinding>
  * @property(strong, nonatomic) NSArray	<AudioPartModel> *audioParts;
  *
- * @property(strong, nonatomic) Man <XYJsonHelperProtocol> *man;
+ * 通过 Protocol 免去id 手动bind
+ * @interface Man : NSObject <XYJsonAutoBinding> @end
+ * @property(strong, nonatomic) Man <XYJsonAutoBinding> *man;
  */
+@protocol XYJsonAutoBinding
 @end
 
 

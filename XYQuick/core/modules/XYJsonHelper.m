@@ -29,7 +29,7 @@ const char *property_getTypeString(objc_property_t property);
 + (NSDateFormatter *)__uxy_jsonDateFormatter;
 @end
 #pragma mark -
-@interface NSDictionary (XYJsonHelper)
+@interface NSDictionary (__XYJsonHelper)
 - (id)__uxy_objectForKey:(id)key;
 @end
 
@@ -97,11 +97,11 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         XY_JSON_OBJECT_KEYDICTS = [[NSMutableDictionary alloc] init];
     }
     
-    NSString *YYObjectKey           = [NSString stringWithFormat:@"XY_JSON_%@", NSStringFromClass([self class])];
-    NSMutableDictionary *dictionary = [XY_JSON_OBJECT_KEYDICTS __uxy_objectForKey:YYObjectKey];
+    NSString *objectKey = [NSString stringWithFormat:@"XY_JSON_%@", NSStringFromClass([self class])];
+    NSMutableDictionary *dictionary = [XY_JSON_OBJECT_KEYDICTS __uxy_objectForKey:objectKey];
     if (!dictionary)
     {
-        dictionary          = [[NSMutableDictionary alloc] init];
+        dictionary = [[NSMutableDictionary alloc] init];
         if ([self uxy_hasSuperProperties] && ![[self superclass] isMemberOfClass:[NSObject class]])
         {
             [dictionary setValuesForKeysWithDictionary:[[self superclass] uxy_jsonKeyPropertyDictionary]];
@@ -112,7 +112,7 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         
         NSArray *properties = [self __uxy_jsonPropertiesOfClass:[self class]];
         [properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSString *typeName = [self __uxy_propertyConformsToProtocol:@protocol(XYJsonHelperProtocol) propertyName:obj];
+            NSString *typeName = [self __uxy_propertyConformsToProtocol:@protocol(XYJsonAutoBinding) propertyName:obj];
             if (typeName)
             {
                 [dictionary setObject:typeName forKey:obj];
@@ -128,7 +128,7 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
             [dictionary removeObjectsForKeys:kNSObjectProtocolProperties];
         }
         
-        [XY_JSON_OBJECT_KEYDICTS setObject:dictionary forKey:YYObjectKey];
+        [XY_JSON_OBJECT_KEYDICTS setObject:dictionary forKey:objectKey];
     }
     
     return dictionary;
@@ -136,7 +136,7 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
 
 + (void)uxy_bindJsonKey:(NSString *)jsonKey toProperty:(NSString *)property
 {
-    NSMutableDictionary *dic= [self __uxy_jsonKeyPropertyDictionary];
+    NSMutableDictionary *dic = [self __uxy_jsonKeyPropertyDictionary];
     [dic removeObjectForKey:property];
     [dic setObject:property forKey:jsonKey];
 }
@@ -158,8 +158,7 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
     {
         NSError *error;
         NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
-        if (!error)
-            return jsonData;
+        if (!error) return jsonData;
     }
 #ifdef DEBUG
     else
@@ -291,6 +290,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
         NSRange range = [typeName rangeOfString:@"Array"];
         if (range.location != NSNotFound)
         {
+            // nsarray对象符合自动绑定协议的
             NSRange beginRange = [typeName rangeOfString:@"<"];
             NSRange endRange   = [typeName rangeOfString:@">"];
             if (beginRange.location != NSNotFound && endRange.location != NSNotFound)
@@ -303,11 +303,13 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
             }
         }
     }
-    NSObject *obj      = [NSClassFromString(typeName) new];
-    if ([obj conformsToProtocol:protocol])
+    
+    if ([NSClassFromString(typeName) conformsToProtocol:protocol])
     {
+        // 普通对象符合自动绑定协议的
         return typeName;
     }
+    
     return nil;
 }
 
@@ -354,11 +356,11 @@ const char *property_getTypeString(objc_property_t property)
         return (NULL);
     
     static char buffer[256];
-    const char  *e    = strchr(attrs, ',');
+    const char *e = strchr(attrs, ',');
     if (e == NULL )
         return (NULL);
     
-    int len = (int) (e - attrs);
+    int len = (int)(e - attrs);
     memcpy( buffer, attrs, len );
     buffer[len] = '\0';
     
@@ -406,20 +408,13 @@ const char *property_getTypeString(objc_property_t property)
 - (NSString *)uxy_jsonString
 {
     NSData *jsonData = self.uxy_jsonData;
-    if (jsonData)
-    {
-        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    return nil;
+
+    return jsonData ? [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] : nil;
 }
 
 - (id)__uxy_objectForKey:(id)key
 {
-    if (key)
-    {
-        return [self objectForKey:key];
-    }
-    return nil;
+    return key ? [self objectForKey:key] : nil;
 }
 @end
 
@@ -501,7 +496,7 @@ const char *property_getTypeString(objc_property_t property)
 + (id)__uxy_objectsForClassType:(Class)classType fromArray:(NSArray *)array
 {
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:array.count];
-    NSDictionary   *dic    = [classType uxy_jsonKeyPropertyDictionary];
+    NSDictionary *dic      = [classType uxy_jsonKeyPropertyDictionary];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         id model = [self objectForClassType:classType fromDict:obj withJsonKeyPropertyDictionary:dic];
         if (model)
@@ -603,7 +598,7 @@ const char *property_getTypeString(objc_property_t property)
 
 + (Class)__uxy_classForString:(NSString *)string valueKey:(NSString **)key
 {
-    if (string.length>0)
+    if (string.length > 0)
     {
         if ([string rangeOfString:@"."].length>0)
         {
@@ -709,7 +704,7 @@ const char *property_getTypeString(objc_property_t property)
     if ([NSJSONSerialization isValidJSONObject:jsonDictionaries])
     {
         NSError *error;
-        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:kNilOptions error:&error];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:kNilOptions error:&error];
         if (!error)
         {
             return jsonData;

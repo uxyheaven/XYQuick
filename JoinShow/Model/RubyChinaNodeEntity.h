@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XYQuick.h"
 
-@interface RubyChinaNodeEntity : NSObject
+@protocol RubyChinaNodeEntity <NSObject>
+@end
+
+@interface RubyChinaNodeEntity : NSObject <XYJsonAutoBinding>
 
 @property (nonatomic, assign) int nodeID;
 @property (nonatomic,  strong) NSString *name;
@@ -17,5 +21,8 @@
 @property (nonatomic, assign) int section_id;
 @property (nonatomic, assign) int sort;
 @property (nonatomic,  strong) NSString *section_name;
+
+@property (nonatomic, strong) RubyChinaNodeEntity *nextNode;
+@property (nonatomic, strong) NSArray <RubyChinaNodeEntity> *array;
 
 @end
