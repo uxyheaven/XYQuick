@@ -176,7 +176,8 @@
         }
         // If our remaining disk cache exceeds a configured maximum size, perform a second
         // size-based cleanup pass.  We delete the oldest files first.
-        if (self.maxCacheSize > 0 && currentCacheSize > self.maxCacheSize) {
+        if (self.maxCacheSize > 0 && currentCacheSize > self.maxCacheSize)
+        {
             // Target half of our maximum cache size for this cleanup pass.
             const NSUInteger desiredCacheSize = self.maxCacheSize / 2;
             
@@ -187,13 +188,16 @@
                                                             }];
             
             // Delete files until we fall below our desired cache size.
-            for (NSURL *fileURL in sortedFiles) {
-                if ([_fileManager removeItemAtURL:fileURL error:nil]) {
+            for (NSURL *fileURL in sortedFiles)
+            {
+                if ([_fileManager removeItemAtURL:fileURL error:nil])
+                {
                     NSDictionary *resourceValues = cacheFiles[fileURL];
                     NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
                     currentCacheSize -= [totalAllocatedSize unsignedIntegerValue];
                     
-                    if (currentCacheSize < desiredCacheSize) {
+                    if (currentCacheSize < desiredCacheSize)
+                    {
                         break;
                     }
                 }
@@ -409,7 +413,8 @@
     
     // If our remaining disk cache exceeds a configured maximum size, perform a second
     // size-based cleanup pass.  We delete the oldest files first.
-    if (maxCacheSize > 0 && currentCacheSize > maxCacheSize) {
+    if (maxCacheSize > 0 && currentCacheSize > maxCacheSize)
+    {
         // Target half of our maximum cache size for this cleanup pass.
         const NSUInteger desiredCacheSize = maxCacheSize / 2;
         
@@ -420,8 +425,10 @@
                                                         }];
         
         // Delete files until we fall below our desired cache size.
-        for (NSURL *fileURL in sortedFiles) {
-            if ([fileManager removeItemAtURL:fileURL error:nil]) {
+        for (NSURL *fileURL in sortedFiles)
+        {
+            if ([fileManager removeItemAtURL:fileURL error:nil])
+            {
                 NSDictionary *resourceValues = cacheFiles[fileURL];
                 NSNumber *totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey];
                 currentCacheSize -= [totalAllocatedSize unsignedIntegerValue];

@@ -273,9 +273,11 @@
 
 - (NSTimeInterval) longestDuration {
 	XYAnimateStep *longestStep = nil;
-	for (XYAnimateStep *current in self.steps) {
+	for (XYAnimateStep *current in self.steps)
+    {
 		NSTimeInterval currentDuration = current.delay+current.duration;
-		if (currentDuration > longestStep.delay+longestStep.duration) {
+		if (currentDuration > longestStep.delay+longestStep.duration)
+        {
 			longestStep = current;
 		}
 	}
@@ -294,7 +296,8 @@
 
 - (XYAnimateStepBlock) animationStep:(BOOL)animated {
 	XYAnimateStepBlock programStep = ^{
-		for (XYAnimateStep* current in self.steps) {
+		for (XYAnimateStep* current in self.steps)
+        {
 			[current runAnimated:animated];
 		}
 	};
@@ -305,7 +308,8 @@
 
 - (NSString*) description {
 	NSMutableString* programBody = [NSMutableString stringWithCapacity:100 * [self.steps count]];
-	for (XYAnimateStep *step in self.steps) {
+	for (XYAnimateStep *step in self.steps)
+    {
 		[programBody appendString:[step description]];
 	}
 	// indent
