@@ -101,7 +101,7 @@ ViewControllerDemoTitle(Something)
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 66 , Screen_WIDTH - 20, Screen_HEIGHT - 86)];
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 66 , UXY_SCREEN_WIDTH - 20, UXY_SCREEN_HEIGHT - 86)];
     //scroll.contentSize = CGSizeMake(Screen_WIDTH - 60, 2000);
     scroll.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     [self.view addSubview:scroll];
@@ -384,7 +384,7 @@ ViewControllerDemoTitle(Something)
     
 #pragma mark -btn end
     
-    scroll.contentSize = CGSizeMake(Screen_WIDTH - 20, btnOffsetY + 100);
+    scroll.contentSize = CGSizeMake(UXY_SCREEN_WIDTH - 20, btnOffsetY + 100);
     
     //[self someTest];
     [self observeWithObject:self property:KVO_NAME(testKVO)];
@@ -456,7 +456,8 @@ ViewControllerDemoTitle(Something)
 }
 - (IBAction)clickAVSpeech:(id)sender
 {
-    if (IOS7_OR_LATER) {
+    if (UXY_IOS7_OR_LATER)
+    {
         NSLogD(@"1")
         
         AVSpeechSynthesizer *av = [[AVSpeechSynthesizer alloc] init];
@@ -464,7 +465,9 @@ ViewControllerDemoTitle(Something)
      //   utterance.rate = AVSpeechUtteranceMinimumSpeechRate;
         utterance.pitchMultiplier = 1;
         [av speakUtterance:utterance];
-    }else{
+    }
+    else
+    {
         NSLogD(@"2")
     }
     

@@ -120,7 +120,7 @@
 
         
         // 用户引导视图
-        UIView *userGuideView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Screen_WIDTH, Screen_HEIGHT)];
+        UIView *userGuideView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UXY_SCREEN_WIDTH, UXY_SCREEN_HEIGHT)];
         userGuideView.backgroundColor = [UIColor clearColor];
         
         // 用户引导背景图

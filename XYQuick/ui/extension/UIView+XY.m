@@ -276,7 +276,7 @@ DUMMY_CLASS(UIView_XY);
 - (UIImage *)uxy_snapshot
 {
     UIGraphicsBeginImageContext(self.bounds.size);
-    if (IOS7_OR_LATER)
+    if (UXY_IOS7_OR_LATER)
     {
         // 这个方法比ios6下的快15倍
         [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
