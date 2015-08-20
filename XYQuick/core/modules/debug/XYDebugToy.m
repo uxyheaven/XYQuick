@@ -57,9 +57,9 @@
 
 #pragma mark - XYDebug
 
-#define XY_KB	(1024)
-#define XY_MB	(XY_KB * 1024)
-#define XY_GB	(XY_MB * 1024)
+#define UXY_KB	(1024)
+#define UXY_MB	(UXY_KB * 1024)
+#define UXY_GB	(UXY_MB * 1024)
 #define XYDebug_memory_step 20
 
 #undef	MAX_CALLSTACK_DEPTH
@@ -75,7 +75,7 @@
 
 + (void)printCallstack:(NSUInteger)depth
 {
-    NSArray * callstack = [self callstack:depth];
+    NSArray *callstack = [self callstack:depth];
     if ( callstack && callstack.count )
     {
         NSLog(@"%@", callstack);
@@ -84,9 +84,9 @@
 
 + (NSArray *)callstack:(NSUInteger)depth
 {
-    NSMutableArray * array = [[NSMutableArray alloc] init];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
     
-    void * stacks[MAX_CALLSTACK_DEPTH] = { 0 };
+    void *stacks[MAX_CALLSTACK_DEPTH] = { 0 };
     
     depth = backtrace( stacks, (int)((depth > MAX_CALLSTACK_DEPTH) ? MAX_CALLSTACK_DEPTH : depth) );
     if ( depth )
@@ -146,14 +146,14 @@
     
     for ( ;; )
     {
-        if ( _manualBytes + XYDebug_memory_step * XY_MB >= total )
+        if ( _manualBytes + XYDebug_memory_step * UXY_MB >= total )
             break;
         
-        void *block = malloc(XYDebug_memory_step * XY_MB);
+        void *block = malloc(XYDebug_memory_step * UXY_MB);
         
         if ( block )
         {
-            _manualBytes += XYDebug_memory_step * XY_MB;
+            _manualBytes += XYDebug_memory_step * UXY_MB;
             [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
         }
         else
@@ -176,10 +176,10 @@
 
 - (void)allocMemory:(NSInteger)MB
 {
-    void *block = malloc(MB * XY_MB);
+    void *block = malloc(MB * UXY_MB);
     if ( block )
     {
-        _manualBytes += MB * XY_MB;
+        _manualBytes += MB * UXY_MB;
         [self.manualBlocks addObject:[NSNumber numberWithUnsignedLongLong:(unsigned long long)block]];
     }
 }
@@ -207,35 +207,35 @@
 #pragma mark - BorderView
 #if (1 == __XY_DEBUG_SHOWBORDER__)
 @interface UIWindow(XYDebugPrivate)
-- (void)mySendEvent:(UIEvent *)event;
+- (void)__uxy_sendEvent:(UIEvent *)event;
 @end
 
 @implementation UIWindow(XYDebug)
 
 + (void)load
 {
-    [XYRuntime swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(mySendEvent:)];
+    [XYRuntime swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(__uxy_sendEvent:)];
 }
 
-- (void)mySendEvent:(UIEvent *)event
+- (void)__uxy_sendEvent:(UIEvent *)event
 {
-    UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     if ( self == keyWindow && UIEventTypeTouches == event.type)
     {
-        NSSet * allTouches = [event allTouches];
+        NSSet *allTouches = [event allTouches];
         if ( 1 == [allTouches count] )
         {
-            UITouch * touch = [[allTouches allObjects] objectAtIndex:0];
-            if ( 1 == [touch tapCount]  && UITouchPhaseBegan == touch.phase )
+            UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
+            if ( 1 == [touch tapCount] && UITouchPhaseBegan == touch.phase )
             {
                 // NSLog(@"view '%@', touch began\n%@", [[touch.view class] description], [touch.view description]);
-                BorderView * border = [[BorderView alloc] initWithFrame:touch.view.bounds];
+                BorderView *border = [[BorderView alloc] initWithFrame:touch.view.bounds];
                 [touch.view addSubview:border];
                 [border startAnimation];
             }
         }
     }
-    [self mySendEvent:event];
+    [self __uxy_sendEvent:event];
 }
 
 @end
