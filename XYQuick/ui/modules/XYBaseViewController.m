@@ -24,7 +24,7 @@
 #pragma mark 2 delegate dataSource protocol
 
 #pragma mark - private
-#pragma mark - get / set
+#pragma mark - getter / setter
 
 #pragma mark -
 @interface UIViewController (XYBase_private)
@@ -77,7 +77,7 @@
     [self __uxy__viewDidLoad];
 }
 
-- (void)xy__didReceiveMemoryWarning
+- (void)__uxy__didReceiveMemoryWarning
 {
     if ([self isViewLoaded] && [self.view window] == nil)
     {
@@ -85,7 +85,7 @@
             [self performSelector:@selector(uxy_cleanData)];
     }
     
-    [self xy__didReceiveMemoryWarning];
+    [self __uxy__didReceiveMemoryWarning];
 }
 
 #pragma mark - private
