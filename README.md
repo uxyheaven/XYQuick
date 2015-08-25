@@ -4,7 +4,7 @@
 
 * 本库采用ARC
 
-### XYQuickDevelop
+### XYQuick
 #### core
 * XYTimer 		// 定时器类
 * XYKVO 	// KVO的封装
