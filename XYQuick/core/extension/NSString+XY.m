@@ -238,7 +238,7 @@ DUMMY_CLASS(NSString_XY);
     NSMutableArray * pairs = [NSMutableArray array];
 	for ( NSString * key in dict.allKeys )
 	{
-		NSString * value = [((NSObject *)[dict objectForKey:key]) asNSString];
+		NSString * value = [((NSObject *)[dict objectForKey:key]) uxy_asNSString];
 		NSString * urlEncoding = encoding ? [value uxy_URLEncoding] : value;
 		[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, urlEncoding]];
 	}

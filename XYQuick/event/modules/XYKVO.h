@@ -58,7 +58,7 @@ typedef void(^XYKVO_block_new_old)(id newValue, id oldValue);
 // 注意这里是 self 持有了观察者, 在 self 销毁的时候, 取消所有的观察
 @interface NSObject (XYKVO)
 
-@property (nonatomic, readonly, strong) NSMutableDictionary *observers;
+@property (nonatomic, readonly, strong) NSMutableDictionary *uxy_observers;
 
 /**
  * api parameters 说明
@@ -68,12 +68,12 @@ typedef void(^XYKVO_block_new_old)(id newValue, id oldValue);
  * target 默认是self
  * block selector, block二选一
  */
-- (void)observeWithObject:(id)sourceObject property:(NSString*)property;
-- (void)observeWithObject:(id)sourceObject property:(NSString*)property block:(XYKVO_block_new_old)block;
+- (void)uxy_observeWithObject:(id)sourceObject property:(NSString*)property;
+- (void)uxy_observeWithObject:(id)sourceObject property:(NSString*)property block:(XYKVO_block_new_old)block;
 
-- (void)removeObserverWithObject:(id)sourceObject property:(NSString *)property;
-- (void)removeObserverWithObject:(id)sourceObject;
-- (void)removeAllObserver;
+- (void)uxy_removeObserverWithObject:(id)sourceObject property:(NSString *)property;
+- (void)uxy_removeObserverWithObject:(id)sourceObject;
+- (void)uxy_removeAllObserver;
 
 @end
 

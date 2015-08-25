@@ -34,7 +34,6 @@
 
 + (NSMutableDictionary *)uxy_nonRetainSet;
 
-
 @end
 
 @interface NSMutableSet (XY)

@@ -387,14 +387,14 @@ ViewControllerDemoTitle(Something)
     scroll.contentSize = CGSizeMake(UXY_SCREEN_WIDTH - 20, btnOffsetY + 100);
     
     //[self someTest];
-    [self observeWithObject:self property:KVO_NAME(testKVO)];
-    [self observeWithObject:self property:KVO_NAME(testKVO2) block:^(id newValue, id oldValue) {
+    [self uxy_observeWithObject:self property:KVO_NAME(testKVO)];
+    [self uxy_observeWithObject:self property:KVO_NAME(testKVO2) block:^(id newValue, id oldValue) {
         NSLogD(@"new:%@ old:%@", newValue, oldValue);
     }];
-    [self observeWithObject:self property:KVO_NAME(testKVO_BOOL)];
+    [self uxy_observeWithObject:self property:KVO_NAME(testKVO_BOOL)];
     
-    [self registerNotification:NOTIFICATION_NAME(aaa)];
-    [self registerNotification:NOTIFICATION_NAME(bbb) block:^(NSNotification *notification) {
+    [self uxy_registerNotification:NOTIFICATION_NAME(aaa)];
+    [self uxy_registerNotification:NOTIFICATION_NAME(bbb) block:^(NSNotification *notification) {
         NSLogD(@"%@", notification.userInfo);
     }];
     
@@ -598,8 +598,8 @@ ViewControllerDemoTitle(Something)
 
 - (void)clickSendMessage:(id)sender
 {
-    [self postNotification:NOTIFICATION_NAME(aaa) userInfo:@{@"msg": @"test"}];
-    [self postNotification:NOTIFICATION_NAME(bbb) userInfo:@{@"msg": @"test2"}];
+    [self uxy_postNotification:NOTIFICATION_NAME(aaa) userInfo:@{@"msg": @"test"}];
+    [self uxy_postNotification:NOTIFICATION_NAME(bbb) userInfo:@{@"msg": @"test2"}];
 }
 - (void)clickStringCache:(id)sender
 {

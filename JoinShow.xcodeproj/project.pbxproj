@@ -323,7 +323,6 @@
 		57F56F231AFC86FD00298D7E /* XYCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommon.h; sourceTree = "<group>"; };
 		57F56F241AFC86FD00298D7E /* XYCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYCommon.m; sourceTree = "<group>"; };
 		57F56F251AFC86FD00298D7E /* XYCommonDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYCommonDefine.h; sourceTree = "<group>"; };
-		57F56F261AFC86FD00298D7E /* XYFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFoundation.h; sourceTree = "<group>"; };
 		57F56F271AFC86FD00298D7E /* XYJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYJsonHelper.h; sourceTree = "<group>"; };
 		57F56F281AFC86FD00298D7E /* XYJsonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYJsonHelper.m; sourceTree = "<group>"; };
 		57F56F291AFC86FD00298D7E /* XYReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYReachability.h; sourceTree = "<group>"; };
@@ -753,7 +752,6 @@
 				57F56F241AFC86FD00298D7E /* XYCommon.m */,
 				57F56F251AFC86FD00298D7E /* XYCommonDefine.h */,
 				57ECA4A31B04701000C47AF0 /* XYChainMethod.h */,
-				57F56F261AFC86FD00298D7E /* XYFoundation.h */,
 				57F56F271AFC86FD00298D7E /* XYJsonHelper.h */,
 				57F56F281AFC86FD00298D7E /* XYJsonHelper.m */,
 				57F56F291AFC86FD00298D7E /* XYReachability.h */,

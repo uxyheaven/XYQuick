@@ -33,9 +33,6 @@
 #import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
-#undef	UIControl_key_events
-#define UIControl_key_events	"UIControl.events"
-
 static NSDictionary *XY_DicControlEventString = nil;
 static NSDictionary *XY_DicControlStringEvent = nil;
 
@@ -87,6 +84,8 @@ DUMMY_CLASS(UIControl_XY);
                                  @"UIControlEventAllEvents": @(UIControlEventAllEvents)
                                  };
 }
+
+uxy_staticConstString(UIControl_key_events)
 
 - (void)dealloc
 {

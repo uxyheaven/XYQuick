@@ -34,122 +34,6 @@
 {
     
 }
-/***************************************************************/
-+ (NSString *) dataFilePath:(NSString *)file ofType:(FilePathOption)kType
-{
-    NSString *pathFile = nil;
-    switch (kType)
-    {
-        case filePathOption_documents:
-        {
-            // NSDocumentDirectory代表查找Documents路径,NSUserDomainMask代表在应用程序沙盒下找
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            // ios下Documents文件夹只有一个
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            pathFile = [documentsDirectory stringByAppendingPathComponent:file];
-            break;
-        }
-        case filePathOption_tmp:
-        {
-            NSString *str = NSTemporaryDirectory();
-            //    NSLog(@"%@", str);
-            pathFile = [str stringByAppendingPathComponent:file];
-            break;
-        }
-        case filePathOption_app:
-        case filePathOption_resource:
-        {
-            // 获得文件名
-            NSString *str =[file stringByDeletingPathExtension];
-            // 获得文件扩展路径
-            NSString *str2 = [file pathExtension];
-            pathFile = [[NSBundle mainBundle] pathForResource:str ofType:str2];
-            break;
-        }
-        default:
-            break;
-    }
-    
-    return pathFile;
-}
-// 程序目录，不能存任何东西
-+ (NSString *)dataFileAppPath:(NSString *)file{
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
-	
-    if (file)
-    {
-        return [NSString stringWithFormat:@"%@/%@",[paths objectAtIndex:0], file];
-    }
-    else
-    {
-        return [paths objectAtIndex:0];
-    }
-}
-// 文档目录，需要ITUNES同步备份的数据存这里
-+ (NSString *)dataFileDocPath:(NSString *)file{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    if (file)
-    {
-        return [NSString stringWithFormat:@"%@/%@",[paths objectAtIndex:0], file];
-    }
-    else
-    {
-        return [paths objectAtIndex:0];
-    }
-}
-// 配置目录，配置文件存这里
-+ (NSString *)dataFileLibPrefPath:(NSString *)file{
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (file)
-    {
-        return [NSString stringWithFormat:@"%@/Preference/%@",[paths objectAtIndex:0], file];
-    }
-    else
-    {
-        return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Preference"];
-    }
-}
-// 缓存目录，系统永远不会删除这里的文件，ITUNES会删除
-+ (NSString *)dataFileLibCachePath:(NSString *)file
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (file)
-    {
-        return [NSString stringWithFormat:@"%@/Caches/%@",[paths objectAtIndex:0], file];
-    }
-    else
-    {
-        return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
-    }
-}
-// 缓存目录，APP退出后，系统可能会删除这里的内容
-+ (NSString *) dataFileTmpPath:(NSString *)file
-{
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (file)
-    {
-        return [NSString stringWithFormat:@"%@/tmp/%@",[paths objectAtIndex:0], file];
-    }
-    else
-    {
-        return [[paths objectAtIndex:0] stringByAppendingFormat:@"/tmp"];
-    }
-}
-
-/***************************************************************/
-+ (NSString *) replaceUnicode:(NSString *)unicodeStr
-{
-    NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u" withString:@"\\U"];
-    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    NSString *tempStr3 = [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-    NSString* returnStr = [NSPropertyListSerialization propertyListFromData:tempData
-                                                           mutabilityOption:NSPropertyListImmutable
-                                                                     format:NULL
-                                                           errorDescription:NULL];
-    //  NSLog(@"%@",returnStr);
-    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n" withString:@"\n"];
-}
 
 /***************************************************************/
 + (NSRange)rangeOfString:(NSString *)str pointStart:(NSUInteger)iStart start:(NSString *)strStart end:(NSString *)strEnd mark:(NSString *)strMark operation:(MarkOption)operation;
@@ -389,12 +273,12 @@
     return str;
 }
 /***************************************************************/
-+ (void)openURL:(NSURL *)url
++ (void)openURL:(NSURL *)URL
 {
-    NSURL *tmpURL = url;
-    if ([url isKindOfClass:[NSString class]])
+    NSURL *tmpURL = URL;
+    if ([URL isKindOfClass:[NSString class]])
     {
-        tmpURL = [NSURL URLWithString:(NSString *)url];
+        tmpURL = [NSURL URLWithString:(NSString *)URL];
     }
     [[UIApplication sharedApplication] openURL:tmpURL];
 }
@@ -412,34 +296,6 @@
     
     //Returning topMost ViewController
     return topController;
-}
-
-/***************************************************************/
-+ (void)printUsedAndFreeMemoryWithMark:(NSString *)mark
-{
-    mach_port_t host_port;
-    mach_msg_type_number_t host_size;
-    vm_size_t pagesize;
-    
-    host_port = mach_host_self();
-    host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
-    host_page_size(host_port, &pagesize);
-    
-    vm_statistics_data_t vm_stat;
-    
-    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
-        NSLog(@"mark: %@\nFailed to fetch vm statistics", mark);
-    
-    /* Stats in bytes */
-    natural_t mem_used = (vm_stat.active_count +
-                          vm_stat.inactive_count +
-                          vm_stat.wire_count) * pagesize;
-    natural_t mem_free = vm_stat.free_count * pagesize;
-    natural_t mem_total = mem_used + mem_free;
-    int iUsed = round(mem_used/100000);
-    int iFree = round(mem_free/100000);
-    int iTotal = round(mem_total/100000);
-    NSLog(@"mark: %@\nused: %d free: %d total: %d", mark, iUsed, iFree, iTotal);
 }
 
 /***************************************************************/

@@ -41,7 +41,7 @@
     if (arraySync.count > 0)
     {
         NSObject *temp = [arraySync objectAtIndex:0];
-        for (NSString *attribute in self.attributeList)
+        for (NSString *attribute in self.uxy_attributeList)
         {
             [self setValue:[temp valueForKey:attribute] forKey:attribute];
         }

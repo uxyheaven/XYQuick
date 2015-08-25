@@ -29,7 +29,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XYFoundation.h"
 
 typedef void (^XYAnimateStepBlock)(void);
 

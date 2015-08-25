@@ -190,6 +190,9 @@ static id sharedInstance;
 #define uxy_macro_string( A )               __uxy_macro_string_( A )
 #define __uxy_macro_string_( A )            @#A
 
+// 定义静态常量字符串
+#define uxy_staticConstString(__string)               static const char * __string = #__string;
+
 #endif
 
 // ----------------------------------

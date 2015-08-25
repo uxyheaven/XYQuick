@@ -38,9 +38,6 @@
 #define uxy_handleTimer(  __name, __timer, __duration ) \
         - (void)__uxy_handleTimer_##__name:(XYTimer *)__timer duration:(NSTimeInterval)__duration
 
-#undef	NSObject_XYTimers
-#define NSObject_XYTimers	"NSObject.XYTimer.XYTimers"
-
 @class XYTimer;
 typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
@@ -62,18 +59,18 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 #pragma mark - NSObject(XYTimer)
 @interface NSObject (XYTimer)
 
-@property (nonatomic, readonly, strong) NSMutableDictionary *XYtimers;
+@property (nonatomic, readonly, strong) NSMutableDictionary *uxy_timers;
 
-- (NSTimer *)timer:(NSTimeInterval)interval name:(NSString *)name;
-- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name;
+- (NSTimer *)uxy_timer:(NSTimeInterval)interval name:(NSString *)name;
+- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name;
 
-- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
+- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
 
 //- (void)pauseTimer;
 //- (void)resumeTimer;
 
-- (void)cancelTimer:(NSString *)name;
-- (void)cancelAllTimer;
+- (void)uxy_cancelTimer:(NSString *)name;
+- (void)uxy_cancelAllTimer;
 
 @end
 
@@ -83,8 +80,8 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 
 #pragma mark - #define
 
-#define uxy_handleTick(  __name, __timer, __duration ) \
-        - (void)__uxy_handleTick:(NSTimeInterval)__time
+#define uxy_handleTick( __duration ) \
+        - (void)__uxy_handleTick:(NSTimeInterval)__duration
 
 #pragma mark - XYTicker
 /**
@@ -93,10 +90,9 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
  */
 @interface XYTicker : NSObject uxy_as_singleton
 
-@property (nonatomic, weak, readonly  ) CADisplayLink  *timer;
+@property (nonatomic, weak, readonly) CADisplayLink *timer;
 @property (nonatomic, assign, readonly) NSTimeInterval timestamp;
-@property (nonatomic, assign          ) NSTimeInterval interval;
-
+@property (nonatomic, assign) NSTimeInterval interval;
 
 - (void)addReceiver:(NSObject *)obj;
 - (void)removeReceiver:(NSObject *)obj;
@@ -106,9 +102,9 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 #pragma mark - NSObject(XYTicker)
 @interface NSObject(XYTicker)
 
-- (void)observeTick;
-- (void)unobserveTick;
-- (void)handleTick:(NSTimeInterval)elapsed;
+- (void)uxy_observeTick;
+- (void)uxy_unobserveTick;
+- (void)uxy_handleTick:(NSTimeInterval)duration;
 
 @end
 

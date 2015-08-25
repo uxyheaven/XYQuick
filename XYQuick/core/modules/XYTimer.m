@@ -61,8 +61,12 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 - (void)stop
 {
     if (_timer.isValid)
-        [_timer invalidate];
+    {
+       [_timer invalidate];
+    }
+    
 }
+
 - (void)handleTimer
 {
     NSTimeInterval ti = [[NSDate date] timeIntervalSince1970] - _start_at;
@@ -109,9 +113,9 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 #pragma mark - NSObject(XYTimer)
 @implementation NSObject(XYTimer)
 
-@dynamic XYtimers;
+uxy_staticConstString(NSObject_XYTimers)
 
-- (NSMutableDictionary *)XYtimers
+- (NSMutableDictionary *)uxy_timers
 {
     id object = [self uxy_getAssociatedObjectForKey:NSObject_XYTimers];
     
@@ -125,22 +129,22 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     return object;
 }
 
-- (NSTimer *)timer:(NSTimeInterval)interval name:(NSString *)name
+- (NSTimer *)uxy_timer:(NSTimeInterval)interval name:(NSString *)name
 {
-   return [self timer:interval repeat:NO name:name];
+   return [self uxy_timer:interval repeat:NO name:name];
 }
 
 
-- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
+- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
 {
     NSAssert(name.length > 1, @"name 不能为空");
     
-    NSMutableDictionary *timers = self.XYtimers;
+    NSMutableDictionary *timers = self.uxy_timers;
     XYTimer *timer2 = timers[name];
     
     if (timer2)
     {
-        [self cancelTimer:name];
+        [self uxy_cancelTimer:name];
     }
 
     SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleTimer_%@:duration:", name]);
@@ -164,12 +168,12 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     return timer.timer;
 }
 
-- (NSTimer *)timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
+- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
 {
     NSString *timerName = (name == nil) ? @"" : name;
     
-    NSMutableDictionary *timers = self.XYtimers;
-    [self cancelTimer:timerName];
+    NSMutableDictionary *timers = self.uxy_timers;
+    [self uxy_cancelTimer:timerName];
     
     NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
@@ -187,11 +191,11 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     return timer.timer;
 }
 
-- (void)cancelTimer:(NSString *)name
+- (void)uxy_cancelTimer:(NSString *)name
 {
     NSString *timerName = (name == nil) ? @"" : name;
 
-    NSMutableDictionary *timers = self.XYtimers;
+    NSMutableDictionary *timers = self.uxy_timers;
     XYTimerContainer *timer2 = timers[timerName];
     
     if (timer2)
@@ -201,13 +205,13 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
     }
 }
 
-- (void)cancelAllTimer
+- (void)uxy_cancelAllTimer
 {
-    [self.XYtimers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [self.uxy_timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [(XYTimer *)obj stop];
     }];
     
-    [self.XYtimers removeAllObjects];
+    [self.uxy_timers removeAllObjects];
 }
 
 @end
@@ -272,7 +276,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
         [_receivers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             if ( [obj respondsToSelector:@selector(__uxy_handleTick:)] )
             {
-                [obj handleTick:elapsed];
+                [obj uxy_handleTick:elapsed];
             }
         }];
         
@@ -284,17 +288,17 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 
 @implementation NSObject(XYTicker)
 
-- (void)observeTick
+- (void)uxy_observeTick
 {
 	[[XYTicker sharedInstance] addReceiver:self];
 }
 
-- (void)unobserveTick
+- (void)uxy_unobserveTick
 {
 	[[XYTicker sharedInstance] removeReceiver:self];
 }
 
-- (void)handleTick:(NSTimeInterval)elapsed
+- (void)uxy_handleTick:(NSTimeInterval)elapsed
 {
 }
 

@@ -50,29 +50,6 @@ XYCommonBlockTest	__getTestBlock( id context );
 }
 
 typedef enum {
-    filePathOption_documents = 1,
-    filePathOption_tmp,
-    filePathOption_app,
-    filePathOption_resource,
-} FilePathOption;
-
-/** 
- * @brief 返回文件路径
- * @param file 文件名
- * @param kType 文件所在目录类型. documents:documents文件夹, tmp:Tmp文件夹, app,resource:app文件夹
- * @return 文件路径
- */
-+ (NSString *)dataFilePath:(NSString *)file ofType:(FilePathOption)kType;
-
-/**
- * @brief Unicode格式的字符串编码转成中文的方法(如\u7E8C)转换成中文, unicode编码以\u开头, 已经移植到NSString(XY)
- * @param unicodeStr 需要被转的字符串
- * @return 转换后的字串
- */
-+ (NSString *)replaceUnicode:(NSString *)unicodeStr;
-
-
-typedef enum {
     MarkOption_middle = 1,
     MarkOption_front,
     MarkOption_back,
@@ -141,13 +118,7 @@ typedef enum {
  * @brief 用[UIApplication sharedApplication]打开一个URL
  * @param url http:// 浏览器, mailto:// 邮件, tel:// 拨号, sms: 短信
  */
-+ (void)openURL:(NSURL *)url;
-
-/**
- * @brief 得到当前UIViewController
- * @return 当前UIViewController
- */
-+ (UIViewController *)topMostController;
++ (void)openURL:(NSURL *)URL;
 
 
 #define SHOWMSG(title, msg, cancel) [XYCommon showAlertViewTitle:title message:msg cancelButtonTitle:cancel];
@@ -159,13 +130,6 @@ typedef enum {
  */
 + (void)showAlertViewTitle:(NSString *)aTitle message:(NSString *)msg cancelButtonTitle:(NSString *)strCancel;
 
-/**
- * @brief  打印内存情况
- * @param mark 标记
- */
-+ (void)printUsedAndFreeMemoryWithMark:(NSString *)mark;
-
-
 /** 
  * @brief 版本号比大小, Version format[X.X.X]
  * @param oldVersion 旧版本号
@@ -173,8 +137,4 @@ typedef enum {
  * @return 比较oldVersion和newVersion, NSOrderedAscending 左边比右边的小
  */
 + (NSComparisonResult)compareVersionFromOldVersion:(NSString *)oldVersion newVersion:(NSString *)newVersion;
-
-
-#pragma mark - to do
-
 @end

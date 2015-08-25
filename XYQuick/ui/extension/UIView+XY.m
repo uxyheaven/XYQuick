@@ -329,7 +329,7 @@ DUMMY_CLASS(UIView_XY);
             id tempObj = [self valueForKeyPath:key];
             if ([tempObj isKindOfClass:[UILabel class]])
             {
-                NSString *str = [obj asNSString];
+                NSString *str = [obj uxy_asNSString];
                 [tempObj setText:str];
                 
             }

@@ -35,9 +35,6 @@
 void (*XYKVO_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
 void (*XYKVO_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
 
-#undef	NSObject_observers
-#define NSObject_observers	"NSObject.XYObserve.observers"
-
 typedef enum {
     XYKVOType_new = 1,         // 参数只有new
     XYKVOType_new_old,         // 参数有new,old
@@ -130,9 +127,9 @@ typedef enum {
 
 @implementation NSObject (XYKVO)
 
-@dynamic observers;
+uxy_staticConstString(NSObject_observers)
 
-- (id)observers
+- (id)uxy_observers
 {
     id object = [self uxy_getAssociatedObjectForKey:NSObject_observers];
     
@@ -146,7 +143,7 @@ typedef enum {
     return object;
 }
 
-- (void)observeWithObject:(id)object property:(NSString*)property
+- (void)uxy_observeWithObject:(id)object property:(NSString*)property
 {
     SEL aSel = nil;
     
@@ -173,7 +170,7 @@ typedef enum {
     }
 }
 
-- (void)observeWithObject:(id)object property:(NSString*)property block:(XYKVO_block_new_old)block{
+- (void)uxy_observeWithObject:(id)object property:(NSString*)property block:(XYKVO_block_new_old)block{
     [self observeWithObject:object keyPath:property block:block];
 }
 
@@ -186,7 +183,7 @@ typedef enum {
     XYKVO *ob = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath target:target selector:selector type:type];
 
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, keyPath];
-    [self.observers setObject:ob forKey:key];
+    [self.uxy_observers setObject:ob forKey:key];
 }
 
 - (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYKVO_block_new_old)block
@@ -196,29 +193,29 @@ typedef enum {
     XYKVO *ob = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath block:block];
     
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, keyPath];
-    [self.observers setObject:ob forKey:key];
+    [self.uxy_observers setObject:ob forKey:key];
 }
 
-- (void)removeObserverWithObject:(id)object property:(NSString *)property
+- (void)uxy_removeObserverWithObject:(id)object property:(NSString *)property
 {
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, property];
-    [self.observers removeObjectForKey:key];
+    [self.uxy_observers removeObjectForKey:key];
 }
 
-- (void)removeObserverWithObject:(id)object
+- (void)uxy_removeObserverWithObject:(id)object
 {
     NSString *prefix = [NSString stringWithFormat:@"%@", object];
-    [self.observers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [self.uxy_observers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([key hasPrefix:prefix])
         {
-            [self.observers removeObjectForKey:key];
+            [self.uxy_observers removeObjectForKey:key];
         }
     }];
 }
 
-- (void)removeAllObserver
+- (void)uxy_removeAllObserver
 {
-    [self.observers removeAllObjects];
+    [self.uxy_observers removeAllObjects];
 }
 
 @end

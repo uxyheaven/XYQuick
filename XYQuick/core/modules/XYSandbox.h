@@ -32,11 +32,11 @@
 
 @interface XYSandbox : NSObject uxy_as_singleton
 
-@property (nonatomic, readonly, copy) NSString *	appPath;
-@property (nonatomic, readonly, copy) NSString *	docPath;
-@property (nonatomic, readonly, copy) NSString *	libPrefPath;
-@property (nonatomic, readonly, copy) NSString *	libCachePath;
-@property (nonatomic, readonly, copy) NSString *	tmpPath;
+@property (nonatomic, readonly, copy) NSString *appPath;
+@property (nonatomic, readonly, copy) NSString *docPath;
+@property (nonatomic, readonly, copy) NSString *libPrefPath;
+@property (nonatomic, readonly, copy) NSString *libCachePath;
+@property (nonatomic, readonly, copy) NSString *tmpPath;
 
 + (NSString *)appPath;		// 程序目录，不能存任何东西
 + (NSString *)docPath;		// 文档目录，需要ITUNES同步备份的数据存这里

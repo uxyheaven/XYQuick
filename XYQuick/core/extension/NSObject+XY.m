@@ -32,25 +32,8 @@
 #import "XYQuick_Predefine.h"
 #import "NSDate+XY.h"
 
-#undef	NSObject_key_performSelector
-#define NSObject_key_performSelector	"NSObject.performSelector"
-#undef	NSObject_key_performTarget
-#define NSObject_key_performTarget	"NSObject.performTarget"
-#undef	NSObject_key_performBlock
-#define NSObject_key_performBlock	"NSObject.performBlock"
-#undef	NSObject_key_loop
-#define NSObject_key_loop	"NSObject.loop"
-#undef	NSObject_key_afterDelay
-#define NSObject_key_afterDelay	"NSObject.afterDelay"
-#undef	NSObject_key_object
-#define NSObject_key_object	"NSObject.object"
-
-#undef	UITableViewCell_key_rowHeight
-#define UITableViewCell_key_rowHeight	"UITableViewCell.rowHeight"
-
 
 DUMMY_CLASS(NSObject_XY);
-
 
 @interface NSObject(XYPrivate)
 - (void)myDealloc;
@@ -59,14 +42,14 @@ DUMMY_CLASS(NSObject_XY);
 
 @implementation NSObject (XY)
 
-@dynamic attributeList;
+@dynamic uxy_attributeList;
 
 #pragma mark - hook
 
 #pragma mark - perform
 
 #pragma mark - property
-- (NSArray *)attributeList
+- (NSArray *)uxy_attributeList
 {
     unsigned int propertyCount = 0;
     objc_property_t*properties = class_copyPropertyList( [self class], &propertyCount );
@@ -86,27 +69,31 @@ DUMMY_CLASS(NSObject_XY);
 }
 
 #pragma mark - Conversion
-- (NSInteger)asInteger
+- (NSInteger)uxy_asInteger
 {
-	return [[self asNSNumber] integerValue];
+	return [[self uxy_asNSNumber] integerValue];
 }
 
-- (float)asFloat
+- (float)uxy_asFloat
 {
-	return [[self asNSNumber] floatValue];
+	return [[self uxy_asNSNumber] floatValue];
 }
 
-- (BOOL)asBool
+- (BOOL)uxy_asBool
 {
-	return [[self asNSNumber] boolValue];
+	return [[self uxy_asNSNumber] boolValue];
 }
 
-- (NSNumber *)asNSNumber
+- (NSNumber *)uxy_asNSNumber
 {
 	if ( [self isKindOfClass:[NSNumber class]] )
 	{
 		return (NSNumber *)self;
 	}
+    else if ( [self isKindOfClass:[NSNull class]] )
+    {
+        return [NSNumber numberWithInteger:0];
+    }
 	else if ( [self isKindOfClass:[NSString class]] )
 	{
 		return [NSNumber numberWithInteger:[(NSString *)self integerValue]];
@@ -115,23 +102,21 @@ DUMMY_CLASS(NSObject_XY);
 	{
 		return [NSNumber numberWithDouble:[(NSDate *)self timeIntervalSince1970]];
 	}
-	else if ( [self isKindOfClass:[NSNull class]] )
-	{
-		return [NSNumber numberWithInteger:0];
-	}
+
     
 	return nil;
 }
 
-- (NSString *)asNSString
+- (NSString *)uxy_asNSString
 {
-	if ( [self isKindOfClass:[NSNull class]] )
-		return nil;
-    
-	if ( [self isKindOfClass:[NSString class]] )
-	{
-		return (NSString *)self;
-	}
+    if ( [self isKindOfClass:[NSString class]] )
+    {
+        return (NSString *)self;
+    }
+    else if ( [self isKindOfClass:[NSNull class]] )
+    {
+        return nil;
+    }
 	else if ( [self isKindOfClass:[NSData class]] )
 	{
 		NSData * data = (NSData *)self;
@@ -143,7 +128,7 @@ DUMMY_CLASS(NSObject_XY);
 	}
 }
 
-- (NSDate *)asNSDate
+- (NSDate *)uxy_asNSDate
 {
 	if ( [self isKindOfClass:[NSDate class]] )
 	{
@@ -201,27 +186,27 @@ DUMMY_CLASS(NSObject_XY);
 	}
 	else
 	{
-		return [NSDate dateWithTimeIntervalSince1970:[self asNSNumber].doubleValue];
+		return [NSDate dateWithTimeIntervalSince1970:[self uxy_asNSNumber].doubleValue];
 	}
 	
 	return nil;
 }
 
-- (NSData *)asNSData
+- (NSData *)uxy_asNSData
 {
-	if ( [self isKindOfClass:[NSString class]] )
+    if ( [self isKindOfClass:[NSData class]] )
+    {
+        return (NSData *)self;
+    }
+    else if ( [self isKindOfClass:[NSString class]] )
 	{
 		return [(NSString *)self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
 	}
-	else if ( [self isKindOfClass:[NSData class]] )
-	{
-		return (NSData *)self;
-	}
-    
+
 	return nil;
 }
 
-- (NSArray *)asNSArray
+- (NSArray *)uxy_asNSArray
 {
 	if ( [self isKindOfClass:[NSArray class]] )
 	{
@@ -232,99 +217,9 @@ DUMMY_CLASS(NSObject_XY);
 		return [NSArray arrayWithObject:self];
 	}
 }
-/*
-- (NSArray *)asNSArrayWithClass:(Class)clazz
-{
-	if ( [self isKindOfClass:[NSArray class]] )
-	{
-		NSMutableArray * results = [NSMutableArray array];
-        
-		for ( NSObject * elem in (NSArray *)self )
-		{
-			if ( [elem isKindOfClass:[NSDictionary class]] )
-			{
-				NSObject * obj = [[self class] objectFromDictionary:elem];
-				[results addObject:obj];
-			}
-		}
-		
-		return results;
-	}
-    
-	return nil;
-}
-*/
-- (NSMutableArray *)asNSMutableArray
-{
-	if ( [self isKindOfClass:[NSMutableArray class]] )
-	{
-		return (NSMutableArray *)self;
-	}
-	
-	return nil;
-}
-/*
-- (NSMutableArray *)asNSMutableArrayWithClass:(Class)clazz
-{
-	NSArray * array = [self asNSArrayWithClass:clazz];
-	if ( nil == array )
-		return nil;
-    
-	return [NSMutableArray arrayWithArray:array];
-}
-*/
-- (NSDictionary *)asNSDictionary
-{
-	if ( [self isKindOfClass:[NSDictionary class]] )
-	{
-		return (NSDictionary *)self;
-	}
-    
-	return nil;
-}
-
-- (NSMutableDictionary *)asNSMutableDictionary
-{
-	if ( [self isKindOfClass:[NSMutableDictionary class]] )
-	{
-		return (NSMutableDictionary *)self;
-	}
-	
-	NSDictionary * dict = [self asNSDictionary];
-	if ( nil == dict )
-		return nil;
-    
-	return [NSMutableDictionary dictionaryWithDictionary:dict];
-}
-
-#pragma mark - message box
-/*
-- (UIAlertView *)showMessage:(BOOL)isShow title:(NSString *)aTitle message:(NSString *)aMessage cancelButtonTitle:(NSString *)aCancel otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION
- {
-    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:aCancel otherButtonTitles:nil];
-    
-    va_list args;
-    va_start(args, otherTitles);
-    if (otherTitles)
-    {
-        [alter addButtonWithTitle:otherTitles];
-        NSString *otherString;
-        while ((otherString = va_arg(args, NSString *)))
-        {
-            [alter addButtonWithTitle:otherString];
-        }
-    }
-    va_end(args);
-    
-    if (isShow)
-        [alter show];
-    
-    return alter;
-}
-*/
 
 #pragma mark- copy
-- (id)deepCopy1
+- (id)uxy_deepCopy1
 {
     return [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
 }

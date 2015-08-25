@@ -32,30 +32,23 @@
 
 @interface NSObject (XY)
 
-#pragma mark - perform
-
 #pragma mark - property
 // 属性列表
-@property (nonatomic, readonly, strong) NSArray                *attributeList;
+@property (nonatomic, readonly, strong) NSArray *uxy_attributeList;
 
 #pragma mark - conversion
-- (NSInteger)asInteger;
-- (float)asFloat;
-- (BOOL)asBool;
+- (NSInteger)uxy_asInteger;     // NSNumber, NSNull, NSString, NSString, NSDate
+- (float)uxy_asFloat;           // NSNumber, NSNull, NSString, NSString, NSDate
+- (BOOL)uxy_asBool;             // NSNumber, NSNull, NSString, NSString, NSDate
 
-- (NSNumber *)asNSNumber;
-- (NSString *)asNSString;
-- (NSDate *)asNSDate;
-- (NSData *)asNSData;	// TODO
-- (NSArray *)asNSArray;
-//- (NSArray *)asNSArrayWithClass:(Class)clazz;
-- (NSMutableArray *)asNSMutableArray;
-//-(NSMutableArray *) asNSMutableArrayWithClass:(Class)clazz;
-- (NSDictionary *)asNSDictionary;
-- (NSMutableDictionary *)asNSMutableDictionary;
+- (NSNumber *)uxy_asNSNumber;   // NSNumber, NSNull, NSString, NSString, NSDate
+- (NSString *)uxy_asNSString;   // NSString, NSNull, NSData
+- (NSDate *)uxy_asNSDate;       // NSDate, NSString,
+- (NSData *)uxy_asNSData;       // NSData, NSString
+- (NSArray *)uxy_asNSArray;     // NSArray, NSObject
 
 #pragma mark- copy
-- (id)deepCopy1; // 基于NSKeyArchive
+- (id)uxy_deepCopy1; // 基于NSKeyArchive
 @end
 
 #pragma mark- XY_associated
