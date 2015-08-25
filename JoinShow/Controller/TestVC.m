@@ -885,7 +885,7 @@ ViewControllerDemoTitle(Something)
 {
     PERF_ENTER_(@"load")
     NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/AutoCodingFileData"];
-    AutoCodingEntityList *list = [AutoCodingEntityList objectWithContentsOfFile:path];
+    AutoCodingEntityList *list = [AutoCodingEntityList uxy_objectWithContentsOfFile:path];
     PERF_LEAVE_(@"load")
     NSLog(@"%@", list);
     

@@ -28,7 +28,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     return YES;
 }
 
-+ (instancetype)objectWithContentsOfFile:(NSString *)filePath
++ (instancetype)uxy_objectWithContentsOfFile:(NSString *)filePath
 {
     //load the file
     NSData *data = [NSData dataWithContentsOfFile:filePath];
@@ -71,7 +71,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     return [data writeToFile:filePath atomically:useAuxiliaryFile];
 }
 
-+ (NSDictionary *)codableProperties
++ (NSDictionary *)uxy_codableProperties
 {
     //deprecated
     SEL deprecatedSelector = NSSelectorFromString(@"codableKeys");
@@ -190,7 +190,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     return codableProperties;
 }
 
-- (NSDictionary *)codableProperties
+- (NSDictionary *)uxy_codableProperties
 {
     __autoreleasing NSDictionary *codableProperties = objc_getAssociatedObject([self class], _cmd);
     if (!codableProperties)
@@ -199,7 +199,7 @@ static NSString *const AutocodingException = @"AutocodingException";
         Class subclass = [self class];
         while (subclass != [NSObject class])
         {
-            [(NSMutableDictionary *)codableProperties addEntriesFromDictionary:[subclass codableProperties]];
+            [(NSMutableDictionary *)codableProperties addEntriesFromDictionary:[subclass uxy_codableProperties]];
             subclass = [subclass superclass];
         }
         codableProperties = [NSDictionary dictionaryWithDictionary:codableProperties];
@@ -210,10 +210,10 @@ static NSString *const AutocodingException = @"AutocodingException";
     return codableProperties;
 }
 
-- (NSDictionary *)dictionaryRepresentation
+- (NSDictionary *)uxy_dictionaryRepresentation
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    for (__unsafe_unretained NSString *key in [self codableProperties])
+    for (__unsafe_unretained NSString *key in [self uxy_codableProperties])
     {
         id value = [self valueForKey:key];
         if (value)
@@ -222,11 +222,11 @@ static NSString *const AutocodingException = @"AutocodingException";
     return dict;
 }
 
-- (void)setWithCoder:(NSCoder *)aDecoder
+- (void)uxy_setWithCoder:(NSCoder *)aDecoder
 {
     BOOL secureAvailable = [aDecoder respondsToSelector:@selector(decodeObjectOfClass:forKey:)];
     BOOL secureSupported = [[self class] supportsSecureCoding];
-    NSDictionary *properties = [self codableProperties];
+    NSDictionary *properties = [self uxy_codableProperties];
     for (NSString *key in properties)
     {
         id object = nil;
@@ -252,13 +252,13 @@ static NSString *const AutocodingException = @"AutocodingException";
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    [self setWithCoder:aDecoder];
+    [self uxy_setWithCoder:aDecoder];
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    for (NSString *key in [self codableProperties])
+    for (NSString *key in [self uxy_codableProperties])
     {
         id object = [self valueForKey:key];
         if (object)
