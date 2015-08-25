@@ -28,27 +28,20 @@
 //	THE SOFTWARE.
 //
 
-#undef	UIAlertView_key_clicked
-#define UIAlertView_key_clicked	"UIAlertView.clicked"
-#undef	UIAlertView_key_cancel
-#define UIAlertView_key_cancel	"UIAlertView.cancel"
-#undef	UIAlertView_key_willPresent
-#define UIAlertView_key_willPresent	"UIAlertView.willPresent"
-#undef	UIAlertView_key_didPresent
-#define UIAlertView_key_didPresent	"UIAlertView.didPresent"
-#undef	UIAlertView_key_willDismiss
-#define UIAlertView_key_willDismiss	"UIAlertView.willDismiss"
-#undef	UIAlertView_key_didDismiss
-#define UIAlertView_key_didDismiss	"UIAlertView.didDismiss"
-#undef	UIAlertView_key_shouldEnableFirstOtherButton
-#define UIAlertView_key_shouldEnableFirstOtherButton	"UIAlertView.SEFOB"
-
 #import "UIAlertView+XY.h"
 #import "XYQuick_Predefine.h"
 
 DUMMY_CLASS(UIAlertView_XY);
 
 @implementation UIAlertView (XY)
+
+uxy_staticConstString(UIAlertView_key_clicked)
+uxy_staticConstString(UIAlertView_key_cancel)
+uxy_staticConstString(UIAlertView_key_willPresent)
+uxy_staticConstString(UIAlertView_key_didPresent)
+uxy_staticConstString(UIAlertView_key_willDismiss)
+uxy_staticConstString(UIAlertView_key_didDismiss)
+uxy_staticConstString(UIAlertView_key_shouldEnableFirstOtherButton)
 
 - (void)uxy_handlerClickedButton:(UIAlertView_block_self_index)aBlock
 {
@@ -136,28 +129,17 @@ DUMMY_CLASS(UIAlertView_XY);
         block(alertView, buttonIndex);
 }
 
-
-- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
-{
-    UIAlertView_block_shouldEnableFirstOtherButton block = objc_getAssociatedObject(self, UIAlertView_key_shouldEnableFirstOtherButton);
-    
-    if (block)
-        return block(alertView);
-
-    return YES;
-}
-
 - (void)uxy_showWithDuration:(NSTimeInterval)duration
 {
     [NSTimer scheduledTimerWithTimeInterval:duration
                                      target:self
-                                   selector:@selector(__xyDismiss)
+                                   selector:@selector(__uxy_dismiss)
                                    userInfo:self
                                     repeats:NO];
     [self show];
 }
 
-- (void)__xyDismiss
+- (void)__uxy_dismiss
 {
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }

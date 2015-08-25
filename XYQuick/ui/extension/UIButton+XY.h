@@ -33,7 +33,6 @@
 @interface UIButton (XY)
 
 - (NSIndexPath *)uxy_getTableViewCellIndexPath;
-
 - (NSIndexPath *)uxy_getTableViewCellIndexPathAtTableView:(UITableView *)tableView;
 
 @end

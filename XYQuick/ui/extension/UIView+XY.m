@@ -36,9 +36,6 @@
 
 DUMMY_CLASS(UIView_XY);
 
-#define UIView_key_tapBlock       "UIView.tapBlock"
-#define UIView_key_longPressBlock "UIView.longPressBlock"
-
 @implementation UIView (XY)
 
 - (void)uxy_addTapGestureWithTarget:(id)target action:(SEL)action
@@ -46,6 +43,7 @@ DUMMY_CLASS(UIView_XY);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
     [self addGestureRecognizer:tap];
 }
+
 - (void)uxy_removeTapGesture
 {
     for (UIGestureRecognizer *gesture in self.gestureRecognizers)
@@ -56,6 +54,8 @@ DUMMY_CLASS(UIView_XY);
         }
     }
 }
+
+uxy_staticConstString(UIView_key_tapBlock)
 
 - (void)uxy_addTapGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
 {
@@ -74,6 +74,8 @@ DUMMY_CLASS(UIView_XY);
         block(self);
     }
 }
+
+uxy_staticConstString(UIView_key_longPressBlock)
 
 - (void)uxy_addLongPressGestureWithBlock:(UIViewCategoryNormalBlock)aBlock
 {

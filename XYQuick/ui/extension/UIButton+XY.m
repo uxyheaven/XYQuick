@@ -54,12 +54,12 @@
     return indexPath;
 }
 
-- (NSIndexPath *)uxy_getTableViewCellIndexPathAtTableView:(UITableView *)tableView{
+- (NSIndexPath *)uxy_getTableViewCellIndexPathAtTableView:(UITableView *)tableView
+{
     CGPoint point = [self convertPoint:CGPointZero toView:tableView];
     NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:point];
     
     return indexPath;
 }
-
 
 @end

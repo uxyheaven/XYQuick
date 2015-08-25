@@ -34,12 +34,9 @@
 #import "UIControl+XY.h"
 #import "NSObject+XY.h"
 
-#undef	UIViewController_key_parameters
-#define UIViewController_key_parameters	"UIViewController.parameters"
-
 @implementation UIViewController (XY)
 
-@dynamic uxy_parameters;
+uxy_staticConstString(UIViewController_key_parameters)
 
 - (id)uxy_parameters
 {

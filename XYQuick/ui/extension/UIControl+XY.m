@@ -32,12 +32,18 @@
 #import "UIControl+XY.h"
 #import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
+#import "XYRuntime.h"
 
 static NSDictionary *XY_DicControlEventString = nil;
 static NSDictionary *XY_DicControlStringEvent = nil;
 
 DUMMY_CLASS(UIControl_XY);
 
+@interface UIControl (XYPrivate)
+@property (nonatomic, assign) BOOL uxy_ignoreEvent;
+@end
+
+#pragma mark-
 @implementation UIControl (XY)
 
 + (void)load
@@ -83,6 +89,8 @@ DUMMY_CLASS(UIControl_XY);
                                  @"UIControlEventSystemReserved": @(UIControlEventSystemReserved),
                                  @"UIControlEventAllEvents": @(UIControlEventAllEvents)
                                  };
+    
+    [XYRuntime swizzleInstanceMethodWithClass:[UIButton class] originalSel:@selector(sendAction:to:forEvent:) replacementSel:@selector(__uxy_sendAction:to:forEvent:)];
 }
 
 uxy_staticConstString(UIControl_key_events)
@@ -93,31 +101,15 @@ uxy_staticConstString(UIControl_key_events)
     if (opreations)
     {
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [self uxy_removeHandlerForEvent:[UIControl eventWithName:key]];
+            [self uxy_removeHandlerForEvent:[UIControl __uxy_eventWithName:key]];
         }];
         [self uxy_assignAssociatedObject:nil forKey:UIControl_key_events];
     }
 }
 
-- (void)uxy_removeHandlerForEvent:(UIControlEvents)event
-{
-    
-    NSString *methodName = [UIControl eventName:event];
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
-    
-    if(opreations == nil)
-    {
-        opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self uxy_retainAssociatedObject:opreations forKey:UIControl_key_events];
-    }
-    
-    [opreations removeObjectForKey:methodName];
-    [self removeTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
-}
-
 - (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block {
     
-    NSString *methodName = [UIControl eventName:event];
+    NSString *methodName = [UIControl __uxy_eventName:event];
     
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
     
@@ -131,49 +123,103 @@ uxy_staticConstString(UIControl_key_events)
     [self addTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
 }
 
-
-- (void)UIControlEventTouchDown{[self callActionBlock:UIControlEventTouchDown];}
-- (void)UIControlEventTouchDownRepeat{[self callActionBlock:UIControlEventTouchDownRepeat];}
-- (void)UIControlEventTouchDragInside{[self callActionBlock:UIControlEventTouchDragInside];}
-- (void)UIControlEventTouchDragOutside{[self callActionBlock:UIControlEventTouchDragOutside];}
-- (void)UIControlEventTouchDragEnter{[self callActionBlock:UIControlEventTouchDragEnter];}
-- (void)UIControlEventTouchDragExit{[self callActionBlock:UIControlEventTouchDragExit];}
-- (void)UIControlEventTouchUpInside{[self callActionBlock:UIControlEventTouchUpInside];}
-- (void)UIControlEventTouchUpOutside{[self callActionBlock:UIControlEventTouchUpOutside];}
-- (void)UIControlEventTouchCancel{[self callActionBlock:UIControlEventTouchCancel];}
-- (void)UIControlEventValueChanged{[self callActionBlock:UIControlEventValueChanged];}
-- (void)UIControlEventEditingDidBegin{[self callActionBlock:UIControlEventEditingDidBegin];}
-- (void)UIControlEventEditingChanged{[self callActionBlock:UIControlEventEditingChanged];}
-- (void)UIControlEventEditingDidEnd{[self callActionBlock:UIControlEventEditingDidEnd];}
-- (void)UIControlEventEditingDidEndOnExit{[self callActionBlock:UIControlEventEditingDidEndOnExit];}
-- (void)UIControlEventAllTouchEvents{[self callActionBlock:UIControlEventAllTouchEvents];}
-- (void)UIControlEventAllEditingEvents{[self callActionBlock:UIControlEventAllEditingEvents];}
-- (void)UIControlEventApplicationReserved{[self callActionBlock:UIControlEventApplicationReserved];}
-- (void)UIControlEventSystemReserved{[self callActionBlock:UIControlEventSystemReserved];}
-- (void)UIControlEventAllEvents{[self callActionBlock:UIControlEventAllEvents];}
-
-
-- (void)callActionBlock:(UIControlEvents)event
+- (void)uxy_removeHandlerForEvent:(UIControlEvents)event
 {
     
+    NSString *methodName = [UIControl __uxy_eventName:event];
+    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
+    
+    if(opreations == nil)
+    {
+        opreations = [NSMutableDictionary dictionaryWithCapacity:2];
+        [self uxy_retainAssociatedObject:opreations forKey:UIControl_key_events];
+    }
+    
+    [opreations removeObjectForKey:methodName];
+    [self removeTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
+}
+
+uxy_staticConstString(UIControl_acceptEventInterval)
+
+- (NSTimeInterval)uxy_acceptEventInterval
+{
+    return [objc_getAssociatedObject(self, UIControl_acceptEventInterval) doubleValue];
+}
+
+- (void)setUxy_acceptEventInterval:(NSTimeInterval)uxy_acceptEventInterval
+{
+    objc_setAssociatedObject(self, UIControl_acceptEventInterval, @(uxy_acceptEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+#pragma mark - private
+// todo 命名待重构
+- (void)UIControlEventTouchDown{[self __uxy_callActionBlock:UIControlEventTouchDown];}
+- (void)UIControlEventTouchDownRepeat{[self __uxy_callActionBlock:UIControlEventTouchDownRepeat];}
+- (void)UIControlEventTouchDragInside{[self __uxy_callActionBlock:UIControlEventTouchDragInside];}
+- (void)UIControlEventTouchDragOutside{[self __uxy_callActionBlock:UIControlEventTouchDragOutside];}
+- (void)UIControlEventTouchDragEnter{[self __uxy_callActionBlock:UIControlEventTouchDragEnter];}
+- (void)UIControlEventTouchDragExit{[self __uxy_callActionBlock:UIControlEventTouchDragExit];}
+- (void)UIControlEventTouchUpInside{[self __uxy_callActionBlock:UIControlEventTouchUpInside];}
+- (void)UIControlEventTouchUpOutside{[self __uxy_callActionBlock:UIControlEventTouchUpOutside];}
+- (void)UIControlEventTouchCancel{[self __uxy_callActionBlock:UIControlEventTouchCancel];}
+- (void)UIControlEventValueChanged{[self __uxy_callActionBlock:UIControlEventValueChanged];}
+- (void)UIControlEventEditingDidBegin{[self __uxy_callActionBlock:UIControlEventEditingDidBegin];}
+- (void)UIControlEventEditingChanged{[self __uxy_callActionBlock:UIControlEventEditingChanged];}
+- (void)UIControlEventEditingDidEnd{[self __uxy_callActionBlock:UIControlEventEditingDidEnd];}
+- (void)UIControlEventEditingDidEndOnExit{[self __uxy_callActionBlock:UIControlEventEditingDidEndOnExit];}
+- (void)UIControlEventAllTouchEvents{[self __uxy_callActionBlock:UIControlEventAllTouchEvents];}
+- (void)UIControlEventAllEditingEvents{[self __uxy_callActionBlock:UIControlEventAllEditingEvents];}
+- (void)UIControlEventApplicationReserved{[self __uxy_callActionBlock:UIControlEventApplicationReserved];}
+- (void)UIControlEventSystemReserved{[self __uxy_callActionBlock:UIControlEventSystemReserved];}
+- (void)UIControlEventAllEvents{[self __uxy_callActionBlock:UIControlEventAllEvents];}
+
+
+- (void)__uxy_callActionBlock:(UIControlEvents)event
+{
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
     
     if(opreations == nil)
         return;
     
-    void(^block)(id sender) = [opreations objectForKey:[UIControl eventName:event]];
+    void(^block)(id sender) = [opreations objectForKey:[UIControl __uxy_eventName:event]];
     
     if (block)
         block(self);
     
 }
-+ (NSString *)eventName:(UIControlEvents)event
+
++ (NSString *)__uxy_eventName:(UIControlEvents)event
 {
     return [XY_DicControlEventString objectForKey:@(event)];
 }
-+ (UIControlEvents)eventWithName:(NSString *)name
+
++ (UIControlEvents)__uxy_eventWithName:(NSString *)name
 {
     return [[XY_DicControlStringEvent objectForKey:name] integerValue];
 }
 
+uxy_staticConstString(UIControl_ignoreEvent)
+
+- (BOOL)uxy_ignoreEvent
+{
+    return [objc_getAssociatedObject(self, UIControl_ignoreEvent) boolValue];
+}
+
+- (void)setUxy_ignoreEvent:(NSTimeInterval)uxy_ignoreEvent
+{
+    objc_setAssociatedObject(self, UIControl_ignoreEvent, @(uxy_ignoreEvent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)__uxy_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
+{
+    if (self.uxy_ignoreEvent) return;
+    
+    if (self.uxy_acceptEventInterval > 0)
+    {
+        self.uxy_ignoreEvent = YES;
+        [self performSelector:@selector(setUxy_ignoreEvent:) withObject:@(NO) afterDelay:self.uxy_acceptEventInterval];
+    }
+    
+    [self __uxy_sendAction:action to:target forEvent:event];
+}
 @end

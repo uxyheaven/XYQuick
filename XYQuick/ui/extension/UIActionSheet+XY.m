@@ -28,19 +28,6 @@
 //	THE SOFTWARE.
 //
 
-#undef	UIActionSheet_key_clicked
-#define UIActionSheet_key_clicked	"UIActionSheet.clicked"
-#undef	UIActionSheet_key_cancel
-#define UIActionSheet_key_cancel	"UIActionSheet.cancel"
-#undef	UIActionSheet_key_willPresent
-#define UIActionSheet_key_willPresent	"UIActionSheet.willPresent"
-#undef	UIActionSheet_key_didPresent
-#define UIActionSheet_key_didPresent	"UIActionSheet.didPresent"
-#undef	UIActionSheet_key_willDismiss
-#define UIActionSheet_key_willDismiss	"UIActionSheet.willDismiss"
-#undef	UIActionSheet_key_didDismiss
-#define UIActionSheet_key_didDismiss	"UIActionSheet.sidDismiss"
-
 #import "UIActionSheet+XY.h"
 #import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
@@ -48,6 +35,14 @@
 DUMMY_CLASS(UIActionSheet_XY);
 
 @implementation UIActionSheet (XY)
+
+uxy_staticConstString(UIActionSheet_key_clicked)
+uxy_staticConstString(UIActionSheet_key_cancel)
+uxy_staticConstString(UIActionSheet_key_willPresent)
+uxy_staticConstString(UIActionSheet_key_didPresent)
+uxy_staticConstString(UIActionSheet_key_willDismiss)
+uxy_staticConstString(UIActionSheet_key_didDismiss)
+
 - (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;

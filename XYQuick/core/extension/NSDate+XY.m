@@ -34,8 +34,6 @@
 
 DUMMY_CLASS(NSDate_XY);
 
-#define NSDate_key_stringCache	"NSDate.stringCache"
-
 @implementation NSDate (XY)
 
 + (void)load
@@ -199,7 +197,8 @@ DUMMY_CLASS(NSDate_XY);
 }
 
 ///////////////////////////
-@dynamic uxy_stringCache;
+uxy_staticConstString(NSDate_key_stringCache)
+
 - (NSString *)uxy_stringCache
 {
     NSString *str = (NSString *)[self uxy_getAssociatedObjectForKey:NSDate_key_stringCache];

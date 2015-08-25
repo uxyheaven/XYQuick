@@ -60,6 +60,8 @@
 
 @interface UIControl (XY)
 
+@property (nonatomic, assign) NSTimeInterval uxy_acceptEventInterval;   // 可以用这个给重复点击加间隔
+
 - (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block;
 - (void)uxy_removeHandlerForEvent:(UIControlEvents)event;
 

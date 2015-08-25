@@ -33,24 +33,28 @@
 
 @implementation UINavigationBar (XY)
 
+uxy_staticConstString(xy_navigationBar_overlay)
+
 - (UIView *)overlay
 {
-    return [self uxy_getAssociatedObjectForKey:"xy.navigationBar.overlay"];
+    return [self uxy_getAssociatedObjectForKey:xy_navigationBar_overlay];
 }
 
 - (void)setOverlay:(UIView *)overlay
 {
-    [self uxy_retainAssociatedObject:overlay forKey:"xy.navigationBar.overlay"];
+    [self uxy_retainAssociatedObject:overlay forKey:xy_navigationBar_overlay];
 }
+
+uxy_staticConstString(xy_navigationBar_image)
 
 - (UIImage *)emptyImage
 {
-    return [self uxy_getAssociatedObjectForKey:"xy.navigationBar.image"];
+    return [self uxy_getAssociatedObjectForKey:xy_navigationBar_image];
 }
 
 - (void)setEmptyImage:(UIImage *)image
 {
-    [self uxy_retainAssociatedObject:image forKey:"xy.navigationBar.image"];
+    [self uxy_retainAssociatedObject:image forKey:xy_navigationBar_image];
 }
 
 - (void)uxy_setBackgroundColor:(UIColor *)backgroundColor
