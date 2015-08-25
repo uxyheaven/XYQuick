@@ -46,7 +46,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 //@property (nonatomic, assign) id sender;                // 来源
 @property (nonatomic, assign) NSTimeInterval duration;  // 持续时间
 
-@property (nonatomic ,assign) NSTimeInterval start_at;  // 开始时间
+@property (nonatomic ,assign) NSTimeInterval startAt;  // 开始时间
 
 @property (nonatomic, copy) XYTimer_block block;
 
@@ -69,7 +69,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 
 - (void)handleTimer
 {
-    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970] - _start_at;
+    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970] - _startAt;
     
     if (_block)
     {
@@ -137,7 +137,7 @@ uxy_staticConstString(NSObject_XYTimers)
 
 - (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
 {
-    NSAssert(name.length > 1, @"name 不能为空");
+    NSAssert(name.length > 0, @"name 不能为空");
     
     NSMutableDictionary *timers = self.uxy_timers;
     XYTimer *timer2 = timers[name];
@@ -154,7 +154,7 @@ uxy_staticConstString(NSObject_XYTimers)
     NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
     timer.name     = name;
-    timer.start_at = [date timeIntervalSince1970];
+    timer.startAt = [date timeIntervalSince1970];
     timer.target   = self;
     timer.selector = aSel;
     timer.duration = 0;
@@ -170,7 +170,7 @@ uxy_staticConstString(NSObject_XYTimers)
 
 - (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
 {
-    NSString *timerName = (name == nil) ? @"" : name;
+    NSString *timerName = name ?: @"";
     
     NSMutableDictionary *timers = self.uxy_timers;
     [self uxy_cancelTimer:timerName];
@@ -178,7 +178,7 @@ uxy_staticConstString(NSObject_XYTimers)
     NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
     timer.name     = timerName;
-    timer.start_at = [date timeIntervalSince1970];
+    timer.startAt = [date timeIntervalSince1970];
     timer.duration = 0;
     timer.block    = block;
     timer.timer    = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
@@ -193,7 +193,7 @@ uxy_staticConstString(NSObject_XYTimers)
 
 - (void)uxy_cancelTimer:(NSString *)name
 {
-    NSString *timerName = (name == nil) ? @"" : name;
+    NSString *timerName = name ?: @"";
 
     NSMutableDictionary *timers = self.uxy_timers;
     XYTimerContainer *timer2 = timers[timerName];
