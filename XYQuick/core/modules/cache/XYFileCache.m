@@ -129,7 +129,7 @@
 }
 - (void)clearDiskOnCompletion:(void (^)(void))completion
 {
-    dispatch_async_background_writeFile( ^{
+    uxy_dispatch_async_background_writeFile( ^{
         [_fileManager removeItemAtPath:_diskCachePath error:NULL];
         [_fileManager createDirectoryAtPath:_diskCachePath
                 withIntermediateDirectories:YES
@@ -137,7 +137,7 @@
                                       error:NULL];
         if (completion)
         {
-            dispatch_async_foreground( ^{
+            uxy_dispatch_async_foreground( ^{
                 completion();
             });
         }
@@ -227,7 +227,7 @@
         }
         if (completion)
         {
-            dispatch_async_foreground( ^{
+            uxy_dispatch_async_foreground( ^{
                 completion();
             });
         }
@@ -363,13 +363,13 @@
 
 - (void)cleanDiskWithCompletionBlock:(void (^)(void))completion
 {
-    dispatch_async_background_writeFile( ^{
+    uxy_dispatch_async_background_writeFile( ^{
         [_fileCacheInfos enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self cleanDiskWithFileCacheInfo:obj];
         }];
         if (completion)
         {
-            dispatch_async_foreground( ^{
+            uxy_dispatch_async_foreground( ^{
                 completion();
             });
         }

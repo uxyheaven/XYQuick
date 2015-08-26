@@ -42,7 +42,7 @@ ViewControllerDemoTitle(Database)
     [self.view addSubview:textView];
     self.tv = textView;
 
-    dispatch_async_background_concurrent( ^{
+    uxy_dispatch_async_background_concurrent( ^{
     [self test];
     });
 }
@@ -55,7 +55,7 @@ ViewControllerDemoTitle(Database)
 
 -(void)add:(NSString*)txt
 {
-    dispatch_async_foreground( ^{
+    uxy_dispatch_async_foreground( ^{
         [_ms appendString:@"\n"];
         [_ms appendString:txt];
         [_ms appendString:@"\n"];

@@ -33,60 +33,51 @@
 
 #pragma mark -
 // 主队列
-#undef	dispatch_async_foreground
-#define dispatch_async_foreground( block ) \
-        dispatch_async( dispatch_get_main_queue(), block )
+#define uxy_dispatch_async_foreground( dispatch_block_t ) \
+        dispatch_async( dispatch_get_main_queue(), dispatch_block_t )
 
-#undef	dispatch_after_foreground
-#define dispatch_after_foreground( seconds, block ) \
+#define uxy_dispatch_after_foreground( seconds, dispatch_block_t ) \
         { \
             dispatch_time_t __time = dispatch_time( DISPATCH_TIME_NOW, seconds * 1ull * NSEC_PER_SEC ); \
-            dispatch_after( __time, dispatch_get_main_queue(), block ); \
+            dispatch_after( __time, dispatch_get_main_queue(), dispatch_block_t ); \
         }
 
 // 自己建的后台并行队列
-#undef	dispatch_async_background
-#define dispatch_async_background( block )      dispatch_async_background_concurrent( block )
+#define uxy_dispatch_async_background( dispatch_block_t )      \
+        uxy_dispatch_async_background_concurrent( dispatch_block_t )
 
-#undef	dispatch_async_background_concurrent
-#define dispatch_async_background_concurrent( block ) \
-        dispatch_async( [XYGCD sharedInstance].backConcurrentQueue, block )
+#define uxy_dispatch_async_background_concurrent( dispatch_block_t ) \
+        dispatch_async( [XYGCD sharedInstance].backConcurrentQueue, dispatch_block_t )
 
-#undef	dispatch_after_background_concurrent
-#define dispatch_after_background_concurrent( seconds, block ) \
+#define uxy_dispatch_after_background_concurrent( seconds, dispatch_block_t ) \
         { \
             dispatch_time_t __time = dispatch_time( DISPATCH_TIME_NOW, seconds * 1ull * NSEC_PER_SEC ); \
-            dispatch_after( __time, [XYGCD sharedInstance].backConcurrentQueue, block ); \
+            dispatch_after( __time, [XYGCD sharedInstance].backConcurrentQueue, dispatch_block_t ); \
         }
 
 // 自己建的后台串行队列
-#undef	dispatch_async_background_serial
-#define dispatch_async_background_serial( block ) \
-        dispatch_async( [XYGCD sharedInstance].backSerialQueue, block )
+#define uxy_dispatch_async_background_serial( dispatch_block_t ) \
+        dispatch_async( [XYGCD sharedInstance].backSerialQueue, dispatch_block_t )
 
-#undef	dispatch_after_background_serial
-#define dispatch_after_background_serial( seconds, block ) \
+#define uxy_dispatch_after_background_serial( seconds, dispatch_block_t ) \
         { \
             dispatch_time_t __time = dispatch_time( DISPATCH_TIME_NOW, seconds * 1ull * NSEC_PER_SEC ); \
-            dispatch_after( __time, [XYGCD sharedInstance].backSerialQueue, block ); \
+            dispatch_after( __time, [XYGCD sharedInstance].backSerialQueue, dispatch_block_t ); \
         }
 
 // 自己建写的文件用的串行队列
-#undef	dispatch_async_background_writeFile
-#define dispatch_async_background_writeFile( block ) \
-        dispatch_async( [XYGCD sharedInstance].writeFileQueue, block )
+#define uxy_dispatch_async_background_writeFile( dispatch_block_t ) \
+        dispatch_async( [XYGCD sharedInstance].writeFileQueue, dispatch_block_t )
 
 
 // barrier
-#undef	dispatch_barrier_async_foreground
-#define dispatch_barrier_async_foreground( seconds, block ) \
+#define uxy_dispatch_barrier_async_foreground( seconds, dispatch_block_t ) \
         dispatch_barrier_async( [XYGCD sharedInstance].backConcurrentQueue, ^{   \
-            dispatch_async_foreground( block );   \
+            uxy_dispatch_async_foreground( dispatch_block_t );   \
         });
 
-#undef	dispatch_barrier_async_background_concurrent
-#define dispatch_barrier_async_background_concurrent( seconds, block ) \
-        dispatch_barrier_async( [XYGCD sharedInstance].backConcurrentQueue, block )
+#define uxy_dispatch_barrier_async_background_concurrent( seconds, dispatch_block_t ) \
+        dispatch_barrier_async( [XYGCD sharedInstance].backConcurrentQueue, dispatch_block_t )
 
 #pragma mark -
 
