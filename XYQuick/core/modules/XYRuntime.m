@@ -78,7 +78,7 @@
 + (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName
 {
     NSMutableArray *results = [[NSMutableArray alloc] init];
-    Protocol * protocol = NSProtocolFromString(protocolName);
+    Protocol *protocol = NSProtocolFromString(protocolName);
     for ( NSString *className in [self __loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
@@ -110,11 +110,11 @@
             SEL selector = method_getName( methodList[i] );
             if ( selector )
             {
-                const char * cstrName = sel_getName(selector);
+                const char *cstrName = sel_getName(selector);
                 if ( NULL == cstrName )
                     continue;
                 
-                NSString * selectorName = [NSString stringWithUTF8String:cstrName];
+                NSString *selectorName = [NSString stringWithUTF8String:cstrName];
                 if ( NULL == selectorName )
                     continue;
                 
@@ -136,7 +136,7 @@
 
 + (NSArray *)uxy_methodsUntilClass:(Class)baseClass
 {
-    NSMutableArray * methodNames = [[NSMutableArray alloc] init];
+    NSMutableArray *methodNames = [[NSMutableArray alloc] init];
     
     Class thisClass = self;
     
@@ -144,19 +144,19 @@
     
     while ( NULL != thisClass )
     {
-        unsigned int	methodCount = 0;
-        Method *		methodList = class_copyMethodList( thisClass, &methodCount );
+        unsigned int methodCount = 0;
+        Method *methodList = class_copyMethodList( thisClass, &methodCount );
         
         for ( unsigned int i = 0; i < methodCount; ++i )
         {
             SEL selector = method_getName( methodList[i] );
             if ( selector )
             {
-                const char * cstrName = sel_getName(selector);
+                const char *cstrName = sel_getName(selector);
                 if ( NULL == cstrName )
                     continue;
                 
-                NSString * selectorName = [NSString stringWithUTF8String:cstrName];
+                NSString *selectorName = [NSString stringWithUTF8String:cstrName];
                 if ( NULL == selectorName )
                     continue;
                 
@@ -184,7 +184,7 @@
 
 + (NSArray *)uxy_methodsWithPrefix:(NSString *)prefix untilClass:(Class)baseClass
 {
-    NSArray * methods = [self uxy_methodsUntilClass:baseClass];
+    NSArray *methods = [self uxy_methodsUntilClass:baseClass];
     
     if ( nil == methods || 0 == methods.count )
     {
@@ -196,9 +196,9 @@
         return methods;
     }
     
-    NSMutableArray * result = [[NSMutableArray alloc] init];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    for ( NSString * selectorName in methods )
+    for ( NSString *selectorName in methods )
     {
         if ( NO == [selectorName hasPrefix:prefix] )
         {
@@ -236,7 +236,7 @@
 
 + (NSArray *)uxy_propertiesUntilClass:(Class)baseClass
 {
-    NSMutableArray * propertyNames = [[NSMutableArray alloc] init];
+    NSMutableArray *propertyNames = [[NSMutableArray alloc] init];
     
     Class thisClass = self;
     
@@ -244,16 +244,16 @@
     
     while ( NULL != thisClass )
     {
-        unsigned int		propertyCount = 0;
-        objc_property_t *	propertyList = class_copyPropertyList( thisClass, &propertyCount );
+        unsigned int propertyCount = 0;
+        objc_property_t *propertyList = class_copyPropertyList( thisClass, &propertyCount );
         
         for ( unsigned int i = 0; i < propertyCount; ++i )
         {
-            const char * cstrName = property_getName( propertyList[i] );
+            const char *cstrName = property_getName( propertyList[i] );
             if ( NULL == cstrName )
                 continue;
             
-            NSString * propName = [NSString stringWithUTF8String:cstrName];
+            NSString *propName = [NSString stringWithUTF8String:cstrName];
             if ( NULL == propName )
                 continue;
             
@@ -280,7 +280,7 @@
 
 + (NSArray *)uxy_propertiesWithPrefix:(NSString *)prefix untilClass:(Class)baseClass
 {
-    NSArray * properties = [self uxy_propertiesUntilClass:baseClass];
+    NSArray *properties = [self uxy_propertiesUntilClass:baseClass];
     
     if ( nil == properties || 0 == properties.count )
     {
@@ -292,9 +292,9 @@
         return properties;
     }
     
-    NSMutableArray * result = [[NSMutableArray alloc] init];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    for ( NSString * propName in properties )
+    for ( NSString *propName in properties )
     {
         if ( NO == [propName hasPrefix:prefix] )
         {
