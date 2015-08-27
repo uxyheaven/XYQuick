@@ -40,7 +40,7 @@ static NSDictionary *XY_DicControlStringEvent = nil;
 DUMMY_CLASS(UIControl_XY);
 
 @interface UIControl (XYPrivate)
-@property (nonatomic, assign) BOOL uxy_ignoreEvent;
+
 @end
 
 #pragma mark-
@@ -103,7 +103,7 @@ uxy_staticConstString(UIControl_key_events)
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self uxy_removeHandlerForEvent:[UIControl __uxy_eventWithName:key]];
         }];
-        [self uxy_assignAssociatedObject:nil forKey:UIControl_key_events];
+        [self uxy_setAssignAssociatedObject:nil forKey:UIControl_key_events];
     }
 }
 
@@ -116,7 +116,7 @@ uxy_staticConstString(UIControl_key_events)
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self uxy_retainAssociatedObject:opreations forKey:UIControl_key_events];
+        [self uxy_setRetainAssociatedObject:opreations forKey:UIControl_key_events];
     }
     
     [opreations setObject:[block copy] forKey:methodName];
@@ -132,7 +132,7 @@ uxy_staticConstString(UIControl_key_events)
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self uxy_retainAssociatedObject:opreations forKey:UIControl_key_events];
+        [self uxy_setRetainAssociatedObject:opreations forKey:UIControl_key_events];
     }
     
     [opreations removeObjectForKey:methodName];
@@ -198,26 +198,25 @@ uxy_staticConstString(UIControl_acceptEventInterval)
     return [[XY_DicControlStringEvent objectForKey:name] integerValue];
 }
 
-uxy_staticConstString(UIControl_ignoreEvent)
+uxy_staticConstString(UIControl_acceptedEventTime)
 
-- (BOOL)uxy_ignoreEvent
+- (NSTimeInterval)uxy_acceptedEventTime
 {
-    return [objc_getAssociatedObject(self, UIControl_ignoreEvent) boolValue];
+    return [objc_getAssociatedObject(self, UIControl_acceptedEventTime) doubleValue];
 }
 
-- (void)setUxy_ignoreEvent:(NSTimeInterval)uxy_ignoreEvent
+- (void)setUxy_acceptedEventTime:(NSTimeInterval)uxy_acceptedEventTime
 {
-    objc_setAssociatedObject(self, UIControl_ignoreEvent, @(uxy_ignoreEvent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, UIControl_acceptedEventTime, @(uxy_acceptedEventTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)__uxy_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
 {
-    if (self.uxy_ignoreEvent) return;
+    if (NSDate.date.timeIntervalSince1970 - self.uxy_acceptedEventTime < self.uxy_acceptEventInterval) return;
     
     if (self.uxy_acceptEventInterval > 0)
     {
-        self.uxy_ignoreEvent = YES;
-        [self performSelector:@selector(setUxy_ignoreEvent:) withObject:@(NO) afterDelay:self.uxy_acceptEventInterval];
+        self.uxy_acceptedEventTime = NSDate.date.timeIntervalSince1970;
     }
     
     [self __uxy_sendAction:action to:target forEvent:event];

@@ -46,32 +46,32 @@ uxy_staticConstString(UIActionSheet_key_didDismiss)
 - (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
-    [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_clicked];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIActionSheet_key_clicked];
 }
 - (void)uxy_handlerCancel:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_cancel];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIActionSheet_key_cancel];
 }
 - (void)uxy_handlerWillPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_willPresent];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIActionSheet_key_willPresent];
 }
 - (void)uxy_handlerDidPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_didPresent];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIActionSheet_key_didPresent];
 }
 - (void)uxy_handlerWillDismiss:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_willDismiss];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIActionSheet_key_willDismiss];
 }
 - (void)uxy_handlerDidDismiss:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
-    [self uxy_copyAssociatedObject:aBlock forKey:UIActionSheet_key_didDismiss];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIActionSheet_key_didDismiss];
 }
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

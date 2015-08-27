@@ -46,7 +46,7 @@ uxy_staticConstString(UIViewController_key_parameters)
 - (void)setUxy_parameters:(id)anObject
 {
     [self willChangeValueForKey:@"uxy_parameters"];
-    [self uxy_retainAssociatedObject:anObject forKey:UIViewController_key_parameters];
+    [self uxy_setRetainAssociatedObject:anObject forKey:UIViewController_key_parameters];
     [self didChangeValueForKey:@"uxy_parameters"];
 }
 

@@ -42,7 +42,7 @@ uxy_staticConstString(xy_navigationBar_overlay)
 
 - (void)setOverlay:(UIView *)overlay
 {
-    [self uxy_retainAssociatedObject:overlay forKey:xy_navigationBar_overlay];
+    [self uxy_setRetainAssociatedObject:overlay forKey:xy_navigationBar_overlay];
 }
 
 uxy_staticConstString(xy_navigationBar_image)
@@ -54,7 +54,7 @@ uxy_staticConstString(xy_navigationBar_image)
 
 - (void)setEmptyImage:(UIImage *)image
 {
-    [self uxy_retainAssociatedObject:image forKey:xy_navigationBar_image];
+    [self uxy_setRetainAssociatedObject:image forKey:xy_navigationBar_image];
 }
 
 - (void)uxy_setBackgroundColor:(UIColor *)backgroundColor

@@ -249,39 +249,27 @@ DUMMY_CLASS(NSObject_XY);
 @implementation NSObject (XY_associated)
 - (id)uxy_getAssociatedObjectForKey:(const char *)key
 {
-    const char * propName = key;
-    id currValue = objc_getAssociatedObject( self, propName );
-    return currValue;
+    return objc_getAssociatedObject( self, key );
 }
 
-- (id)uxy_copyAssociatedObject:(id)obj forKey:(const char *)key
+- (void)uxy_setCopyAssociatedObject:(id)obj forKey:(const char *)key
 {
-    const char * propName = key;
-    id oldValue = objc_getAssociatedObject( self, propName );
-    objc_setAssociatedObject( self, propName, obj, OBJC_ASSOCIATION_COPY );
-    return oldValue;
+    objc_setAssociatedObject( self, key, obj, OBJC_ASSOCIATION_COPY );
 }
 
-- (id)uxy_retainAssociatedObject:(id)obj forKey:(const char *)key;
+- (void)uxy_setRetainAssociatedObject:(id)obj forKey:(const char *)key;
 {
-    const char * propName = key;
-    id oldValue = objc_getAssociatedObject( self, propName );
-    objc_setAssociatedObject( self, propName, obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC );
-    return oldValue;
+    objc_setAssociatedObject( self, key, obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC );
 }
 
-- (id)uxy_assignAssociatedObject:(id)obj forKey:(const char *)key
+- (void)uxy_setAssignAssociatedObject:(id)obj forKey:(const char *)key
 {
-    const char * propName = key;
-    id oldValue = objc_getAssociatedObject( self, propName );
-    objc_setAssociatedObject( self, propName, obj, OBJC_ASSOCIATION_ASSIGN );
-    return oldValue;
+    objc_setAssociatedObject( self, key, obj, OBJC_ASSOCIATION_ASSIGN );
 }
 
 - (void)uxy_removeAssociatedObjectForKey:(const char *)key
 {
-    const char * propName = key;
-    objc_setAssociatedObject( self, propName, nil, OBJC_ASSOCIATION_ASSIGN );
+    objc_setAssociatedObject( self, key, nil, OBJC_ASSOCIATION_ASSIGN );
 }
 
 - (void)uxy_removeAllAssociatedObjects

@@ -136,7 +136,7 @@ uxy_staticConstString(NSObject_observers)
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        [self uxy_retainAssociatedObject:dic forKey:NSObject_observers];
+        [self uxy_setRetainAssociatedObject:dic forKey:NSObject_observers];
         return dic;
     }
     

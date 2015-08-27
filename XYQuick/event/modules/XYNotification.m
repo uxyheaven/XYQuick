@@ -111,7 +111,7 @@ uxy_staticConstString(NSObject_notifications)
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        [self uxy_retainAssociatedObject:dic forKey:NSObject_notifications];
+        [self uxy_setRetainAssociatedObject:dic forKey:NSObject_notifications];
         return dic;
     }
     

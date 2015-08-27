@@ -122,7 +122,7 @@ uxy_staticConstString(NSObject_XYTimers)
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
-        [self uxy_retainAssociatedObject:dic forKey:NSObject_XYTimers];
+        [self uxy_setRetainAssociatedObject:dic forKey:NSObject_XYTimers];
         return dic;
     }
     

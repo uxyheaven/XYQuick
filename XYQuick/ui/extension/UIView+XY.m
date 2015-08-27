@@ -62,7 +62,7 @@ uxy_staticConstString(UIView_key_tapBlock)
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];
     [self addGestureRecognizer:tap];
     
-    [self uxy_copyAssociatedObject:aBlock forKey:UIView_key_tapBlock];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIView_key_tapBlock];
 }
 
 - (void)actionTap
@@ -82,7 +82,7 @@ uxy_staticConstString(UIView_key_longPressBlock)
     UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(actionLongPress)];
     [self addGestureRecognizer:tap];
     
-    [self uxy_copyAssociatedObject:aBlock forKey:UIView_key_longPressBlock];
+    [self uxy_setCopyAssociatedObject:aBlock forKey:UIView_key_longPressBlock];
 }
 
 - (void)uxy_removeLongPressGesture

@@ -215,7 +215,7 @@ uxy_staticConstString(NSDate_key_stringCache)
     NSDateFormatter *dateFormatter = [NSDate uxy_dateFormatter];
     NSString *str                  = [dateFormatter stringFromDate:self];
     
-    [self uxy_copyAssociatedObject:str forKey:NSDate_key_stringCache];
+    [self uxy_setCopyAssociatedObject:str forKey:NSDate_key_stringCache];
     
     return str;
 }
