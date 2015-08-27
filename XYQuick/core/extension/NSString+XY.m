@@ -545,7 +545,7 @@ DUMMY_CLASS(NSString_XY);
 	return [pred evaluateWithObject:self];
 }
 
-- (BOOL)uxy_isUrl
+- (BOOL)uxy_isURL
 {
     NSString *		regex = @"http(s)?:\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- .\\/?%&=]*)?";
 	NSPredicate *	pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];

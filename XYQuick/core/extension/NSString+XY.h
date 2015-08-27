@@ -95,7 +95,7 @@
 - (BOOL)uxy_isChineseUserName;
 - (BOOL)uxy_isPassword;
 - (BOOL)uxy_isEmail;
-- (BOOL)uxy_isUrl;
+- (BOOL)uxy_isURL;
 - (BOOL)uxy_isIPAddress;
 
 #pragma mark - 额外的检测
