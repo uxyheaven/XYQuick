@@ -30,8 +30,6 @@
 
 #import "NSNull+XY.h"
 
-#define NSNullObjects @[@"",@0,@{},@[]]
-
 @implementation NSNull (XY_InternalNullExtention)
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector
@@ -40,7 +38,7 @@
     
     if (signature != nil) return signature;
     
-    for (NSObject *object in NSNullObjects)
+    for (NSObject *object in UXY_NullObjects)
     {
         signature = [object methodSignatureForSelector:selector];
         
@@ -52,7 +50,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
-    for (NSObject *object in NSNullObjects)
+    for (NSObject *object in UXY_NullObjects)
     {
         if ([object respondsToSelector:anInvocation.selector])
         {

@@ -67,6 +67,7 @@
 		57B3FFFE177AD9BC00775FC9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFD177AD9BC00775FC9 /* Default@2x.png */; };
 		57BE89B917AA525200FCD864 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89B817AA525200FCD864 /* AVFoundation.framework */; };
 		57BE89BD17AA531200FCD864 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BC17AA531100FCD864 /* OpenAL.framework */; };
+		57C495121B90186E00DC77E5 /* Associated.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C495111B90186E00DC77E5 /* Associated.m */; };
 		57CAE5471B44218D0040585A /* XYEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CAE5461B44218D0040585A /* XYEvent.m */; };
 		57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E1518EAC9CD00D84C01 /* HTTPClient.m */; };
 		57D43E2518EADB4800D84C01 /* TestVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D43E2418EADB4800D84C01 /* TestVC2.m */; };
@@ -255,6 +256,8 @@
 		57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		57BE89B817AA525200FCD864 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		57BE89BC17AA531100FCD864 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		57C495101B90186E00DC77E5 /* Associated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Associated.h; sourceTree = "<group>"; };
+		57C495111B90186E00DC77E5 /* Associated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Associated.m; sourceTree = "<group>"; };
 		57CAE5451B44218D0040585A /* XYEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYEvent.h; sourceTree = "<group>"; };
 		57CAE5461B44218D0040585A /* XYEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYEvent.m; sourceTree = "<group>"; };
 		57D43E1418EAC9CD00D84C01 /* HTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				57E7857717DE459E0056C589 /* ConfigManager.m */,
 				7444D7271A03593C00B57529 /* AutoCodingEntity.h */,
 				7444D7281A03593C00B57529 /* AutoCodingEntity.m */,
+				57C495101B90186E00DC77E5 /* Associated.h */,
+				57C495111B90186E00DC77E5 /* Associated.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1094,6 +1099,7 @@
 				57EE44251B73B007005EF8C0 /* XYClassLoader.m in Sources */,
 				571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */,
 				575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */,
+				57C495121B90186E00DC77E5 /* Associated.m in Sources */,
 				57F56FB41AFC8CB100298D7E /* XYObjectCache.m in Sources */,
 				57F56FA01AFC86FD00298D7E /* UIWebView+XY.m in Sources */,
 				57F56F761AFC86FD00298D7E /* NSDictionary+XY.m in Sources */,

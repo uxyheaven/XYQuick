@@ -52,51 +52,78 @@
 @end
 
 #pragma mark- XY_associated
-#define uxy_property_as_associated_strong( __type, __name) \
+#define uxy_property_strong( __type, __name) \
         property (nonatomic, strong, setter=set__##__name:, getter=__##__name) __type __name;
 
-#define uxy_property_def_associated_strong( __type, __name) \
+#define uxy_def_property_strong( __type, __name) \
         - (__type)__##__name   \
         { return [self uxy_getAssociatedObjectForKey:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setRetainAssociatedObject:(id)__##__name forKey:#__name]; }
 
-#define uxy_property_as_associated_weak( __type, __name) \
+#define uxy_property_weak( __type, __name) \
         property (nonatomic, weak, setter=set__##__name:, getter=__##__name) __type __name;
 
-#define uxy_property_def_associated_weak( __type, __name) \
+#define uxy_def_property_weak( __type, __name) \
         - (__type)__##__name   \
         { return [self uxy_getAssociatedObjectForKey:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setAssignAssociatedObject:(id)__##__name forKey:#__name]; }
 
 
-#define uxy_property_as_associated_copy( __type, __name) \
+#define uxy_property_copy( __type, __name) \
         property (nonatomic, copy, setter=set__##__name:, getter=__##__name) __type __name;
 
-#define uxy_property_def_associated_copy( __type, __name) \
+#define uxy_def_property_copy( __type, __name) \
         - (__type)__##__name   \
         { return [self uxy_copyAssociatedObject:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setCopyAssociatedObject:(id)__##__name forKey:#__name]; }
 
-#define uxy_property_as_associated_retain( __type, __name) \
+#define uxy_property_retain( __type, __name) \
         property (nonatomic, retain, setter=set__##__name:, getter=__##__name) __type __name;
 
-#define uxy_property_def_associated_retain( __type, __name) \
+#define uxy_def_property_retain( __type, __name) \
         - (__type)__##__name   \
         { return [self uxy_retainAssociatedObject:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setRetainAssociatedObject:(id)__##__name forKey:#__name]; }
 
-#define uxy_property_as_associated_assign( __type, __name) \
+#define uxy_property_assign( __type, __name) \
         property (nonatomic, assign, setter=set__##__name:, getter=__##__name) __type __name;
 
-#define uxy_property_def_associated_assign( __type, __name) \
+#define uxy_def_property_assign( __type, __name) \
         - (__type)__##__name   \
         { return [self uxy_getAssociatedObjectForKey:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setAssignAssociatedObject:(id)__##__name forKey:#__name]; }
+
+#define uxy_property_basicDataType( __type, __name) \
+        property (nonatomic, assign, setter=set__##__name:, getter=__##__name) __type __name;
+
+#define uxy_def_property_basicDataType( __type, __name) \
+        - (__type)__##__name   \
+        {   \
+            NSNumber *number = [self uxy_getAssociatedObjectForKey:#__name];    \
+            return metamacro_concat(metamacro_concat(__uxy_, __type), _value)( number ); \
+        }   \
+        - (void)set__##__name:(__type)__##__name   \
+        { \
+            id value = @(__##__name);\
+            [self uxy_setAssignAssociatedObject:value forKey:#__name];     \
+        }
+
+#define __uxy_int_value( __nubmer ) [__nubmer intValue]
+#define __uxy_char_value( __nubmer ) [__nubmer charValue]
+#define __uxy_short_value( __nubmer ) [__nubmer shortValue]
+#define __uxy_long_value( __nubmer ) [__nubmer longValue]
+#define __uxy_float_value( __nubmer ) [__nubmer floatValue]
+#define __uxy_double_value( __nubmer ) [__nubmer doubleValue]
+#define __uxy_BOOL_value( __nubmer ) [__nubmer boolValue]
+#define __uxy_NSInteger_value( __nubmer ) [__nubmer integerValue]
+#define __uxy_NSUInteger_value( __nubmer ) [__nubmer unsignedIntegerValue]
+#define __uxy_NSTimeInterval_value( __nubmer ) [__nubmer doubleValue]
+
 
 @interface NSObject (XY_associated)
 - (id)uxy_getAssociatedObjectForKey:(const char *)key;

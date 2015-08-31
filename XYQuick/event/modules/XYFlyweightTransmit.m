@@ -32,25 +32,23 @@
 #import "XYQuick_Predefine.h"
 
 #pragma mark - UXYFlyweightTransmit
-#define NSObject_key_flyweightData	"UXY.NSObject.flyweightData"
-#define NSObject_key_objectDic	"UXY.NSObject.objectDic"
-#define NSObject_key_eventBlockDic	"UXY.NSObject.eventBlockDic"
 
 @implementation NSObject (UXYFlyweightTransmit)
 
+uxy_staticConstString(NSObject_key_flyweightData)
 - (id)uxy_flyweightData
 {
     return objc_getAssociatedObject(self, NSObject_key_flyweightData);
 }
 
-- (void)setUxy_flyweightData:(id)flyweightData
+- (void)setUxy_flyweightData:(id)uxy_flyweightData
 {
     [self willChangeValueForKey:@"uxy_flyweightData"];
-    objc_setAssociatedObject(self, NSObject_key_flyweightData, flyweightData, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, NSObject_key_flyweightData, uxy_flyweightData, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"uxy_flyweightData"];
 }
 
-
+uxy_staticConstString(NSObject_key_objectDic)
 - (void)uxy_receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier
 {
     NSString *key = identifier ?: @"uxy_sendObject";
@@ -68,15 +66,13 @@
 {
     NSString *key = identifier ?: @"uxy_sendObject";
     NSDictionary *dic = objc_getAssociatedObject(self, NSObject_key_objectDic);
-    if(dic == nil)
-    {
-        return;
-    }
+    if (dic == nil) return;
     
     void(^aBlock)(id anObject) = [dic objectForKey:key];
     aBlock(anObject);
 }
 
+uxy_staticConstString(NSObject_key_eventBlockDic)
 - (void)uxy_handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier
 {
     NSString *key = identifier ?: @"uxy_handlerEvent";
@@ -94,8 +90,7 @@
 {
     NSString *key = identifier ?: @"uxy_handlerEvent";
     NSDictionary *dic = objc_getAssociatedObject(self, NSObject_key_eventBlockDic);
-    if(dic == nil)
-        return nil;
+    if(dic == nil) return nil;
     
     return [dic objectForKey:key];
 }
