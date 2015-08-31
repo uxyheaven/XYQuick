@@ -51,6 +51,7 @@
 - (id)uxy_deepCopy1; // 基于NSKeyArchive
 @end
 
+
 #pragma mark- XY_associated
 #define uxy_property_strong( __type, __name) \
         property (nonatomic, strong, setter=set__##__name:, getter=__##__name) __type __name;
@@ -124,7 +125,7 @@
 #define __uxy_NSUInteger_value( __nubmer ) [__nubmer unsignedIntegerValue]
 #define __uxy_NSTimeInterval_value( __nubmer ) [__nubmer doubleValue]
 
-
+// 关联对象OBJC_ASSOCIATION_ASSIGN策略不支持引用计数为0的弱引用
 @interface NSObject (XY_associated)
 - (id)uxy_getAssociatedObjectForKey:(const char *)key;
 - (void)uxy_setCopyAssociatedObject:(id)obj forKey:(const char *)key;
