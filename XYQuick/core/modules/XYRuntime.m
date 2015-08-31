@@ -207,11 +207,11 @@
         
         [result addObject:selectorName];
     }
-    
+#if ( XYRuntime_SORT == 1)
     [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
     }];
-    
+#endif
     return result;
 }
 
@@ -303,11 +303,11 @@
         
         [result addObject:propName];
     }
-    
+#if ( XYRuntime_SORT == 1)
     [result sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2];
     }];
-    
+#endif
     return result;
 }
 
@@ -338,11 +338,11 @@
             
             [classNames addObject:[NSString stringWithUTF8String:class_getName(classType)]];
         }
-        
+#if ( XYRuntime_SORT == 1)
         [classNames sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [obj1 compare:obj2];
         }];
-        
+#endif
         free( classes );
     });
     

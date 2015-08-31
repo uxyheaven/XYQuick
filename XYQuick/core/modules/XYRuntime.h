@@ -30,6 +30,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define XYRuntime_SORT 0        // 对返回的类,方法进行排序(1开启, 0关闭)
+
 @interface XYRuntime : NSObject
 
 /**
