@@ -32,7 +32,6 @@
 
 @interface UINavigationBar (XY)
 
-
 // NavigationBar 变色 透明 尺寸 等方法 copy from https://github.com/ltebean/LTNavigationBar
 - (void)uxy_setBackgroundColor:(UIColor *)backgroundColor;
 - (void)uxy_setContentAlpha:(CGFloat)alpha;

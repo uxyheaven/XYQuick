@@ -29,6 +29,7 @@
 //
 
 #import "UIViewController+XY.h"
+#import "XYQuick_Predefine.h"
 #import "XYSystemInfo.h"
 #import "UIImage+XY.h"
 #import "UIControl+XY.h"

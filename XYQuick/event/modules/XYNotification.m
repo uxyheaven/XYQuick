@@ -29,6 +29,7 @@
 //
 
 #import "XYNotification.h"
+#import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
 

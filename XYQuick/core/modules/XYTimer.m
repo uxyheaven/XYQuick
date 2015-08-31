@@ -30,6 +30,7 @@
 //  This file Copy from Samurai.
 
 #import "XYTimer.h"
+#import "XYQuick_Predefine.h"
 #import "NSDictionary+XY.h"
 #import "NSArray+XY.h"
 #import "NSObject+XY.h"
@@ -110,6 +111,7 @@ void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NST
 }
 
 @end
+
 #pragma mark - NSObject(XYTimer)
 @implementation NSObject(XYTimer)
 
@@ -274,7 +276,7 @@ uxy_staticConstString(NSObject_XYTimers)
 	if ( elapsed >= _interval )
 	{
         [_receivers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if ( [obj respondsToSelector:@selector(__uxy_handleTick:)] )
+            if ( [obj respondsToSelector:@selector(uxy_handleTick:)] )
             {
                 [obj uxy_handleTick:elapsed];
             }
