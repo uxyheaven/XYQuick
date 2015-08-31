@@ -53,9 +53,9 @@
         - (__blockType)__methodName \
         {   \
             __blockType block = ^ id (id __propertyName){ \
-            self.__propertyName = __propertyName;  \
-            return self;    \
-        };  \
+                self.__propertyName = __propertyName;  \
+                return self;    \
+            };  \
             return block;   \
         }
 
@@ -63,9 +63,9 @@
         - (__blockType)__methodName \
         {   \
             __blockType block = ^ id (void){ \
-            self.__propertyName = __defaultValue;  \
-            return self;    \
-        };  \
+                self.__propertyName = __defaultValue;  \
+                return self;    \
+            };  \
             return block;   \
         }
 

@@ -28,6 +28,7 @@
 //	THE SOFTWARE.
 //
 //  This file Copy from YYJSONHelper.
+
 #import "XYJsonHelper.h"
 
 #define kNSObjectProtocolProperties @[@"hash", @"superclass", @"description", @"debugDescription"]

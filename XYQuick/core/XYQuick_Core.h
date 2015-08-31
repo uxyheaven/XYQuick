@@ -49,8 +49,6 @@
 #import "XYCache.h"                     // 缓存
 #import "XYQuick_Debug.h"               // 测试
 
-#import "XYChainMethod.h"               // 链式方法调用
-
 // Extensions
 #import "NSObject+XY.h"
 #import "NSArray+XY.h"

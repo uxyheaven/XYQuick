@@ -157,6 +157,7 @@
 
 /* Begin PBXFileReference section */
 		570068E31B4B6EE6003CA117 /* ViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDemo.h; sourceTree = "<group>"; };
+		57073EFB1B94D8F9008A0CAC /* XYChainMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChainMethod.h; sourceTree = "<group>"; };
 		5708A8751AF8991A000607AB /* XYAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppController.h; sourceTree = "<group>"; };
 		5708A8761AF8991A000607AB /* XYAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYAppController.m; sourceTree = "<group>"; };
 		5708A8771AF8991A000607AB /* XYAppModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYAppModuleProtocol.h; sourceTree = "<group>"; };
@@ -277,7 +278,6 @@
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFlyweightTransmit.h; sourceTree = "<group>"; };
 		57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFlyweightTransmit.m; sourceTree = "<group>"; };
-		57ECA4A31B04701000C47AF0 /* XYChainMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChainMethod.h; sourceTree = "<group>"; };
 		57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
 		57EE44231B73B007005EF8C0 /* XYClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYClassLoader.h; sourceTree = "<group>"; };
 		57EE44241B73B007005EF8C0 /* XYClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYClassLoader.m; sourceTree = "<group>"; };
@@ -450,6 +450,7 @@
 		5708A8741AF8991A000607AB /* Laboratory */ = {
 			isa = PBXGroup;
 			children = (
+				57073EFB1B94D8F9008A0CAC /* XYChainMethod.h */,
 				5708A8751AF8991A000607AB /* XYAppController.h */,
 				5708A8761AF8991A000607AB /* XYAppController.m */,
 				57EE44231B73B007005EF8C0 /* XYClassLoader.h */,
@@ -756,7 +757,6 @@
 				57F56F231AFC86FD00298D7E /* XYCommon.h */,
 				57F56F241AFC86FD00298D7E /* XYCommon.m */,
 				57F56F251AFC86FD00298D7E /* XYCommonDefine.h */,
-				57ECA4A31B04701000C47AF0 /* XYChainMethod.h */,
 				57F56F271AFC86FD00298D7E /* XYJsonHelper.h */,
 				57F56F281AFC86FD00298D7E /* XYJsonHelper.m */,
 				57F56F291AFC86FD00298D7E /* XYReachability.h */,
