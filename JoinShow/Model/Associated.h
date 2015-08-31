@@ -16,4 +16,7 @@
 @interface Associated (test)
 @uxy_property_basicDataType(int, age);
 @uxy_property_basicDataType(NSTimeInterval, time);
+@uxy_property_copy(NSString *, name);
+@uxy_property_weak(NSDate *, date);
+
 @end

@@ -76,7 +76,7 @@
 
 #define uxy_def_property_copy( __type, __name) \
         - (__type)__##__name   \
-        { return [self uxy_copyAssociatedObject:#__name]; }   \
+        { return [self uxy_getAssociatedObjectForKey:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setCopyAssociatedObject:(id)__##__name forKey:#__name]; }
 
@@ -85,7 +85,7 @@
 
 #define uxy_def_property_retain( __type, __name) \
         - (__type)__##__name   \
-        { return [self uxy_retainAssociatedObject:#__name]; }   \
+        { return [self uxy_getAssociatedObjectForKey:#__name]; }   \
         - (void)set__##__name:(id)__##__name   \
         { [self uxy_setRetainAssociatedObject:(id)__##__name forKey:#__name]; }
 
@@ -109,8 +109,8 @@
         }   \
         - (void)set__##__name:(__type)__##__name   \
         { \
-            id value = @(__##__name);\
-            [self uxy_setAssignAssociatedObject:value forKey:#__name];     \
+            NSNumber *number = @(__##__name);\
+            [self uxy_setRetainAssociatedObject:number forKey:#__name];     \
         }
 
 #define __uxy_int_value( __nubmer ) [__nubmer intValue]

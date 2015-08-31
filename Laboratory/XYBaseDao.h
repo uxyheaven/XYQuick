@@ -16,9 +16,9 @@
 // 返回表名
 + (NSString *)getTableName;
 
+@optional
 // 返回主键
 + (NSString *)getPrimaryKey;
-
 // 返回联合主键
 + (NSArray *)getPrimaryKeyUnionArray;
 
