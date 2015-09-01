@@ -38,4 +38,10 @@
 
 @interface NSMutableSet (XY)
 
+- (void)uxy_safeAddObject:(id)object;
+- (void)uxy_safeRemoveObject:(id)object;
+
 @end
+
+
+

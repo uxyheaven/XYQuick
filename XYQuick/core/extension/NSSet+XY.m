@@ -49,4 +49,23 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @implementation NSMutableSet (XY)
 
+- (void)uxy_safeAddObject:(id)object
+{
+    if (object)
+    {
+        [self addObject:object];
+    }
+}
+
+- (void)uxy_safeRemoveObject:(id)object
+{
+    if (object)
+    {
+        [self removeObject:object];
+    }
+}
+
 @end
+
+
+

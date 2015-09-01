@@ -45,10 +45,40 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
     return  (__bridge_transfer NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }
 
+- (id)uxy_safeObjectForKey:(id)aKey
+{
+    return aKey ? self[aKey] :nil;
+}
 @end
 
 @implementation NSMutableDictionary (XY)
 
+- (void)uxy_safeSetObject:(id)anObject forKey:(id <NSCopying>)aKey
+{
+    if (aKey)
+    {
+        self[aKey] = anObject;
+    }
+}
+
+- (void)uxy_safeSetObject:(id)obj forKeyedSubscript:(id <NSCopying>)key
+{
+    if (key)
+    {
+        [self setObject:obj forKeyedSubscript:key];
+    }
+}
+
+- (void)uxy_safeRemoveObjectForKey:(id)aKey
+{
+    if (aKey)
+    {
+        [self removeObjectForKey:aKey];
+    }
+}
 @end
+
+
+
 
 

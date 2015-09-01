@@ -34,8 +34,16 @@
 
 + (NSMutableDictionary *)uxy_nonRetainDictionary;
 
+- (id)uxy_safeObjectForKey:(id)aKey;
+
 @end
 
 @interface NSMutableDictionary (XY)
 
+- (void)uxy_safeSetObject:(id)anObject forKey:(id <NSCopying>)aKey;
+- (void)uxy_safeSetObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+- (void)uxy_safeRemoveObjectForKey:(id)aKey;
+
 @end
+
+
