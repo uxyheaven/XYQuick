@@ -29,10 +29,7 @@
 //
 //  This file Copy from bee Framework.
 
-// 性能分析
-
 #import "XYQuick_Predefine.h"
-
 #pragma mark -
 
 #if (1 ==  __XY_PERFORMANCE__)

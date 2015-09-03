@@ -28,8 +28,8 @@
 //	THE SOFTWARE.
 //
 
+#import "XYQuick_Predefine.h"
 #pragma mark -
-#import <Foundation/Foundation.h>
 
 typedef NSMutableArray *	(^NSArrayAppendBlock)( id obj );
 typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );

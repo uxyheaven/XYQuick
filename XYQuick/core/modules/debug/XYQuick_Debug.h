@@ -29,9 +29,6 @@
 //
 //  This file Copy from bee Framework.
 
-#import <Foundation/Foundation.h>
-
-
 #pragma mark -
 /*
  * 说明 仅在debug下才显示nslog

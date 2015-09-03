@@ -29,7 +29,6 @@
 //
 //  This file Copy from Samurai.
 
-#import "XYQuick_Predefine.h"
 #import "XYThread.h"
 
 #pragma mark -

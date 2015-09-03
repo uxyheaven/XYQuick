@@ -30,7 +30,6 @@
 //  This file Copy from BlockUI.
 
 #import "UIControl+XY.h"
-#import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 #import "XYRuntime.h"
 

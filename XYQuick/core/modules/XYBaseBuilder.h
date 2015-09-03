@@ -28,8 +28,8 @@
 //	THE SOFTWARE.
 //
 
-// 建造者模式
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 /*
 @protocol XYBaseBuilder <NSObject>

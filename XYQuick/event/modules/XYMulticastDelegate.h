@@ -56,6 +56,9 @@
  * All delegate dispatching is done asynchronously (which is a critically important architectural design).
 **/
 
+#import "XYQuick_Predefine.h"
+#pragma mark -
+
 @interface XYMulticastDelegate : NSObject
 
 - (void)addDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;

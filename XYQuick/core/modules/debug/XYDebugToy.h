@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 #pragma mark - XYDebugToy
 // 这个个debug的玩具类

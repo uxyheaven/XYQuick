@@ -30,6 +30,7 @@
 //  This file Copy fromAOP-for-Objective-C.
 
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 typedef void(^XYAOP_block)(NSInvocation *invocation);
 

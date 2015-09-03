@@ -28,10 +28,11 @@
 //	THE SOFTWARE.
 //
 
+#import "XYQuick_Predefine.h"
+#pragma mark -
+
 // 一大堆零散的方法
 // 这个类要慢慢废弃
-
-#import "XYQuick_Predefine.h"
 
 @class MBProgressHUD;
 @class ASIHTTPRequest;

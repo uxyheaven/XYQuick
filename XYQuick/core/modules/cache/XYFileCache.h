@@ -30,6 +30,7 @@
 
 #import "XYQuick_Predefine.h"
 #import "XYCacheProtocol.h"
+#pragma mark -
 
 #define XYFileCache_fileExpires  7 * 24 * 60 * 60
 

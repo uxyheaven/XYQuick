@@ -29,7 +29,6 @@
 //
 
 #import "XYFlyweightTransmit.h"
-#import "XYQuick_Predefine.h"
 
 #pragma mark - UXYFlyweightTransmit
 

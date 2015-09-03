@@ -28,8 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 #define uxy_handleSignal( __signal, __name ) \
         - (void)__uxy_handleSignal_n_##__name:(XYSignal *)__signal

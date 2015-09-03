@@ -30,8 +30,6 @@
 //  This file Copy fromAOP-for-Objective-C.
 
 #import "XYAOP.h"
-#import <objc/runtime.h>
-#import <objc/message.h>
 
 NSString * (*AOPAspectAction)(id, SEL) = (NSString * (*)(id, SEL)) objc_msgSend;
 

@@ -29,7 +29,8 @@
 //
 //  This file Copy from AutoCoding.
 
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 @interface XYAutoCoding : NSObject
 

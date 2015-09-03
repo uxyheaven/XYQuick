@@ -29,8 +29,8 @@
 //
 //  This file Copy from YYJSONHelper.
 
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 #define Json_string_options NSJSONReadingAllowFragments
 

@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 @interface UIWindow (XY)
 

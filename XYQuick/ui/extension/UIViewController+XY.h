@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 typedef void(^UIViewController_block_void) (void);
 typedef void(^UIViewController_block_view) (UIView *view);

@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 @interface XYSandbox : NSObject uxy_as_singleton
 

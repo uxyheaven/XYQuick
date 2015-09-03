@@ -28,7 +28,9 @@
 //	THE SOFTWARE.
 //
 //  This file Copy from Justin IQKeyboardHelper.
-///////////////////////////////////////////////////////////////////////////////
+
+#import "XYKeyboardHelper.h"
+#import "UIWindow+XY.h"
 
 /*
  1) Begin Editing:-         When TextField begin editing.
@@ -51,9 +53,6 @@
  -------------------------------------------------           -------------------------------------------------
  End Editing
  */
-
-#import "XYKeyboardHelper.h"
-#import "UIWindow+XY.h"
 
 @interface XYKeyboardHelper ()
 {

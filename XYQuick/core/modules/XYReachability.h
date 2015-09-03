@@ -29,9 +29,8 @@
 //
 //  This file Copy from Reachability.
 
-#import <Foundation/Foundation.h>
-#import <SystemConfiguration/SystemConfiguration.h>
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 // 通知
 extern NSString *const XYNotification_ReachabilityChanged;

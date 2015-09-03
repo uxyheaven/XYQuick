@@ -29,7 +29,6 @@
 //
 
 #import "UIAlertView+XY.h"
-#import "XYQuick_Predefine.h"
 
 DUMMY_CLASS(UIAlertView_XY);
 

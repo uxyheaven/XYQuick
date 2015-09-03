@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 #pragma mark - #define
 #define NOTIFICATION_NAME( __name )					uxy_macro_string( __name )

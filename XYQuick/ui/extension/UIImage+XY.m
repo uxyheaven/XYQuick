@@ -30,7 +30,7 @@
 
 
 #import "UIImage+XY.h"
-#import "XYQuick_Predefine.h"
+#import <CoreMedia/CoreMedia.h>
 
 #import "XYSystemInfo.h"
 #import "XYMemoryCache.h"

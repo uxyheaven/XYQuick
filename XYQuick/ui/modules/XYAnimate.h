@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 typedef void (^XYAnimateStepBlock)(void);
 

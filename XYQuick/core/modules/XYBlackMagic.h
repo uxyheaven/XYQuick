@@ -28,8 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-// 黑魔法
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 #pragma mark - others
 static void blockCleanUp(__strong void(^*block)(void)) {

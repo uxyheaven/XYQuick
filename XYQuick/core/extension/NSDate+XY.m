@@ -29,7 +29,6 @@
 //
 
 #import "NSDate+XY.h"
-#import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
 DUMMY_CLASS(NSDate_XY);

@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 #define __XY_SECOND	(1)
 #define __XY_MINUTE	(60 * __XY_SECOND)

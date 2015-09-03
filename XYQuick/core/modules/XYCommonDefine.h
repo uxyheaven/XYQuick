@@ -28,11 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-#endif
-
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 /**************************************************************/
 // delegate 委托

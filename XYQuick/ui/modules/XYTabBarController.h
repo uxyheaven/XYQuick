@@ -28,8 +28,10 @@
 //	THE SOFTWARE.
 //
 
-#pragma mark -todo 待优化
+#import "XYQuick_Predefine.h"
 #import "XYTabBar.h"
+#pragma mark -
+
 
 #pragma mark-
 #pragma mark- XYTabBarController

@@ -29,7 +29,6 @@
 //
 
 #import "UINavigationBar+XY.h"
-#import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
 @implementation UINavigationBar (XY)

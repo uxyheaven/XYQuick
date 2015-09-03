@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 #define UXY_NullObjects @[@"",@0,@{},@[]]
 

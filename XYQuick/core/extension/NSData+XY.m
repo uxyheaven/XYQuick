@@ -29,7 +29,6 @@
 //
 
 #import "NSData+XY.h"
-#import "XYQuick_Predefine.h"
 
 DUMMY_CLASS(NSData_XY);
 

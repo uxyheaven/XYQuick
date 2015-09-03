@@ -29,14 +29,12 @@
 //
 
 #import "NSObject+XY.h"
-#import "XYQuick_Predefine.h"
 #import "NSDate+XY.h"
 
 
 DUMMY_CLASS(NSObject_XY);
 
 @interface NSObject(XYPrivate)
-- (void)myDealloc;
 + (NSDateFormatter *)__uxy_dateFormatterTemp;
 @end
 

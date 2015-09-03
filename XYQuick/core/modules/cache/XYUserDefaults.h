@@ -30,6 +30,7 @@
 
 #import "XYQuick_Predefine.h"
 #import "XYCacheProtocol.h"
+#pragma mark -
 
 @interface XYUserDefaults : NSObject <XYCacheProtocol> uxy_as_singleton
 

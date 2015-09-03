@@ -31,6 +31,7 @@
 
 
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 #define XYKeyboardHelper_DefaultDistance 10.0
 

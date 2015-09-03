@@ -29,8 +29,8 @@
 //
 //  This file Copy from Samurai.
 
-// 系统信息
 #import "XYQuick_Predefine.h"
+#pragma mark -
 
 #define UXY_SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
 #define UXY_SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height

@@ -29,7 +29,8 @@
 //
 //  This file Copy from BlockUI.
 
-#import <UIKit/UIKit.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 /*
  typedef NS_OPTIONS(NSUInteger, UIControlEvents) {

@@ -7,7 +7,6 @@
 //
 
 #import "XYAutoCoding.h"
-#import <objc/runtime.h>
 
 @implementation XYAutoCoding
 

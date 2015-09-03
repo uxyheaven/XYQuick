@@ -28,9 +28,9 @@
 //	THE SOFTWARE.
 //
 
-
 #import "XYQuick_Predefine.h"
 #import "XYCacheProtocol.h"
+#pragma mark -
 
 @interface XYMemoryCache : NSObject <XYCacheProtocol> uxy_as_singleton
 

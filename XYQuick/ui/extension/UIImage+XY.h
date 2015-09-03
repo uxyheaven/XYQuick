@@ -28,8 +28,9 @@
 //	THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreMedia/CoreMedia.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
+
 
 #define XY_USE_SYSTEM_IMAGE_CACHE NO
 /**************************************************************/

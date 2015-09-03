@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 typedef void(^UIAlertView_block_self_index)(UIAlertView *alertView, NSInteger btnIndex);
 typedef void(^UIAlertView_block_self)(UIAlertView *alertView);

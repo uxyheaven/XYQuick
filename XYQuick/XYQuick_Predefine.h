@@ -65,6 +65,7 @@
 #import <AVFoundation/AVSpeechSynthesis.h>
 #import <CoreMotion/CoreMotion.h>
 #import <Social/Social.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 #import <objc/runtime.h>
 #import <objc/message.h>

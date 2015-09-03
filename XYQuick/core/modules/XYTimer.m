@@ -30,7 +30,6 @@
 //  This file Copy from Samurai.
 
 #import "XYTimer.h"
-#import "XYQuick_Predefine.h"
 #import "NSDictionary+XY.h"
 #import "NSArray+XY.h"
 #import "NSObject+XY.h"

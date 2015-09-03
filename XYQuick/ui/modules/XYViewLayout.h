@@ -29,7 +29,8 @@
 //
 //  This file Copy from ios-view-frame-builder.
 
-#import <UIKit/UIKit.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 typedef NS_ENUM(NSUInteger, XYViewFrameBuilderDirection) {
     XYViewFrameBuilderDirectionRight = 0,

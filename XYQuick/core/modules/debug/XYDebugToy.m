@@ -30,8 +30,6 @@
 
 #import "XYDebugToy.h"
 #import "XYRuntime.h"
-#import <execinfo.h>
-#import <objc/runtime.h>
 
 #undef	XYDebug_key_hookDealloc
 #define XYDebug_key_hookDealloc	"XYDebug.hookDealloc"

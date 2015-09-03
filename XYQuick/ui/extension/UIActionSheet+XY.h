@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 typedef void(^UIActionSheet_block_self_index)(UIActionSheet *actionSheet, NSInteger btnIndex);
 typedef void(^UIActionSheet_block_self)(UIActionSheet *actionSheet);

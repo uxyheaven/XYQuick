@@ -31,7 +31,6 @@
 #import "NSString+XY.h"
 #import "NSObject+XY.h"
 #import "NSData+XY.h"
-#import "XYQuick_Predefine.h"
 
 DUMMY_CLASS(NSString_XY);
 

@@ -29,7 +29,6 @@
 //
 
 #import "NSArray+XY.h"
-#import "XYQuick_Predefine.h"
 
 // ----------------------------------
 // Source code

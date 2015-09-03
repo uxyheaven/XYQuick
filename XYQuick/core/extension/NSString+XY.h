@@ -28,9 +28,7 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
+#import "XYQuick_Predefine.h"
 #pragma mark -
 
 @interface NSString (XY)

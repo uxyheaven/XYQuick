@@ -30,8 +30,6 @@
 
 #import "XYBlackMagic.h"
 
-
-
 @implementation XYBlackMagic
 
 @end

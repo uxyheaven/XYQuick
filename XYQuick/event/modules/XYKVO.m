@@ -29,7 +29,6 @@
 //
 
 #import "XYKVO.h"
-#import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
 void (*XYKVO_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;

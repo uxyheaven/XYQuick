@@ -29,7 +29,6 @@
 //
 
 #import "UIActionSheet+XY.h"
-#import "XYQuick_Predefine.h"
 #import "NSObject+XY.h"
 
 DUMMY_CLASS(UIActionSheet_XY);

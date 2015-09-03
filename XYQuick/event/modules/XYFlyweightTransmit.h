@@ -28,7 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
 // 解决a知道b,b不知道a, b传数据给a的情况
 
