@@ -32,22 +32,17 @@
 #pragma mark -
 
 #pragma mark - others
-static void blockCleanUp(__strong void(^*block)(void)) {
+static void __uxy_blockCleanUp(__strong void(^*block)(void)) {
     (*block)();
 }
 
 // 当当前作用域结束时自动执行{}里面的方法
 #define BM_ON_EXIT \
-    __strong void(^block)(void) __attribute__((cleanup(blockCleanUp), unused)) = ^
+        __strong void(^block)(void) __attribute__((cleanup(__uxy_blockCleanUp), unused)) = ^
 
 
 #define keypath2(OBJ, PATH) \
-(((void)(NO && ((void)OBJ.PATH, NO)), # PATH))
-
-// 判断宏参数个数
-#define COUNT_PARMS2(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _, ...) _
-#define COUNT_PARMS(...) COUNT_PARMS2(__VA_ARGS__, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
-
+        (((void)(NO && ((void)OBJ.PATH, NO)), # PATH))
 
 #pragma mark - XYBlackMagic
 @interface XYBlackMagic : NSObject
