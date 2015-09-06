@@ -8,6 +8,8 @@
 
 #import "XYQuick_Predefine.h"
 
+#define __XY_UISIGNAL_CALLPATH__        1
+
 // 职责链模式(chain of responsibility)
 #pragma mark - #define
 #undef	AS_SIGNAL

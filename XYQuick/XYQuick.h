@@ -28,7 +28,9 @@
 //	THE SOFTWARE.
 //
 
-//  Version 0.6.5
+#undef	__XYQUICK_VERSION__
+#define	__XYQUICK_VERSION__	"0.6.6"	/// 主版本号
+
 #import "XYQuick_Predefine.h"   // 预编译
 
 #import "XYQuick_Core.h"        // 基础类

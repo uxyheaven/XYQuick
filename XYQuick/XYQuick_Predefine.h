@@ -39,20 +39,15 @@
 #define __XYQuick_Framework__       (0) // 打包,暂时无用
 
 #ifdef DEBUG
-
     #define __XY_DEBUG__                             (1)     // 调试
     #define __XY_PERFORMANCE__                       (1)     // 性能测试
-    #define __XY_UISIGNAL_CALLPATH__                 (1)     // XYUISIGNAL
     #define __XY_DEBUG_SHOWBORDER__                  (1)     // 点击区域红色边框
     #define __XY_DEBUG_UNITTESTING__                 (1)     // 单元测试
 #else
-
     #define __XY_DEBUG__                             (0)
     #define __XY_PERFORMANCE__                       (0)
-    #define __XY_UISIGNAL_CALLPATH__                 (0)
     #define __XY_DEBUG_SHOWBORDER__                  (0)
     #define __XY_DEBUG_UNITTESTING__                 (0)
-
 #endif
 
 // ----------------------------------
