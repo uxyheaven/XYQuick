@@ -986,15 +986,15 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 }
 - (UIImage *)uxy_imageWithTintColor:(UIColor *)tintColor
 {
-    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
+    return [self __uxy_imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
 }
 
 - (UIImage *)uxy_imageWithGradientTintColor:(UIColor *)tintColor
 {
-    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
+    return [self __uxy_imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
 }
 
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
+- (UIImage *)__uxy_imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
 {
     //We want to keep alpha, set opaque to NO; Use 0.0f for scale to use the scale factor of the device’s main screen.
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
@@ -1016,4 +1016,18 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return tintedImage;
 }
 
++ (UIImage *)uxy_imageWithColor:(UIColor *)color size:(CGSize)size
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 @end

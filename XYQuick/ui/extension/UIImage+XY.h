@@ -108,4 +108,6 @@ typedef enum {
 - (UIImage *)uxy_imageWithTintColor:(UIColor *)tintColor;
 - (UIImage *)uxy_imageWithGradientTintColor:(UIColor *)tintColor;
 
+// 由颜色返回图片
++ (UIImage *)uxy_imageWithColor:(UIColor *)color size:(CGSize)size;
 @end
