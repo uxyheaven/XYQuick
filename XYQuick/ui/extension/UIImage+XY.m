@@ -338,6 +338,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     
     return roundedImage;
 }
+
 - (UIImage *)uxy_stretched
 {
     //	CGFloat x = floorf(self.size.width / 2.0f);
@@ -551,6 +552,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 {
     return [UIImagePNGRepresentation(self) writeToFile:path atomically:YES];
 }
+
 // compression is 0(most)..1(least)
 - (BOOL)uxy_saveAsJpgWithPath:(NSString *)path compressionQuality:(CGFloat)quality
 {
@@ -619,7 +621,10 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 
 inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int) * count); }
-+ (void) applyStackBlurToBuffer:(UInt8*)targetBuffer width:(const int)w height:(const int)h withRadius:(NSUInteger)inradius
++ (void) applyStackBlurToBuffer:(UInt8*)targetBuffer
+                          width:(const int)w
+                         height:(const int)h
+                     withRadius:(NSUInteger)inradius
 {
     // Constants
 	const int radius = inradius; // Transform unsigned into signed for further operations
@@ -837,7 +842,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     free(dv);
 }
 
-- (UIImage *)normalize {
+- (UIImage *)normalize
+{
     int width = self.size.width;
     int height = self.size.height;
     CGColorSpaceRef genericColorSpace = CGColorSpaceCreateDeviceRGB();
@@ -859,7 +865,8 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return result;
 }
 
-- (UIImage *)uxy_fixOrientation{
+- (UIImage *)uxy_fixOrientation
+{
     // No-op if the orientation is already correct
     if (self.imageOrientation == UIImageOrientationUp)
         return self;
@@ -984,6 +991,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
 	
 	return self;
 }
+
 - (UIImage *)uxy_imageWithTintColor:(UIColor *)tintColor
 {
     return [self __uxy_imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
@@ -1030,4 +1038,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     
     return image;
 }
+
 @end
+
+

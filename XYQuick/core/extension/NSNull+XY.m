@@ -29,10 +29,11 @@
 //
 
 #import "NSNull+XY.h"
+#import "XYUnitTest.h"
 
 @implementation NSNull (XY_InternalNullExtention)
 
-- (NSMethodSignature*)methodSignatureForSelector:(SEL)selector
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
 {
     NSMethodSignature *signature = [super methodSignatureForSelector:selector];
     
@@ -41,8 +42,15 @@
     for (NSObject *object in UXY_NullObjects)
     {
         signature = [object methodSignatureForSelector:selector];
-        
-        if (signature) break;
+
+        if (signature)
+        {
+            if (strcmp(signature.methodReturnType, "@") == 0)
+            {
+                signature = [[NSNull null] methodSignatureForSelector:@selector(__returnNil)];
+            }
+            break;
+        }
     }
     
     return signature;
@@ -50,12 +58,18 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
+    if (strcmp(anInvocation.methodSignature.methodReturnType, "@") == 0)
+    {
+        anInvocation.selector = @selector(__uxy_nil);
+        [anInvocation invokeWithTarget:self];
+        return;
+    }
+    
     for (NSObject *object in UXY_NullObjects)
     {
         if ([object respondsToSelector:anInvocation.selector])
         {
             [anInvocation invokeWithTarget:object];
-            
             return;
         }
     }
@@ -63,4 +77,40 @@
     [self doesNotRecognizeSelector:anInvocation.selector];
 }
 
+- (id)__uxy_nil
+{
+    return nil;
+}
+
 @end
+
+// ----------------------------------
+// Unit test
+// ----------------------------------
+
+#pragma mark -
+
+#if (1 == __XY_DEBUG_UNITTESTING__)
+
+UXY_TEST_CASE( Core, NSNull )
+{
+}
+
+UXY_DESCRIBE( test_array )
+{
+    UXY_EXPECTED( ((NSArray *)[NSNull null])[1] == nil );
+}
+
+UXY_DESCRIBE( test_dictionary )
+{
+    UXY_EXPECTED( ((NSDictionary *)[NSNull null])[nil] == nil );
+}
+
+UXY_DESCRIBE( test_string )
+{
+    UXY_EXPECTED( [((NSString *)[NSNull null]) substringToIndex:2] == nil );
+}
+
+UXY_TEST_CASE_END
+
+#endif
