@@ -67,8 +67,12 @@ ViewControllerDemoTitle(BlackMagic)
     NSDictionary *dic = self.items[indexPath.row];
     NSString *str = dic[@"sel"];
     SEL sel = NSSelectorFromString(str);
-    if ([self respondsToSelector:sel]) {
+    if ([self respondsToSelector:sel])
+    {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:sel];
+#pragma clang diagnostic pop
     }
 }
 

@@ -78,7 +78,10 @@ ViewControllerDemoTitle(JSON)
     SEL aSel = NSSelectorFromString(_titles[indexPath.row]);
     if ([self respondsToSelector:aSel])
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:aSel];
+#pragma clang diagnostic pop
     }
     
 }
