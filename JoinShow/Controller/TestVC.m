@@ -612,7 +612,6 @@ ViewControllerDemoTitle(Something)
 }
 - (void)clickStringCache:(id)sender
 {
-    static int iKey = 0;
     /*
     XYObjectCache *cache = [XYObjectCache sharedInstance];
     [cache registerObjectClass:[NSString class]];

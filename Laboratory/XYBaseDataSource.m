@@ -91,7 +91,7 @@
     }
     else
     {
-        [self.delegate dataSource:self didGetData:data];
+        [self.delegate dataSource:self didUpdateData:data];
     }
 }
 

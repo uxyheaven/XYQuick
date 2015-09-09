@@ -196,7 +196,7 @@
         {
             if(property.length>0)
             {
-                [table_pars appendFormat:@"(%d)",property.length];
+                [table_pars appendFormat:@"(%@)",@(property.length)];
             }
         }
         if(property.isNotNull)

@@ -273,7 +273,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 												 CGImageGetBitsPerComponent(image.CGImage),
 												 imageWidth * 4,
 												 colorSpace,
-												 kCGImageAlphaPremultipliedLast );
+												 (CGBitmapInfo)kCGImageAlphaPremultipliedLast );
     
     CGContextBeginPath(context);
 	CGRect circleRect;
@@ -315,7 +315,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 												 CGImageGetBitsPerComponent( image.CGImage ),
 												 circleRect.size.width * 4,
 												 colorSpace,
-												 kCGImageAlphaPremultipliedLast );
+												 (CGBitmapInfo)kCGImageAlphaPremultipliedLast );
 	
     CGContextBeginPath(context);
     [self addCircleRectToPath:circleRect context:context];
@@ -410,7 +410,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	CGRect rect = CGRectMake(0.0f, 0.0f, self.size.width, self.size.height);
 	
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-	CGContextRef context = CGBitmapContextCreate(nil, size.width, size.height, 8, 0, colorSpace, kCGImageAlphaNone);
+	CGContextRef context = CGBitmapContextCreate(nil, size.width, size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
 	CGColorSpaceRelease(colorSpace);
 	
 	CGContextDrawImage(context, rect, [self CGImage]);
@@ -528,7 +528,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     int h = self.size.height;
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
+    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
     
     CGContextBeginPath(context);
     addRoundedRectToPath(context,bkImageViewTmp.frame, radius, cornerMask);
@@ -564,7 +564,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     UIImageWriteToSavedPhotosAlbum(self, nil, nil, nil);
 }
 
-- (UIImage*) uxy_stackBlur:(NSUInteger)inradius
+- (UIImage*)uxy_stackBlur:(NSUInteger)inradius
 {
 	if (inradius < 1){
 		return self;
@@ -603,10 +603,10 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     // Apply stack blur
     const size_t imageWidth  = CGImageGetWidth(inImage);
 	const size_t imageHeight = CGImageGetHeight(inImage);
-    [self.class applyStackBlurToBuffer:m_PixelBuf
-                                 width:imageWidth
-                                height:imageHeight
-                            withRadius:inradius];
+    [self.class __applyStackBlurToBuffer:m_PixelBuf
+                                   width:(int)imageWidth
+                                  height:(int)imageHeight
+                              withRadius:inradius];
     
     // Make new image
 	CGImageRef imageRef = CGBitmapContextCreateImage(ctx);
@@ -621,13 +621,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 }
 
 inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int) * count); }
-+ (void) applyStackBlurToBuffer:(UInt8*)targetBuffer
-                          width:(const int)w
-                         height:(const int)h
-                     withRadius:(NSUInteger)inradius
++ (void)__applyStackBlurToBuffer:(UInt8*)targetBuffer
+                           width:(const int)w
+                          height:(const int)h
+                      withRadius:(NSUInteger)inradius
 {
     // Constants
-	const int radius = inradius; // Transform unsigned into signed for further operations
+	const int radius = (int)inradius; // Transform unsigned into signed for further operations
 	const int wm = w - 1;
 	const int hm = h - 1;
 	const int wh = w*h;
@@ -852,7 +852,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
                                                          height,
                                                          8, (4 * width),
                                                          genericColorSpace,
-                                                         kCGImageAlphaPremultipliedLast);
+                                                         (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(genericColorSpace);
     CGContextSetInterpolationQuality(thumbBitmapCtxt, kCGInterpolationDefault);
     CGRect destRect = CGRectMake(0, 0, width, height);

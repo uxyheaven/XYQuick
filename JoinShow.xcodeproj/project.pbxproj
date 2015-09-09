@@ -80,7 +80,6 @@
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57EA863C1B0EDD7600D3A592 /* XYFlyweightTransmit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */; };
 		57EE44251B73B007005EF8C0 /* XYClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EE44241B73B007005EF8C0 /* XYClassLoader.m */; };
-		57F509B81AF92BF7000E733F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57F509B71AF92BF7000E733F /* README.md */; };
 		57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF61AFC86FD00298D7E /* NSArray+XY.m */; };
 		57F56F741AFC86FD00298D7E /* NSData+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF81AFC86FD00298D7E /* NSData+XY.m */; };
 		57F56F751AFC86FD00298D7E /* NSDate+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EFA1AFC86FD00298D7E /* NSDate+XY.m */; };
@@ -1110,7 +1109,6 @@
 				57F56F9A1AFC86FD00298D7E /* UIImage+XY.m in Sources */,
 				57F56F7E1AFC86FD00298D7E /* XYMemoryCache.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
-				57F509B81AF92BF7000E733F /* README.md in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				5749BF8419BF480900D676CC /* JSONVC.m in Sources */,
 				57F56F901AFC86FD00298D7E /* XYMulticastDelegate.m in Sources */,
@@ -1281,7 +1279,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "/Users/heaven/Desktop/IOS\\ CODE/MyClass/XYQuickDevelop/JoinShow";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JoinShow/JoinShow-Prefix.pch";
 				INFOPLIST_FILE = "JoinShow/JoinShow-Info.plist";
@@ -1301,7 +1298,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "/Users/heaven/Desktop/IOS\\ CODE/MyClass/XYQuickDevelop/JoinShow";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JoinShow/JoinShow-Prefix.pch";
 				INFOPLIST_FILE = "JoinShow/JoinShow-Info.plist";

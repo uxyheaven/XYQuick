@@ -38,8 +38,6 @@
     
     aModel.dataClass = aClass;
     aModel.dbHelper = [[aClass class] getUsingLKDBHelper];
-    //      [dbHelper dropAllTable];
-    [aModel.dbHelper createTableWithModelClass:[aClass class]];
     
     return aModel;
 }

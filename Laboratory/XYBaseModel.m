@@ -66,4 +66,16 @@
 {
     
 }
+
+#pragma mark - XYDataSource
+// 获取数据成功
+- (void)dataSource:(id)dataSource didUpdateData:(id)data
+{
+    
+}
+// 获取数据失败
+- (void)dataSource:(id)dataSource error:(NSError *)error
+{
+    
+}
 @end

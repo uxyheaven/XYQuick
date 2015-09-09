@@ -10,8 +10,8 @@
 
 @implementation ConfigManager uxy_def_singleton
 
--(NSString *) Strtest2
+- (NSString *)Strtest2
 {
-    [[NSUserDefaults standardUserDefaults] objectForKey:@"a"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"a"];
 }
 @end

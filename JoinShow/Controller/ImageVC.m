@@ -68,7 +68,7 @@ ViewControllerDemoTitle(Image)
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.backgroundColor = [UIColor lightGrayColor];
+    //cell.backgroundColor = [UIColor lightGrayColor];
     
     // Configure the cell...
     NSDictionary *dic = [self getCellDataIndex:indexPath.row];
@@ -239,6 +239,13 @@ ViewControllerDemoTitle(Image)
         {
             [dic setObject:@"Tint : orangeColor" forKey:@"title"];
             UIImage *tempImg = [[UIImage uxy_imageWithFileName:@"image.png"] uxy_imageWithTintColor:[UIColor orangeColor]];
+            [dic setObject:tempImg forKey:@"img"];
+            break;
+        }
+        case 15:
+        {
+            [dic setObject:@"Color Image" forKey:@"title"];
+            UIImage *tempImg = [UIImage uxy_imageWithColor:[UIColor blueColor] size:CGSizeMake(30, 30)];
             [dic setObject:tempImg forKey:@"img"];
             break;
         }

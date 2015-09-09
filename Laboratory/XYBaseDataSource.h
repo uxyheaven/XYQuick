@@ -21,10 +21,10 @@
 
 
 
-@protocol XYDataSourceDelegate <NSObject>
+@protocol XYDataSource <NSObject>
 
 // 获取数据成功
-- (void)dataSource:(id)dataSource didGetData:(id)data;
+- (void)dataSource:(id)dataSource didUpdateData:(id)data;
 // 获取数据失败
 - (void)dataSource:(id)dataSource error:(NSError *)error;
 
@@ -38,7 +38,7 @@
 @interface XYBaseDataSource : NSObject
 
 @property (nonatomic, assign, readonly) int state;
-@property (nonatomic, weak) id <XYDataSourceDelegate> delegate;
+@property (nonatomic, weak) id <XYDataSource> delegate;
 @property (nonatomic, copy) NSString *filter;       // 过滤
 
 // 开始获取数据

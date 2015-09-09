@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XYBaseDataSource.h"
 
-@interface XYBaseModel : NSObject <XYDataSourceDelegate>
+@interface XYBaseModel : NSObject <XYDataSource>
 
 
 // 读取数据
