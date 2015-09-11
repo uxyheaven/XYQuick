@@ -30,7 +30,7 @@
             { \
                 __local = [NSString stringWithFormat:@"%@.%@.%s", @"signal", [self description], #__name]; \
             } \
-        return XY_RETAIN(__local); \
+        return UXY_RETAIN(__local); \
 }
 
 #undef	ON_SIGNAL

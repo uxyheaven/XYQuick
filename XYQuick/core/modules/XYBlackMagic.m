@@ -32,4 +32,11 @@
 
 @implementation XYBlackMagic
 
++ (void)load
+{
+    uxy_onFuncExit{
+        ;
+    };
+}
+
 @end

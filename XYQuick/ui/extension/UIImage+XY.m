@@ -233,7 +233,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     }
 }
 
-//等比例缩放
 - (UIImage *)uxy_scaleToSize:(CGSize)size
 {
     UIGraphicsBeginImageContext(size);

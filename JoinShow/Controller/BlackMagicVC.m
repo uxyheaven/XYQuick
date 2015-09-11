@@ -27,7 +27,7 @@ ViewControllerDemoTitle(BlackMagic)
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.items = @[
-                   @{@"title":@"BM_ON_EXIT", @"sel" : @"clickBM_ON_EXIT"}
+                   @{@"title":@"onFuncExit", @"sel" : @"clickOnFuncExit"}
                    ];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"test_cell"];
@@ -78,10 +78,11 @@ ViewControllerDemoTitle(BlackMagic)
 
 #pragma mark -方法的实现
 
--(void)clickBM_ON_EXIT
+-(void)clickOnFuncExit
 {
-    BM_ON_EXIT {
-        NSLog(@"这里的代码会在当前域结束的时候调用");
+    uxy_onFuncExit {
+        NSLog(@"2");
+        NSLog(@"这里的代码会在当前域结束的时候调用, 所以先看到1,然后才是2");
     };
     
     NSLog(@"1");

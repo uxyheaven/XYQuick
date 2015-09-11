@@ -32,18 +32,21 @@
 #pragma mark -
 
 #pragma mark - others
+#ifndef XYBlackMagic__Macro
+#define XYBlackMagic__Macro
 static void __uxy_blockCleanUp(__strong void(^*block)(void)) {
     (*block)();
 }
+#endif
 
 // 当当前作用域结束时自动执行{}里面的方法
-#define BM_ON_EXIT \
+#define uxy_onFuncExit \
         __strong void(^block)(void) __attribute__((cleanup(__uxy_blockCleanUp), unused)) = ^
 
-
+/*
 #define keypath2(OBJ, PATH) \
-        (((void)(NO && ((void)OBJ.PATH, NO)), # PATH))
-
+        (((NO && (OBJ.PATH, NO)), PATH))
+*/
 #pragma mark - XYBlackMagic
 @interface XYBlackMagic : NSObject
 

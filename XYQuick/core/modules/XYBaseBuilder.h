@@ -57,7 +57,7 @@
 + (id)productWithBuilder:(id(^)(id builder))block;
 
 
-// 生成产品, 请override这个方法做验证
+/// 生成产品, 请override这个方法做验证
 - (id)build;
 
 @end
