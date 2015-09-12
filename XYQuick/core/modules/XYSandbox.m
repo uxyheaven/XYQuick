@@ -34,22 +34,16 @@
 #import <sys/xattr.h>
 
 @interface XYSandbox()
-{
-	NSString *	_appPath;
-	NSString *	_docPath;
-	NSString *	_libPrefPath;
-	NSString *	_libCachePath;
-	NSString *	_tmpPath;
-}
+
+@property (nonatomic, copy) NSString *appPath;
+@property (nonatomic, copy) NSString *docPath;
+@property (nonatomic, copy) NSString *libPrefPath;
+@property (nonatomic, copy) NSString *libCachePath;
+@property (nonatomic, copy) NSString *tmpPath;
+
 @end
 
 @implementation XYSandbox uxy_def_singleton
-
-@dynamic appPath;
-@dynamic docPath;
-@dynamic libPrefPath;
-@dynamic libCachePath;
-@dynamic tmpPath;
 
 + (NSString *)appPath
 {
@@ -198,23 +192,8 @@
 	return YES;
 }
 
-/***************************************************************/
-+ (void)createDirectoryAtPath:(NSString *)aPath{
-    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:NULL] )
-    {
-        BOOL ret = [[NSFileManager defaultManager] createDirectoryAtPath:aPath
-                                             withIntermediateDirectories:YES
-                                                              attributes:nil
-                                                                   error:nil];
-        if ( NO == ret )
-        {
-            NSLog(@"%s, create %@ failed", __PRETTY_FUNCTION__, aPath);
-            return;
-        }
-    }
-}
-
-+ (NSArray *)allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio{
++ (NSArray *)allFilesAtPath:(NSString *)direString type:(NSString*)fileType operation:(int)operatio
+{
     NSMutableArray *pathArray = [NSMutableArray array];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -241,7 +220,8 @@
     return pathArray;
 }
 
-+ (uint64_t)sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode{
++ (uint64_t)sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode
+{
     uint64_t totalSize = 0;
     NSMutableArray *searchPaths = [NSMutableArray arrayWithObject:filePath];
     while ([searchPaths count] > 0)
@@ -281,7 +261,8 @@
     return totalSize;
 }
 
-+ (BOOL)skipFileBackupForItemAtURL:(NSURL*)URL{
++ (BOOL)skipFileBackupForItemAtURL:(NSURL*)URL
+{
     if (![[NSFileManager defaultManager] fileExistsAtPath:[URL path]])
         return NO;
     
@@ -294,7 +275,6 @@
     int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
     
     return (result == 0);
-    //}
     
     // 官方给的代码但是实际上真的是很废，一点用都没有，只用前面那段的就行了，别用下面的
     //    // iOS >= 5.1

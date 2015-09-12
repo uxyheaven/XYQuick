@@ -39,23 +39,24 @@
 @property (nonatomic, readonly, copy) NSString *libCachePath;
 @property (nonatomic, readonly, copy) NSString *tmpPath;
 
-+ (NSString *)appPath;		// 程序目录，不能存任何东西
-+ (NSString *)docPath;		// 文档目录，需要ITUNES同步备份的数据存这里
-+ (NSString *)libPrefPath;	// 配置目录，配置文件存这里
-+ (NSString *)libCachePath;	// 缓存目录，系统在磁盘空间不足的情况下会删除里面的文件，ITUNES会删除
-+ (NSString *)tmpPath;		// 缓存目录，APP退出后，系统可能会删除这里的内容
+/// 程序目录，不能存任何东西
++ (NSString *)appPath;
+// 文档目录，需要ITUNES同步备份的数据存这里
++ (NSString *)docPath;
+// 配置目录，配置文件存这里
++ (NSString *)libPrefPath;
+// 缓存目录，系统在磁盘空间不足的情况下会删除里面的文件，iTunes会删除
++ (NSString *)libCachePath;
+// 缓存目录，APP退出后，系统可能会删除这里的内容
++ (NSString *)tmpPath;
 
-+ (NSString *)resPath:(NSString *)file;      // 资源目录
+/// 返回目标的资源目录
++ (NSString *)resPath:(NSString *)file;
 
+/// 如果目标文件夹不存在, 创建一个空文件夹
 + (BOOL)touch:(NSString *)path;
+/// 如果目标文件不存在, 创建一个空文件
 + (BOOL)touchFile:(NSString *)file;
-
-/**
- * 创建目录
- * api parameters 说明
- * aPath 目录路径
- */
-+ (void)createDirectoryAtPath:(NSString *)aPath;
 
 /**
  * 返回目下所有给定后缀的文件的方法
@@ -77,7 +78,7 @@
  */
 + (uint64_t)sizeAtPath:(NSString *)filePath diskMode:(BOOL)diskMode;
 
-// 设置目录里的文件不备份
+/// 设置目录里的文件不备份
 + (BOOL)skipFileBackupForItemAtURL:(NSURL *)URL;
 
 @end
