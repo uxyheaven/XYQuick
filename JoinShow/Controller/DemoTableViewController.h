@@ -10,6 +10,6 @@
 
 @interface DemoTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray       *list;
+@property (nonatomic, strong) NSArray *list;
 
 @end

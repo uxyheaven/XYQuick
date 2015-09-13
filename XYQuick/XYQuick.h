@@ -29,10 +29,13 @@
 //
 
 #undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.6.6"	/// 主版本号
+#define	__XYQUICK_VERSION__	"0.6.7"	/// 主版本号
 
 #import "XYQuick_Predefine.h"   // 预编译
 
 #import "XYQuick_Core.h"        // 基础类
 #import "XYQuick_UI.h"          // 界面
 #import "XYQuick_Event.h"       // 事件
+
+
+

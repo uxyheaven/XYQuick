@@ -89,7 +89,7 @@ DUMMY_CLASS(UIControl_XY);
                                  @"UIControlEventAllEvents": @(UIControlEventAllEvents)
                                  };
     
-    [XYRuntime swizzleInstanceMethodWithClass:[UIButton class] originalSel:@selector(sendAction:to:forEvent:) replacementSel:@selector(__uxy_sendAction:to:forEvent:)];
+    [XYRuntime swizzleInstanceMethodWithClass:[UIControl class] originalSel:@selector(sendAction:to:forEvent:) replacementSel:@selector(__uxy_sendAction:to:forEvent:)];
 }
 
 uxy_staticConstString(UIControl_key_events)
