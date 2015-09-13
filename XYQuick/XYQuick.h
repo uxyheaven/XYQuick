@@ -29,7 +29,7 @@
 //
 
 #undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.6.7"	/// 主版本号
+#define	__XYQUICK_VERSION__	"0.6.8"	/// 主版本号
 
 #import "XYQuick_Predefine.h"   // 预编译
 

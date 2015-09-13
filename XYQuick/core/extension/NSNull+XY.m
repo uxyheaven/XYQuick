@@ -47,7 +47,7 @@
         {
             if (strcmp(signature.methodReturnType, "@") == 0)
             {
-                signature = [[NSNull null] methodSignatureForSelector:@selector(__returnNil)];
+                signature = [[NSNull null] methodSignatureForSelector:@selector(__uxy_nil)];
             }
             break;
         }
