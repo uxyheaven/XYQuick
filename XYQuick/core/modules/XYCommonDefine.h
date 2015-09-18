@@ -57,7 +57,7 @@
 #define uxy_def_weakify( __object ) \
         __weak __typeof( __object) weak##_##__object = __object;
 #define uxy_def_strongify( __object )   \
-        strong##_##__object = weak##_##__object;
+        __typeof__(__object) __object = weak##_##__object
 #else
 // mrc
 #define uxy_def_weakSelf     __block typeof(id) weakSelf = self;

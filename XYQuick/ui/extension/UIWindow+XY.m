@@ -32,6 +32,12 @@
 
 @implementation UIWindow (XY)
 
+
++ (UIWindow *)mainWindow
+{
+    return UIApplication.sharedApplication.keyWindow;
+}
+
 + (UIViewController *)uxy_visibleViewController
 {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -42,26 +48,27 @@
     return topController;
 }
 
-+ (UIViewController*)uxy_optimizedVisibleViewController
++ (UIViewController *)uxy_optimizedVisibleViewController
 {
-    return [self __uxy_visibleViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    return [self uxy_visibleViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
-+ (UIViewController*)__uxy_visibleViewControllerWithRootViewController:(UIViewController*)rootViewController
+
++ (UIViewController *)uxy_visibleViewControllerWithRootViewController:(UIViewController*)rootViewController
 {
     if ([rootViewController isKindOfClass:[UITabBarController class]])
     {
         UITabBarController *tbc = (UITabBarController*)rootViewController;
-        return [self __uxy_visibleViewControllerWithRootViewController:tbc.selectedViewController];
+        return [self uxy_visibleViewControllerWithRootViewController:tbc.selectedViewController];
     }
     else if ([rootViewController isKindOfClass:[UINavigationController class]])
     {
         UINavigationController *nvc = (UINavigationController*)rootViewController;
-        return [self __uxy_visibleViewControllerWithRootViewController:nvc.visibleViewController];
+        return [self uxy_visibleViewControllerWithRootViewController:nvc.visibleViewController];
     }
     else if (rootViewController.presentedViewController)
     {
         UIViewController *presentedVC = rootViewController.presentedViewController;
-        return [self __uxy_visibleViewControllerWithRootViewController:presentedVC];
+        return [self uxy_visibleViewControllerWithRootViewController:presentedVC];
     }
     else
     {

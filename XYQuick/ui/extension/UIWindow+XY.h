@@ -33,10 +33,16 @@
 
 @interface UIWindow (XY)
 
+/// The app’s key window
++ (UIWindow *)mainWindow;
+
 /// 返回目前可见的最上层显示的 viewController
 + (UIViewController *)uxy_visibleViewController;
 
 /// 返回优化后的目前可见的最上层显示的 viewController, UITabBarController会取selectedViewController, UINavigationController取visibleViewController
-+ (UIViewController*)uxy_optimizedVisibleViewController;
++ (UIViewController *)uxy_optimizedVisibleViewController;
+
+/// 返回rootViewController上的可见的viewController
++ (UIViewController *)uxy_visibleViewControllerWithRootViewController:(UIViewController*)rootViewController;
 
 @end

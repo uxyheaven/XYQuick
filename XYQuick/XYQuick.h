@@ -31,7 +31,12 @@
 #undef	__XYQUICK_VERSION__
 #define	__XYQUICK_VERSION__	"0.6.8"	/// 主版本号
 
+#if TARGET_IPHONE_SIMULATOR
 #import "XYQuick_Predefine.h"   // 预编译
+#else
+#import "XYQuick_Predefine.h"
+#endif
+
 
 #import "XYQuick_Core.h"        // 基础类
 #import "XYQuick_UI.h"          // 界面

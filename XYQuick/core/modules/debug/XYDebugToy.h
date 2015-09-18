@@ -99,18 +99,22 @@
 - (void)allocMemory:(NSInteger)MB;
 - (void)freeLastMemory;
 
+/// window上的调试的label
++ (UILabel *)debugLabel;
+
 @end;
 
-
-#pragma mark - BorderView
-#if (1 == __XY_DEBUG_SHOWBORDER__)
 // uiview点击时 加边框
 @interface UIWindow(XYDebug)
+
+/// 调试用的label, tag = 66666, 可以在viewDidAppear or 其他方法里添加当前页面的调试信息
+@property (nonatomic, strong, readonly) UILabel *uxy_debugLabel;
+
 @end
 
+#pragma mark - BorderView
 
 @interface BorderView : UIView
 - (void)startAnimation;
 @end
-#endif
 

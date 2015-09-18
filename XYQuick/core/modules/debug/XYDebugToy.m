@@ -216,7 +216,12 @@
     }
 }
 
-#pragma mark - get set
++ (UILabel *)debugLabel
+{
+    return UIApplication.sharedApplication.keyWindow.uxy_debugLabel;
+}
+
+#pragma mark - getter / setter
 - (NSMutableArray *)manualBlocks
 {
     return _manualBlocks ?: (_manualBlocks = [@[] mutableCopy], _manualBlocks);
@@ -224,8 +229,6 @@
 
 @end
 
-#pragma mark - BorderView
-#if (1 == __XY_DEBUG_SHOWBORDER__)
 @interface UIWindow(XYDebugPrivate)
 - (void)__uxy_sendEvent:(UIEvent *)event;
 @end
@@ -234,9 +237,35 @@
 
 + (void)load
 {
+#if (1 == __XY_DEBUG_SHOWBORDER__)
     [XYRuntime swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(__uxy_sendEvent:)];
+#endif
 }
 
+- (UILabel *)uxy_debugLabel
+{
+#if ( 1 == __XY_DEBUG_DEBUGLABEL__)
+    UILabel *label = (UILabel *)[self viewWithTag:66666];
+    if (label == nil)
+    {
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height - 30, UIScreen.mainScreen.bounds.size.width, 30)];
+        label.layer.borderWidth = 0.5;
+        label.layer.borderColor = [UIColor redColor].CGColor;
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor redColor];
+        label.numberOfLines = 0;
+        label.alpha = 0.5;
+        label.font = [UIFont systemFontOfSize:8];
+        label.tag = 66666;
+        [self addSubview:label];
+    }
+    return label;
+#else
+    return nil;
+#endif
+}
+
+#if (1 == __XY_DEBUG_SHOWBORDER__)
 - (void)__uxy_sendEvent:(UIEvent *)event
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -259,8 +288,9 @@
 }
 
 @end
+#endif
 
-
+#if (1 == __XY_DEBUG_SHOWBORDER__)
 @implementation BorderView
 - (id)initWithFrame:(CGRect)frame
 {
@@ -303,13 +333,8 @@
     [self removeFromSuperview];
 }
 
-- (void)dealloc
-{
-}
-@end
-
 #endif
-
+@end
 
 
 
