@@ -109,7 +109,7 @@
 - (NSData *)uxy_jsonData;
 
 /**
- * @brief 返回json字典, 不支持NSArray
+ * @brief 对象返回json字典, 不支持NSArray
  */
 - (NSDictionary *)uxy_jsonDictionary;
 

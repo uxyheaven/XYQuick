@@ -197,6 +197,11 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
 // 应该比较脆弱，不支持太复杂的对象。
 - (NSDictionary *)uxy_jsonDictionary
 {
+    if ([self isKindOfClass:[NSString class]])
+    {
+        return [(NSString *)self uxy_jsonValue];
+    }
+    
     NSDictionary        *keyDict  = [self.class uxy_jsonKeyPropertyDictionary];
     NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] initWithCapacity:keyDict.count];
     [keyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
