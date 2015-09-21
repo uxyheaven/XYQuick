@@ -31,10 +31,8 @@
 #undef	__XYQUICK_VERSION__
 #define	__XYQUICK_VERSION__	"0.6.8"	/// 主版本号
 
-// 在编译器的(other linker flags)里设置 (-DCUSTOM_XYPREDEFINE) 可以定制部分编译选项
-#if CUSTOM_XYPREDEFINE
-#import "XYQuick_Custom_Predefine.h"   // 预编译
-#endif
+//  在编译器的(Preprocessor Macors)里设置 (CUSTOM_XYPREDEFINE)
+//  可以定制"XYQuick_Predefine.h"里的部分编译选项
 
 #if TARGET_IPHONE_SIMULATOR
 #import "XYQuick_Predefine.h"   // 预编译
