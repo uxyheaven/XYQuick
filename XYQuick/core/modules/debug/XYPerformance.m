@@ -81,7 +81,7 @@
 
 - (void)recordName:(NSString *)name andTime:(NSTimeInterval)time
 {
-	NSLog( @"Time '%@' = %.0f(ms)", name, time );
+	NSLog( @"Time '%@' = %.4f(s)", name, time );
 }
 
 @end
