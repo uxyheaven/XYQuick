@@ -38,6 +38,7 @@
 // ----------------------------------
 #define __XYQuick_Framework__       (0) // 打包,暂时无用
 
+#ifdef CUSTOM_XYPREDEFINE
 #ifdef DEBUG
     #define __XY_DEBUG__                             (1)     // 调试
     #define __XY_PERFORMANCE__                       (1)     // 性能测试
@@ -50,6 +51,7 @@
     #define __XY_DEBUG_SHOWBORDER__                  (0)
     #define __XY_DEBUG_UNITTESTING__                 (0)
     #define __XY_DEBUG_DEBUGLABEL__                  (0)     // 调试的label
+#endif
 #endif
 
 // ----------------------------------

@@ -229,6 +229,7 @@
 		5791A7E918051E7C009A1003 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		579426B31856D6DC0049B426 /* EntityBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityBaseModel.h; sourceTree = "<group>"; };
 		579426B41856D6DC0049B426 /* EntityBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityBaseModel.m; sourceTree = "<group>"; };
+		5798860D1BAF9A4700AA9612 /* XYQuick_Custom_Predefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuick_Custom_Predefine.h; sourceTree = "<group>"; };
 		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		579B3A3418EBDCF8001650C6 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		57A2FE5D18063D5A002460EC /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
@@ -689,6 +690,7 @@
 				571CBA5017C6FCC0007CB842 /* View */,
 				571CBA3117C6FB55007CB842 /* AppDelegate.h */,
 				571CBA3217C6FB55007CB842 /* AppDelegate.m */,
+				5798860D1BAF9A4700AA9612 /* XYQuick_Custom_Predefine.h */,
 			);
 			name = AppDelegate;
 			sourceTree = "<group>";
@@ -1284,6 +1286,29 @@
 				INFOPLIST_FILE = "JoinShow/JoinShow-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-FMDB\"",
+					"-l\"Pods-LKDBHelper\"",
+					"-l\"Pods-MBProgressHUD\"",
+					"-l\"Pods-MKNetworkKit\"",
+					"-l\"Pods-OpenUDID\"",
+					"-l\"Pods-Reachability\"",
+					"-l\"Pods-SVPullToRefresh\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-DCUSTOM_XYPREDEFINE",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1303,6 +1328,29 @@
 				INFOPLIST_FILE = "JoinShow/JoinShow-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-FMDB\"",
+					"-l\"Pods-LKDBHelper\"",
+					"-l\"Pods-MBProgressHUD\"",
+					"-l\"Pods-MKNetworkKit\"",
+					"-l\"Pods-OpenUDID\"",
+					"-l\"Pods-Reachability\"",
+					"-l\"Pods-SVPullToRefresh\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-DCUSTOM_XYPREDEFINE",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
