@@ -33,7 +33,7 @@
 @implementation UIWindow (XY)
 
 
-+ (UIWindow *)mainWindow
++ (UIWindow *)uxy_mainWindow
 {
     return UIApplication.sharedApplication.keyWindow;
 }

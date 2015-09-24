@@ -318,12 +318,12 @@ DUMMY_CLASS(NSString_XY);
 	return [NSString uxy_queryStringFromDictionary:dict];
 }
 
-- (NSString *)uxy_urlByAppendingDict:(NSDictionary *)params
+- (NSString *)uxy_URLByAppendingDict:(NSDictionary *)params
 {
-    return [self uxy_urlByAppendingDict:params encoding:YES];
+    return [self uxy_URLByAppendingDict:params encoding:YES];
 }
 
-- (NSString *)uxy_urlByAppendingDict:(NSDictionary *)params encoding:(BOOL)encoding
+- (NSString *)uxy_URLByAppendingDict:(NSDictionary *)params encoding:(BOOL)encoding
 {
     NSURL * parsedURL = [NSURL URLWithString:self];
 	NSString * queryPrefix = parsedURL.query ? @"&" : @"?";
@@ -331,12 +331,12 @@ DUMMY_CLASS(NSString_XY);
 	return [NSString stringWithFormat:@"%@%@%@", self, queryPrefix, query];
 }
 
-- (NSString *)uxy_urlByAppendingArray:(NSArray *)params
+- (NSString *)uxy_URLByAppendingArray:(NSArray *)params
 {
-    return [self uxy_urlByAppendingArray:params encoding:YES];
+    return [self uxy_URLByAppendingArray:params encoding:YES];
 }
 
-- (NSString *)uxy_urlByAppendingArray:(NSArray *)params encoding:(BOOL)encoding
+- (NSString *)uxy_URLByAppendingArray:(NSArray *)params encoding:(BOOL)encoding
 {
     NSURL * parsedURL = [NSURL URLWithString:self];
 	NSString * queryPrefix = parsedURL.query ? @"&" : @"?";
@@ -344,7 +344,7 @@ DUMMY_CLASS(NSString_XY);
 	return [NSString stringWithFormat:@"%@%@%@", self, queryPrefix, query];
 }
 
-- (NSString *)uxy_urlByAppendingKeyValues:(id)first, ...
+- (NSString *)uxy_URLByAppendingKeyValues:(id)first, ...
 {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 	
@@ -364,7 +364,7 @@ DUMMY_CLASS(NSString_XY);
 		[dict setObject:value forKey:key];
 	}
     va_end( args );
-	return [self uxy_urlByAppendingDict:dict];
+	return [self uxy_URLByAppendingDict:dict];
 }
 
 - (BOOL)uxy_empty

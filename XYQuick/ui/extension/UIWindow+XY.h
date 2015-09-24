@@ -34,7 +34,7 @@
 @interface UIWindow (XY)
 
 /// The app’s key window
-+ (UIWindow *)mainWindow;
++ (UIWindow *)uxy_mainWindow;
 
 /// 返回目前可见的最上层显示的 viewController
 + (UIViewController *)uxy_visibleViewController;

@@ -46,11 +46,11 @@
 // url相关
 - (NSArray *)uxy_allURLs;
 
-- (NSString *)uxy_urlByAppendingDict:(NSDictionary *)params;
-- (NSString *)uxy_urlByAppendingDict:(NSDictionary *)params encoding:(BOOL)encoding;
-- (NSString *)uxy_urlByAppendingArray:(NSArray *)params;
-- (NSString *)uxy_urlByAppendingArray:(NSArray *)params encoding:(BOOL)encoding;
-- (NSString *)uxy_urlByAppendingKeyValues:(id)first, ...;
+- (NSString *)uxy_URLByAppendingDict:(NSDictionary *)params;
+- (NSString *)uxy_URLByAppendingDict:(NSDictionary *)params encoding:(BOOL)encoding;
+- (NSString *)uxy_URLByAppendingArray:(NSArray *)params;
+- (NSString *)uxy_URLByAppendingArray:(NSArray *)params encoding:(BOOL)encoding;
+- (NSString *)uxy_URLByAppendingKeyValues:(id)first, ...;
 
 + (NSString *)uxy_queryStringFromDictionary:(NSDictionary *)dict;
 + (NSString *)uxy_queryStringFromDictionary:(NSDictionary *)dict encoding:(BOOL)encoding;;
