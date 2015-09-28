@@ -29,7 +29,7 @@
 //
 
 #undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.6.8"	/// 主版本号
+#define	__XYQUICK_VERSION__	"0.6.9"	/// 主版本号
 
 //  在编译器的(Preprocessor Macors)里设置 (CUSTOM_XYPREDEFINE)
 //  可以定制"XYQuick_Predefine.h"里的部分编译选项
