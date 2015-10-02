@@ -36,6 +36,7 @@
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 #import <netdb.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 NSString *const XYNotification_ReachabilityChanged = @"XYNotification_ReachabilityChanged";
 

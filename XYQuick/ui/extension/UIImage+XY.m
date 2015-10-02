@@ -31,6 +31,8 @@
 
 #import "UIImage+XY.h"
 #import <CoreMedia/CoreMedia.h>
+#import <AVFoundation/AVAssetImageGenerator.h>
+#import <AVFoundation/AVAsset.h>
 
 #import "XYSystemInfo.h"
 #import "XYMemoryCache.h"
