@@ -28,6 +28,9 @@
 //	THE SOFTWARE.
 //
 
+#ifndef __XYQUICK_H__
+#define __XYQUICK_H__
+
 #undef	__XYQUICK_VERSION__
 #define	__XYQUICK_VERSION__	"0.6.9"	/// 主版本号
 
@@ -45,5 +48,6 @@
 #import "XYQuick_UI.h"          // 界面
 #import "XYQuick_Event.h"       // 事件
 
+#endif
 
 

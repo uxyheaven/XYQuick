@@ -28,8 +28,8 @@
 //	THE SOFTWARE.
 //
 
-#ifndef JoinShow_XYPredefine_h
-#define JoinShow_XYPredefine_h
+#ifndef __XYQUICK_PREDEFINE_H__
+#define __XYQUICK_PREDEFINE_H__
 
 // ----------------------------------
 // on-off
