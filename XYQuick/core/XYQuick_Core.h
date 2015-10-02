@@ -56,9 +56,9 @@
 #import "NSString+XY.h"
 #import "NSData+XY.h"
 #import "NSDate+XY.h"
-
-
-
+#import "NSNumber+XY.h"
+#import "NSSet+XY.h"
+#import "NSNull+XY.h"
 
 @interface XYQuick_Core : NSObject
 

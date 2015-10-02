@@ -31,8 +31,6 @@
 #ifndef JoinShow_XYPredefine_h
 #define JoinShow_XYPredefine_h
 
-#endif
-
 // ----------------------------------
 // on-off
 // ----------------------------------
@@ -201,7 +199,7 @@ static id sharedInstance;
 // ...
 // ----------------------------------
 
-
+#endif
 
 
 
