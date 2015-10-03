@@ -32,8 +32,6 @@
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
 		5749BF8419BF480900D676CC /* JSONVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5749BF8319BF480900D676CC /* JSONVC.m */; };
 		5749BF8619BF4DEB00D676CC /* json0.json in Resources */ = {isa = PBXBuildFile; fileRef = 5749BF8519BF4DEB00D676CC /* json0.json */; };
-		575294CF1BBE3E1800A16DF7 /* XYDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 575294CC1BBE3E1800A16DF7 /* XYDownloader.m */; };
-		575294D01BBE3E1800A16DF7 /* XYDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 575294CE1BBE3E1800A16DF7 /* XYDownloaderOperation.m */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */ = {isa = PBXBuildFile; fileRef = 575B850319FFDAA700EAE7E0 /* AopTestM.m */; };
@@ -205,10 +203,6 @@
 		5749BF8219BF480900D676CC /* JSONVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONVC.h; sourceTree = "<group>"; };
 		5749BF8319BF480900D676CC /* JSONVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONVC.m; sourceTree = "<group>"; };
 		5749BF8519BF4DEB00D676CC /* json0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json0.json; sourceTree = "<group>"; };
-		575294CB1BBE3E1800A16DF7 /* XYDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDownloader.h; sourceTree = "<group>"; };
-		575294CC1BBE3E1800A16DF7 /* XYDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDownloader.m; sourceTree = "<group>"; };
-		575294CD1BBE3E1800A16DF7 /* XYDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDownloaderOperation.h; sourceTree = "<group>"; };
-		575294CE1BBE3E1800A16DF7 /* XYDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDownloaderOperation.m; sourceTree = "<group>"; };
 		57548400181F4629008F9355 /* KeyboardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardVC.h; sourceTree = "<group>"; };
 		57548401181F4629008F9355 /* KeyboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardVC.m; sourceTree = "<group>"; };
 		575694841883D9C4004C2C74 /* GirlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GirlEntity.h; sourceTree = "<group>"; };
@@ -456,7 +450,6 @@
 		5708A8741AF8991A000607AB /* Laboratory */ = {
 			isa = PBXGroup;
 			children = (
-				575294CA1BBE3E1800A16DF7 /* downloader */,
 				57073EFB1B94D8F9008A0CAC /* XYChainMethod.h */,
 				5708A8751AF8991A000607AB /* XYAppController.h */,
 				5708A8761AF8991A000607AB /* XYAppController.m */,
@@ -599,17 +592,6 @@
 				5749BF8519BF4DEB00D676CC /* json0.json */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		575294CA1BBE3E1800A16DF7 /* downloader */ = {
-			isa = PBXGroup;
-			children = (
-				575294CB1BBE3E1800A16DF7 /* XYDownloader.h */,
-				575294CC1BBE3E1800A16DF7 /* XYDownloader.m */,
-				575294CD1BBE3E1800A16DF7 /* XYDownloaderOperation.h */,
-				575294CE1BBE3E1800A16DF7 /* XYDownloaderOperation.m */,
-			);
-			path = downloader;
 			sourceTree = "<group>";
 		};
 		57B30013177AD9BC00775FC9 /* JoinShowTests */ = {
@@ -1130,12 +1112,10 @@
 				57F56F7E1AFC86FD00298D7E /* XYMemoryCache.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
-				575294D01BBE3E1800A16DF7 /* XYDownloaderOperation.m in Sources */,
 				5749BF8419BF480900D676CC /* JSONVC.m in Sources */,
 				57F56F901AFC86FD00298D7E /* XYMulticastDelegate.m in Sources */,
 				57F56F7A1AFC86FD00298D7E /* NSSet+XY.m in Sources */,
 				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
-				575294CF1BBE3E1800A16DF7 /* XYDownloader.m in Sources */,
 				57F56F9D1AFC86FD00298D7E /* UITable+XY.m in Sources */,
 				7444D7291A03593C00B57529 /* AutoCodingEntity.m in Sources */,
 				57F56F981AFC86FD00298D7E /* UIColor+XY.m in Sources */,

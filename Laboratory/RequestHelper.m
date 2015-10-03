@@ -27,20 +27,17 @@
 + (id)defaultSettings
 {
     // 参考
-    RequestHelper *eg = [[RequestHelper alloc] initWithHostName:@"www.webxml.com.cn" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
+    RequestHelper *eg = [[RequestHelper alloc] initWithHostName:@"www.apple.com" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
     
     eg.freezable = YES;
     eg.forceReload = YES;
     return eg;
 }
 
-// [super initWithHostName:@"www.apple.com" customHeaderFields:@{@"x-client-identifier" : @"iOS"}]
 - (id)init
 {
     if (self = [super init])
     {
-        _freezable = YES;
-        _forceReload = YES;
     }
     return self;
 }
