@@ -30,6 +30,8 @@
 //  This file Copy from Samurai.
 
 #import "XYSandbox.h"
+#import "XYUnitTest.h"
+
 #import <sys/stat.h>
 #import <sys/xattr.h>
 
@@ -98,7 +100,7 @@
 		NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
 		NSString * path = [[paths objectAtIndex:0] stringByAppendingFormat:@"/Preference"];
 		
-		[self touch:path];
+		[self touchDirectory:path];
         
 		_libPrefPath = path;
 	}
@@ -118,7 +120,7 @@
 		NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
 		NSString * path = [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
         
-		[self touch:path];
+		[self touchDirectory:path];
 		
 		_libCachePath = path;
 	}
@@ -138,7 +140,7 @@
 		NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
 		NSString * path = [[paths objectAtIndex:0] stringByAppendingFormat:@"/tmp"];
 		
-		[self touch:path];
+		[self touchDirectory:path];
         
 		_tmpPath = path;
 	}
@@ -157,12 +159,12 @@
     return [[NSBundle mainBundle] pathForResource:str ofType:str2];
 }
 
-+ (BOOL)touch:(NSString *)path
++ (BOOL)touchDirectory:(NSString *)path
 {
-	return [[XYSandbox sharedInstance] touch:path];
+	return [[XYSandbox sharedInstance] touchDirectory:path];
 }
 
-- (BOOL)touch:(NSString *)path
+- (BOOL)touchDirectory:(NSString *)path
 {
 	if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:path] )
 	{
@@ -182,6 +184,23 @@
 
 - (BOOL)touchFile:(NSString *)file
 {
+    if (file.length < 1)
+        return NO;
+    
+    NSRange range = [file rangeOfString:@"/" options:NSBackwardsSearch];
+    if (range.location == NSNotFound)
+        return NO;
+    
+    NSString *path = [file substringToIndex:range.location];
+    
+    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:path] )
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+    
 	if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:file] )
 	{
 		return [[NSFileManager defaultManager] createFileAtPath:file
@@ -288,6 +307,32 @@
 }
 
 @end
+
+
+// ----------------------------------
+// Unit test
+// ----------------------------------
+
+#pragma mark -
+
+#if (1 == __XY_DEBUG_UNITTESTING__)
+
+UXY_TEST_CASE( Core, XYSandbox )
+{
+}
+
+UXY_DESCRIBE( test_touchFile )
+{
+    NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/aaa/bbb.json"];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    [XYSandbox touchFile:path];
+    UXY_EXPECTED([[NSFileManager defaultManager] fileExistsAtPath:path] == YES );
+}
+
+
+UXY_TEST_CASE_END
+
+#endif
 
 
 

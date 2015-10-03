@@ -29,6 +29,7 @@
 //
 //  This file Copy from SDWebImage.
 
+// 未来完成
 #import <Foundation/Foundation.h>
 #import "XYDownloader.h"
 
@@ -40,22 +41,39 @@ extern NSString *const XYDownloadFinishNotification;
 @interface XYDownloaderOperation : NSOperation <XYOperation>
 
 /// NSURLRequest
-@property (strong, nonatomic, readonly) NSURLRequest *request;
+@property (nonatomic, strong, readonly) NSURLRequest *request;
 
 /// URL连接是否应该咨询认证的证书存储连接 `NSURLConnectionDelegate` method `-connectionShouldUseCredentialStorage:`
 @property (nonatomic, assign) BOOL shouldUseCredentialStorage;
-
 /// NSURLCredential 身份认证,`-connection:didReceiveAuthenticationChallenge:`. 这将覆盖任何共享凭证存在的用户名或密码请求
 @property (nonatomic, strong) NSURLCredential *credential;
 
 /// XYDownloaderOptions 接收器
-@property (assign, nonatomic, readonly) XYDownloaderOptions options;
+@property (nonatomic, assign, readonly) XYDownloaderOptions options;
 
 /// 预期的数据大小
-@property (assign, nonatomic) NSInteger expectedSize;
+@property (nonatomic, assign) NSInteger expectedSize;
 
 /// NSURLResponse
-@property (strong, nonatomic) NSURLResponse *response;
+@property (nonatomic, strong) NSURLResponse *response;
+
+/// 服务器的地址
+@property (nonatomic, copy) NSString *remoteURL;
+/// 下载后的存放路径
+@property (nonatomic, copy) NSString *localPath;
+
+/// 断点续传
+@property (nonatomic, assign) BOOL breakpointResume;
+
+/// 如果有旧的原始文件先删除, 然后再下载
+@property (nonatomic, assign) BOOL deleteThenDownload;
+
+/// 下载文件
+- (XYDownloaderOperation *)download:(NSString *)remoteURL
+                                 to:(NSString*)localPath
+                             params:(NSDictionary *)params;
+
+- (void)start;
 
 /**
  *  Initializes a `XYDownloaderOperation` object

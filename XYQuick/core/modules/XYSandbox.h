@@ -54,7 +54,7 @@
 + (NSString *)resPath:(NSString *)file;
 
 /// 如果目标文件夹不存在, 创建一个空文件夹
-+ (BOOL)touch:(NSString *)path;
++ (BOOL)touchDirectory:(NSString *)path;
 /// 如果目标文件不存在, 创建一个空文件
 + (BOOL)touchFile:(NSString *)file;
 

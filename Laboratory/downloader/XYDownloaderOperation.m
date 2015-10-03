@@ -38,16 +38,19 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
 
 @interface XYDownloaderOperation () <NSURLConnectionDataDelegate>
 
-@property (copy, nonatomic) XYDownloaderProgressBlock progressBlock;
-@property (copy, nonatomic) XYDownloaderCompletedBlock completedBlock;
-@property (copy, nonatomic) XYNoParamsBlock cancelBlock;
+@property (nonatomic, copy) XYDownloaderProgressBlock progressBlock;
+@property (nonatomic, copy) XYDownloaderCompletedBlock completedBlock;
+@property (nonatomic, copy) XYNoParamsBlock cancelBlock;
 
-@property (assign, nonatomic, getter = isExecuting) BOOL executing;
-@property (assign, nonatomic, getter = isFinished) BOOL finished;
-@property (strong, nonatomic) NSURLConnection *connection;
-@property (strong, atomic) NSThread *thread;
+@property (nonatomic, assign, getter = isExecuting) BOOL executing;
+@property (nonatomic, assign, getter = isFinished) BOOL finished;
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (atomic, strong) NSThread *thread;
+@property (nonatomic, strong) NSDictionary *params;
+@property (nonatomic, strong) NSOutputStream *outputStream;
 
-@property (nonatomic, assign) BOOL responseFromCached;
+@property (nonatomic, strong) NSMutableURLRequest *request;
+
 
 #if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
 @property (assign, nonatomic) UIBackgroundTaskIdentifier backgroundTaskId;
@@ -77,12 +80,12 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
         _executing = NO;
         _finished = NO;
         _expectedSize = 0;
-        _responseFromCached = YES; // Initially wrong until `connection:willCacheResponse:` is called or not called
     }
     return self;
 }
 
-- (void)start {
+- (void)start
+{
     @synchronized (self) {
         if (self.isCancelled)
         {
@@ -91,26 +94,26 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
             return;
         }
 
-#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-        Class UIApplicationClass = NSClassFromString(@"UIApplication");
-        BOOL hasApplication = UIApplicationClass && [UIApplicationClass respondsToSelector:@selector(sharedApplication)];
-        if (hasApplication && [self shouldContinueWhenAppEntersBackground])
+        if ([self shouldContinueWhenAppEntersBackground])
         {
             __weak __typeof__ (self) wself = self;
-            UIApplication * app = [UIApplicationClass performSelector:@selector(sharedApplication)];
-            self.backgroundTaskId = [app beginBackgroundTaskWithExpirationHandler:^{
+            self.backgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
                 __strong __typeof (wself) sself = wself;
                 if (sself)
                 {
                     [sself cancel];
 
-                    [app endBackgroundTask:sself.backgroundTaskId];
+                    [[UIApplication sharedApplication] endBackgroundTask:sself.backgroundTaskId];
                     sself.backgroundTaskId = UIBackgroundTaskInvalid;
                 }
             }];
         }
-#endif
         self.executing = YES;
+        
+        self.request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.remoteURL]
+                                               cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                           timeoutInterval:15];
+        
         self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
         self.thread = [NSThread currentThread];
     }
@@ -127,18 +130,8 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
             [[NSNotificationCenter defaultCenter] postNotificationName:XYDownloadStartNotification object:self];
         });
 
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1)
-        {
-            // Make sure to run the runloop in our background thread so it can process downloaded data
-            // Note: we use a timeout to work around an issue with NSURLConnection cancel under iOS 5
-            //       not waking up the runloop, leading to dead threads (see https://github.com/rs/XY/issues/466)
-            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, false);
-        }
-        else
-        {
-            CFRunLoopRun();
-        }
-
+        CFRunLoopRun();
+        
         if (!self.isFinished)
         {
             [self.connection cancel];
@@ -153,18 +146,12 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
         }
     }
 
-#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-    Class UIApplicationClass = NSClassFromString(@"UIApplication");
-    if(!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)])
-        return;
-    
     if (self.backgroundTaskId != UIBackgroundTaskInvalid)
     {
-        UIApplication * app = [UIApplication performSelector:@selector(sharedApplication)];
-        [app endBackgroundTask:self.backgroundTaskId];
+        [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskId];
         self.backgroundTaskId = UIBackgroundTaskInvalid;
     }
-#endif
+
 }
 
 - (void)cancel
@@ -247,8 +234,18 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
     return YES;
 }
 
+- (XYDownloaderOperation *)download:(NSString *)remoteURL
+                                 to:(NSString*)localPath
+                             params:(NSDictionary *)params
+{
+    self.remoteURL = remoteURL;
+    self.localPath = localPath;
+    self.params = [params copy];
+}
+
 #pragma mark NSURLConnection (delegate)
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
     
     //'304 Not Modified' is an exceptional one
     if (![response respondsToSelector:@selector(statusCode)] || ([((NSHTTPURLResponse *)response) statusCode] < 400 && [((NSHTTPURLResponse *)response) statusCode] != 304))
@@ -283,7 +280,8 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
             [[NSNotificationCenter defaultCenter] postNotificationName:XYDownloadStopNotification object:self];
         });
 
-        if (self.completedBlock) {
+        if (self.completedBlock)
+        {
             self.completedBlock(nil, nil, [NSError errorWithDomain:NSURLErrorDomain code:[((NSHTTPURLResponse *)response) statusCode] userInfo:nil], YES);
         }
         CFRunLoopStop(CFRunLoopGetCurrent());
@@ -306,7 +304,8 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
     }
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)aConnection
+{
     XYDownloaderCompletedBlock completionBlock = self.completedBlock;
     @synchronized(self) {
         CFRunLoopStop(CFRunLoopGetCurrent());
@@ -318,23 +317,16 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
         });
     }
     
-    if (![[NSURLCache sharedURLCache] cachedResponseForRequest:_request])
-    {
-        _responseFromCached = NO;
-    }
-    
     if (completionBlock)
     {
-        if (self.options & XYDownloaderIgnoreCachedResponse && _responseFromCached)
-        {
-            completionBlock(nil, nil, nil, YES);
-        }
+        completionBlock(nil, nil, nil, YES);
     }
     self.completionBlock = nil;
     [self done];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
     @synchronized(self) {
         CFRunLoopStop(CFRunLoopGetCurrent());
         self.thread = nil;
@@ -344,52 +336,79 @@ NSString *const XYDownloadFinishNotification = @"XYDownloadFinishNotification";
         });
     }
 
-    if (self.completedBlock) {
+    if (self.completedBlock)
+    {
         self.completedBlock(nil, nil, error, YES);
     }
     self.completionBlock = nil;
     [self done];
 }
 
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-    _responseFromCached = NO; // If this method is called, it means the response wasn't read from cache
-    if (self.request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData) {
-        // Prevents caching of responses
-        return nil;
-    }
-    else {
-        return cachedResponse;
-    }
-}
 
-- (BOOL)shouldContinueWhenAppEntersBackground {
+- (BOOL)shouldContinueWhenAppEntersBackground
+{
     return self.options & XYDownloaderContinueInBackground;
 }
 
-- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection __unused *)connection {
+- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection __unused *)connection
+{
     return self.shouldUseCredentialStorage;
 }
 
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
         if (!(self.options & XYDownloaderAllowInvalidSSLCertificates) &&
-            [challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)]) {
+            [challenge.sender respondsToSelector:@selector(performDefaultHandlingForAuthenticationChallenge:)])
+        {
             [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
-        } else {
+        }
+        else
+        {
             NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
         }
-    } else {
-        if ([challenge previousFailureCount] == 0) {
-            if (self.credential) {
+    }
+    else
+    {
+        if ([challenge previousFailureCount] == 0)
+        {
+            if (self.credential)
+            {
                 [[challenge sender] useCredential:self.credential forAuthenticationChallenge:challenge];
-            } else {
+            }
+            else
+            {
                 [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
             }
-        } else {
+        }
+        else
+        {
             [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
         }
     }
 }
 
+#pragma mark - getter / setter
+- (void)setFilePath:(NSString *)filePath
+{
+    if (filePath.length < 1)
+        return;
+    
+    NSRange range = [filePath rangeOfString:@"/" options:NSBackwardsSearch];
+    if (range.location == NSNotFound)
+        return;
+    
+    NSString *path = [filePath substringToIndex:range.location];
+    
+    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:path] )
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+
+}
 @end

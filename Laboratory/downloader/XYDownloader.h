@@ -41,10 +41,6 @@ typedef NS_OPTIONS(NSUInteger, XYDownloaderOptions) {
     /// 将下载放到低级先级队列中
     XYDownloaderLowPriority = 1 << 0,
     XYDownloaderProgressiveDownload = 1 << 1,
-    /// 默认情况下请求不使用NSURLCache，如果设置该选项，则以默认的缓存策略来使用NSURLCache
-    XYDownloaderUseNSURLCache = 1 << 2,
-    /// 如果从NSURLCache缓存中读取数据，则使用nil作为参数来调用完成block
-    XYDownloaderIgnoreCachedResponse = 1 << 3,
     /// 在iOS 4+系统上，允许程序进入后台后继续下载图片。该操作通过向系统申请额外的时间来完成后台下载。如果后台任务终止，则操作会被取消
     XYDownloaderContinueInBackground = 1 << 4,
     /// 通过设置NSMutableURLRequest.HTTPShouldHandleCookies = YES来处理存储在NSHTTPCookieStore中的cookie
@@ -58,7 +54,7 @@ typedef NS_OPTIONS(NSUInteger, XYDownloaderOptions) {
 typedef NS_ENUM(NSInteger, XYDownloaderExecutionOrder) {
     /// 默认值, 先进先出
     XYDownloaderFIFOExecutionOrder,
-    /// 后进先出
+    /// 先进后出
     XYDownloaderLIFOExecutionOrder
 };
 
@@ -80,21 +76,21 @@ typedef NSDictionary *(^XYDownloaderHeadersFilterBlock)(NSURL *url, NSDictionary
 + (XYDownloader *)sharedInstance;
 
 /// 最大并发下载数
-@property (assign, nonatomic) NSInteger maxConcurrentDownloads;
+@property (nonatomic, assign) NSInteger maxConcurrentDownloads;
 /// 当前的下载数量
-@property (readonly, nonatomic) NSUInteger currentDownloadCount;
+@property (nonatomic, assign, readonly) NSUInteger currentDownloadCount;
 
 /// 下载超时时间. Default: 15.0
-@property (assign, nonatomic) NSTimeInterval downloadTimeout;
+@property (nonatomic, assign) NSTimeInterval downloadTimeout;
 
 /// 改变下载顺序. Default value is `XYDownloaderFIFOExecutionOrder`.
-@property (assign, nonatomic) XYDownloaderExecutionOrder executionOrder;
+@property (nonatomic, assign) XYDownloaderExecutionOrder executionOrder;
 
 /// username
-@property (strong, nonatomic) NSString *username;
+@property (nonatomic, strong) NSString *username;
 
 /// password
-@property (strong, nonatomic) NSString *password;
+@property (nonatomic, strong) NSString *password;
 
 /// header过滤器
 @property (nonatomic, copy) XYDownloaderHeadersFilterBlock headersFilter;
@@ -129,9 +125,9 @@ typedef NSDictionary *(^XYDownloaderHeadersFilterBlock)(NSURL *url, NSDictionary
  * @return A cancellable XYOperation
  */
 - (id <XYOperation>)downloadImageWithURL:(NSURL *)url
-                                         options:(XYDownloaderOptions)options
-                                        progress:(XYDownloaderProgressBlock)progressBlock
-                                       completed:(XYDownloaderCompletedBlock)completedBlock;
+                                 options:(XYDownloaderOptions)options
+                                progress:(XYDownloaderProgressBlock)progressBlock
+                               completed:(XYDownloaderCompletedBlock)completedBlock;
 
 /// 暂停
 - (void)setSuspended:(BOOL)suspended;

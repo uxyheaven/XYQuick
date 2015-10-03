@@ -57,87 +57,88 @@ static id __singleton__;
     return __singleton__;
 }
 
-- (id)init {
-    if ((self = [super init])) {
-        _operationClass = [XYDownloaderOperation class];
-        _executionOrder = XYDownloaderFIFOExecutionOrder;
-        _downloadQueue = [NSOperationQueue new];
-        _downloadQueue.maxConcurrentOperationCount = 6;
-        _URLCallbacks = [NSMutableDictionary new];
-#ifdef SD_WEBP
-        _HTTPHeaders = [@{@"Accept": @"image/webp,image/*;q=0.8"} mutableCopy];
-#else
-        _HTTPHeaders = [@{@"Accept": @"image/*;q=0.8"} mutableCopy];
-#endif
-        _barrierQueue = dispatch_queue_create("com.hackemist.XYDownloaderBarrierQueue", DISPATCH_QUEUE_CONCURRENT);
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        _operationClass  = [XYDownloaderOperation class];
+        _executionOrder  = XYDownloaderFIFOExecutionOrder;
+        _downloadQueue   = [[NSOperationQueue alloc] init];
+        _URLCallbacks    = [@{} mutableCopy];
+        _barrierQueue    = dispatch_queue_create("com.hackemist.XYDownloaderBarrierQueue", DISPATCH_QUEUE_CONCURRENT);
         _downloadTimeout = 15.0;
+        _downloadQueue.maxConcurrentOperationCount = 3;
     }
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self.downloadQueue cancelAllOperations];
 }
 
-- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
-    if (value) {
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field
+{
+    if (value)
+    {
         self.HTTPHeaders[field] = value;
     }
-    else {
+    else
+    {
         [self.HTTPHeaders removeObjectForKey:field];
     }
 }
 
-- (NSString *)valueForHTTPHeaderField:(NSString *)field {
+- (NSString *)valueForHTTPHeaderField:(NSString *)field
+{
     return self.HTTPHeaders[field];
 }
 
-- (void)setMaxConcurrentDownloads:(NSInteger)maxConcurrentDownloads {
+- (void)setMaxConcurrentDownloads:(NSInteger)maxConcurrentDownloads
+{
     _downloadQueue.maxConcurrentOperationCount = maxConcurrentDownloads;
 }
 
-- (NSUInteger)currentDownloadCount {
+- (NSUInteger)currentDownloadCount
+{
     return _downloadQueue.operationCount;
 }
 
-- (NSInteger)maxConcurrentDownloads {
+- (NSInteger)maxConcurrentDownloads
+{
     return _downloadQueue.maxConcurrentOperationCount;
 }
 
-- (void)setOperationClass:(Class)operationClass {
+- (void)setOperationClass:(Class)operationClass
+{
     _operationClass = operationClass ?: [XYDownloaderOperation class];
 }
 
-- (id <XYOperation>)downloadImageWithURL:(NSURL *)url options:(XYDownloaderOptions)options progress:(XYDownloaderProgressBlock)progressBlock completed:(XYDownloaderCompletedBlock)completedBlock {
+- (id <XYOperation>)downloadImageWithURL:(NSURL *)url options:(XYDownloaderOptions)options progress:(XYDownloaderProgressBlock)progressBlock completed:(XYDownloaderCompletedBlock)completedBlock
+{
     __block XYDownloaderOperation *operation;
     __weak __typeof(self)wself = self;
 
     [self addProgressCallback:progressBlock andCompletedBlock:completedBlock forURL:url createCallback:^{
-        NSTimeInterval timeoutInterval = wself.downloadTimeout;
-        if (timeoutInterval == 0.0) {
-            timeoutInterval = 15.0;
-        }
+        NSTimeInterval timeoutInterval = wself.downloadTimeout ?: 15.0;
 
-        // In order to prevent from potential duplicate caching (NSURLCache + SDImageCache) we disable the cache for image requests if told otherwise
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:(options & XYDownloaderUseNSURLCache ? NSURLRequestUseProtocolCachePolicy : NSURLRequestReloadIgnoringLocalCacheData) timeoutInterval:timeoutInterval];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:timeoutInterval];
         request.HTTPShouldHandleCookies = (options & XYDownloaderHandleCookies);
         request.HTTPShouldUsePipelining = YES;
-        if (wself.headersFilter) {
-            request.allHTTPHeaderFields = wself.headersFilter(url, [wself.HTTPHeaders copy]);
-        }
-        else {
-            request.allHTTPHeaderFields = wself.HTTPHeaders;
-        }
+        request.allHTTPHeaderFields = wself.headersFilter ? wself.headersFilter(url, [wself.HTTPHeaders copy]) : wself.HTTPHeaders;
+
         operation = [[wself.operationClass alloc] initWithRequest:request
                                                           options:options
                                                          progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                              XYDownloader *sself = wself;
                                                              if (!sself) return;
+                                                             
                                                              __block NSArray *callbacksForURL;
                                                              dispatch_sync(sself.barrierQueue, ^{
                                                                  callbacksForURL = [sself.URLCallbacks[url] copy];
                                                              });
-                                                             for (NSDictionary *callbacks in callbacksForURL) {
+                                                             for (NSDictionary *callbacks in callbacksForURL)
+                                                             {
                                                                  dispatch_async(dispatch_get_main_queue(), ^{
                                                                      XYDownloaderProgressBlock callback = callbacks[kProgressCallbackKey];
                                                                      if (callback) callback(receivedSize, expectedSize);
@@ -147,6 +148,7 @@ static id __singleton__;
                                                         completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                             XYDownloader *sself = wself;
                                                             if (!sself) return;
+                                                            
                                                             __block NSArray *callbacksForURL;
                                                             dispatch_barrier_sync(sself.barrierQueue, ^{
                                                                 callbacksForURL = [sself.URLCallbacks[url] copy];
@@ -154,7 +156,8 @@ static id __singleton__;
                                                                     [sself.URLCallbacks removeObjectForKey:url];
                                                                 }
                                                             });
-                                                            for (NSDictionary *callbacks in callbacksForURL) {
+                                                            for (NSDictionary *callbacks in callbacksForURL)
+                                                            {
                                                                 XYDownloaderCompletedBlock callback = callbacks[kCompletedCallbackKey];
                                                                 if (callback) callback(image, data, error, finished);
                                                             }
@@ -162,24 +165,30 @@ static id __singleton__;
                                                         cancelled:^{
                                                             XYDownloader *sself = wself;
                                                             if (!sself) return;
+                                                            
                                                             dispatch_barrier_async(sself.barrierQueue, ^{
                                                                 [sself.URLCallbacks removeObjectForKey:url];
                                                             });
                                                         }];
         
-        if (wself.username && wself.password) {
+        if (wself.username && wself.password)
+        {
             operation.credential = [NSURLCredential credentialWithUser:wself.username password:wself.password persistence:NSURLCredentialPersistenceForSession];
         }
         
-        if (options & XYDownloaderHighPriority) {
+        if (options & XYDownloaderHighPriority)
+        {
             operation.queuePriority = NSOperationQueuePriorityHigh;
-        } else if (options & XYDownloaderLowPriority) {
+        }
+        else if (options & XYDownloaderLowPriority)
+        {
             operation.queuePriority = NSOperationQueuePriorityLow;
         }
 
         [wself.downloadQueue addOperation:operation];
-        if (wself.executionOrder == XYDownloaderLIFOExecutionOrder) {
-            // Emulate LIFO execution order by systematically adding new operations as last operation's dependency
+        if (wself.executionOrder == XYDownloaderLIFOExecutionOrder)
+        {
+            // 先进后出
             [wself.lastAddedOperation addDependency:operation];
             wself.lastAddedOperation = operation;
         }
@@ -188,10 +197,12 @@ static id __singleton__;
     return operation;
 }
 
-- (void)addProgressCallback:(XYDownloaderProgressBlock)progressBlock andCompletedBlock:(XYDownloaderCompletedBlock)completedBlock forURL:(NSURL *)url createCallback:(XYNoParamsBlock)createCallback {
-    // The URL will be used as the key to the callbacks dictionary so it cannot be nil. If it is nil immediately call the completed block with no image or data.
-    if (url == nil) {
-        if (completedBlock != nil) {
+- (void)addProgressCallback:(XYDownloaderProgressBlock)progressBlock andCompletedBlock:(XYDownloaderCompletedBlock)completedBlock forURL:(NSURL *)url createCallback:(XYNoParamsBlock)createCallback
+{
+    if (url == nil)
+    {
+        if (completedBlock != nil)
+        {
             completedBlock(nil, nil, nil, NO);
         }
         return;
@@ -199,27 +210,30 @@ static id __singleton__;
 
     dispatch_barrier_sync(self.barrierQueue, ^{
         BOOL first = NO;
-        if (!self.URLCallbacks[url]) {
-            self.URLCallbacks[url] = [NSMutableArray new];
+        if (!self.URLCallbacks[url])
+        {
+            self.URLCallbacks[url] = [@{} mutableCopy];
             first = YES;
         }
 
         // Handle single download of simultaneous download request for the same URL
         NSMutableArray *callbacksForURL = self.URLCallbacks[url];
-        NSMutableDictionary *callbacks = [NSMutableDictionary new];
-        if (progressBlock) callbacks[kProgressCallbackKey] = [progressBlock copy];
-        if (completedBlock) callbacks[kCompletedCallbackKey] = [completedBlock copy];
+        NSMutableDictionary *callbacks = [@{} mutableCopy];
+        if (progressBlock)
+            callbacks[kProgressCallbackKey] = [progressBlock copy];
+        if (completedBlock)
+            callbacks[kCompletedCallbackKey] = [completedBlock copy];
         [callbacksForURL addObject:callbacks];
         self.URLCallbacks[url] = callbacksForURL;
 
-        if (first) {
+        if (first)
             createCallback();
-        }
     });
 }
 
-- (void)setSuspended:(BOOL)suspended {
-    [self.downloadQueue setSuspended:suspended];
+- (void)setSuspended:(BOOL)suspended
+{
+    self.downloadQueue.suspended = suspended;
 }
 
 @end
