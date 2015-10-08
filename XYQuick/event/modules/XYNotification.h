@@ -32,8 +32,11 @@
 #pragma mark -
 
 #pragma mark - #define
-#define NOTIFICATION_NAME( __name )					uxy_macro_string( __name )
 
+// 声明一个notification name
+#define uxy_def_notification_name( __name )                      uxy_staticConstString( __name )
+
+// 响应一个 notification
 #define uxy_handleNotification( __name, __notification ) \
         - (void)__uxy_handleNotification_##__name:(NSNotification *)__notification
 
@@ -50,12 +53,12 @@ typedef void(^XYNotification_block)(NSNotification *notification);
 
 @property (nonatomic, readonly, strong) NSMutableDictionary *uxy_notifications;
 
-- (void)uxy_registerNotification:(NSString *)name;
-- (void)uxy_registerNotification:(NSString *)name block:(XYNotification_block)block;
+- (void)uxy_registerNotification:(const char *)name;
+- (void)uxy_registerNotification:(const char *)name block:(XYNotification_block)block;
 
-- (void)uxy_unregisterNotification:(NSString*)name;
+- (void)uxy_unregisterNotification:(const char *)name;
 - (void)uxy_unregisterAllNotification;
 
-- (void)uxy_postNotification:(NSString *)name userInfo:(id)userInfo;
+- (void)uxy_postNotification:(const char *)name userInfo:(id)userInfo;
 
 @end

@@ -10,14 +10,14 @@
 
 
 #define ON_DATA_SUCCEED_1_( __DataSource, __data ) \
-    - (void)dataSource:(id)__DataSource didGetData:(id)__data;
+        - (void)dataSource:(id)__DataSource didGetData:(id)__data;
 #define ON_DATA_FAILED_1_( __DataSource, __error )    \
-    - (void)dataSource:(id)__DataSourcet error:(NSError *)__error;
+        - (void)dataSource:(id)__DataSourcet error:(NSError *)__error;
 
 #define ON_DATA_SUCCEED_2_( __filter, __DataSource, __data ) \
-    - (void)## __filter##_DataSource:(id)__DataSource didGetData:(id)__data;
+        - (void)## __filter##_DataSource:(id)__DataSource didGetData:(id)__data;
 #define ON_DATA_FAILED_2_( __filter, __DataSource, __error )    \
-    - (void)##__filter##_DataSource:(id)__DataSourcet error:(NSError *)__error;
+        - (void)##__filter##_DataSource:(id)__DataSourcet error:(NSError *)__error;
 
 
 

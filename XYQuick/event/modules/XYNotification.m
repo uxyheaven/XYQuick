@@ -40,7 +40,7 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
 @property (nonatomic, weak) id target;                  //
 @property (nonatomic, assign) SEL selector;             //
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) id sender;                // 来源
+@property (nonatomic, weak) id sender;                // 来源
 @property (nonatomic, strong) id userInfo;
 
 @property (nonatomic, copy) XYNotification_block block;
@@ -118,9 +118,10 @@ uxy_staticConstString(NSObject_notifications)
     return object;
 }
 
-- (void)uxy_registerNotification:(NSString *)name
+- (void)uxy_registerNotification:(const char *)name
 {
-    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleNotification_%@:", name]);
+    NSString *str = [NSString stringWithUTF8String:name];
+    SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleNotification_%@:", str]);
     if ([self respondsToSelector:aSel])
     {
         [self notificationWihtName:name target:self selector:aSel];
@@ -128,34 +129,37 @@ uxy_staticConstString(NSObject_notifications)
     }
 }
 
-- (void)uxy_registerNotification:(NSString *)name block:(XYNotification_block)block
+- (void)uxy_registerNotification:(const char *)name block:(XYNotification_block)block
 {
     [self notificationWihtName:name block:block];
 }
 
-- (void)notificationWihtName:(NSString *)name target:(id)target selector:(SEL)selector
+- (void)notificationWihtName:(const char *)name target:(id)target selector:(SEL)selector
 {
-    XYNotification *notification = [[XYNotification alloc] initWithName:name sender:nil target:target selector:selector];
+    NSString *str = [NSString stringWithUTF8String:name];
+    XYNotification *notification = [[XYNotification alloc] initWithName:str sender:nil target:target selector:selector];
     
-    NSString *key = [NSString stringWithFormat:@"%@", name];
+    NSString *key = [NSString stringWithFormat:@"%@", str];
     [self.uxy_notifications setObject:notification forKey:key];
 }
-- (void)notificationWihtName:(NSString *)name block:(XYNotification_block)block
+- (void)notificationWihtName:(const char *)name block:(XYNotification_block)block
 {
-    XYNotification *notification = [[XYNotification alloc] initWithName:name sender:nil block:block];
+    NSString *str = [NSString stringWithUTF8String:name];
+    XYNotification *notification = [[XYNotification alloc] initWithName:str sender:nil block:block];
     
-    NSString *key = [NSString stringWithFormat:@"%@", name];
+    NSString *key = [NSString stringWithFormat:@"%@", str];
     [self.uxy_notifications setObject:notification forKey:key];
 }
 
-- (void)uxy_postNotification:(NSString *)name userInfo:(id)userInfo
+- (void)uxy_postNotification:(const char *)name userInfo:(id)userInfo
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:self userInfo:userInfo];
+    NSString *str = [NSString stringWithUTF8String:name];
+    [[NSNotificationCenter defaultCenter] postNotificationName:str object:self userInfo:userInfo];
 }
 
-- (void)uxy_unregisterNotification:(NSString*)name
+- (void)uxy_unregisterNotification:(const char *)name
 {
-     NSString *key = [NSString stringWithFormat:@"%@", name];
+    NSString *key = [NSString stringWithFormat:@"%s", name];
     [self.uxy_notifications removeObjectForKey:key];
 }
 

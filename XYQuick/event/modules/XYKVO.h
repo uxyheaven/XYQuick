@@ -32,8 +32,8 @@
 #pragma mark -
 
 #pragma mark - #define
-#define KVO_NAME( __name )					uxy_macro_string( __name )
 
+// 响应一个KVO属性
 #define uxy_handleKVO( __property, __sourceObject, ...)            \
         metamacro_if_eq(1, metamacro_argcount(__VA_ARGS__))         \
         (__uxy_handleKVO_1(__property, __sourceObject, __VA_ARGS__))    \
@@ -58,7 +58,7 @@ typedef void(^XYKVO_block_new_old)(id newValue, id oldValue);
 // 注意这里是 self 持有了观察者, 在 self 销毁的时候, 取消所有的观察
 @interface NSObject (XYKVO)
 
-@property (nonatomic, readonly, strong) NSMutableDictionary *uxy_observers;
+@property (nonatomic, readonly, strong) NSMutableDictionary *uxy_KVO;
 
 /**
  * api parameters 说明
@@ -68,8 +68,8 @@ typedef void(^XYKVO_block_new_old)(id newValue, id oldValue);
  * target 默认是self
  * block selector, block二选一
  */
-- (void)uxy_observeWithObject:(id)sourceObject property:(NSString*)property;
-- (void)uxy_observeWithObject:(id)sourceObject property:(NSString*)property block:(XYKVO_block_new_old)block;
+- (void)uxy_observeWithObject:(id)sourceObject property:(NSString *)property;
+- (void)uxy_observeWithObject:(id)sourceObject property:(NSString *)property block:(XYKVO_block_new_old)block;
 
 - (void)uxy_removeObserverWithObject:(id)sourceObject property:(NSString *)property;
 - (void)uxy_removeObserverWithObject:(id)sourceObject;
