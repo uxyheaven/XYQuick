@@ -30,9 +30,8 @@
 //  This file Copy from Samurai.
 
 #import "XYTimer.h"
-#import "NSDictionary+XY.h"
+#import <objc/runtime.h>
 #import "NSArray+XY.h"
-#import "NSObject+XY.h"
 
 
 void (*XYTimer_action)(id, SEL, id, NSTimeInterval) = (void (*)(id, SEL, id, NSTimeInterval))objc_msgSend;
@@ -118,12 +117,12 @@ uxy_staticConstString(NSObject_XYTimers)
 
 - (NSMutableDictionary *)uxy_timers
 {
-    id object = [self uxy_getAssociatedObjectForKey:NSObject_XYTimers];
+    id object = objc_getAssociatedObject(self, NSObject_XYTimers);
     
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
-        [self uxy_setRetainAssociatedObject:dic forKey:NSObject_XYTimers];
+        objc_setAssociatedObject(self, NSObject_XYTimers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return dic;
     }
     
@@ -179,7 +178,7 @@ uxy_staticConstString(NSObject_XYTimers)
     NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
     timer.name     = timerName;
-    timer.startAt = [date timeIntervalSince1970];
+    timer.startAt  = [date timeIntervalSince1970];
     timer.duration = 0;
     timer.block    = block;
     timer.timer    = [[NSTimer alloc] initWithFireDate:date interval:interval target:timer selector:@selector(handleTimer) userInfo:nil repeats:repeat];
