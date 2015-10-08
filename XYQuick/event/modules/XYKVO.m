@@ -29,7 +29,7 @@
 //
 
 #import "XYKVO.h"
-#import "NSObject+XY.h"
+#import <objc/runtime.h>
 
 void (*XYKVO_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
 void (*XYKVO_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;
@@ -130,12 +130,12 @@ uxy_staticConstString(NSObject_observers)
 
 - (id)uxy_KVO
 {
-    id object = [self uxy_getAssociatedObjectForKey:NSObject_observers];
+    id object = objc_getAssociatedObject(self, NSObject_observers);
     
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        [self uxy_setRetainAssociatedObject:dic forKey:NSObject_observers];
+        objc_setAssociatedObject(self, NSObject_observers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return dic;
     }
     

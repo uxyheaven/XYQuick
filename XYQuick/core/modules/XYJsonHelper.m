@@ -39,7 +39,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 #pragma mark - NSObject (XYProperties)
 @interface NSObject (XYProperties)
 
-const char *property_getTypeString(objc_property_t property);
+const char *__uxy_property_getTypeString(objc_property_t property);
 // 返回属性列表
 - (NSArray *)__uxy_jsonPropertiesOfClass:(Class)classType;
 // 返回符合协议的属性
@@ -344,7 +344,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 + (NSString *)typeOfPropertyNamed:(NSString *)name
 {
     objc_property_t property = class_getProperty(self, [name UTF8String]);
-    return property ? [NSString stringWithUTF8String:(property_getTypeString(property))] : nil;
+    return property ? [NSString stringWithUTF8String:(__uxy_property_getTypeString(property))] : nil;
 }
 @end
 
@@ -373,7 +373,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 }
 @end
 
-const char *property_getTypeString(objc_property_t property)
+const char *__uxy_property_getTypeString(objc_property_t property)
 {
     const char *attrs = property_getAttributes(property);
     if (attrs == NULL )

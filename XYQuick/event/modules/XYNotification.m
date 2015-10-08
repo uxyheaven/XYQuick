@@ -29,7 +29,7 @@
 //
 
 #import "XYNotification.h"
-#import "NSObject+XY.h"
+#import <objc/runtime.h>
 
 
 void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
@@ -106,12 +106,12 @@ uxy_staticConstString(NSObject_notifications)
 
 - (id)uxy_notifications
 {
-    id object = [self uxy_getAssociatedObjectForKey:NSObject_notifications];
+    id object = objc_getAssociatedObject(self, NSObject_notifications);
     
     if (nil == object)
     {
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        [self uxy_setRetainAssociatedObject:dic forKey:NSObject_notifications];
+        objc_setAssociatedObject(self, NSObject_notifications, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return dic;
     }
     
