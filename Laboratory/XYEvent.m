@@ -218,15 +218,12 @@
 }
 @end
 
-#pragma mark -NSObject (XYEvent)
-
+#pragma mark -
+#if (1 == __XY_DEBUG_UNITTESTING__)
 // ----------------------------------
 // Unit test
 // ----------------------------------
-
-#pragma mark -
-
-#if (1 == __XY_DEBUG_UNITTESTING__)
+#import "XYUnitTest.h"
 
 UXY_TEST_CASE( Core, XYEventCenter )
 {

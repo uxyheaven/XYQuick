@@ -41,13 +41,13 @@
 
 /// 程序目录，不能存任何东西
 + (NSString *)appPath;
-// 文档目录，需要ITUNES同步备份的数据存这里
+/// 文档目录，需要ITUNES同步备份的数据存这里
 + (NSString *)docPath;
-// 配置目录，配置文件存这里
+/// 配置目录，配置文件存这里
 + (NSString *)libPrefPath;
-// 缓存目录，系统在磁盘空间不足的情况下会删除里面的文件，iTunes会删除
+/// 缓存目录，系统在磁盘空间不足的情况下会删除里面的文件，iTunes会删除
 + (NSString *)libCachePath;
-// 缓存目录，APP退出后，系统可能会删除这里的内容
+/// 缓存目录，APP退出后，系统可能会删除这里的内容
 + (NSString *)tmpPath;
 
 /// 返回目标的资源目录
@@ -57,6 +57,9 @@
 + (BOOL)touchDirectory:(NSString *)path;
 /// 如果目标文件不存在, 创建一个空文件
 + (BOOL)touchFile:(NSString *)file;
+
+/// 返回文件的MD5
++ (NSString *)fileMD5:(NSString *)path;
 
 /**
  * 返回目下所有给定后缀的文件的方法

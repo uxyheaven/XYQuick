@@ -29,9 +29,6 @@
 //
 
 #import "XYFileCache.h"
-#import "XYCommon.h"
-#import "XYSystemInfo.h"
-#import "XYSandbox.h"
 #import "XYAutoCoding.h"
 #import "XYThread.h"
 

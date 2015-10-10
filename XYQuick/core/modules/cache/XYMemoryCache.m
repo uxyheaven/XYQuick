@@ -29,8 +29,6 @@
 //
 
 #import "XYMemoryCache.h"
-#import "NSObject+XY.h"
-#import "NSString+XY.h"
 
 #undef	DEFAULT_MAX_COUNT
 #define DEFAULT_MAX_COUNT	(48)

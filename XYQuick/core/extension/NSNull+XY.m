@@ -29,7 +29,6 @@
 //
 
 #import "NSNull+XY.h"
-#import "XYUnitTest.h"
 
 @implementation NSNull (XY_InternalNullExtention)
 
@@ -84,13 +83,12 @@
 
 @end
 
+#pragma mark -
+#if (1 == __XY_DEBUG_UNITTESTING__)
 // ----------------------------------
 // Unit test
 // ----------------------------------
-
-#pragma mark -
-
-#if (1 == __XY_DEBUG_UNITTESTING__)
+#import "XYUnitTest.h"
 
 UXY_TEST_CASE( Core, NSNull )
 {
