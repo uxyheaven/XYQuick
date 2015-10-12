@@ -5,27 +5,29 @@
 * 本库采用ARC
 
 ### XYQuick
-#### core
+#### Core
 * XYTimer 		// 定时器类
 * XYKVO 	// KVO的封装
 * XYNotification 	// NSNotification的封装
 * XYSandbox 	// 沙箱路径
 * XYSystemInfo //	系统信息
-* cache         // 换成模块, 包含内存缓存, 文件缓存, UserDefaults
-* debug			// 测试模块, 包含单元测试
 * XYJsonHelper 	// json to object , object to json
 * XYAOP // 面向切面编程
 * XYProtocolExtension	// 协议扩展
 * XYReachability		// 网络可达性检测
+##### Cache
+缓存模块, 包含内存缓存, 文件缓存, UserDefaults
+##### Debug
+调试模块, 包含单元测试, 时间统计
 
-#### event
+#### Event
 * XYMulticastDelegate 	// 多路委托
 * XYSignal				// 责任链信号
 * XYNotification		// Notification的封装
 * XYKVO			// KVO的封装
 * XYFlyweightTransmit	// 轻量级的底层往高层传数据
 
-#### ui
+#### UI
 * XYKeyboardHelper		// 弹出键盘时,移动所编辑的控件的通用解决方案
 * XYAnimate 	// UIView动画的封装
 * XYTabBarController		// 自定义的UITabBarController
