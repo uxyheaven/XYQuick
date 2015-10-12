@@ -52,7 +52,7 @@
 @interface UIViewController (XYBase_private)
 
 // 某些vc(UITableViewController)加载的时候不执行loadView方法
-@property (nonatomic, assign) BOOL __uxy_isLoadedLoadView;
+@property (nonatomic, assign) BOOL __uxy_isExecutedLoadView;
 
 @end
 
@@ -113,9 +113,9 @@
 #pragma mark - private
 - (void)__uxy__loadViewHandle
 {
-    if (self.__uxy_isLoadedLoadView) return;
+    if (self.__uxy_isExecutedLoadView) return;
     
-    self.__uxy_isLoadedLoadView = YES;
+    self.__uxy_isExecutedLoadView = YES;
 
     if ([self respondsToSelector:@selector(uxy_createFields)])
         [self performSelector:@selector(uxy_createFields)];
@@ -136,15 +136,14 @@
 
 @implementation UIViewController(XYBase_private)
 
-@dynamic __uxy_isLoadedLoadView;
-
-- (BOOL)__uxy_isLoadedLoadView
+uxy_staticConstString(UIViewController_isExecuted_loadView)
+- (BOOL)__uxy_isExecutedLoadView
 {
-    return [objc_getAssociatedObject(self, "VC.isLoadedLoadView") boolValue];
+    return [objc_getAssociatedObject(self, UIViewController_isExecuted_loadView) boolValue];
 }
-- (void)set__uxy_isLoadedLoadView:(BOOL)isLoadedLoadView
+-(void)set__uxy_isExecutedLoadView:(BOOL)__uxy_isExecutedLoadView
 {
-    objc_setAssociatedObject(self, "VC.isLoadedLoadView", @(isLoadedLoadView), OBJC_ASSOCIATION_ASSIGN);
+        objc_setAssociatedObject(self, UIViewController_isExecuted_loadView, @(__uxy_isExecutedLoadView), OBJC_ASSOCIATION_ASSIGN);
 }
 @end
 

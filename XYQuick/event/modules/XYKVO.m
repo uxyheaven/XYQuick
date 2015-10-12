@@ -130,16 +130,11 @@ uxy_staticConstString(NSObject_observers)
 
 - (id)uxy_KVO
 {
-    id object = objc_getAssociatedObject(self, NSObject_observers);
-    
-    if (nil == object)
-    {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
+    return objc_getAssociatedObject(self, NSObject_observers) ?: ({
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:2];
         objc_setAssociatedObject(self, NSObject_observers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        return dic;
-    }
-    
-    return object;
+        dic;
+    });
 }
 
 - (void)uxy_observeWithObject:(id)object property:(NSString*)property

@@ -117,16 +117,11 @@ uxy_staticConstString(NSObject_XYTimers)
 
 - (NSMutableDictionary *)uxy_timers
 {
-    id object = objc_getAssociatedObject(self, NSObject_XYTimers);
-    
-    if (nil == object)
-    {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
+    return objc_getAssociatedObject(self, NSObject_XYTimers) ?: ({
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:2];
         objc_setAssociatedObject(self, NSObject_XYTimers, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        return dic;
-    }
-    
-    return object;
+        dic;
+    });
 }
 
 - (NSTimer *)uxy_timer:(NSTimeInterval)interval name:(NSString *)name

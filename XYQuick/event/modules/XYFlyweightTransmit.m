@@ -50,48 +50,42 @@ uxy_staticConstString(NSObject_key_flyweightData)
 uxy_staticConstString(NSObject_key_objectDic)
 - (void)uxy_receiveObject:(void(^)(id object))aBlock withIdentifier:(NSString *)identifier
 {
-    NSString *key = identifier ?: @"uxy_sendObject";
-    NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_objectDic);
-    if(dic == nil)
-    {
-        dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        objc_setAssociatedObject(self, NSObject_key_objectDic, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_objectDic) ?: ({
+        NSMutableDictionary *tmpDic = [NSMutableDictionary dictionaryWithCapacity:4];
+        objc_setAssociatedObject(self, NSObject_key_objectDic, tmpDic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        tmpDic;
+    });
     
-    [dic setObject:[aBlock copy] forKey:key];
+    dic[identifier ?: @"uxy_sendObject"] = [aBlock copy];
 }
 
 - (void)uxy_sendObject:(id)anObject withIdentifier:(NSString *)identifier
 {
-    NSString *key = identifier ?: @"uxy_sendObject";
     NSDictionary *dic = objc_getAssociatedObject(self, NSObject_key_objectDic);
     if (dic == nil) return;
     
-    void(^aBlock)(id anObject) = [dic objectForKey:key];
+    void(^aBlock)(id anObject) = dic[identifier ?: @"uxy_sendObject"];
     aBlock(anObject);
 }
 
 uxy_staticConstString(NSObject_key_eventBlockDic)
 - (void)uxy_handlerEventWithBlock:(id)aBlock withIdentifier:(NSString *)identifier
 {
-    NSString *key = identifier ?: @"uxy_handlerEvent";
-    NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_eventBlockDic);
-    if(dic == nil)
-    {
-        dic = [NSMutableDictionary dictionaryWithCapacity:4];
-        objc_setAssociatedObject(self, NSObject_key_eventBlockDic, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
+    NSMutableDictionary *dic = objc_getAssociatedObject(self, NSObject_key_eventBlockDic) ?: ({
+        NSMutableDictionary *tmpDic = [NSMutableDictionary dictionaryWithCapacity:4];
+        objc_setAssociatedObject(self, NSObject_key_eventBlockDic, tmpDic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        tmpDic;
+    });
     
-    [dic setObject:[aBlock copy] forKey:key];
+    dic[identifier ?: @"uxy_handlerEvent"] = [aBlock copy];
 }
 
 - (id)uxy_blockForEventWithIdentifier:(NSString *)identifier
 {
-    NSString *key = identifier ?: @"uxy_handlerEvent";
     NSDictionary *dic = objc_getAssociatedObject(self, NSObject_key_eventBlockDic);
     if(dic == nil) return nil;
     
-    return [dic objectForKey:key];
+    return dic[identifier ?: @"uxy_handlerEvent"];
 }
 
 @end;

@@ -106,16 +106,11 @@ uxy_staticConstString(NSObject_notifications)
 
 - (id)uxy_notifications
 {
-    id object = objc_getAssociatedObject(self, NSObject_notifications);
-    
-    if (nil == object)
-    {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:4];
+    return objc_getAssociatedObject(self, NSObject_notifications) ?: ({
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:2];
         objc_setAssociatedObject(self, NSObject_notifications, dic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        return dic;
-    }
-    
-    return object;
+        dic;
+    });
 }
 
 - (void)uxy_registerNotification:(const char *)name
