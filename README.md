@@ -11,9 +11,12 @@
 * XYNotification 	// NSNotification的封装
 * XYSandbox 	// 沙箱路径
 * XYSystemInfo //	系统信息
-* cache         // 对象缓存,包含内存缓存, 文件缓存, UserDefaults
+* cache         // 换成模块, 包含内存缓存, 文件缓存, UserDefaults
+* debug			// 测试模块, 包含单元测试
 * XYJsonHelper 	// json to object , object to json
 * XYAOP // 面向切面编程
+* XYProtocolExtension	// 协议扩展
+* XYReachability		// 网络可达性检测
 
 #### event
 * XYMulticastDelegate 	// 多路委托

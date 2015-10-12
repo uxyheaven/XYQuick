@@ -27,39 +27,30 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
+//  This file Copy from ProtocolKit.
 
-#import <Foundation/Foundation.h>
+#import "XYQuick_Predefine.h"
+#pragma mark -
 
-// Modules
-#import "XYThread.h"                    // GCD
-#import "XYTimer.h"                     // 定时器
-#import "XYSystemInfo.h"                // 系统信息
-#import "XYSandbox.h"                   // 沙箱
-#import "XYJsonHelper.h"                // json to object , object to json
-#import "XYAOP.h"                       // aop
-#import "XYRuntime.h"                   // runtime
-#import "XYBlackMagic.h"                // 黑魔法
-#import "XYReachability.h"              // 网络可达性检测
-#import "XYBaseBuilder.h"               // 通用建造者
-#import "XYProtocolExtension.h"         // 协议扩展
+// For a magic reserved keyword color, use @uxy_defProtocolMethod(your_protocol_name)
+#define uxy_defProtocolMethod __uxy_extension
 
-#import "XYCommonDefine.h"
-#import "XYCommon.h"                    // 待分解
+// Interface
+#define __uxy_extension($protocol) __uxy_extension_imp($protocol, __uxy_get_container_class($protocol))
 
-#import "XYCache.h"                     // 缓存模块
-#import "XYQuick_Debug.h"               // 调试模块
+// Implementation
+#define __uxy_extension_imp($protocol, $container_class) \
+        protocol $protocol; \
+        @interface $container_class : NSObject <$protocol> @end \
+        @implementation $container_class \
+        + (void)load { \
+            __uxy_protocolExtension_load(@protocol($protocol), $container_class.class); \
+        } \
 
-// Extensions
-#import "NSObject+XY.h"
-#import "NSArray+XY.h"
-#import "NSDictionary+XY.h"
-#import "NSString+XY.h"
-#import "NSData+XY.h"
-#import "NSDate+XY.h"
-#import "NSNumber+XY.h"
-#import "NSSet+XY.h"
-#import "NSNull+XY.h"
+// Get container class name by counter
+#define __uxy_get_container_class($protocol) __uxy_get_container_class_imp($protocol, __COUNTER__)
+#define __uxy_get_container_class_imp($protocol, $counter) __uxy_get_container_class_imp_concat(__PKContainer_, $protocol, $counter)
+#define __uxy_get_container_class_imp_concat($a, $b, $c) $a ## $b ## _ ## $c
 
-@interface XYQuick_Core : NSObject
+void __uxy_protocolExtension_load(Protocol *protocol, Class containerClass);
 
-@end

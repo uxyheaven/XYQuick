@@ -35,6 +35,7 @@
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */ = {isa = PBXBuildFile; fileRef = 575B850319FFDAA700EAE7E0 /* AopTestM.m */; };
+		577D961F1BCBA7F6004C0D41 /* XYProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */; settings = {ASSET_TAGS = (); }; };
 		577F73291AF92DF30071FD0B /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73221AF92DF30071FD0B /* IndicatorHelper.m */; };
 		577F732A1AF92DF30071FD0B /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73241AF92DF30071FD0B /* LKDBHelperExtension.m */; };
 		577F732B1AF92DF30071FD0B /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73261AF92DF30071FD0B /* RequestHelper.m */; };
@@ -209,6 +210,8 @@
 		575694851883D9C4004C2C74 /* GirlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GirlEntity.m; sourceTree = "<group>"; };
 		575B850219FFDAA700EAE7E0 /* AopTestM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AopTestM.h; sourceTree = "<group>"; };
 		575B850319FFDAA700EAE7E0 /* AopTestM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AopTestM.m; sourceTree = "<group>"; };
+		577D961D1BCBA7F6004C0D41 /* XYProtocolExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYProtocolExtension.h; sourceTree = "<group>"; };
+		577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYProtocolExtension.m; sourceTree = "<group>"; };
 		577F73211AF92DF30071FD0B /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
 		577F73221AF92DF30071FD0B /* IndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorHelper.m; sourceTree = "<group>"; };
 		577F73231AF92DF30071FD0B /* LKDBHelperExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelperExtension.h; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				57F56F321AFC86FD00298D7E /* XYThread.m */,
 				57F56F331AFC86FD00298D7E /* XYTimer.h */,
 				57F56F341AFC86FD00298D7E /* XYTimer.m */,
+				577D961D1BCBA7F6004C0D41 /* XYProtocolExtension.h */,
+				577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -960,11 +965,6 @@
 				LastTestingUpgradeCheck = 0630;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Heaven;
-				TargetAttributes = {
-					57B3FFE5177AD9BC00775FC9 = {
-						DevelopmentTeam = 926D22PQMW;
-					};
-				};
 			};
 			buildConfigurationList = 57B3FFE1177AD9BC00775FC9 /* Build configuration list for PBXProject "JoinShow" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1085,6 +1085,7 @@
 				57F56FA91AFC86FD00298D7E /* XYQuick_UI.m in Sources */,
 				577F732A1AF92DF30071FD0B /* LKDBHelperExtension.m in Sources */,
 				57F56F971AFC86FD00298D7E /* UIButton+XY.m in Sources */,
+				577D961F1BCBA7F6004C0D41 /* XYProtocolExtension.m in Sources */,
 				57F56F8D1AFC86FD00298D7E /* XYThread.m in Sources */,
 				57F56F7D1AFC86FD00298D7E /* XYFileCache.m in Sources */,
 				578FBFE3183AFA8B0083A952 /* AnimationVC2.m in Sources */,
