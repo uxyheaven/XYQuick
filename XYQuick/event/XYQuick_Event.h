@@ -37,10 +37,6 @@
 #import "XYMulticastDelegate.h"             // 多路委托
 #import "XYNotification.h"                  // Notification的封装
 #import "XYKVO.h"                           // KVO的封装
-#import "XYFlyweightTransmit.h"             // 轻量级的底层往高层传数据
+#import "XYFlyweightTransmit.h"             // 轻量级的数据事件传递
 // Extensions
 
-
-@interface XYQuick_Event : NSObject
-
-@end

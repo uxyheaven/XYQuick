@@ -24,7 +24,7 @@
 
 @implementation RequestHelper
 
-+ (id)defaultSettings
++ (id)defaultRequestHelper
 {
     // 参考
     RequestHelper *eg = [[RequestHelper alloc] initWithHostName:@"www.apple.com" customHeaderFields:@{@"x-client-identifier" : @"iOS"}];
@@ -294,7 +294,7 @@
 
 #pragma mark - DownloadHelper
 @implementation DownloadHelper
-+ (id)defaultSettings
++ (id)defaultRequestHelper
 {
     // 参考
     DownloadHelper *eg = [[DownloadHelper alloc] initWithHostName:nil];

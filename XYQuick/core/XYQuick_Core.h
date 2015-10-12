@@ -46,7 +46,7 @@
 #import "XYCommonDefine.h"
 #import "XYCommon.h"                    // 待分解
 
-#import "XYCache.h"                     // 缓存模块
+#import "XYQuick_Cache.h"               // 缓存模块
 #import "XYQuick_Debug.h"               // 调试模块
 
 // Extensions
@@ -60,6 +60,3 @@
 #import "NSSet+XY.h"
 #import "NSNull+XY.h"
 
-@interface XYQuick_Core : NSObject
-
-@end

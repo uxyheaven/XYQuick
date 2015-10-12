@@ -7,7 +7,7 @@
 //
 
 #import "XYObjectCache.h"
-#import "XYCache.h"
+#import "XYQuick_Cache.h"
 #import "XYSandbox.h"
 #import "XYThread.h"
 #import "NSString+XY.h"

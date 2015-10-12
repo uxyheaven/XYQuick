@@ -30,7 +30,8 @@
     return MB_HUD;
 }
 
-+ (id)indicatorView{
++ (id)indicatorView
+{
     return [IndicatorHelper MBProgressHUD];
 }
 
@@ -48,13 +49,15 @@
     return hud;
 }
 
-- (id)inView:(UIView *)view{
+- (id)inView:(UIView *)view
+{
     MBProgressHUD *hud = [IndicatorHelper indicatorView];
     [view addSubview:hud];
     
     return hud;
 }
-- (id)show{
+- (id)show
+{
     MBProgressHUD *hud = [IndicatorHelper indicatorView];
     
     [hud show:YES];

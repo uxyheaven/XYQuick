@@ -7,7 +7,7 @@
 //
 
 // 网络请求类, 基于MKNetworkEngine
-// 用时需要从此类继承,并重写defaultSettings方法
+// 用时需要从此类继承,并重写defaultRequestHelper方法
 
 
 #import "MKNetworkKit.h"
@@ -30,10 +30,26 @@ typedef enum {
     requestHelper_del,
 } HTTPMethod;
 
-@property (nonatomic, assign) BOOL freezable;
+/**
+ *  @abstract Freezable request
+ *  @property freezable
+ *
+ *  @discussion
+ *	Freezable operations are serialized when the network goes down and restored when the connectivity is up again.
+ *  Only POST, PUT and DELETE operations are freezable.
+ *  In short, any operation that changes the state of the server are freezable, creating a tweet, checking into a new location etc., Operations like fetching a list of tweets (think readonly GET operations) are not freezable.
+ *  MKNetworkKit doesn't freeze (readonly) GET operations even if they are marked as freezable
+ */
+
+@property (nonatomic, assign) BOOL freezable;       // 冻结
+/**
+ *  When forceReload is NO, this method behaves like enqueueOperation:
+ *  When forceReload is YES, No cached data will be returned even if cached data is available.
+ */
 @property (nonatomic, assign) BOOL forceReload;
+
 //
-+ (id)defaultSettings;
++ (id)defaultRequestHelper;
 
 - (HttpRequest *)get:(NSString *)path;
 - (HttpRequest *)get:(NSString *)path
@@ -86,7 +102,7 @@ typedef enum {
 @end
 
 @interface DownloadHelper : MKNetworkEngine
-+ (id)defaultSettings;      // 参考
++ (id)defaultRequestHelper;      // 参考
 
 // 下载前,请先执行此方法;
 - (void)setup;

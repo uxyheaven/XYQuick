@@ -37,8 +37,8 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
 #pragma mark - XYNotification
 @interface XYNotification ()
 
-@property (nonatomic, weak) id target;                  //
-@property (nonatomic, assign) SEL selector;             //
+@property (nonatomic, weak) id target;
+@property (nonatomic, assign) SEL selector;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, weak) id sender;                // 来源
 @property (nonatomic, strong) id userInfo;

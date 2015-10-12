@@ -57,6 +57,3 @@
 // Protocol
 #import "XYHUDProtocol.h"           // HUD协议
 
-@interface XYQuick_UI : NSObject
-
-@end
