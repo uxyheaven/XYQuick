@@ -59,7 +59,8 @@ static inline CGRect XYRectFromSize(CGFloat width, CGFloat height)
 }
 
 
-static inline CGRect XYRectWithWidth(CGRect rect, CGFloat width) {
+static inline CGRect XYRectWithWidth(CGRect rect, CGFloat width)
+{
     rect.size.width = width;
     
     return rect;
@@ -153,6 +154,25 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 @end
 
 @implementation XYViewFrameBuilder
+
++ (void)load
+{
+    XYRectInsets(CGRectZero, 0, 0, 0, 0);
+    XYRectWithSize(CGRectZero, 0, 0);
+    XYRectFromSize(0, 0);
+    XYRectWithWidth(CGRectZero, 0);
+    XYRectWithHeight(CGRectZero, 0);
+    XYRectWithOrigin(CGRectZero, 0, 0);
+    XYRectWithX(CGRectZero, 0);
+    XYRectWithY(CGRectZero, 0);
+    XYPointWithOffset(CGPointZero, 0, 0);
+    XYPointCenterInSize(CGSizeZero);
+    XYPointIntegral(CGPointZero);
+    XYRectCenter(CGRectZero);
+    XYRectMove(CGRectZero, 0, 0);
+    XYEdgeInsetsInsetSize(CGSizeZero, UIEdgeInsetsZero);
+    XYEdgeInsetsUnion(UIEdgeInsetsZero, UIEdgeInsetsZero);
+}
 
 - (id)initWithView:(UIView *)view
 {
