@@ -1,6 +1,7 @@
 #{XY} Quick
 
-{XY} 快速开发框架是一个常用方法与常用模式的集合.封装了数据持久化,数据缓存（文件缓存,内存缓存）,kvo, Notification, delegate, 动画, 图片处理, 自定义了ViewController生命周期.
+{XY} 快速开发框架是用于快速高效开发的工具库.它包含`Core`, `Event`, `UI`三层,
+封装了数据持久化,数据缓存（文件缓存,内存缓存）,kvo, Notification, delegate, 动画, 图片处理, 自定义了ViewController生命周期.
 
 * 本库采用ARC
 
@@ -31,7 +32,7 @@
 * XYKeyboardHelper		// 弹出键盘时,移动所编辑的控件的通用解决方案
 * XYAnimate 	// UIView动画的封装
 * XYTabBarController		// 自定义的UITabBarController
-* XYBaseViewController		// UIViewController基类,自定义了ViewController的生命周期
+* XYBaseViewController		// 自定义ViewController生命周期
 * XYViewControllerManager		// UIViewController 管理类
 
 ### XYVender
