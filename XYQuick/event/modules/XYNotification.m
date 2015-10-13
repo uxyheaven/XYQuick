@@ -82,18 +82,13 @@ void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSen
 
 - (void)handleNotification:(NSNotification *)notification
 {
-    if (_block)
-    {
-        _block(notification);
-        return;
-    }
+    _block ? _block(notification) : nil;
     
-    XYNotification_action1(_target, _selector, notification);
+    (_target && _selector) ? XYNotification_action1(_target, _selector, notification) : nil;
 }
 
 - (void)dealloc
 {
-    //NSLogD(@"%@", _name);
     [[NSNotificationCenter defaultCenter] removeObserver:self name:_name object:nil];
 }
     

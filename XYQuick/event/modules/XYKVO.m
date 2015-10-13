@@ -164,7 +164,8 @@ uxy_staticConstString(NSObject_observers)
     }
 }
 
-- (void)uxy_observeWithObject:(id)object property:(NSString*)property block:(XYKVO_block_new_old)block{
+- (void)uxy_observeWithObject:(id)object property:(NSString*)property block:(XYKVO_block_new_old)block
+{
     [self observeWithObject:object keyPath:property block:block];
 }
 
@@ -174,20 +175,20 @@ uxy_staticConstString(NSObject_observers)
     NSAssert(keyPath.length > 0, @"property 必须存在");
     NSAssert(object, @"被观察的对象object 必须存在");
     
-    XYKVO *ob = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath target:target selector:selector type:type];
-
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, keyPath];
-    [self.uxy_KVO setObject:ob forKey:key];
+    XYKVO *ob     = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath target:target selector:selector type:type];
+    
+    self.uxy_KVO[key] = ob;
 }
 
 - (void)observeWithObject:(id)object keyPath:(NSString*)keyPath block:(XYKVO_block_new_old)block
 {
     NSAssert(block, @"block 必须存在");
     
-    XYKVO *ob = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath block:block];
-    
     NSString *key = [NSString stringWithFormat:@"%@_%@", object, keyPath];
-    [self.uxy_KVO setObject:ob forKey:key];
+    XYKVO *ob     = [[XYKVO alloc] initWithSourceObject:object keyPath:keyPath block:block];
+
+    self.uxy_KVO[key] = ob;
 }
 
 - (void)uxy_removeObserverWithObject:(id)object property:(NSString *)property
