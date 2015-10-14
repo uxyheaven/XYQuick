@@ -39,6 +39,7 @@
 @property (nonatomic, readonly, strong) NSData *uxy_SHA1Data;
 @property (nonatomic, readonly, copy) NSString *uxy_SHA1String;
 
+/// base64加码
 @property (nonatomic, readonly, copy) NSString *uxy_BASE64Encrypted;
 
 @end

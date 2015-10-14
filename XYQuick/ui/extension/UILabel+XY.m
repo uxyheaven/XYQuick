@@ -30,19 +30,19 @@
 
 #import "UILabel+XY.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-#define MB_TEXTSIZE(text, font) [text length] > 0 ? [text \
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
+#define XY_TEXTSIZE(text, font) [text length] > 0 ? [text \
         sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
 #else
-#define MB_TEXTSIZE(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero;
+#define XY_TEXTSIZE(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero;
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-#define MB_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
+#define XY_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
         boundingRectWithSize:maxSize options:(NSStringDrawingUsesLineFragmentOrigin) \
         attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #else
-#define MB_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
+#define XY_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
         sizeWithFont:font constrainedToSize:maxSize lineBreakMode:mode] : CGSizeZero;
 #endif
 
@@ -80,7 +80,7 @@
         return CGSizeZero;
     }
     
-	return MB_MULTILINE_TEXTSIZE(self.text, self.font, bound, self.lineBreakMode);
+	return XY_MULTILINE_TEXTSIZE(self.text, self.font, bound, self.lineBreakMode);
 }
 
 - (CGSize)uxy_estimateUISizeByWidth:(CGFloat)width
@@ -93,11 +93,11 @@
     
 	if ( self.numberOfLines )
 	{
-		return MB_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(width, self.font.lineHeight * self.numberOfLines + 1), self.lineBreakMode);
+		return XY_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(width, self.font.lineHeight * self.numberOfLines + 1), self.lineBreakMode);
 	}
 	else
 	{
-		return MB_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(width, 999999.0f), self.lineBreakMode);
+		return XY_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(width, 999999.0f), self.lineBreakMode);
 	}
 }
 
@@ -108,6 +108,6 @@
         return CGSizeMake( 0.0f, height );
     }
     
-	return MB_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(999999.0f, height), self.lineBreakMode);
+	return XY_MULTILINE_TEXTSIZE(self.text, self.font, CGSizeMake(999999.0f, height), self.lineBreakMode);
 }
 @end

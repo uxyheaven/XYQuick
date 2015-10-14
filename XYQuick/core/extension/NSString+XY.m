@@ -161,12 +161,6 @@ DUMMY_CLASS(NSString_XY);
     return [NSData dataWithBytesNoCopy:bytes length:length];
 }
 
-@dynamic uxy_data;
-- (NSData *)uxy_data
-{
-	return [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-}
-
 - (NSArray *)uxy_allURLs
 {
 	NSMutableArray * array = [NSMutableArray array];

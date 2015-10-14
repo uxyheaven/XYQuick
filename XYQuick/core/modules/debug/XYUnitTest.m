@@ -117,15 +117,6 @@ __attribute__((constructor)) static void registerUnitTestStart()
 
 - (void)run
 {
-    fprintf( stderr, "  //  __  __          ____           _          _\n" );
-    fprintf( stderr, "  //  \\ \\/ / /\\_/\\   /___ \\  _   _  (_)   ___  | | __\n" );
-    fprintf( stderr, "  //   \\  /  \\_ _/  //  / / | | | | | |  / __| | |/ /\n" );
-    fprintf( stderr, "  //   /  \\   / \\  / \\_/ /  | |_| | | | | (__  |   <\n" );
-    fprintf( stderr, "  //  /_/\\_\\  \\_/  \\___,_\\   \\__,_| |_|  \\___| |_|\\_\\\n" );
-    fprintf( stderr, "  //\n" );
-    fprintf( stderr, "  //  Copyright (C) Heaven.\n" );
-    fprintf( stderr, "  //  https://github.com/uxyheaven/XYQuick\n" );
-    fprintf( stderr, "  \n" );
     fprintf( stderr, "  =============================================================\n" );
     fprintf( stderr, "   Unit testing ...\n" );
     fprintf( stderr, "  -------------------------------------------------------------\n" );

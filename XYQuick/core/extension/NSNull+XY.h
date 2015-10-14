@@ -31,8 +31,8 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-#define UXY_NullObjects @[@"",@0,@{},@[]]
+#define XYNullObjects @[@"",@0,@{},@[]]
 
-@interface NSNull (XY_InternalNullExtention)
+@interface NSNull (XYInternalNullExtention)
 
 @end

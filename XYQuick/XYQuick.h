@@ -50,4 +50,6 @@
 
 #endif
 
+@interface XYQuick : NSObject
+@end
 

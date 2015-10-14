@@ -39,11 +39,10 @@
 @property (nonatomic, readonly, strong) NSData *uxy_SHA1Data;
 @property (nonatomic, readonly, copy) NSString *uxy_SHA1String;
 
+/// base64解码
 @property (nonatomic, readonly, copy) NSString *uxy_BASE64Decrypted;
 
-@property (nonatomic, readonly, strong) NSData *uxy_data;
-
-// url相关
+// URL相关
 - (NSArray *)uxy_allURLs;
 
 - (NSString *)uxy_URLByAppendingDict:(NSDictionary *)params;
@@ -58,15 +57,19 @@
 + (NSString *)uxy_queryStringFromArray:(NSArray *)array encoding:(BOOL)encoding;;
 + (NSString *)uxy_queryStringFromKeyValues:(id)first, ...;
 
-- (NSString *)uxy_URLEncoding;      // 编码
-- (NSString *)uxy_URLDecoding;      // 解码
+/// URL编码
+- (NSString *)uxy_URLEncoding;
+/// URL解码
+- (NSString *)uxy_URLDecoding;
 
+/// 从URL的query里返回字典, like "a=a&b=b".
 - (NSMutableDictionary *)uxy_dictionaryFromQueryComponents;
 
-// 去掉首尾的空格和换行
+/// 去掉首尾的空格和换行
 - (NSString *)uxy_trim;
-// 去掉首尾的 " '
+/// 去掉首尾的引号 " '
 - (NSString *)uxy_unwrap;
+/// 拼接重复的self
 - (NSString *)uxy_repeat:(NSUInteger)count;
 - (NSString *)uxy_normalize;
 
@@ -121,12 +124,13 @@
  */
 - (void)uxy_erasure;
 
-// 大写字母 (International Business Machines 变成 IBM)
+/// 返回单词缩写 (International Business Machines 变成 IBM)
 - (NSString*)uxy_stringByInitials;
 
-// 返回显示字串所需要的尺寸
+/// 返回显示字串所需要的尺寸
 - (CGSize)uxy_calculateSize:(CGSize)size font:(UIFont *)font;
 
+/// 返回阅读字串需要的时间 (length * 0.1 + 2, 2)
 - (NSTimeInterval)uxy_displayTime;
 
 @end

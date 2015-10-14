@@ -25,53 +25,29 @@
 //	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 //	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//	THE SOFTWARE.
 //
 
-#import "NSDictionary+XY.h"
+#import "XYQuick.h"
 
-static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
-static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
+@implementation XYQuick
 
-@implementation NSDictionary (XY)
-
-+ (NSMutableDictionary *)uxy_nonRetainDictionary
++ (void)load
 {
-    CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
-    CFDictionaryValueCallBacks callbacks  = kCFTypeDictionaryValueCallBacks;
-    callbacks.retain                      = __XYRetainNoOp;
-    callbacks.release                     = __XYReleaseNoOp;
-    
-    return  (__bridge_transfer NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
-}
-
-- (id)uxy_safeObjectForKey:(id)aKey
-{
-    return aKey ? self[aKey] :nil;
-}
-
-@end
-
-@implementation NSMutableDictionary (XY)
-
-- (void)uxy_safeSetObject:(id)anObject forKey:(id <NSCopying>)aKey
-{
-    aKey ? (aKey[aKey] = anObject) : nil;
-}
-
-- (void)uxy_safeSetObject:(id)obj forKeyedSubscript:(id <NSCopying>)key
-{
-    key ? ([self setObject:obj forKeyedSubscript:key]) : nil;
-}
-
-- (void)uxy_safeRemoveObjectForKey:(id)aKey
-{
-    aKey ? [self removeObjectForKey:aKey]: nil;
+    uxy_once_begin( XYQuick_start)
+    {
+#ifdef DEBUG
+        fprintf( stderr, "  //  __  __          ____           _          _\n" );
+        fprintf( stderr, "  //  \\ \\/ / /\\_/\\   /___ \\  _   _  (_)   ___  | | __\n" );
+        fprintf( stderr, "  //   \\  /  \\_ _/  //  / / | | | | | |  / __| | |/ /\n" );
+        fprintf( stderr, "  //   /  \\   / \\  / \\_/ /  | |_| | | | | (__  |   <\n" );
+        fprintf( stderr, "  //  /_/\\_\\  \\_/  \\___,_\\   \\__,_| |_|  \\___| |_|\\_\\\n" );
+        fprintf( stderr, "  //\n" );
+        fprintf( stderr, "  //  Verson: %s. Copyright (C) Heaven.\n", __XYQUICK_VERSION__ );
+        fprintf( stderr, "  //  https://github.com/uxyheaven/XYQuick\n" );
+        fprintf( stderr, "  \n" );
+#endif
+    }
+    uxy_once_end
 }
 
 @end
-
-
-
-
-

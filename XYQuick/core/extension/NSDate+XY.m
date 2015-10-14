@@ -29,9 +29,10 @@
 //
 
 #import "NSDate+XY.h"
-#import "NSObject+XY.h"
 
 DUMMY_CLASS(NSDate_XY);
+
+static NSArray *XY_weekdays = nil;
 
 @implementation NSDate (XY)
 
@@ -200,7 +201,7 @@ uxy_staticConstString(NSDate_key_stringCache)
 
 - (NSString *)uxy_stringCache
 {
-    NSString *str = (NSString *)[self uxy_getAssociatedObjectForKey:NSDate_key_stringCache];
+    NSString *str = objc_getAssociatedObject(self, NSDate_key_stringCache);
     if (str == nil)
     {
         return [self uxy_resetStringCache];
@@ -214,7 +215,7 @@ uxy_staticConstString(NSDate_key_stringCache)
     NSDateFormatter *dateFormatter = [NSDate uxy_dateFormatter];
     NSString *str                  = [dateFormatter stringFromDate:self];
     
-    [self uxy_setCopyAssociatedObject:str forKey:NSDate_key_stringCache];
+    objc_setAssociatedObject(self, NSDate_key_stringCache, str, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     return str;
 }

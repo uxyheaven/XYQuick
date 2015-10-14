@@ -38,7 +38,7 @@
     
     if (signature != nil) return signature;
     
-    for (NSObject *object in UXY_NullObjects)
+    for (NSObject *object in XYNullObjects)
     {
         signature = [object methodSignatureForSelector:selector];
 
@@ -64,7 +64,7 @@
         return;
     }
     
-    for (NSObject *object in UXY_NullObjects)
+    for (NSObject *object in XYNullObjects)
     {
         if ([object respondsToSelector:anInvocation.selector])
         {
@@ -84,10 +84,10 @@
 @end
 
 #pragma mark -
+#if (1 == __XY_DEBUG_UNITTESTING__)
 // ----------------------------------
 // Unit test
 // ----------------------------------
-#if (1 == __XY_DEBUG_UNITTESTING__)
 #import "XYUnitTest.h"
 
 UXY_TEST_CASE( Core, NSNull )

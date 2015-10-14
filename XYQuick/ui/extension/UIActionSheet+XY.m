@@ -77,48 +77,42 @@ uxy_staticConstString(UIActionSheet_key_didDismiss)
 {
     UIActionSheet_block_self_index block = [self uxy_getAssociatedObjectForKey:UIActionSheet_key_clicked];
     
-    if (block)
-        block(actionSheet, buttonIndex);
+    block ? block(actionSheet, buttonIndex) : nil;
 }
 
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
     UIActionSheet_block_self block = [self uxy_getAssociatedObjectForKey:UIActionSheet_key_cancel];
-    
-    if (block)
-        block(actionSheet);
+
+    block ? block(actionSheet) : nil;
 }
 
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet
 {
     UIActionSheet_block_self block = [self uxy_getAssociatedObjectForKey:UIActionSheet_key_willPresent];
     
-    if (block)
-        block(actionSheet);
+    block ? block(actionSheet) : nil;
 }
 
 - (void)didPresentActionSheet:(UIActionSheet *)actionSheet
 {
     UIActionSheet_block_self block = [self uxy_getAssociatedObjectForKey:UIActionSheet_key_didPresent];
     
-    if (block)
-        block(actionSheet);
+    block ? block(actionSheet) : nil;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     UIActionSheet_block_self_index block = [self uxy_getAssociatedObjectForKey:UIActionSheet_key_willDismiss];
     
-    if (block)
-        block(actionSheet, buttonIndex);
+    block ? block(actionSheet, buttonIndex) : nil;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     UIActionSheet_block_self_index block = [self uxy_getAssociatedObjectForKey:UIActionSheet_key_didDismiss];
     
-    if (block)
-        block(actionSheet, buttonIndex);
+    block ? block(actionSheet, buttonIndex) : nil;
 }
 
 @end

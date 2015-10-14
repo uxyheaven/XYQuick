@@ -177,13 +177,11 @@ uxy_staticConstString(UIControl_acceptEventInterval)
 {
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
     
-    if(opreations == nil)
-        return;
+    if(opreations == nil) return;
     
     void(^block)(id sender) = [opreations objectForKey:[UIControl __uxy_eventName:event]];
     
-    if (block)
-        block(self);
+    block ? block(self) : nil ;
     
 }
 

@@ -174,7 +174,7 @@ static id sharedInstance;
 // ----------------------------------
 // Version
 // ----------------------------------
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
 #endif
 
 // ----------------------------------

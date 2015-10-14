@@ -37,8 +37,6 @@
 #define __XY_DAY    (24 * __XY_HOUR)
 #define __XY_MONTH	(30 * __XY_DAY)
 
-static NSArray *XY_weekdays = nil;
-
 @interface NSDate (XY)
 
 @property (nonatomic, readonly) NSInteger   uxy_year;
@@ -53,6 +51,7 @@ static NSArray *XY_weekdays = nil;
 
 // @"yyyy-MM-dd HH:mm:ss"
 - (NSString *)uxy_stringWithDateFormat:(NSString *)format;
+// 刚刚 %d分钟前 %d小时前 昨天 %d天前 %d个月前 %d年前
 - (NSString *)uxy_timeAgo;
 
 + (long long)uxy_timeStamp;
@@ -60,17 +59,17 @@ static NSArray *XY_weekdays = nil;
 + (NSDate *)uxy_dateWithString:(NSString *)string;
 + (NSDate *)uxy_now;
 
-// 返回day天后的日期(若day为负数,则为|day|天前的日期)
+/// 返回day天后的日期(若day为负数,则为|day|天前的日期)
 - (NSDate *)uxy_dateAfterDay:(int)day;
 
-// 返回距离aDate有多少天
+/// 返回距离aDate有多少天
 - (NSInteger)uxy_distanceInDaysToDate:(NSDate *)aDate;
 
-// UTC时间string缓存
+/// UTC时间string缓存
 @property (nonatomic, copy, readonly) NSString *uxy_stringCache;
-// 重置缓存
+/// 重置缓存
 - (NSString *)uxy_resetStringCache;
-// 返回当地时区的时间
+/// 返回当地时区的时间
 - (NSDate *)uxy_localTime;
 
 /**

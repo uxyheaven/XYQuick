@@ -84,48 +84,42 @@ uxy_staticConstString(UIAlertView_key_shouldEnableFirstOtherButton)
 {
     UIAlertView_block_self_index block = objc_getAssociatedObject(self, UIAlertView_key_clicked);
     
-    if (block)
-        block(alertView, buttonIndex);
+    block ? block(alertView, buttonIndex) : nil;
 }
 
 - (void)alertViewCancel:(UIAlertView *)alertView
 {
     UIAlertView_block_self block = objc_getAssociatedObject(self, UIAlertView_key_cancel);
     
-    if (block)
-        block(alertView);
+    block ? block(alertView) : nil;
 }
 
 - (void)willPresentAlertView:(UIAlertView *)alertView
 {
     UIAlertView_block_self block = objc_getAssociatedObject(self, UIAlertView_key_willPresent);
-    
-    if (block)
-        block(alertView);
+
+    block ? block(alertView) : nil;
 }
 
 - (void)didPresentAlertView:(UIAlertView *)alertView
 {
     UIAlertView_block_self block = objc_getAssociatedObject(self, UIAlertView_key_didPresent);
     
-    if (block)
-        block(alertView);
+    block ? block(alertView) : nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     UIAlertView_block_self_index block = objc_getAssociatedObject(self, UIAlertView_key_willDismiss);
     
-    if (block)
-        block(alertView,buttonIndex);
+    block ? block(alertView, buttonIndex) : nil;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     UIAlertView_block_self_index block = objc_getAssociatedObject(self, UIAlertView_key_didDismiss);
     
-    if (block)
-        block(alertView, buttonIndex);
+    block ? block(alertView, buttonIndex) : nil;
 }
 
 - (void)uxy_showWithDuration:(NSTimeInterval)duration
