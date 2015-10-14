@@ -12,7 +12,7 @@
 @protocol RubyChinaNodeEntity <NSObject>
 @end
 
-@interface RubyChinaNodeEntity : NSObject <XYJsonAutoBinding>
+@interface RubyChinaNodeEntity : NSObject <XYJSONAutoBinding>
 
 @property (nonatomic, assign) int nodeID;
 @property (nonatomic,  strong) NSString *name;

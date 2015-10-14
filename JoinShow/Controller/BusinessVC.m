@@ -109,7 +109,7 @@ ViewControllerDemoTitle(Business)
     RubyChinaNodeEntity *anObject = [[RubyChinaNodeEntity alloc] init];
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
-    NSString *str = [anObject uxy_jsonString];
+    NSString *str = [anObject uxy_JSONString];
     NSLog(@"%@", str);
 }
 
@@ -169,7 +169,7 @@ ViewControllerDemoTitle(Business)
     label.textColor = [UIColor redColor];
     
     if (self.model && self.model.count > 0) {
-        NSString *str = [[self.model objectAtIndex:0] uxy_jsonString];
+        NSString *str = [[self.model objectAtIndex:0] uxy_JSONString];
         NSLog(@"%@", str);
     }
 }

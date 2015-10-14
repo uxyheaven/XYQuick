@@ -272,13 +272,12 @@ __attribute__((constructor)) static void registerUnitTestStart()
 #endif
 @end
 
+#pragma mark -
+#if (1 == __XY_DEBUG_UNITTESTING__)
 // ----------------------------------
 // Unit test
 // ----------------------------------
-
-#pragma mark -
-
-#if (1 == __XY_DEBUG_UNITTESTING__)
+#import "XYUnitTest.h"
 
 UXY_TEST_CASE( Core, UnitTest )
 {
@@ -303,5 +302,4 @@ UXY_DESCRIBE( test3 )
 }
 
 UXY_TEST_CASE_END
-
 #endif

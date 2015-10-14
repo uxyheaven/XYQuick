@@ -181,10 +181,10 @@ __attribute__((constructor)) static void __uxy_extension_inject_entry(void) {
 }
 
 #pragma mark -
-#if (1 == __XY_DEBUG_UNITTESTING__)
 // ----------------------------------
 // Unit test
 // ----------------------------------
+#if (1 == __XY_DEBUG_UNITTESTING__)
 #import "XYUnitTest.h"
 
 // Protocol
@@ -241,7 +241,6 @@ UXY_DESCRIBE( test_1 )
     UXY_EXPECTED( [str1 isEqualToString:@"1"] );
     UXY_EXPECTED( [str2 isEqualToString:@"a"] );
 }
-
 
 UXY_TEST_CASE_END
 

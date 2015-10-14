@@ -71,7 +71,7 @@ BOOL __applicationDidFinishLaunchingWithOptions(id self, SEL _cmd, UIApplication
 #pragma mark- hook
 - (void)__before_application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"%s", __FUNCTION__);
+    // NSLog(@"%s", __FUNCTION__);
     [self before_application:application didFinishLaunchingWithOptions:launchOptions];
 }
 

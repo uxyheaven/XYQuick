@@ -39,7 +39,7 @@ ViewControllerDemoTitle(JSON)
     
     _titles = @[
                 @"normalParser",
-                @"XYJsonParser"
+                @"XYJSONParser"
                 ];
 }
 
@@ -147,7 +147,7 @@ ViewControllerDemoTitle(JSON)
     NSString *json = [self jsonStringWithName:@"json0.json"];
     NSLog(@"%@", json);
 }
--(void) XYJsonParser
+-(void) XYJSONParser
 {
     /*
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -155,7 +155,7 @@ ViewControllerDemoTitle(JSON)
         NSData *data = [NSData dataWithContentsOfURL:url];
         if (data)
         {
-            XYJsonParser *shotParser = [XYJsonParser objectWithKey:@"shots" clazz:[Shot class]];
+            XYJSONParser *shotParser = [XYJSONParser objectWithKey:@"shots" clazz:[Shot class]];
             [data uxy_parseToObjectWithParsers:@[shotParser]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSArray *shots = shotParser.result;

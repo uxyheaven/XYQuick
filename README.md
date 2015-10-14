@@ -12,7 +12,7 @@
 * XYNotification 	// NSNotification的封装
 * XYSandbox 	// 沙箱路径
 * XYSystemInfo //	系统信息
-* XYJsonHelper 	// json to object , object to json
+* XYJSON 	// json to object , object to json
 * XYAOP // 面向切面编程
 * XYProtocolExtension	// 协议扩展
 * XYReachability		// 网络可达性检测

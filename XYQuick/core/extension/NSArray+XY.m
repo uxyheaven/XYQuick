@@ -299,7 +299,3 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 }
 @end
 
-// ----------------------------------
-// Unit test
-// ----------------------------------
-

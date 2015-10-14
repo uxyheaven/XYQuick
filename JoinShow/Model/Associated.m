@@ -21,13 +21,12 @@ uxy_def_property_weak(NSDate *, date)
 @end
 
 
+#pragma mark -
 // ----------------------------------
 // Unit test
 // ----------------------------------
-
-#pragma mark -
-
 #if (1 == __XY_DEBUG_UNITTESTING__)
+#import "XYUnitTest.h"
 
 UXY_TEST_CASE( Test, Associated )
 {

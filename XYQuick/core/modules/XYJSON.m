@@ -29,34 +29,33 @@
 //
 //  This file Copy from YYJSONHelper.
 
-#import "XYJsonHelper.h"
+#import "XYJSON.h"
 
 #define kNSObjectProtocolProperties @[@"hash", @"superclass", @"description", @"debugDescription"]
 
-#pragma mark - static
 static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 
-#pragma mark - NSObject (XYProperties)
-@interface NSObject (XYProperties)
+#pragma mark - NSObject (__XYJSON)
+@interface NSObject (__XYJSON)
 
 const char *__uxy_property_getTypeString(objc_property_t property);
 // 返回属性列表
-- (NSArray *)__uxy_jsonPropertiesOfClass:(Class)classType;
+- (NSArray *)__uxy_JSONPropertiesOfClass:(Class)classType;
 // 返回符合协议的属性
 + (NSString *)__uxy_propertyConformsToProtocol:(Protocol *)protocol propertyName:(NSString *)propertyName;
+
++ (NSDateFormatter *)__uxy_JSONDateFormatter;
+
 @end
 
-#pragma mark - NSObject (XYJsonHelper_helper)
-@interface NSObject (XYJsonHelper_helper)
-+ (NSDateFormatter *)__uxy_jsonDateFormatter;
-@end
-#pragma mark -
-@interface NSDictionary (__XYJsonHelper)
+#pragma mark - NSDictionary (__XYJSON)
+@interface NSDictionary (__XYJSON)
 - (id)__uxy_objectForKey:(id)key;
 @end
 
-#pragma mark - XYJsonParser
-@implementation XYJsonParser
+#pragma mark - XYJSONParser
+@implementation XYJSONParser
+
 - (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single
 {
     self = [super init];
@@ -96,8 +95,8 @@ const char *__uxy_property_getTypeString(objc_property_t property);
 }
 @end
 
-#pragma mark - NSObject (XYJsonHelper)
-@implementation NSObject (XYJsonHelper)
+#pragma mark - NSObject (XYJSON)
+@implementation NSObject (XYJSON)
 
 // 待重构
 static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
@@ -107,12 +106,12 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
     return NO;
 }
 
-+ (NSDictionary *)uxy_jsonKeyPropertyDictionary
++ (NSDictionary *)uxy_JSONKeyPropertyDictionary
 {
-    return [self __uxy_jsonKeyPropertyDictionary];
+    return [self __uxy_JSONKeyPropertyDictionary];
 }
 
-+ (NSMutableDictionary *)__uxy_jsonKeyPropertyDictionary
++ (NSMutableDictionary *)__uxy_JSONKeyPropertyDictionary
 {
     if (!XY_JSON_OBJECT_KEYDICTS)
     {
@@ -126,15 +125,15 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         dictionary = [[NSMutableDictionary alloc] init];
         if ([self uxy_hasSuperProperties] && ![[self superclass] isMemberOfClass:[NSObject class]])
         {
-            [dictionary setValuesForKeysWithDictionary:[[self superclass] uxy_jsonKeyPropertyDictionary]];
+            [dictionary setValuesForKeysWithDictionary:[[self superclass] uxy_JSONKeyPropertyDictionary]];
         }
         
         __uxy_swizzleInstanceMethod(self, @selector(valueForUndefinedKey:), @selector(__uxy_valueForUndefinedKey:));
         __uxy_swizzleInstanceMethod(self, @selector(setValue:forUndefinedKey:), @selector(__uxy_setValue:forUndefinedKey:));
         
-        NSArray *properties = [self __uxy_jsonPropertiesOfClass:[self class]];
+        NSArray *properties = [self __uxy_JSONPropertiesOfClass:[self class]];
         [properties enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSString *typeName = [self __uxy_propertyConformsToProtocol:@protocol(XYJsonAutoBinding) propertyName:obj];
+            NSString *typeName = [self __uxy_propertyConformsToProtocol:@protocol(XYJSONAutoBinding) propertyName:obj];
             if (typeName)
             {
                 [dictionary setObject:typeName forKey:obj];
@@ -156,31 +155,31 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
     return dictionary;
 }
 
-+ (void)uxy_bindJsonKey:(NSString *)jsonKey toProperty:(NSString *)property
++ (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property
 {
-    NSMutableDictionary *dic = [self __uxy_jsonKeyPropertyDictionary];
+    NSMutableDictionary *dic = [self __uxy_JSONKeyPropertyDictionary];
     [dic removeObjectForKey:property];
-    [dic setObject:property forKey:jsonKey];
+    [dic setObject:property forKey:JSONKey];
 }
 
-+ (void)uxy_removeJsonKeyWithProperty:(NSString *)property
++ (void)uxy_removeJSONKeyWithProperty:(NSString *)property
 {
-    NSMutableDictionary *dic = [self __uxy_jsonKeyPropertyDictionary];
+    NSMutableDictionary *dic = [self __uxy_JSONKeyPropertyDictionary];
     [dic removeObjectForKey:property];
 }
 
-- (NSString *)uxy_jsonString
+- (NSString *)uxy_JSONString
 {
-    return self.uxy_jsonDictionary.uxy_jsonString;
+    return self.uxy_JSONDictionary.uxy_JSONString;
 }
 
-- (NSData *)uxy_jsonData
+- (NSData *)uxy_JSONData
 {
     if ([NSJSONSerialization isValidJSONObject:self])
     {
         NSError *error;
-        NSData  *jsonData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
-        if (!error) return jsonData;
+        NSData  *JSONData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
+        if (!error) return JSONData;
     }
 #ifdef DEBUG
     else
@@ -190,20 +189,20 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
     }
 #endif
-    return self.uxy_jsonDictionary.uxy_jsonData;
+    return self.uxy_JSONDictionary.uxy_JSONData;
 }
 
 
 // 应该比较脆弱，不支持太复杂的对象。
-- (NSDictionary *)uxy_jsonDictionary
+- (NSDictionary *)uxy_JSONDictionary
 {
     if ([self isKindOfClass:[NSString class]])
     {
-        return [(NSString *)self uxy_jsonValue];
+        return [(NSString *)self uxy_JSONValue];
     }
     
-    NSDictionary        *keyDict  = [self.class uxy_jsonKeyPropertyDictionary];
-    NSMutableDictionary *jsonDict = [[NSMutableDictionary alloc] initWithCapacity:keyDict.count];
+    NSDictionary        *keyDict  = [self.class uxy_JSONKeyPropertyDictionary];
+    NSMutableDictionary *JSONDict = [[NSMutableDictionary alloc] initWithCapacity:keyDict.count];
     [keyDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id value         = nil;
         id originalValue = [self valueForKey:key];
@@ -211,12 +210,12 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         {
             if ([originalValue isKindOfClass:[NSArray class]])
             {
-                value = [[originalValue uxy_jsonData] uxy_jsonString];
-                //value = @{key : [[originalValue uxy_jsonData] uxy_jsonString]};
+                value = [[originalValue uxy_JSONData] uxy_JSONString];
+                //value = @{key : [[originalValue uxy_JSONData] uxy_JSONString]};
             }
             else
             {
-                value = [originalValue uxy_jsonDictionary];
+                value = [originalValue uxy_JSONDictionary];
             }
         }
         else
@@ -226,13 +225,13 @@ static NSMutableDictionary *XY_JSON_OBJECT_KEYDICTS = nil;
         if (value)
         {
             if ([value isKindOfClass:[NSDate class]]) {
-                NSDateFormatter * formatter = [NSObject __uxy_jsonDateFormatter];
+                NSDateFormatter * formatter = [NSObject __uxy_JSONDateFormatter];
                 value = [formatter stringFromDate:value];
             }
-            [jsonDict setValue:value forKey:key];
+            [JSONDict setValue:value forKey:key];
         }
     }];
-    return jsonDict;
+    return JSONDict;
 }
 
 // 待重构
@@ -290,7 +289,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 
 #pragma mark - NSObject (Properties)
 @implementation NSObject (Properties)
-- (NSArray *)__uxy_jsonPropertiesOfClass:(Class)classType
+- (NSArray *)__uxy_JSONPropertiesOfClass:(Class)classType
 {
     NSMutableArray  *propertyNames = [[NSMutableArray alloc] init];
     id              obj            = objc_getClass([NSStringFromClass(classType) cStringUsingEncoding:4]);
@@ -348,12 +347,12 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 }
 @end
 
-#pragma mark - NSObject (XYJsonHelper_helper)
-@implementation NSObject (XYJsonHelper_helper)
-+ (NSDateFormatter *)__uxy_jsonDateFormatter
+#pragma mark - NSObject (XYJSON_helper)
+@implementation NSObject (XYJSON_helper)
++ (NSDateFormatter *)__uxy_JSONDateFormatter
 {
     NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-    NSDateFormatter *dateFormatter = threadDictionary[@"__uxy_jsonDateFormatter"];
+    NSDateFormatter *dateFormatter = threadDictionary[@"__uxy_JSONDateFormatter"];
     
     if(!dateFormatter)
     {
@@ -364,7 +363,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
                 dateFormatter            = [[NSDateFormatter alloc] init];
                 dateFormatter.timeZone   = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
                 dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-                threadDictionary[@"__uxy_jsonDateFormatter"] = dateFormatter;
+                threadDictionary[@"__uxy_JSONDateFormatter"] = dateFormatter;
             }
         }
     }
@@ -391,16 +390,16 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return (buffer);
 }
 
-#pragma mark - NSString (XYJsonHelper)
-@implementation NSString (XYJsonHelper)
+#pragma mark - NSString (XYJSON)
+@implementation NSString (XYJSON)
 - (id)uxy_toModel:(Class)classType
 {
     return [self.__uxy_toData uxy_toModel:classType];
 }
 
-- (id)uxy_toModel:(Class)classType forKey:(NSString *)jsonKey
+- (id)uxy_toModel:(Class)classType forKey:(NSString *)JSONKey
 {
-    return [self.__uxy_toData uxy_toModel:classType forKey:jsonKey];
+    return [self.__uxy_toData uxy_toModel:classType forKey:JSONKey];
 }
 
 - (NSArray *)uxy_toModels:(Class)classType
@@ -408,16 +407,16 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return [self.__uxy_toData uxy_toModels:classType];
 }
 
-- (NSArray *)uxy_toModels:(Class)classType forKey:(NSString *)jsonKey
+- (NSArray *)uxy_toModels:(Class)classType forKey:(NSString *)JSONKey
 {
-    return [self.__uxy_toData uxy_toModels:classType forKey:jsonKey];
+    return [self.__uxy_toData uxy_toModels:classType forKey:JSONKey];
 }
 
 
 
-- (id)uxy_jsonValue
+- (id)uxy_JSONValue
 {
-    return self.__uxy_toData.uxy_jsonValue;
+    return self.__uxy_toData.uxy_JSONValue;
 }
 
 #pragma mark - private
@@ -427,13 +426,13 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 }
 @end
 
-#pragma mark - NSDictionary (XYJsonHelper)
-@implementation NSDictionary (XYJsonHelper)
-- (NSString *)uxy_jsonString
+#pragma mark - NSDictionary (XYJSON)
+@implementation NSDictionary (XYJSON)
+- (NSString *)uxy_JSONString
 {
-    NSData *jsonData = self.uxy_jsonData;
+    NSData *JSONData = self.uxy_JSONData;
 
-    return jsonData ? [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] : nil;
+    return JSONData ? [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding] : nil;
 }
 
 - (id)__uxy_objectForKey:(id)key
@@ -443,8 +442,8 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 @end
 
 
-#pragma mark - NSData (XYJsonHelper)
-@implementation NSData (XYJsonHelper)
+#pragma mark - NSData (XYJSON)
+@implementation NSData (XYJSON)
 
 - (id)uxy_toModel:(Class)classType
 {
@@ -456,12 +455,12 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     if (classType == nil)
         return nil;
     
-    id jsonValue = [self __uxy_jsonValueForKey:key];
-    if (jsonValue == nil)
+    id JSONValue = [self __uxy_JSONValueForKey:key];
+    if (JSONValue == nil)
         return nil;
     
-    NSDictionary *dic = [classType uxy_jsonKeyPropertyDictionary];
-    id model          = [NSData objectForClassType:classType fromDict:jsonValue withJsonKeyPropertyDictionary:dic];
+    NSDictionary *dic = [classType uxy_JSONKeyPropertyDictionary];
+    id model          = [NSData objectForClassType:classType fromDict:JSONValue withJSONKeyPropertyDictionary:dic];
     
     return model;
 }
@@ -476,16 +475,16 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     if (classType == nil)
         return nil;
     
-    id jsonValue = [self __uxy_jsonValueForKey:key];
-    if (jsonValue == nil)
+    id JSONValue = [self __uxy_JSONValueForKey:key];
+    if (JSONValue == nil)
         return nil;
     
-    NSDictionary *dic = [classType uxy_jsonKeyPropertyDictionary];
-    if ([jsonValue isKindOfClass:[NSArray class]])
+    NSDictionary *dic = [classType uxy_JSONKeyPropertyDictionary];
+    if ([JSONValue isKindOfClass:[NSArray class]])
     {
-        NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[jsonValue count]];
-        [jsonValue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            id model = [NSData objectForClassType:classType fromDict:obj withJsonKeyPropertyDictionary:dic];
+        NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[JSONValue count]];
+        [JSONValue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            id model = [NSData objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
             if (model)
             {
                 [models addObject:model];
@@ -494,18 +493,18 @@ const char *__uxy_property_getTypeString(objc_property_t property)
         
         return models;
     }
-    else if ([jsonValue isKindOfClass:[NSDictionary class]])
+    else if ([JSONValue isKindOfClass:[NSDictionary class]])
     {
-        return [NSData objectForClassType:classType fromDict:jsonValue withJsonKeyPropertyDictionary:dic];
+        return [NSData objectForClassType:classType fromDict:JSONValue withJSONKeyPropertyDictionary:dic];
     }
     
     return nil;
 }
 
-- (id)uxy_jsonValue
+- (id)uxy_JSONValue
 {
     NSError *error = nil;
-    id result = [NSJSONSerialization JSONObjectWithData:self options:Json_string_options error:&error];
+    id result = [NSJSONSerialization JSONObjectWithData:self options:JSON_string_options error:&error];
     
 #ifdef DEBUG
     if (error != nil) NSLog(@"%@", error);
@@ -520,9 +519,9 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 + (id)__uxy_objectsForClassType:(Class)classType fromArray:(NSArray *)array
 {
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:array.count];
-    NSDictionary *dic      = [classType uxy_jsonKeyPropertyDictionary];
+    NSDictionary *dic      = [classType uxy_JSONKeyPropertyDictionary];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        id model = [self objectForClassType:classType fromDict:obj withJsonKeyPropertyDictionary:dic];
+        id model = [self objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
         if (model)
         {
             [models addObject:model];
@@ -533,13 +532,13 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 
 + (id)objectForClassType:(Class)classType
                 fromDict:(NSDictionary *)dict
-         withJsonKeyPropertyDictionary:(NSDictionary *)uxy_jsonKeyPropertyDictionary
+         withJSONKeyPropertyDictionary:(NSDictionary *)uxy_JSONKeyPropertyDictionary
 {
     if (![dict isKindOfClass:[NSDictionary class]])
     {
         return nil;
     }
-    if (![uxy_jsonKeyPropertyDictionary isKindOfClass:[NSDictionary class]])
+    if (![uxy_JSONKeyPropertyDictionary isKindOfClass:[NSDictionary class]])
     {
         return nil;
     }
@@ -549,7 +548,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     }
     
     id model = [[classType alloc] init];
-    [uxy_jsonKeyPropertyDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [uxy_JSONKeyPropertyDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([[dict valueForKeyPath:key] isKindOfClass:[NSArray class]])
         {
             if ([self __uxy_classForString:obj valueKey:nil])
@@ -576,7 +575,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
             Class otherClass = [self __uxy_classForString:obj valueKey:&valueKey];
             if (otherClass)
             {
-                id object = [self objectForClassType:classType fromDict:[dict valueForKeyPath:key] withJsonKeyPropertyDictionary:[otherClass uxy_jsonKeyPropertyDictionary]];
+                id object = [self objectForClassType:classType fromDict:[dict valueForKeyPath:key] withJSONKeyPropertyDictionary:[otherClass uxy_JSONKeyPropertyDictionary]];
                 if (object)
                 {
                     if (valueKey)
@@ -603,20 +602,20 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return model;
 }
 
-- (NSString *)uxy_jsonString
+- (NSString *)uxy_JSONString
 {
     return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
 
-- (id)__uxy_jsonValueForKey:(NSString *)key
+- (id)__uxy_JSONValueForKey:(NSString *)key
 {
-    if (key && [[self uxy_jsonValue] isKindOfClass:[NSDictionary class]])
+    if (key && [[self uxy_JSONValue] isKindOfClass:[NSDictionary class]])
     {
-        return [[self uxy_jsonValue] valueForKeyPath:key];
+        return [[self uxy_JSONValue] valueForKeyPath:key];
     }
     else
     {
-        return [self uxy_jsonValue];
+        return [self uxy_JSONValue];
     }
 }
 
@@ -641,12 +640,12 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return nil;
 }
 
-- (id)uxy_jsonValueForKeyPath:(NSString *)key
+- (id)uxy_JSONValueForKeyPath:(NSString *)key
 {
-    id jsonValue = [self uxy_jsonValue];
-    if ([jsonValue isKindOfClass:[NSDictionary class]])
+    id JSONValue = [self uxy_JSONValue];
+    if ([JSONValue isKindOfClass:[NSDictionary class]])
     {
-        NSDictionary *dic = (NSDictionary *)jsonValue;
+        NSDictionary *dic = (NSDictionary *)JSONValue;
         return [dic valueForKeyPath:key];
     }
     return nil;
@@ -654,30 +653,30 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 
 - (NSDictionary *)uxy_dictionaryForKeyPaths:(NSArray *)keys
 {
-    id jsonValue = [self uxy_jsonValue];
-    if ([jsonValue isKindOfClass:[NSDictionary class]])
+    id JSONValue = [self uxy_JSONValue];
+    if ([JSONValue isKindOfClass:[NSDictionary class]])
     {
-        NSDictionary *dic = (NSDictionary *)jsonValue;
-        NSMutableDictionary *jsonDic = [NSMutableDictionary dictionary];
+        NSDictionary *dic = (NSDictionary *)JSONValue;
+        NSMutableDictionary *JSONDic = [NSMutableDictionary dictionary];
         [keys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-            id jsonValue = [dic valueForKeyPath:key];
-            if (jsonValue)
+            id JSONValue = [dic valueForKeyPath:key];
+            if (JSONValue)
             {
-                [jsonDic setObject:jsonValue forKey:key];
+                [JSONDic setObject:JSONValue forKey:key];
             }
         }];
-        return jsonDic;
+        return JSONDic;
     }
     return nil;
 }
 
 - (void)uxy_parseToObjectWithParsers:(NSArray *)parsers
 {
-    id jsonValue = [self uxy_jsonValue];
-    if ([jsonValue isKindOfClass:[NSDictionary class]])
+    id JSONValue = [self uxy_JSONValue];
+    if ([JSONValue isKindOfClass:[NSDictionary class]])
     {
-        [parsers enumerateObjectsUsingBlock:^(XYJsonParser *parser, NSUInteger idx, BOOL *stop) {
-            id obj = [jsonValue objectForKey:parser.key];
+        [parsers enumerateObjectsUsingBlock:^(XYJSONParser *parser, NSUInteger idx, BOOL *stop) {
+            id obj = [JSONValue objectForKey:parser.key];
             id result = nil;
             //如果没有clazz，则说明不是Model，直接原样返回
             if (parser.clazz)
@@ -690,7 +689,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
                 {
                     if ([obj isKindOfClass:[NSDictionary class]])
                     {
-                        result = [[(NSDictionary *)obj uxy_jsonString] uxy_toModel:parser.clazz];
+                        result = [[(NSDictionary *)obj uxy_JSONString] uxy_toModel:parser.clazz];
                     }
                     else
                     {
@@ -710,28 +709,28 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 @end
 
 
-#pragma mark - NSArray (XYJsonHelper)
-@implementation NSArray (XYJsonHelper)
+#pragma mark - NSArray (XYJSON)
+@implementation NSArray (XYJSON)
 
-- (NSString *)uxy_jsonString
+- (NSString *)uxy_JSONString
 {
-    return self.uxy_jsonData.uxy_jsonString;
+    return self.uxy_JSONData.uxy_JSONString;
 }
 
-//  循环集合将每个对象转为字典，得到字典集合，然后转为jsonData
-- (NSData *)uxy_jsonData
+//  循环集合将每个对象转为字典，得到字典集合，然后转为JSONData
+- (NSData *)uxy_JSONData
 {
-    NSMutableArray *jsonDictionaries = [[NSMutableArray alloc] init];
+    NSMutableArray *JSONDictionaries = [[NSMutableArray alloc] init];
     [self enumerateObjectsUsingBlock:^(NSObject *obj, NSUInteger idx, BOOL *stop) {
-        [jsonDictionaries addObject:obj.uxy_jsonDictionary];
+        [JSONDictionaries addObject:obj.uxy_JSONDictionary];
     }];
-    if ([NSJSONSerialization isValidJSONObject:jsonDictionaries])
+    if ([NSJSONSerialization isValidJSONObject:JSONDictionaries])
     {
         NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionaries options:kNilOptions error:&error];
+        NSData *JSONData = [NSJSONSerialization dataWithJSONObject:JSONDictionaries options:kNilOptions error:&error];
         if (!error)
         {
-            return jsonData;
+            return JSONData;
         }
     }
 #ifdef DEBUG
@@ -749,10 +748,10 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 {
     if ([self isKindOfClass:[NSArray class]] && self.count > 0)
     {
-        NSDictionary *dic      = [classType uxy_jsonKeyPropertyDictionary];
+        NSDictionary *dic      = [classType uxy_JSONKeyPropertyDictionary];
         NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[self count]];
         [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            id model = [NSData objectForClassType:classType fromDict:obj withJsonKeyPropertyDictionary:dic];
+            id model = [NSData objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
             if (model)
             {
                 [models addObject:model];
@@ -763,3 +762,39 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return nil;
 }
 @end
+
+
+#pragma mark -
+// ----------------------------------
+// Unit test
+// ----------------------------------
+#if (1 == __XY_DEBUG_UNITTESTING__)
+#import "XYUnitTest.h"
+
+UXY_TEST_CASE( Core, JSON )
+{
+    //	TODO( "test case" )
+}
+
+UXY_DESCRIBE( test1 )
+{
+    NSString *str =  @"{\"flag\":\"0\",\"msg\":\"尚未登录,需重新登录！\",\"data\":null}";
+    NSDictionary *dic = [str uxy_JSONDictionary];
+    UXY_EXPECTED( dic.count == 3 );
+}
+
+UXY_DESCRIBE( test2 )
+{
+    //  UXY_EXPECTED( 1 == 1 );
+    //  UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
+}
+
+UXY_DESCRIBE( test3 )
+{
+    // UXY_EXPECTED( [@"123" isEqualToString:@"123456"] );
+}
+
+UXY_TEST_CASE_END
+
+#endif
+

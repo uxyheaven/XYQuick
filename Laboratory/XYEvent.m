@@ -219,10 +219,10 @@
 @end
 
 #pragma mark -
-#if (1 == __XY_DEBUG_UNITTESTING__)
 // ----------------------------------
 // Unit test
 // ----------------------------------
+#if (1 == __XY_DEBUG_UNITTESTING__)
 #import "XYUnitTest.h"
 
 UXY_TEST_CASE( Core, XYEventCenter )
