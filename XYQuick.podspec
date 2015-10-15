@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|  
-  version            = "0.7.3"
+  version            = "0.8.0"
   s.name             = "XYQuick"  
   s.version          = version  
   s.summary          = "A quick develop utility on iOS."  
