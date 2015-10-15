@@ -29,7 +29,7 @@
 //
 
 #import "XYBaseViewController.h"
-#import "XYRuntime.h"
+#import <objc/runtime.h>
 
 #pragma mark - def
 
@@ -49,10 +49,13 @@
 #pragma mark - getter / setter
 
 #pragma mark -
+
 @interface UIViewController (XYBase_private)
 
 // 某些vc(UITableViewController)加载的时候不执行loadView方法
 @property (nonatomic, assign) BOOL __uxy_isExecutedLoadView;
+
++ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement;
 
 @end
 
@@ -60,10 +63,10 @@
 
 + (void)load
 {
-    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(loadView) replacementSel:@selector(__uxy__loadView)];
-    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(viewDidLoad) replacementSel:@selector(__uxy__viewDidLoad)];
-    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:NSSelectorFromString(@"dealloc") replacementSel:@selector(__uxy__dealloc)];
-    [XYRuntime swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(didReceiveMemoryWarning) replacementSel:@selector(__uxy__didReceiveMemoryWarning)];
+    [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(loadView) replacementSel:@selector(__uxy__loadView)];
+    [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(viewDidLoad) replacementSel:@selector(__uxy__viewDidLoad)];
+    [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:NSSelectorFromString(@"dealloc") replacementSel:@selector(__uxy__dealloc)];
+    [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(didReceiveMemoryWarning) replacementSel:@selector(__uxy__didReceiveMemoryWarning)];
 }
 
 - (void)__uxy__loadView
@@ -144,6 +147,21 @@ uxy_staticConstString(UIViewController_isExecuted_loadView)
 -(void)set__uxy_isExecutedLoadView:(BOOL)__uxy_isExecutedLoadView
 {
         objc_setAssociatedObject(self, UIViewController_isExecuted_loadView, @(__uxy_isExecutedLoadView), OBJC_ASSOCIATION_ASSIGN);
+}
+
++ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
+{
+    Method a = class_getInstanceMethod(clazz, original);
+    Method b = class_getInstanceMethod(clazz, replacement);
+
+    if (class_addMethod(clazz, original, method_getImplementation(b), method_getTypeEncoding(b)))
+    {
+        class_replaceMethod(clazz, replacement, method_getImplementation(a), method_getTypeEncoding(a));
+    }
+    else
+    {
+        method_exchangeImplementations(a, b);
+    }
 }
 @end
 

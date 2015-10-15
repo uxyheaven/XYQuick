@@ -31,6 +31,9 @@
 #ifndef __XYQUICK_PREDEFINE_H__
 #define __XYQUICK_PREDEFINE_H__
 
+#undef	__XYQUICK_VERSION__
+#define	__XYQUICK_VERSION__	"0.8.5"	// 主版本号
+
 // ----------------------------------
 // on-off
 // ----------------------------------

@@ -31,9 +31,6 @@
 #ifndef __XYQUICK_H__
 #define __XYQUICK_H__
 
-#undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.8.4"	// 主版本号
-
 //  在编译器的(Preprocessor Macors)里设置 (CUSTOM_XYPREDEFINE)
 //  可以定制"XYQuick_Predefine.h"里的部分编译选项
 
@@ -49,7 +46,4 @@
 #import "XYQuick_Event.h"       // 事件
 
 #endif
-
-@interface XYQuick : NSObject
-@end
 
