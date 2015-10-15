@@ -32,12 +32,12 @@
 
 @implementation UIWebView (XYExtension)
 
-
 - (void)uxy_clean:(BOOL)isCleanCache
 {
     [self loadHTMLString:@"" baseURL:nil];
     [self stopLoading];
     self.delegate = nil;
+    
     if (isCleanCache)
     {
         [[NSURLCache sharedURLCache] removeAllCachedResponses];

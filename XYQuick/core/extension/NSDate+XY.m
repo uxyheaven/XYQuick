@@ -30,8 +30,6 @@
 
 #import "NSDate+XY.h"
 
-DUMMY_CLASS(NSDate_XY);
-
 static NSArray *XY_weekdays = nil;
 
 @implementation NSDate (XYExtension)

@@ -31,10 +31,7 @@
 #import "UIView+XY.h"
 #import <objc/runtime.h>
 
-#import "XYSystemInfo.h"
 #import "UIImage+XY.h"
-
-DUMMY_CLASS(UIView_XY);
 
 @implementation UIView (XYExtension)
 
@@ -284,7 +281,7 @@ uxy_staticConstString(UIView_key_longPressBlock)
 - (UIImage *)uxy_snapshot
 {
     UIGraphicsBeginImageContext(self.bounds.size);
-    if (UXY_IOS7_OR_LATER)
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
     {
         // 这个方法比ios6下的快15倍
         [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];

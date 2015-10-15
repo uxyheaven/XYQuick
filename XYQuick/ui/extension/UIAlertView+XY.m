@@ -30,8 +30,6 @@
 
 #import "UIAlertView+XY.h"
 
-DUMMY_CLASS(UIAlertView_XY);
-
 @implementation UIAlertView (XYExtension)
 
 uxy_staticConstString(UIAlertView_key_clicked)

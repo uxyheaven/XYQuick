@@ -32,24 +32,24 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-#define UXY_SCREEN_WIDTH   [[UIScreen mainScreen] bounds].size.width
-#define UXY_SCREEN_HEIGHT  [[UIScreen mainScreen] bounds].size.height
+#define XY_SCREEN_WIDTH   UIScreen.mainScreen.bounds.size.width
+#define XY_SCREEN_HEIGHT  UIScreen.mainScreen.bounds.size.height
 
 #pragma mark -
 
-#define UXY_IOS9_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"9.0"]
-#define UXY_IOS8_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"8.0"]
-#define UXY_IOS7_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"7.0"]
-#define UXY_IOS6_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"6.0"]
-#define UXY_IOS5_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"5.0"]
-#define UXY_IOS4_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"4.0"]
+#define XY_IOS9_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"9.0"]
+#define XY_IOS8_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"8.0"]
+#define XY_IOS7_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"7.0"]
+#define XY_IOS6_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"6.0"]
+#define XY_IOS5_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"5.0"]
+#define XY_IOS4_OR_LATER		[[XYSystemInfo sharedInstance] isOsVersionOrLater:@"4.0"]
 
-#define UXY_IOS9_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"9.0"]
-#define UXY_IOS8_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"8.0"]
-#define UXY_IOS7_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"7.0"]
-#define UXY_IOS6_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"6.0"]
-#define UXY_IOS5_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"5.0"]
-#define UXY_IOS4_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"4.0"]
+#define XY_IOS9_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"9.0"]
+#define XY_IOS8_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"8.0"]
+#define XY_IOS7_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"7.0"]
+#define XY_IOS6_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"6.0"]
+#define XY_IOS5_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"5.0"]
+#define XY_IOS4_OR_EARLIER		[[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"4.0"]
 
 
 @interface XYSystemInfo : NSObject uxy_as_singleton

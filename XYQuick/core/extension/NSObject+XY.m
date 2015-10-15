@@ -31,9 +31,6 @@
 #import "NSObject+XY.h"
 #import "NSDate+XY.h"
 
-
-DUMMY_CLASS(NSObject_XY);
-
 @interface NSObject(XYPrivate)
 + (NSDateFormatter *)__uxy_dateFormatterTemp;
 @end

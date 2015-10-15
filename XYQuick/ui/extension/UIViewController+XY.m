@@ -31,7 +31,6 @@
 #import "UIViewController+XY.h"
 #import <objc/runtime.h>
 
-#import "XYSystemInfo.h"
 #import "UIImage+XY.h"
 #import "UIControl+XY.h"
 
@@ -140,7 +139,7 @@ uxy_staticConstString(UIViewController_key_parameters)
 
         
         // 用户引导视图
-        UIView *userGuideView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UXY_SCREEN_WIDTH, UXY_SCREEN_HEIGHT)];
+        UIView *userGuideView = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         userGuideView.backgroundColor = [UIColor clearColor];
         
         // 用户引导背景图

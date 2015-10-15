@@ -30,17 +30,10 @@
 //  This file Copy from BlockUI.
 
 #import "UIControl+XY.h"
-#import "NSObject+XY.h"
-#import "XYRuntime.h"
 
 static NSDictionary *XY_DicControlEventString = nil;
 static NSDictionary *XY_DicControlStringEvent = nil;
 
-DUMMY_CLASS(UIControl_XY);
-
-@interface UIControl (XYPrivate)
-
-@end
 
 #pragma mark-
 @implementation UIControl (XYExtension)
@@ -89,7 +82,10 @@ DUMMY_CLASS(UIControl_XY);
                                  @"UIControlEventAllEvents": @(UIControlEventAllEvents)
                                  };
     
-    [XYRuntime swizzleInstanceMethodWithClass:[UIControl class] originalSel:@selector(sendAction:to:forEvent:) replacementSel:@selector(__uxy_sendAction:to:forEvent:)];
+    Method a = class_getInstanceMethod([UIControl class], @selector(sendAction:to:forEvent:));
+    Method b = class_getInstanceMethod([UIControl class], @selector(__uxy_sendAction:to:forEvent:));
+    method_exchangeImplementations(a, b);
+    
 }
 
 uxy_staticConstString(UIControl_key_events)
@@ -102,7 +98,7 @@ uxy_staticConstString(UIControl_key_events)
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self uxy_removeHandlerForEvent:[UIControl __uxy_eventWithName:key]];
         }];
-        [self uxy_setAssignAssociatedObject:nil forKey:UIControl_key_events];
+        objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_ASSIGN);
     }
 }
 
@@ -115,7 +111,7 @@ uxy_staticConstString(UIControl_key_events)
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self uxy_setRetainAssociatedObject:opreations forKey:UIControl_key_events];
+        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_ASSIGN);
     }
     
     [opreations setObject:[block copy] forKey:methodName];
@@ -131,7 +127,7 @@ uxy_staticConstString(UIControl_key_events)
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        [self uxy_setRetainAssociatedObject:opreations forKey:UIControl_key_events];
+        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     [opreations removeObjectForKey:methodName];

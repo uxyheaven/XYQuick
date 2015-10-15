@@ -34,7 +34,10 @@
 
 + (CGFloat)uxy_heightForRowWithData:(id)data
 {
-    if (data == nil) return -1;
+    if (data == nil)
+    {
+        return -1;
+    }
 
     return 44;
 }

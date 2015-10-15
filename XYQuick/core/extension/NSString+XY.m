@@ -29,9 +29,6 @@
 //
 
 #import "NSString+XY.h"
-#import "NSData+XY.h"
-
-DUMMY_CLASS(NSString_XY);
 
 @implementation NSString (XYExtension)
 
@@ -40,22 +37,60 @@ DUMMY_CLASS(NSString_XY);
 @dynamic uxy_SHA1Data;
 - (NSString *)uxy_MD5String
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_MD5String];
+    NSData *data = [NSData dataWithBytes:self.UTF8String length:self.length];
+    uint8_t	digest[CC_MD5_DIGEST_LENGTH + 1] = { 0 };
+    
+    CC_MD5( data.bytes, (CC_LONG)data.length, digest );
+    
+    char tmp[16] = { 0 };
+    char hex[256] = { 0 };
+    
+    for ( CC_LONG i = 0; i < CC_MD5_DIGEST_LENGTH; ++i )
+    {
+        sprintf( tmp, "%02X", digest[i] );
+        strcat( (char *)hex, tmp );
+    }
+    
+    return [NSString stringWithUTF8String:(const char *)hex];
 }
 - (NSData *)uxy_MD5Data
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_MD5Data];
+    NSData *data = [NSData dataWithBytes:self.UTF8String length:self.length];
+    uint8_t	digest[CC_MD5_DIGEST_LENGTH + 1] = { 0 };
+    
+    CC_MD5( data.bytes, (CC_LONG)data.length, digest );
+    
+    return [NSData dataWithBytes:digest length:CC_MD5_DIGEST_LENGTH];
 }
 
 @dynamic uxy_MD5String;
 @dynamic uxy_MD5Data;
 - (NSString *)uxy_SHA1String
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_SHA1String];
+    NSData *data = [NSData dataWithBytes:self.UTF8String length:self.length];
+    uint8_t	digest[CC_SHA1_DIGEST_LENGTH + 1] = { 0 };
+    
+    CC_SHA1( data.bytes, (CC_LONG)data.length, digest );
+    
+    char tmp[16] = { 0 };
+    char hex[256] = { 0 };
+    
+    for ( CC_LONG i = 0; i < CC_SHA1_DIGEST_LENGTH; ++i )
+    {
+        sprintf( tmp, "%02X", digest[i] );
+        strcat( (char *)hex, tmp );
+    }
+    
+    return [NSString stringWithUTF8String:(const char *)hex];
 }
 - (NSData *)uxy_SHA1Data
 {
-    return [[NSData dataWithBytes:[self UTF8String] length:[self length]] uxy_SHA1Data];
+    NSData *data = [NSData dataWithBytes:self.UTF8String length:self.length];
+    uint8_t	digest[CC_SHA1_DIGEST_LENGTH + 1] = { 0 };
+    
+    CC_SHA1( data.bytes, (CC_LONG)data.length, digest );
+    
+    return [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
 }
 
 @dynamic uxy_BASE64Decrypted;

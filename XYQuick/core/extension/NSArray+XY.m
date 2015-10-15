@@ -36,8 +36,6 @@
 
 #pragma mark -
 
-DUMMY_CLASS(NSArray_XY);
-
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 

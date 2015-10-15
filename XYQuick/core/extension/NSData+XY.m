@@ -30,8 +30,6 @@
 
 #import "NSData+XY.h"
 
-DUMMY_CLASS(NSData_XY);
-
 @implementation NSData (XYExtension)
 
 @dynamic uxy_SHA1String;
