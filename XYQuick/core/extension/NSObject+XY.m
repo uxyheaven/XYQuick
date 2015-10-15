@@ -38,7 +38,7 @@ DUMMY_CLASS(NSObject_XY);
 + (NSDateFormatter *)__uxy_dateFormatterTemp;
 @end
 
-@implementation NSObject (XY)
+@implementation NSObject (XYExtension)
 
 @dynamic uxy_attributeList;
 

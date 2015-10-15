@@ -29,24 +29,25 @@
 //
 
 #import "UIViewController+XY.h"
+#import <objc/runtime.h>
+
 #import "XYSystemInfo.h"
 #import "UIImage+XY.h"
 #import "UIControl+XY.h"
-#import "NSObject+XY.h"
 
-@implementation UIViewController (XY)
+@implementation UIViewController (XYExtension)
 
 uxy_staticConstString(UIViewController_key_parameters)
 
 - (id)uxy_parameters
 {
-    return [self uxy_getAssociatedObjectForKey:UIViewController_key_parameters];
+    return objc_getAssociatedObject(self, UIViewController_key_parameters);
 }
 
 - (void)setUxy_parameters:(id)anObject
 {
     [self willChangeValueForKey:@"uxy_parameters"];
-    [self uxy_setRetainAssociatedObject:anObject forKey:UIViewController_key_parameters];
+    objc_setAssociatedObject(self, UIViewController_key_parameters, anObject, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"uxy_parameters"];
 }
 

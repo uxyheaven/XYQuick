@@ -29,32 +29,32 @@
 //
 
 #import "UINavigationBar+XY.h"
-#import "NSObject+XY.h"
+#import <objc/runtime.h>
 
-@implementation UINavigationBar (XY)
+@implementation UINavigationBar (XYExtension)
 
 uxy_staticConstString(xy_navigationBar_overlay)
 
 - (UIView *)overlay
 {
-    return [self uxy_getAssociatedObjectForKey:xy_navigationBar_overlay];
+    return objc_getAssociatedObject(self, xy_navigationBar_overlay);
 }
 
 - (void)setOverlay:(UIView *)overlay
 {
-    [self uxy_setRetainAssociatedObject:overlay forKey:xy_navigationBar_overlay];
+    objc_setAssociatedObject(self, xy_navigationBar_overlay, overlay, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 uxy_staticConstString(xy_navigationBar_image)
 
 - (UIImage *)emptyImage
 {
-    return [self uxy_getAssociatedObjectForKey:xy_navigationBar_image];
+    return objc_getAssociatedObject(self, xy_navigationBar_image);
 }
 
 - (void)setEmptyImage:(UIImage *)image
 {
-    [self uxy_setRetainAssociatedObject:image forKey:xy_navigationBar_image];
+    objc_setAssociatedObject(self, xy_navigationBar_image, image, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)uxy_setBackgroundColor:(UIColor *)backgroundColor

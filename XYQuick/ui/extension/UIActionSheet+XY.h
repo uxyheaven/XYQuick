@@ -34,7 +34,7 @@
 typedef void(^UIActionSheet_block_self_index)(UIActionSheet *actionSheet, NSInteger btnIndex);
 typedef void(^UIActionSheet_block_self)(UIActionSheet *actionSheet);
 
-@interface UIActionSheet (XY) <UIActionSheetDelegate>
+@interface UIActionSheet (XYExtension) <UIActionSheetDelegate>
 
 - (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock;
 - (void)uxy_handlerCancel:(UIActionSheet_block_self)aBlock;

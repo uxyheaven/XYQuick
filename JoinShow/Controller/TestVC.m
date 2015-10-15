@@ -933,7 +933,7 @@ ViewControllerDemoTitle(Something)
     NSLog(@"%@", [array4 class]);
     
     PERF_ENTER_(@"immutable")
-    NSArray *array5 = [array2 uxy_immutable];
+    NSArray *array5 = [array2 copy];
     PERF_LEAVE_(@"immutable")
     NSLog(@"%@", [array5 class]);
     // objc_msgSend(array3, @selector(addObject:), @"a");

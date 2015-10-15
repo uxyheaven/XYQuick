@@ -32,7 +32,7 @@
 
 DUMMY_CLASS(NSData_XY);
 
-@implementation NSData (XY)
+@implementation NSData (XYExtension)
 
 @dynamic uxy_SHA1String;
 @dynamic uxy_SHA1Data;

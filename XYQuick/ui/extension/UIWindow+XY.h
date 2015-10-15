@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface UIWindow (XY)
+@interface UIWindow (XYExtension)
 
 /// The app’s key window
 + (UIWindow *)uxy_mainWindow;

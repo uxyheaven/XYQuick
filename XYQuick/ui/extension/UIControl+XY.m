@@ -43,7 +43,7 @@ DUMMY_CLASS(UIControl_XY);
 @end
 
 #pragma mark-
-@implementation UIControl (XY)
+@implementation UIControl (XYExtension)
 
 + (void)load
 {

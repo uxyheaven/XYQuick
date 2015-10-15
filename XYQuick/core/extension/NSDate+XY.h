@@ -37,17 +37,17 @@
 #define __XY_DAY    (24 * __XY_HOUR)
 #define __XY_MONTH	(30 * __XY_DAY)
 
-@interface NSDate (XY)
+@interface NSDate (XYExtension)
 
-@property (nonatomic, readonly) NSInteger   uxy_year;
-@property (nonatomic, readonly) NSInteger	uxy_month;
-@property (nonatomic, readonly) NSInteger	uxy_day;
-@property (nonatomic, readonly) NSInteger	uxy_hour;
-@property (nonatomic, readonly) NSInteger	uxy_minute;
-@property (nonatomic, readonly) NSInteger	uxy_second;
-@property (nonatomic, readonly) NSInteger	uxy_weekday;
+@property (nonatomic, readonly) NSInteger uxy_year;
+@property (nonatomic, readonly) NSInteger uxy_month;
+@property (nonatomic, readonly) NSInteger uxy_day;
+@property (nonatomic, readonly) NSInteger uxy_hour;
+@property (nonatomic, readonly) NSInteger uxy_minute;
+@property (nonatomic, readonly) NSInteger uxy_second;
+@property (nonatomic, readonly) NSInteger uxy_weekday;
 
-@property (nonatomic, readonly) NSString	*uxy_stringWeekday;
+@property (nonatomic, readonly) NSString *uxy_stringWeekday;
 
 // @"yyyy-MM-dd HH:mm:ss"
 - (NSString *)uxy_stringWithDateFormat:(NSString *)format;

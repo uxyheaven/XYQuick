@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface NSDictionary (XY)
+@interface NSDictionary (XYExtension)
 
 + (NSMutableDictionary *)uxy_nonRetainDictionary;
 
@@ -39,7 +39,7 @@
 
 @end
 
-@interface NSMutableDictionary (XY)
+@interface NSMutableDictionary (XYExtension)
 
 - (void)uxy_safeSetObject:(id)anObject forKey:(id <NSCopying>)aKey;
 - (void)uxy_safeSetObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;

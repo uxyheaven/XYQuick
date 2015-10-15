@@ -34,13 +34,12 @@ DUMMY_CLASS(NSDate_XY);
 
 static NSArray *XY_weekdays = nil;
 
-@implementation NSDate (XY)
+@implementation NSDate (XYExtension)
 
 + (void)load
 {
     XY_weekdays = @[@"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
 }
-
 
 #pragma mark -
 @dynamic uxy_year;

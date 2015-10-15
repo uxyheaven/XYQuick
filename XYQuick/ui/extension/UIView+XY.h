@@ -38,7 +38,8 @@
 
 typedef void(^UIViewCategoryNormalBlock)(UIView *view);
 typedef void(^UIViewCategoryAnimationBlock)(void);
-@interface UIView (XY)
+
+@interface UIView (XYExtension)
 
 // 增加手势
 - (void)uxy_addTapGestureWithTarget:(id)target action:(SEL)action;

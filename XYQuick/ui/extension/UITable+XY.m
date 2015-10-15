@@ -30,7 +30,7 @@
 
 #import "UITable+XY.h"
 
-@implementation UITableViewCell (XY)
+@implementation UITableViewCell (XYExtension)
 
 + (CGFloat)uxy_heightForRowWithData:(id)data
 {
@@ -47,7 +47,7 @@
 @end
 
 
-@implementation UITableView (XY)
+@implementation UITableView (XYExtension)
 
 - (void)uxy_reloadData:(BOOL)animated
 {

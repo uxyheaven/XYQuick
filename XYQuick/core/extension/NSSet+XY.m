@@ -33,7 +33,7 @@
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
-@implementation NSSet (XY)
+@implementation NSSet (XYExtension)
 
 + (NSMutableSet *)uxy_nonRetainSet
 {
@@ -47,7 +47,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @end
 
-@implementation NSMutableSet (XY)
+@implementation NSMutableSet (XYExtension)
 
 - (void)uxy_safeAddObject:(id)object
 {

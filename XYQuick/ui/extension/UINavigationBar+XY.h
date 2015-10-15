@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface UINavigationBar (XY)
+@interface UINavigationBar (XYExtension)
 
 // NavigationBar 变色 透明 尺寸 等方法 copy from https://github.com/ltebean/LTNavigationBar
 - (void)uxy_setBackgroundColor:(UIColor *)backgroundColor;

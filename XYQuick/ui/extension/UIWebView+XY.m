@@ -30,7 +30,7 @@
 
 #import "UIWebView+XY.h"
 
-@implementation UIWebView (XY)
+@implementation UIWebView (XYExtension)
 
 
 - (void)uxy_clean:(BOOL)isCleanCache

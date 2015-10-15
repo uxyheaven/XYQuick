@@ -33,7 +33,7 @@
 
 DUMMY_CLASS(UIActionSheet_XY);
 
-@implementation UIActionSheet (XY)
+@implementation UIActionSheet (XYExtension)
 
 uxy_staticConstString(UIActionSheet_key_clicked)
 uxy_staticConstString(UIActionSheet_key_cancel)

@@ -36,7 +36,7 @@
 /**************************************************************/
 // UIImage
     
-@interface UIImage (XY)
+@interface UIImage (XYExtension)
 
 /// 加载图片 used: imageWithContentsOfFile 自动带有2x 3x等后缀. 如果没有, 还是用默认的
 + (UIImage *)uxy_imageWithFileName:(NSString *)name;

@@ -31,7 +31,7 @@
 #import "NSNumber+XY.h"
 #import "NSDate+XY.h"
 
-@implementation NSNumber (XY)
+@implementation NSNumber (XYExtension)
 
 @dynamic uxy_dateValue;
 

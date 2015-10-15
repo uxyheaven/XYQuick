@@ -30,7 +30,7 @@
 
 #import "UIColor+XY.h"
 
-@implementation UIColor (XY)
+@implementation UIColor (XYExtension)
 
 + (instancetype)uxy_colorFromHexString:(NSString *)hexString
 {

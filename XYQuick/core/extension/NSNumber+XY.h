@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface NSNumber (XY)
+@interface NSNumber (XYExtension)
 
 @property (nonatomic, readonly, strong) NSDate *uxy_dateValue;
 

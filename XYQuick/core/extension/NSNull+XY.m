@@ -30,7 +30,7 @@
 
 #import "NSNull+XY.h"
 
-@implementation NSNull (XY_InternalNullExtention)
+@implementation NSNull (XYExtension)
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
 {

@@ -29,13 +29,14 @@
 //
 
 #import "UIView+XY.h"
+#import <objc/runtime.h>
+
 #import "XYSystemInfo.h"
 #import "UIImage+XY.h"
-#import "NSObject+XY.h"
 
 DUMMY_CLASS(UIView_XY);
 
-@implementation UIView (XY)
+@implementation UIView (XYExtension)
 
 - (void)uxy_addTapGestureWithTarget:(id)target action:(SEL)action
 {
@@ -61,17 +62,14 @@ uxy_staticConstString(UIView_key_tapBlock)
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];
     [self addGestureRecognizer:tap];
     
-    [self uxy_setCopyAssociatedObject:aBlock forKey:UIView_key_tapBlock];
+    objc_setAssociatedObject(self, UIView_key_tapBlock, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)actionTap
 {
-    UIViewCategoryNormalBlock block = [self uxy_getAssociatedObjectForKey:UIView_key_tapBlock];
+    UIViewCategoryNormalBlock block = objc_getAssociatedObject(self, UIView_key_tapBlock);
     
-    if (block)
-    {
-        block(self);
-    }
+    block ? block(self) : nil;
 }
 
 uxy_staticConstString(UIView_key_longPressBlock)
@@ -81,7 +79,7 @@ uxy_staticConstString(UIView_key_longPressBlock)
     UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(actionLongPress)];
     [self addGestureRecognizer:tap];
     
-    [self uxy_setCopyAssociatedObject:aBlock forKey:UIView_key_longPressBlock];
+    objc_setAssociatedObject(self, UIView_key_longPressBlock, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)uxy_removeLongPressGesture
@@ -99,23 +97,14 @@ uxy_staticConstString(UIView_key_longPressBlock)
 {
     UIViewCategoryNormalBlock block = objc_getAssociatedObject(self, UIView_key_tapBlock);
     
-    if (block)
-    {
-        block(self);
-    }
+    block ? block(self) : nil;
 }
 /////////////////////////////////////////////////////////////
 - (void)uxy_addShadeWithTarget:(id)target action:(SEL)action color:(UIColor *)aColor alpha:(float)aAlpha
 {
     UIView *tmpView = [self uxy_shadeView];
-    if (aColor)
-    {
-        tmpView.backgroundColor = aColor;
-    }
-    else
-    {
-        tmpView.backgroundColor = [UIColor blackColor];
-    }
+    tmpView.backgroundColor = aColor ?: [UIColor blackColor];
+
     tmpView.alpha = aAlpha;
     [self addSubview:tmpView];
     
@@ -124,14 +113,8 @@ uxy_staticConstString(UIView_key_longPressBlock)
 - (void)uxy_addShadeWithBlock:(UIViewCategoryNormalBlock)aBlock color:(UIColor *)aColor alpha:(float)aAlpha
 {
     UIView *tmpView = [self uxy_shadeView];
-    if (aColor)
-    {
-        tmpView.backgroundColor = aColor;
-    }
-    else
-    {
-        tmpView.backgroundColor = [UIColor blackColor];
-    }
+    tmpView.backgroundColor = aColor ?: [UIColor blackColor];
+
     tmpView.alpha = aAlpha;
     [self addSubview:tmpView];
     
@@ -140,7 +123,9 @@ uxy_staticConstString(UIView_key_longPressBlock)
         [tmpView uxy_addTapGestureWithBlock:aBlock];
     }
 }
-- (void)uxy_removeShade{
+
+- (void)uxy_removeShade
+{
     UIView *view = [self viewWithTag:UIView_shadeTag];
     if (view)
     {
@@ -152,7 +137,8 @@ uxy_staticConstString(UIView_key_longPressBlock)
     }
 }
 
-- (UIView *)uxy_shadeView{
+- (UIView *)uxy_shadeView
+{
     UIView * view = [self viewWithTag:UIView_shadeTag];
     if (view == nil) {
         view = [[UIView alloc] initWithFrame:self.bounds];
@@ -167,19 +153,18 @@ uxy_staticConstString(UIView_key_longPressBlock)
 - (void)uxy_addBlurWithTarget:(id)target action:(SEL)action level:(int)lv
 {
     UIView *tmpView = [self uxy_shadeView];
-    [self addSubview:tmpView];
-    tmpView.alpha = 0;
-    //  BACKGROUND_BEGIN
     UIImage *img = [[self uxy_snapshot] uxy_stackBlur:lv];
-    //   FOREGROUND_BEGIN
     tmpView.layer.contents = (id)img.CGImage;
+    [self addSubview:tmpView];
+
+    tmpView.alpha = 0;
     [UIView animateWithDuration:0.05 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         tmpView.alpha = 1;
     } completion:nil];
-    //   FOREGROUND_COMMIT
-    //   BACKGROUND_COMMIT
+    
     [tmpView uxy_addTapGestureWithTarget:target action:action];
 }
+
 - (void)uxy_addBlurWithTarget:(id)target action:(SEL)action
 {
     [self uxy_addBlurWithTarget:target action:action level:5];
@@ -324,40 +309,33 @@ uxy_staticConstString(UIView_key_longPressBlock)
 
 - (void)uxy_showDataWithDic:(NSDictionary *)dic
 {
-    if (dic)
-    {
-        [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-            id tempObj = [self valueForKeyPath:key];
-            if ([tempObj isKindOfClass:[UILabel class]])
-            {
-                NSString *str = [obj uxy_asNSString];
-                [tempObj setText:str];
-                
-            }
-            else if([tempObj isKindOfClass:[UIImageView class]])
-            {
-                if ([obj isKindOfClass:[UIImage class]])
-                {
-                    [tempObj setValue:obj forKey:@"image"];
-                }
-                else if ([obj isKindOfClass:[NSString class]])
-                {
-                    UIImage *tempImg = [UIImage uxy_imageWithFileName:obj];
-                    [tempObj setValue:tempImg forKey:@"image"];
-                }
-            }
-            else if (1)
-            {
-                [self setValue:obj forKeyPath:key];
-            }
-            
-        }];
-    }
-}
-// 子类需要重新此方法
-- (void)setupDataBind:(NSMutableDictionary *)dic
-{
+    if (!dic) return;
     
+    [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        id tempObj = [self valueForKeyPath:key];
+        if ([tempObj isKindOfClass:[UILabel class]])
+        {
+            NSString *str = obj;
+            [tempObj setText:str];
+        }
+        else if([tempObj isKindOfClass:[UIImageView class]])
+        {
+            if ([obj isKindOfClass:[UIImage class]])
+            {
+                [tempObj setImage:obj];
+            }
+            else if ([obj isKindOfClass:[NSString class]])
+            {
+                UIImage *tempImg = [UIImage uxy_imageWithFileName:obj];
+                [tempObj setImage:tempImg];
+            }
+        }
+        else if (1)
+        {
+            [self setValue:obj forKeyPath:key];
+        }
+        
+    }];
 }
 
 - (void)uxy_removeFromSuperviewWithCrossfade

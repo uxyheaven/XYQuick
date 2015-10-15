@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface UIWebView (XY)
+@interface UIWebView (XYExtension)
 
 /// 清理网页,如果isCleanCache = YES, 就连NSURLCache,Disk,Memory也清理
 - (void)uxy_clean:(BOOL)isCleanCache;

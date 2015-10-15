@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface UIButton (XY)
+@interface UIButton (XYExtension)
 
 - (NSIndexPath *)uxy_getTableViewCellIndexPath;
 - (NSIndexPath *)uxy_getTableViewCellIndexPathAtTableView:(UITableView *)tableView;

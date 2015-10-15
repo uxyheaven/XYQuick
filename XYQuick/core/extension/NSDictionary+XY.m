@@ -33,7 +33,7 @@
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
-@implementation NSDictionary (XY)
+@implementation NSDictionary (XYExtension)
 
 + (NSMutableDictionary *)uxy_nonRetainDictionary
 {
@@ -52,7 +52,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 @end
 
-@implementation NSMutableDictionary (XY)
+@implementation NSMutableDictionary (XYExtension)
 
 - (void)uxy_safeSetObject:(id)anObject forKey:(id <NSCopying>)aKey
 {

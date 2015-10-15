@@ -31,16 +31,18 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface UILabel (uxy)
+@interface UILabel (XYExtension)
 
 typedef enum {
-    UXYLabelResizeType_constantHeight = 1,
-    UXYLabelResizeType_constantWidth,
-} UXYLabelResizeType;
+    XYLabelResizeType_constantHeight = 1,
+    XYLabelResizeType_constantWidth,
+} XYLabelResizeType;
 
-// 调整UILabel尺寸
-// UXYLabelResizeType_constantHeight 高度不变
-- (void)uxy_resize:(UXYLabelResizeType)type;
+/**
+ * @brief 调整UILabel尺寸
+ * @param type 调整尺寸时的条件, XYLabelResizeType_constantHeight 高度不变, XYLabelResizeType_constantWidth 宽度不变
+ */
+- (void)uxy_resize:(XYLabelResizeType)type;
 
 // 返回估计的尺寸
 - (CGSize)uxy_estimateUISizeByHeight:(CGFloat)height;

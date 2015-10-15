@@ -69,17 +69,17 @@
 
 #pragma mark- UXYSignalHandler
 
-@interface NSObject (UXYSignalHandler)
+@interface NSObject (XYSignalHandler)
 
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo;
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo sender:(id)sender;
 
 @end
 
-@interface UIView (UXYSignalHandler)<XYSignalTarget>
+@interface UIView (XYSignalHandler)<XYSignalTarget>
 @end
 
-@interface UIViewController (UXYSignalHandler)<XYSignalTarget>
+@interface UIViewController (XYSignalHandler)<XYSignalTarget>
 @end
 
 #pragma mark - XYSignalBus

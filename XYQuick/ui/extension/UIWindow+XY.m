@@ -30,8 +30,7 @@
 
 #import "UIWindow+XY.h"
 
-@implementation UIWindow (XY)
-
+@implementation UIWindow (XYExtension)
 
 + (UIWindow *)uxy_mainWindow
 {

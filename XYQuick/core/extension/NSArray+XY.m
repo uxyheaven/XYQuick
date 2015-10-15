@@ -41,7 +41,7 @@ DUMMY_CLASS(NSArray_XY);
 static const void *__XYRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
-@implementation NSArray(XY)
+@implementation NSArray(XYExtension)
 
 - (NSArray *)uxy_head:(NSUInteger)count
 {
@@ -139,7 +139,7 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 #pragma mark -
 
-@implementation NSMutableArray(XY)
+@implementation NSMutableArray(XYExtension)
 
 - (void)uxy_safeAddObject:(id)anObject
 {
@@ -291,11 +291,5 @@ static void __XYReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 	return self;
 }
 
-- (NSArray *)uxy_immutable
-{
-//    object_setClass(self, [NSArray class]);
-//    return self;
-    return [self copy];
-}
 @end
 

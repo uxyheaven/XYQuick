@@ -122,7 +122,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextClosePath(context);
 }
 
-@implementation UIImage (XY)
+@implementation UIImage (XYExtension)
 
 + (UIImage *)uxy_imageWithFileName:(NSString *)name
 {

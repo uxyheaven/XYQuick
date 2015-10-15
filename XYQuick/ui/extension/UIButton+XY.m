@@ -30,7 +30,7 @@
 
 #import "UIButton+XY.h"
 
-@implementation UIButton (XY)
+@implementation UIButton (XYExtension)
 
 - (NSIndexPath *)uxy_getTableViewCellIndexPath
 {

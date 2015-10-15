@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface NSData (XY)
+@interface NSData (XYExtension)
 
 @property (nonatomic, readonly, strong) NSData *uxy_MD5Data;
 @property (nonatomic, readonly, copy) NSString *uxy_MD5String;

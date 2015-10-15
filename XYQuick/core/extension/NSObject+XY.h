@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface NSObject (XY)
+@interface NSObject (XYExtension)
 
 #pragma mark - property
 // 属性列表

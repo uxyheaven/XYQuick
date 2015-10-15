@@ -31,13 +31,13 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface NSSet (XY)
+@interface NSSet (XYExtension)
 
 + (NSMutableDictionary *)uxy_nonRetainSet;
 
 @end
 
-@interface NSMutableSet (XY)
+@interface NSMutableSet (XYExtension)
 
 - (void)uxy_safeAddObject:(id)object;
 - (void)uxy_safeRemoveObject:(id)object;

@@ -31,7 +31,7 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-@interface UITableViewCell (XY)
+@interface UITableViewCell (XYExtension)
 
 // 子类需要重写此方法
 + (CGFloat)uxy_heightForRowWithData:(id)data;
@@ -40,7 +40,7 @@
 
 @end
 
-@interface UITableView (XY)
+@interface UITableView (XYExtension)
 
 - (void)uxy_reloadData:(BOOL)animated;
 

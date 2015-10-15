@@ -36,7 +36,7 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 #pragma mark -
 
-@interface NSArray(XY)
+@interface NSArray(XYExtension)
 
 - (NSArray *)uxy_head:(NSUInteger)count;
 - (NSArray *)uxy_tail:(NSUInteger)count;
@@ -52,7 +52,7 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 #pragma mark -
 
-@interface NSMutableArray(XY)
+@interface NSMutableArray(XYExtension)
 
 - (void)uxy_safeAddObject:(id)anObject;
 
@@ -70,8 +70,5 @@ typedef NSMutableArray *	(^NSMutableArrayAppendBlock)( id obj );
 
 - (NSMutableArray *)uxy_keepHead:(NSUInteger)n;
 - (NSMutableArray *)uxy_keepTail:(NSUInteger)n;
-
-// 把自己转变成不可变的(可能有bug)
-- (NSArray *)uxy_immutable;
 
 @end

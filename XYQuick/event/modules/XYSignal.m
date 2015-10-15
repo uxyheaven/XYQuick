@@ -36,12 +36,12 @@
 @implementation XYSignal
 @end
 
-#pragma mark- NSObject(__UXYSignalHandler)
-@interface NSObject (__UXYSignalHandler) <XYSignalTarget>
+#pragma mark- NSObject(__XYSignalHandler)
+@interface NSObject (__XYSignalHandler) <XYSignalTarget>
 @property (nonatomic, weak) id uxy_nextSignalHandler;
 @end
 
-@implementation NSObject (__UXYSignalHandler)
+@implementation NSObject (__XYSignalHandler)
 
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
 {
@@ -116,19 +116,17 @@
 @end
 
 #pragma mark - UIView
-
-@implementation UIView (UXYSignalHandler)
+@implementation UIView (XYSignalHandler)
 
 - (id)uxy_defaultNextSignalHandler
 {
     return self.nextResponder;
 }
 
-#pragma mark- private
 @end
 
 #pragma mark - UIViewController
-@implementation UIViewController (UXYSignalHandler)
+@implementation UIViewController (XYSignalHandler)
 
 - (id)uxy_defaultNextSignalHandler
 {

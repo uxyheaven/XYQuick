@@ -35,7 +35,7 @@ typedef void(^UIAlertView_block_self_index)(UIAlertView *alertView, NSInteger bt
 typedef void(^UIAlertView_block_self)(UIAlertView *alertView);
 typedef BOOL(^UIAlertView_block_shouldEnableFirstOtherButton)(UIAlertView *alertView);
 
-@interface UIAlertView (XY)
+@interface UIAlertView (XYExtension)
 
 - (void)uxy_handlerClickedButton:(UIAlertView_block_self_index)aBlock;
 - (void)uxy_handlerCancel:(UIAlertView_block_self)aBlock;

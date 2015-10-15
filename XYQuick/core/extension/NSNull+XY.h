@@ -33,6 +33,6 @@
 
 #define XYNullObjects @[@"",@0,@{},@[]]
 
-@interface NSNull (XYInternalNullExtention)
+@interface NSNull (XYExtension)
 
 @end

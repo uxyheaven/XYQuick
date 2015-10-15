@@ -34,7 +34,7 @@
 typedef void(^UIViewController_block_void) (void);
 typedef void(^UIViewController_block_view) (UIView *view);
 
-@interface UIViewController (XY)
+@interface UIViewController (XYExtension)
 
 @property (nonatomic, strong) id uxy_parameters; // 参数
 

@@ -29,12 +29,11 @@
 //
 
 #import "NSString+XY.h"
-#import "NSObject+XY.h"
 #import "NSData+XY.h"
 
 DUMMY_CLASS(NSString_XY);
 
-@implementation NSString (XY)
+@implementation NSString (XYExtension)
 
 // 这里有依赖了
 @dynamic uxy_SHA1String;
@@ -231,7 +230,7 @@ DUMMY_CLASS(NSString_XY);
     NSMutableArray * pairs = [NSMutableArray array];
 	for ( NSString * key in dict.allKeys )
 	{
-		NSString * value = [((NSObject *)[dict objectForKey:key]) uxy_asNSString];
+		NSString * value = dict[key];
 		NSString * urlEncoding = encoding ? [value uxy_URLEncoding] : value;
 		[pairs addObject:[NSString stringWithFormat:@"%@=%@", key, urlEncoding]];
 	}
