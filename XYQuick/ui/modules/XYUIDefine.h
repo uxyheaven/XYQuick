@@ -31,7 +31,7 @@
 #ifndef JoinShow_XYUIDefine_h
 #define JoinShow_XYUIDefine_h
 
-#define UXY_SINGLE_LINE_WIDTH           (1.0f / [UIScreen mainScreen].scale)
-#define UXY_SINGLE_LINE_ADJUST_OFFSET   ((1.0f / [UIScreen mainScreen].scale) / 2.0f)
+#define XY_SINGLE_LINE_WIDTH           (1.0f / [UIScreen mainScreen].scale)
+#define XY_SINGLE_LINE_ADJUST_OFFSET   ((1.0f / [UIScreen mainScreen].scale) / 2.0f)
 
 #endif

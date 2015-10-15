@@ -30,8 +30,8 @@
 
 #import "XYMemoryCache.h"
 
-#undef	DEFAULT_MAX_COUNT
-#define DEFAULT_MAX_COUNT	(48)
+#undef	XYMemoryCache_DEFAULT_MAX_COUNT
+#define XYMemoryCache_DEFAULT_MAX_COUNT	(48)
 
 @implementation XYMemoryCache uxy_def_singleton
 
@@ -42,7 +42,7 @@
 	if ( self )
 	{
 		_clearWhenMemoryLow = YES;
-		_maxCacheCount = DEFAULT_MAX_COUNT;
+		_maxCacheCount = XYMemoryCache_DEFAULT_MAX_COUNT;
 		_cachedCount = 0;
 		
 		_cacheKeys = [[NSMutableArray alloc] init];

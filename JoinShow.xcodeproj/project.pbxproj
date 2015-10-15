@@ -67,7 +67,6 @@
 		57B3FFF6177AD9BC00775FC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B3FFF5177AD9BC00775FC9 /* main.m */; };
 		57B3FFFC177AD9BC00775FC9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFB177AD9BC00775FC9 /* Default.png */; };
 		57B3FFFE177AD9BC00775FC9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B3FFFD177AD9BC00775FC9 /* Default@2x.png */; };
-		57BC9C0F1BCE609F00A22E45 /* XYQuick.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BC9C0E1BCE609F00A22E45 /* XYQuick.m */; settings = {ASSET_TAGS = (); }; };
 		57BE89B917AA525200FCD864 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89B817AA525200FCD864 /* AVFoundation.framework */; };
 		57BE89BD17AA531200FCD864 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BE89BC17AA531100FCD864 /* OpenAL.framework */; };
 		57C495121B90186E00DC77E5 /* Associated.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C495111B90186E00DC77E5 /* Associated.m */; };
@@ -259,7 +258,6 @@
 		57B3FFFB177AD9BC00775FC9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		57B3FFFD177AD9BC00775FC9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		57B3FFFF177AD9BC00775FC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		57BC9C0E1BCE609F00A22E45 /* XYQuick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYQuick.m; sourceTree = "<group>"; };
 		57BE89B817AA525200FCD864 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		57BE89BC17AA531100FCD864 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		57C495101B90186E00DC77E5 /* Associated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Associated.h; sourceTree = "<group>"; };
@@ -706,7 +704,6 @@
 				57F56F371AFC86FD00298D7E /* event */,
 				57F56F431AFC86FD00298D7E /* ui */,
 				57F56F711AFC86FD00298D7E /* XYQuick.h */,
-				57BC9C0E1BCE609F00A22E45 /* XYQuick.m */,
 				57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */,
 				57F56F721AFC86FD00298D7E /* XYQuick_Predefine.h */,
 			);
@@ -1080,7 +1077,6 @@
 				57808338181A11A6000F349B /* ImageVC.m in Sources */,
 				57B3FFF6177AD9BC00775FC9 /* main.m in Sources */,
 				84DBC5B7197E6EBC00718937 /* LKTestModels.m in Sources */,
-				57BC9C0F1BCE609F00A22E45 /* XYQuick.m in Sources */,
 				57F56F851AFC86FD00298D7E /* XYBlackMagic.m in Sources */,
 				577F732A1AF92DF30071FD0B /* LKDBHelperExtension.m in Sources */,
 				57F56F971AFC86FD00298D7E /* UIButton+XY.m in Sources */,
