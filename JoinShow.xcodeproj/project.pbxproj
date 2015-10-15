@@ -31,6 +31,7 @@
 		5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5737618618BB586E004E7D46 /* PaintCodeView.m */; };
 		57383F3B17D2F5F20001079C /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57383F3A17D2F5F20001079C /* TestVC.m */; };
 		5738D2801845C5E800837DB7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5738D27F1845C5E800837DB7 /* Security.framework */; };
+		57426A091BCFE5A3001028DA /* XYQuick.m in Sources */ = {isa = PBXBuildFile; fileRef = 57426A081BCFE5A3001028DA /* XYQuick.m */; settings = {ASSET_TAGS = (); }; };
 		5749BF8419BF480900D676CC /* JSONVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5749BF8319BF480900D676CC /* JSONVC.m */; };
 		5749BF8619BF4DEB00D676CC /* json0.json in Resources */ = {isa = PBXBuildFile; fileRef = 5749BF8519BF4DEB00D676CC /* json0.json */; };
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
@@ -201,6 +202,7 @@
 		57383F3917D2F5F20001079C /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		57383F3A17D2F5F20001079C /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		5738D27F1845C5E800837DB7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		57426A081BCFE5A3001028DA /* XYQuick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYQuick.m; sourceTree = "<group>"; };
 		5749BF8219BF480900D676CC /* JSONVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONVC.h; sourceTree = "<group>"; };
 		5749BF8319BF480900D676CC /* JSONVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONVC.m; sourceTree = "<group>"; };
 		5749BF8519BF4DEB00D676CC /* json0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json0.json; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 				57F56F371AFC86FD00298D7E /* event */,
 				57F56F431AFC86FD00298D7E /* ui */,
 				57F56F711AFC86FD00298D7E /* XYQuick.h */,
+				57426A081BCFE5A3001028DA /* XYQuick.m */,
 				57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */,
 				57F56F721AFC86FD00298D7E /* XYQuick_Predefine.h */,
 			);
@@ -1107,6 +1110,7 @@
 				57F56F9A1AFC86FD00298D7E /* UIImage+XY.m in Sources */,
 				57F56F7E1AFC86FD00298D7E /* XYMemoryCache.m in Sources */,
 				571CBA5A17C6FCC0007CB842 /* TestView.m in Sources */,
+				57426A091BCFE5A3001028DA /* XYQuick.m in Sources */,
 				5737618718BB586E004E7D46 /* PaintCodeView.m in Sources */,
 				5749BF8419BF480900D676CC /* JSONVC.m in Sources */,
 				57F56F901AFC86FD00298D7E /* XYMulticastDelegate.m in Sources */,

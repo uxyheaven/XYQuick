@@ -25,31 +25,29 @@
 //	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 //	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//	THE SOFTWARE.
 //
 
-#ifndef __XYQUICK_H__
-#define __XYQUICK_H__
+#import "XYQuick.h"
 
-#undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.8.3"	// 主版本号
+@implementation XYQuick
 
-//  在编译器的(Preprocessor Macors)里设置 (CUSTOM_XYPREDEFINE)
-//  可以定制"XYQuick_Predefine.h"里的部分编译选项
-
-#if TARGET_IPHONE_SIMULATOR
-#import "XYQuick_Predefine.h"   // 预编译
-#else
-#import "XYQuick_Predefine.h"
++ (void)load
+{
+    uxy_once_begin( XYQuick_start)
+    {
+#ifdef DEBUG
+        fprintf( stderr, "  //  __  __          ____           _          _\n" );
+        fprintf( stderr, "  //  \\ \\/ / /\\_/\\   /___ \\  _   _  (_)   ___  | | __\n" );
+        fprintf( stderr, "  //   \\  /  \\_ _/  //  / / | | | | | |  / __| | |/ /\n" );
+        fprintf( stderr, "  //   /  \\   / \\  / \\_/ /  | |_| | | | | (__  |   <\n" );
+        fprintf( stderr, "  //  /_/\\_\\  \\_/  \\___,_\\   \\__,_| |_|  \\___| |_|\\_\\\n" );
+        fprintf( stderr, "  //\n" );
+        fprintf( stderr, "  //  Verson: %s. Copyright (C) Heaven.\n", __XYQUICK_VERSION__ );
+        fprintf( stderr, "  //  https://github.com/uxyheaven/XYQuick\n" );
+        fprintf( stderr, "  \n" );
 #endif
+    }
+    uxy_once_end
+}
 
-
-#import "XYQuick_Core.h"        // 基础类
-#import "XYQuick_UI.h"          // 界面
-#import "XYQuick_Event.h"       // 事件
-
-#endif
-
-@interface XYQuick : NSObject
 @end
-
