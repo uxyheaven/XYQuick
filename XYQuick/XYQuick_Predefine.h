@@ -105,8 +105,8 @@
 #define	DEPRECATED			__attribute__((deprecated))
 #endif
 
-#ifndef	TODO
-#define TODO( X )			_Pragma(uxy_macro_cstr(message("✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖ TODO: " X)))
+#ifndef	XY_TODO
+#define XY_TODO( X )			_Pragma(uxy_macro_cstr(message("✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖ TODO: " X)))
 #endif
 
 #ifndef	EXTERN_C
@@ -166,10 +166,10 @@ static id sharedInstance;
  @end
  */
 
-#ifndef DUMMY_CLASS
-#define DUMMY_CLASS(UNIQUE_NAME) \
-        @interface DUMMY_CLASS_##UNIQUE_NAME : NSObject @end \
-        @implementation DUMMY_CLASS_##UNIQUE_NAME @end
+#ifndef XY_DUMMY_CLASS
+#define XY_DUMMY_CLASS(XY_UNIQUE_NAME) \
+        @interface XY_DUMMY_CLASS_##XY_UNIQUE_NAME : NSObject @end \
+        @implementation XY_DUMMY_CLASS_##XY_UNIQUE_NAME @end
 #endif
 // ----------------------------------
 // Version
