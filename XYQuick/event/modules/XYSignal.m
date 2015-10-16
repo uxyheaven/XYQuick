@@ -41,7 +41,7 @@
 @property (nonatomic, weak) id uxy_nextSignalHandler;
 @end
 
-@implementation NSObject (__XYSignalHandler)
+@implementation NSObject (XYSignalHandler)
 
 - (XYSignal *)uxy_sendSignalWithName:(NSString *)name userInfo:(id)userInfo
 {
@@ -104,14 +104,14 @@
     return nil;
 }
 
-@dynamic uxy_nextSignalHandler;
+uxy_staticConstString(XYSignalHandler_nextSignalHandler)
 - (void)setUxy_nextSignalHandler:(id)nextSignalHandler
 {
-    objc_setAssociatedObject(self, kUXYSignalHandler_key, nextSignalHandler, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, XYSignalHandler_nextSignalHandler, nextSignalHandler, OBJC_ASSOCIATION_ASSIGN);
 }
 - (id)uxy_nextSignalHandler
 {
-    return objc_getAssociatedObject(self, kUXYSignalHandler_key);
+    return objc_getAssociatedObject(self, XYSignalHandler_nextSignalHandler);
 }
 @end
 
