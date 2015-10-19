@@ -42,9 +42,11 @@ ViewControllerDemoTitle(Database)
     [self.view addSubview:textView];
     self.tv = textView;
 
-    uxy_dispatch_async_background_concurrent( ^{
-    [self test];
-    });
+    uxy_dispatch_background_concurrent
+    {
+        [self test];
+    }
+    uxy_dispatch_submit
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,13 +57,13 @@ ViewControllerDemoTitle(Database)
 
 -(void)add:(NSString*)txt
 {
-    uxy_dispatch_async_foreground( ^{
-        [_ms appendString:@"\n"];
-        [_ms appendString:txt];
-        [_ms appendString:@"\n"];
-        
-        self.tv.text = _ms;
-    });
+    uxy_dispatch_foreground
+    [_ms appendString:@"\n"];
+    [_ms appendString:txt];
+    [_ms appendString:@"\n"];
+    
+    self.tv.text = _ms;
+    uxy_dispatch_submit
 }
 #define addText(fmt, ...) [self add:[NSString stringWithFormat:fmt,##__VA_ARGS__]]
 

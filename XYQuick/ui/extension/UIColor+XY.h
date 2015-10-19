@@ -33,8 +33,8 @@
 
 /**************************************************************/
 //  RGB颜色
-#define UXYColorFromRGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
-#define UXYColorFromHEXWithAlpha(__hex, __alpha) [UIColor uxy_colorFromHex:__hex alpha:__alpha]
+#define XYColorFromRGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define XYColorFromHEXWithAlpha(__hex, __alpha) [UIColor uxy_colorFromHex:__hex alpha:__alpha]
 
 @interface UIColor (XYExtension)
 

@@ -126,19 +126,19 @@
 }
 - (void)clearDiskOnCompletion:(void (^)(void))completion
 {
-    uxy_dispatch_async_background_writeFile( ^{
-        [_fileManager removeItemAtPath:_diskCachePath error:NULL];
-        [_fileManager createDirectoryAtPath:_diskCachePath
-                withIntermediateDirectories:YES
-                                 attributes:nil
-                                      error:NULL];
-        if (completion)
-        {
-            uxy_dispatch_async_foreground( ^{
-                completion();
-            });
-        }
-    });
+    uxy_dispatch_background_writeFile
+    [_fileManager removeItemAtPath:_diskCachePath error:NULL];
+    [_fileManager createDirectoryAtPath:_diskCachePath
+            withIntermediateDirectories:YES
+                             attributes:nil
+                                  error:NULL];
+    if (completion)
+    {
+        uxy_dispatch_foreground
+        completion();
+        uxy_dispatch_submit
+    }
+    uxy_dispatch_submit
 }
 // 清除当前 XYFileCache 所有过期的文件
 - (void)cleanDisk
@@ -224,9 +224,9 @@
         }
         if (completion)
         {
-            uxy_dispatch_async_foreground( ^{
-                completion();
-            });
+            uxy_dispatch_foreground
+            completion();
+            uxy_dispatch_submit
         }
     });
 }
@@ -360,17 +360,17 @@
 
 - (void)cleanDiskWithCompletionBlock:(void (^)(void))completion
 {
-    uxy_dispatch_async_background_writeFile( ^{
-        [_fileCacheInfos enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [self cleanDiskWithFileCacheInfo:obj];
-        }];
-        if (completion)
-        {
-            uxy_dispatch_async_foreground( ^{
-                completion();
-            });
-        }
-    });
+    uxy_dispatch_background_writeFile
+    [_fileCacheInfos enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self cleanDiskWithFileCacheInfo:obj];
+    }];
+    if (completion)
+    {
+        uxy_dispatch_foreground
+        completion();
+        uxy_dispatch_submit
+    }
+    uxy_dispatch_submit
 }
 
 - (void)cleanDiskWithFileCacheInfo:(NSDictionary *)dic

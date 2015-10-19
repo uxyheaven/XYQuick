@@ -133,9 +133,9 @@
     {
         // 异步
         [self saveToMemory:anObject forKey:key];
-        uxy_dispatch_async_background_concurrent( ^{
-            [self saveToData:anObject forKey:key];
-        });
+        uxy_dispatch_background_concurrent
+        [self saveToData:anObject forKey:key];
+        uxy_dispatch_submit
         
     }
     else
