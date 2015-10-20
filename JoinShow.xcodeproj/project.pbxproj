@@ -13,7 +13,6 @@
 		5708A9621AF8991A000607AB /* XYBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A87D1AF8991A000607AB /* XYBaseView.m */; };
 		5708A9631AF8991A000607AB /* XYMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A87F1AF8991A000607AB /* XYMaterial.m */; };
 		5708A9641AF8991A000607AB /* XYRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8821AF8991A000607AB /* XYRepository.m */; };
-		570B27931BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.m in Sources */ = {isa = PBXBuildFile; fileRef = 570B27921BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.m */; settings = {ASSET_TAGS = (); }; };
 		570C3A7E1845C65E0077D010 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7D1845C65E0077D010 /* AudioToolbox.framework */; };
 		570C3A801845C6700077D010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7F1845C6700077D010 /* CoreGraphics.framework */; };
 		571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA3217C6FB55007CB842 /* AppDelegate.m */; };
@@ -170,8 +169,6 @@
 		5708A8801AF8991A000607AB /* XYMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMenuItem.h; sourceTree = "<group>"; };
 		5708A8811AF8991A000607AB /* XYRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYRepository.h; sourceTree = "<group>"; };
 		5708A8821AF8991A000607AB /* XYRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYRepository.m; sourceTree = "<group>"; };
-		570B27911BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FunctionalProgramming.h"; sourceTree = "<group>"; };
-		570B27921BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FunctionalProgramming.m"; sourceTree = "<group>"; };
 		570C3A7D1845C65E0077D010 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		570C3A7F1845C6700077D010 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		571CBA3117C6FB55007CB842 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -483,8 +480,6 @@
 				572CB1A81B4AF3490005A6B2 /* XYUISignal.m */,
 				5733D8091B71EC47009B5F86 /* XYApplicationWorkspace.h */,
 				5733D80A1B71EC47009B5F86 /* XYApplicationWorkspace.m */,
-				570B27911BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.h */,
-				570B27921BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.m */,
 			);
 			path = Laboratory;
 			sourceTree = SOURCE_ROOT;
@@ -1170,7 +1165,6 @@
 				57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */,
 				57F690DD17E6CFBF00D9A437 /* DatabaseVC.m in Sources */,
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
-				570B27931BCC9F9D0044C2B6 /* NSObject+FunctionalProgramming.m in Sources */,
 				57F56F8A1AFC86FD00298D7E /* XYRuntime.m in Sources */,
 				57F56F991AFC86FD00298D7E /* UIControl+XY.m in Sources */,
 				572CB1A31B4AF1540005A6B2 /* SignalVC.m in Sources */,
