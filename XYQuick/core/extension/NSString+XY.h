@@ -91,7 +91,7 @@
 
 #pragma mark - bee里的检测
 - (BOOL)uxy_isNormal;
-- (BOOL)uxy_isTelephone;
+- (BOOL)uxy_isTelephone;        // 新号段不支持了, 这方法需要时不时更新, 建议自己实现
 - (BOOL)uxy_isUserName;
 - (BOOL)uxy_isChineseUserName;
 - (BOOL)uxy_isPassword;
