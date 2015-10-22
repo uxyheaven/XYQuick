@@ -778,7 +778,7 @@ UXY_TEST_CASE( Core, JSON )
 
 UXY_DESCRIBE( test1 )
 {
-    NSString *str =  @"{\"flag\":\"0\",\"msg\":\"尚未登录,需重新登录！\",\"data\":null}";
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json1.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     NSDictionary *dic = [str uxy_JSONDictionary];
     UXY_EXPECTED( dic.count == 3 );
 }
