@@ -9,6 +9,8 @@
 #ifndef XYQuick_Custom_Predefine_h
 #define XYQuick_Custom_Predefine_h
 
+//  在编译器的(Preprocessor Macros)里设置 (CUSTOM_XYPREDEFINE)
+//  可以开启这里的设置
 
 #define __XY_DEBUG__                             (1)     // 调试
 #define __XY_PERFORMANCE__                       (1)     // 性能测试
