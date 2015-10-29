@@ -560,7 +560,7 @@
     return (value != nil) ?: [value isEqualToString:[self bundleVersion]];
 }
 
-- (void)resetFirstRun:(BOOL)isFirst user:(NSString *)user event:(NSString *)event
+- (void)setFirstRun:(BOOL)isFirst user:(NSString *)user event:(NSString *)event
 {
     if (isFirst)
     {
