@@ -128,6 +128,7 @@
 // Code block
 // ----------------------------------
 // 单例模式
+#define XYSINGLETON
 static id sharedInstance;
 #define uxy_as_singleton    \
         + (instancetype)sharedInstance; \

@@ -34,9 +34,7 @@
 
 #pragma mark - #define
 
-#define TIMER_NAME( __name )					__TEXT( __name )
-
-#define uxy_handleTimer(  __name, __timer, __duration ) \
+#define uxy_handleTimer( __name, __timer, __duration ) \
         - (void)__uxy_handleTimer_##__name:(XYTimer *)__timer duration:(NSTimeInterval)__duration
 
 @class XYTimer;
@@ -60,18 +58,14 @@ typedef void(^XYTimer_block)(XYTimer *timer, NSTimeInterval duration);
 #pragma mark - NSObject(XYTimer)
 @interface NSObject (XYTimer)
 
-@property (nonatomic, readonly, strong) NSMutableDictionary *uxy_timers;
+- (NSTimer *)uxy_startTimer:(NSString *)name interval:(NSTimeInterval)interval repeat:(BOOL)repeat;
+- (NSTimer *)uxy_startTimer:(NSString *)name interval:(NSTimeInterval)interval repeat:(BOOL)repeat block:(XYTimer_block)block;
 
-- (NSTimer *)uxy_timer:(NSTimeInterval)interval name:(NSString *)name;
-- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name;
+- (void)pauseTimer:(NSString *)name;
+- (void)resumeTimer:(NSString *)name;
 
-- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block;
-
-//- (void)pauseTimer;
-//- (void)resumeTimer;
-
-- (void)uxy_cancelTimer:(NSString *)name;
-- (void)uxy_cancelAllTimer;
+- (void)uxy_stopTimer:(NSString *)name;
+- (void)uxy_stopAllTimers;
 
 @end
 

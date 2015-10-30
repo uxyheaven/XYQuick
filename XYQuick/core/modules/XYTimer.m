@@ -124,28 +124,16 @@ uxy_staticConstString(NSObject_XYTimers)
     });
 }
 
-- (NSTimer *)uxy_timer:(NSTimeInterval)interval name:(NSString *)name
-{
-   return [self uxy_timer:interval repeat:NO name:name];
-}
 
-
-- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name
+- (NSTimer *)uxy_startTimer:(NSString *)name interval:(NSTimeInterval)interval repeat:(BOOL)repeat
 {
     NSAssert(name.length > 0, @"name 不能为空");
-    
-    NSMutableDictionary *timers = self.uxy_timers;
-    XYTimer *timer2 = timers[name];
-    
-    if (timer2)
-    {
-        [self uxy_cancelTimer:name];
-    }
-
     SEL aSel = NSSelectorFromString([NSString stringWithFormat:@"__uxy_handleTimer_%@:duration:", name]);
-    
     NSAssert([self respondsToSelector:aSel], @"selector 必须存在");
     
+    NSMutableDictionary *timers = self.uxy_timers;
+    [self uxy_stopTimer:name];
+
     NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
     timer.name     = name;
@@ -163,12 +151,12 @@ uxy_staticConstString(NSObject_XYTimers)
     return timer.timer;
 }
 
-- (NSTimer *)uxy_timer:(NSTimeInterval)interval repeat:(BOOL)repeat name:(NSString *)name block:(XYTimer_block)block
+- (NSTimer *)uxy_startTimer:(NSString *)name interval:(NSTimeInterval)interval repeat:(BOOL)repeat block:(XYTimer_block)block
 {
     NSString *timerName = name ?: @"";
     
     NSMutableDictionary *timers = self.uxy_timers;
-    [self uxy_cancelTimer:timerName];
+    [self uxy_stopTimer:timerName];
     
     NSDate *date   = [NSDate date];
     XYTimer *timer = [[XYTimer alloc] init];
@@ -184,9 +172,26 @@ uxy_staticConstString(NSObject_XYTimers)
     [timers setObject:container forKey:timerName];
     
     return timer.timer;
+
 }
 
-- (void)uxy_cancelTimer:(NSString *)name
+- (void)pauseTimer:(NSString *)name
+{
+    XYTimerContainer *container = self.uxy_timers[name];
+    if (![container.timer.timer isValid]) return;
+    
+    container.timer.timer.fireDate = [NSDate distantFuture];
+}
+
+- (void)resumeTimer:(NSString *)name
+{
+    XYTimerContainer *container = self.uxy_timers[name];
+    if (![container.timer.timer isValid]) return;
+    
+    container.timer.timer.fireDate = [NSDate date];
+}
+
+- (void)uxy_stopTimer:(NSString *)name
 {
     NSString *timerName = name ?: @"";
 
@@ -200,7 +205,7 @@ uxy_staticConstString(NSObject_XYTimers)
     }
 }
 
-- (void)uxy_cancelAllTimer
+- (void)uxy_stopAllTimers
 {
     [self.uxy_timers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [(XYTimer *)obj stop];
