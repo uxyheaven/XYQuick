@@ -70,7 +70,7 @@
 
 /**
  * @brief 自己绑定JSONkey和property
- * @brief 如果没有自己绑定，默认为 {JSONkey:property} 【JSONkey=property】
+ * @brief 如果没有自己绑定，默认为 {JSONkey:property}, 其中JSONkey=property
  */
 + (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property;
 
