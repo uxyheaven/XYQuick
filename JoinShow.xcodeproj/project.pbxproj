@@ -15,8 +15,8 @@
 		5708A9641AF8991A000607AB /* XYRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5708A8821AF8991A000607AB /* XYRepository.m */; };
 		570C3A7E1845C65E0077D010 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7D1845C65E0077D010 /* AudioToolbox.framework */; };
 		570C3A801845C6700077D010 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570C3A7F1845C6700077D010 /* CoreGraphics.framework */; };
-		5710440D1BD8864F00980200 /* json1.json in Resources */ = {isa = PBXBuildFile; fileRef = 5710440B1BD8864F00980200 /* json1.json */; settings = {ASSET_TAGS = (); }; };
-		5710440E1BD8864F00980200 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 5710440C1BD8864F00980200 /* json2.json */; settings = {ASSET_TAGS = (); }; };
+		5710440D1BD8864F00980200 /* json1.json in Resources */ = {isa = PBXBuildFile; fileRef = 5710440B1BD8864F00980200 /* json1.json */; };
+		5710440E1BD8864F00980200 /* json2.json in Resources */ = {isa = PBXBuildFile; fileRef = 5710440C1BD8864F00980200 /* json2.json */; };
 		571CBA3317C6FB55007CB842 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA3217C6FB55007CB842 /* AppDelegate.m */; };
 		571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBA4917C6FCC0007CB842 /* DemoTableViewController.m */; };
 		571CBA5817C6FCC0007CB842 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 571CBA4F17C6FCC0007CB842 /* Storyboard.storyboard */; };
@@ -37,7 +37,7 @@
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */ = {isa = PBXBuildFile; fileRef = 575B850319FFDAA700EAE7E0 /* AopTestM.m */; };
-		577D961F1BCBA7F6004C0D41 /* XYProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */; settings = {ASSET_TAGS = (); }; };
+		577D961F1BCBA7F6004C0D41 /* XYProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */; };
 		577F73291AF92DF30071FD0B /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73221AF92DF30071FD0B /* IndicatorHelper.m */; };
 		577F732A1AF92DF30071FD0B /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73241AF92DF30071FD0B /* LKDBHelperExtension.m */; };
 		577F732B1AF92DF30071FD0B /* RequestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73261AF92DF30071FD0B /* RequestHelper.m */; };
@@ -233,7 +233,6 @@
 		5791A7E918051E7C009A1003 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		579426B31856D6DC0049B426 /* EntityBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityBaseModel.h; sourceTree = "<group>"; };
 		579426B41856D6DC0049B426 /* EntityBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityBaseModel.m; sourceTree = "<group>"; };
-		5798860D1BAF9A4700AA9612 /* XYQuick_Custom_Predefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuick_Custom_Predefine.h; sourceTree = "<group>"; };
 		579B3A3318EBDCF8001650C6 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		579B3A3418EBDCF8001650C6 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		57A2FE5D18063D5A002460EC /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
@@ -693,7 +692,6 @@
 				571CBA5017C6FCC0007CB842 /* View */,
 				571CBA3117C6FB55007CB842 /* AppDelegate.h */,
 				571CBA3217C6FB55007CB842 /* AppDelegate.m */,
-				5798860D1BAF9A4700AA9612 /* XYQuick_Custom_Predefine.h */,
 			);
 			name = AppDelegate;
 			sourceTree = "<group>";
@@ -1283,7 +1281,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
-					CUSTOM_XYPREDEFINE,
 				);
 				INFOPLIST_FILE = "JoinShow/JoinShow-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1330,7 +1327,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
-					CUSTOM_XYPREDEFINE,
 				);
 				INFOPLIST_FILE = "JoinShow/JoinShow-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

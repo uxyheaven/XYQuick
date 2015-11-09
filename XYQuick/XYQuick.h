@@ -31,15 +31,7 @@
 #ifndef __XYQUICK_H__
 #define __XYQUICK_H__
 
-//  在编译器的(Preprocessor Macros)里设置 (CUSTOM_XYPREDEFINE)
-//  可以定制"XYQuick_Predefine.h"里的部分编译选项
-
-#if TARGET_IPHONE_SIMULATOR
-#import "XYQuick_Predefine.h"   // 预编译
-#else
 #import "XYQuick_Predefine.h"
-#endif
-
 
 #import "XYQuick_Core.h"        // 基础类
 #import "XYQuick_UI.h"          // 界面
