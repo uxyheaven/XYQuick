@@ -80,51 +80,30 @@ UXY_TEST_CASE( Core, XYThead )
 UXY_DESCRIBE( test1 )
 {
     __block int step = 1;
-    uxy_dispatch_after_background_concurrent(1)
+    dispatch_after( [XYGCD seconds:1], [XYGCD sharedInstance].backConcurrentQueue, ^{
     {
         step = 3;
     }
-    uxy_dispatch_submit
+    });
     step = 2;
 }
 
 UXY_DESCRIBE( test2 )
 {
     __block int step = 1;
-    uxy_dispatch_background_concurrent
-    {
-        step = 3;
-        uxy_dispatch_foreground
+    dispatch_async( [XYGCD sharedInstance].backConcurrentQueue, ^{
         {
-            step = 4;
+            step = 3;
+            dispatch_async( dispatch_get_main_queue(), ^{
+                {
+                    step = 4;
+                }
+            });
         }
-        uxy_dispatch_submit
-    }
-    uxy_dispatch_submit
+    });
     step = 2;
 }
 
-UXY_DESCRIBE( test3 )
-{
-    __block int step = 1;
-    
-    for (int i = 1; i < 100; i++)
-    {
-        uxy_dispatch_background_concurrent
-        {
-            step = 3;
-        }
-        uxy_dispatch_submit
-    }
-    
-    uxy_dispatch_barrier_background_concurrent
-    {
-        step = 4;
-    }
-    uxy_dispatch_submit
-    // 这里的调度顺序, 有可能先执行到step3 然后才执行step2
-    step = 2;
-}
 
 UXY_TEST_CASE_END
 #endif

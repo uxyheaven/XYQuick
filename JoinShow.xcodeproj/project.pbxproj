@@ -960,6 +960,11 @@
 				LastTestingUpgradeCheck = 0630;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Heaven;
+				TargetAttributes = {
+					57B3FFE5177AD9BC00775FC9 = {
+						DevelopmentTeam = YU5X6QEWK5;
+					};
+				};
 			};
 			buildConfigurationList = 57B3FFE1177AD9BC00775FC9 /* Build configuration list for PBXProject "JoinShow" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1308,6 +1313,7 @@
 					"\"SystemConfiguration\"",
 					"-DCUSTOM_XYPREDEFINE",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.uxy.JoinShow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1354,6 +1360,7 @@
 					"\"SystemConfiguration\"",
 					"-DCUSTOM_XYPREDEFINE",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.uxy.JoinShow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

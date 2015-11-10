@@ -25,23 +25,25 @@
 
 - (void)loadClasses:(NSArray *)classNames
 {
-    for ( NSString * className in classNames )
-    {
-        Class classType = NSClassFromString( className );
-        if ( classType )
+    @autoreleasepool {
+        for ( NSString * className in classNames )
         {
-            fprintf( stderr, "  Loading class '%s'\n", [[classType description] UTF8String] );
-            
-            NSMethodSignature * signature = [classType methodSignatureForSelector:@selector(uxy_classAutoLoad)];
-            NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
-            
-            [invocation setTarget:classType];
-            [invocation setSelector:@selector(uxy_classAutoLoad)];
-            [invocation invoke];
+            Class classType = NSClassFromString( className );
+            if ( classType )
+            {
+                fprintf( stderr, "  Loading class '%s'\n", [[classType description] UTF8String] );
+                
+                NSMethodSignature * signature = [classType methodSignatureForSelector:@selector(uxy_classAutoLoad)];
+                NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
+                
+                [invocation setTarget:classType];
+                [invocation setSelector:@selector(uxy_classAutoLoad)];
+                [invocation invoke];
+            }
         }
+        
+        fprintf( stderr, "\n" );
     }
-    
-    fprintf( stderr, "\n" );
 }
 
 

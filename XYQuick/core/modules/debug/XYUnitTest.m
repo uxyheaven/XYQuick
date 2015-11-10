@@ -87,7 +87,7 @@
 
 /*
  * 1. 调用所有的Framework中的初始化方法
- * 2. 调用所有的+load方法
+ * 2. 调用所有的+load方法, runtime调用 +(void)load的时候, 程序还没有建立其autorelease pool
  * 3. 调用C++的静态初始化方及C/C++中的__attribute__(constructor)函数
  * 4. 调用所有链接到目标文件的framework中的初始化方法
  */

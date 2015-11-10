@@ -133,10 +133,9 @@
     {
         // 异步
         [self saveToMemory:anObject forKey:key];
-        uxy_dispatch_background_concurrent
-        [self saveToData:anObject forKey:key];
-        uxy_dispatch_submit
-        
+        dispatch_async( [XYGCD sharedInstance].backConcurrentQueue, ^{
+            [self saveToData:anObject forKey:key];
+        });
     }
     else
     {

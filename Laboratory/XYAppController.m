@@ -42,30 +42,32 @@ BOOL __applicationDidFinishLaunchingWithOptions(id self, SEL _cmd, UIApplication
 
 + (void)load
 {
-    XYAppController *appController = [XYAppController sharedInstance];
-    NSArray *classes = [NSObject uxy_classesWithProtocol:@"UIApplicationDelegate"];
-    
-    if (classes.count > 0)
-    {
-        Class clazz = NSClassFromString(classes[0]);
-        Method a = class_getInstanceMethod(clazz, @selector(application:didFinishLaunchingWithOptions:));
-        if (class_addMethod(clazz, @selector(__applicationDidFinishLaunchingWithOptions), (IMP)__applicationDidFinishLaunchingWithOptions, "B@:@@"))
+    @autoreleasepool {
+        XYAppController *appController = [XYAppController sharedInstance];
+        NSArray *classes = [NSObject uxy_classesWithProtocol:@"UIApplicationDelegate"];
+        
+        if (classes.count > 0)
         {
-            Method b = class_getInstanceMethod(clazz, @selector(__applicationDidFinishLaunchingWithOptions));
-            method_exchangeImplementations(a, b);
+            Class clazz = NSClassFromString(classes[0]);
+            Method a = class_getInstanceMethod(clazz, @selector(application:didFinishLaunchingWithOptions:));
+            if (class_addMethod(clazz, @selector(__applicationDidFinishLaunchingWithOptions), (IMP)__applicationDidFinishLaunchingWithOptions, "B@:@@"))
+            {
+                Method b = class_getInstanceMethod(clazz, @selector(__applicationDidFinishLaunchingWithOptions));
+                method_exchangeImplementations(a, b);
+            }
         }
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:appController
+                                                 selector:@selector(__after_application_didFinishLaunchingWithOptions)
+                                                     name:UIApplicationDidFinishLaunchingNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:appController
+                                                 selector:@selector(UIApplicationWillTerminateNotification)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
     }
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:appController
-                                             selector:@selector(__after_application_didFinishLaunchingWithOptions)
-                                                 name:UIApplicationDidFinishLaunchingNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:appController
-                                             selector:@selector(UIApplicationWillTerminateNotification)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
 }
 
 #pragma mark- hook
