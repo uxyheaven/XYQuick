@@ -31,7 +31,7 @@
 
 #import "XYQuick_Predefine.h"
 #pragma mark -
-/*
+
 // 提交
 #define uxy_dispatch_submit \
         });
@@ -64,7 +64,7 @@
 // 写的文件用的串行队列
 #define uxy_dispatch_background_writeFile     \
         dispatch_async( [XYGCD sharedInstance].writeFileQueue, ^{
-*/
+
 #pragma mark -
 
 @interface XYGCD : NSObject uxy_as_singleton
