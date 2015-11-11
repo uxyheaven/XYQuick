@@ -146,7 +146,7 @@ uxy_staticConstString(UIViewController_isExecuted_loadView)
 }
 -(void)set__uxy_isExecutedLoadView:(BOOL)__uxy_isExecutedLoadView
 {
-        objc_setAssociatedObject(self, UIViewController_isExecuted_loadView, @(__uxy_isExecutedLoadView), OBJC_ASSOCIATION_ASSIGN);
+        objc_setAssociatedObject(self, UIViewController_isExecuted_loadView, @(__uxy_isExecutedLoadView), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 + (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement

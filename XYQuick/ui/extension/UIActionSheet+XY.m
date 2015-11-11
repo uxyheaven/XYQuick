@@ -43,35 +43,32 @@ uxy_staticConstString(UIActionSheet_key_didDismiss)
 - (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerCancel:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerWillPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerDidPresent:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerWillDismiss:(UIActionSheet_block_self)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, UIActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerDidDismiss:(UIActionSheet_block_self_index)aBlock
 {
     self.delegate = self;
-    objc_setAssociatedObject(self, UIActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY);
-
-    
-    
+    objc_setAssociatedObject(self, UIActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

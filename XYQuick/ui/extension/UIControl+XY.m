@@ -98,7 +98,7 @@ uxy_staticConstString(UIControl_key_events)
         [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [self uxy_removeHandlerForEvent:[UIControl __uxy_eventWithName:key]];
         }];
-        objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_ASSIGN);
+        objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
@@ -111,7 +111,7 @@ uxy_staticConstString(UIControl_key_events)
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_ASSIGN);
+        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     [opreations setObject:[block copy] forKey:methodName];

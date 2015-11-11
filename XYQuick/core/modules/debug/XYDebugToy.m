@@ -52,7 +52,7 @@
 {
     XYWatcher *watcher = [[XYWatcher alloc] init];
     watcher.stringDealloc = string;
-    objc_setAssociatedObject(anObject, XYDebug_key_hookDealloc, watcher, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(anObject, XYDebug_key_hookDealloc, watcher, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 // Recursively travel down the view tree, increasing the indentation level for children
