@@ -78,4 +78,5 @@
  */
 + (NSDateFormatter *)uxy_dateFormatter;
 + (NSDateFormatter *)uxy_dateFormatterByUTC;
++ (NSDateFormatter *)uxy_dateFormatterWithFormatter:(NSString *)formatter;
 @end

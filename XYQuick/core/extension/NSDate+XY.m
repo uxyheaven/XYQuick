@@ -269,6 +269,26 @@ uxy_staticConstString(NSDate_key_stringCache)
     return dateFormatter;
 }
 
++ (NSDateFormatter *)uxy_dateFormatterWithFormatter:(NSString *)formatter
+{
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = threadDictionary[formatter];
+    if(!dateFormatter)
+    {
+        @synchronized(self)
+        {
+            if(!dateFormatter)
+            {
+                dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:formatter];
+                threadDictionary[formatter] = dateFormatter;
+            }
+        }
+    }
+    
+    return dateFormatter;
+}
+
 #pragma mark - private
 + (NSCalendar *)uxy_currentCalendar
 {
