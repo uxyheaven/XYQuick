@@ -51,36 +51,36 @@
 @end
 
 #pragma mark - XYDebug
-#undef	PRINT_CALLSTACK
-#define PRINT_CALLSTACK( __n )	[XYDebug printCallstack:__n];
+#undef	XY_PRINT_CALLSTACK
+#define XY_PRINT_CALLSTACK( __n )	[XYDebug printCallstack:__n];
 // 断点
-#undef	BREAK_POINT
-#define BREAK_POINT()			[XYDebug breakPoint];
+#undef	XY_BREAK_POINT
+#define XY_BREAK_POINT()			[XYDebug breakPoint];
 
-#undef	BREAK_POINT_IF
-#define BREAK_POINT_IF( __x )	if ( __x ) { [XYDebug breakPoint]; }
+#undef	XY_BREAK_POINT_IF
+#define XY_BREAK_POINT_IF( __x )	if ( __x ) { [XYDebug breakPoint]; }
 
-#undef	BB
-#define BB						[XYDebug breakPoint];
+#undef	XY_BB
+#define XY_BB						[XYDebug breakPoint];
 
 #ifdef DEBUG
-#define __breakPoint_on_debug asm("int3")
+#define uxy_breakPoint_on_debug asm("int3")
 #else
-#define __breakPoint_on_debug
+#define uxy_breakPoint_on_debug
 #endif
 
 // 验证
-#define UXY_ASSERT_RETURN_ON_RELEASE( __condition, __desc, ... ) \
+#define XY_ASSERT_RETURN_ON_RELEASE( __condition, __desc, ... ) \
         metamacro_if_eq(0, metamacro_argcount(__VA_ARGS__)) \
         (__XY_ASSERT_1(__condition, __desc, __VA_ARGS__))    \
         (__XY_ASSERT_2(__condition, __desc, __VA_ARGS__))
 
 #define __XY_ASSERT_1( __condition, __desc ) \
-        if ( !(__condition) ) __breakPoint_on_debug;   \
+        if ( !(__condition) ) uxy_breakPoint_on_debug;   \
         else return;
 
 #define __XY_ASSERT_2( __condition, __desc, __returnedValue ) \
-        if ( !(__condition) ) __breakPoint_on_debug;   \
+        if ( !(__condition) ) uxy_breakPoint_on_debug;   \
         else return __returnedValue;
 
 

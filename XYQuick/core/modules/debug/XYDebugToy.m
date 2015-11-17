@@ -29,7 +29,6 @@
 //
 
 #import "XYDebugToy.h"
-#import "XYRuntime.h"
 
 #undef	XYDebug_key_hookDealloc
 #define XYDebug_key_hookDealloc	"XYDebug.hookDealloc"
@@ -238,7 +237,9 @@
 + (void)load
 {
 #if (1 == __XY_DEBUG_SHOWBORDER__)
-    [XYRuntime swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(__uxy_sendEvent:)];
+    @autoreleasepool {
+            [self __swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(__uxy_sendEvent:)];
+    }
 #endif
 }
 
@@ -285,6 +286,21 @@
         }
     }
     [self __uxy_sendEvent:event];
+}
+
++ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
+{
+    Method a = class_getInstanceMethod(clazz, original);
+    Method b = class_getInstanceMethod(clazz, replacement);
+    
+    if (class_addMethod(clazz, original, method_getImplementation(b), method_getTypeEncoding(b)))
+    {
+        class_replaceMethod(clazz, replacement, method_getImplementation(a), method_getTypeEncoding(a));
+    }
+    else
+    {
+        method_exchangeImplementations(a, b);
+    }
 }
 
 @end
