@@ -779,6 +779,8 @@ UXY_TEST_CASE( Core, JSON )
 UXY_DESCRIBE( test1 )
 {
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json1.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0) return;
+    
     NSDictionary *dic = [str uxy_JSONDictionary];
     UXY_EXPECTED( dic.count == 3 );
 }
