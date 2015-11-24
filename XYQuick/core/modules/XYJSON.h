@@ -62,10 +62,10 @@
 + (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property;
 + (void)uxy_removeJSONKeyWithProperty:(NSString *)property;
 
-- (id)uxy_toModel:(Class)classType __deprecated_msg("New method is `uxy_JSONObjectAtClass:`");
-- (id)uxy_toModel:(Class)classType forKey:(NSString *)JSONKey __deprecated_msg("New method is `uxy_JSONObjectAtClass:forKeyPath:`");
-- (NSArray *)uxy_toModels:(Class)classType __deprecated_msg("New method is `uxy_JSONObjectAtClass:`");
-- (NSArray *)uxy_toModels:(Class)classType forKey:(NSString *)JSONKey __deprecated_msg("New method is `uxy_JSONObjectAtClass:forKeyPath:`");
+- (id)uxy_toModel:(Class)classType __deprecated_msg("New method is `uxy_JSONObjectByClass:`");
+- (id)uxy_toModel:(Class)classType forKey:(NSString *)JSONKey __deprecated_msg("New method is `uxy_JSONObjectByClass:forKeyPath:`");
+- (NSArray *)uxy_toModels:(Class)classType __deprecated_msg("New method is `uxy_JSONObjectByClass:`");
+- (NSArray *)uxy_toModels:(Class)classType forKey:(NSString *)JSONKey __deprecated_msg("New method is `uxy_JSONObjectByClass:forKeyPath:`");
 
 @end
 
@@ -74,8 +74,8 @@
 - (NSData *)uxy_JSONData;
 - (id)uxy_JSONObject;
 - (NSDictionary *)uxy_JSONDictionary;
-- (id)uxy_JSONObjectAtClass:(Class)classType;
-- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+- (id)uxy_JSONObjectByClass:(Class)classType;
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath;
 @end
 
 @interface NSData (XYJSON_2)
@@ -83,22 +83,22 @@
 - (NSData *)uxy_JSONData;
 - (id)uxy_JSONObject;
 - (NSDictionary *)uxy_JSONDictionary;
-- (id)uxy_JSONObjectAtClass:(Class)classType;
-- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+- (id)uxy_JSONObjectByClass:(Class)classType;
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath;
 @end
 
 @interface NSDictionary (XYJSON_2)
 - (NSString *)uxy_JSONString;
 - (NSData *)uxy_JSONData;
-- (id)uxy_JSONObjectAtClass:(Class)classType;
-- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+- (id)uxy_JSONObjectByClass:(Class)classType;
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath;
 @end
 
 @interface NSArray (XYJSON_2)
 - (NSString *)uxy_JSONString;
 - (NSData *)uxy_JSONData;
-- (id)uxy_JSONObjectAtClass:(Class)classType;
-- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+- (id)uxy_JSONObjectByClass:(Class)classType;
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath;
 @end
 
 #pragma mark - NSObject (XYJSON)
