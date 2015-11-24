@@ -136,6 +136,19 @@ UXY_DESCRIBE( test5 )
     UXY_EXPECTED( [country.name isEqualToString:@"米国"] );
 }
 
+UXY_DESCRIBE( test6 )
+{
+    // 有空值
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json6.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Tour *tour = [str uxy_toModel:[Tour class]];
+    UXY_EXPECTED( [tour.name isEqualToString:@"线路"] );
+    UXY_EXPECTED( tour.list == nil );
+}
+
+
 UXY_TEST_CASE_END
 
 #endif

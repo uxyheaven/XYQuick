@@ -208,6 +208,12 @@
 
 @end
 
+@interface XYJSONParser_2 : NSObject
+
++ (instancetype)sharedInstance;
+
+@end
+
 
 
 

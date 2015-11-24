@@ -90,6 +90,7 @@
 		57ED39C01C045A9C0054644D /* json4.json in Resources */ = {isa = PBXBuildFile; fileRef = 57ED39BF1C045A9C0054644D /* json4.json */; };
 		57ED39C21C045AA60054644D /* json3.json in Resources */ = {isa = PBXBuildFile; fileRef = 57ED39C11C045AA60054644D /* json3.json */; };
 		57ED39C41C0492A70054644D /* json5.json in Resources */ = {isa = PBXBuildFile; fileRef = 57ED39C31C0492A70054644D /* json5.json */; };
+		57ED39C61C04C1960054644D /* json6.json in Resources */ = {isa = PBXBuildFile; fileRef = 57ED39C51C04C1960054644D /* json6.json */; };
 		57EE44251B73B007005EF8C0 /* XYClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EE44241B73B007005EF8C0 /* XYClassLoader.m */; };
 		57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF61AFC86FD00298D7E /* NSArray+XY.m */; };
 		57F56F741AFC86FD00298D7E /* NSData+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF81AFC86FD00298D7E /* NSData+XY.m */; };
@@ -298,6 +299,7 @@
 		57ED39BF1C045A9C0054644D /* json4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json4.json; sourceTree = "<group>"; };
 		57ED39C11C045AA60054644D /* json3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json3.json; sourceTree = "<group>"; };
 		57ED39C31C0492A70054644D /* json5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json5.json; sourceTree = "<group>"; };
+		57ED39C51C04C1960054644D /* json6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json6.json; sourceTree = "<group>"; };
 		57EE44231B73B007005EF8C0 /* XYClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYClassLoader.h; sourceTree = "<group>"; };
 		57EE44241B73B007005EF8C0 /* XYClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYClassLoader.m; sourceTree = "<group>"; };
 		57F509B71AF92BF7000E733F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -611,6 +613,7 @@
 				57ED39C11C045AA60054644D /* json3.json */,
 				57ED39BF1C045A9C0054644D /* json4.json */,
 				57ED39C31C0492A70054644D /* json5.json */,
+				57ED39C51C04C1960054644D /* json6.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 				57808335181A1088000F349B /* headportrait.jpg in Resources */,
 				57AE2ED418D2AA8C009F0481 /* image.png in Resources */,
 				5749BF8619BF4DEB00D676CC /* json0.json in Resources */,
+				57ED39C61C04C1960054644D /* json6.json in Resources */,
 				57DF99DE190AF4B10036B85D /* icon_twitter.png in Resources */,
 				57B08683193046C800D2B26D /* user_currentstandings.png in Resources */,
 				57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */,
