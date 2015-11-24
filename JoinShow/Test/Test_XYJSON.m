@@ -31,6 +31,16 @@
 @implementation Address
 @end
 
+@protocol Address @end
+
+@interface Tour : NSObject
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSArray <Address> *list;
+@end
+
+@implementation Tour
+@end
 
 
 UXY_TEST_CASE( Core, JSON )
@@ -38,8 +48,22 @@ UXY_TEST_CASE( Core, JSON )
     //	TODO( "test case" )
 }
 
+UXY_DESCRIBE( test0 )
+{
+    // 普通的解析
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json0.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Address *address = [str uxy_toModel:[Address class]];
+    UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
+}
+
 UXY_DESCRIBE( test1 )
 {
+    // 解析成字典
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json1.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;
@@ -50,17 +74,31 @@ UXY_DESCRIBE( test1 )
 
 UXY_DESCRIBE( test2 )
 {
-    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json0.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    // 解析某个key里的值
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;
     
-    Address *address = [str uxy_toModel:[Address class]];
+    Address *address = [str uxy_toModel:[Address class] forKey:@"data"];
     UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
 UXY_DESCRIBE( test3 )
 {
-    // UXY_EXPECTED( [@"123" isEqualToString:@"123456"] );
+    // 属性带有NSArray
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json3.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Tour *tour = [str uxy_toModel:[Tour class]];
+    UXY_EXPECTED( [tour.name isEqualToString:@"线路"] );
+    
+    Address *address = tour.list[0];
+    UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
 UXY_TEST_CASE_END
