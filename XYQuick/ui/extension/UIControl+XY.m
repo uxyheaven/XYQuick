@@ -40,52 +40,53 @@ static NSDictionary *XY_DicControlStringEvent = nil;
 
 + (void)load
 {
-    XY_DicControlEventString = @{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
-                                 @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
-                                 @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
-                                 @(UIControlEventTouchDragOutside): @"UIControlEventTouchDragOutside",
-                                 @(UIControlEventTouchDragEnter): @"UIControlEventTouchDragEnter",
-                                 @(UIControlEventTouchDragExit): @"UIControlEventTouchDragExit",
-                                 @(UIControlEventTouchUpInside): @"UIControlEventTouchUpInside",
-                                 @(UIControlEventTouchUpOutside): @"UIControlEventTouchUpOutside",
-                                 @(UIControlEventTouchCancel): @"UIControlEventTouchCancel",
-                                 @(UIControlEventValueChanged): @"UIControlEventValueChanged",
-                                 @(UIControlEventEditingDidBegin): @"UIControlEventEditingDidBegin",
-                                 @(UIControlEventEditingChanged): @"UIControlEventEditingChanged",
-                                 @(UIControlEventEditingDidEnd): @"UIControlEventEditingDidEnd",
-                                 @(UIControlEventEditingDidEndOnExit): @"UIControlEventEditingDidEndOnExit",
-                                 @(UIControlEventAllTouchEvents): @"UIControlEventAllTouchEvents",
-                                 @(UIControlEventAllEditingEvents): @"UIControlEventAllEditingEvents",
-                                 @(UIControlEventApplicationReserved): @"UIControlEventApplicationReserved",
-                                 @(UIControlEventSystemReserved): @"UIControlEventSystemReserved",
-                                 @(UIControlEventAllEvents): @"UIControlEventAllEvents"
-                                 };
-    
-    XY_DicControlStringEvent = @{@"UIControlEventTouchDown": @(UIControlEventTouchDown),
-                                 @"UIControlEventTouchDownRepeat": @(UIControlEventTouchDownRepeat),
-                                 @"UIControlEventTouchDragInside": @(UIControlEventTouchDragInside),
-                                 @"UIControlEventTouchDragOutside": @(UIControlEventTouchDragOutside),
-                                 @"UIControlEventTouchDragEnter": @(UIControlEventTouchDragEnter),
-                                 @"UIControlEventTouchDragExit": @(UIControlEventTouchDragExit),
-                                 @"UIControlEventTouchUpInside": @(UIControlEventTouchUpInside),
-                                 @"UIControlEventTouchUpOutside": @(UIControlEventTouchUpOutside),
-                                 @"UIControlEventTouchCancel": @(UIControlEventTouchCancel),
-                                 @"UIControlEventValueChanged": @(UIControlEventValueChanged),
-                                 @"UIControlEventEditingDidBegin": @(UIControlEventEditingDidBegin),
-                                 @"UIControlEventEditingChanged": @(UIControlEventEditingChanged),
-                                 @"UIControlEventEditingDidEnd": @(UIControlEventEditingDidEnd),
-                                 @"UIControlEventEditingDidEndOnExit": @(UIControlEventEditingDidEndOnExit),
-                                 @"UIControlEventAllTouchEvents": @(UIControlEventAllTouchEvents),
-                                 @"UIControlEventAllEditingEvents": @(UIControlEventAllEditingEvents),
-                                 @"UIControlEventApplicationReserved": @(UIControlEventApplicationReserved),
-                                 @"UIControlEventSystemReserved": @(UIControlEventSystemReserved),
-                                 @"UIControlEventAllEvents": @(UIControlEventAllEvents)
-                                 };
-    
-    Method a = class_getInstanceMethod([UIControl class], @selector(sendAction:to:forEvent:));
-    Method b = class_getInstanceMethod([UIControl class], @selector(__uxy_sendAction:to:forEvent:));
-    method_exchangeImplementations(a, b);
-    
+    @autoreleasepool {
+        Method a = class_getInstanceMethod([UIControl class], @selector(sendAction:to:forEvent:));
+        Method b = class_getInstanceMethod([UIControl class], @selector(__uxy_sendAction:to:forEvent:));
+        method_exchangeImplementations(a, b);
+        
+        XY_DicControlEventString = @{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
+                                     @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
+                                     @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
+                                     @(UIControlEventTouchDragOutside): @"UIControlEventTouchDragOutside",
+                                     @(UIControlEventTouchDragEnter): @"UIControlEventTouchDragEnter",
+                                     @(UIControlEventTouchDragExit): @"UIControlEventTouchDragExit",
+                                     @(UIControlEventTouchUpInside): @"UIControlEventTouchUpInside",
+                                     @(UIControlEventTouchUpOutside): @"UIControlEventTouchUpOutside",
+                                     @(UIControlEventTouchCancel): @"UIControlEventTouchCancel",
+                                     @(UIControlEventValueChanged): @"UIControlEventValueChanged",
+                                     @(UIControlEventEditingDidBegin): @"UIControlEventEditingDidBegin",
+                                     @(UIControlEventEditingChanged): @"UIControlEventEditingChanged",
+                                     @(UIControlEventEditingDidEnd): @"UIControlEventEditingDidEnd",
+                                     @(UIControlEventEditingDidEndOnExit): @"UIControlEventEditingDidEndOnExit",
+                                     @(UIControlEventAllTouchEvents): @"UIControlEventAllTouchEvents",
+                                     @(UIControlEventAllEditingEvents): @"UIControlEventAllEditingEvents",
+                                     @(UIControlEventApplicationReserved): @"UIControlEventApplicationReserved",
+                                     @(UIControlEventSystemReserved): @"UIControlEventSystemReserved",
+                                     @(UIControlEventAllEvents): @"UIControlEventAllEvents"
+                                     };
+        
+        XY_DicControlStringEvent = @{@"UIControlEventTouchDown": @(UIControlEventTouchDown),
+                                     @"UIControlEventTouchDownRepeat": @(UIControlEventTouchDownRepeat),
+                                     @"UIControlEventTouchDragInside": @(UIControlEventTouchDragInside),
+                                     @"UIControlEventTouchDragOutside": @(UIControlEventTouchDragOutside),
+                                     @"UIControlEventTouchDragEnter": @(UIControlEventTouchDragEnter),
+                                     @"UIControlEventTouchDragExit": @(UIControlEventTouchDragExit),
+                                     @"UIControlEventTouchUpInside": @(UIControlEventTouchUpInside),
+                                     @"UIControlEventTouchUpOutside": @(UIControlEventTouchUpOutside),
+                                     @"UIControlEventTouchCancel": @(UIControlEventTouchCancel),
+                                     @"UIControlEventValueChanged": @(UIControlEventValueChanged),
+                                     @"UIControlEventEditingDidBegin": @(UIControlEventEditingDidBegin),
+                                     @"UIControlEventEditingChanged": @(UIControlEventEditingChanged),
+                                     @"UIControlEventEditingDidEnd": @(UIControlEventEditingDidEnd),
+                                     @"UIControlEventEditingDidEndOnExit": @(UIControlEventEditingDidEndOnExit),
+                                     @"UIControlEventAllTouchEvents": @(UIControlEventAllTouchEvents),
+                                     @"UIControlEventAllEditingEvents": @(UIControlEventAllEditingEvents),
+                                     @"UIControlEventApplicationReserved": @(UIControlEventApplicationReserved),
+                                     @"UIControlEventSystemReserved": @(UIControlEventSystemReserved),
+                                     @"UIControlEventAllEvents": @(UIControlEventAllEvents)
+                                     };
+    }
 }
 
 uxy_staticConstString(UIControl_key_events)

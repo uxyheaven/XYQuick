@@ -1,11 +1,18 @@
-{
-    "data":
-    {
-        "code": 1,
-        "country": {
-            "name": "天朝",
-            "name_id": "CN"
-        },
-        "area": "华东"
-    }
-}
+ [
+  {
+  "code": 1,
+  "country": {
+  "name": "天朝",
+  "name_id": "CN"
+  },
+  "area": "华东"
+  },
+  {
+  "code": 2,
+  "country": {
+  "name": "米国",
+  "name_id": "USA"
+  },
+  "area": "美洲"
+  }
+  ]

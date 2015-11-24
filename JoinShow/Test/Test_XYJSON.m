@@ -101,6 +101,21 @@ UXY_DESCRIBE( test3 )
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
+UXY_DESCRIBE( test4 )
+{
+    // 解析 NSArray
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json4.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    NSArray *array = [str uxy_toModels:[Address class]];
+    Address *address = array[0];
+    
+    UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
+}
+
 UXY_TEST_CASE_END
 
 #endif
