@@ -116,6 +116,26 @@ UXY_DESCRIBE( test4 )
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
+UXY_DESCRIBE( test5 )
+{
+    // 使用XYJSONParser提高一个返回值里有多个对象的时候解析速度的问题.
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json5.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    XYJSONParser *paser1 = [XYJSONParser objectWithKey:@"data1" clazz:[Address class]];
+    XYJSONParser *paser2 = [XYJSONParser objectWithKey:@"data2" clazz:[Country class]];
+    
+    NSArray *array = @[paser1, paser2];
+    [str uxy_parseToObjectWithParsers:array];
+    
+    Address *address = paser1.result[0];
+    Country *country = paser2.result;
+    
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
+    UXY_EXPECTED( [country.name isEqualToString:@"米国"] );
+}
+
 UXY_TEST_CASE_END
 
 #endif

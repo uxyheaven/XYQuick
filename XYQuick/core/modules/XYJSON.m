@@ -56,26 +56,20 @@ const char *__uxy_property_getTypeString(objc_property_t property);
 #pragma mark - XYJSONParser
 @implementation XYJSONParser
 
-- (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single
+- (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz
 {
     self = [super init];
     if (self)
     {
         self.key    = key;
         self.clazz  = clazz;
-        self.single = single;
     }
     return self;
 }
 
-+ (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single
-{
-    return [[self alloc] initWithKey:key clazz:clazz single:single];
-}
-
 + (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz
 {
-    return [[self alloc] initWithKey:key clazz:clazz single:NO];
+    return [[self alloc] initWithKey:key clazz:clazz];
 }
 
 /**
@@ -419,6 +413,10 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return self.__uxy_toData.uxy_JSONValue;
 }
 
+- (void)uxy_parseToObjectWithParsers:(NSArray *)parsers
+{
+    [self.__uxy_toData uxy_parseToObjectWithParsers:parsers];
+}
 #pragma mark - private
 - (NSData *)__uxy_toData
 {
@@ -679,26 +677,32 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     
     [parsers enumerateObjectsUsingBlock:^(XYJSONParser *parser, NSUInteger idx, BOOL *stop) {
         id obj = [JSONValue objectForKey:parser.key];
-        //如果没有clazz，则说明不是Model，直接原样返回
-        if (!parser.clazz)
-        {
-            parser.result = obj;
-            return ;
-        }
         
-        if (!parser.single)
+        if (obj == nil)
+            return;
+        
+        NSDictionary *dic = [parser.clazz uxy_JSONKeyPropertyDictionary];
+        
+        if ([obj isKindOfClass:[NSArray class]])
         {
-            parser.result = [obj uxy_toModel:parser.clazz];
-            return ;
+            NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[JSONValue count]];
+            [obj enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                id model = [NSData __uxy_objectForClassType:parser.clazz fromDict:obj withJSONKeyPropertyDictionary:dic];
+                if (!model)
+                    return ;
+                
+                [models addObject:model];
+            }];
+            
+            parser.result = models;
+            return;
         }
         
         if ([obj isKindOfClass:[NSDictionary class]])
         {
-            parser.result = [[(NSDictionary *)obj uxy_JSONString] uxy_toModel:parser.clazz];
+            parser.result = [NSData __uxy_objectForClassType:parser.clazz fromDict:obj withJSONKeyPropertyDictionary:dic];
             return;
         }
-        
-        parser.result = [obj uxy_toModels:parser.clazz];
     }];
 }
 

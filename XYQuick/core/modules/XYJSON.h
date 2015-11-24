@@ -43,7 +43,7 @@
 #pragma mark - XYJSONAutoBinding
 /**
  * 通过 Protocol 免去NSArray 手动bind
- * @interface AudioPartModel : NSObject <XYJSONAutoBinding>
+ * @interface AudioPartModel : NSObject
  * @protocol AudioPartModel @end
  * @property(strong, nonatomic) NSArray	<AudioPartModel> *audioParts;
  *
@@ -107,6 +107,13 @@
 #pragma mark - NSString (XYJSON)
 @interface NSString (XYJSON)
 - (id)uxy_JSONValue;
+
+/**
+ *   @brief  解析结果直接在parser的result字段里面，这个方法主要是为了提高解析的效率
+ *   如果一个JSON中有多个key ex：{用户列表，商品列表、打折列表}那么传3个解析器进来就好了，不会对data进行三次重复的解析操作
+ *   @param  parsers 要解析为JSON的解析器(XYJSONParser)集合
+ */
+- (void)uxy_parseToObjectWithParsers:(NSArray *)parsers;
 @end
 
 #pragma mark - NSDictionary (XYJSON)
@@ -131,7 +138,7 @@
 /**
  *   @brief  解析结果直接在parser的result字段里面，这个方法主要是为了提高解析的效率
  *   如果一个JSON中有多个key ex：{用户列表，商品列表、打折列表}那么传3个解析器进来就好了，不会对data进行三次重复的解析操作
- *   @param  parsers 要解析为JSON的解析器集合
+ *   @param  parsers 要解析为JSON的解析器(XYJSONParser)集合
  */
 - (void)uxy_parseToObjectWithParsers:(NSArray *)parsers;
 
@@ -146,13 +153,11 @@
 @interface XYJSONParser : NSObject
 
 @property(nonatomic, strong) Class clazz;   // 要转换成什么class
-@property(nonatomic, assign) BOOL single;   // 是否单个
 @property(nonatomic, copy) NSString *key; // key
 @property(nonatomic, strong) id result;     // 结果
 @property(nonatomic, readonly, weak) id smartResult;
 
-- (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single;
-+ (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single;
+- (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz;
 + (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz;
 
 @end
