@@ -579,7 +579,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
             Class otherClass = [self __uxy_classForString:obj valueKey:&valueKey];
             if (otherClass)
             {
-                id object = [self __uxy_objectForClassType:classType fromDict:[dict valueForKeyPath:key] withJSONKeyPropertyDictionary:[otherClass uxy_JSONKeyPropertyDictionary]];
+                id object = [self __uxy_objectForClassType:otherClass fromDict:[dict valueForKeyPath:key] withJSONKeyPropertyDictionary:[otherClass uxy_JSONKeyPropertyDictionary]];
                 if (object)
                 {
                     if (valueKey)
@@ -616,14 +616,14 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 
 - (id)__uxy_JSONValueForKey:(NSString *)key
 {
-    if (key && [[self uxy_JSONValue] isKindOfClass:[NSDictionary class]])
+    id JSONValue = [self uxy_JSONValue];
+    
+    if (key && [JSONValue isKindOfClass:[NSDictionary class]])
     {
-        return [[self uxy_JSONValue] valueForKeyPath:key];
+        return [JSONValue valueForKeyPath:key];
     }
-    else
-    {
-        return [self uxy_JSONValue];
-    }
+    
+    return JSONValue;
 }
 
 + (Class)__uxy_classForString:(NSString *)string valueKey:(NSString **)key

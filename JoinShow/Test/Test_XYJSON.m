@@ -13,7 +13,25 @@
 // Unit test
 // ----------------------------------
 #if (1 == __XY_DEBUG_UNITTESTING__)
-#import "XYUnitTest.h"
+
+@interface Country : NSObject <XYJSONAutoBinding>
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *name_id;
+@end
+
+@implementation Country
+@end
+
+@interface Address : NSObject
+@property (nonatomic, assign) int code;
+@property (nonatomic, strong) Country *country;
+@property (nonatomic, copy) NSString *area;
+@end
+
+@implementation Address
+@end
+
+
 
 UXY_TEST_CASE( Core, JSON )
 {
@@ -32,8 +50,12 @@ UXY_DESCRIBE( test1 )
 
 UXY_DESCRIBE( test2 )
 {
-    //  UXY_EXPECTED( 1 == 1 );
-    //  UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json0.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Address *address = [str uxy_toModel:[Address class]];
+    UXY_EXPECTED( address.code == 1 );
 }
 
 UXY_DESCRIBE( test3 )

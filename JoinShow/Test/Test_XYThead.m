@@ -13,7 +13,6 @@
 // ----------------------------------
 // Unit test
 // ----------------------------------
-#import "XYUnitTest.h"
 
 UXY_TEST_CASE( Core, XYThead )
 {

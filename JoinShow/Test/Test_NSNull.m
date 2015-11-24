@@ -13,11 +13,6 @@
 // Unit test
 // ----------------------------------
 #if (1 == __XY_DEBUG_UNITTESTING__)
-#import "XYUnitTest.h"
-
-// ----------------------------------
-// Unit test
-// ----------------------------------
 
 UXY_TEST_CASE( Core, NSNull )
 {
