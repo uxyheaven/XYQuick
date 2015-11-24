@@ -35,6 +35,32 @@
 
 static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 
+#pragma mark - NSObject (XYJSON_2)
+
+@implementation NSObject (XYJSON_2)
+
+static const char * XYJSON_keepJSONObjectCache = "XYJSON_keepJSONObjectCache";
+- (void)setUxy_keepJSONObjectCache:(BOOL)uxy_keepJSONObjectCache
+{
+    objc_setAssociatedObject(self, XYJSON_keepJSONObjectCache, @(uxy_keepJSONObjectCache), OBJC_ASSOCIATION_ASSIGN);
+}
+- (BOOL)uxy_keepJSONObjectCache
+{
+    return [objc_getAssociatedObject(self, XYJSON_keepJSONObjectCache) boolValue];
+}
+
+static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
+- (void)setUxy_JSONObjectCache:(id)uxy_JSONObjectCache
+{
+    objc_setAssociatedObject(self, XYJSON_JSONObjectCache, uxy_JSONObjectCache, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (id)uxy_JSONObjectCache
+{
+    return objc_getAssociatedObject(self, XYJSON_JSONObjectCache);
+}
+
+@end
+
 #pragma mark - NSObject (__XYJSON)
 @interface NSObject (__XYJSON)
 

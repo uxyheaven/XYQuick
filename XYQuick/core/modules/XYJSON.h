@@ -55,7 +55,8 @@
 @end
 
 @interface NSObject (XYJSON_2)
-@property (nonatomic, assign) BOOL uxy_keepJOSNObjectCache;     // JSON对象缓存, 默认关闭. 在需要用KeyPath解析多个对象的时候可以开启, 以提高效率
+@property (nonatomic, assign) BOOL uxy_keepJSONObjectCache;     // JSON对象缓存, 默认关闭. 在需要用KeyPath解析多个对象的时候可以开启, 以提高效率
+@property (nonatomic, strong) id uxy_JSONObjectCache;
 
 + (BOOL)uxy_hasSuperProperties;
 + (NSDictionary *)uxy_JSONKeyProperties;
