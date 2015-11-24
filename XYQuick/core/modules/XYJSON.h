@@ -54,6 +54,52 @@
 @protocol XYJSONAutoBinding
 @end
 
+@interface NSObject (XYJSON_2)
+@property (nonatomic, assign) BOOL uxy_keepJOSNObjectCache;     // JSON对象缓存, 默认关闭. 在需要用KeyPath解析多个对象的时候可以开启, 以提高效率
+
++ (BOOL)uxy_hasSuperProperties;
++ (NSDictionary *)uxy_JSONKeyProperties;
++ (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property;
++ (void)uxy_removeJSONKeyWithProperty:(NSString *)property;
+
+- (id)uxy_toModel:(Class)classType __deprecated_msg("New method is `uxy_JSONObjectAtClass:`");
+- (id)uxy_toModel:(Class)classType forKey:(NSString *)JSONKey __deprecated_msg("New method is `uxy_JSONObjectAtClass:forKeyPath:`");
+- (NSArray *)uxy_toModels:(Class)classType __deprecated_msg("New method is `uxy_JSONObjectAtClass:`");
+- (NSArray *)uxy_toModels:(Class)classType forKey:(NSString *)JSONKey __deprecated_msg("New method is `uxy_JSONObjectAtClass:forKeyPath:`");
+
+@end
+
+@interface NSString (XYJSON_2)
+- (NSString *)uxy_JSONString;
+- (NSData *)uxy_JSONData;
+- (id)uxy_JSONObject;
+- (NSDictionary *)uxy_JSONDictionary;
+- (id)uxy_JSONObjectAtClass:(Class)classType;
+- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+@end
+
+@interface NSData (XYJSON_2)
+- (NSString *)uxy_JSONString;
+- (NSData *)uxy_JSONData;
+- (id)uxy_JSONObject;
+- (NSDictionary *)uxy_JSONDictionary;
+- (id)uxy_JSONObjectAtClass:(Class)classType;
+- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+@end
+
+@interface NSDictionary (XYJSON_2)
+- (NSString *)uxy_JSONString;
+- (NSData *)uxy_JSONData;
+- (id)uxy_JSONObjectAtClass:(Class)classType;
+- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+@end
+
+@interface NSArray (XYJSON_2)
+- (NSString *)uxy_JSONString;
+- (NSData *)uxy_JSONData;
+- (id)uxy_JSONObjectAtClass:(Class)classType;
+- (id)uxy_JSONObjectAtClass:(Class)classType forKeyPath:(NSString *)keyPath;
+@end
 
 #pragma mark - NSObject (XYJSON)
 @interface NSObject (XYJSON)
@@ -66,7 +112,7 @@
 /**
  * @brief 映射好的字典 {JSONkey:property}
  */
-+ (NSDictionary *)uxy_JSONKeyPropertyDictionary;
++ (NSDictionary *)uxy_JSONKeyProperties;
 
 /**
  * @brief 自己绑定JSONkey和property
