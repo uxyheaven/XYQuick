@@ -308,7 +308,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
 
 + (NSString *)__uxy_propertyConformsToProtocol:(Protocol *)protocol propertyName:(NSString *)propertyName
 {
-    NSString *typeName = [self typeOfPropertyNamed:propertyName];
+    NSString *typeName = [self __uxy_typeOfPropertyNamed:propertyName];
     if (!typeName) return nil;
     
     typeName = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
@@ -340,7 +340,7 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement)
     return nil;
 }
 
-+ (NSString *)typeOfPropertyNamed:(NSString *)name
++ (NSString *)__uxy_typeOfPropertyNamed:(NSString *)name
 {
     objc_property_t property = class_getProperty(self, [name UTF8String]);
     return property ? [NSString stringWithUTF8String:(__uxy_property_getTypeString(property))] : nil;
@@ -460,7 +460,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
         return nil;
     
     NSDictionary *dic = [classType uxy_JSONKeyPropertyDictionary];
-    id model          = [NSData objectForClassType:classType fromDict:JSONValue withJSONKeyPropertyDictionary:dic];
+    id model          = [NSData __uxy_objectForClassType:classType fromDict:JSONValue withJSONKeyPropertyDictionary:dic];
     
     return model;
 }
@@ -484,18 +484,18 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     {
         NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[JSONValue count]];
         [JSONValue enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            id model = [NSData objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
-            if (model)
-            {
-                [models addObject:model];
-            }
+            id model = [NSData __uxy_objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
+            if (!model)
+                return ;
+            
+            [models addObject:model];
         }];
         
         return models;
     }
     else if ([JSONValue isKindOfClass:[NSDictionary class]])
     {
-        return [NSData objectForClassType:classType fromDict:JSONValue withJSONKeyPropertyDictionary:dic];
+        return [NSData __uxy_objectForClassType:classType fromDict:JSONValue withJSONKeyPropertyDictionary:dic];
     }
     
     return nil;
@@ -521,7 +521,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:array.count];
     NSDictionary *dic      = [classType uxy_JSONKeyPropertyDictionary];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        id model = [self objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
+        id model = [self __uxy_objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
         if (model)
         {
             [models addObject:model];
@@ -530,9 +530,9 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return models;
 }
 
-+ (id)objectForClassType:(Class)classType
-                fromDict:(NSDictionary *)dict
-         withJSONKeyPropertyDictionary:(NSDictionary *)uxy_JSONKeyPropertyDictionary
++ (id)__uxy_objectForClassType:(Class)classType
+                      fromDict:(NSDictionary *)dict
+ withJSONKeyPropertyDictionary:(NSDictionary *)uxy_JSONKeyPropertyDictionary
 {
     if (![dict isKindOfClass:[NSDictionary class]])
     {
@@ -548,6 +548,7 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     }
     
     id model = [[classType alloc] init];
+    
     [uxy_JSONKeyPropertyDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([[dict valueForKeyPath:key] isKindOfClass:[NSArray class]])
         {
@@ -568,14 +569,17 @@ const char *__uxy_property_getTypeString(objc_property_t property)
             {
                 [model setValue:[dict valueForKeyPath:key] forKey:obj];
             }
+            
+            return ;
         }
-        else if ([[dict valueForKeyPath:key] isKindOfClass:[NSDictionary class]])
+        
+        if ([[dict valueForKeyPath:key] isKindOfClass:[NSDictionary class]])
         {
             NSString *valueKey = nil;
             Class otherClass = [self __uxy_classForString:obj valueKey:&valueKey];
             if (otherClass)
             {
-                id object = [self objectForClassType:classType fromDict:[dict valueForKeyPath:key] withJSONKeyPropertyDictionary:[otherClass uxy_JSONKeyPropertyDictionary]];
+                id object = [self __uxy_objectForClassType:classType fromDict:[dict valueForKeyPath:key] withJSONKeyPropertyDictionary:[otherClass uxy_JSONKeyPropertyDictionary]];
                 if (object)
                 {
                     if (valueKey)
@@ -589,16 +593,19 @@ const char *__uxy_property_getTypeString(objc_property_t property)
             {
                 [model setValue:[dict valueForKeyPath:key] forKey:obj];
             }
+            
+            return;
         }
-        else
+        
+        id value = [dict valueForKeyPath:key];
+        if (![value isKindOfClass:[NSNull class]] && value != nil)
         {
-            id value = [dict valueForKeyPath:key];
-            if (![value isKindOfClass:[NSNull class]] && value != nil)
-            {
-                [model setValue:value forKey:obj];
-            }
+            [model setValue:value forKey:obj];
         }
+        
+        return;
     }];
+    
     return model;
 }
 
@@ -621,89 +628,78 @@ const char *__uxy_property_getTypeString(objc_property_t property)
 
 + (Class)__uxy_classForString:(NSString *)string valueKey:(NSString **)key
 {
-    if (string.length > 0)
-    {
-        if ([string rangeOfString:@"."].length>0)
-        {
-            NSArray *strings = [string componentsSeparatedByString:@"."];
-            if (strings.count>1)
-            {
-                *key = strings.firstObject;
-                return NSClassFromString(strings.lastObject);
-            }
-        }
-        else
-        {
-            return NSClassFromString(string);
-        }
-    }
-    return nil;
+    if (string.length == 0)
+        return nil;
+    
+    if ([string rangeOfString:@"."].length == 0)
+        return NSClassFromString(string);
+    
+    NSArray *strings = [string componentsSeparatedByString:@"."];
+    if (strings.count < 2)
+        return nil;
+    
+    *key = strings.firstObject;
+    return NSClassFromString(strings.lastObject);
 }
 
 - (id)uxy_JSONValueForKeyPath:(NSString *)key
 {
     id JSONValue = [self uxy_JSONValue];
-    if ([JSONValue isKindOfClass:[NSDictionary class]])
-    {
-        NSDictionary *dic = (NSDictionary *)JSONValue;
-        return [dic valueForKeyPath:key];
-    }
-    return nil;
+    if (![JSONValue isKindOfClass:[NSDictionary class]])
+        return nil;
+    
+    NSDictionary *dic = (NSDictionary *)JSONValue;
+    return [dic valueForKeyPath:key];
 }
 
 - (NSDictionary *)uxy_dictionaryForKeyPaths:(NSArray *)keys
 {
     id JSONValue = [self uxy_JSONValue];
-    if ([JSONValue isKindOfClass:[NSDictionary class]])
-    {
-        NSDictionary *dic = (NSDictionary *)JSONValue;
-        NSMutableDictionary *JSONDic = [NSMutableDictionary dictionary];
-        [keys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-            id JSONValue = [dic valueForKeyPath:key];
-            if (JSONValue)
-            {
-                [JSONDic setObject:JSONValue forKey:key];
-            }
-        }];
-        return JSONDic;
-    }
-    return nil;
+    if (![JSONValue isKindOfClass:[NSDictionary class]])
+        return nil;
+    
+    NSDictionary *dic = (NSDictionary *)JSONValue;
+    NSMutableDictionary *JSONDic = [NSMutableDictionary dictionary];
+    [keys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        id JSONValue = [dic valueForKeyPath:key];
+        if (!JSONValue)
+            return ;
+        
+        [JSONDic setObject:JSONValue forKey:key];
+    }];
+    
+    return [JSONDic copy];
 }
 
 - (void)uxy_parseToObjectWithParsers:(NSArray *)parsers
 {
     id JSONValue = [self uxy_JSONValue];
-    if ([JSONValue isKindOfClass:[NSDictionary class]])
-    {
-        [parsers enumerateObjectsUsingBlock:^(XYJSONParser *parser, NSUInteger idx, BOOL *stop) {
-            id obj = [JSONValue objectForKey:parser.key];
-            id result = nil;
-            //如果没有clazz，则说明不是Model，直接原样返回
-            if (parser.clazz)
-            {
-                if (parser.single)
-                {
-                    result = [obj uxy_toModel:parser.clazz];
-                }
-                else
-                {
-                    if ([obj isKindOfClass:[NSDictionary class]])
-                    {
-                        result = [[(NSDictionary *)obj uxy_JSONString] uxy_toModel:parser.clazz];
-                    }
-                    else
-                    {
-                        result = [obj uxy_toModels:parser.clazz];
-                    }
-                }
-            }
-            else
-            {
-                result = obj;
-            }
-            parser.result = result;
-        }];
-    }
+    if (![JSONValue isKindOfClass:[NSDictionary class]])
+        return;
+    
+    [parsers enumerateObjectsUsingBlock:^(XYJSONParser *parser, NSUInteger idx, BOOL *stop) {
+        id obj = [JSONValue objectForKey:parser.key];
+        //如果没有clazz，则说明不是Model，直接原样返回
+        if (!parser.clazz)
+        {
+            parser.result = obj;
+            return ;
+        }
+        
+        if (!parser.single)
+        {
+            parser.result = [obj uxy_toModel:parser.clazz];
+            return ;
+        }
+        
+        if ([obj isKindOfClass:[NSDictionary class]])
+        {
+            parser.result = [[(NSDictionary *)obj uxy_JSONString] uxy_toModel:parser.clazz];
+            return;
+        }
+        
+        parser.result = [obj uxy_toModels:parser.clazz];
+    }];
 }
 
 @end
@@ -724,79 +720,38 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     [self enumerateObjectsUsingBlock:^(NSObject *obj, NSUInteger idx, BOOL *stop) {
         [JSONDictionaries addObject:obj.uxy_JSONDictionary];
     }];
-    if ([NSJSONSerialization isValidJSONObject:JSONDictionaries])
+    
+    if (![NSJSONSerialization isValidJSONObject:JSONDictionaries])
     {
-        NSError *error;
-        NSData *JSONData = [NSJSONSerialization dataWithJSONObject:JSONDictionaries options:kNilOptions error:&error];
-        if (!error)
-        {
-            return JSONData;
-        }
-    }
 #ifdef DEBUG
-    else
-    {
         NSError *error;
         [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
         if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
-    }
 #endif
-    return nil;
+        return nil;
+    }
+
+    NSError *error;
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:JSONDictionaries options:kNilOptions error:&error];
+
+    return JSONData;
 }
 
 - (NSArray *)uxy_toModels:(Class)classType
 {
-    if ([self isKindOfClass:[NSArray class]] && self.count > 0)
-    {
-        NSDictionary *dic      = [classType uxy_JSONKeyPropertyDictionary];
-        NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:[self count]];
-        [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            id model = [NSData objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
-            if (model)
-            {
-                [models addObject:model];
-            }
-        }];
-        return models;
-    }
-    return nil;
+    if (self.count == 0)
+        return nil;
+    
+    NSDictionary *dic      = [classType uxy_JSONKeyPropertyDictionary];
+    NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:self.count];
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        id model = [NSData __uxy_objectForClassType:classType fromDict:obj withJSONKeyPropertyDictionary:dic];
+        if (!model)
+            return ;
+
+        [models addObject:model];
+    }];
+    return models;
 }
 @end
-
-
-#pragma mark -
-// ----------------------------------
-// Unit test
-// ----------------------------------
-#if (1 == __XY_DEBUG_UNITTESTING__)
-#import "XYUnitTest.h"
-
-UXY_TEST_CASE( Core, JSON )
-{
-    //	TODO( "test case" )
-}
-
-UXY_DESCRIBE( test1 )
-{
-    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json1.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
-    if (str.length == 0) return;
-    
-    NSDictionary *dic = [str uxy_JSONDictionary];
-    UXY_EXPECTED( dic.count == 3 );
-}
-
-UXY_DESCRIBE( test2 )
-{
-    //  UXY_EXPECTED( 1 == 1 );
-    //  UXY_EXPECTED( [@"123" isEqualToString:@"123"] );
-}
-
-UXY_DESCRIBE( test3 )
-{
-    // UXY_EXPECTED( [@"123" isEqualToString:@"123456"] );
-}
-
-UXY_TEST_CASE_END
-
-#endif
 

@@ -82,6 +82,11 @@
 		57DF99E2190AF5070036B85D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF99E0190AF5070036B85D /* icon_tencent.png */; };
 		57E7857817DE459E0056C589 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E7857717DE459E0056C589 /* ConfigManager.m */; };
 		57EA863C1B0EDD7600D3A592 /* XYFlyweightTransmit.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */; };
+		57ED39B01C0448AA0054644D /* Test_XYJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 57ED39AF1C0448AA0054644D /* Test_XYJSON.m */; };
+		57ED39B91C044DF70054644D /* Test_NSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 57ED39B21C044DF70054644D /* Test_NSNull.m */; };
+		57ED39BC1C044DF70054644D /* Test_XYProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57ED39B51C044DF70054644D /* Test_XYProtocolExtension.m */; };
+		57ED39BD1C044DF70054644D /* Test_XYSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 57ED39B61C044DF70054644D /* Test_XYSandbox.m */; };
+		57ED39BE1C044DF70054644D /* Test_XYThead.m in Sources */ = {isa = PBXBuildFile; fileRef = 57ED39B71C044DF70054644D /* Test_XYThead.m */; };
 		57EE44251B73B007005EF8C0 /* XYClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EE44241B73B007005EF8C0 /* XYClassLoader.m */; };
 		57F56F731AFC86FD00298D7E /* NSArray+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF61AFC86FD00298D7E /* NSArray+XY.m */; };
 		57F56F741AFC86FD00298D7E /* NSData+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F56EF81AFC86FD00298D7E /* NSData+XY.m */; };
@@ -282,6 +287,11 @@
 		57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFlyweightTransmit.h; sourceTree = "<group>"; };
 		57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFlyweightTransmit.m; sourceTree = "<group>"; };
 		57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
+		57ED39AF1C0448AA0054644D /* Test_XYJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYJSON.m; sourceTree = "<group>"; };
+		57ED39B21C044DF70054644D /* Test_NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_NSNull.m; sourceTree = "<group>"; };
+		57ED39B51C044DF70054644D /* Test_XYProtocolExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYProtocolExtension.m; sourceTree = "<group>"; };
+		57ED39B61C044DF70054644D /* Test_XYSandbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYSandbox.m; sourceTree = "<group>"; };
+		57ED39B71C044DF70054644D /* Test_XYThead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYThead.m; sourceTree = "<group>"; };
 		57EE44231B73B007005EF8C0 /* XYClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYClassLoader.h; sourceTree = "<group>"; };
 		57EE44241B73B007005EF8C0 /* XYClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYClassLoader.m; sourceTree = "<group>"; };
 		57F509B71AF92BF7000E733F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -662,6 +672,7 @@
 				5708A8741AF8991A000607AB /* Laboratory */,
 				5708A9041AF8991A000607AB /* XYVender */,
 				57D5B88417B8ABBB009212F7 /* AppDelegate */,
+				57ED39AD1C0448740054644D /* Test */,
 				57B3FFF0177AD9BC00775FC9 /* Supporting Files */,
 			);
 			path = JoinShow;
@@ -694,6 +705,18 @@
 				571CBA3217C6FB55007CB842 /* AppDelegate.m */,
 			);
 			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		57ED39AD1C0448740054644D /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				57ED39B21C044DF70054644D /* Test_NSNull.m */,
+				57ED39B51C044DF70054644D /* Test_XYProtocolExtension.m */,
+				57ED39B61C044DF70054644D /* Test_XYSandbox.m */,
+				57ED39B71C044DF70054644D /* Test_XYThead.m */,
+				57ED39AF1C0448AA0054644D /* Test_XYJSON.m */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		57F56EF21AFC86FD00298D7E /* XYQuick */ = {
@@ -1109,6 +1132,7 @@
 				57F56FA71AFC86FD00298D7E /* XYViewControllerManager.m in Sources */,
 				571CBA5517C6FCC0007CB842 /* DemoTableViewController.m in Sources */,
 				571CBA5917C6FCC0007CB842 /* Test2View.m in Sources */,
+				57ED39BC1C044DF70054644D /* Test_XYProtocolExtension.m in Sources */,
 				572CB1A91B4AF3490005A6B2 /* XYUISignal.m in Sources */,
 				57F56F9A1AFC86FD00298D7E /* UIImage+XY.m in Sources */,
 				57F56F7E1AFC86FD00298D7E /* XYMemoryCache.m in Sources */,
@@ -1119,6 +1143,7 @@
 				57F56F7A1AFC86FD00298D7E /* NSSet+XY.m in Sources */,
 				579B3A3518EBDCF8001650C6 /* DemoViewController.m in Sources */,
 				57F56F9D1AFC86FD00298D7E /* UITable+XY.m in Sources */,
+				57ED39BE1C044DF70054644D /* Test_XYThead.m in Sources */,
 				7444D7291A03593C00B57529 /* AutoCodingEntity.m in Sources */,
 				57F56F981AFC86FD00298D7E /* UIColor+XY.m in Sources */,
 				57383F3B17D2F5F20001079C /* TestVC.m in Sources */,
@@ -1130,7 +1155,9 @@
 				57CAE5471B44218D0040585A /* XYEvent.m in Sources */,
 				57F56FA41AFC86FD00298D7E /* XYKeyboardHelper.m in Sources */,
 				57F56F9F1AFC86FD00298D7E /* UIViewController+XY.m in Sources */,
+				57ED39B01C0448AA0054644D /* Test_XYJSON.m in Sources */,
 				57F56F7C1AFC86FD00298D7E /* XYAutoCoding.m in Sources */,
+				57ED39B91C044DF70054644D /* Test_NSNull.m in Sources */,
 				5722182817DB365B003504E8 /* NetworkVC.m in Sources */,
 				57F56F7F1AFC86FD00298D7E /* XYUserDefaults.m in Sources */,
 				57F56F7B1AFC86FD00298D7E /* NSString+XY.m in Sources */,
@@ -1178,6 +1205,7 @@
 				57D43E1618EAC9CD00D84C01 /* HTTPClient.m in Sources */,
 				57F56F8A1AFC86FD00298D7E /* XYRuntime.m in Sources */,
 				57F56F991AFC86FD00298D7E /* UIControl+XY.m in Sources */,
+				57ED39BD1C044DF70054644D /* Test_XYSandbox.m in Sources */,
 				572CB1A31B4AF1540005A6B2 /* SignalVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

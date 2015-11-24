@@ -149,7 +149,7 @@
 @property(nonatomic, assign) BOOL single;   // 是否单个
 @property(nonatomic, copy) NSString *key; // key
 @property(nonatomic, strong) id result;     // 结果
-@property(nonatomic, readonly) id smartResult;
+@property(nonatomic, readonly, weak) id smartResult;
 
 - (instancetype)initWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single;
 + (instancetype)objectWithKey:(NSString *)key clazz:(Class)clazz single:(BOOL)single;

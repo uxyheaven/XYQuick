@@ -384,33 +384,4 @@ done:
 
 @end
 
-#pragma mark -
-// ----------------------------------
-// Unit test
-// ----------------------------------
-#if (1 == __XY_DEBUG_UNITTESTING__)
-#import "XYUnitTest.h"
-
-UXY_TEST_CASE( Core, XYSandbox )
-{
-}
-
-UXY_DESCRIBE( test_touchFile )
-{
-    NSString *path = [[XYSandbox docPath] stringByAppendingString:@"/aaa/bbb.json"];
-    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-    [XYSandbox touchFile:path];
-    UXY_EXPECTED([[NSFileManager defaultManager] fileExistsAtPath:path] == YES );
-}
-
-
-UXY_TEST_CASE_END
-
-#endif
-
-
-
-
-
-
 
