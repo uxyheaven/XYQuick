@@ -37,6 +37,7 @@
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */ = {isa = PBXBuildFile; fileRef = 575B850319FFDAA700EAE7E0 /* AopTestM.m */; };
+		576C5A761C061EA1009028AD /* json2_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 576C5A751C061EA1009028AD /* json2_3.json */; };
 		577D961F1BCBA7F6004C0D41 /* XYProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */; };
 		577F73291AF92DF30071FD0B /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73221AF92DF30071FD0B /* IndicatorHelper.m */; };
 		577F732A1AF92DF30071FD0B /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73241AF92DF30071FD0B /* LKDBHelperExtension.m */; };
@@ -220,6 +221,7 @@
 		575694851883D9C4004C2C74 /* GirlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GirlEntity.m; sourceTree = "<group>"; };
 		575B850219FFDAA700EAE7E0 /* AopTestM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AopTestM.h; sourceTree = "<group>"; };
 		575B850319FFDAA700EAE7E0 /* AopTestM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AopTestM.m; sourceTree = "<group>"; };
+		576C5A751C061EA1009028AD /* json2_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json2_3.json; sourceTree = "<group>"; };
 		577D961D1BCBA7F6004C0D41 /* XYProtocolExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYProtocolExtension.h; sourceTree = "<group>"; };
 		577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYProtocolExtension.m; sourceTree = "<group>"; };
 		577F73211AF92DF30071FD0B /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 				5749BF8519BF4DEB00D676CC /* json0.json */,
 				5710440B1BD8864F00980200 /* json1.json */,
 				5710440C1BD8864F00980200 /* json2.json */,
+				576C5A751C061EA1009028AD /* json2_3.json */,
 				57ED39C11C045AA60054644D /* json3.json */,
 				57ED39BF1C045A9C0054644D /* json4.json */,
 				57ED39C31C0492A70054644D /* json5.json */,
@@ -1054,6 +1057,7 @@
 				57FB838017E2F3CD004B70B6 /* default_TestDic.plist in Resources */,
 				57ED39C41C0492A70054644D /* json5.json in Resources */,
 				5710440D1BD8864F00980200 /* json1.json in Resources */,
+				576C5A761C061EA1009028AD /* json2_3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

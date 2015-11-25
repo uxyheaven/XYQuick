@@ -85,6 +85,30 @@ UXY_DESCRIBE( test2 )
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
+UXY_DESCRIBE( test2_2 )
+{
+    // keyPath
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Country *country = [str uxy_JSONObjectByClass:[Country class] forKeyPath:@"data.country"];
+    UXY_EXPECTED( [country.name isEqualToString:@"天朝"] );
+}
+
+UXY_DESCRIBE( test2_3 )
+{
+    // count
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2_3.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Address *address = [str uxy_JSONObjectByClass:[Address class] forKeyPath:@"count"];
+    UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
+}
+
 UXY_DESCRIBE( test3 )
 {
     // 属性带有NSArray
@@ -145,6 +169,8 @@ UXY_DESCRIBE( test6 )
 
 // todo
 // 有多余的值
+// keypath, 测试下count等关键字
+// key不是属性的名字
 // 对象解析成json字典
 
 

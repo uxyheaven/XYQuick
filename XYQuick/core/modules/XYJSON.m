@@ -388,7 +388,7 @@ static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
     
     if ([result isKindOfClass:[NSDictionary class]] && keyPath)
     {
-        return result[keyPath];
+        return [result valueForKeyPath:keyPath];
     }
     
     return result;
