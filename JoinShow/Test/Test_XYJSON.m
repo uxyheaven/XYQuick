@@ -31,6 +31,16 @@
 @implementation Address
 @end
 
+@interface Address2 : NSObject
+@property (nonatomic, assign) int code;
+@property (nonatomic, strong) Country *country;
+@property (nonatomic, copy) NSString *area;
+@property (nonatomic, copy) NSString *string;
+@end
+
+@implementation Address2
+@end
+
 @protocol Address @end
 
 @interface Tour : NSObject
@@ -61,6 +71,20 @@ UXY_DESCRIBE( test0 )
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
+UXY_DESCRIBE( test0_1 )
+{
+    // 变量里有多余的属性
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json0.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Address2 *address = [str uxy_JSONObjectByClass:[Address2 class]];
+    UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( address.string.length == 0 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
+}
+
 UXY_DESCRIBE( test1 )
 {
     // 解析成字典
@@ -85,7 +109,7 @@ UXY_DESCRIBE( test2 )
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
-UXY_DESCRIBE( test2_2 )
+UXY_DESCRIBE( test2_1 )
 {
     // keyPath
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
@@ -96,10 +120,10 @@ UXY_DESCRIBE( test2_2 )
     UXY_EXPECTED( [country.name isEqualToString:@"天朝"] );
 }
 
-UXY_DESCRIBE( test2_3 )
+UXY_DESCRIBE( test2_2 )
 {
     // count
-    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2_3.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2_2.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;
     
@@ -168,8 +192,6 @@ UXY_DESCRIBE( test6 )
 }
 
 // todo
-// 有多余的值
-// keypath, 测试下count等关键字
 // key不是属性的名字
 // 对象解析成json字典
 
