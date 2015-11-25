@@ -213,6 +213,8 @@
 
 + (instancetype)sharedInstance;
 
+- (NSMutableDictionary *)JSONKeyPropertiesOfClass:(Class)classType;
+
 @end
 
 

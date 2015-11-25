@@ -35,6 +35,140 @@
 
 static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 
+
+#pragma mark - XYJSONParser_2
+
+@interface XYJSONParser_2 ()
+
+@property (nonatomic, strong) NSMutableDictionary *allJSONKeyProperties;
+
+@end
+
+@implementation XYJSONParser_2
+
+static dispatch_once_t __singletonToken;
+static id __singleton__;
++ (instancetype)sharedInstance
+{
+    dispatch_once( &__singletonToken, ^{ __singleton__ = [[self alloc] init]; } );
+    return __singleton__;
+}
+
+- (NSMutableDictionary *)JSONKeyPropertiesOfClass:(Class)classType
+{
+    NSString *key = [NSString stringWithFormat:@"%@", classType];
+    NSMutableDictionary *dic = self.allJSONKeyProperties[key];
+    if (!dic)
+    {
+        dic = [@{} mutableCopy];
+        if ([classType uxy_hasSuperProperties] && ![[classType superclass] isMemberOfClass:[NSObject class]])
+        {
+            [dic setValuesForKeysWithDictionary:[[classType superclass] uxy_JSONKeyProperties]];
+        }
+        [XYJSONParser_2 __swizzleInstanceMethodWithClass:classType originalSel:@selector(valueForUndefinedKey:) replacementSel:@selector(__uxy_valueForUndefinedKey:)];
+        [XYJSONParser_2 __swizzleInstanceMethodWithClass:classType originalSel:@selector(setValue:forUndefinedKey:) replacementSel:@selector(__uxy_setValue:forUndefinedKey:)];
+        
+        NSArray *properties = [self __propertiesOfClass:classType];
+        [properties enumerateObjectsUsingBlock:^(NSString *propertyName, NSUInteger idx, BOOL *stop) {
+            NSString *typeName = [self propertyConformsToProtocol:@protocol(XYJSONAutoBinding) propertyName:propertyName classType:classType];
+            if (typeName)
+            {
+                [dic setObject:typeName forKey:propertyName];
+            }
+            else
+            {
+                [dic setObject:propertyName forKey:propertyName];
+            }
+        }];
+        
+        if ([self conformsToProtocol:@protocol(NSObject)])
+        {
+            [dic removeObjectsForKeys:kNSObjectProtocolProperties];
+        }
+        
+        self.allJSONKeyProperties[key] = dic;
+    }
+    
+    return dic;
+}
+
+- (NSArray *)__propertiesOfClass:(Class)classType
+{
+    NSMutableArray  *propertyNames = [[NSMutableArray alloc] init];
+    id              obj            = objc_getClass([NSStringFromClass(classType) cStringUsingEncoding:4]);
+    unsigned int    outCount, i;
+    objc_property_t *properties    = class_copyPropertyList(obj, &outCount);
+    for (i = 0; i < outCount; i++)
+    {
+        objc_property_t property      = properties[i];
+        NSString        *propertyName = [NSString stringWithCString:property_getName(property) encoding:4];
+        [propertyNames addObject:propertyName];
+    }
+    free(properties);
+    
+    return propertyNames;
+}
+
+- (NSMutableDictionary *)allJSONKeyProperties
+{
+    return _allJSONKeyProperties ?: ({ _allJSONKeyProperties = [@{} mutableCopy], _allJSONKeyProperties; });
+}
+
+- (NSString *)propertyConformsToProtocol:(Protocol *)protocol propertyName:(NSString *)propertyName classType:(Class)classType
+{
+    objc_property_t property = class_getProperty(classType, [propertyName UTF8String]);
+    NSString *typeName = property ? [NSString stringWithUTF8String:(property_getAttributes(property))] : nil;
+    if (!typeName) return nil;
+    
+    NSRange range = [typeName rangeOfString:@","];
+    if (range.location == NSNotFound) return nil;
+    
+    typeName = [typeName substringToIndex:range.location];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    
+    // NSArray对象符合自动绑定协议的
+    range = [typeName rangeOfString:@"Array"];
+    if (range.location != NSNotFound)
+    {
+        // todo, array对象里有多个协议
+        NSRange beginRange = [typeName rangeOfString:@"<"];
+        NSRange endRange   = [typeName rangeOfString:@">"];
+        if (beginRange.location != NSNotFound && endRange.location != NSNotFound)
+        {
+            NSString *protocalName = [typeName substringWithRange:NSMakeRange(beginRange.location + beginRange.length, endRange.location - beginRange.location - 1)];
+            if (NSClassFromString(protocalName))
+            {
+                return protocalName;
+            }
+        }
+    }
+    
+    // 普通对象符合自动绑定协议的
+    if ([NSClassFromString(typeName) conformsToProtocol:protocol])
+    {
+        return typeName;
+    }
+    
+    return nil;
+}
+
++ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
+{
+    Method a = class_getInstanceMethod(clazz, original);
+    Method b = class_getInstanceMethod(clazz, replacement);
+    if (class_addMethod(clazz, original, method_getImplementation(b), method_getTypeEncoding(b)))
+    {
+        class_replaceMethod(clazz, replacement, method_getImplementation(a), method_getTypeEncoding(a));
+    }
+    else
+    {
+        method_exchangeImplementations(a, b);
+    }
+}
+@end
+
+
 #pragma mark - NSObject (XYJSON_2)
 
 @implementation NSObject (XYJSON_2)
@@ -59,8 +193,66 @@ static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
     return objc_getAssociatedObject(self, XYJSON_JSONObjectCache);
 }
 
++ (BOOL)uxy_hasSuperProperties
+{
+    return NO;
+}
+
++ (NSDictionary *)uxy_JSONKeyProperties
+{
+    return [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:self];
+}
+
+
 @end
 
+
+
+
+@implementation NSData (XYJSON_2)
+- (NSString *)uxy_JSONString
+{
+    return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
+}
+
+- (NSData *)uxy_JSONData
+{
+    return self;
+}
+
+- (id)uxy_JSONObject
+{
+    NSError *error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:self options:JSON_string_options error:&error];
+    
+#ifdef DEBUG
+    if (error != nil) NSLog(@"%@", error);
+#endif
+    
+    if (error != nil)
+        return nil;
+    
+    return result;
+}
+
+- (NSDictionary *)uxy_JSONDictionary
+{
+    
+}
+
+- (id)uxy_JSONObjectByClass:(Class)classType
+{
+    
+}
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath
+{
+    
+}
+
+@end
+
+
+#pragma mark -
 #pragma mark - NSObject (__XYJSON)
 @interface NSObject (__XYJSON)
 
