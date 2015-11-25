@@ -180,7 +180,7 @@ ViewControllerDemoTitle(Something2)
 }";
     NSLogD(@"%@", json);
     
-    JsonTestEntity *objc = [json uxy_toModel:[JsonTestEntity class]];
+    JsonTestEntity *objc = [json uxy_JSONObjectByClass:[JsonTestEntity class]];
     NSLogD(@"%@", objc);
 }
 

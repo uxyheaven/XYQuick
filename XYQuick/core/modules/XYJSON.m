@@ -38,9 +38,11 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 
 #pragma mark - XYJSONParser_2
 
-@interface XYJSONParser_2 ()
+@interface XYJSONParser_2 : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary *allJSONKeyProperties;
+
++ (id)objectByClass:(Class)classType withJSONObject:(id)JSONObject;
 
 @end
 
@@ -65,20 +67,15 @@ static id __singleton__;
         {
             [dic setValuesForKeysWithDictionary:[[classType superclass] uxy_JSONKeyProperties]];
         }
-        [XYJSONParser_2 __swizzleInstanceMethodWithClass:classType originalSel:@selector(valueForUndefinedKey:) replacementSel:@selector(__uxy_valueForUndefinedKey:)];
-        [XYJSONParser_2 __swizzleInstanceMethodWithClass:classType originalSel:@selector(setValue:forUndefinedKey:) replacementSel:@selector(__uxy_setValue:forUndefinedKey:)];
+       // [XYJSONParser_2 __swizzleInstanceMethodWithClass:classType originalSel:@selector(valueForUndefinedKey:) replacementSel:@selector(__uxy_valueForUndefinedKey:)];
+       // [XYJSONParser_2 __swizzleInstanceMethodWithClass:classType originalSel:@selector(setValue:forUndefinedKey:) replacementSel:@selector(__uxy_setValue:forUndefinedKey:)];
         
         NSArray *properties = [self __propertiesOfClass:classType];
         [properties enumerateObjectsUsingBlock:^(NSString *propertyName, NSUInteger idx, BOOL *stop) {
             NSString *typeName = [self propertyConformsToProtocol:@protocol(XYJSONAutoBinding) propertyName:propertyName classType:classType];
-            if (typeName)
-            {
-                [dic setObject:typeName forKey:propertyName];
-            }
-            else
-            {
-                [dic setObject:propertyName forKey:propertyName];
-            }
+            typeName = typeName ?: propertyName;
+            
+            [dic setObject:typeName forKey:propertyName];
         }];
         
         if ([self conformsToProtocol:@protocol(NSObject)])
@@ -153,6 +150,30 @@ static id __singleton__;
     return nil;
 }
 
++ (id)objectByClass:(Class)classType withJSONObject:(id)JSONObject
+{
+    if ([JSONObject isKindOfClass:[NSArray class]])
+    {
+        NSMutableArray *models = [@[] mutableCopy];
+        [JSONObject enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            id model = [XYJSONParser_2 objectByClass:classType withJSONObject:obj];
+            if (!model)
+                return ;
+            
+            [models addObject:model];
+        }];
+        
+        return models;
+    }
+    else if ([JSONObject isKindOfClass:[NSDictionary class]])
+    {
+        return [XYJSONParser_2 __objectByClass:classType withJSONObject:JSONObject];
+    }
+    
+    return nil;
+}
+
+
 + (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
 {
     Method a = class_getInstanceMethod(clazz, original);
@@ -166,6 +187,94 @@ static id __singleton__;
         method_exchangeImplementations(a, b);
     }
 }
+
++ (Class)__classForString:(NSString *)string valueKey:(NSString **)key
+{
+    if (string.length == 0)
+        return nil;
+    
+    if ([string rangeOfString:@"."].length == 0)
+        return NSClassFromString(string);
+    
+    NSArray *strings = [string componentsSeparatedByString:@"."];
+    if (strings.count < 2)
+        return nil;
+    
+    *key = strings.firstObject;
+    return NSClassFromString(strings.lastObject);
+}
+
++ (id)__objectByClass:(Class)classType withJSONObject:(id)JSONObject
+{
+    if (!classType)
+        return nil;
+    
+    if (![JSONObject isKindOfClass:[NSDictionary class]])
+    {
+        return nil;
+    }
+    
+    NSDictionary *properties = [[ XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:classType];
+    
+    id model = [[classType alloc] init];
+    
+    [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        id value = [JSONObject valueForKeyPath:key];
+        
+        if ([value isKindOfClass:[NSArray class]])
+        {
+            NSString *valueKey = nil;
+            Class clazz = [self __classForString:obj valueKey:&valueKey];
+            if (clazz)
+            {
+                NSArray *array = [self objectByClass:clazz withJSONObject:value];
+                if (array.count)
+                {
+                    key = valueKey ?: key;
+                    [model setValue:array forKey:key];
+                }
+            }
+            else
+            {
+                [model setValue:[JSONObject valueForKeyPath:key] forKey:obj];
+            }
+            
+            return ;
+        }
+        
+        if ([value isKindOfClass:[NSDictionary class]])
+        {
+            NSString *valueKey = nil;
+            Class otherClass = [self __classForString:obj valueKey:&valueKey];
+            if (otherClass)
+            {
+                id object = [self objectByClass:otherClass withJSONObject:value];
+                if (object)
+                {
+                    key = valueKey ?: key;
+                    [model setValue:object forKeyPath:key];
+                }
+            }
+            else
+            {
+                [model setValue:value forKey:obj];
+            }
+            
+            return;
+        }
+        
+        
+        if (![value isKindOfClass:[NSNull class]] && value != nil)
+        {
+            [model setValue:value forKey:obj];
+        }
+        
+        return;
+    }];
+    
+    return model;
+
+}
 @end
 
 
@@ -173,10 +282,43 @@ static id __singleton__;
 
 @implementation NSObject (XYJSON_2)
 
++ (BOOL)uxy_hasSuperProperties
+{
+    return NO;
+}
+
++ (NSDictionary *)uxy_JSONKeyProperties
+{
+    return [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:self];
+}
++ (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property
+{
+    NSMutableDictionary *dic = [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:[self class]];
+    [dic removeObjectForKey:property];
+    [dic setObject:property forKey:JSONKey];
+}
+
++ (void)uxy_removeJSONKeyWithProperty:(NSString *)property
+{
+    NSMutableDictionary *dic = [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:[self class]];
+    [dic removeObjectForKey:property];
+}
+
+@end
+
+
+#pragma mark - NSData (XYJSON_2)
+
+@implementation NSData (XYJSON_2)
+
 static const char * XYJSON_keepJSONObjectCache = "XYJSON_keepJSONObjectCache";
 - (void)setUxy_keepJSONObjectCache:(BOOL)uxy_keepJSONObjectCache
 {
     objc_setAssociatedObject(self, XYJSON_keepJSONObjectCache, @(uxy_keepJSONObjectCache), OBJC_ASSOCIATION_ASSIGN);
+    if (!uxy_keepJSONObjectCache)
+    {
+        self.uxy_JSONObjectCache = nil;
+    }
 }
 - (BOOL)uxy_keepJSONObjectCache
 {
@@ -193,34 +335,46 @@ static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
     return objc_getAssociatedObject(self, XYJSON_JSONObjectCache);
 }
 
-+ (BOOL)uxy_hasSuperProperties
-{
-    return NO;
-}
-
-+ (NSDictionary *)uxy_JSONKeyProperties
-{
-    return [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:self];
-}
-
-
-@end
-
-
-
-
-@implementation NSData (XYJSON_2)
 - (NSString *)uxy_JSONString
 {
     return [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
 }
 
-- (NSData *)uxy_JSONData
+- (id)uxy_JSONObject
 {
-    return self;
+    if (!self.uxy_keepJSONObjectCache)
+    {
+       return [self uxy_JSONObjectForKeyPath:nil];
+    }
+    
+    if (!self.uxy_JSONObjectCache)
+    {
+        self.uxy_JSONObjectCache = [self uxy_JSONObjectForKeyPath:nil];
+    }
+
+    return self.uxy_JSONObjectCache;
 }
 
-- (id)uxy_JSONObject
+- (id)uxy_JSONObjectByClass:(Class)classType
+{
+    return [self uxy_JSONObjectByClass:classType forKeyPath:nil];
+}
+
+
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath
+{
+    if (classType == nil)
+        return nil;
+    
+    id JSONValue = [self uxy_JSONObjectForKeyPath:keyPath];
+    
+    if (JSONValue == nil)
+        return nil;
+    
+    return [XYJSONParser_2 objectByClass:classType withJSONObject:JSONValue];
+}
+
+- (id)uxy_JSONObjectForKeyPath:(NSString *)keyPath
 {
     NSError *error = nil;
     id result = [NSJSONSerialization JSONObjectWithData:self options:JSON_string_options error:&error];
@@ -232,12 +386,101 @@ static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
     if (error != nil)
         return nil;
     
+    if ([result isKindOfClass:[NSDictionary class]] && keyPath)
+    {
+        return result[keyPath];
+    }
+    
     return result;
 }
 
-- (NSDictionary *)uxy_JSONDictionary
+@end
+
+#pragma mark - NString (XYJSON_2)
+
+@implementation NSString (XYJSON_2)
+
+static const char * XYJSON_keepJSONObjectCache2 = "XYJSON_keepJSONObjectCache2";
+- (void)setUxy_keepJSONObjectCache:(BOOL)uxy_keepJSONObjectCache
 {
+    objc_setAssociatedObject(self, XYJSON_keepJSONObjectCache2, @(uxy_keepJSONObjectCache), OBJC_ASSOCIATION_ASSIGN);
+    if (!uxy_keepJSONObjectCache)
+    {
+        self.uxy_JSONObjectCache = nil;
+    }
+}
+- (BOOL)uxy_keepJSONObjectCache
+{
+    return [objc_getAssociatedObject(self, XYJSON_keepJSONObjectCache2) boolValue];
+}
+
+static const char * XYJSON_JSONObjectCache2 = "XYJSON_JSONObjectCache2";
+- (void)setUxy_JSONObjectCache:(id)uxy_JSONObjectCache
+{
+    objc_setAssociatedObject(self, XYJSON_JSONObjectCache2, uxy_JSONObjectCache, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (id)uxy_JSONObjectCache
+{
+    return objc_getAssociatedObject(self, XYJSON_JSONObjectCache2);
+}
+
+- (id)uxy_JSONObject
+{
+    if (!self.uxy_keepJSONObjectCache)
+    {
+        return [[self dataUsingEncoding:NSUTF8StringEncoding] uxy_JSONObjectForKeyPath:nil];
+    }
     
+    if (!self.uxy_JSONObjectCache)
+    {
+        self.uxy_JSONObjectCache = [[self dataUsingEncoding:NSUTF8StringEncoding] uxy_JSONObjectForKeyPath:nil];
+    }
+    
+    return self.uxy_JSONObjectCache;
+}
+
+- (id)uxy_JSONObjectByClass:(Class)classType
+{
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] uxy_JSONObjectByClass:classType];
+}
+
+- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath
+{
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] uxy_JSONObjectByClass:classType forKeyPath:keyPath];
+}
+
+@end
+
+
+#pragma mark - NSDictionary (XYJSON_2)
+@implementation NSDictionary (XYJSON_2)
+
+- (NSString *)uxy_JSONString
+{
+    NSData *JSONData = self.uxy_JSONData;
+    
+    return JSONData ? [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding] : nil;
+}
+
+- (NSData *)uxy_JSONData
+{
+    if ([NSJSONSerialization isValidJSONObject:self])
+    {
+        NSError *error;
+        NSData  *JSONData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
+        if (!error)
+            return JSONData;
+    }
+#ifdef DEBUG
+    else
+    {
+        NSError *error;
+        [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
+        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
+    }
+#endif
+    
+    return nil;
 }
 
 - (id)uxy_JSONObjectByClass:(Class)classType
@@ -252,6 +495,7 @@ static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
 @end
 
 
+/*
 #pragma mark -
 #pragma mark - NSObject (__XYJSON)
 @interface NSObject (__XYJSON)
@@ -290,9 +534,7 @@ const char *__uxy_property_getTypeString(objc_property_t property);
     return [[self alloc] initWithKey:key clazz:clazz];
 }
 
-/**
- *   如果result是一个集合，并且只有一个元素，就直接返回集合中的元素。
- */
+
 - (id)smartResult
 {
     if ([_result isKindOfClass:[NSArray class]])
@@ -976,4 +1218,5 @@ const char *__uxy_property_getTypeString(objc_property_t property)
     return models;
 }
 @end
+*/
 

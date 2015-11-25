@@ -55,7 +55,7 @@ UXY_DESCRIBE( test0 )
     if (str.length == 0)
         return;
     
-    Address *address = [str uxy_toModel:[Address class]];
+    Address *address = [str uxy_JSONObjectByClass:[Address class]];
     UXY_EXPECTED( address.code == 1 );
     UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
@@ -68,7 +68,7 @@ UXY_DESCRIBE( test1 )
     if (str.length == 0)
         return;
     
-    NSDictionary *dic = [str uxy_JSONDictionary];
+    NSDictionary *dic = [str uxy_JSONObject];
     UXY_EXPECTED( dic.count == 3 );
 }
 
@@ -79,7 +79,7 @@ UXY_DESCRIBE( test2 )
     if (str.length == 0)
         return;
     
-    Address *address = [str uxy_toModel:[Address class] forKey:@"data"];
+    Address *address = [str uxy_JSONObjectByClass:[Address class] forKeyPath:@"data"];
     UXY_EXPECTED( address.code == 1 );
     UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
@@ -92,7 +92,7 @@ UXY_DESCRIBE( test3 )
     if (str.length == 0)
         return;
     
-    Tour *tour = [str uxy_toModel:[Tour class]];
+    Tour *tour = [str uxy_JSONObjectByClass:[Tour class]];
     UXY_EXPECTED( [tour.name isEqualToString:@"线路"] );
     
     Address *address = tour.list[0];
@@ -108,7 +108,7 @@ UXY_DESCRIBE( test4 )
     if (str.length == 0)
         return;
     
-    NSArray *array = [str uxy_toModels:[Address class]];
+    NSArray *array = [str uxy_JSONObjectByClass:[Address class]];
     Address *address = array[0];
     
     UXY_EXPECTED( address.code == 1 );
@@ -118,19 +118,14 @@ UXY_DESCRIBE( test4 )
 
 UXY_DESCRIBE( test5 )
 {
-    // 使用XYJSONParser提高一个返回值里有多个对象的时候解析速度的问题.
+    // 开启JSONCache 提高一个返回值里有多个对象的时候解析速度的问题.
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json5.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    str.uxy_keepJSONObjectCache = YES;
     if (str.length == 0)
         return;
     
-    XYJSONParser *paser1 = [XYJSONParser objectWithKey:@"data1" clazz:[Address class]];
-    XYJSONParser *paser2 = [XYJSONParser objectWithKey:@"data2" clazz:[Country class]];
-    
-    NSArray *array = @[paser1, paser2];
-    [str uxy_parseToObjectWithParsers:array];
-    
-    Address *address = paser1.result[0];
-    Country *country = paser2.result;
+    Address *address = [str uxy_JSONObjectByClass:[Address class] forKeyPath:@"data1"][0];
+    Country *country = [str uxy_JSONObjectByClass:[Country class] forKeyPath:@"data2"];
     
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
     UXY_EXPECTED( [country.name isEqualToString:@"米国"] );
@@ -143,10 +138,14 @@ UXY_DESCRIBE( test6 )
     if (str.length == 0)
         return;
     
-    Tour *tour = [str uxy_toModel:[Tour class]];
+    Tour *tour = [str uxy_JSONObjectByClass:[Tour class]];
     UXY_EXPECTED( [tour.name isEqualToString:@"线路"] );
     UXY_EXPECTED( tour.list == nil );
 }
+
+// todo
+// 有多余的值
+// 对象解析成json字典
 
 
 UXY_TEST_CASE_END

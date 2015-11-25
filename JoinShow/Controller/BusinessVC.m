@@ -149,7 +149,7 @@ ViewControllerDemoTitle(Business)
     UILabel *label = (UILabel *)[self.view viewWithTag:3 + 10000];
     label.textColor = [UIColor redColor];
     
-    self.model = [str uxy_toModels:[RubyChinaNodeEntity class]];
+    self.model = [str uxy_JSONObjectByClass:[RubyChinaNodeEntity class]];
     
     [self performSelector:@selector(refreshUI) withObject:nil afterDelay:1];
     
