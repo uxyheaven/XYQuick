@@ -40,7 +40,14 @@ static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 
 @interface XYJSONParser_2 : NSObject
 
+
 @property (nonatomic, strong) NSMutableDictionary *allJSONKeyProperties;
+
+/// 对象的属性列表的字典
+@property (nonatomic, strong) NSMutableDictionary *objectProperties;
+
+/// 对象的属性别名列表的字典
+@property (nonatomic, strong) NSMutableDictionary *propertyNicknames;
 
 + (id)objectByClass:(Class)classType withJSONObject:(id)JSONObject;
 
@@ -54,6 +61,17 @@ static id __singleton__;
 {
     dispatch_once( &__singletonToken, ^{ __singleton__ = [[self alloc] init]; } );
     return __singleton__;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _allJSONKeyProperties = [@{} mutableCopy];
+        _objectProperties     = [@{} mutableCopy];
+        _propertyNicknames =[@{} mutableCopy];
+    }
+    return self;
 }
 
 - (NSMutableDictionary *)JSONKeyPropertiesOfClass:(Class)classType
@@ -92,9 +110,8 @@ static id __singleton__;
 - (NSArray *)__propertiesOfClass:(Class)classType
 {
     NSMutableArray  *propertyNames = [[NSMutableArray alloc] init];
-    id              obj            = objc_getClass([NSStringFromClass(classType) cStringUsingEncoding:4]);
     unsigned int    outCount, i;
-    objc_property_t *properties    = class_copyPropertyList(obj, &outCount);
+    objc_property_t *properties    = class_copyPropertyList(classType, &outCount);
     for (i = 0; i < outCount; i++)
     {
         objc_property_t property      = properties[i];
@@ -106,9 +123,48 @@ static id __singleton__;
     return propertyNames;
 }
 
-- (NSMutableDictionary *)allJSONKeyProperties
+- (NSMutableDictionary *)__propertyNicknamesOfClass:(Class)classType
 {
-    return _allJSONKeyProperties ?: ({ _allJSONKeyProperties = [@{} mutableCopy], _allJSONKeyProperties; });
+    NSString *key = [NSString stringWithFormat:@"n_%@", classType];
+    return self.propertyNicknames[key] ?: ({ self.propertyNicknames[key] = [@{} mutableCopy]; self.propertyNicknames[key]; });
+}
+
+
+- (NSDictionary *)__objectPropertiesOfClass:(Class)classType
+{
+    NSString *key = [NSString stringWithFormat:@"p_%@", classType];
+    NSDictionary *propertyNames = self.objectProperties[key];
+    if (!propertyNames)
+    {
+        NSMutableArray *array = [@[] mutableCopy];
+        unsigned int outCount;
+        unsigned int i;
+        objc_property_t *properties = class_copyPropertyList(classType, &outCount);
+        for (i = 0; i < outCount; i++)
+        {
+            objc_property_t property      = properties[i];
+            NSString        *propertyName = [NSString stringWithCString:property_getName(property) encoding:4];
+            [array addObject:propertyName];
+        }
+        free(properties);
+        
+        if ([classType conformsToProtocol:@protocol(NSObject)])
+        {
+            [array removeObjectsInArray:kNSObjectProtocolProperties];
+        }
+        
+        propertyNames = [@{} mutableCopy];
+        for (NSString *name in array)
+        {
+            NSString *className = [self __classNameOfproperty:name inClassType:classType];
+            className = className ?: @"";
+            [propertyNames setValue:className forKey:name];
+        }
+        
+        propertyNames = [propertyNames copy];
+    }
+    
+    return propertyNames;
 }
 
 - (NSString *)propertyConformsToProtocol:(Protocol *)protocol propertyName:(NSString *)propertyName classType:(Class)classType
@@ -123,32 +179,36 @@ static id __singleton__;
     typeName = [typeName substringToIndex:range.location];
     typeName = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
     typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@">" withString:@""];
+    NSArray *array = [typeName componentsSeparatedByString:@"<"];
     
-    // NSArray对象符合自动绑定协议的
-    range = [typeName rangeOfString:@"Array"];
-    if (range.location != NSNotFound)
+    for (int i = 1; i < array.count; i++)
     {
-        // todo, array对象里有多个协议
-        NSRange beginRange = [typeName rangeOfString:@"<"];
-        NSRange endRange   = [typeName rangeOfString:@">"];
-        if (beginRange.location != NSNotFound && endRange.location != NSNotFound)
+        NSString *typeName = array[i];
+        if (protocol_conformsToProtocol(NSProtocolFromString(typeName), protocol)
+            && NSClassFromString(typeName))
         {
-            NSString *protocalName = [typeName substringWithRange:NSMakeRange(beginRange.location + beginRange.length, endRange.location - beginRange.location - 1)];
-            if (NSClassFromString(protocalName))
-            {
-                return protocalName;
-            }
+            return typeName;
         }
     }
-    
+
     // 普通对象符合自动绑定协议的
     if ([NSClassFromString(typeName) conformsToProtocol:protocol])
     {
         return typeName;
     }
-    
+    //(?<=<).*?(?=>)
+//        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=<).*(?=>)" options:NSRegularExpressionCaseInsensitive error:nil];
+//        NSArray *results = [regex matchesInString:typeName options:NSMatchingReportCompletion range:NSMakeRange(0,typeName.length)];
+//        for (NSTextCheckingResult *result in results)
+//        {
+//            NSLog(@"%@\n", [typeName substringWithRange:result.range]);
+//        }
+        
     return nil;
 }
+
+
 
 + (id)objectByClass:(Class)classType withJSONObject:(id)JSONObject
 {
@@ -214,29 +274,39 @@ static id __singleton__;
         return nil;
     }
     
-    NSDictionary *properties = [[ XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:classType];
-    
+    NSDictionary *properties = [[ XYJSONParser_2 sharedInstance] __objectPropertiesOfClass:classType];
     id model = [[classType alloc] init];
     
-    [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        id value = [JSONObject valueForKeyPath:key];
+    [properties enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *className, BOOL *stop) {
+        id value = [JSONObject valueForKeyPath:propertyName];
+        
+        if (!value)
+        {
+            // 取不到就试试别名
+            NSMutableDictionary *dic = [[XYJSONParser_2 sharedInstance] __propertyNicknamesOfClass:classType];
+            NSArray *nicknames = dic[propertyName];
+            for (NSString *nicename in nicknames)
+            {
+                value = [JSONObject valueForKeyPath:nicename];
+                if (value)
+                    break;
+            }
+        }
         
         if ([value isKindOfClass:[NSArray class]])
         {
-            NSString *valueKey = nil;
-            Class clazz = [self __classForString:obj valueKey:&valueKey];
+            Class clazz = NSClassFromString(className);
             if (clazz)
             {
                 NSArray *array = [self objectByClass:clazz withJSONObject:value];
                 if (array.count)
                 {
-                    key = valueKey ?: key;
-                    [model setValue:array forKey:key];
+                    [model setValue:array forKey:propertyName];
                 }
             }
             else
             {
-                [model setValue:[JSONObject valueForKeyPath:key] forKey:obj];
+                [model setValue:[JSONObject valueForKeyPath:propertyName] forKey:propertyName];
             }
             
             return ;
@@ -244,37 +314,80 @@ static id __singleton__;
         
         if ([value isKindOfClass:[NSDictionary class]])
         {
-            NSString *valueKey = nil;
-            Class otherClass = [self __classForString:obj valueKey:&valueKey];
+            Class otherClass = NSClassFromString(className);
             if (otherClass)
             {
                 id object = [self objectByClass:otherClass withJSONObject:value];
                 if (object)
                 {
-                    key = valueKey ?: key;
-                    [model setValue:object forKeyPath:key];
+                    [model setValue:object forKeyPath:propertyName];
                 }
             }
             else
             {
-                [model setValue:value forKey:obj];
+                [model setValue:value forKey:propertyName];
             }
             
             return;
         }
         
-        
         if (![value isKindOfClass:[NSNull class]] && value != nil)
         {
-            [model setValue:value forKey:obj];
+            [model setValue:value forKey:propertyName];
         }
         
         return;
     }];
     
     return model;
-
 }
+
+- (NSString *)__classNameOfproperty:(NSString *)propertyName inClassType:(Class)classType
+{
+    objc_property_t property = class_getProperty(classType, [propertyName UTF8String]);
+    NSString *typeName = property ? [NSString stringWithUTF8String:(property_getAttributes(property))] : nil;
+    if (!typeName)
+        return nil;
+    
+    NSRange range = [typeName rangeOfString:@","];
+    if (range.location == NSNotFound)
+        return nil;
+    
+    typeName = [typeName substringToIndex:range.location];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    typeName = [typeName stringByReplacingOccurrencesOfString:@">" withString:@""];
+    NSArray *array = [typeName componentsSeparatedByString:@"<"];
+    
+    for (int i = 1; i < array.count; i++)
+    {
+        NSString *protocolName= array[i];
+        Protocol *protocol3 = NSProtocolFromString(@"Asdasasdad");
+        Protocol *protocol2 = NSProtocolFromString(@"XYJSONAutoBinding");
+        NSString *str = NSStringFromProtocol(protocol3);
+        if (protocol_conformsToProtocol(NSProtocolFromString(protocolName), @protocol(XYJSONAutoBinding))
+            && NSClassFromString(protocolName))
+        {
+            return protocolName;
+        }
+    }
+    
+    // 普通自定义对象符合自动绑定协议的
+    if ([NSClassFromString(typeName) conformsToProtocol:@protocol(XYJSONAutoBinding)])
+    {
+        return typeName;
+    }
+    
+    //        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=<).*(?=>)" options:NSRegularExpressionCaseInsensitive error:nil];
+    //        NSArray *results = [regex matchesInString:typeName options:NSMatchingReportCompletion range:NSMakeRange(0,typeName.length)];
+    //        for (NSTextCheckingResult *result in results)
+    //        {
+    //            NSLog(@"%@\n", [typeName substringWithRange:result.range]);
+    //        }
+    
+    return nil;
+}
+
 @end
 
 
@@ -287,23 +400,15 @@ static id __singleton__;
     return NO;
 }
 
-+ (NSDictionary *)uxy_JSONKeyProperties
++ (void)uxy_addNickname:(NSString *)nicename forProperty:(NSString *)property
 {
-    return [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:self];
+    NSMutableDictionary *dic = [[XYJSONParser_2 sharedInstance] __propertyNicknamesOfClass:self];
+    NSMutableArray *array = dic[property];
+    array = array ?: [@[] mutableCopy];
+    [array addObject:nicename];
+    
+    dic[property] = array;
 }
-+ (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property
-{
-    NSMutableDictionary *dic = [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:[self class]];
-    [dic removeObjectForKey:property];
-    [dic setObject:property forKey:JSONKey];
-}
-
-+ (void)uxy_removeJSONKeyWithProperty:(NSString *)property
-{
-    NSMutableDictionary *dic = [[XYJSONParser_2 sharedInstance] JSONKeyPropertiesOfClass:[self class]];
-    [dic removeObjectForKey:property];
-}
-
 @end
 
 

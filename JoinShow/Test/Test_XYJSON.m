@@ -14,7 +14,10 @@
 // ----------------------------------
 #if (1 == __XY_DEBUG_UNITTESTING__)
 
-@interface Country : NSObject <XYJSONAutoBinding>
+@protocol Address999 <NSObject> @end
+XYJSONAutoParse(Asdasasdad)
+
+@interface Country : NSObject
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *name_id;
 @end
@@ -22,18 +25,22 @@
 @implementation Country
 @end
 
+XYJSONAutoParse(Country)
+
 @interface Address : NSObject
 @property (nonatomic, assign) int code;
-@property (nonatomic, strong) Country *country;
+@property (nonatomic, strong) Country <Country> *country;
 @property (nonatomic, copy) NSString *area;
 @end
 
 @implementation Address
 @end
 
+XYJSONAutoParse(Address)
+
 @interface Address2 : NSObject
 @property (nonatomic, assign) int code;
-@property (nonatomic, strong) Country *country;
+@property (nonatomic, strong) Country <Country> *country;
 @property (nonatomic, copy) NSString *area;
 @property (nonatomic, copy) NSString *string;
 @end
@@ -41,17 +48,33 @@
 @implementation Address2
 @end
 
-@protocol Address @end
 
 @interface Tour : NSObject
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) NSArray <Address> *list;
+@property (nonatomic, strong) NSArray <Address999, Address> *list;
 @end
 
 @implementation Tour
 @end
 
+
+@interface Tour2 : NSObject
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSArray <Address> *list;
+
+@end
+
+@implementation Tour2
++ (void)initialize
+{
+    if (self == [Tour2 class]){
+        [self uxy_addNickname:@"name2" forProperty:@"name"];
+        [self uxy_addNickname:@"list2" forProperty:@"list"];
+    }
+}
+@end
 
 UXY_TEST_CASE( Core, JSON )
 {
@@ -191,8 +214,23 @@ UXY_DESCRIBE( test6 )
     UXY_EXPECTED( tour.list == nil );
 }
 
+UXY_DESCRIBE( test7 )
+{
+    // 属性带有NSArray
+    NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json7.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
+    if (str.length == 0)
+        return;
+    
+    Tour2 *tour = [str uxy_JSONObjectByClass:[Tour2 class]];
+    UXY_EXPECTED( [tour.name isEqualToString:@"线路"] );
+    
+    Address *address = tour.list[0];
+    UXY_EXPECTED( address.code == 1 );
+    UXY_EXPECTED( [address.area isEqualToString:@"华东"] );
+    UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
+}
+
 // todo
-// key不是属性的名字
 // 对象解析成json字典
 
 

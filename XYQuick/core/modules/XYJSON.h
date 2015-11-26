@@ -50,8 +50,12 @@
  * @interface Man : NSObject <XYJSONAutoBinding> @end
  * @property(strong, nonatomic) Man *man;
  */
-@protocol XYJSONAutoBinding
-@end
+@protocol XYJSONAutoBinding <NSObject>@end
+
+#define XYJSONAutoParse( __name ) \
+        @protocol __name <XYJSONAutoBinding> @end   \
+        @interface XYJSONAutoBinding_##__name : NSObject <__name> @end   \
+        @implementation XYJSONAutoBinding_##__name @end
 
 @interface NSObject (XYJSON_2)
 
@@ -60,19 +64,10 @@
  */
 + (BOOL)uxy_hasSuperProperties;
 
-/// 返回映射好的JSONKey和属性的字典 {JSONkey:property}
-+ (NSDictionary *)uxy_JSONKeyProperties;
+/// @brief 为属性添加别名, 处理服务器返回的时候key起名和native的属性不对应问题
++ (void)uxy_addNickname:(NSString *)nicename forProperty:(NSString *)property;
 
-/**
- * @brief 自己绑定JSONkey和property
- * @brief 如果没有自己绑定，默认为 {JSONkey:property}, 其中JSONkey=property
- */
-+ (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property;
 
-/**
- * @brief 解除不需要解析的属性
- */
-+ (void)uxy_removeJSONKeyWithProperty:(NSString *)property;
 
 /// 返回对象的JSON字串
 //- (NSString *)uxy_JSONString;

@@ -20,7 +20,7 @@
 + (void)initialize
 {
     if (self == [RubyChinaNodeEntity class]){
-        [self uxy_bindJSONKey:@"id" toProperty:@"nodeID"];
+        [self uxy_addNickname:@"id" forProperty:@"nodeID"];
     }
 }
 
