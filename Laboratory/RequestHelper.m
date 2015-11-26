@@ -98,7 +98,6 @@
         }
         else
         {
-            dic = [anObject uxy_JSONDictionary];
         }
     }
 
@@ -409,7 +408,6 @@
         }
         else
         {
-            dic = [anObject uxy_JSONDictionary];
         }
     }
     

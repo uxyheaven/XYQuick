@@ -41,19 +41,24 @@
 
 #pragma mark - XYJSONAutoBinding
 /**
- * 通过 Protocol 免去NSArray 手动bind
- * @interface AudioPartModel : NSObject
- * @protocol AudioPartModel @end
- * @property(strong, nonatomic) NSArray	<AudioPartModel> *audioParts;
+ * 通过 Protocol 确定 NSArray 解析的类
+ * uxy_as_JSONAutoParse(Man)
+ * uxy_def_JSONAutoParse(Man)
  *
- * 通过 Protocol 免去id 手动bind
- * @interface Man : NSObject <XYJSONAutoBinding> @end
- * @property(strong, nonatomic) Man *man;
+ * @property(strong, nonatomic) NSArray <Man> *users;
+ *
+ * 通过 Protocol 确定属性用来解析的类
+ * uxy_as_JSONAutoParse(Man)
+ * uxy_def_JSONAutoParse(Man)
+ *
+ * @property(strong, nonatomic) Man <Man> *man;
  */
-@protocol XYJSONAutoBinding <NSObject>@end
+@protocol XYJSONAutoBinding <NSObject> @end
 
-#define XYJSONAutoParse( __name ) \
+#define uxy_as_JSONAutoParse( __name ) \
         @protocol __name <XYJSONAutoBinding> @end   \
+
+#define uxy_def_JSONAutoParse( __name ) \
         @interface XYJSONAutoBinding_##__name : NSObject <__name> @end   \
         @implementation XYJSONAutoBinding_##__name @end
 
@@ -66,8 +71,6 @@
 
 /// @brief 为属性添加别名, 处理服务器返回的时候key起名和native的属性不对应问题
 + (void)uxy_addNickname:(NSString *)nicename forProperty:(NSString *)property;
-
-
 
 /// 返回对象的JSON字串
 //- (NSString *)uxy_JSONString;
@@ -113,55 +116,8 @@
 @interface NSDictionary (XYJSON_2)
 - (NSString *)uxy_JSONString;
 - (NSData *)uxy_JSONData;
-//- (id)uxy_JSONObjectByClass:(Class)classType;
-//- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath;
 @end
 
 @interface NSArray (XYJSON_2)
-//- (NSString *)uxy_JSONString;
-//- (NSData *)uxy_JSONData;
-//- (id)uxy_JSONObjectByClass:(Class)classType;
-//- (id)uxy_JSONObjectByClass:(Class)classType forKeyPath:(NSString *)keyPath;
-@end
-
-
-#pragma mark -
-#pragma mark - NSObject (XYJSON)
-@interface NSObject (XYJSON)
-
-/**
- * @brief 如果model需要取父类的属性，那么需要自己实现这个方法，并且返回YES
- */
-+ (BOOL)uxy_hasSuperProperties;
-
-
-+ (NSDictionary *)uxy_JSONKeyProperties;
-
-
-+ (void)uxy_bindJSONKey:(NSString *)JSONKey toProperty:(NSString *)property;
-
-
-+ (void)uxy_removeJSONKeyWithProperty:(NSString *)property;
-
-// model to JSON
-
-- (NSString *)uxy_JSONString;
-
-/**
- * @brief 返回JSONData
- */
-- (NSData *)uxy_JSONData;
-
-/**
- * @brief 对象返回JSON字典, 不支持NSArray
- */
-- (NSDictionary *)uxy_JSONDictionary;
-
-// JSON to model
-- (id)uxy_toModel:(Class)classType;
-- (id)uxy_toModel:(Class)classType forKey:(NSString *)JSONKey;
-- (NSArray *)uxy_toModels:(Class)classType;
-- (NSArray *)uxy_toModels:(Class)classType forKey:(NSString *)JSONKey;
-
 @end
 

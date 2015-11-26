@@ -14,8 +14,11 @@
 // ----------------------------------
 #if (1 == __XY_DEBUG_UNITTESTING__)
 
-@protocol Address999 <NSObject> @end
-XYJSONAutoParse(Asdasasdad)
+uxy_as_JSONAutoParse(Address999)
+uxy_def_JSONAutoParse(Address999)
+
+uxy_as_JSONAutoParse(Asdasasdad)
+uxy_def_JSONAutoParse(Asdasasdad)
 
 @interface Country : NSObject
 @property (nonatomic, copy) NSString *name;
@@ -25,7 +28,8 @@ XYJSONAutoParse(Asdasasdad)
 @implementation Country
 @end
 
-XYJSONAutoParse(Country)
+uxy_as_JSONAutoParse(Country)
+uxy_def_JSONAutoParse(Country)
 
 @interface Address : NSObject
 @property (nonatomic, assign) int code;
@@ -36,7 +40,8 @@ XYJSONAutoParse(Country)
 @implementation Address
 @end
 
-XYJSONAutoParse(Address)
+uxy_as_JSONAutoParse(Address)
+uxy_def_JSONAutoParse(Address)
 
 @interface Address2 : NSObject
 @property (nonatomic, assign) int code;
@@ -71,6 +76,7 @@ XYJSONAutoParse(Address)
 {
     if (self == [Tour2 class]){
         [self uxy_addNickname:@"name2" forProperty:@"name"];
+        [self uxy_addNickname:@"name4" forProperty:@"name"];
         [self uxy_addNickname:@"list2" forProperty:@"list"];
     }
 }
@@ -145,7 +151,7 @@ UXY_DESCRIBE( test2_1 )
 
 UXY_DESCRIBE( test2_2 )
 {
-    // count
+    // key带有count
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json2_2.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;
@@ -216,7 +222,7 @@ UXY_DESCRIBE( test6 )
 
 UXY_DESCRIBE( test7 )
 {
-    // 属性带有NSArray
+    // key的名字和属性不一致
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json7.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;

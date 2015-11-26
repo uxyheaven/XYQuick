@@ -109,8 +109,8 @@ ViewControllerDemoTitle(Business)
     RubyChinaNodeEntity *anObject = [[RubyChinaNodeEntity alloc] init];
     anObject.nodeID = [textField.text intValue];
     [anObject loadFromDB];
-    NSString *str = [anObject uxy_JSONString];
-    NSLog(@"%@", str);
+//    NSString *str = [anObject uxy_JSONString];
+//    NSLog(@"%@", str);
 }
 
 
