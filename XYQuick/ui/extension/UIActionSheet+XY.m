@@ -31,6 +31,14 @@
 #import "UIActionSheet+XY.h"
 #import <objc/runtime.h>
 
+@interface UIActionSheetHandler : NSObject <UIActionSheetDelegate>
+@end
+
+@interface UIActionSheet (__XYExtension)
+@property (nonatomic, strong) UIActionSheetHandler *uxy_handler;
+@end
+
+
 @implementation UIActionSheet (XYExtension)
 
 uxy_staticConstString(XYActionSheet_key_clicked)
@@ -39,78 +47,100 @@ uxy_staticConstString(XYActionSheet_key_willPresent)
 uxy_staticConstString(XYActionSheet_key_didPresent)
 uxy_staticConstString(XYActionSheet_key_willDismiss)
 uxy_staticConstString(XYActionSheet_key_didDismiss)
+uxy_staticConstString(XYActionSheet_key_handler)
 
 - (void)uxy_handlerClickedButton:(XYActionSheet_block_self_index)aBlock
 {
-    self.delegate = self;
+    self.delegate = self.uxy_handler;
     objc_setAssociatedObject(self, XYActionSheet_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerCancel:(XYActionSheet_block_self)aBlock
 {
-    self.delegate = self;
+    self.delegate = self.uxy_handler;
     objc_setAssociatedObject(self, XYActionSheet_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerWillPresent:(XYActionSheet_block_self)aBlock
 {
-    self.delegate = self;
+    self.delegate = self.uxy_handler;
     objc_setAssociatedObject(self, XYActionSheet_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerDidPresent:(XYActionSheet_block_self)aBlock
 {
-    self.delegate = self;
+    self.delegate = self.uxy_handler;
     objc_setAssociatedObject(self, XYActionSheet_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerWillDismiss:(XYActionSheet_block_self)aBlock
 {
-    self.delegate = self;
+    self.delegate = self.uxy_handler;
     objc_setAssociatedObject(self, XYActionSheet_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerDidDismiss:(XYActionSheet_block_self_index)aBlock
 {
-    self.delegate = self;
+    self.delegate = self.uxy_handler;
     objc_setAssociatedObject(self, XYActionSheet_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
+
+#pragma mark -
+
+- (UIActionSheetHandler *)uxy_handler
+{
+    UIActionSheetHandler *handler = objc_getAssociatedObject(self, XYActionSheet_key_handler);
+    if (!handler)
+    {
+        handler = [[UIActionSheetHandler alloc] init];
+        objc_setAssociatedObject(self, XYActionSheet_key_handler, handler, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    return handler;
+}
+@end
+
+
+@implementation UIActionSheetHandler
+
 #pragma mark - XYActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    XYActionSheet_block_self_index block = objc_getAssociatedObject(self, XYActionSheet_key_clicked);
+    XYActionSheet_block_self_index block = objc_getAssociatedObject(actionSheet, XYActionSheet_key_clicked);
     
     block ? block(actionSheet, buttonIndex) : nil;
 }
 
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-    XYActionSheet_block_self block = objc_getAssociatedObject(self, XYActionSheet_key_cancel);
-
+    XYActionSheet_block_self block = objc_getAssociatedObject(actionSheet, XYActionSheet_key_cancel);
+    
     block ? block(actionSheet) : nil;
 }
 
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet
 {
-    XYActionSheet_block_self block = objc_getAssociatedObject(self, XYActionSheet_key_willPresent);
+    XYActionSheet_block_self block = objc_getAssociatedObject(actionSheet, XYActionSheet_key_willPresent);
     
     block ? block(actionSheet) : nil;
 }
 
 - (void)didPresentActionSheet:(UIActionSheet *)actionSheet
 {
-    XYActionSheet_block_self block = objc_getAssociatedObject(self, XYActionSheet_key_didPresent);
+    XYActionSheet_block_self block = objc_getAssociatedObject(actionSheet, XYActionSheet_key_didPresent);
     
     block ? block(actionSheet) : nil;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    XYActionSheet_block_self_index block = objc_getAssociatedObject(self, XYActionSheet_key_willDismiss);
+    XYActionSheet_block_self_index block = objc_getAssociatedObject(actionSheet, XYActionSheet_key_willDismiss);
     
     block ? block(actionSheet, buttonIndex) : nil;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    XYActionSheet_block_self_index block = objc_getAssociatedObject(self, XYActionSheet_key_didDismiss);
+    XYActionSheet_block_self_index block = objc_getAssociatedObject(actionSheet, XYActionSheet_key_didDismiss);
     
     block ? block(actionSheet, buttonIndex) : nil;
 }
 
 @end
+
+
