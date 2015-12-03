@@ -97,9 +97,6 @@ typedef void(^UIViewCategoryAnimationBlock)(void);
 #pragma mark -todo attribute
 - (void)uxy_showDataWithDic:(NSDictionary *)dic;
 
-// 子类需要重新此方法
-//+ (void)setupDataBind:(NSMutableDictionary *)dic;
-
 #pragma mark - animation
 // 淡入淡出
 - (void)uxy_animationCrossfadeWithDuration:(NSTimeInterval)duration;

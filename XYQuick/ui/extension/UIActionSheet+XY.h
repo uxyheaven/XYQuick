@@ -31,16 +31,16 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-typedef void(^UIActionSheet_block_self_index)(UIActionSheet *actionSheet, NSInteger btnIndex);
-typedef void(^UIActionSheet_block_self)(UIActionSheet *actionSheet);
+typedef void(^XYActionSheet_block_self_index)(UIActionSheet *actionSheet, NSInteger btnIndex);
+typedef void(^XYActionSheet_block_self)(UIActionSheet *actionSheet);
 
 @interface UIActionSheet (XYExtension) <UIActionSheetDelegate>
 
-- (void)uxy_handlerClickedButton:(UIActionSheet_block_self_index)aBlock;
-- (void)uxy_handlerCancel:(UIActionSheet_block_self)aBlock;
-- (void)uxy_handlerWillPresent:(UIActionSheet_block_self)aBlock;
-- (void)uxy_handlerDidPresent:(UIActionSheet_block_self)aBlock;
-- (void)uxy_handlerWillDismiss:(UIActionSheet_block_self)aBlock;
-- (void)uxy_handlerDidDismiss:(UIActionSheet_block_self_index)aBlock;
+- (void)uxy_handlerClickedButton:(XYActionSheet_block_self_index)aBlock;
+- (void)uxy_handlerCancel:(XYActionSheet_block_self)aBlock;
+- (void)uxy_handlerWillPresent:(XYActionSheet_block_self)aBlock;
+- (void)uxy_handlerDidPresent:(XYActionSheet_block_self)aBlock;
+- (void)uxy_handlerWillDismiss:(XYActionSheet_block_self)aBlock;
+- (void)uxy_handlerDidDismiss:(XYActionSheet_block_self_index)aBlock;
 
 @end
