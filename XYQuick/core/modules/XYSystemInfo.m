@@ -534,7 +534,7 @@
 {
     if (_userDefaults == nil)
     {
-        if ([NSUserDefaults resolveInstanceMethod:@selector(initWithSuiteName:)])
+        if ([[NSUserDefaults standardUserDefaults] respondsToSelector:@selector(initWithSuiteName:)])
         {
             _userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"firstrun"];
         }

@@ -63,6 +63,11 @@
     self.navigationItem.rightBarButtonItem = item;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
+    if ([[XYSystemInfo sharedInstance] isFirstRunWithUser:@"aaa" event:@"event"])
+    {
+        NSLogDD
+    }
 }
 - (void)viewWillAppear:(BOOL)animated{
     
