@@ -41,10 +41,6 @@ static NSDictionary *XY_DicControlStringEvent = nil;
 + (void)load
 {
     @autoreleasepool {
-        Method a = class_getInstanceMethod([UIControl class], @selector(sendAction:to:forEvent:));
-        Method b = class_getInstanceMethod([UIControl class], @selector(__uxy_sendAction:to:forEvent:));
-        method_exchangeImplementations(a, b);
-        
         XY_DicControlEventString = @{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
                                      @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
                                      @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
@@ -135,18 +131,6 @@ uxy_staticConstString(UIControl_key_events)
     [self removeTarget:self action:NSSelectorFromString(methodName) forControlEvents:event];
 }
 
-uxy_staticConstString(UIControl_acceptEventInterval)
-
-- (NSTimeInterval)uxy_acceptEventInterval
-{
-    return [objc_getAssociatedObject(self, UIControl_acceptEventInterval) doubleValue];
-}
-
-- (void)setUxy_acceptEventInterval:(NSTimeInterval)uxy_acceptEventInterval
-{
-    objc_setAssociatedObject(self, UIControl_acceptEventInterval, @(uxy_acceptEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 #pragma mark - private
 // todo 命名待重构
 - (void)UIControlEventTouchDown{[self __uxy_callActionBlock:UIControlEventTouchDown];}
@@ -192,27 +176,4 @@ uxy_staticConstString(UIControl_acceptEventInterval)
     return [[XY_DicControlStringEvent objectForKey:name] integerValue];
 }
 
-uxy_staticConstString(UIControl_acceptedEventTime)
-
-- (NSTimeInterval)uxy_acceptedEventTime
-{
-    return [objc_getAssociatedObject(self, UIControl_acceptedEventTime) doubleValue];
-}
-
-- (void)setUxy_acceptedEventTime:(NSTimeInterval)uxy_acceptedEventTime
-{
-    objc_setAssociatedObject(self, UIControl_acceptedEventTime, @(uxy_acceptedEventTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (void)__uxy_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
-{
-    if (NSDate.date.timeIntervalSince1970 - self.uxy_acceptedEventTime < self.uxy_acceptEventInterval) return;
-    
-    if (self.uxy_acceptEventInterval > 0)
-    {
-        self.uxy_acceptedEventTime = NSDate.date.timeIntervalSince1970;
-    }
-    
-    [self __uxy_sendAction:action to:target forEvent:event];
-}
 @end

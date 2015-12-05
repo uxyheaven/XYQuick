@@ -30,94 +30,59 @@
 
 #import "UIAlertView+XY.h"
 
+@interface XYAlertViewHandler : NSObject <UIAlertViewDelegate>
+@end
+
+@interface UIAlertView (__XYExtension)
+@property (nonatomic, strong) XYAlertViewHandler *uxy_handler;
+@end
+
 @implementation UIAlertView (XYExtension)
 
-uxy_staticConstString(UIAlertView_key_clicked)
-uxy_staticConstString(UIAlertView_key_cancel)
-uxy_staticConstString(UIAlertView_key_willPresent)
-uxy_staticConstString(UIAlertView_key_didPresent)
-uxy_staticConstString(UIAlertView_key_willDismiss)
-uxy_staticConstString(UIAlertView_key_didDismiss)
-uxy_staticConstString(UIAlertView_key_shouldEnableFirstOtherButton)
+uxy_staticConstString(XYAlertView_key_clicked)
+uxy_staticConstString(XYAlertView_key_cancel)
+uxy_staticConstString(XYAlertView_key_willPresent)
+uxy_staticConstString(XYAlertView_key_didPresent)
+uxy_staticConstString(XYAlertView_key_willDismiss)
+uxy_staticConstString(XYAlertView_key_didDismiss)
+uxy_staticConstString(XYAlertView_key_shouldEnableFirstOtherButton)
+uxy_staticConstString(XYAlertView_key_handler)
 
-- (void)uxy_handlerClickedButton:(UIAlertView_block_self_index)aBlock
+- (void)uxy_handlerClickedButton:(XYAlertView_block_self_index)aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_clicked, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerCancel:(void (^)(UIAlertView *alertView))aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_cancel, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 - (void)uxy_handlerWillPresent:(void (^)(UIAlertView *alertView))aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_willPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)uxy_handlerDidPresent:(void (^)(UIAlertView *alertView))aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_didPresent, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)uxy_handlerWillDismiss:(UIAlertView_block_self_index)aBlock
+- (void)uxy_handlerWillDismiss:(XYAlertView_block_self_index)aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_willDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)uxy_handlerDidDismiss:(UIAlertView_block_self_index)aBlock
+- (void)uxy_handlerDidDismiss:(XYAlertView_block_self_index)aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_didDismiss, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-- (void)uxy_handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock
+- (void)uxy_handlerShouldEnableFirstOtherButton:(XYAlertView_block_shouldEnableFirstOtherButton)aBlock
 {
-    self.delegate = self;
-    objc_setAssociatedObject(self, UIAlertView_key_shouldEnableFirstOtherButton, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    UIAlertView_block_self_index block = objc_getAssociatedObject(self, UIAlertView_key_clicked);
-    
-    block ? block(alertView, buttonIndex) : nil;
-}
-
-- (void)alertViewCancel:(UIAlertView *)alertView
-{
-    UIAlertView_block_self block = objc_getAssociatedObject(self, UIAlertView_key_cancel);
-    
-    block ? block(alertView) : nil;
-}
-
-- (void)willPresentAlertView:(UIAlertView *)alertView
-{
-    UIAlertView_block_self block = objc_getAssociatedObject(self, UIAlertView_key_willPresent);
-
-    block ? block(alertView) : nil;
-}
-
-- (void)didPresentAlertView:(UIAlertView *)alertView
-{
-    UIAlertView_block_self block = objc_getAssociatedObject(self, UIAlertView_key_didPresent);
-    
-    block ? block(alertView) : nil;
-}
-
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    UIAlertView_block_self_index block = objc_getAssociatedObject(self, UIAlertView_key_willDismiss);
-    
-    block ? block(alertView, buttonIndex) : nil;
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    UIAlertView_block_self_index block = objc_getAssociatedObject(self, UIAlertView_key_didDismiss);
-    
-    block ? block(alertView, buttonIndex) : nil;
+    self.delegate = self.uxy_handler;
+    objc_setAssociatedObject(self, XYAlertView_key_shouldEnableFirstOtherButton, aBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)uxy_showWithDuration:(NSTimeInterval)duration
@@ -130,9 +95,71 @@ uxy_staticConstString(UIAlertView_key_shouldEnableFirstOtherButton)
     [self show];
 }
 
-- (void)__uxy_dismiss
+#pragma mark -
+-(void)__uxy_dismiss
 {
     [self dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+- (XYAlertViewHandler *)uxy_handler
+{
+    XYAlertViewHandler *handler = objc_getAssociatedObject(self, XYAlertView_key_handler);
+    if (!handler)
+    {
+        handler = [[XYAlertViewHandler alloc] init];
+        objc_setAssociatedObject(self, XYAlertView_key_handler, handler, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    return handler;
+}
+@end
+
+
+
+
+@implementation XYAlertViewHandler
+
+#pragma mark - XYAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    XYAlertView_block_self_index block = objc_getAssociatedObject(alertView, XYAlertView_key_clicked);
+    
+    block ? block(alertView, buttonIndex) : nil;
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    XYAlertView_block_self block = objc_getAssociatedObject(alertView, XYAlertView_key_cancel);
+    
+    block ? block(alertView) : nil;
+}
+
+- (void)willPresentAlertView:(UIAlertView *)alertView
+{
+    XYAlertView_block_self block = objc_getAssociatedObject(alertView, XYAlertView_key_willPresent);
+    
+    block ? block(alertView) : nil;
+}
+
+- (void)didPresentAlertView:(UIAlertView *)alertView
+{
+    XYAlertView_block_self block = objc_getAssociatedObject(alertView, XYAlertView_key_didPresent);
+    
+    block ? block(alertView) : nil;
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    XYAlertView_block_self_index block = objc_getAssociatedObject(alertView, XYAlertView_key_willDismiss);
+    
+    block ? block(alertView, buttonIndex) : nil;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    XYAlertView_block_self_index block = objc_getAssociatedObject(alertView, XYAlertView_key_didDismiss);
+    
+    block ? block(alertView, buttonIndex) : nil;
 }
 
 @end

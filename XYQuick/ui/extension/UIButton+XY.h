@@ -33,6 +33,9 @@
 
 @interface UIButton (XYExtension)
 
+///  再次接受Event的间隔. 可以用这个给UIButton的重复点击加间隔.
+@property (nonatomic, assign) NSTimeInterval uxy_acceptEventInterval;
+
 - (NSIndexPath *)uxy_getTableViewCellIndexPath;
 - (NSIndexPath *)uxy_getTableViewCellIndexPathAtTableView:(UITableView *)tableView;
 

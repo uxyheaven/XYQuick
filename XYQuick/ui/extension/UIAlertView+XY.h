@@ -31,19 +31,19 @@
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-typedef void(^UIAlertView_block_self_index)(UIAlertView *alertView, NSInteger btnIndex);
-typedef void(^UIAlertView_block_self)(UIAlertView *alertView);
-typedef BOOL(^UIAlertView_block_shouldEnableFirstOtherButton)(UIAlertView *alertView);
+typedef void(^XYAlertView_block_self_index)(UIAlertView *alertView, NSInteger btnIndex);
+typedef void(^XYAlertView_block_self)(UIAlertView *alertView);
+typedef BOOL(^XYAlertView_block_shouldEnableFirstOtherButton)(UIAlertView *alertView);
 
 @interface UIAlertView (XYExtension)
 
-- (void)uxy_handlerClickedButton:(UIAlertView_block_self_index)aBlock;
-- (void)uxy_handlerCancel:(UIAlertView_block_self)aBlock;
-- (void)uxy_handlerWillPresent:(UIAlertView_block_self)aBlock;
-- (void)uxy_handlerDidPresent:(UIAlertView_block_self)aBlock;
-- (void)uxy_handlerWillDismiss:(UIAlertView_block_self_index)aBlock;
-- (void)uxy_handlerDidDismiss:(UIAlertView_block_self_index)aBlock;
-- (void)uxy_handlerShouldEnableFirstOtherButton:(UIAlertView_block_shouldEnableFirstOtherButton)aBlock;
+- (void)uxy_handlerClickedButton:(XYAlertView_block_self_index)aBlock;
+- (void)uxy_handlerCancel:(XYAlertView_block_self)aBlock;
+- (void)uxy_handlerWillPresent:(XYAlertView_block_self)aBlock;
+- (void)uxy_handlerDidPresent:(XYAlertView_block_self)aBlock;
+- (void)uxy_handlerWillDismiss:(XYAlertView_block_self_index)aBlock;
+- (void)uxy_handlerDidDismiss:(XYAlertView_block_self_index)aBlock;
+- (void)uxy_handlerShouldEnableFirstOtherButton:(XYAlertView_block_shouldEnableFirstOtherButton)aBlock;
 
 // 延时消失
 - (void)uxy_showWithDuration:(NSTimeInterval)duration;
