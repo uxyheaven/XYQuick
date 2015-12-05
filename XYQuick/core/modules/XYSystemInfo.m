@@ -534,7 +534,14 @@
 {
     if (_userDefaults == nil)
     {
-        _userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"firstrun"];
+        if ([NSUserDefaults resolveInstanceMethod:@selector(initWithSuiteName:)])
+        {
+            _userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"firstrun"];
+        }
+        else
+        {
+            _userDefaults = [NSUserDefaults standardUserDefaults];
+        }
     }
     return _userDefaults;
 }
