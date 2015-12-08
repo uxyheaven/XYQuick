@@ -392,7 +392,6 @@ ViewControllerDemoTitle(Something)
     tempBtn.frame = CGRectMake(10, btnOffsetY, 200, 44);
     [tempBtn setTitle:@"ClickInterval" forState:UIControlStateNormal];
     [tempBtn addTarget:self action:@selector(clickWithInterval:) forControlEvents:UIControlEventTouchUpInside];
-    tempBtn.uxy_acceptEventInterval = 3;
     [scroll addSubview:tempBtn];
     btnOffsetY += 64;
     

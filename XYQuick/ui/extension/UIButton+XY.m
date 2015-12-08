@@ -35,12 +35,14 @@
 + (void)load
 {
     @autoreleasepool {
+        /*
         Method a = class_getInstanceMethod([UIButton class], @selector(sendAction:to:forEvent:));
         Method b = class_getInstanceMethod([UIButton class], @selector(__uxy_sendAction:to:forEvent:));
         method_exchangeImplementations(a, b);
+         */
     }
 }
-
+/*
 uxy_staticConstString(UIControl_acceptEventInterval)
 
 - (NSTimeInterval)uxy_acceptEventInterval
@@ -52,6 +54,7 @@ uxy_staticConstString(UIControl_acceptEventInterval)
 {
     objc_setAssociatedObject(self, UIControl_acceptEventInterval, @(uxy_acceptEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+*/
 
 - (NSIndexPath *)uxy_getTableViewCellIndexPath
 {
@@ -84,6 +87,7 @@ uxy_staticConstString(UIControl_acceptEventInterval)
 }
 
 #pragma mark -
+/*
 uxy_staticConstString(UIControl_acceptedEventTime)
 
 - (NSTimeInterval)uxy_acceptedEventTime
@@ -107,5 +111,5 @@ uxy_staticConstString(UIControl_acceptedEventTime)
     
     [self __uxy_sendAction:action to:target forEvent:event];
 }
-
+*/
 @end
