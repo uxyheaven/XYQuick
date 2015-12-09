@@ -62,6 +62,14 @@
         @interface XYJSONAutoBinding_##__name : NSObject <__name> @end   \
         @implementation XYJSONAutoBinding_##__name @end
 
+
+/* 符合json协议的对象可以返回JSONString
+ @protocol XYJSON <NSObject>
+ /// 返回对象的JSON字串
+ - (NSString *)uxy_JSONString;
+ @end
+*/
+
 @interface NSObject (XYJSON_2)
 
 /**
@@ -71,9 +79,6 @@
 
 /// @brief 为属性添加别名, 处理服务器返回的时候key起名和native的属性不对应问题
 + (void)uxy_addNickname:(NSString *)nicename forProperty:(NSString *)property;
-
-/// 返回对象的JSON字串
-//- (NSString *)uxy_JSONString;
 
 @end
 

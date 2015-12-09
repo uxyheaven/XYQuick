@@ -256,18 +256,11 @@ static id __singleton__;
     if (range.location == NSNotFound)
         return nil;
     
-    typeName = [typeName substringToIndex:range.location];
-    typeName = [typeName stringByReplacingOccurrencesOfString:@"T@" withString:@""];
-    typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    typeName = [typeName stringByReplacingOccurrencesOfString:@">" withString:@""];
-    NSArray *array = [typeName componentsSeparatedByString:@"<"];
-    
-    for (int i = 1; i < array.count; i++)
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=<).*?(?=>)" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray *results = [regex matchesInString:typeName options:NSMatchingReportCompletion range:NSMakeRange(0,typeName.length)];
+    for (NSTextCheckingResult *result in results)
     {
-        NSString *protocolName= array[i];
-//        Protocol *protocol3 = NSProtocolFromString(@"Asdasasdad");
-//        Protocol *protocol2 = NSProtocolFromString(@"XYJSONAutoBinding");
-//        NSString *str = NSStringFromProtocol(protocol3);
+        NSString *protocolName = [typeName substringWithRange:result.range];
         if (protocol_conformsToProtocol(NSProtocolFromString(protocolName), @protocol(XYJSONAutoBinding))
             && NSClassFromString(protocolName))
         {
@@ -280,13 +273,6 @@ static id __singleton__;
     {
         return typeName;
     }
-    
-    //        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?<=<).*(?=>)" options:NSRegularExpressionCaseInsensitive error:nil];
-    //        NSArray *results = [regex matchesInString:typeName options:NSMatchingReportCompletion range:NSMakeRange(0,typeName.length)];
-    //        for (NSTextCheckingResult *result in results)
-    //        {
-    //            NSLog(@"%@\n", [typeName substringWithRange:result.range]);
-    //        }
     
     return nil;
 }
@@ -312,6 +298,28 @@ static id __singleton__;
     
     dic[property] = array;
 }
+
+- (NSString *)uxy_JSONString
+{
+    return [self.__uxy_JSONObject uxy_JSONString];
+}
+
+#pragma mark - 
+- (id)__uxy_JSONObject
+{
+    if ([self isKindOfClass:[NSString class]])
+    {
+        return [(NSString *)self uxy_JSONObject];
+    }
+    
+    if ([self isKindOfClass:[NSArray class]] || [self isKindOfClass:[NSDictionary class]])
+    {
+        return nil;
+    }
+    
+    
+}
+
 @end
 
 

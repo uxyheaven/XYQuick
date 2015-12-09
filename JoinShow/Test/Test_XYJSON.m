@@ -239,6 +239,14 @@ UXY_DESCRIBE( test7 )
 // todo
 // 对象解析成json字典
 
+UXY_DESCRIBE(testB_0)
+{
+    Country *country = [[Country alloc] init];
+    country.name = @"米国";
+    country.name_id = @"1";
+    
+    
+}
 
 UXY_TEST_CASE_END
 
