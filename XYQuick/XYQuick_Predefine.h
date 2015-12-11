@@ -129,18 +129,18 @@ static id sharedInstance;
         + (instancetype)sharedInstance; \
         + (void)purgeSharedInstance;
 
-#define uxy_def_singleton \
-        static dispatch_once_t __singletonToken;     \
-        static id __singleton__;    \
+#define uxy_def_singleton( __token) \
+        static id __singleton__objc__##__token;                     \
+        static dispatch_once_t __singleton__token__##__token;       \
         + (instancetype)sharedInstance \
         { \
-            dispatch_once( &__singletonToken, ^{ __singleton__ = [[self alloc] init]; } ); \
-            return __singleton__; \
+            dispatch_once( &__singleton__token__##__token, ^{ __singleton__objc__##__token = [[self alloc] init]; } ); \
+            return __singleton__objc__##__token; \
         }   \
         + (void)purgeSharedInstance \
         {   \
-            __singleton__ = nil;    \
-            __singletonToken = 0; \
+            __singleton__objc__##__token = nil;    \
+            __singleton__token__##__token = 0; \
         }
 
 

@@ -47,7 +47,7 @@
 
 @end
 
-@implementation XYSandbox uxy_def_singleton
+@implementation XYSandbox uxy_def_singleton(XYSandbox)
 
 + (NSString *)appPath
 {

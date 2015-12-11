@@ -227,7 +227,7 @@ uxy_staticConstString(NSObject_XYTimers)
 
 @end
 
-@implementation XYTicker uxy_def_singleton
+@implementation XYTicker uxy_def_singleton(XYTicker)
 
 - (instancetype)init
 {

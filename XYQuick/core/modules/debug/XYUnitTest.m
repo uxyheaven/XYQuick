@@ -68,7 +68,7 @@
 @property (nonatomic, strong) NSMutableArray *logs;
 @end
 
-@implementation XYUnitTest uxy_def_singleton
+@implementation XYUnitTest uxy_def_singleton(XYUnitTest)
 
 
 #if (1 == __XY_DEBUG_UNITTESTING__)

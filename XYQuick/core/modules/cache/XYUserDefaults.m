@@ -30,7 +30,7 @@
 
 #import "XYUserDefaults.h"
 
-@implementation XYUserDefaults uxy_def_singleton
+@implementation XYUserDefaults uxy_def_singleton(XYUserDefaults)
 
 - (BOOL)hasObjectForKey:(id)key
 {

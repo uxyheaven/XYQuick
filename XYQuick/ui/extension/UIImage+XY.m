@@ -42,7 +42,7 @@
 
 @end
 
-@implementation XYImageCache uxy_def_singleton
+@implementation XYImageCache uxy_def_singleton(XYImageCache)
 
 @end
 

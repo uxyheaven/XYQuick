@@ -8,7 +8,7 @@
 
 #import "HTTPClient.h"
 
-@implementation HTTPClient uxy_def_singleton
+@implementation HTTPClient uxy_def_singleton(HTTPClient)
 
 - (instancetype)init
 {
@@ -24,7 +24,7 @@
 
 /////
 
-@implementation HTTPClient2 uxy_def_singleton
+@implementation HTTPClient2 uxy_def_singleton(HTTPClient2)
 
 - (instancetype)init
 {
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation HTTPClient3 uxy_def_singleton
+@implementation HTTPClient3 uxy_def_singleton(HTTPClient3)
 
 - (instancetype)init
 {

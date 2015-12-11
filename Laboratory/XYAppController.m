@@ -38,7 +38,7 @@ BOOL __applicationDidFinishLaunchingWithOptions(id self, SEL _cmd, UIApplication
     return returnValue;
 }
 
-@implementation XYAppController uxy_def_singleton
+@implementation XYAppController uxy_def_singleton(XYAppController)
 
 + (void)load
 {

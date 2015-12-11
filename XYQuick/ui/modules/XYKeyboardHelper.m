@@ -74,7 +74,7 @@
 
 @end
 
-@implementation XYKeyboardHelper uxy_def_singleton
+@implementation XYKeyboardHelper uxy_def_singleton(XYKeyboardHelper)
 
 -(id) init
 {

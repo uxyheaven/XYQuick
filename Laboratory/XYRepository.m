@@ -34,7 +34,7 @@ static NSMutableDictionary *s_repositories;
 
 @end
 
-@implementation XYRepository uxy_def_singleton
+@implementation XYRepository uxy_def_singleton(XYRepository)
 
 - (instancetype)init
 {

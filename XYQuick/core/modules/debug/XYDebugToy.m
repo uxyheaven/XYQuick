@@ -90,7 +90,7 @@
 @property (nonatomic, strong) NSMutableArray * manualBlocks;
 @end
 
-@implementation XYDebug uxy_def_singleton
+@implementation XYDebug uxy_def_singleton(XYDebug)
 
 + (void)printCallstack:(NSUInteger)depth
 {

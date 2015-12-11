@@ -35,7 +35,7 @@
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
 @end
 
-@implementation XYSystemInfo uxy_def_singleton
+@implementation XYSystemInfo uxy_def_singleton(XYSystemInfo)
 
 - (NSString *)osVersion
 {
