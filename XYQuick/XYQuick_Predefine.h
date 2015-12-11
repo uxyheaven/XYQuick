@@ -32,7 +32,7 @@
 #define __XYQUICK_PREDEFINE_H__
 
 #undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.8.9"	// 主版本号
+#define	__XYQUICK_VERSION__	"0.8.10"	// 主版本号
 
 // ----------------------------------
 // on-off
@@ -46,10 +46,10 @@
     #define __XY_DEBUG_UNITTESTING__                 (1)     // 单元测试
     #define __XY_DEBUG_DEBUGLABEL__                  (1)     // 调试的label
 #else
-    #define __XY_DEBUG__                             (0)
-    #define __XY_PERFORMANCE__                       (0)
-    #define __XY_DEBUG_SHOWBORDER__                  (0)
-    #define __XY_DEBUG_UNITTESTING__                 (0)
+    #define __XY_DEBUG__                             (0)     // 调试
+    #define __XY_PERFORMANCE__                       (0)     // 性能测试
+    #define __XY_DEBUG_SHOWBORDER__                  (0)     // 点击区域红色边框
+    #define __XY_DEBUG_UNITTESTING__                 (0)     // 单元测试
     #define __XY_DEBUG_DEBUGLABEL__                  (0)     // 调试的label
 #endif
 
