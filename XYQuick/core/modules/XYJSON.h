@@ -42,33 +42,30 @@
 #pragma mark - XYJSONAutoBinding
 /**
  * 通过 Protocol 确定 NSArray 解析的类
- * uxy_as_JSONAutoParse(Man)
- * uxy_def_JSONAutoParse(Man)
+ * 1. 声明一个协议 @protocol Man <XYJSONAutoBinding> @end
+ * 2. 让一个实体类实现这个协议 @interface Man : NSObject <Man>
  *
- * @property(strong, nonatomic) NSArray <Man> *users;
+ * 3. 申明属性实现了这个协议 @property(strong, nonatomic) NSArray <Man> *users;
  *
  * 通过 Protocol 确定属性用来解析的类
- * uxy_as_JSONAutoParse(Man)
- * uxy_def_JSONAutoParse(Man)
+ * 1. 声明一个协议 @protocol Man <XYJSONAutoBinding> @end
+ * 2. 让一个实体类实现这个协议 @interface Man : NSObject <Man>
  *
- * @property(strong, nonatomic) Man <Man> *man;
+ * 3. 申明属性实现了这个协议 @property(strong, nonatomic) Man <Man> *man;
  */
 @protocol XYJSONAutoBinding <NSObject> @end
+
 
 #define uxy_as_JSONAutoParse( __name ) \
         @protocol __name <XYJSONAutoBinding> @end   \
 
-#define uxy_def_JSONAutoParse( __name ) \
-        @interface XYJSONAutoBinding_##__name : NSObject <__name> @end   \
-        @implementation XYJSONAutoBinding_##__name @end
-
-
-/* 符合json协议的对象可以返回JSONString
- @protocol XYJSON <NSObject>
+/// 符合XYJSON协议的对象可以返回JSON字串和JSON字典, 暂时不支持复杂的对象
+@protocol XYJSON <NSObject>
  /// 返回对象的JSON字串
- - (NSString *)uxy_JSONString;
- @end
-*/
+- (NSString *)uxy_JSONString;
+/// 返回对象的JSON字典
+- (NSDictionary *)uxy_JSONDictionary;
+@end
 
 @interface NSObject (XYJSON_2)
 

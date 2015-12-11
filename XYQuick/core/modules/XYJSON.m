@@ -304,6 +304,10 @@ static id __singleton__;
     return [self.__uxy_JSONObject uxy_JSONString];
 }
 
+- (NSDictionary *)uxy_JSONDictionary
+{
+    return self.__uxy_JSONObject;
+}
 #pragma mark - 
 - (id)__uxy_JSONObject
 {
@@ -317,7 +321,15 @@ static id __singleton__;
         return nil;
     }
     
+    NSDictionary *properties = [[ XYJSONParser_2 sharedInstance] __objectPropertiesOfClass:[self class]];
+
+    NSMutableDictionary *vo = [@{} mutableCopy];
     
+    [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        vo[key] =  [self valueForKeyPath:key];
+    }];
+    
+    return [vo copy];
 }
 
 @end
@@ -396,7 +408,10 @@ static const char * XYJSON_JSONObjectCache = "XYJSON_JSONObjectCache";
     id result = [NSJSONSerialization JSONObjectWithData:self options:JSON_string_options error:&error];
     
 #ifdef DEBUG
-    if (error != nil) NSLog(@"%@", error);
+    if (error != nil)
+    {
+        NSLog(@"<# [ ERROR ] #>%@\n%@", error, [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding]);
+    }
 #endif
     
     if (error != nil)
@@ -492,7 +507,11 @@ static const char * XYJSON_JSONObjectCache2 = "XYJSON_JSONObjectCache2";
     {
         NSError *error;
         [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
-        if (error != nil) NSLog(@"<# [ ERROR ] #>%@", error);
+        if (error != nil)
+        {
+            NSLog(@"<# [ ERROR ] #>%@\n%@", error, [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding]);
+        }
+        
     }
 #endif
     

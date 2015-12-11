@@ -15,12 +15,13 @@
 #if (1 == __XY_DEBUG_UNITTESTING__)
 
 uxy_as_JSONAutoParse(Address999)
-uxy_def_JSONAutoParse(Address999)
 
 uxy_as_JSONAutoParse(Asdasasdad)
-uxy_def_JSONAutoParse(Asdasasdad)
 
-@interface Country : NSObject
+uxy_as_JSONAutoParse(Country)
+
+
+@interface Country : NSObject <Country>
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *name_id;
 @end
@@ -28,10 +29,17 @@ uxy_def_JSONAutoParse(Asdasasdad)
 @implementation Country
 @end
 
-uxy_as_JSONAutoParse(Country)
-uxy_def_JSONAutoParse(Country)
+@interface Country2 : NSObject <XYJSON>
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger num;
+@end
 
-@interface Address : NSObject
+@implementation Country2
+@end
+
+uxy_as_JSONAutoParse(Address)
+
+@interface Address : NSObject <Address, Address999, Asdasasdad>
 @property (nonatomic, assign) int code;
 @property (nonatomic, strong) Country <Country> *country;
 @property (nonatomic, copy) NSString *area;
@@ -40,8 +48,8 @@ uxy_def_JSONAutoParse(Country)
 @implementation Address
 @end
 
-uxy_as_JSONAutoParse(Address)
-uxy_def_JSONAutoParse(Address)
+
+
 
 @interface Address2 : NSObject
 @property (nonatomic, assign) int code;
@@ -236,16 +244,34 @@ UXY_DESCRIBE( test7 )
     UXY_EXPECTED( [address.country.name isEqualToString:@"天朝"] );
 }
 
-// todo
-// 对象解析成json字典
 
-UXY_DESCRIBE(testB_0)
+UXY_DESCRIBE(test8_0)
 {
-    Country *country = [[Country alloc] init];
+    // 对象解析成字串
+    Country2 *country = [[Country2 alloc] init];
     country.name = @"米国";
-    country.name_id = @"1";
+    country.num = 100;
     
+    NSString *str = [country uxy_JSONString];
+    NSDictionary *dic = [str uxy_JSONObject];
+    NSInteger i = [(NSNumber *)dic[@"num"] integerValue];
     
+    UXY_EXPECTED( [dic[@"name"] isEqualToString:@"米国"] );
+    UXY_EXPECTED( i == 100 );
+}
+
+UXY_DESCRIBE(test9)
+{
+    // 对象解析成字典
+    Country2 *country = [[Country2 alloc] init];
+    country.name = @"米国";
+    country.num = 100;
+    
+    NSDictionary *dic = [country uxy_JSONDictionary];
+    NSInteger i = [(NSNumber *)dic[@"num"] integerValue];
+    
+    UXY_EXPECTED( [dic[@"name"] isEqualToString:@"米国"] );
+    UXY_EXPECTED( i == 100 );
 }
 
 UXY_TEST_CASE_END
