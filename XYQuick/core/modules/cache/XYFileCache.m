@@ -33,9 +33,11 @@
 #import "XYThread.h"
 
 #pragma mark- XYFileCacheBackgroundClean
-@interface XYFileCacheBackgroundClean : NSObject uxy_as_singleton
+@interface XYFileCacheBackgroundClean : NSObject
 
 @property (nonatomic ,strong) NSMutableDictionary *fileCacheInfos;
+
++ (instancetype)sharedInstance;
 
 - (void)setFileCacheInfo:(NSDictionary *)dic forKey:(NSString *)key;
 
@@ -50,7 +52,15 @@
 
 @end
 
-@implementation XYFileCache uxy_def_singleton
+@implementation XYFileCache
+
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t __singletonToken;
+    static id __singleton__;
+    dispatch_once( &__singletonToken, ^{ __singleton__ = [[self alloc] init]; } );
+    return __singleton__;
+}
 
 - (id)init
 {
@@ -306,7 +316,15 @@
 
 
 #pragma mark- XYFileCacheBackgroundClean
-@implementation XYFileCacheBackgroundClean uxy_def_singleton
+@implementation XYFileCacheBackgroundClean
+
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t __singletonToken;
+    static id __singleton__;
+    dispatch_once( &__singletonToken, ^{ __singleton__ = [[self alloc] init]; } );
+    return __singleton__;
+}
 
 - (instancetype)init
 {

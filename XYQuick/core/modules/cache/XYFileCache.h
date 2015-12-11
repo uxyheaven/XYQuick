@@ -34,12 +34,13 @@
 
 #define XYFileCache_fileExpires  (7 * 24 * 60 * 60)
 
-@interface XYFileCache : NSObject <XYCacheProtocol> uxy_as_singleton
+@interface XYFileCache : NSObject <XYCacheProtocol>
 
 @property (nonatomic, copy, readonly) NSString *diskCachePath;
 @property (assign, nonatomic) NSUInteger maxCacheSize;    // The maximum size of the cache, in bytes
 @property (nonatomic, assign) NSTimeInterval maxCacheAge; // 有效期, 默认1周
 
++ (instancetype)sharedInstance;
 
 // 用新路径建立一个cache
 - (id)initWithNamespace:(NSString *)ns;
