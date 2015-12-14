@@ -35,7 +35,6 @@
 
 static void __uxy_swizzleInstanceMethod(Class c, SEL original, SEL replacement);
 
-
 #pragma mark - XYJSONParser_2
 
 @interface XYJSONParser_2 : NSObject
@@ -164,6 +163,7 @@ static id __singleton__;
         return nil;
     
     *key = strings.firstObject;
+    
     return NSClassFromString(strings.lastObject);
 }
 
@@ -173,9 +173,7 @@ static id __singleton__;
         return nil;
     
     if (![JSONObject isKindOfClass:[NSDictionary class]])
-    {
         return nil;
-    }
     
     NSDictionary *properties = [[ XYJSONParser_2 sharedInstance] __objectPropertiesOfClass:classType];
     id model = [[classType alloc] init];
@@ -509,7 +507,7 @@ static const char * XYJSON_JSONObjectCache2 = "XYJSON_JSONObjectCache2";
         [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
         if (error != nil)
         {
-            NSLog(@"<# [ ERROR ] #>%@\n%@", error, [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding]);
+            NSLog(@"<# [ ERROR ] #>%@\n%@", error, self);
         }
         
     }

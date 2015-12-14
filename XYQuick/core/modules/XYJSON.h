@@ -27,7 +27,6 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
-//  This file Copy from YYJSONHelper.
 
 #import "XYQuick_Predefine.h"
 #pragma mark -
