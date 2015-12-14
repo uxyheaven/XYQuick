@@ -238,7 +238,7 @@
 {
 #if (1 == __XY_DEBUG_SHOWBORDER__)
     @autoreleasepool {
-            [self __swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(__uxy_sendEvent:)];
+            [self __uxy_swizzleInstanceMethodWithClass:[UIWindow class] originalSel:@selector(sendEvent:) replacementSel:@selector(__uxy_sendEvent:)];
     }
 #endif
 }
@@ -288,7 +288,7 @@
     [self __uxy_sendEvent:event];
 }
 
-+ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
++ (void)__uxy_swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
 {
     Method a = class_getInstanceMethod(clazz, original);
     Method b = class_getInstanceMethod(clazz, replacement);

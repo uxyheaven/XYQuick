@@ -137,7 +137,7 @@ static id __singleton__;
     return nil;
 }
 
-+ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
++ (void)__uxy_swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
 {
     Method a = class_getInstanceMethod(clazz, original);
     Method b = class_getInstanceMethod(clazz, replacement);

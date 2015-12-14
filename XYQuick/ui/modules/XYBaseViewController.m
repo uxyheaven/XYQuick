@@ -55,7 +55,7 @@
 // 某些vc(UITableViewController)加载的时候不执行loadView方法
 @property (nonatomic, assign) BOOL __uxy_isExecutedLoadView;
 
-+ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement;
++ (void)__uxy_swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement;
 
 @end
 
@@ -64,10 +64,10 @@
 + (void)load
 {
     @autoreleasepool {
-        [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(loadView) replacementSel:@selector(__uxy__loadView)];
-        [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(viewDidLoad) replacementSel:@selector(__uxy__viewDidLoad)];
-        [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:NSSelectorFromString(@"dealloc") replacementSel:@selector(__uxy__dealloc)];
-        [self __swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(didReceiveMemoryWarning) replacementSel:@selector(__uxy__didReceiveMemoryWarning)];
+        [self __uxy_swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(loadView) replacementSel:@selector(__uxy__loadView)];
+        [self __uxy_swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(viewDidLoad) replacementSel:@selector(__uxy__viewDidLoad)];
+        [self __uxy_swizzleInstanceMethodWithClass:[UIViewController class] originalSel:NSSelectorFromString(@"dealloc") replacementSel:@selector(__uxy__dealloc)];
+        [self __uxy_swizzleInstanceMethodWithClass:[UIViewController class] originalSel:@selector(didReceiveMemoryWarning) replacementSel:@selector(__uxy__didReceiveMemoryWarning)];
     }
 }
 
@@ -151,7 +151,7 @@ uxy_staticConstString(UIViewController_isExecuted_loadView)
         objc_setAssociatedObject(self, UIViewController_isExecuted_loadView, @(__uxy_isExecutedLoadView), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-+ (void)__swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
++ (void)__uxy_swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement
 {
     Method a = class_getInstanceMethod(clazz, original);
     Method b = class_getInstanceMethod(clazz, replacement);

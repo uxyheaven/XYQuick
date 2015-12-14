@@ -21,11 +21,13 @@ UXY_TEST_CASE( Core, NSNull )
 UXY_DESCRIBE( test_array )
 {
     UXY_EXPECTED( ((NSArray *)[NSNull null])[1] == nil );
+    UXY_EXPECTED( ((NSArray *)[NSNull null]).count == 0 );
 }
 
 UXY_DESCRIBE( test_dictionary )
 {
     UXY_EXPECTED( ((NSDictionary *)[NSNull null])[nil] == nil );
+    UXY_EXPECTED( ((NSDictionary *)[NSNull null])[@"aaa"] == nil );
 }
 
 UXY_DESCRIBE( test_string )

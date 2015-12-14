@@ -68,7 +68,7 @@
         if ( NO == [classType isSubclassOfClass:self] )
             continue;
         
-        [results addObject:[classType description]];
+        [results addObject:className];
     }
     
     return results;
@@ -88,7 +88,7 @@
         if ( NO == [classType conformsToProtocol:protocol] )
             continue;
         
-        [results addObject:[classType description]];
+        [results addObject:className];
     }
     
     return results;
@@ -100,7 +100,7 @@
     
     Class thisClass = self;
     
-    while ( NULL != thisClass )
+    while ( Nil != thisClass )
     {
         unsigned int methodCount = 0;
         Method *methodList = class_copyMethodList( thisClass, &methodCount );
@@ -108,18 +108,18 @@
         for ( unsigned int i = 0; i < methodCount; ++i )
         {
             SEL selector = method_getName( methodList[i] );
-            if ( selector )
-            {
-                const char *cstrName = sel_getName(selector);
-                if ( NULL == cstrName )
-                    continue;
-                
-                NSString *selectorName = [NSString stringWithUTF8String:cstrName];
-                if ( NULL == selectorName )
-                    continue;
-                
-                [methodNames addObject:selectorName];
-            }
+            if ( NULL == selector )
+                continue;
+            
+            const char *cstrName = sel_getName(selector);
+            if ( NULL == cstrName )
+                continue;
+            
+            NSString *selectorName = [NSString stringWithUTF8String:cstrName];
+            if ( 0 == selectorName.length )
+                continue;
+            
+            [methodNames addObject:selectorName];
         }
         
         free( methodList );
@@ -150,25 +150,21 @@
         for ( unsigned int i = 0; i < methodCount; ++i )
         {
             SEL selector = method_getName( methodList[i] );
-            if ( selector )
-            {
-                const char *cstrName = sel_getName(selector);
-                if ( NULL == cstrName )
-                    continue;
-                
-                NSString *selectorName = [NSString stringWithUTF8String:cstrName];
-                if ( NULL == selectorName )
-                    continue;
-                
-                [methodNames addObject:selectorName];
-            }
+            if ( NULL == selector )
+                continue;
+            
+            NSString *selectorName = NSStringFromSelector(selector);
+            if ( 0 == selectorName.length )
+                continue;
+            
+            [methodNames addObject:selectorName];
         }
         
         free( methodList );
         
         thisClass = class_getSuperclass( thisClass );
         
-        if ( nil == thisClass || baseClass == thisClass )
+        if ( Nil == thisClass || baseClass == thisClass )
         {
             break;
         }
@@ -191,7 +187,7 @@
         return nil;
     }
     
-    if ( nil == prefix )
+    if ( 0 == prefix.length )
     {
         return methods;
     }
@@ -201,9 +197,7 @@
     for ( NSString *selectorName in methods )
     {
         if ( NO == [selectorName hasPrefix:prefix] )
-        {
             continue;
-        }
         
         [result addObject:selectorName];
     }
@@ -242,7 +236,7 @@
     
     baseClass = baseClass ?: [NSObject class];
     
-    while ( NULL != thisClass )
+    while ( Nil != thisClass )
     {
         unsigned int propertyCount = 0;
         objc_property_t *propertyList = class_copyPropertyList( thisClass, &propertyCount );
@@ -254,7 +248,7 @@
                 continue;
             
             NSString *propName = [NSString stringWithUTF8String:cstrName];
-            if ( NULL == propName )
+            if ( 0 == propName.length )
                 continue;
             
             [propertyNames addObject:propName];
@@ -264,7 +258,7 @@
         
         thisClass = class_getSuperclass( thisClass );
         
-        if ( nil == thisClass || baseClass == thisClass )
+        if ( Nil == thisClass || baseClass == thisClass )
         {
             break;
         }
@@ -297,9 +291,7 @@
     for ( NSString *propName in properties )
     {
         if ( NO == [propName hasPrefix:prefix] )
-        {
             continue;
-        }
         
         [result addObject:propName];
     }
@@ -327,16 +319,18 @@
         for ( unsigned int i = 0; i < classesCount; ++i )
         {
             Class classType = classes[i];
-            
             if ( class_isMetaClass( classType ) )
                 continue;
             
             Class superClass = class_getSuperclass( classType );
-            
-            if ( nil == superClass )
+            if ( Nil == superClass )
                 continue;
             
-            [classNames addObject:[NSString stringWithUTF8String:class_getName(classType)]];
+            NSString *className = NSStringFromClass(classType);
+            if ( 0 == className.length )
+                continue;
+            
+            [classNames addObject:className];
         }
 #if ( XYRuntime_SORT == 1)
         [classNames sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
