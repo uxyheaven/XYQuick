@@ -34,7 +34,6 @@
 static NSDictionary *XY_DicControlEventString = nil;
 static NSDictionary *XY_DicControlStringEvent = nil;
 
-
 #pragma mark-
 @implementation UIControl (XYExtension)
 
@@ -85,30 +84,18 @@ static NSDictionary *XY_DicControlStringEvent = nil;
     }
 }
 
-uxy_staticConstString(UIControl_key_events)
-
-- (void)dealloc
-{
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
-    if (opreations)
-    {
-        [opreations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [self uxy_removeHandlerForEvent:[UIControl __uxy_eventWithName:key]];
-        }];
-        objc_setAssociatedObject(self, UIControl_key_events, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-}
+static const char *XYControl_key_events = "XYControl_key_events";
 
 - (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block {
     
     NSString *methodName = [UIControl __uxy_eventName:event];
     
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
+    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, XYControl_key_events);
     
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, XYControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     [opreations setObject:[block copy] forKey:methodName];
@@ -119,12 +106,12 @@ uxy_staticConstString(UIControl_key_events)
 {
     
     NSString *methodName = [UIControl __uxy_eventName:event];
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
+    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, XYControl_key_events);
     
     if(opreations == nil)
     {
         opreations = [NSMutableDictionary dictionaryWithCapacity:2];
-        objc_setAssociatedObject(self, UIControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, XYControl_key_events, opreations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     [opreations removeObjectForKey:methodName];
@@ -156,9 +143,10 @@ uxy_staticConstString(UIControl_key_events)
 
 - (void)__uxy_callActionBlock:(UIControlEvents)event
 {
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, UIControl_key_events);
+    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, XYControl_key_events);
     
-    if(opreations == nil) return;
+    if(opreations == nil)
+        return;
     
     void(^block)(id sender) = [opreations objectForKey:[UIControl __uxy_eventName:event]];
     

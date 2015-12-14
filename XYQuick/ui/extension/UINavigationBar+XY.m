@@ -35,41 +35,41 @@
 
 uxy_staticConstString(xy_navigationBar_overlay)
 
-- (UIView *)overlay
+- (UIView *)uxy_overlay
 {
     return objc_getAssociatedObject(self, xy_navigationBar_overlay);
 }
 
-- (void)setOverlay:(UIView *)overlay
+- (void)setUxy_overlay:(UIView *)overlay
 {
     objc_setAssociatedObject(self, xy_navigationBar_overlay, overlay, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 uxy_staticConstString(xy_navigationBar_image)
 
-- (UIImage *)emptyImage
+- (UIImage *)uxy_emptyImage
 {
     return objc_getAssociatedObject(self, xy_navigationBar_image);
 }
 
-- (void)setEmptyImage:(UIImage *)image
+- (void)setUxy_emptyImage:(UIImage *)image
 {
     objc_setAssociatedObject(self, xy_navigationBar_image, image, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)uxy_setBackgroundColor:(UIColor *)backgroundColor
 {
-    if (self.overlay == nil)
+    if (self.uxy_overlay == nil)
     {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         [self setShadowImage:[UIImage new]];
-        self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [UIScreen mainScreen].bounds.size.width, 64)];
-        self.overlay.userInteractionEnabled = NO;
-        self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [self insertSubview:self.overlay atIndex:0];
+        self.uxy_overlay = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [UIScreen mainScreen].bounds.size.width, 64)];
+        self.uxy_overlay.userInteractionEnabled = NO;
+        self.uxy_overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        [self insertSubview:self.uxy_overlay atIndex:0];
     }
     
-    self.overlay.backgroundColor = backgroundColor;
+    self.uxy_overlay.backgroundColor = backgroundColor;
 }
 
 - (void)uxy_setTranslationY:(CGFloat)translationY
@@ -79,7 +79,7 @@ uxy_staticConstString(xy_navigationBar_image)
 
 - (void)uxy_setContentAlpha:(CGFloat)alpha
 {
-    if (self.overlay == nil)
+    if (self.uxy_overlay == nil)
     {
         [self uxy_setBackgroundColor:self.barTintColor];
     }
@@ -88,12 +88,12 @@ uxy_staticConstString(xy_navigationBar_image)
     
     if (alpha == 1)
     {
-        if (self.emptyImage == nil)
+        if (self.uxy_emptyImage == nil)
         {
-            self.emptyImage = [UIImage new];
+            self.uxy_emptyImage = [UIImage new];
         }
         
-        self.backIndicatorImage = self.emptyImage;
+        self.backIndicatorImage = self.uxy_emptyImage;
     }
 }
 
@@ -101,7 +101,7 @@ uxy_staticConstString(xy_navigationBar_image)
 {
     for (UIView *subview in view.subviews)
     {
-        if (subview == self.overlay)
+        if (subview == self.uxy_overlay)
         {
             continue;
         }
@@ -115,8 +115,8 @@ uxy_staticConstString(xy_navigationBar_image)
     [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self setShadowImage:nil];
     
-    [self.overlay removeFromSuperview];
-    self.overlay = nil;
+    [self.uxy_overlay removeFromSuperview];
+    self.uxy_overlay = nil;
 }
 
 @end

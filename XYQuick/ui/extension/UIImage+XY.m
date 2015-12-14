@@ -46,8 +46,8 @@
 
 @end
 
-//UIKit坐标系统原点在左上角，y方向向下的（坐标系A），但在Quartz中坐标系原点在左下角，y方向向上的(坐标系B)。图片绘制也是颠倒的。
-static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius, UXYImageRoundedCornerCorner cornerMask)
+// UIKit坐标系统原点在左上角，y方向向下的（坐标系A），但在Quartz中坐标系原点在左下角，y方向向上的(坐标系B)。图片绘制也是颠倒的。
+static void uxy_addRoundedRectToPath(CGContextRef context, CGRect rect, float radius, UXYImageRoundedCornerCorner cornerMask)
 {
     //原点在左下方，y方向向上。移动到线条2的起点。
     CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
@@ -127,7 +127,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     NSString *imageFullName = [name copy];
     
     NSArray *components = [imageName componentsSeparatedByString:@"."];
-    if ([components count] >= 2)
+    if (components.count >= 2)
     {
         NSUInteger lastIndex = components.count - 1;
         extension = [components objectAtIndex:lastIndex];
@@ -164,71 +164,32 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return nil;
 }
 
-+ (UIImage *)imageNamed:(NSString *)name useCache:(BOOL)useCache
++ (UIImage *)uxy_imageNamed:(NSString *)name useCache:(BOOL)useCache
 {
-    if (YES == useCache)
+    if (NO == useCache)
     {
-        if (XY_USE_SYSTEM_IMAGE_CACHE)
-        {
-            
-            return [UIImage imageNamed:name];
-        }
-        else
-        {
-            UIImage * image = [[XYImageCache sharedInstance] objectForKey:[NSString stringWithFormat:@"Application-%@",name]];
-            if (image)
-            {
-                return image;
-                
-            }
-            else
-            {
-                image = [UIImage imageNamed:name useCache:NO];
-                if (image)
-                {
-                    [[XYImageCache sharedInstance] setObject:image forKey:[NSString stringWithFormat:@"Application-%@",name]];
-                }
-                
-                return image;
-            }
-        }
+        return [self uxy_imageWithFileName:name];
     }
-    else
+    
+    
+    if (XY_USE_SYSTEM_IMAGE_CACHE)
     {
-        if (![name hasSuffix:@".png"] && ![name hasSuffix:@".jpg"])
-        {
-            name = [name stringByAppendingString:@".png"];
-        }
-        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:nil];
-        if (!path)
-        {
-            NSArray *tmp = [name componentsSeparatedByString:@"."];
-            if (tmp.count > 0)
-            {
-                NSMutableString *string = [[NSMutableString alloc] initWithString:[tmp objectAtIndex:0]];
-                [string appendString:@"@3x"];
-                if (tmp.count == 2)
-                {
-                    [string appendFormat:@".%@", [tmp objectAtIndex:1]];
-                }
-                path = [[NSBundle mainBundle] pathForResource:string ofType:nil];
-                if (!path)
-                {
-                    NSMutableString * string = [[NSMutableString alloc] initWithString:[tmp objectAtIndex:0]];
-                    [string appendString:@"@2x"];
-                    if (tmp.count == 2)
-                    {
-                        [string appendFormat:@".%@", [tmp objectAtIndex:1]];
-                    }
-                    path = [[NSBundle mainBundle] pathForResource:string ofType:nil];
-                }
-            }
-        }
-        
-        UIImage *image = [UIImage imageWithContentsOfFile:path];
-        image = [UIImage imageWithCGImage:image.CGImage scale:3 orientation:image.imageOrientation];
+        return [UIImage imageNamed:name];
+    }
+    
+    UIImage *image = [[XYImageCache sharedInstance] objectForKey:[NSString stringWithFormat:@"XY_%@",name]];
+    if (image)
+    {
         return image;
     }
+    
+    image = [UIImage uxy_imageWithFileName:name];
+    if (image)
+    {
+        [[XYImageCache sharedInstance] setObject:image forKey:[NSString stringWithFormat:@"XY_%@",name]];
+    }
+    
+    return image;
 }
 
 - (UIImage *)uxy_scaleToSize:(CGSize)size
@@ -240,7 +201,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     return scaledImage;
 }
 
-- (void)addCircleRectToPath:(CGRect)rect context:(CGContextRef)context
+- (void)__uxy_addCircleRectToPath:(CGRect)rect context:(CGContextRef)context
 {
     CGContextSaveGState( context );
     CGContextTranslateCTM( context, CGRectGetMinX(rect), CGRectGetMinY(rect) );
@@ -278,7 +239,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	circleRect.origin.y = 0;
 	circleRect.size.width = imageWidth;
 	circleRect.size.height = imageHeight;
-    [self addCircleRectToPath:circleRect context:context];
+    [self __uxy_addCircleRectToPath:circleRect context:context];
     CGContextClosePath(context);
     CGContextClip(context);
 	
@@ -315,7 +276,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 												 (CGBitmapInfo)kCGImageAlphaPremultipliedLast );
 	
     CGContextBeginPath(context);
-    [self addCircleRectToPath:circleRect context:context];
+    [self __uxy_addCircleRectToPath:circleRect context:context];
     CGContextClosePath(context);
     CGContextClip(context);
 	
@@ -528,7 +489,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
     
     CGContextBeginPath(context);
-    addRoundedRectToPath(context,bkImageViewTmp.frame, radius, cornerMask);
+    uxy_addRoundedRectToPath(context,bkImageViewTmp.frame, radius, cornerMask);
     CGContextClosePath(context);
     CGContextClip(context);
     
@@ -577,7 +538,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     size_t nbPerCompt = CGImageGetBitsPerPixel(inImage);
     if (nbPerCompt != 32)
     {
-        UIImage *tmpImage = [self normalize];
+        UIImage *tmpImage = [self uxy_normalize];
         inImage = tmpImage.CGImage;
     }
     CFDataRef theData = CGDataProviderCopyData(CGImageGetDataProvider(inImage));
@@ -600,10 +561,10 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
     // Apply stack blur
     const size_t imageWidth  = CGImageGetWidth(inImage);
 	const size_t imageHeight = CGImageGetHeight(inImage);
-    [self.class __applyStackBlurToBuffer:m_PixelBuf
-                                   width:(int)imageWidth
-                                  height:(int)imageHeight
-                              withRadius:inradius];
+    [self.class __uxy_applyStackBlurToBuffer:m_PixelBuf
+                                       width:(int)imageWidth
+                                      height:(int)imageHeight
+                                  withRadius:inradius];
     
     // Make new image
 	CGImageRef imageRef = CGBitmapContextCreateImage(ctx);
@@ -617,11 +578,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius
 	return finalImage;
 }
 
-inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int) * count); }
-+ (void)__applyStackBlurToBuffer:(UInt8*)targetBuffer
-                           width:(const int)w
-                          height:(const int)h
-                      withRadius:(NSUInteger)inradius
+inline static void __uxy_zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int) * count); }
+
+
++ (void)__uxy_applyStackBlurToBuffer:(UInt8*)targetBuffer
+                               width:(const int)w
+                              height:(const int)h
+                          withRadius:(NSUInteger)inradius
 {
     // Constants
 	const int radius = (int)inradius; // Transform unsigned into signed for further operations
@@ -634,18 +597,18 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     
     // Small buffers
 	int stack[div*3];
-	zeroClearInt(stack, div*3);
+	__uxy_zeroClearInt(stack, div*3);
     
 	int vmin[MAX(w,h)];
-	zeroClearInt(vmin, MAX(w,h));
+	__uxy_zeroClearInt(vmin, MAX(w,h));
     
     // Large buffers
 	int *r = malloc(wh*sizeof(int));
 	int *g = malloc(wh*sizeof(int));
 	int *b = malloc(wh*sizeof(int));
-	zeroClearInt(r, wh);
-	zeroClearInt(g, wh);
-	zeroClearInt(b, wh);
+	__uxy_zeroClearInt(r, wh);
+	__uxy_zeroClearInt(g, wh);
+	__uxy_zeroClearInt(b, wh);
     
     const size_t dvcount = 256 * divsum;
     int *dv = malloc(sizeof(int) * dvcount);
@@ -839,7 +802,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     free(dv);
 }
 
-- (UIImage *)normalize
+- (UIImage *)uxy_normalize
 {
     int width = self.size.width;
     int height = self.size.height;
@@ -943,14 +906,14 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return img;
 }
 
-- (UIImage *)imageTintedWithColor:(UIColor *)color
+- (UIImage *)uxy_imageTintedWithColor:(UIColor *)color
 {
 	// This method is designed for use with template images, i.e. solid-coloured mask-like images.
-	return [self imageTintedWithColor:color fraction:0.0]; // default to a fully tinted mask of the image.
+	return [self uxy_imageTintedWithColor:color fraction:0.0]; // default to a fully tinted mask of the image.
 }
 
 
-- (UIImage *)imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction
+- (UIImage *)uxy_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction
 {
 	if (color)
     {

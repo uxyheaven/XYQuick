@@ -41,8 +41,8 @@
 /// 加载图片 used: imageWithContentsOfFile 自动带有2x 3x等后缀. 如果没有, 还是用默认的
 + (UIImage *)uxy_imageWithFileName:(NSString *)name;
 
-/// todo 加载图片,自己控制释放用缓存
-//+ (UIImage *)imageNamed:(NSString *)name useCache:(BOOL)useCache;
+/// 加载图片, 带缓存, used: imageWithContentsOfFile 自动带有2x 3x等后缀. 如果没有, 还是用默认的
++ (UIImage *)uxy_imageNamed:(NSString *)name useCache:(BOOL)useCache;
 
 /// 圆形
 - (UIImage *)uxy_rounded;
