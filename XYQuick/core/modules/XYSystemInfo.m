@@ -564,7 +564,7 @@
 {
     NSString *value = [self.userDefaults valueForKey:[self __eventKeyWithUser:user event:event]];
     
-    return (value != nil) ? [value isEqualToString:[self bundleVersion]] : YES;
+    return (value == nil) ?: ![value isEqualToString:[self bundleVersion]];
 }
 
 - (void)setFirstRun:(BOOL)isFirst user:(NSString *)user event:(NSString *)event
