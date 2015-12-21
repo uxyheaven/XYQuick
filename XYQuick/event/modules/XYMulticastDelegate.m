@@ -108,21 +108,32 @@
 	if (delegate == nil) return;
 	
 	NSUInteger i;
-	for (i = [_delegateNodes count]; i > 0; i--)
-	{
-		XYMulticastDelegateNode *node = [_delegateNodes objectAtIndex:(i-1)];
-		
-		if (delegate == node.delegate)
-		{
-			if ((delegateQueue == NULL) || (delegateQueue == node.delegateQueue))
-			{
-				node.delegate = nil;
-				node.delegateQueue = NULL;
-				
-				[_delegateNodes removeObjectAtIndex:(i-1)];
-			}
-		}
-	}
+    for (i = [_delegateNodes count]; i > 0; i--)
+    {
+        XYMulticastDelegateNode *node = [_delegateNodes objectAtIndex:(i-1)];
+        
+        if (node.delegate == nil)
+        {
+            node.delegate = nil;
+            node.delegateQueue = NULL;
+            
+            [_delegateNodes removeObjectAtIndex:(i-1)];
+            continue;
+        }
+        
+        if (delegate != node.delegate)
+        {
+            continue;
+        }
+        
+        if ((delegateQueue == NULL) || (delegateQueue == node.delegateQueue))
+        {
+            node.delegate = nil;
+            node.delegateQueue = NULL;
+            
+            [_delegateNodes removeObjectAtIndex:(i-1)];
+        }
+    }
 }
 
 - (void)removeDelegate:(id)delegate
@@ -329,17 +340,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation XYMulticastDelegateNode
-
-@synthesize delegate;
-@synthesize delegateQueue;
-
-- (void)setDelegateQueue:(dispatch_queue_t)dq
-{
-	if (delegateQueue != dq)
-	{
-		delegateQueue = dq;
-	}
-}
 
 - (void)dealloc
 {
