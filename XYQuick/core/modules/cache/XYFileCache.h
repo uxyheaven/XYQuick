@@ -36,38 +36,47 @@
 
 @interface XYFileCache : NSObject <XYCacheProtocol>
 
+/// 路径
 @property (nonatomic, copy, readonly) NSString *diskCachePath;
-@property (assign, nonatomic) NSUInteger maxCacheSize;    // The maximum size of the cache, in bytes
-@property (nonatomic, assign) NSTimeInterval maxCacheAge; // 有效期, 默认1周
+
+/// The maximum size of the cache, in bytes
+@property (assign, nonatomic) NSUInteger maxCacheSize;
+/// 有效期, 默认1周
+@property (nonatomic, assign) NSTimeInterval maxCacheAge;
 
 + (instancetype)sharedInstance;
 
-// 用新路径建立一个cache
+/// 用新路径建立一个cache
 - (id)initWithNamespace:(NSString *)ns;
 
-// 返回key对应的文件名
+/// 返回key对应的文件名
 - (NSString *)fileNameForKey:(NSString *)key;
-// 返回类文件
-- (id)objectForKey:(id)key objectClass:(Class)aClass;
+/// 返回类文件
+- (id)objectForKey:(NSString *)key objectClass:(Class)aClass;
 
-// 清除当前 diskCachePath 所有的文件
+/// 清除当前 diskCachePath 所有的文件
 - (void)clearDisk;
+
+/// 清除当前 diskCachePath 所有的文件
 - (void)clearDiskOnCompletion:(void(^)(void))completion;
 
-// 清除当前 diskCachePath 所有过期的文件
+/// 清除当前 diskCachePath 所有过期的文件
 - (void)cleanDisk;
+
+/// 清除当前 diskCachePath 所有过期的文件
 - (void)cleanDiskWithCompletionBlock:(void(^)(void))completionBlock;
 
-// 返回cache size
+/// 返回cache 大小
 - (NSUInteger)getSize;
-// 返回cache 数量
+
+/// 返回cache 数量
 - (NSUInteger)getDiskCount;
 
-// XYCacheProtocol 协议方法
-- (BOOL)hasObjectForKey:(id)key;
-- (id)objectForKey:(id)key;
-- (void)setObject:(id)object forKey:(id)key;
-
-//
+#pragma mark - XYCacheProtocol 协议里的方法
+- (BOOL)hasObjectForKey:(NSString *)key;
+- (id)objectForKey:(NSString *)key;
+- (void)setObject:(id)object forKey:(NSString *)key;
+- (void)removeObjectForKey:(NSString *)key;
+- (void)removeAllObjects;
 
 @end

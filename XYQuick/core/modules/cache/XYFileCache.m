@@ -278,18 +278,18 @@
     [[XYFileCacheBackgroundClean sharedInstance] setFileCacheInfo:[self info] forKey:_diskCachePath];
 }
 #pragma mark - XYCacheProtocol
-- (BOOL)hasObjectForKey:(id)key
+- (BOOL)hasObjectForKey:(NSString *)key
 {
     return [_fileManager fileExistsAtPath:[self fileNameForKey:key]];
 }
 
-- (id)objectForKey:(id)key
+- (id)objectForKey:(NSString *)key
 {
     // 建议用 objectForKey:objectClass: 可以直接返回对象
     return [NSData dataWithContentsOfFile:[self fileNameForKey:key]];
 }
 
-- (void)setObject:(id)object forKey:(id)key
+- (void)setObject:(id)object forKey:(NSString *)key
 {
     if ( nil == object )
     {
