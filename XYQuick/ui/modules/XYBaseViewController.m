@@ -190,6 +190,7 @@ uxy_staticConstString(UIViewController_isExecuted_loadView)
     self = [super init];
     if (self) {
         _vcs = [@[] mutableCopy];
+        [self registerLifecycleNotification];
     }
     return self;
 }
