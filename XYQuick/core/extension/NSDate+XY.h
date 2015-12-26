@@ -56,7 +56,7 @@
 
 + (long long)uxy_timeStamp;
 
-+ (NSDate *)uxy_dateWithString:(NSString *)string;
+//+ (NSDate *)uxy_dateWithString:(NSString *)string;
 + (NSDate *)uxy_now;
 
 /// 返回day天后的日期(若day为负数,则为|day|天前的日期)

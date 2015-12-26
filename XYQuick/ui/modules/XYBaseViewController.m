@@ -50,6 +50,20 @@
 
 #pragma mark -
 
+@interface XYBaseViewControllerHelper : NSObject uxy_as_singleton
+
+@property (nonatomic, strong) NSMutableArray *vcs;
+
+@end
+
+@interface XYViewControllerViewContainer: NSObject
+@property (nonatomic, weak) UIViewController *vc;
+@end
+
+@implementation XYViewControllerViewContainer
+@end
+
+
 @interface UIViewController (XYBase_private)
 
 // 某些vc(UITableViewController)加载的时候不执行loadView方法
@@ -79,9 +93,6 @@
 
 - (void)__uxy__dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
-    
     if ([self respondsToSelector:@selector(uxy_destroyEvents)])
         [self performSelector:@selector(uxy_destroyEvents)];
     
@@ -128,14 +139,15 @@
     if ([self respondsToSelector:@selector(uxy_createViews)])
         [self performSelector:@selector(uxy_createViews)];
     
-    if ([self respondsToSelector:@selector(uxy_enterBackground)])
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uxy_enterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    
-    if ([self respondsToSelector:@selector(uxy_enterForeground)])
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uxy_enterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
     if ([self respondsToSelector:@selector(uxy_createEvents)])
         [self performSelector:@selector(uxy_createEvents)];
+    
+    if ([self respondsToSelector:@selector(uxy_enterBackground)] || [self respondsToSelector:@selector(uxy_enterForeground)])
+    {
+        XYViewControllerViewContainer *container = [[XYViewControllerViewContainer alloc] init];
+        container.vc = self;
+        [[XYBaseViewControllerHelper sharedInstance].vcs addObject:container];
+    }
 }
 @end
 
@@ -167,6 +179,65 @@ uxy_staticConstString(UIViewController_isExecuted_loadView)
 }
 @end
 
+#pragma mark-
+
+#pragma mark -
+
+@implementation XYBaseViewControllerHelper uxy_def_singleton(XYBaseViewControllerHelper)
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _vcs = [@[] mutableCopy];
+    }
+    return self;
+}
+
+- (void)registerLifecycleNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)onEnterBackground
+{
+    for (NSUInteger i = _vcs.count; i > 0; i--)
+    {
+        XYViewControllerViewContainer *container = self.vcs[i - 1];
+        if (container.vc == nil)
+        {
+            [_vcs removeObjectAtIndex:(i - 1)];
+            continue;
+        }
+        
+        if ([container.vc respondsToSelector:@selector(uxy_enterBackground)])
+        {
+            [container.vc performSelector:@selector(uxy_enterBackground) withObject:nil];
+        }
+    }
+}
+
+- (void)onEnterForeground
+{
+    for (NSUInteger i = _vcs.count; i > 0; i--)
+    {
+        XYViewControllerViewContainer *container = self.vcs[i - 1];
+        if (container.vc == nil)
+        {
+            [_vcs removeObjectAtIndex:(i - 1)];
+            continue;
+        }
+        
+        if ([container.vc respondsToSelector:@selector(uxy_enterForeground)])
+        {
+            [container.vc performSelector:@selector(uxy_enterForeground) withObject:nil];
+        }
+    }
+}
+
+@end
 
 
 

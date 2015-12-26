@@ -38,6 +38,7 @@
 		57548402181F4629008F9355 /* KeyboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 57548401181F4629008F9355 /* KeyboardVC.m */; };
 		575694861883D9C4004C2C74 /* GirlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 575694851883D9C4004C2C74 /* GirlEntity.m */; };
 		575B850419FFDAA700EAE7E0 /* AopTestM.m in Sources */ = {isa = PBXBuildFile; fileRef = 575B850319FFDAA700EAE7E0 /* AopTestM.m */; };
+		575D9C5F1C2B9BA9006058BA /* XYServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 575D9C5E1C2B9BA9006058BA /* XYServiceBase.m */; };
 		576C5A761C061EA1009028AD /* json2_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 576C5A751C061EA1009028AD /* json2_2.json */; };
 		577D961F1BCBA7F6004C0D41 /* XYProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */; };
 		577F73291AF92DF30071FD0B /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 577F73221AF92DF30071FD0B /* IndicatorHelper.m */; };
@@ -224,6 +225,8 @@
 		575694851883D9C4004C2C74 /* GirlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GirlEntity.m; sourceTree = "<group>"; };
 		575B850219FFDAA700EAE7E0 /* AopTestM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AopTestM.h; sourceTree = "<group>"; };
 		575B850319FFDAA700EAE7E0 /* AopTestM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AopTestM.m; sourceTree = "<group>"; };
+		575D9C5D1C2B9BA9006058BA /* XYServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYServiceBase.h; sourceTree = "<group>"; };
+		575D9C5E1C2B9BA9006058BA /* XYServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYServiceBase.m; sourceTree = "<group>"; };
 		576C5A751C061EA1009028AD /* json2_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json2_2.json; sourceTree = "<group>"; };
 		577D961D1BCBA7F6004C0D41 /* XYProtocolExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYProtocolExtension.h; sourceTree = "<group>"; };
 		577D961E1BCBA7F6004C0D41 /* XYProtocolExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYProtocolExtension.m; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 		5708A8741AF8991A000607AB /* Laboratory */ = {
 			isa = PBXGroup;
 			children = (
+				575D9C5D1C2B9BA9006058BA /* XYServiceBase.h */,
+				575D9C5E1C2B9BA9006058BA /* XYServiceBase.m */,
 				57073EFB1B94D8F9008A0CAC /* XYChainMethod.h */,
 				5708A8751AF8991A000607AB /* XYAppController.h */,
 				5708A8761AF8991A000607AB /* XYAppController.m */,
@@ -1204,6 +1209,7 @@
 				57F56F831AFC86FD00298D7E /* XYAOP.m in Sources */,
 				577F732B1AF92DF30071FD0B /* RequestHelper.m in Sources */,
 				57F56F921AFC86FD00298D7E /* XYKVO.m in Sources */,
+				575D9C5F1C2B9BA9006058BA /* XYServiceBase.m in Sources */,
 				57F56FA11AFC86FD00298D7E /* UIWindow+XY.m in Sources */,
 				577F732C1AF92DF30071FD0B /* XYBaseDao.m in Sources */,
 				57F56FA31AFC86FD00298D7E /* XYBaseViewController.m in Sources */,
