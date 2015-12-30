@@ -57,12 +57,23 @@
 
 + (NSArray *)uxy_subClasses
 {
+    static NSDictionary *xyClassFilter = nil;
+    
+    static dispatch_once_t once_xyClassFilter; \
+    dispatch_once( &once_xyClassFilter , ^{
+        xyClassFilter = @{
+                          @"NSHTMLReader": @""
+                          };
+    });
+    
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
     for ( NSString *className in [self __loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
         if ( classType == self )
+            continue;
+        if ( xyClassFilter[className] )
             continue;
         
         if ( NO == [classType isSubclassOfClass:self] )
