@@ -155,25 +155,6 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
 
 @implementation XYViewFrameBuilder
 
-+ (void)load
-{
-    XYRectInsets(CGRectZero, 0, 0, 0, 0);
-    XYRectWithSize(CGRectZero, 0, 0);
-    XYRectFromSize(0, 0);
-    XYRectWithWidth(CGRectZero, 0);
-    XYRectWithHeight(CGRectZero, 0);
-    XYRectWithOrigin(CGRectZero, 0, 0);
-    XYRectWithX(CGRectZero, 0);
-    XYRectWithY(CGRectZero, 0);
-    XYPointWithOffset(CGPointZero, 0, 0);
-    XYPointCenterInSize(CGSizeZero);
-    XYPointIntegral(CGPointZero);
-    XYRectCenter(CGRectZero);
-    XYRectMove(CGRectZero, 0, 0);
-    XYEdgeInsetsInsetSize(CGSizeZero, UIEdgeInsetsZero);
-    XYEdgeInsetsUnion(UIEdgeInsetsZero, UIEdgeInsetsZero);
-}
-
 - (id)initWithView:(UIView *)view
 {
     self = [super init];
@@ -192,7 +173,7 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     return [[[self class] alloc] initWithView:view];
 }
 
-#pragma mark - Properties
+#pragma mark - setter
 
 - (void)setFrame:(CGRect)frame
 {
@@ -614,7 +595,28 @@ static inline UIEdgeInsets XYEdgeInsetsUnion(UIEdgeInsets insets1, UIEdgeInsets 
     }
 }
 
++ (void)__test
+{
+    XYRectInsets(CGRectZero, 0, 0, 0, 0);
+    XYRectWithSize(CGRectZero, 0, 0);
+    XYRectFromSize(0, 0);
+    XYRectWithWidth(CGRectZero, 0);
+    XYRectWithHeight(CGRectZero, 0);
+    XYRectWithOrigin(CGRectZero, 0, 0);
+    XYRectWithX(CGRectZero, 0);
+    XYRectWithY(CGRectZero, 0);
+    XYPointWithOffset(CGPointZero, 0, 0);
+    XYPointCenterInSize(CGSizeZero);
+    XYPointIntegral(CGPointZero);
+    XYRectCenter(CGRectZero);
+    XYRectMove(CGRectZero, 0, 0);
+    XYEdgeInsetsInsetSize(CGSizeZero, UIEdgeInsetsZero);
+    XYEdgeInsetsUnion(UIEdgeInsetsZero, UIEdgeInsetsZero);
+}
+
 @end
+
+
 @implementation UIView (uxy_frameBuilder)
 
 - (XYViewFrameBuilder *)uxy_frameBuilder

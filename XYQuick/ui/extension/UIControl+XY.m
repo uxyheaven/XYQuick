@@ -31,65 +31,14 @@
 
 #import "UIControl+XY.h"
 
-static NSDictionary *XY_DicControlEventString = nil;
-static NSDictionary *XY_DicControlStringEvent = nil;
-
 #pragma mark-
 @implementation UIControl (XYExtension)
 
-+ (void)load
-{
-    @autoreleasepool {
-        XY_DicControlEventString = @{@(UIControlEventTouchDown): @"UIControlEventTouchDown",
-                                     @(UIControlEventTouchDownRepeat): @"UIControlEventTouchDownRepeat",
-                                     @(UIControlEventTouchDragInside): @"UIControlEventTouchDragInside",
-                                     @(UIControlEventTouchDragOutside): @"UIControlEventTouchDragOutside",
-                                     @(UIControlEventTouchDragEnter): @"UIControlEventTouchDragEnter",
-                                     @(UIControlEventTouchDragExit): @"UIControlEventTouchDragExit",
-                                     @(UIControlEventTouchUpInside): @"UIControlEventTouchUpInside",
-                                     @(UIControlEventTouchUpOutside): @"UIControlEventTouchUpOutside",
-                                     @(UIControlEventTouchCancel): @"UIControlEventTouchCancel",
-                                     @(UIControlEventValueChanged): @"UIControlEventValueChanged",
-                                     @(UIControlEventEditingDidBegin): @"UIControlEventEditingDidBegin",
-                                     @(UIControlEventEditingChanged): @"UIControlEventEditingChanged",
-                                     @(UIControlEventEditingDidEnd): @"UIControlEventEditingDidEnd",
-                                     @(UIControlEventEditingDidEndOnExit): @"UIControlEventEditingDidEndOnExit",
-                                     @(UIControlEventAllTouchEvents): @"UIControlEventAllTouchEvents",
-                                     @(UIControlEventAllEditingEvents): @"UIControlEventAllEditingEvents",
-                                     @(UIControlEventApplicationReserved): @"UIControlEventApplicationReserved",
-                                     @(UIControlEventSystemReserved): @"UIControlEventSystemReserved",
-                                     @(UIControlEventAllEvents): @"UIControlEventAllEvents"
-                                     };
-        
-        XY_DicControlStringEvent = @{@"UIControlEventTouchDown": @(UIControlEventTouchDown),
-                                     @"UIControlEventTouchDownRepeat": @(UIControlEventTouchDownRepeat),
-                                     @"UIControlEventTouchDragInside": @(UIControlEventTouchDragInside),
-                                     @"UIControlEventTouchDragOutside": @(UIControlEventTouchDragOutside),
-                                     @"UIControlEventTouchDragEnter": @(UIControlEventTouchDragEnter),
-                                     @"UIControlEventTouchDragExit": @(UIControlEventTouchDragExit),
-                                     @"UIControlEventTouchUpInside": @(UIControlEventTouchUpInside),
-                                     @"UIControlEventTouchUpOutside": @(UIControlEventTouchUpOutside),
-                                     @"UIControlEventTouchCancel": @(UIControlEventTouchCancel),
-                                     @"UIControlEventValueChanged": @(UIControlEventValueChanged),
-                                     @"UIControlEventEditingDidBegin": @(UIControlEventEditingDidBegin),
-                                     @"UIControlEventEditingChanged": @(UIControlEventEditingChanged),
-                                     @"UIControlEventEditingDidEnd": @(UIControlEventEditingDidEnd),
-                                     @"UIControlEventEditingDidEndOnExit": @(UIControlEventEditingDidEndOnExit),
-                                     @"UIControlEventAllTouchEvents": @(UIControlEventAllTouchEvents),
-                                     @"UIControlEventAllEditingEvents": @(UIControlEventAllEditingEvents),
-                                     @"UIControlEventApplicationReserved": @(UIControlEventApplicationReserved),
-                                     @"UIControlEventSystemReserved": @(UIControlEventSystemReserved),
-                                     @"UIControlEventAllEvents": @(UIControlEventAllEvents)
-                                     };
-    }
-}
-
 static const char *XYControl_key_events = "XYControl_key_events";
 
-- (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block {
-    
+- (void)uxy_handleControlEvent:(UIControlEvents)event withBlock:(void(^)(id sender))block
+{
     NSString *methodName = [UIControl __uxy_eventName:event];
-    
     NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, XYControl_key_events);
     
     if(opreations == nil)
@@ -104,9 +53,8 @@ static const char *XYControl_key_events = "XYControl_key_events";
 
 - (void)uxy_removeHandlerForEvent:(UIControlEvents)event
 {
-    
     NSString *methodName = [UIControl __uxy_eventName:event];
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, XYControl_key_events);
+    NSMutableDictionary *opreations = (NSMutableDictionary *)objc_getAssociatedObject(self, XYControl_key_events);
     
     if(opreations == nil)
     {
@@ -119,31 +67,29 @@ static const char *XYControl_key_events = "XYControl_key_events";
 }
 
 #pragma mark - private
-// todo 命名待重构
-- (void)UIControlEventTouchDown{[self __uxy_callActionBlock:UIControlEventTouchDown];}
-- (void)UIControlEventTouchDownRepeat{[self __uxy_callActionBlock:UIControlEventTouchDownRepeat];}
-- (void)UIControlEventTouchDragInside{[self __uxy_callActionBlock:UIControlEventTouchDragInside];}
-- (void)UIControlEventTouchDragOutside{[self __uxy_callActionBlock:UIControlEventTouchDragOutside];}
-- (void)UIControlEventTouchDragEnter{[self __uxy_callActionBlock:UIControlEventTouchDragEnter];}
-- (void)UIControlEventTouchDragExit{[self __uxy_callActionBlock:UIControlEventTouchDragExit];}
-- (void)UIControlEventTouchUpInside{[self __uxy_callActionBlock:UIControlEventTouchUpInside];}
-- (void)UIControlEventTouchUpOutside{[self __uxy_callActionBlock:UIControlEventTouchUpOutside];}
-- (void)UIControlEventTouchCancel{[self __uxy_callActionBlock:UIControlEventTouchCancel];}
-- (void)UIControlEventValueChanged{[self __uxy_callActionBlock:UIControlEventValueChanged];}
-- (void)UIControlEventEditingDidBegin{[self __uxy_callActionBlock:UIControlEventEditingDidBegin];}
-- (void)UIControlEventEditingChanged{[self __uxy_callActionBlock:UIControlEventEditingChanged];}
-- (void)UIControlEventEditingDidEnd{[self __uxy_callActionBlock:UIControlEventEditingDidEnd];}
-- (void)UIControlEventEditingDidEndOnExit{[self __uxy_callActionBlock:UIControlEventEditingDidEndOnExit];}
-- (void)UIControlEventAllTouchEvents{[self __uxy_callActionBlock:UIControlEventAllTouchEvents];}
-- (void)UIControlEventAllEditingEvents{[self __uxy_callActionBlock:UIControlEventAllEditingEvents];}
-- (void)UIControlEventApplicationReserved{[self __uxy_callActionBlock:UIControlEventApplicationReserved];}
-- (void)UIControlEventSystemReserved{[self __uxy_callActionBlock:UIControlEventSystemReserved];}
-- (void)UIControlEventAllEvents{[self __uxy_callActionBlock:UIControlEventAllEvents];}
-
+- (void)__uxy_controlEventTouchDown{[self __uxy_callActionBlock:UIControlEventTouchDown];}
+- (void)__uxy_controlEventTouchDownRepeat{[self __uxy_callActionBlock:UIControlEventTouchDownRepeat];}
+- (void)__uxy_controlEventTouchDragInside{[self __uxy_callActionBlock:UIControlEventTouchDragInside];}
+- (void)__uxy_controlEventTouchDragOutside{[self __uxy_callActionBlock:UIControlEventTouchDragOutside];}
+- (void)__uxy_controlEventTouchDragEnter{[self __uxy_callActionBlock:UIControlEventTouchDragEnter];}
+- (void)__uxy_controlEventTouchDragExit{[self __uxy_callActionBlock:UIControlEventTouchDragExit];}
+- (void)__uxy_controlEventTouchUpInside{[self __uxy_callActionBlock:UIControlEventTouchUpInside];}
+- (void)__uxy_controlEventTouchUpOutside{[self __uxy_callActionBlock:UIControlEventTouchUpOutside];}
+- (void)__uxy_controlEventTouchCancel{[self __uxy_callActionBlock:UIControlEventTouchCancel];}
+- (void)__uxy_controlEventValueChanged{[self __uxy_callActionBlock:UIControlEventValueChanged];}
+- (void)__uxy_controlEventEditingDidBegin{[self __uxy_callActionBlock:UIControlEventEditingDidBegin];}
+- (void)__uxy_controlEventEditingChanged{[self __uxy_callActionBlock:UIControlEventEditingChanged];}
+- (void)__uxy_controlEventEditingDidEnd{[self __uxy_callActionBlock:UIControlEventEditingDidEnd];}
+- (void)__uxy_controlEventEditingDidEndOnExit{[self __uxy_callActionBlock:UIControlEventEditingDidEndOnExit];}
+- (void)__uxy_controlEventAllTouchEvents{[self __uxy_callActionBlock:UIControlEventAllTouchEvents];}
+- (void)__uxy_controlEventAllEditingEvents{[self __uxy_callActionBlock:UIControlEventAllEditingEvents];}
+- (void)__uxy_controlEventApplicationReserved{[self __uxy_callActionBlock:UIControlEventApplicationReserved];}
+- (void)__uxy_controlEventSystemReserved{[self __uxy_callActionBlock:UIControlEventSystemReserved];}
+- (void)__uxy_controlEventAllEvents{[self __uxy_callActionBlock:UIControlEventAllEvents];}
 
 - (void)__uxy_callActionBlock:(UIControlEvents)event
 {
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, XYControl_key_events);
+    NSMutableDictionary *opreations = (NSMutableDictionary *)objc_getAssociatedObject(self, XYControl_key_events);
     
     if(opreations == nil)
         return;
@@ -151,17 +97,37 @@ static const char *XYControl_key_events = "XYControl_key_events";
     void(^block)(id sender) = [opreations objectForKey:[UIControl __uxy_eventName:event]];
     
     block ? block(self) : nil ;
-    
 }
 
 + (NSString *)__uxy_eventName:(UIControlEvents)event
 {
-    return [XY_DicControlEventString objectForKey:@(event)];
-}
-
-+ (UIControlEvents)__uxy_eventWithName:(NSString *)name
-{
-    return [[XY_DicControlStringEvent objectForKey:name] integerValue];
+    static NSDictionary *controlEventStrings = nil;
+    
+    static dispatch_once_t once;
+    dispatch_once( &once, ^{
+        controlEventStrings = @{@(UIControlEventTouchDown): @"__uxy_controlEventTouchDown",
+                                @(UIControlEventTouchDownRepeat): @"__uxy_controlEventTouchDownRepeat",
+                                @(UIControlEventTouchDragInside): @"__uxy_controlEventTouchDragInside",
+                                @(UIControlEventTouchDragOutside): @"__uxy_controlEventTouchDragOutside",
+                                @(UIControlEventTouchDragEnter): @"__uxy_controlEventTouchDragEnter",
+                                @(UIControlEventTouchDragExit): @"__uxy_controlEventTouchDragExit",
+                                @(UIControlEventTouchUpInside): @"__uxy_controlEventTouchUpInside",
+                                @(UIControlEventTouchUpOutside): @"__uxy_controlEventTouchUpOutside",
+                                @(UIControlEventTouchCancel): @"__uxy_controlEventTouchCancel",
+                                @(UIControlEventValueChanged): @"__uxy_controlEventValueChanged",
+                                @(UIControlEventEditingDidBegin): @"__uxy_controlEventEditingDidBegin",
+                                @(UIControlEventEditingChanged): @"__uxy_controlEventEditingChanged",
+                                @(UIControlEventEditingDidEnd): @"__uxy_controlEventEditingDidEnd",
+                                @(UIControlEventEditingDidEndOnExit): @"__uxy_controlEventEditingDidEndOnExit",
+                                @(UIControlEventAllTouchEvents): @"__uxy_controlEventAllTouchEvents",
+                                @(UIControlEventAllEditingEvents): @"__uxy_controlEventAllEditingEvents",
+                                @(UIControlEventApplicationReserved): @"__uxy_controlEventApplicationReserved",
+                                @(UIControlEventSystemReserved): @"__uxy_controlEventSystemReserved",
+                                @(UIControlEventAllEvents): @"__uxy_controlEventAllEvents"
+                                };
+    });
+    
+    return controlEventStrings[@(event)];
 }
 
 @end

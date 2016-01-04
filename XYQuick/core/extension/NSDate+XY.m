@@ -30,14 +30,7 @@
 
 #import "NSDate+XY.h"
 
-static NSArray *XY_weekdays = nil;
-
 @implementation NSDate (XYExtension)
-
-+ (void)load
-{
-    XY_weekdays = @[@"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
-}
 
 #pragma mark -
 @dynamic uxy_year;
@@ -92,7 +85,14 @@ static NSArray *XY_weekdays = nil;
 @dynamic uxy_stringWeekday;
 - (NSString *)uxy_stringWeekday
 {
-    return XY_weekdays[self.uxy_weekday - 1];
+    static NSArray *weekdays = nil;
+    
+    static dispatch_once_t once;
+    dispatch_once( &once, ^{
+        weekdays = @[@"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
+    });
+        
+    return weekdays[self.uxy_weekday - 1];
 }
 
 - (NSString *)uxy_stringWithDateFormat:(NSString *)format
