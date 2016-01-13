@@ -323,8 +323,15 @@ static id __singleton__;
 
     NSMutableDictionary *vo = [@{} mutableCopy];
     
-    [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        vo[key] =  [self valueForKeyPath:key];
+    [properties enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
+        if (className.length > 0)
+        {
+            vo[key] = [[self valueForKeyPath:key] __uxy_JSONObject];
+        }
+        else
+        {
+            vo[key] =  [self valueForKeyPath:key];
+        }
     }];
     
     return [vo copy];
