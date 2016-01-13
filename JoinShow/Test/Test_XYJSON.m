@@ -61,6 +61,15 @@ uxy_as_JSONAutoParse(Address)
 @implementation Address2
 @end
 
+@interface Address3 : NSObject <XYJSON>
+@property (nonatomic, assign) int code;
+@property (nonatomic, strong) NSArray <Country> *list;
+@property (nonatomic, copy) NSString *area;
+@end
+
+@implementation Address3
+@end
+
 
 @interface Tour : NSObject
 
@@ -303,6 +312,38 @@ UXY_DESCRIBE(test8_1)
     UXY_EXPECTED( i == 999 );
 }
 
+UXY_DESCRIBE(test8_2)
+{
+    // 对象的属性里包含NSArray对象, 解析成字串
+    /*
+     1. 需要申明对象实现了XYJSON协议, @interface Address : NSObject <XYJSON>
+     1. 申明和类同名的协议 uxy_as_JSONAutoParse(Country)
+     2. 申明类实现了这个协议 @interface Country : NSObject <Country>
+     3. 申明属性实现了这个协议 @property (nonatomic, strong) Country <Country> *country;
+     */
+    Country *country = [[Country alloc] init];
+    country.name = @"米国";
+    country.name_id = @"001";
+    
+    Country *country2 = [[Country alloc] init];
+    country2.name = @"岛国";
+    country2.name_id = @"002";
+    
+    Address3 *address = [[Address3 alloc] init];
+    address.code = 999;
+    address.area = @"美洲";
+    address.list = @[country, country2];
+    
+    NSString *str = [address uxy_JSONString];
+    
+    // 以下是测试的代码
+    NSDictionary *dic = [str uxy_JSONObject];
+    NSInteger i = [(NSNumber *)dic[@"code"] integerValue];
+    
+    UXY_EXPECTED( [dic[@"list"][0][@"name"] isEqualToString:@"米国"] );
+    UXY_EXPECTED( i == 999 );
+}
+
 UXY_DESCRIBE(test9)
 {
     // 对象解析成字典
@@ -318,6 +359,61 @@ UXY_DESCRIBE(test9)
     
     UXY_EXPECTED( [dic[@"name"] isEqualToString:@"米国"] );
     UXY_EXPECTED( i == 100 );
+}
+
+UXY_DESCRIBE(test9_1)
+{
+    // 对象的属性里包含对象, 解析成字典
+    /*
+     1. 需要申明对象实现了XYJSON协议, @interface Address : NSObject <XYJSON>
+     1. 申明和类同名的协议 uxy_as_JSONAutoParse(Country)
+     2. 申明类实现了这个协议 @interface Country : NSObject <Country>
+     3. 申明属性实现了这个协议 @property (nonatomic, strong) Country <Country> *country;
+     */
+    Country *country = [[Country alloc] init];
+    country.name = @"米国";
+    country.name_id = @"001";
+    
+    Address *address = [[Address alloc] init];
+    address.code = 999;
+    address.area = @"美洲";
+    address.country = country;
+    
+    NSDictionary *dic = [address uxy_JSONDictionary];
+    NSInteger i = [(NSNumber *)dic[@"code"] integerValue];
+    
+    UXY_EXPECTED( [dic[@"country"][@"name"] isEqualToString:@"米国"] );
+    UXY_EXPECTED( i == 999 );
+}
+
+UXY_DESCRIBE(test9_2)
+{
+    // 对象的属性里包含NSArray对象, 解析成字典
+    /*
+     1. 需要申明对象实现了XYJSON协议, @interface Address : NSObject <XYJSON>
+     1. 申明和类同名的协议 uxy_as_JSONAutoParse(Country)
+     2. 申明类实现了这个协议 @interface Country : NSObject <Country>
+     3. 申明属性实现了这个协议 @property (nonatomic, strong) Country <Country> *country;
+     */
+    Country *country = [[Country alloc] init];
+    country.name = @"米国";
+    country.name_id = @"001";
+    
+    Country *country2 = [[Country alloc] init];
+    country2.name = @"岛国";
+    country2.name_id = @"002";
+    
+    Address3 *address = [[Address3 alloc] init];
+    address.code = 999;
+    address.area = @"美洲";
+    address.list = @[country, country2];
+
+    // 以下是测试的代码
+    NSDictionary *dic = [address uxy_JSONDictionary];
+    NSInteger i = [(NSNumber *)dic[@"code"] integerValue];
+    
+    UXY_EXPECTED( [dic[@"list"][0][@"name"] isEqualToString:@"米国"] );
+    UXY_EXPECTED( i == 999 );
 }
 
 UXY_TEST_CASE_END

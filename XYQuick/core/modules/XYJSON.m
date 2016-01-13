@@ -326,7 +326,18 @@ static id __singleton__;
     [properties enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
         if (className.length > 0)
         {
-            vo[key] = [[self valueForKeyPath:key] __uxy_JSONObject];
+            id sub = [self valueForKeyPath:key];
+            if ([sub isKindOfClass:[NSArray class]])
+            {
+                NSMutableArray *mArray = [@[] mutableCopy];
+                [sub enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    [mArray addObject:[obj __uxy_JSONObject]];
+                }];
+                vo[key] = [mArray copy];
+                return ;
+            }
+            
+            vo[key] = [sub __uxy_JSONObject];
         }
         else
         {
