@@ -173,6 +173,12 @@ UXY_DESCRIBE( test2_2 )
 UXY_DESCRIBE( test3 )
 {
     // 属性带有NSArray
+    /*
+     0. Tour类的一个属性list里存放的是Address数组
+     1. 申明和类同名的协议 uxy_as_JSONAutoParse(Address)
+     2. 申明类实现了这个协议 @interface Address : NSObject <Address>
+     3. 什么属性实现了这个协议 @property (nonatomic, strong) NSArray <Address> *list;
+     */
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json3.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;
@@ -231,6 +237,10 @@ UXY_DESCRIBE( test6 )
 UXY_DESCRIBE( test7 )
 {
     // key的名字和属性不一致
+    /*
+     0. JSON里的key是name2, Tour2类里的属性名字是name
+     1. 在Tour2类里执行 [self uxy_addNickname:@"name2" forProperty:@"name"];
+     */
     NSString *str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"json7.json" ofType:nil] encoding:NSUTF8StringEncoding error:nil];
     if (str.length == 0)
         return;
