@@ -36,55 +36,39 @@
 {
     NSString *str = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
     NSUInteger size = strtoul([str UTF8String], nil, 16);
-    return [[self class] uxy_colorFromHex:size alpha:1.0];
+    return [UIColor uxy_colorFromHex:size alpha:1.0];
 }
 
 + (instancetype)uxy_colorFromHex:(NSUInteger)hex alpha:(CGFloat)alpha
 {
-    return [UIColor colorWithRed:((CGFloat)((hex & 0xFF0000) >> 16))/255.0 green:((CGFloat)((hex & 0xFF00) >> 8))/255.0 blue:((CGFloat)(hex & 0xFF))/255.0 alpha:alpha];
+    return [UIColor colorWithRed:(((hex & 0xFF0000) >> 16)) / 255.0 green:(((hex & 0xFF00) >> 8)) / 255.0 blue:((hex & 0xFF)) / 255.0 alpha:alpha];
 }
 
 - (instancetype)uxy_blackOrWhiteContrastingColor
 {
-    NSArray *rgbaArray = [self uxy_rgbaArray];
-    double a = 1 - ((0.299 * [rgbaArray[0] doubleValue]) + (0.587 * [rgbaArray[1] doubleValue]) + (0.114 * [rgbaArray[2] doubleValue]));
-    return a < 0.5 ? [[self class] blackColor] : [[self class] whiteColor];
+    CGFloat r = 0;
+    CGFloat g = 0;
+    CGFloat b = 0;
+    
+    [self getRed:&r green:&g blue:&b alpha:NULL];
+    
+    double a = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b));
+    return a < 0.5 ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
 - (NSString *)uxy_hexString
 {
-    NSArray *colorArray	= [self uxy_rgbaArray];
-    int r = [colorArray[0] floatValue] * 255;
-    int g = [colorArray[1] floatValue] * 255;
-    int b = [colorArray[2] floatValue] * 255;
-    NSString *red = [NSString stringWithFormat:@"%02x", r];
-    NSString *green = [NSString stringWithFormat:@"%02x", g];
-    NSString *blue = [NSString stringWithFormat:@"%02x", b];
-    
-    return [NSString stringWithFormat:@"#%@%@%@", red, green, blue];
-}
-
-- (NSArray *)uxy_rgbaArray
-{
-    // Takes a [self class] and returns R,G,B,A values in NSNumber form
     CGFloat r = 0;
     CGFloat g = 0;
     CGFloat b = 0;
-    CGFloat a = 0;
     
-    if ([self respondsToSelector:@selector(getRed:green:blue:alpha:)])
-    {
-        [self getRed:&r green:&g blue:&b alpha:&a];
-    }
-    else
-    {
-        const CGFloat *components = CGColorGetComponents(self.CGColor);
-        r = components[0];
-        g = components[1];
-        b = components[2];
-        a = components[3];
-    }
+    [self getRed:&r green:&g blue:&b alpha:NULL];
     
-    return @[@(r), @(g), @(b), @(a)];
+    r *= 255;
+    g *= 255;
+    b *= 255;
+    
+    return [NSString stringWithFormat:@"#%02f%02f%02f", r, g, b];
 }
+
 @end

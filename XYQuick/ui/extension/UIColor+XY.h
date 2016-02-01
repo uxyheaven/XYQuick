@@ -41,20 +41,14 @@
 // 根据自己的颜色,返回黑色或者白色
 - (instancetype)uxy_blackOrWhiteContrastingColor;
 
-// 返回一个十六进制表示的颜色: @"FF0000" or @"#FF0000"
+// 返回一个十六进制表示的颜色(红色): @"FF0000" or @"#FF0000"
 + (instancetype)uxy_colorFromHexString:(NSString *)hexString;
 
-// 返回一个十六进制表示的颜色: 0xFF0000
+// 返回一个十六进制表示的颜色(红色): 0xFF0000
 + (instancetype)uxy_colorFromHex:(NSUInteger)hex alpha:(CGFloat)alpha;
 
 // 返回颜色的十六进制string
 - (NSString *)uxy_hexString;
-
-/**
- Creates an array of 4 NSNumbers representing the float values of r, g, b, a in that order.
- @return    NSArray
- */
-- (NSArray *)uxy_rgbaArray;
 
 @end
 
