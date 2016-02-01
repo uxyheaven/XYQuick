@@ -34,15 +34,12 @@
 
 + (instancetype)uxy_colorFromHexString:(NSString *)hexString
 {
-    unsigned rgbValue = 0;
-    hexString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    
-    [scanner scanHexInt:&rgbValue];
-    return [[self class] uxy_colorFromHex:rgbValue alpha:1.0];
+    NSString *str = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    NSUInteger size = strtoul([str UTF8String], nil, 16);
+    return [[self class] uxy_colorFromHex:size alpha:1.0];
 }
 
-+ (instancetype)uxy_colorFromHex:(NSInteger)hex alpha:(CGFloat)alpha
++ (instancetype)uxy_colorFromHex:(NSUInteger)hex alpha:(CGFloat)alpha
 {
     return [UIColor colorWithRed:((CGFloat)((hex & 0xFF0000) >> 16))/255.0 green:((CGFloat)((hex & 0xFF00) >> 8))/255.0 blue:((CGFloat)(hex & 0xFF))/255.0 alpha:alpha];
 }

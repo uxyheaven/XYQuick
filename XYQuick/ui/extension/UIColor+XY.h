@@ -45,7 +45,7 @@
 + (instancetype)uxy_colorFromHexString:(NSString *)hexString;
 
 // 返回一个十六进制表示的颜色: 0xFF0000
-+ (instancetype)uxy_colorFromHex:(NSInteger)hex alpha:(CGFloat)alpha;
++ (instancetype)uxy_colorFromHex:(NSUInteger)hex alpha:(CGFloat)alpha;
 
 // 返回颜色的十六进制string
 - (NSString *)uxy_hexString;
