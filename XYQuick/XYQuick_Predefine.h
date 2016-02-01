@@ -32,7 +32,7 @@
 #define __XYQUICK_PREDEFINE_H__
 
 #undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.8.11"	// 主版本号
+#define	__XYQUICK_VERSION__	"0.8.12"	// 主版本号
 
 // ----------------------------------
 // on-off
