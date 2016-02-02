@@ -66,6 +66,8 @@
 
 #pragma mark -
 
+#if (1 == __XY_DEBUG_UNITTESTING__)
+
 @interface XYTestFailure : NSException
 
 @property (nonatomic, copy) NSString *expr;
@@ -93,3 +95,5 @@
 - (void)flushLog;
 
 @end
+
+#endif

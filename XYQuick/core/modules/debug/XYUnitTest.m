@@ -43,6 +43,8 @@
 
 #pragma mark -
 
+#if (1 == __XY_DEBUG_UNITTESTING__)
+
 @implementation XYTestFailure
 
 
@@ -71,7 +73,7 @@
 @implementation XYUnitTest uxy_def_singleton(XYUnitTest)
 
 
-#if (1 == __XY_DEBUG_UNITTESTING__)
+
 /*
 + (void)load
 {
@@ -98,7 +100,6 @@ __attribute__((constructor)) static void registerUnitTestStart()
                                                  name:UIApplicationDidFinishLaunchingNotification
                                                object:nil];
 }
-#endif
 
 - (id)init
 {
@@ -273,13 +274,15 @@ __attribute__((constructor)) static void registerUnitTestStart()
     [_logs removeAllObjects];
 }
 
-#if (1 == __XY_DEBUG_UNITTESTING__)
+
 - (void)__handleApplicationDidFinishLaunchingWithOptions
 {
     [[XYUnitTest sharedInstance] run];
 }
-#endif
+
 @end
+
+#endif
 
 #pragma mark -
 #if (1 == __XY_DEBUG_UNITTESTING__)

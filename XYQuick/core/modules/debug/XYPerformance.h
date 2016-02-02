@@ -43,9 +43,12 @@
     #define	PERF_TIME( block )				{ block }
     #define	PERF_ENTER_( __tag)
     #define	PERF_LEAVE_( __tag)
+
 #endif
 
 #pragma mark -
+
+#if (1 ==  __XY_PERFORMANCE__)
 
 @interface XYPerformance : NSObject uxy_as_singleton
 
@@ -53,3 +56,5 @@
 - (void)leave:(NSString *)tag;
 
 @end
+
+#endif

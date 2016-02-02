@@ -31,6 +31,8 @@
 
 #import "XYPerformance.h"
 
+#if (1 ==  __XY_PERFORMANCE__)
+
 #pragma mark -
 
 @interface XYPerformance()
@@ -85,3 +87,5 @@
 }
 
 @end
+
+#endif
