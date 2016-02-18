@@ -1009,11 +1009,6 @@
 				LastTestingUpgradeCheck = 0630;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Heaven;
-				TargetAttributes = {
-					57B3FFE5177AD9BC00775FC9 = {
-						DevelopmentTeam = YU5X6QEWK5;
-					};
-				};
 			};
 			buildConfigurationList = 57B3FFE1177AD9BC00775FC9 /* Build configuration list for PBXProject "JoinShow" */;
 			compatibilityVersion = "Xcode 3.2";

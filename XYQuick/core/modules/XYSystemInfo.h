@@ -64,15 +64,19 @@
 - (NSString *)deviceModel;
 - (NSString *)deviceUUID;
 
-// 返回本机ip地址
-- (NSString *)localHost;
+/// 返回本机 WiFi IP地址, 错误则返回@"error"
+- (NSString *)wiFiHost;
+/// 获取本机 移动网络 IP地址, 错误则返回@"error"
+- (NSString *)cellHost;
 
-// 是否越狱
+/// 获取当前网络状态, @"无网络", @"2G", @"3G", @"4G", @"WIFI", @"error"
+- (NSString *)netWorkState;
+/// 是否越狱
 - (BOOL)isJailBroken		NS_AVAILABLE_IOS(4_0);
 
-// 在ip设备上运行
+/// 在iPhone设备上运行
 - (BOOL)runningOnPhone;
-// 在ipad设备上运行
+// 在iPad设备上运行
 - (BOOL)runningOnPad;
 
 - (BOOL)requiresPhoneOS;

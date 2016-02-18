@@ -141,7 +141,7 @@ ViewControllerDemoTitle(Business)
         NSLog(@"%@", str);
         
         [self loadFromDBProcess];
-    }];
+    }] ;
     
     [self.entityModel.requestHelper submit:request];
 }

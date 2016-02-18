@@ -243,6 +243,7 @@
     
 #endif
 }
+
 - (NSString *)localHost
 {
     NSString *address = @"error";
@@ -261,6 +262,89 @@
             {
                 // Check if interface is en0 which is the wifi connection on the iPhone
                 if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"])
+                {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // Free memory
+    freeifaddrs(interfaces);
+    
+    return address;
+}
+
+- (NSString *)wiFiHost
+{
+    return [self __IPHostWithType:@"en0"];
+}
+- (NSString *)cellHost
+{
+    return [self __IPHostWithType:@"pdp_ip0"];
+}
+
+- (NSString *)netWorkState
+{
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *children = [[[app valueForKeyPath:@"statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+    NSString *state;
+    int netType = 0;
+    
+    for (id child in children)
+    {
+        if (![child isKindOfClass:NSClassFromString(@"UIStatusBarDataNetworkItemView")])
+            continue;
+        
+        netType = [[child valueForKeyPath:@"dataNetworkType"] intValue];
+        switch (netType)
+        {
+            case 0:
+                state = @"无网络";
+                break;
+            case 1:
+                state = @"2G";
+                break;
+            case 2:
+                state = @"3G";
+                break;
+            case 3:
+                state = @"4G";
+                break;
+            case 5:
+                state = @"WIFI";
+                break;
+            default:
+                break;
+        }
+    }
+    return @"error";
+}
+
+/*
+ lo0       本地ip, 127.0.0.1
+ en0       局域网ip, 192.168.1.23
+ pdp_ip0   WWAN地址，即3G ip,
+ bridge0   桥接、热点ip，172.20.10.1
+ */
+- (NSString *)__IPHostWithType:(NSString *)type
+{
+    NSString *address = @"error";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0)
+    {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL)
+        {
+            if(temp_addr->ifa_addr->sa_family == AF_INET)
+            {
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:type])
                 {
                     // Get NSString from C String
                     address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
