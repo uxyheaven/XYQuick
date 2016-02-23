@@ -275,25 +275,18 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:[URL path]])
         return NO;
     
-    // iOS <= 5.0.1
-    //if (&NSURLIsExcludedFromBackupKey == nil) {
+    assert([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]);
     
-    const char *filePath = [[URL path] fileSystemRepresentation];
-    const char *attrName = "com.apple.MobileBackup";
-    u_int8_t attrValue   = 1;
-    int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
-    
-    return (result == 0);
-    
-    // 官方给的代码但是实际上真的是很废，一点用都没有，只用前面那段的就行了，别用下面的
-    //    // iOS >= 5.1
-    //    NSError *error = nil;
-    //    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
-    //                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
-    //    if(!success){
-    //        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
-    //    }
-    //    return success;
+    NSError *error = nil;
+    // iOS 5.1 and later 以后的方法
+    BOOL success = [URL setResourceValue:[NSNumber numberWithBool:YES]
+                                  forKey:NSURLIsExcludedFromBackupKey
+                                   error:&error];
+    if(!success)
+    {
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
 }
 
 #pragma mark -
@@ -320,31 +313,38 @@ CFStringRef __uxy_FileMD5HashCreateWithPath(CFStringRef filePath, size_t chunkSi
     bool hasMoreData = true;
     bool didSucceed;
     
-    if (!fileURL) goto done;
+    if (!fileURL)
+        goto done;
     
     // Create and open the read stream
     readStream = CFReadStreamCreateWithFile(kCFAllocatorDefault,
                                             (CFURLRef)fileURL);
-    if (!readStream) goto done;
+    if (!readStream)
+        goto done;
     didSucceed = (bool)CFReadStreamOpen(readStream);
-    if (!didSucceed) goto done;
+    
+    if (!didSucceed)
+        goto done;
     
     // Initialize the hash object
     CC_MD5_Init(&hashObject);
     
     // Make sure chunkSizeForReadingData is valid
-    if (!chunkSizeForReadingData) {
+    if (!chunkSizeForReadingData)
+    {
         chunkSizeForReadingData = kFileHashDefaultChunkSizeForReadingData;
     }
     
     // Feed the data to the hash object
-    while (hasMoreData) {
+    while (hasMoreData)
+    {
         uint8_t buffer[chunkSizeForReadingData];
         CFIndex readBytesCount = CFReadStreamRead(readStream,
                                                   (UInt8 *)buffer,
                                                   (CFIndex)sizeof(buffer));
         if (readBytesCount == -1)break;
-        if (readBytesCount == 0) {
+        if (readBytesCount == 0)
+        {
             hasMoreData =false;
             continue;
         }
@@ -359,11 +359,13 @@ CFStringRef __uxy_FileMD5HashCreateWithPath(CFStringRef filePath, size_t chunkSi
     CC_MD5_Final(digest, &hashObject);
     
     // Abort if the read operation failed
-    if (!didSucceed) goto done;
+    if (!didSucceed)
+        goto done;
     
     // Compute the string result
     char hash[2 *sizeof(digest) + 1];
-    for (size_t i =0; i < sizeof(digest); ++i) {
+    for (size_t i =0; i < sizeof(digest); ++i)
+    {
         snprintf(hash + (2 * i),3, "%02x", (int)(digest[i]));
     }
     result = CFStringCreateWithCString(kCFAllocatorDefault,
@@ -372,11 +374,13 @@ CFStringRef __uxy_FileMD5HashCreateWithPath(CFStringRef filePath, size_t chunkSi
     
 done:
     
-    if (readStream) {
+    if (readStream)
+    {
         CFReadStreamClose(readStream);
         CFRelease(readStream);
     }
-    if (fileURL) {
+    if (fileURL)
+    {
         CFRelease(fileURL);
     }
     return result;
