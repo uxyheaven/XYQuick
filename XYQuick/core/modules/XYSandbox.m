@@ -146,7 +146,7 @@
 
 + (NSString *)resPath:(NSString *)file
 {
-    NSString *str =[file stringByDeletingPathExtension];
+    NSString *str  = [file stringByDeletingPathExtension];
     NSString *str2 = [file pathExtension];
     
     return [[NSBundle mainBundle] pathForResource:str ofType:str2];
@@ -155,15 +155,17 @@
 
 + (BOOL)touchDirectory:(NSString *)path
 {
-    if ( NO == [[NSFileManager defaultManager] fileExistsAtPath:path] )
+    BOOL isDirectroy;
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectroy];
+    if ( result && isDirectroy)
     {
-        return [[NSFileManager defaultManager] createDirectoryAtPath:path
-                                         withIntermediateDirectories:YES
-                                                          attributes:nil
-                                                               error:NULL];
+        return YES;
     }
     
-    return YES;
+    return [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                     withIntermediateDirectories:YES
+                                                      attributes:nil
+                                                           error:NULL];
 }
 
 
