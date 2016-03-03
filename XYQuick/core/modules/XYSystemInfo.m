@@ -316,8 +316,11 @@
                 state = @"WIFI";
                 break;
             default:
+                state = @"error";
                 break;
         }
+        
+        return state;
     }
     return @"error";
 }

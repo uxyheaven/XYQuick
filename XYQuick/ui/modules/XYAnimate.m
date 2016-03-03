@@ -47,16 +47,16 @@
 
 + (id)delay:(NSTimeInterval)delay
    duration:(NSTimeInterval)duration
-    option:(UIViewAnimationOptions)option
+     option:(UIViewAnimationOptions)option
     animate:(XYAnimateStepBlock)step
 {
     XYAnimateStep *anStep = [[XYAnimateStep alloc] init];
 	if (anStep)
     {
-		anStep.delay = delay;
-		anStep.duration = duration;
-		anStep.option = option;
-		anStep.step = step;
+        anStep.delay    = delay;
+        anStep.duration = duration;
+        anStep.option   = option;
+        anStep.step     = step;
 	}
 	return anStep;
 }
