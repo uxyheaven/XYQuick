@@ -10,12 +10,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/uxyheaven/XYQuick.git", :tag => version } 
   s.requires_arc     = true
 
-  s.public_header_files = 'XYQuick/*.h'
-  s.source_files = 'XYQuick/*.h'
+  s.public_header_files = 'XYQuick/XYQuick.h'
+  s.source_files = 'XYQuick/XYQuick.h'
 
   s.subspec 'predefine' do |ss|
-    ss.source_files  = 'XYQuick/predefine/XYQuick.h'
-    ss.public_header_files = 'XYQuick/predefine/XYQuick.h'
+    ss.source_files  = 'XYQuick/predefine/**/*'
+    ss.public_header_files = 'XYQuick/predefine/**/*.h'
   end
 
   s.subspec 'core' do |ss|
