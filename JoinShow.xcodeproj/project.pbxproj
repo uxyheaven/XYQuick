@@ -198,6 +198,8 @@
 		571CBA5317C6FCC0007CB842 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		571CBA5417C6FCC0007CB842 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 		571D9A651C06926400D9C4C7 /* json7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json7.json; sourceTree = "<group>"; };
+		571DA1FF1C9835670039C527 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
+		571DA2001C9835670039C527 /* XYQuick_Predefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick_Predefine.h; sourceTree = "<group>"; };
 		5722182617DB365B003504E8 /* NetworkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkVC.h; sourceTree = "<group>"; };
 		5722182717DB365B003504E8 /* NetworkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkVC.m; sourceTree = "<group>"; };
 		57293C7A1824C42F007BF087 /* bg_trends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_trends.png; sourceTree = "<group>"; };
@@ -299,7 +301,6 @@
 		57E7857717DE459E0056C589 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		57EA863A1B0EDD7600D3A592 /* XYFlyweightTransmit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYFlyweightTransmit.h; sourceTree = "<group>"; };
 		57EA863B1B0EDD7600D3A592 /* XYFlyweightTransmit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYFlyweightTransmit.m; sourceTree = "<group>"; };
-		57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYMetamacros.h; sourceTree = "<group>"; };
 		57ED39AF1C0448AA0054644D /* Test_XYJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYJSON.m; sourceTree = "<group>"; };
 		57ED39B21C044DF70054644D /* Test_NSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_NSNull.m; sourceTree = "<group>"; };
 		57ED39B51C044DF70054644D /* Test_XYProtocolExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYProtocolExtension.m; sourceTree = "<group>"; };
@@ -421,7 +422,6 @@
 		57F56F6E1AFC86FD00298D7E /* XYViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYViewLayout.m; sourceTree = "<group>"; };
 		57F56F6F1AFC86FD00298D7E /* XYQuick_UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick_UI.h; sourceTree = "<group>"; };
 		57F56F711AFC86FD00298D7E /* XYQuick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick.h; sourceTree = "<group>"; };
-		57F56F721AFC86FD00298D7E /* XYQuick_Predefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYQuick_Predefine.h; sourceTree = "<group>"; };
 		57F56FB21AFC8CB100298D7E /* XYObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYObjectCache.h; sourceTree = "<group>"; };
 		57F56FB31AFC8CB100298D7E /* XYObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYObjectCache.m; sourceTree = "<group>"; };
 		57F690D917E6CE7B00D9A437 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -605,6 +605,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		571DA1FE1C9835670039C527 /* predefine */ = {
+			isa = PBXGroup;
+			children = (
+				571DA1FF1C9835670039C527 /* XYMetamacros.h */,
+				571DA2001C9835670039C527 /* XYQuick_Predefine.h */,
+			);
+			path = predefine;
+			sourceTree = "<group>";
+		};
 		57525A4C17AB9E300094D835 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,12 +757,11 @@
 		57F56EF21AFC86FD00298D7E /* XYQuick */ = {
 			isa = PBXGroup;
 			children = (
+				571DA1FE1C9835670039C527 /* predefine */,
 				57F56EF31AFC86FD00298D7E /* core */,
 				57F56F371AFC86FD00298D7E /* event */,
 				57F56F431AFC86FD00298D7E /* ui */,
 				57F56F711AFC86FD00298D7E /* XYQuick.h */,
-				57ECA4A51B0470AE00C47AF0 /* XYMetamacros.h */,
-				57F56F721AFC86FD00298D7E /* XYQuick_Predefine.h */,
 			);
 			path = XYQuick;
 			sourceTree = SOURCE_ROOT;
@@ -990,6 +998,7 @@
 				57B3FFE3177AD9BC00775FC9 /* Frameworks */,
 				57B3FFE4177AD9BC00775FC9 /* Resources */,
 				D813F20F17AD6967CF0B8EB1 /* Copy Pods Resources */,
+				F59EFA154266ADB05C19BB4C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1112,6 +1121,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F59EFA154266ADB05C19BB4C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

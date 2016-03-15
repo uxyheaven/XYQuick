@@ -14,8 +14,8 @@ Pod::Spec.new do |s|
   s.source_files = 'XYQuick/*.h'
 
   s.subspec 'predefine' do |ss|
-    ss.source_files  = 'XYQuick/predefine/**/*'
-    ss.public_header_files = 'XYQuick/predefine/**/*.h'
+    ss.source_files  = 'XYQuick/predefine/XYQuick.h'
+    ss.public_header_files = 'XYQuick/predefine/XYQuick.h'
   end
 
   s.subspec 'core' do |ss|

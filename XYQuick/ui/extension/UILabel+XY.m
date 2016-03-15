@@ -34,7 +34,6 @@
 #define XY_TEXTSIZE(text, font) [text length] > 0 ? [text \
         sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero;
 #else
-#define XY_TEXTSIZE(text, font) [text length] > 0 ? [text sizeWithFont:font] : CGSizeZero;
 #endif
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
@@ -42,8 +41,6 @@
         boundingRectWithSize:maxSize options:(NSStringDrawingUsesLineFragmentOrigin) \
         attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
 #else
-#define XY_MULTILINE_TEXTSIZE(text, font, maxSize, mode) [text length] > 0 ? [text \
-        sizeWithFont:font constrainedToSize:maxSize lineBreakMode:mode] : CGSizeZero;
 #endif
 
 
