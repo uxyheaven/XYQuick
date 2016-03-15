@@ -13,24 +13,28 @@ Pod::Spec.new do |s|
   s.public_header_files = 'XYQuick/*.h'
   s.source_files = 'XYQuick/*.h'
 
+  s.subspec 'predefine' do |ss|
+    ss.source_files  = 'XYQuick/predefine/**/*'
+    ss.public_header_files = 'XYQuick/predefine/**/*.h'
+  end
+
   s.subspec 'core' do |ss|
     ss.source_files  = 'XYQuick/core/**/*'
     ss.public_header_files = 'XYQuick/core/**/*.h'
-    ss.dependency 'XYQuick/XYQuick_Predefine.h'
+    ss.dependency 'XYQuick/predefine'
   end
 
   s.subspec 'ui' do |ss|
     ss.source_files  = 'XYQuick/ui/**/*'
-    ss.public_header_files = 'XYQuick/event/**/*.h'
-    ss.dependency 'XYQuick/XYQuick_Predefine.h'
-    ss.dependency 'XYQuick/header'
+    ss.public_header_files = 'XYQuick/ui/**/*.h'
+    ss.dependency 'XYQuick/predefine'
     ss.dependency 'XYQuick/core'
   end
 
     s.subspec 'event' do |ss|
     ss.source_files  = 'XYQuick/event/**/*'
     ss.public_header_files = 'XYQuick/event/**/*.h'
-    ss.dependency 'XYQuick/XYQuick_Predefine.h'
+    ss.dependency 'XYQuick/predefine'
     ss.dependency 'XYQuick/core'
     ss.dependency 'XYQuick/ui'
   end
