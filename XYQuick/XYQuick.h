@@ -31,7 +31,7 @@
 #ifndef __XYQUICK_H__
 #define __XYQUICK_H__
 
-#import "XYQuick_Predefine.h"
+#import "XYQuick_Predefine.h"   // 预编译
 
 #import "XYQuick_Core.h"        // 基础类
 #import "XYQuick_UI.h"          // 界面
