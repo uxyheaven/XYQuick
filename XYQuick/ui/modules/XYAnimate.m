@@ -158,7 +158,7 @@
     
 	if (self.option > 0)
     {
-		[result appendFormat:@"options:%lu ", self.option];
+		[result appendFormat:@"options:%@ ", @(self.option)];
 	}
     
 	[result appendFormat:@"animate:%@", self.step];
