@@ -4,7 +4,7 @@
 //   \  /  \_ _/  //  / / | | | | | |  / __| | |/ /
 //   /  \   / \  / \_/ /  | |_| | | | | (__  |   <
 //  /_/\_\  \_/  \___,_\   \__,_| |_|  \___| |_|\_\
-//
+// //
 //  Copyright (C) Heaven.
 //
 //	https://github.com/uxyheaven/XYQuick
@@ -31,8 +31,8 @@
 #ifndef __XYQUICK_PREDEFINE_H__
 #define __XYQUICK_PREDEFINE_H__
 
-#undef	__XYQUICK_VERSION__
-#define	__XYQUICK_VERSION__	"0.8.14"	// 主版本号
+#undef  __XYQUICK_VERSION__
+#define __XYQUICK_VERSION__     "0.9.0" // 主版本号
 
 // ----------------------------------
 // on-off
@@ -79,44 +79,44 @@
 // Common use macros
 // ----------------------------------
 
-#ifndef	IN
+#ifndef IN
 #define IN
 #endif
 
-#ifndef	OUT
+#ifndef OUT
 #define OUT
 #endif
 
-#ifndef	INOUT
+#ifndef INOUT
 #define INOUT
 #endif
 
-#ifndef	UNUSED
-#define	UNUSED( __x )		{ id __unused_var__ __attribute__((unused)) = (id)(__x); }
+#ifndef UNUSED
+#define UNUSED(__x)           { id __unused_var__ __attribute__((unused)) = (id)(__x); }
 #endif
 
-#ifndef	ALIAS
-#define	ALIAS( __a, __b )	__typeof__(__a) __b = __a;
+#ifndef ALIAS
+#define ALIAS(__a, __b)       __typeof__(__a) __b = __a;
 #endif
 
-#ifndef	DEPRECATED
-#define	DEPRECATED			__attribute__((deprecated))
+#ifndef DEPRECATED
+#define DEPRECATED                      __attribute__((deprecated))
 #endif
 
-#ifndef	XY_TODO
-#define XY_TODO( X )			_Pragma(uxy_macro_cstr(message("✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖ TODO: " X)))
+#ifndef XY_TODO
+#define XY_TODO(X)                    _Pragma(uxy_macro_cstr(message("✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖ TODO: " X)))
 #endif
 
-#ifndef	EXTERN_C
+#ifndef EXTERN_C
 #if defined(__cplusplus)
-#define EXTERN_C			extern "C"
+#define EXTERN_C                        extern "C"
 #else
-#define EXTERN_C			extern
+#define EXTERN_C                        extern
 #endif
 #endif
 
-#ifndef	INLINE
-#define	INLINE				__inline__ __attribute__((always_inline))
+#ifndef INLINE
+#define INLINE                          __inline__ __attribute__((always_inline))
 #endif
 
 // ----------------------------------
@@ -126,30 +126,28 @@
 #define XYSINGLETON
 static id sharedInstance;
 #define uxy_as_singleton    \
-        + (instancetype)sharedInstance; \
-        + (void)purgeSharedInstance;
+    + (instancetype)sharedInstance; \
+    + (void)purgeSharedInstance;
 
-#define uxy_def_singleton( __token) \
-        static id __singleton__objc__##__token;                     \
-        static dispatch_once_t __singleton__token__##__token;       \
-        + (instancetype)sharedInstance \
-        { \
-            dispatch_once( &__singleton__token__##__token, ^{ __singleton__objc__##__token = [[self alloc] init]; } ); \
-            return __singleton__objc__##__token; \
-        }   \
-        + (void)purgeSharedInstance \
-        {   \
-            __singleton__objc__##__token = nil;    \
-            __singleton__token__##__token = 0; \
-        }
-
+#define uxy_def_singleton(__token) \
+    static id __singleton__objc__ ## __token;                     \
+    static dispatch_once_t __singleton__token__ ## __token;       \
+    + (instancetype)sharedInstance \
+    { \
+        dispatch_once(&__singleton__token__ ## __token, ^{ __singleton__objc__ ## __token = [[self alloc] init]; }); \
+        return __singleton__objc__ ## __token; \
+    }   \
+    + (void)purgeSharedInstance \
+    {   \
+        __singleton__objc__ ## __token  = nil;    \
+        __singleton__token__ ## __token = 0; \
+    }
 
 // 执行一次
-#define uxy_once_begin( __name ) \
-        static dispatch_once_t once_##__name; \
-        dispatch_once( &once_##__name , ^{
-
-#define uxy_once_end		});
+#define uxy_once_begin(__name) \
+    static dispatch_once_t once_ ## __name; \
+    dispatch_once(&once_ ## __name, ^ {
+#define uxy_once_end            });
 
 // ----------------------------------
 // Category
@@ -157,18 +155,18 @@ static id sharedInstance;
 //使用示例:
 //UIColor+YYAdd.m
 /*
- #import "UIColor+YYAdd.h"
- DUMMY_CLASS(UIColor+YYAdd)
- 
- @implementation UIColor(YYAdd)
- ...
- @end
+   #import "UIColor+YYAdd.h"
+   DUMMY_CLASS(UIColor+YYAdd)
+
+   @implementation UIColor(YYAdd)
+   ...
+   @end
  */
 
 #ifndef XY_DUMMY_CLASS
 #define XY_DUMMY_CLASS(XY_UNIQUE_NAME) \
-        @interface XY_DUMMY_CLASS_##XY_UNIQUE_NAME : NSObject @end \
-        @implementation XY_DUMMY_CLASS_##XY_UNIQUE_NAME @end
+    @interface XY_DUMMY_CLASS_ ## XY_UNIQUE_NAME : NSObject @end \
+    @implementation XY_DUMMY_CLASS_ ## XY_UNIQUE_NAME @end
 #endif
 // ----------------------------------
 // Version
@@ -184,15 +182,14 @@ static id sharedInstance;
 
 #ifndef uxy_cstr
 // 宏定义字符串 to char, NSString
-#define uxy_macro_cstr( A )                 __uxy_macro_cstr_( A )
-#define __uxy_macro_cstr_( A )              #A
+#define uxy_macro_cstr(A)                 __uxy_macro_cstr_(A)
+#define __uxy_macro_cstr_(A)              #A
 
-#define uxy_macro_string( A )               __uxy_macro_string_( A )
-#define __uxy_macro_string_( A )            @#A
+#define uxy_macro_string(A)               __uxy_macro_string_(A)
+#define __uxy_macro_string_(A)            @#A
 
 // 定义静态常量字符串
-#define uxy_staticConstString(__string)               static const char * __string = #__string;
-
+#define uxy_staticConstString(__string)               static const char *__string = #__string;
 #endif
 
 // ----------------------------------
