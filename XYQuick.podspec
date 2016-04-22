@@ -1,42 +1,62 @@
-Pod::Spec.new do |s|  
-  version            = "0.8.14"
-  s.name             = "XYQuick"  
-  s.version          = version  
-  s.summary          = "A quick develop utility on iOS."  
-  s.homepage         = "https://github.com/uxyheaven"  
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }  
-  s.author           = { "uxyheaven" => "uxyheaven@163.com" }  
-  s.platform         = :ios, '7.0'
-  s.source           = { :git => "https://github.com/uxyheaven/XYQuick.git", :tag => version } 
-  s.requires_arc     = true
+#
+# Be sure to run `pod lib lint XYQuick.podspec' to ensure this is a
+# valid spec before submitting.
+#
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
+#
 
-  s.public_header_files = 'XYQuick/XYQuick.h'
-  s.source_files = 'XYQuick/XYQuick.h'
+Pod::Spec.new do |s|
+s.name             = "XYQuick"
+s.version          = "0.9.0"
+s.summary          = "A quick develop utility on iOS."
 
-  s.subspec 'predefine' do |ss|
-    ss.source_files  = 'XYQuick/predefine/**/*'
-    ss.public_header_files = 'XYQuick/predefine/**/*.h'
-  end
+# This description is used to generate tags and improve search results.
+#   * Think: What does it do? Why did you write it? What is the focus?
+#   * Try to keep it short, snappy and to the point.
+#   * Write the description between the DESC delimiters below.
+#   * Finally, don't worry about the indent, CocoaPods strips it!
+s.description      = <<-DESC
+A quick develop utility on iOS...
+DESC
 
-  s.subspec 'core' do |ss|
-    ss.source_files  = 'XYQuick/core/**/*'
-    ss.public_header_files = 'XYQuick/core/**/*.h'
-    ss.dependency 'XYQuick/predefine'
-  end
+s.homepage         = "https://github.com/uxyheaven"
+# s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+s.license          = 'MIT'
+s.author           = { "xingyao095" => "xingyao095@pingan.com.cn" }
+s.source           = { :git => "https://github.com/uxyheaven/XYQuick.git", :tag => s.version.to_s }
+# s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.subspec 'ui' do |ss|
-    ss.source_files  = 'XYQuick/ui/**/*'
-    ss.public_header_files = 'XYQuick/ui/**/*.h'
-    ss.dependency 'XYQuick/predefine'
-    ss.dependency 'XYQuick/core'
-  end
+s.platform     = :ios, '7.0'
+s.requires_arc = true
 
-    s.subspec 'event' do |ss|
-    ss.source_files  = 'XYQuick/event/**/*'
-    ss.public_header_files = 'XYQuick/event/**/*.h'
-    ss.dependency 'XYQuick/predefine'
-    ss.dependency 'XYQuick/core'
-    ss.dependency 'XYQuick/ui'
-  end
+#s.source_files = 'Pod/Classes/**/*'
+s.public_header_files = 'Pod/Classes/XYQuick.h'
+s.source_files = 'Pod/Classes/XYQuick.{h,m}'
 
+s.subspec 'predefine' do |ss|
+ss.source_files  = 'Pod/Classes/predefine/**/*'
+ss.public_header_files = 'Pod/Classes/predefine/**/*.h'
+end
+
+s.subspec 'core' do |ss|
+ss.source_files  = 'Pod/Classes/core/**/*'
+ss.public_header_files = 'Pod/Classes/core/**/*.h'
+ss.dependency 'XYQuick/predefine'
+end
+
+s.subspec 'ui' do |ss|
+ss.source_files  = 'Pod/Classes/ui/**/*'
+ss.public_header_files = 'Pod/Classes/ui/**/*.h'
+ss.dependency 'XYQuick/predefine'
+ss.dependency 'XYQuick/core'
+end
+
+s.subspec 'event' do |ss|
+ss.source_files  = 'Pod/Classes/event/**/*'
+ss.public_header_files = 'Pod/Classes/event/**/*.h'
+ss.dependency 'XYQuick/predefine'
+ss.dependency 'XYQuick/core'
+ss.dependency 'XYQuick/ui'
+end
 end

@@ -1,3 +1,32 @@
+# XYQuick
+
+[![CI Status](http://img.shields.io/travis/xingyao095/XYQuick.svg?style=flat)](https://travis-ci.org/xingyao095/XYQuick)
+[![Version](https://img.shields.io/cocoapods/v/XYQuick.svg?style=flat)](http://cocoapods.org/pods/XYQuick)
+[![License](https://img.shields.io/cocoapods/l/XYQuick.svg?style=flat)](http://cocoapods.org/pods/XYQuick)
+[![Platform](https://img.shields.io/cocoapods/p/XYQuick.svg?style=flat)](http://cocoapods.org/pods/XYQuick)
+
+## Usage
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+XYQuick is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "XYQuick"
+```
+
+## Author
+
+xingyao095, xingyao095@pingan.com.cn
+
+## License
+
+XYQuick is available under the MIT license. See the LICENSE file for more info.
 #{XY} Quick
 
 {XY} 快速开发框架是用于快速高效开发的工具库.它包含`Core`, `Event`, `UI`三层,
@@ -62,3 +91,4 @@ pod 'XYQuick'
 ```
 
 ---
+

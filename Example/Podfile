@@ -1,0 +1,37 @@
+def shared_pods
+    # 状态指示器
+    pod 'MBProgressHUD', '~> 0.9.1'
+    
+    # udid
+    pod 'OpenUDID', '~> 1.0.0'
+    
+    # 网络请求库
+    #  pod 'MKNetworkKit', '~> 0.87'
+    
+    # 数据库ORM
+    pod 'LKDBHelper', '~> 2.2'
+    
+    # 数据库
+    pod 'FMDB', '~> 2.6.2'
+    
+    # 下拉刷新 上拉加载
+    pod 'SVPullToRefresh', '~> 0.4.1'
+end
+
+
+use_frameworks!
+
+target 'XYQuick_Example', :exclusive => true do
+    shared_pods
+    pod 'XYQuick', :path => '../'
+end
+
+target 'XYQuick_Tests', :exclusive => true do
+    #  shared_pods
+    pod 'XYQuick', :path => '../'
+    
+    pod 'FBSnapshotTestCase'
+end
+
+
+
