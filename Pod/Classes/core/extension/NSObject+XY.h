@@ -126,7 +126,7 @@
 #define __uxy_NSUInteger_value( __nubmer ) [__nubmer unsignedIntegerValue]
 #define __uxy_NSTimeInterval_value( __nubmer ) [__nubmer doubleValue]
 
-// 关联对象OBJC_ASSOCIATION_ASSIGN策略不支持引用计数为0的弱引用
+// 关联对象OBJC_ASSOCIATION_ASSIGN策略不支 持引用计数为0的弱引用
 @interface NSObject (XY_associated)
 - (id)uxy_getAssociatedObjectForKey:(const char *)key;
 - (void)uxy_setCopyAssociatedObject:(id)obj forKey:(const char *)key;

@@ -4,7 +4,7 @@
 //   \  /  \_ _/  //  / / | | | | | |  / __| | |/ /
 //   /  \   / \  / \_/ /  | |_| | | | | (__  |   <
 //  /_/\_\  \_/  \___,_\   \__,_| |_|  \___| |_|\_\
-//
+// //
 //  Copyright (C) Heaven.
 //
 //	https://github.com/uxyheaven/XYQuick
@@ -27,69 +27,67 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
-//  This file Copy from Reachability.
+//  This file Copy from Apple Reachability.
 
 #import "XYQuick_Predefine.h"
 #pragma mark -
 
-// 通知
-extern NSString *const XYNotification_ReachabilityChanged;
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
 
-#ifndef NS_ENUM
-#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
-#endif
 
-typedef NS_ENUM(NSInteger, XYNetworkStatus) {
-    // Apple NetworkStatus Compatible Names.
-    XYNotReachable = 0,
-    XYReachableViaWiFi = 2,
-    XYReachableViaWWAN = 1
-};
+typedef enum : NSInteger
+{
+    NotReachable = 0,
+    ReachableViaWiFi,
+    ReachableViaWWAN
+} NetworkStatus;
 
-@class XYReachability;
+#pragma mark IPv6 Support
+//Reachability fully support IPv6.  For full details, see ReadMe.md.
 
-typedef void (^XYNetworkReachable)(XYReachability * reachability);
-typedef void (^XYNetworkUnreachable)(XYReachability * reachability);
+
+extern NSString *kXYReachabilityChangedNotification;
 
 
 @interface XYReachability : NSObject
 
-@property (nonatomic, copy) XYNetworkReachable    reachableBlock;   //  this is called on a background thread
-@property (nonatomic, copy) XYNetworkUnreachable  unreachableBlock; //  this is called on a background thread
+/*!
+ * Use to check the reachability of a given host name.
+ */
++ (instancetype)reachabilityWithHostName:(NSString *)hostName;
 
-@property (nonatomic, assign) BOOL reachableOnWWAN;
+/*!
+ * Use to check the reachability of a given IP address.
+ */
++ (instancetype)reachabilityWithAddress:(const struct sockaddr *)hostAddress;
+
+/*!
+ * Checks whether the default route is available. Should be used by applications that do not connect to a particular host.
+ */
++ (instancetype)reachabilityForInternetConnection;
 
 
-+(instancetype)reachabilityWithHostname:(NSString*)hostname;
-// This is identical to the function above, but is here to maintain
-//compatibility with Apples original code. (see .m)
-+(instancetype)reachabilityWithHostName:(NSString*)hostname;
-+(instancetype)reachabilityForInternetConnection;
-+(instancetype)reachabilityWithAddress:(void *)hostAddress;
-+(instancetype)reachabilityForLocalWiFi;
+#pragma mark reachabilityForLocalWiFi
+//reachabilityForLocalWiFi has been removed from the sample.  See ReadMe.md for more information.
+//+ (instancetype)reachabilityForLocalWiFi;
 
--(instancetype)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
+/*!
+ * Start listening for reachability notifications on the current run loop.
+ */
+- (BOOL)startNotifier;
+- (void)stopNotifier;
 
--(BOOL)startNotifier;
--(void)stopNotifier;
+- (NetworkStatus)currentReachabilityStatus;
 
--(BOOL)isReachable;
--(BOOL)isReachableViaWWAN;
--(BOOL)isReachableViaWiFi;
-
-// WWAN may be available, but not active until a connection has been established.
-// WiFi may require a connection for VPN on Demand.
--(BOOL)isConnectionRequired; // Identical DDG variant.
--(BOOL)connectionRequired; // Apple's routine.
-// Dynamic, on demand connection?
--(BOOL)isConnectionOnDemand;
-// Is user intervention required?
--(BOOL)isInterventionRequired;
-
--(XYNetworkStatus)currentReachabilityStatus;
--(SCNetworkReachabilityFlags)reachabilityFlags;
--(NSString*)currentReachabilityString;
--(NSString*)currentReachabilityFlags;
+/*!
+ * WWAN may be available, but not active until a connection has been established. WiFi may require a connection for VPN on Demand.
+ */
+- (BOOL)connectionRequired;
 
 @end
+
+
+
 
