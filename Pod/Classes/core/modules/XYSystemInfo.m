@@ -333,8 +333,19 @@ static dispatch_once_t __singleton__token__token;
  */
 - (NSString *)deviceIPAdress
 {
-    struct ifaddrs *temp_addr = NULL;
-    NSString *address         = nil;
+    struct ifaddrs *temp_addr  = NULL;
+    NSString *address          = nil;
+    struct ifaddrs *interfaces = NULL;
+    int success                = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success != 0)
+    {
+        freeifaddrs(interfaces);
+        return address;
+    }
+
+    temp_addr = interfaces;
 
     while (temp_addr != NULL)
     {
@@ -362,6 +373,8 @@ static dispatch_once_t __singleton__token__token;
 
         temp_addr = temp_addr->ifa_next;
     }
+
+    freeifaddrs(interfaces);
 
     return address;
 }

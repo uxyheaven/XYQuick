@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		577A118E1D129C27008A0C9A /* Test_XYSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 577A118D1D129C27008A0C9A /* Test_XYSystem.m */; };
 		57C2B2B81CC9BF4F003CE9F4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */; };
 		57C2B2B91CC9BF4F003CE9F4 /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B2981CC9BF4F003CE9F4 /* LKDBHelperExtension.m */; };
 		57C2B2BB1CC9BF4F003CE9F4 /* XYAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B29C1CC9BF4F003CE9F4 /* XYAppController.m */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		375F12F018D311DBF679A0A4 /* Pods-XYQuick_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYQuick_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-XYQuick_Example/Pods-XYQuick_Example.release.xcconfig"; sourceTree = "<group>"; };
+		577A118D1D129C27008A0C9A /* Test_XYSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYSystem.m; sourceTree = "<group>"; };
 		57C2B2951CC9BF4E003CE9F4 /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
 		57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorHelper.m; sourceTree = "<group>"; };
 		57C2B2971CC9BF4F003CE9F4 /* LKDBHelperExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelperExtension.h; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				57C2B3041CC9BF60003CE9F4 /* Test_XYJSON.m */,
 				57C2B3061CC9BF60003CE9F4 /* Test_XYSandbox.m */,
 				57C2B3071CC9BF60003CE9F4 /* Test_XYThead.m */,
+				577A118D1D129C27008A0C9A /* Test_XYSystem.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				57C2B2BE1CC9BF4F003CE9F4 /* XYBaseDataSource.m in Sources */,
 				57C2B3201CC9BF60003CE9F4 /* CarEntity.m in Sources */,
 				57C2B2B81CC9BF4F003CE9F4 /* IndicatorHelper.m in Sources */,
+				577A118E1D129C27008A0C9A /* Test_XYSystem.m in Sources */,
 				57C2B3121CC9BF60003CE9F4 /* DatabaseVC.m in Sources */,
 				57C2B2C61CC9BF4F003CE9F4 /* XYServiceBase.m in Sources */,
 				57C2B2BF1CC9BF4F003CE9F4 /* XYBaseModel.m in Sources */,
