@@ -362,6 +362,8 @@ static dispatch_once_t __singleton__token__token;
 
         temp_addr = temp_addr->ifa_next;
     }
+
+    return address;
 }
 
 //for IPV6
