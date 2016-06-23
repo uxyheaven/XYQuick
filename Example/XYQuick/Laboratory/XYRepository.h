@@ -15,7 +15,7 @@
 @end
 
 
-typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
+typedef void (^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 
 // 模块合作接口
 @interface XYRepositoryInterface : NSObject
@@ -51,7 +51,7 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 
 @property (nonatomic, copy, readonly) NSString *domain;
 
-/*
+
 #pragma mark - 注册相关
 // 注册一个数据标识
 - (void)registerDataAtIdentifier:(NSString *)identifier receiver:(id <XYRepositoryProtocol>)receiver;
@@ -61,7 +61,7 @@ typedef void(^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 // 获取数据
 - (XYRepositoryEvent *)invocationDataIndentifier:(NSString *)identifier
                                   completedBlock:(XYRepositoryCompletedBlock)block;
-*/
+
 
 + (instancetype)repositoryWithDomain:(NSString *)domain;
 
