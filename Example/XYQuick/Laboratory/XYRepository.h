@@ -39,9 +39,9 @@ typedef void (^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 @end
 
 #pragma mark - 聚合
-@interface Aggregate : NSObject
+@interface XYAggregate : NSObject
 @property (nonatomic, copy, readonly) NSString *key;
-@property (nonatomic, strong) id root;  // you can observe this object. if you dont this object owner, dont change it? 如果你不是这个对象的持有者,最好不要改变他本身
+@property (nonatomic, weak) id root;  // 如果你不是这个对象的持有者,最好不要改变他本身
 @end
 
 
@@ -65,7 +65,7 @@ typedef void (^XYRepositoryCompletedBlock)(XYRepositoryEvent *event);
 
 + (instancetype)repositoryWithDomain:(NSString *)domain;
 
-- (Aggregate *)aggregateForKey:(NSString *)key;
+- (XYAggregate *)aggregateForKey:(NSString *)key;
 - (void)setAnAggregateRoot:(id)root forKey:(NSString *)key;
 - (void)removeAggregateForKey:(NSString *)key;
 

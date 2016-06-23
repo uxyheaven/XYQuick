@@ -22,7 +22,7 @@
 @end
 
 #pragma mark -
-@implementation Aggregate
+@implementation XYAggregate
 @end
 
 #pragma mark -
@@ -168,14 +168,14 @@ static NSMutableDictionary *s_moduleInterfaces;
     });
 }
 
-- (Aggregate *)aggregateForKey:(NSString *)key
+- (XYAggregate *)aggregateForKey:(NSString *)key
 {
     return _aggregates[key];
 }
 
 - (void)setAnAggregateRoot:(id)root forKey:(NSString *)key
 {
-    UNUSED(s_repositories[key] ? : (s_repositories[key] = [[Aggregate alloc] init]))
+    UNUSED(s_repositories[key] ? : (s_repositories[key] = [[XYAggregate alloc] init]))
     [s_repositories[key] setValue: root forKey: @"root"];
 }
 
