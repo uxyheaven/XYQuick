@@ -4,7 +4,7 @@
 //   \  /  \_ _/  //  / / | | | | | |  / __| | |/ /
 //   /  \   / \  / \_/ /  | |_| | | | | (__  |   <
 //  /_/\_\  \_/  \___,_\   \__,_| |_|  \___| |_|\_\
-//
+// //
 //  Copyright (C) Heaven.
 //
 //	https://github.com/uxyheaven/XYQuick
@@ -46,9 +46,9 @@
     if (self)
     {
         self.viewControllers = vcs;
-        self.tempItems = items;
+        self.tempItems       = items;
     }
-    
+
     return self;
 }
 
@@ -59,43 +59,46 @@
 }
 
 /*
-#pragma mark - Navigation
+   #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+   // In a storyboard-based application, you will often want to do a little preparation before navigation
+   - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+   {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-*/
+   }
+ */
 - (void)uxy_createFields
 {
-    _tabBarFrame = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
+    _tabBarFrame  = CGRectMake(0, self.view.bounds.size.height - 49, self.view.bounds.size.width, 49);
     _contentFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 49);
 }
 
 - (void)uxy_destroyFields
 {
-
 }
 
 - (void)uxy_createViews
 {
     _contentView = [[UIView alloc] initWithFrame:_contentFrame];
-    [self.view addSubview:_contentView];
-    
-    _tabBar = [[XYTabBar alloc] initWithFrame:_tabBarFrame items:_tempItems];
-    [self.view addSubview:_tabBar];
+    [self.view
+     addSubview:_contentView];
+
+    _tabBar = [[XYTabBar alloc] initWithFrame:_tabBarFrame
+                                        items:_tempItems];
+    [self.view
+     addSubview:_tabBar];
 
     self.tempItems = nil;
-    
+
     for (int i = 0; i < _tabBar.items.count; i++)
     {
-        [self setupItem:_tabBar.items[i] index:i];
+        [self setupItem:_tabBar.items[i]
+                  index:i];
     }
-    
+
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectZero];
-    view.alpha = 1;
+    view.alpha           = 1;
     view.backgroundColor = [UIColor yellowColor];
     _tabBar.animatedView = view;
     [_tabBar addSubview:view];
@@ -103,7 +106,6 @@
 
 - (void)uxy_destroyViews
 {
-
 }
 
 - (void)uxy_createEvents
@@ -113,7 +115,6 @@
 
 - (void)uxy_destroyEvents
 {
-
 }
 
 - (void)uxy_loadData
@@ -121,20 +122,21 @@
     self.selectedIndex = 0;
 }
 
-
 - (UIViewController *)selectedViewController
 {
     return [_viewControllers objectAtIndex:_selectedIndex];
 }
 
--(void)setSelectedIndex:(NSUInteger)index
+- (void)setSelectedIndex:(NSUInteger)index
 {
     [self displayViewAtIndex:index];
     [_tabBar selectTabAtIndex:index];
 }
+
 - (void)setupItem:(UIButton *)item index:(NSInteger)index
 {
-    [_tabBar setupItem:item index:index];
+    [_tabBar setupItem:item
+                 index:index];
 }
 
 - (void)resetAnimatedView:(UIImageView *)animatedView index:(NSInteger)index
@@ -143,11 +145,12 @@
     if (!isFirst)
     {
         animatedView.backgroundColor = [UIColor orangeColor];
-        animatedView.alpha = 0.5;
-        isFirst = YES;
+        animatedView.alpha           = 0.5;
+        isFirst                      = YES;
     }
-    
-    [_tabBar resetAnimatedView:animatedView index:index];
+
+    [_tabBar resetAnimatedView:animatedView
+                         index:index];
 }
 
 #pragma mark - rewrite
@@ -187,38 +190,46 @@
 // 私有方法
 - (void)displayViewAtIndex:(NSUInteger)index
 {
-    UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers objectAtIndex:index];
+    UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers
+                                                                          objectAtIndex:index];
     // If target index is equal to current index.
     if (_selectedIndex == index && [[_contentView subviews] count] != 0)
     {
         if ([targetViewController isKindOfClass:[UINavigationController class]])
         {
-            [(UINavigationController*)targetViewController popToRootViewControllerAnimated:YES];
+            [(UINavigationController *)targetViewController
+             popToRootViewControllerAnimated:YES];
         }
         return;
     }
-    
+
     _selectedIndex = index;
-    
-    [_contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
-	targetViewController.view.frame = _contentView.bounds;
+
+    [_contentView.subviews
+     makeObjectsPerformSelector:@selector(removeFromSuperview)
+                     withObject:nil];
+    targetViewController.view.frame = _contentView.bounds;
     [self addChildViewController:targetViewController];
     [_contentView addSubview:targetViewController.view];
-    
+
     if ([targetViewController isKindOfClass:[UINavigationController class]])
     {
         UIViewController<XYTabBarControllerProtocol> *vc = (UIViewController<XYTabBarControllerProtocol> *)((UINavigationController *)targetViewController).topViewController;
         if ([vc respondsToSelector:@selector(tabBarController:didSelectViewController:)])
         {
-            [vc tabBarController:self didSelectViewController:[self.viewControllers objectAtIndex:index]];
+            [vc tabBarController:self
+             didSelectViewController:[self.viewControllers
+                                      objectAtIndex:index]];
         }
     }
-    
+
     if ([targetViewController respondsToSelector:@selector(tabBarController:didSelectViewController:)])
     {
-        [targetViewController tabBarController:self didSelectViewController:targetViewController];
+        [targetViewController tabBarController:self
+                       didSelectViewController:targetViewController];
     }
 }
+
 #pragma mark - 响应 model 的地方
 #pragma mark 1 notification
 
@@ -235,30 +246,36 @@
 #pragma mark XYTabBarDelegate
 - (BOOL)tabBar:(XYTabBar *)tabBar shouldSelectIndex:(NSInteger)index
 {
-    UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers objectAtIndex:index];
-    
+    UIViewController<XYTabBarControllerProtocol> *targetViewController = [self.viewControllers
+                                                                          objectAtIndex:index];
+
     if ([targetViewController isKindOfClass:[UINavigationController class]])
     {
         UIViewController<XYTabBarControllerProtocol> *vc = (UIViewController<XYTabBarControllerProtocol> *)((UINavigationController *)targetViewController).topViewController;
         if ([vc respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
         {
-            return [vc tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];
+            return [vc tabBarController:self
+                    shouldSelectViewController:[self.viewControllers
+                                                objectAtIndex:index]];
         }
     }
-    
+
     if ([targetViewController respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
     {
-        return [targetViewController tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];
+        return [targetViewController tabBarController:self
+                           shouldSelectViewController:[self.viewControllers
+                                            objectAtIndex:index]];
     }
-    
+
     return YES;
 }
 
 - (void)tabBar:(XYTabBar *)tabBar didSelectIndex:(NSInteger)index
 {
-	[self displayViewAtIndex:index];
-    
-    [self resetAnimatedView:_tabBar.animatedView index:index];
+    [self displayViewAtIndex:index];
+
+    [self resetAnimatedView:_tabBar.animatedView
+                      index:index];
 }
 
 #pragma mark 3 dataSource
@@ -286,7 +303,7 @@
             vc = nil;
         }
     }
-    
+
     return nil;
 }
 

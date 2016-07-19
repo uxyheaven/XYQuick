@@ -55,15 +55,15 @@
 + (instancetype)sharedInstance;
 + (void)purgeSharedInstance;
 
-@property (nonatomic, strong) NSMutableArray *vcs;
+@property (nonatomic, strong) NSMutableArray *vcContainers;
 
 @end
 
-@interface XYViewControllerViewContainer: NSObject
+@interface XYViewControllerContainer: NSObject
 @property (nonatomic, weak) UIViewController *vc;
 @end
 
-@implementation XYViewControllerViewContainer
+@implementation XYViewControllerContainer
 @end
 
 
@@ -147,9 +147,9 @@
     
     if ([self respondsToSelector:@selector(uxy_enterBackground)] || [self respondsToSelector:@selector(uxy_enterForeground)])
     {
-        XYViewControllerViewContainer *container = [[XYViewControllerViewContainer alloc] init];
+        XYViewControllerContainer *container = [[XYViewControllerContainer alloc] init];
         container.vc = self;
-        [[XYBaseViewControllerHelper sharedInstance].vcs addObject:container];
+        [[XYBaseViewControllerHelper sharedInstance].vcContainers addObject:container];
     }
 }
 @end
@@ -206,7 +206,7 @@ static dispatch_once_t __singleton__token__token;
 {
     self = [super init];
     if (self) {
-        _vcs = [@[] mutableCopy];
+        _vcContainers = [@[] mutableCopy];
         [self registerLifecycleNotification];
     }
     return self;
@@ -221,12 +221,12 @@ static dispatch_once_t __singleton__token__token;
 
 - (void)onEnterBackground
 {
-    for (NSUInteger i = _vcs.count; i > 0; i--)
+    for (NSUInteger i = _vcContainers.count; i > 0; i--)
     {
-        XYViewControllerViewContainer *container = self.vcs[i - 1];
+        XYViewControllerContainer *container = self.vcContainers[i - 1];
         if (container.vc == nil)
         {
-            [_vcs removeObjectAtIndex:(i - 1)];
+            [_vcContainers removeObjectAtIndex:(i - 1)];
             continue;
         }
         
@@ -239,12 +239,12 @@ static dispatch_once_t __singleton__token__token;
 
 - (void)onEnterForeground
 {
-    for (NSUInteger i = _vcs.count; i > 0; i--)
+    for (NSUInteger i = _vcContainers.count; i > 0; i--)
     {
-        XYViewControllerViewContainer *container = self.vcs[i - 1];
+        XYViewControllerContainer *container = self.vcContainers[i - 1];
         if (container.vc == nil)
         {
-            [_vcs removeObjectAtIndex:(i - 1)];
+            [_vcContainers removeObjectAtIndex:(i - 1)];
             continue;
         }
         
