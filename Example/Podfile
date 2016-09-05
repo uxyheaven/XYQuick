@@ -21,12 +21,12 @@ end
 
 use_frameworks!
 
-target 'XYQuick_Example', :exclusive => true do
+target 'XYQuick_Example' do
     shared_pods
     pod 'XYQuick', :path => '../'
 end
 
-target 'XYQuick_Tests', :exclusive => true do
+target 'XYQuick_Tests' do
     #  shared_pods
     pod 'XYQuick', :path => '../'
     

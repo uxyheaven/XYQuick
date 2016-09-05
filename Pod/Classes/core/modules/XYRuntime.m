@@ -57,15 +57,7 @@
 
 + (NSArray *)uxy_subClasses
 {
-    static NSDictionary *classFilter = nil;
-    
-    static dispatch_once_t once_xyClassFilter; \
-    dispatch_once( &once_xyClassFilter , ^{
-        classFilter = @{
-                          @"NSHTMLReader" : @""
-                          };
-    });
-    
+    NSSet *classFilter = [self __xy_classFilter];
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
     for ( NSString *className in [self __loadedClassNames] )
@@ -73,7 +65,7 @@
         Class classType = NSClassFromString( className );
         if ( classType == self )
             continue;
-        if ( classFilter[className] )
+        if ( [classFilter containsObject:className]  )
             continue;
         
         if ( NO == [classType isSubclassOfClass:self] )
@@ -88,12 +80,16 @@
 #pragma mark -
 + (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName
 {
+    NSSet *classFilter = [self __xy_classFilter];
     NSMutableArray *results = [[NSMutableArray alloc] init];
+    
     Protocol *protocol = NSProtocolFromString(protocolName);
     for ( NSString *className in [self __loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
         if ( classType == self )
+            continue;
+        if ( [classFilter containsObject:className] )
             continue;
         
         if ( NO == [classType conformsToProtocol:protocol] )
@@ -315,41 +311,57 @@
 }
 
 #pragma mark - private
++ (NSSet *)__xy_classFilter
+{
+    static NSSet *classFilter = nil;
+    
+    static dispatch_once_t once_xyClassFilter;
+    dispatch_once( &once_xyClassFilter , ^{
+        classFilter = [NSSet setWithObjects:
+                       @"NSHTMLReader",
+                       @"PAHybridRouter",
+                       @"FBSDKAppLinkResolver",
+                       nil];
+    });
+    
+    return classFilter;
+}
+
 + (NSArray *)__loadedClassNames
 {
     static dispatch_once_t once;
     static NSMutableArray *classNames;
     
     dispatch_once( &once, ^
-    {
-        unsigned int classesCount = 0;
-        
-        classNames     = [[NSMutableArray alloc] init];
-        Class *classes = objc_copyClassList( &classesCount );
-        
-        for ( unsigned int i = 0; i < classesCount; ++i )
-        {
-            Class classType = classes[i];
-            if ( class_isMetaClass( classType ) )
-                continue;
-            
-            Class superClass = class_getSuperclass( classType );
-            if ( Nil == superClass )
-                continue;
-            
-            NSString *className = NSStringFromClass(classType);
-            if ( 0 == className.length )
-                continue;
-            
-            [classNames addObject:className];
-        }
+                  {
+                      unsigned int classesCount = 0;
+                      
+                      classNames     = [[NSMutableArray alloc] init];
+                      Class *classes = objc_copyClassList( &classesCount );
+                      
+                      for ( unsigned int i = 0; i < classesCount; ++i )
+                      {
+                          Class classType = classes[i];
+                          if ( class_isMetaClass( classType ) )
+                              continue;
+                          
+                          Class superClass = class_getSuperclass( classType );
+                          if ( Nil == superClass )
+                              continue;
+                          
+                          NSString *className = NSStringFromClass(classType);
+                          if ( 0 == className.length )
+                              continue;
+                          
+                          [classNames addObject:className];
+                      }
 #if ( XYRuntime_SORT == 1)
-        [classNames sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            return [obj1 compare:obj2];
-        }];
+                      [classNames sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                          return [obj1 compare:obj2];
+                      }];
 #endif
-        free( classes );
-    });
+                      free( classes );
+                  });
     
     return classNames;
 }
