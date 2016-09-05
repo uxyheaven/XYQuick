@@ -33,7 +33,7 @@
 
 typedef UIViewController *  (^XYViewControllerManager_createVC_block) (void);
 
-@interface XYViewControllerManager : UIViewController uxy_as_singleton
+@interface XYViewControllerManager : UIViewController
 
 + (instancetype)sharedInstance;
 + (void)purgeSharedInstance;

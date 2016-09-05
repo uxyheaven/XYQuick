@@ -60,7 +60,7 @@
     NSSet *classFilter = [self __xy_classFilter];
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
-    for ( NSString *className in [self __loadedClassNames] )
+    for ( NSString *className in [self __xy_loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
         if ( classType == self )
@@ -84,7 +84,7 @@
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
     Protocol *protocol = NSProtocolFromString(protocolName);
-    for ( NSString *className in [self __loadedClassNames] )
+    for ( NSString *className in [self __xy_loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
         if ( classType == self )
@@ -327,7 +327,7 @@
     return classFilter;
 }
 
-+ (NSArray *)__loadedClassNames
++ (NSArray *)__xy_loadedClassNames
 {
     static dispatch_once_t once;
     static NSMutableArray *classNames;
