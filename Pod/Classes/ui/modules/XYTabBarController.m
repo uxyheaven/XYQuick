@@ -32,7 +32,7 @@
 
 @interface XYTabBarController ()
 
-@property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) NSArray *viewControllers;
 @property (nonatomic, strong) NSArray *tempItems;
 @property (nonatomic, strong) UIView *contentView;
 
