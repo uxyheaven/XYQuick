@@ -35,7 +35,7 @@ s.public_header_files = 'Pod/Classes/XYQuick.h'
 s.source_files = 'Pod/Classes/XYQuick.{h,m}'
 
 s.subspec 'predefine' do |ss|
-ss.source_files  = 'Pod/Classes/predefine/**/*'
+ss.source_files  = 'Pod/Classes/predefine/*.{h,m}'
 ss.public_header_files = 'Pod/Classes/predefine/**/*.h'
 end
 
