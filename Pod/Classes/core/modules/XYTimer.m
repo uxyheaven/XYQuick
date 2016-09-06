@@ -31,6 +31,7 @@
 
 #import "XYTimer.h"
 #import <objc/runtime.h>
+#import <objc/message.h>
 #import "NSArray+XY.h"
 
 

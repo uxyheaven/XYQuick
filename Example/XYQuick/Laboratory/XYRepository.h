@@ -6,6 +6,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 
 @class XYRepositoryInterface;
 @class XYRepositoryEvent;

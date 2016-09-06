@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 #pragma mark -
 
 @interface NSString (XYExtension)

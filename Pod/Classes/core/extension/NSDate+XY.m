@@ -29,6 +29,7 @@
 //
 
 #import "NSDate+XY.h"
+#import <objc/runtime.h>
 
 @implementation NSDate (XYExtension)
 

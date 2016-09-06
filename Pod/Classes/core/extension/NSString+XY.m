@@ -29,6 +29,7 @@
 //
 
 #import "NSString+XY.h"
+#import <CommonCrypto/CommonCrypto.h>
 
 @implementation NSString (XYExtension)
 

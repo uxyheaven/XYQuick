@@ -30,7 +30,7 @@
 //  This file Copy from BlockUI.
 
 #import "UIControl+XY.h"
-
+#import <objc/runtime.h>
 #pragma mark-
 @implementation UIControl (XYExtension)
 

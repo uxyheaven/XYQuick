@@ -30,6 +30,7 @@
 //  This file Copy from YYJSONHelper.
 
 #import "XYJSON.h"
+#import <objc/runtime.h>
 
 #define kNSObjectProtocolProperties @[@"hash", @"superclass", @"description", @"debugDescription"]
 

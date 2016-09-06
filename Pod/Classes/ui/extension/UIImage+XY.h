@@ -29,6 +29,8 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #pragma mark -
 
 

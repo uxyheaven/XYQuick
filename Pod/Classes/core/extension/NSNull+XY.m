@@ -29,6 +29,7 @@
 //
 
 #import "NSNull+XY.h"
+#import <objc/runtime.h>
 
 @implementation NSNull (XYExtension)
 

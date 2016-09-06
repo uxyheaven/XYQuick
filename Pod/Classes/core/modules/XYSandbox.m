@@ -30,9 +30,10 @@
 //  This file Copy from Samurai.
 
 #import "XYSandbox.h"
-
+#import <CommonCrypto/CommonCrypto.h>
 #import <sys/stat.h>
 #import <sys/xattr.h>
+#import <objc/message.h>
 
 #undef kFileHashDefaultChunkSizeForReadingData
 #define kFileHashDefaultChunkSizeForReadingData     1024*8 // 8K

@@ -29,6 +29,7 @@
 //
 
 #import "NSData+XY.h"
+#import <CommonCrypto/CommonCrypto.h>
 
 @implementation NSData (XYExtension)
 

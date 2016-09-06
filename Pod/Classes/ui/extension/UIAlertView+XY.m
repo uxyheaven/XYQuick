@@ -29,6 +29,7 @@
 //
 
 #import "UIAlertView+XY.h"
+#import <objc/runtime.h>
 
 @interface XYAlertViewHandler : NSObject <UIAlertViewDelegate>
 @end

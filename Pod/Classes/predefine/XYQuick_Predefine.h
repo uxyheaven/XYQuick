@@ -57,23 +57,6 @@
 // header.h
 // ----------------------------------
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AVFoundation/AVSpeechSynthesis.h>
-#import <CoreMotion/CoreMotion.h>
-#import <Social/Social.h>
-#import <SystemConfiguration/SystemConfiguration.h>
-
-#import <objc/runtime.h>
-#import <objc/message.h>
-#import <mach/mach.h>
-#import <mach/mach_host.h>
-#import <execinfo.h>
-#import <CommonCrypto/CommonDigest.h>
-#import <CommonCrypto/CommonCryptor.h>
-#import <ifaddrs.h>
-#import <arpa/inet.h>
 
 // ----------------------------------
 // Common use macros

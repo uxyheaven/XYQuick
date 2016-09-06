@@ -30,7 +30,7 @@
 
 #import "XYNotification.h"
 #import <objc/runtime.h>
-
+#import <objc/message.h>
 
 void (*XYNotification_action1)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
 

@@ -29,7 +29,7 @@
 //
 
 #import "XYFlyweightTransmit.h"
-
+#import <objc/runtime.h>
 #pragma mark - UXYFlyweightTransmit
 
 @implementation NSObject (UXYFlyweightTransmit)

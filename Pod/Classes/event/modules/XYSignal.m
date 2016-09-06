@@ -29,6 +29,7 @@
 //
 
 #import "XYSignal.h"
+#import <objc/runtime.h>
 
 #define kUXYSignalHandler_key "NSObject.signalHandler.key"
 

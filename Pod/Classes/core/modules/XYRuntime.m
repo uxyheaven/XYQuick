@@ -57,10 +57,10 @@
 
 + (NSArray *)uxy_subClasses
 {
-    NSSet *classFilter = [self __xy_classFilter];
+    NSSet *classFilter = [self __uxy_classFilter];
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
-    for ( NSString *className in [self __xy_loadedClassNames] )
+    for ( NSString *className in [self __uxy_loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
         if ( classType == self )
@@ -80,11 +80,11 @@
 #pragma mark -
 + (NSArray *)uxy_classesWithProtocol:(NSString *)protocolName
 {
-    NSSet *classFilter = [self __xy_classFilter];
+    NSSet *classFilter = [self __uxy_classFilter];
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
     Protocol *protocol = NSProtocolFromString(protocolName);
-    for ( NSString *className in [self __xy_loadedClassNames] )
+    for ( NSString *className in [self __uxy_loadedClassNames] )
     {
         Class classType = NSClassFromString( className );
         if ( classType == self )
@@ -311,7 +311,7 @@
 }
 
 #pragma mark - private
-+ (NSSet *)__xy_classFilter
++ (NSSet *)__uxy_classFilter
 {
     static NSSet *classFilter = nil;
     
@@ -327,7 +327,7 @@
     return classFilter;
 }
 
-+ (NSArray *)__xy_loadedClassNames
++ (NSArray *)__uxy_loadedClassNames
 {
     static dispatch_once_t once;
     static NSMutableArray *classNames;

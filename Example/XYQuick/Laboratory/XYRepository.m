@@ -7,7 +7,7 @@
 //
 
 #import "XYRepository.h"
-
+#import <objc/runtime.h>
 
 @implementation XYRepositoryInterface
 @end
@@ -131,10 +131,9 @@ static NSMutableDictionary *s_moduleInterfaces;
 
     NSString *tmpIndentifer = mi.identifier;
     id target               = mi.receiver;
-    if (target == nil && [mi.receiverClass
-                          respondsToSelector:@selector(sharedInstance)])
+    if (target == nil && [mi.receiverClass respondsToSelector:@selector(sharedInstance)])
     {
-        target      = [mi.receiverClass sharedInstance];
+        target      = [mi.receiverClass performSelector:@selector(sharedInstance) withObject:nil];
         mi.receiver = target;
     }
 

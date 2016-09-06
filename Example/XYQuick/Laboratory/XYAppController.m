@@ -7,6 +7,8 @@
 //
 
 #import "XYAppController.h"
+#import <objc/message.h>
+
 #import "XYUnitTest.h"
 #import "XYClassLoader.h"
 #import "XYRuntime.h"

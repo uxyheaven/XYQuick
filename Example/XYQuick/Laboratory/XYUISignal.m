@@ -7,6 +7,7 @@
 //
 
 #import "XYUISignal.h"
+#import <objc/message.h>
 
 #undef	XYUISignal_NAMESPACE
 #define XYUISignal_NAMESPACE	"UIView.nameSpace"

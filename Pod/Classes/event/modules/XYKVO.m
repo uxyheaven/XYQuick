@@ -30,6 +30,7 @@
 
 #import "XYKVO.h"
 #import <objc/runtime.h>
+#import <objc/message.h>
 
 void (*XYKVO_action2)(id, SEL, id, id) = (void (*)(id, SEL, id, id))objc_msgSend;
 void (*XYKVO_action3)(id, SEL, id, id, id) = (void (*)(id, SEL, id, id, id))objc_msgSend;

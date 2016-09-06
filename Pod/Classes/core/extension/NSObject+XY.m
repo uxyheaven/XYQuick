@@ -29,6 +29,8 @@
 //
 
 #import "NSObject+XY.h"
+#import <objc/runtime.h>
+
 #import "NSDate+XY.h"
 
 @interface NSObject(XYPrivate)

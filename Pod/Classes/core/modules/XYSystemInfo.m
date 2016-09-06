@@ -30,6 +30,10 @@
 //  This file Copy from Samurai.
 
 #import "XYSystemInfo.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
+#import <ifaddrs.h>
+#import <arpa/inet.h>
 
 @interface XYSystemInfo ()
 @property (nonatomic, strong) NSUserDefaults *userDefaults;

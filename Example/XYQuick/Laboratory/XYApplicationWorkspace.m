@@ -7,6 +7,7 @@
 //
 
 #import "XYApplicationWorkspace.h"
+#import <objc/message.h>
 #import "XYQuick.h"
 
 @implementation XYApplicationWorkspace

@@ -15,6 +15,7 @@
 #import "PaintCodeView.h"
 
 #import <Social/SocialDefines.h>
+#import <objc/message.h>
 
 #import "Test1Model.h"
 #import "Test2Model.h"

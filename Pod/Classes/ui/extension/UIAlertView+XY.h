@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
 #pragma mark -
 
 typedef void(^XYAlertView_block_self_index)(UIAlertView *alertView, NSInteger btnIndex);
