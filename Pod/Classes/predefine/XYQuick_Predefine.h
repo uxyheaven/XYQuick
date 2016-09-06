@@ -182,6 +182,14 @@ static id sharedInstance;
 #endif
 
 
+#pragma mark-
+
+#import <Foundation/Foundation.h>
+@interface XYQuick_Predefine : NSObject
+
+@end
+
+
 
 
 
