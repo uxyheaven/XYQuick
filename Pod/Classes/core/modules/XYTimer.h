@@ -31,6 +31,7 @@
 
 #import "XYQuick_Predefine.h"
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #pragma mark -
 
 #pragma mark - #define

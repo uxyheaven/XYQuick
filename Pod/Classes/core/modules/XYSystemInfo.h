@@ -31,6 +31,7 @@
 
 #import "XYQuick_Predefine.h"
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 #pragma mark -
 
 #define XY_SCREEN_WIDTH   UIScreen.mainScreen.bounds.size.width
