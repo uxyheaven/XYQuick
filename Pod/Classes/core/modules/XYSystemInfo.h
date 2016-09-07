@@ -38,6 +38,7 @@
 
 #pragma mark -
 
+#define XY_IOS10_OR_LATER               [[XYSystemInfo sharedInstance] isOsVersionOrLater:@"10.0"]
 #define XY_IOS9_OR_LATER                [[XYSystemInfo sharedInstance] isOsVersionOrLater:@"9.0"]
 #define XY_IOS8_OR_LATER                [[XYSystemInfo sharedInstance] isOsVersionOrLater:@"8.0"]
 #define XY_IOS7_OR_LATER                [[XYSystemInfo sharedInstance] isOsVersionOrLater:@"7.0"]
@@ -45,6 +46,7 @@
 #define XY_IOS5_OR_LATER                [[XYSystemInfo sharedInstance] isOsVersionOrLater:@"5.0"]
 #define XY_IOS4_OR_LATER                [[XYSystemInfo sharedInstance] isOsVersionOrLater:@"4.0"]
 
+#define XY_IOS10_OR_EARLIER             [[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"10.0"]
 #define XY_IOS9_OR_EARLIER              [[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"9.0"]
 #define XY_IOS8_OR_EARLIER              [[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"8.0"]
 #define XY_IOS7_OR_EARLIER              [[XYSystemInfo sharedInstance] isOsVersionOrEarlier:@"7.0"]
