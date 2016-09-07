@@ -30,12 +30,10 @@
 //  This file Copy from Apple Reachability.
 
 #import "XYQuick_Predefine.h"
-#pragma mark -
-
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>
-
+#pragma mark -
 
 typedef enum : NSInteger
 {

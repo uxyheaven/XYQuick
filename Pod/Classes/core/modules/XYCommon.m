@@ -29,6 +29,7 @@
 //
 
 #import "XYCommon.h"
+#import <UIKit/UIKit.h>
 
 @implementation XYCommon
 {

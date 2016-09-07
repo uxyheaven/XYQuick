@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 #pragma mark -
 
 // 一大堆零散的方法

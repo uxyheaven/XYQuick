@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
 #pragma mark -
 
 #pragma mark -  生命周期

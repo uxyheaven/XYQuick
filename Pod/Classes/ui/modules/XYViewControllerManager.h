@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
 #pragma mark -
 
 typedef UIViewController *  (^XYViewControllerManager_createVC_block) (void);

@@ -30,6 +30,7 @@
 //  This file Copy from Samurai.
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 #pragma mark -
 
 #define XY_SCREEN_WIDTH   UIScreen.mainScreen.bounds.size.width

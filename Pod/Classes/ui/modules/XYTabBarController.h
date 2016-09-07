@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
 #import "XYTabBar.h"
 #pragma mark -
 

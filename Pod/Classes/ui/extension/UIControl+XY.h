@@ -30,6 +30,7 @@
 //  This file Copy from BlockUI.
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
 #pragma mark -
 
 /*

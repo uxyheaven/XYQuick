@@ -30,6 +30,7 @@
 //  This file Copy from ios-view-frame-builder.
 
 #import "XYQuick_Predefine.h"
+#import <UIKit/UIKit.h>
 #pragma mark -
 
 typedef NS_ENUM(NSUInteger, XYViewFrameBuilderDirection) {

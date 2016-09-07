@@ -30,6 +30,7 @@
 //  This file Copy from Samurai.
 
 #import "XYSystemInfo.h"
+#import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import <ifaddrs.h>

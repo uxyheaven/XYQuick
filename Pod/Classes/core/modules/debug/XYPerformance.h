@@ -30,6 +30,7 @@
 //  This file Copy from bee Framework.
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 #pragma mark -
 
 #if (1 ==  __XY_PERFORMANCE__)

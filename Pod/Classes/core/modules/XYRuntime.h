@@ -29,6 +29,7 @@
 //
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 #pragma mark -
 
 #define XYRuntime_SORT 0        // 对返回的类,方法进行排序(1开启, 0关闭)

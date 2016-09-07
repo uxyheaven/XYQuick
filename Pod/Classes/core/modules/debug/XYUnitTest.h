@@ -30,6 +30,7 @@
 //  This file Copy from Samurai.
 
 #import "XYQuick_Predefine.h"
+#import <Foundation/Foundation.h>
 #pragma mark -
 
 #define	UXY_TEST_CASE( __module, __name ) \
