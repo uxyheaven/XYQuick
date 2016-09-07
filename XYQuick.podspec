@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = "XYQuick"
-s.version          = "0.9.7"
+s.version          = "0.9.8"
 s.summary          = "A quick develop utility on iOS."
 
 # This description is used to generate tags and improve search results.

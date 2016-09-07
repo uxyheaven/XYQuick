@@ -321,6 +321,9 @@
                        @"NSHTMLReader",
                        @"PAHybridRouter",
                        @"FBSDKAppLinkResolver",
+                       @"FBSDKAppInviteDialog",
+                       @"FBSDKShareDialog",
+                       @"FBSDKMessageDialog",
                        nil];
     });
     
