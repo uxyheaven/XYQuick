@@ -33,6 +33,7 @@
 #import <CoreMedia/CoreMedia.h>
 #import <AVFoundation/AVAssetImageGenerator.h>
 #import <AVFoundation/AVAsset.h>
+#import <Accelerate/Accelerate.h>
 
 #import "XYMemoryCache.h"
 #import "NSString+XY.h"
@@ -208,11 +209,53 @@ static void uxy_addRoundedRectToPath(CGContextRef context, CGRect rect, float ra
 
 - (UIImage *)uxy_scaleToSize:(CGSize)size
 {
-    UIGraphicsBeginImageContext(size);
-    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
+    CGImageRef inImageRef = self.CGImage;
+    
+    CGDataProviderRef inProvider = CGImageGetDataProvider(inImageRef);
+    CFDataRef inBitmapData       = CGDataProviderCopyData(inProvider);
+    
+    vImage_Buffer inBuffer = {
+        .data     = (void *)CFDataGetBytePtr(inBitmapData),
+        .width    = CGImageGetWidth(inImageRef),
+        .height   = CGImageGetHeight(inImageRef),
+        .rowBytes = CGImageGetBytesPerRow(inImageRef),
+    };
+    
+    void *outBytes          = malloc(trunc(size.width * size.height * inBuffer.rowBytes));
+    vImage_Buffer outBuffer = {
+        .data     = outBytes,
+        .width    = trunc(size.width),
+        .height   = trunc(size.height),
+        .rowBytes = inBuffer.rowBytes,
+    };
+    
+    vImage_Error error =
+    vImageScale_ARGB8888(&inBuffer,
+                         &outBuffer,
+                         NULL,
+                         kvImageHighQualityResampling);
+    if (error)
+    {
+        return nil;
+    }
+    
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGContextRef c                = CGBitmapContextCreate(outBuffer.data,
+                                                          outBuffer.width,
+                                                          outBuffer.height,
+                                                          8,
+                                                          outBuffer.rowBytes,
+                                                          colorSpaceRef,
+                                                          kCGImageAlphaNoneSkipLast);
+    CGImageRef outImageRef = CGBitmapContextCreateImage(c);
+    UIImage *outImage      = [UIImage imageWithCGImage:outImageRef];
+    
+    CGImageRelease(outImageRef);
+    CGContextRelease(c);
+    CGColorSpaceRelease(colorSpaceRef);
+    CFRelease(inBitmapData);
+    
+    return outImage;
 }
 
 - (void)__uxy_addCircleRectToPath:(CGRect)rect context:(CGContextRef)context

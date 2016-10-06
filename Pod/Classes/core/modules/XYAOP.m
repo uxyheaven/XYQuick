@@ -27,7 +27,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //	THE SOFTWARE.
 //
-//  This file Copy fromAOP-for-Objective-C.
+//  This file Copy from AOP-for-Objective-C.
 
 #import "XYAOP.h"
 #import <Foundation/Foundation.h>
@@ -84,7 +84,8 @@ static dispatch_once_t __singleton__token__token;
     return self;
 }
 
-- (NSString *)registerClass:(Class)aClass withSelector:(SEL)aSelector type:(AOPAspectInspectorType)type usingBlock:(XYAOP_block)block {
+- (NSString *)registerClass:(Class)aClass withSelector:(SEL)aSelector type:(AOPAspectInspectorType)type usingBlock:(XYAOP_block)block
+{
     NSParameterAssert(aClass);
     NSParameterAssert(aSelector);
     NSParameterAssert(block);
