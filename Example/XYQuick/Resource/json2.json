@@ -1,0 +1,11 @@
+{
+    "data":
+    {
+        "code": 1,
+        "country": {
+            "name": "天朝",
+            "name_id": "CN"
+        },
+        "area": "华东"
+    }
+}
