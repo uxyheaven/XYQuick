@@ -202,7 +202,7 @@ ViewControllerDemoTitle(Image)
         case 9:
         {
             [dic setObject:@"merge" forKey:@"title"];
-            UIImage *img1 = [UIImage imageNamed:@"p31b0002.png"];
+            UIImage *img1 = [UIImage imageNamed:@"icon_twitter.png"];
             UIImage *tempImg = [self.originImg uxy_merge:img1];
             [dic setObject:tempImg forKey:@"img"];
             break;

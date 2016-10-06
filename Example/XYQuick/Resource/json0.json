@@ -1,0 +1,21 @@
+{
+    "code": 1,
+    "data": {
+        "subdata": {
+            "country": "米国"
+        },
+        "country": "中国",
+        "country_id": "CN",
+        "area": "华东",
+        "area_id": "300000",
+        "region": "安徽省",
+        "region_id": "340000",
+        "city": "合肥市",
+        "city_id": "340100",
+        "county": "",
+        "county_id": "-1",
+        "isp": "电信",
+        "isp_id": "100017",
+        "ip": "218.22.9.4"
+    }
+}
