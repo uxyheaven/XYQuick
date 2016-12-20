@@ -75,6 +75,8 @@
 		57C2B3311CC9BF60003CE9F4 /* Test2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B30C1CC9BF60003CE9F4 /* Test2View.m */; };
 		57C2B3321CC9BF60003CE9F4 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B30E1CC9BF60003CE9F4 /* TestView.m */; };
 		57C2B35C1CC9CA97003CE9F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C2B35B1CC9CA97003CE9F4 /* Main.storyboard */; };
+		57F55D9E1E092FF0007D1852 /* XYModuleLifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F55D9D1E092FF0007D1852 /* XYModuleLifecycle.m */; };
+		57F55DA41E0930DD007D1852 /* XYModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F55DA31E0930DD007D1852 /* XYModuleManager.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -218,6 +220,10 @@
 		57C2B30D1CC9BF60003CE9F4 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		57C2B30E1CC9BF60003CE9F4 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 		57C2B35B1CC9CA97003CE9F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		57F55D9C1E092FF0007D1852 /* XYModuleLifecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYModuleLifecycle.h; sourceTree = "<group>"; };
+		57F55D9D1E092FF0007D1852 /* XYModuleLifecycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYModuleLifecycle.m; sourceTree = "<group>"; };
+		57F55DA21E0930DD007D1852 /* XYModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYModuleManager.h; sourceTree = "<group>"; };
+		57F55DA31E0930DD007D1852 /* XYModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYModuleManager.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* XYQuick_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYQuick_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -302,6 +308,7 @@
 		57C2B2941CC9BF4E003CE9F4 /* Laboratory */ = {
 			isa = PBXGroup;
 			children = (
+				57F55D981E092DDC007D1852 /* module */,
 				57C2B2951CC9BF4E003CE9F4 /* IndicatorHelper.h */,
 				57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */,
 				57C2B2971CC9BF4F003CE9F4 /* LKDBHelperExtension.h */,
@@ -433,6 +440,17 @@
 			children = (
 			);
 			path = Vender;
+			sourceTree = "<group>";
+		};
+		57F55D981E092DDC007D1852 /* module */ = {
+			isa = PBXGroup;
+			children = (
+				57F55D9C1E092FF0007D1852 /* XYModuleLifecycle.h */,
+				57F55D9D1E092FF0007D1852 /* XYModuleLifecycle.m */,
+				57F55DA21E0930DD007D1852 /* XYModuleManager.h */,
+				57F55DA31E0930DD007D1852 /* XYModuleManager.m */,
+			);
+			path = module;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -775,6 +793,7 @@
 				57C2B2BF1CC9BF4F003CE9F4 /* XYBaseModel.m in Sources */,
 				57C2B3321CC9BF60003CE9F4 /* TestView.m in Sources */,
 				57C2B31F1CC9BF60003CE9F4 /* AutoCodingEntity.m in Sources */,
+				57F55D9E1E092FF0007D1852 /* XYModuleLifecycle.m in Sources */,
 				57C2B3291CC9BF60003CE9F4 /* Test2Model.m in Sources */,
 				57C2B2C41CC9BF4F003CE9F4 /* XYObjectCache.m in Sources */,
 				57C2B3261CC9BF60003CE9F4 /* LKTestModels.m in Sources */,
@@ -793,6 +812,7 @@
 				57C2B3221CC9BF60003CE9F4 /* EntityBaseModel.m in Sources */,
 				57C2B2C51CC9BF4F003CE9F4 /* XYRepository.m in Sources */,
 				57C2B2C11CC9BF4F003CE9F4 /* XYClassLoader.m in Sources */,
+				57F55DA41E0930DD007D1852 /* XYModuleManager.m in Sources */,
 				57C2B31D1CC9BF60003CE9F4 /* AopTestM.m in Sources */,
 				57C2B2C21CC9BF4F003CE9F4 /* XYEvent.m in Sources */,
 				57C2B3101CC9BF60003CE9F4 /* BlackMagicVC.m in Sources */,

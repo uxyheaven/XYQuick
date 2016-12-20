@@ -1,20 +1,18 @@
 //
-//  XYAppDelegate.m
+//  XYModuleLifecycle.m
 //  XYQuick
 //
-//  Created by xingyao095 on 04/22/2016.
-//  Copyright (c) 2016 xingyao095. All rights reserved.
+//  Created by heaven on 2016/12/20.
+//  Copyright © 2016年 xingyao095. All rights reserved.
 //
 
-#import "XYAppDelegate.h"
-#import "XYModuleManager.h"
+#import "XYModuleLifecycle.h"
 
-@implementation XYAppDelegate
+@implementation XYModuleLifecycle 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [[XYModuleManager sharedInstance] hookAppDelegate:self];
     return YES;
 }
 
