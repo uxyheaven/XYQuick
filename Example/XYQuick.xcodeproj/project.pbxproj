@@ -28,6 +28,7 @@
 		575685E51DA65BC90050A5F5 /* user_currentstandings.png in Resources */ = {isa = PBXBuildFile; fileRef = 575685D21DA65BC90050A5F5 /* user_currentstandings.png */; };
 		577A118E1D129C27008A0C9A /* Test_XYSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 577A118D1D129C27008A0C9A /* Test_XYSystem.m */; };
 		578DB2351E0B724B00EF288B /* XYWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 578DB2341E0B724B00EF288B /* XYWidget.m */; };
+		578DB2381E0B985D00EF288B /* XYInterfaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 578DB2371E0B985D00EF288B /* XYInterfaceManager.m */; };
 		57C2B2B81CC9BF4F003CE9F4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */; };
 		57C2B2B91CC9BF4F003CE9F4 /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B2981CC9BF4F003CE9F4 /* LKDBHelperExtension.m */; };
 		57C2B2BB1CC9BF4F003CE9F4 /* XYAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B29C1CC9BF4F003CE9F4 /* XYAppController.m */; };
@@ -130,6 +131,8 @@
 		577A118D1D129C27008A0C9A /* Test_XYSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYSystem.m; sourceTree = "<group>"; };
 		578DB2331E0B724B00EF288B /* XYWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYWidget.h; sourceTree = "<group>"; };
 		578DB2341E0B724B00EF288B /* XYWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYWidget.m; sourceTree = "<group>"; };
+		578DB2361E0B985D00EF288B /* XYInterfaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYInterfaceManager.h; sourceTree = "<group>"; };
+		578DB2371E0B985D00EF288B /* XYInterfaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYInterfaceManager.m; sourceTree = "<group>"; };
 		57C2B2951CC9BF4E003CE9F4 /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
 		57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorHelper.m; sourceTree = "<group>"; };
 		57C2B2971CC9BF4F003CE9F4 /* LKDBHelperExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelperExtension.h; sourceTree = "<group>"; };
@@ -457,6 +460,8 @@
 				57F55DA31E0930DD007D1852 /* XYModuleManager.m */,
 				578DB2331E0B724B00EF288B /* XYWidget.h */,
 				578DB2341E0B724B00EF288B /* XYWidget.m */,
+				578DB2361E0B985D00EF288B /* XYInterfaceManager.h */,
+				578DB2371E0B985D00EF288B /* XYInterfaceManager.m */,
 			);
 			path = module;
 			sourceTree = "<group>";
@@ -798,6 +803,7 @@
 				57C2B31E1CC9BF60003CE9F4 /* Associated.m in Sources */,
 				6003F59E195388D20070C39A /* XYAppDelegate.m in Sources */,
 				57C2B3301CC9BF60003CE9F4 /* PaintCodeView.m in Sources */,
+				578DB2381E0B985D00EF288B /* XYInterfaceManager.m in Sources */,
 				57C2B3251CC9BF60003CE9F4 /* JsonTestEntity.m in Sources */,
 				57C2B32F1CC9BF60003CE9F4 /* Test_XYThead.m in Sources */,
 				57C2B2C31CC9BF4F003CE9F4 /* XYMaterial.m in Sources */,
