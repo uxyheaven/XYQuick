@@ -8,6 +8,8 @@
 
 #import "XYModuleManager.h"
 #import <objc/message.h>
+#import "XYQuick.h"
+#import "XYModuleLifecycle.h"
 
 
 @interface XYModuleManager ()
@@ -30,9 +32,25 @@
         
         if (![self respondsToSelector:selector])
         {
-            NSLog(@"%s", selector);
-            
-            SEL aSelectorNew = NSSelectorFromString([NSString stringWithFormat:@"xy__%s", selector]);
+            [XYAOP interceptClass:[appDelegate class] afterExecutingSelector:selector usingBlock:^(NSInvocation *invocation) {
+                for (XYModuleLifecycle *life in self.modules)
+                {
+                    if ([life respondsToSelector:selector])
+                    {
+                        NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[life class] instanceMethodSignatureForSelector:selector]];
+                        invo.target = life;
+                        invo.selector = selector;
+                        for (int i = 2; i < invocation.methodSignature.numberOfArguments; i++)
+                        {
+                            void *arg;
+                            [invocation getArgument:&arg atIndex:i];
+                            [invo setArgument:&arg atIndex:i];
+                        }
+                        
+                        [invo invoke];
+                    }
+                }
+            }];
         }
     }
 }
@@ -40,7 +58,7 @@
 
 - (void)addAModule:(id)module
 {
-    
+    [_modules addObject:module];
 }
 
 

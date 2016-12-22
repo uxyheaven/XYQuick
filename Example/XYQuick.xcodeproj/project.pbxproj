@@ -27,6 +27,7 @@
 		575685E41DA65BC90050A5F5 /* json7.json in Resources */ = {isa = PBXBuildFile; fileRef = 575685D11DA65BC90050A5F5 /* json7.json */; };
 		575685E51DA65BC90050A5F5 /* user_currentstandings.png in Resources */ = {isa = PBXBuildFile; fileRef = 575685D21DA65BC90050A5F5 /* user_currentstandings.png */; };
 		577A118E1D129C27008A0C9A /* Test_XYSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 577A118D1D129C27008A0C9A /* Test_XYSystem.m */; };
+		578DB2351E0B724B00EF288B /* XYWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 578DB2341E0B724B00EF288B /* XYWidget.m */; };
 		57C2B2B81CC9BF4F003CE9F4 /* IndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */; };
 		57C2B2B91CC9BF4F003CE9F4 /* LKDBHelperExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B2981CC9BF4F003CE9F4 /* LKDBHelperExtension.m */; };
 		57C2B2BB1CC9BF4F003CE9F4 /* XYAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2B29C1CC9BF4F003CE9F4 /* XYAppController.m */; };
@@ -77,6 +78,7 @@
 		57C2B35C1CC9CA97003CE9F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C2B35B1CC9CA97003CE9F4 /* Main.storyboard */; };
 		57F55D9E1E092FF0007D1852 /* XYModuleLifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F55D9D1E092FF0007D1852 /* XYModuleLifecycle.m */; };
 		57F55DA41E0930DD007D1852 /* XYModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F55DA31E0930DD007D1852 /* XYModuleManager.m */; };
+		57F55DA81E0A48D2007D1852 /* ModuleA.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F55DA71E0A48D2007D1852 /* ModuleA.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -126,6 +128,8 @@
 		575685D11DA65BC90050A5F5 /* json7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json7.json; sourceTree = "<group>"; };
 		575685D21DA65BC90050A5F5 /* user_currentstandings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_currentstandings.png; sourceTree = "<group>"; };
 		577A118D1D129C27008A0C9A /* Test_XYSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_XYSystem.m; sourceTree = "<group>"; };
+		578DB2331E0B724B00EF288B /* XYWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYWidget.h; sourceTree = "<group>"; };
+		578DB2341E0B724B00EF288B /* XYWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYWidget.m; sourceTree = "<group>"; };
 		57C2B2951CC9BF4E003CE9F4 /* IndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorHelper.h; sourceTree = "<group>"; };
 		57C2B2961CC9BF4E003CE9F4 /* IndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorHelper.m; sourceTree = "<group>"; };
 		57C2B2971CC9BF4F003CE9F4 /* LKDBHelperExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDBHelperExtension.h; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 		57F55D9D1E092FF0007D1852 /* XYModuleLifecycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYModuleLifecycle.m; sourceTree = "<group>"; };
 		57F55DA21E0930DD007D1852 /* XYModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYModuleManager.h; sourceTree = "<group>"; };
 		57F55DA31E0930DD007D1852 /* XYModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYModuleManager.m; sourceTree = "<group>"; };
+		57F55DA61E0A48D2007D1852 /* ModuleA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleA.h; sourceTree = "<group>"; };
+		57F55DA71E0A48D2007D1852 /* ModuleA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleA.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* XYQuick_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYQuick_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -449,8 +455,19 @@
 				57F55D9D1E092FF0007D1852 /* XYModuleLifecycle.m */,
 				57F55DA21E0930DD007D1852 /* XYModuleManager.h */,
 				57F55DA31E0930DD007D1852 /* XYModuleManager.m */,
+				578DB2331E0B724B00EF288B /* XYWidget.h */,
+				578DB2341E0B724B00EF288B /* XYWidget.m */,
 			);
 			path = module;
+			sourceTree = "<group>";
+		};
+		57F55DA51E0A485C007D1852 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				57F55DA61E0A48D2007D1852 /* ModuleA.h */,
+				57F55DA71E0A48D2007D1852 /* ModuleA.m */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -490,6 +507,7 @@
 		6003F593195388D20070C39A /* Example for XYQuick */ = {
 			isa = PBXGroup;
 			children = (
+				57F55DA51E0A485C007D1852 /* Modules */,
 				575685BF1DA65BC90050A5F5 /* Resource */,
 				57C2B3331CC9C3F5003CE9F4 /* Vender */,
 				57C2B2C81CC9BF60003CE9F4 /* Controller */,
@@ -820,7 +838,9 @@
 				57C2B3191CC9BF60003CE9F4 /* SignalVC.m in Sources */,
 				57C2B2BB1CC9BF4F003CE9F4 /* XYAppController.m in Sources */,
 				57C2B32C1CC9BF60003CE9F4 /* Test_XYJSON.m in Sources */,
+				578DB2351E0B724B00EF288B /* XYWidget.m in Sources */,
 				57C2B3161CC9BF60003CE9F4 /* JSONVC.m in Sources */,
+				57F55DA81E0A48D2007D1852 /* ModuleA.m in Sources */,
 				57C2B30F1CC9BF60003CE9F4 /* AnimationVC2.m in Sources */,
 				57C2B32E1CC9BF60003CE9F4 /* Test_XYSandbox.m in Sources */,
 				57C2B3151CC9BF60003CE9F4 /* ImageVC.m in Sources */,
