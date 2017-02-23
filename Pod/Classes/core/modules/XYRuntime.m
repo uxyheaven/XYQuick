@@ -58,6 +58,7 @@
 + (NSArray *)uxy_subClasses
 {
     NSSet *classFilter = [self __uxy_classFilter];
+    
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
     for ( NSString *className in [self __uxy_loadedClassNames] )
@@ -324,7 +325,17 @@
                        @"FBSDKAppInviteDialog",
                        @"FBSDKShareDialog",
                        @"FBSDKMessageDialog",
+                       @"WKNSURLRequest",
+                       @"WKNSURLAuthenticationChallenge",
+                       @"WKNSURL",
+                       @"WKNSString",
+                       @"WKNSError",
                        nil];
+        
+        if ([XYRuntime resolveClassMethod:@selector(customClassFilter)])
+        {
+            classFilter = [classFilter setByAddingObjectsFromSet:[XYRuntime customClassFilter]];
+        }
     });
     
     return classFilter;

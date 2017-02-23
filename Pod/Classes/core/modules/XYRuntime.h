@@ -44,6 +44,23 @@
  */
 + (void)swizzleInstanceMethodWithClass:(Class)clazz originalSel:(SEL)original replacementSel:(SEL)replacement;
 
+/**
+ * @brief 返回需要过滤的类. iOS有个bug, 某些类一旦被枚举就会crash, 如NSHTMLReader.
+ 我已经过滤了一些, 但是难免有遗漏, 如果遇到了新的, 请写个类别在这里过滤. 已经过滤的如下:
+ @"NSHTMLReader",
+ @"PAHybridRouter",
+ @"FBSDKAppLinkResolver",
+ @"FBSDKAppInviteDialog",
+ @"FBSDKShareDialog",
+ @"FBSDKMessageDialog",
+ @"WKNSURLRequest",
+ @"WKNSURLAuthenticationChallenge",
+ @"WKNSURL",
+ @"WKNSString",
+ @"WKNSError",
+ */
++ (NSSet *)customClassFilter;
+
 @end
 
 #pragma mark -

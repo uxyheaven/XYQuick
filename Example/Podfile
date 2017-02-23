@@ -29,8 +29,6 @@ end
 target 'XYQuick_Tests' do
     #  shared_pods
     pod 'XYQuick', :path => '../'
-    
-    pod 'FBSnapshotTestCase'
 end
 
 
