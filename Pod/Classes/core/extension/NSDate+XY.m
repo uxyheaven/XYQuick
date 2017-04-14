@@ -37,49 +37,49 @@
 @dynamic uxy_year;
 - (NSInteger)uxy_year
 {
-	return [[NSCalendar currentCalendar] components:NSYearCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitYear
 										   fromDate:self].year;
 }
 
 @dynamic uxy_month;
 - (NSInteger)uxy_month
 {
-	return [[NSCalendar currentCalendar] components:NSMonthCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitMonth
 										   fromDate:self].month;
 }
 
 @dynamic uxy_day;
 - (NSInteger)uxy_day
 {
-	return [[NSCalendar currentCalendar] components:NSDayCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitDay
 										   fromDate:self].day;
 }
 
 @dynamic uxy_hour;
 - (NSInteger)uxy_hour
 {
-	return [[NSCalendar currentCalendar] components:NSHourCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitHour
 										   fromDate:self].hour;
 }
 
 @dynamic uxy_minute;
 - (NSInteger)uxy_minute
 {
-	return [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitMinute
 										   fromDate:self].minute;
 }
 
 @dynamic uxy_second;
 - (NSInteger)uxy_second
 {
-	return [[NSCalendar currentCalendar] components:NSSecondCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday
 										   fromDate:self].second;
 }
 
 @dynamic uxy_weekday;
 - (NSInteger)uxy_weekday
 {
-	return [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit
+	return [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday
 										   fromDate:self].weekday;
 }
 
@@ -190,7 +190,7 @@
 - (NSInteger)uxy_distanceInDaysToDate:(NSDate *)aDate
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *dateComponents = [calendar components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay fromDate:self toDate:aDate options:0];
     return [dateComponents day];
 }
 

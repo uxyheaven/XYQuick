@@ -82,6 +82,6 @@
 // 写文件用 "com.XY.writeFileQueue", DISPATCH_QUEUE_SERIAL
 @property (nonatomic, strong, readonly) dispatch_queue_t writeFileQueue;
 
-+ (dispatch_time_t)seconds:(float)f;
++ (dispatch_time_t)seconds:(CGFloat)f;
 
 @end
