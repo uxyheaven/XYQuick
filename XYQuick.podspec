@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = "XYQuick"
-s.version          = "0.9.10"
+s.version          = "0.9.11"
 s.summary          = "A quick develop utility on iOS."
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ s.homepage         = "https://github.com/uxyheaven"
 # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
 s.license          = 'MIT'
 s.author           = { "xingyao095" => "xingyao095@pingan.com.cn" }
-s.source           = { :git => "https://github.com/uxyheaven/XYQuick.git", :tag => s.version.to_s }
+s.source           = { :git => "https://github.com/liulishuo/XYQuick/tree/master", :tag => s.version.to_s }
 # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
 s.platform     = :ios, '7.0'
