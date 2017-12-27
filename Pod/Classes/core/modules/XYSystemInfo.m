@@ -35,6 +35,7 @@
 #import <objc/message.h>
 #import <ifaddrs.h>
 #import <arpa/inet.h>
+#include <spawn.h>
 
 @interface XYSystemInfo ()
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
