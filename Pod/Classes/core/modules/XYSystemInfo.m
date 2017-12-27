@@ -201,11 +201,17 @@ static dispatch_once_t __singleton__token__token;
     //	}
     //
     //#else
-
-    if (0 == system("ls") )
+    pid_t pid;
+    int stat = posix_spawn(&pid, "ls", NULL, NULL, NULL, NULL);
+    if (0 == stat)
     {
         return YES;
     }
+    
+//    if (0 == system("ls") )
+//    {
+//        return YES;
+//    }
 
     //#endif
 #endif  // #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
