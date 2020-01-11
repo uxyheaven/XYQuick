@@ -202,10 +202,10 @@ static dispatch_once_t __singleton__token__token;
     //
     //#else
 
-    if (0 == system("ls") )
-    {
-        return YES;
-    }
+//    if (0 == system("ls") )
+//    {
+//        return YES;
+//    }
 
     //#endif
 #endif  // #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)

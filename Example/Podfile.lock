@@ -7,19 +7,19 @@ PODS:
   - MBProgressHUD (0.9.2)
   - OpenUDID (1.0.0)
   - SVPullToRefresh (0.4.1)
-  - XYQuick (0.9.9):
-    - XYQuick/core (= 0.9.9)
-    - XYQuick/event (= 0.9.9)
-    - XYQuick/predefine (= 0.9.9)
-    - XYQuick/ui (= 0.9.9)
-  - XYQuick/core (0.9.9):
+  - XYQuick (0.9.10):
+    - XYQuick/core (= 0.9.10)
+    - XYQuick/event (= 0.9.10)
+    - XYQuick/predefine (= 0.9.10)
+    - XYQuick/ui (= 0.9.10)
+  - XYQuick/core (0.9.10):
     - XYQuick/predefine
-  - XYQuick/event (0.9.9):
+  - XYQuick/event (0.9.10):
     - XYQuick/core
     - XYQuick/predefine
     - XYQuick/ui
-  - XYQuick/predefine (0.9.9)
-  - XYQuick/ui (0.9.9):
+  - XYQuick/predefine (0.9.10)
+  - XYQuick/ui (0.9.10):
     - XYQuick/core
     - XYQuick/predefine
 
@@ -31,6 +31,14 @@ DEPENDENCIES:
   - SVPullToRefresh (~> 0.4.1)
   - XYQuick (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+    - LKDBHelper
+    - MBProgressHUD
+    - OpenUDID
+    - SVPullToRefresh
+
 EXTERNAL SOURCES:
   XYQuick:
     :path: "../"
@@ -41,8 +49,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  XYQuick: 4b3b1c438360a1b3a8776d55b822d392df4df7ea
+  XYQuick: e9fd4e6817751152c70f6d583570bad581d0b599
 
 PODFILE CHECKSUM: 5518f4a8dd6c0abfaba903c40904f213872cef14
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.3
