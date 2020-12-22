@@ -22,7 +22,7 @@ pod "XYQuick"
 
 ## Author
 
-xingyao095, xingyao095@pingan.com.cn
+uxyheaven
 
 ## License
 
