@@ -21,8 +21,8 @@ pod "XYQuick"
 ```
 
 ## Author
+uxyheaven
 
-uxyheaven, uxyheaven@163.com
 
 ## License
 
