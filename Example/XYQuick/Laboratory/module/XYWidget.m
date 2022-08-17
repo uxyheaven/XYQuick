@@ -3,7 +3,7 @@
 //  XYQuick
 //
 //  Created by heaven on 2016/12/22.
-//  Copyright © 2016年 xingyao095. All rights reserved.
+//  Copyright © 2016年 uxyheaven. All rights reserved.
 //
 
 #import "XYWidget.h"

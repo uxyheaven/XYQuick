@@ -633,7 +633,7 @@
 			attributes = {
 				CLASSPREFIX = XY;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = xingyao095;
+				ORGANIZATIONNAME = uxyheaven;
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
